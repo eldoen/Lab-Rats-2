@@ -18,7 +18,7 @@ init -2 python:
 
     def flirt_requirement(the_person):
         if the_person.love < 10:
-            return "Requires: 10{image=gui/extra_images/energy_token.png}"
+            return "Requires: 10 Love"
         elif mc.energy < 15:
             return "Requires: 15{image=gui/extra_images/energy_token.png}"
         else:
