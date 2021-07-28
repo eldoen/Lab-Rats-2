@@ -719,10 +719,12 @@ label shopping_date_intro(the_person, skip_intro = False, skip_outro = False):
     $ mc.change_location(mall)
     $ mc.location.show_background()
     $ should_advance_time = True
+    $ previous_choice = None
 
 label .shopping_date_keep_going:
-    call shopping_date_loop(the_person)
-    if _return == "leave_early":
+    call shopping_date_loop(the_person, previous_choice)
+    $ previous_choice = _return
+    if previous_choice == "leave_early":
         $ should_advance_time = False
     else:
         jump shopping_date_intro.shopping_date_keep_going
@@ -737,6 +739,7 @@ label .shopping_date_keep_going:
 
     if should_advance_time:
         call advance_time() from _call_advance_time_shopping_date_intro
+    $ previous_choice = None
     return
 
 label shopping_date_loop(the_person, previous_choice = None):
