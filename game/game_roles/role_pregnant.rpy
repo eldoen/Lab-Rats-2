@@ -43,9 +43,9 @@ init -1 python:
         person.event_triggers_dict["preg_finish_announce_day"] = day + 90 + renpy.random.randint(0,10)
         person.event_triggers_dict["pre_preg_tits"] = person.tits
 
-        random = renpy.random.randint(12,18)
+        random = renpy.random.randint(10,14)
         preg_announce_action = Action("Pregnancy Announcement", pregnant_announce_requirement, "pregnant_announce", requirement_args = day + random)
-        person.on_room_enter_event_list.append(Limited_Time_Action(preg_announce_action, (random * 5) + 12))
+        person.on_room_enter_event_list.append(Limited_Time_Action(preg_announce_action, random + 12))
 
         preg_tits_action = Action("Pregnancy Tits Grow", pregnant_tits_requirement, "pregnant_tits_start", args = person, requirement_args = person)
         mc.business.mandatory_morning_crises_list.append(preg_tits_action)
