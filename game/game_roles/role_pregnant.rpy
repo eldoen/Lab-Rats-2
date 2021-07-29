@@ -45,7 +45,7 @@ init -1 python:
 
         random = renpy.random.randint(10,14)
         preg_announce_action = Action("Pregnancy Announcement", pregnant_announce_requirement, "pregnant_announce", requirement_args = day + random)
-        person.on_room_enter_event_list.append(Limited_Time_Action(preg_announce_action, random + 12))
+        person.on_room_enter_event_list.append(Limited_Time_Action(preg_announce_action, (5 * random) + (5 * 5))) #LTA is turns valid, not days (5 slots per day), yield 5 days after it becomes active
 
         preg_tits_action = Action("Pregnancy Tits Grow", pregnant_tits_requirement, "pregnant_tits_start", args = person, requirement_args = person)
         mc.business.mandatory_morning_crises_list.append(preg_tits_action)
