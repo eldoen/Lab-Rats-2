@@ -719,15 +719,12 @@ label shopping_date_intro(the_person, skip_intro = False, skip_outro = False):
     $ mc.change_location(mall)
     $ mc.location.show_background()
     $ should_advance_time = True
-    $ previous_choice = None
 
-label .shopping_date_keep_going:
-    call shopping_date_loop(the_person, previous_choice)
-    $ previous_choice = _return
-    if previous_choice == "leave_early":
+    call shopping_date_loop(the_person) from _call_shopping_date_loop_first_choice
+    if _return == "leave_early":
         $ should_advance_time = False
     else:
-        jump shopping_date_intro.shopping_date_keep_going
+        call shopping_date_loop(the_person, _return) from _call_shopping_date_loop_second_choice
 
     if not skip_outro:
         "You walk with [the_person.possessive_title] to the mall entrance."
@@ -739,7 +736,6 @@ label .shopping_date_keep_going:
 
     if should_advance_time:
         call advance_time() from _call_advance_time_shopping_date_intro
-    $ previous_choice = None
     return
 
 label shopping_date_loop(the_person, previous_choice = None):
