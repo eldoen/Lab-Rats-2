@@ -511,15 +511,15 @@ label dm_option_nude(the_person):
     $ previous_request_level = the_person.event_triggers_dict.get("insta_special_request_level", 0)
     if previous_request_level == 0:
         mc.name "I just found your profile and it blew me away! You're gorgeous!" (what_style = "text_message_style")
-        mc.name "Do you do nude shots? I'd pay so much to see you naked!" (what_style = "text_message_style")
-        mc.name "How $200? Would that be enough for some private pics?" (what_style = "text_message_style")
+        mc.name "Do you do more revealing shots? I'd gladly donate some money to see you au naturel!" (what_style = "text_message_style")
+        mc.name "Would $200 be enough for some private pics?" (what_style = "text_message_style")
     elif previous_request_level == 1:
         mc.name "Your posts are so hot, but I really think you'd look better naked." (what_style = "text_message_style")
-        mc.name "Do you do nude shots? I'd pay so much to see you naked!" (what_style = "text_message_style")
-        mc.name "How $200? Would that be enough for some private pics?" (what_style = "text_message_style")
+        mc.name "Do you do nude shots? I'd not mind contributing some money to see you naked!" (what_style = "text_message_style")
+        mc.name "How about $200? Would that be enough for some private pics?" (what_style = "text_message_style")
     elif previous_request_level == 2 or previous_request_level == 3:
         mc.name "Fuck, you're so beautiful I just need to see more of you!" (what_style = "text_message_style")
-        mc.name "I want some nudes, could you send them to me? I'll pay you $200 for them." (what_style = "text_message_style")
+        mc.name "I would love more nude pictures, could you send them to me? I'll pay you $200 for them." (what_style = "text_message_style")
     else:
         mc.name "I'm looking for some more nudes, interested? I'll pay another $200 for them." (what_style = "text_message_style")
 
