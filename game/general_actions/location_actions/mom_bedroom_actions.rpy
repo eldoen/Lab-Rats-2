@@ -23,7 +23,7 @@ label mom_room_search_description():
                         "Hide her birth control":
                             $ the_person.event_triggers_dict["BC_nightstand_hide_day"] = day #Can't rehide it today, because she never stops until tomorrow anyways.
                             "You take the small pack and drop it down the crack between [the_person.possessive_title]'s bed and the bedstand."
-                            "She'll probably find it if she takes the time to look, and even if she doesn't she doesn't she could pick some more up at the pharmacy any time."
+                            "She'll probably find it if she takes the time to look, and even if she doesn't, she could pick some more up at the pharmacy any time."
                             "It would be so irresponsible for her to be unprotected just because it's slightly inconvenient to get more pills..."
                             if renpy.random.randint(0,100) < 5 + 5*the_person.get_opinion_score("bareback sex"): #She doesn't bother getting more. Just asking for trouble!
                                 $ manage_bc(start = False, update_knowledge = False)
@@ -37,7 +37,7 @@ label mom_room_search_description():
                 "The inside is as neat as the top, with a murder mystery novel sitting at the front of the otherwise empty drawer."
                 "Disappointed, you slide the drawer closed again."
             elif the_person.core_sluttiness < 30: # Low sluttiness.
-                "The inside is as neat as the top. The only thing inside is a well read, probably second hand novel."
+                "The inside is as neat as the top. The only thing inside is a well read, probably, second hand novel."
                 "The cover features a shirtless cowboy looking out over wide open plains and a herd of cattle."
                 "The title reads \"A Fist Full of Bodices\", and [the_person.possessive_title] has dog-eared a bunch of pages."
                 "You aren't terribly interested in reading through her cheap romance novel, so you slide the drawer closed again."
