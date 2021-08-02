@@ -493,7 +493,7 @@ label mom_serve_breakfast_request(the_person):
     #TODO: You ask her to make you breakfast every morning as your helping-with-the-bills request
     mc.name "I want breakfast brought to me every morning. I'm usually so busy with work I don't have any time to do it myself."
     the_person "Okay [the_person.mc_title], if you're able to help out every week with the bills I can do that."
-    the_person "I'll have to get up early to get it made before work, but I'll do it for you. Maybe [lily.title] can help me."
+    the_person "I'll have to get up early to get it made before work, but I'll do it for you. Maybe [lily.name] can help me."
     # TODO: She wants some extra money from you every week she keeps doing this.
     # TODO: Hook this up to actually do something.
     #TODO: If she's slutty enough to move onto the nude_serve level she has a chance of showing up in her underwear.
@@ -568,14 +568,14 @@ label mom_weekly_pay_lily_question(the_person):
             the_person "Oh, why haven't I heard about this?"
             mc.name "It's not exactly a traditional job. She's been putting pictures up on InstaPic."
             the_person "InstaPic? Isn't that an internet thing? I don't understand."
-            mc.name "[lily.title] puts up pictures showing off clothing, and InstaPic pays her for the ad traffic she generates."
+            mc.name "[lily.name] puts up pictures showing off clothing, and InstaPic pays her for the ad traffic she generates."
             the_person "So it's like modeling, but she can do it from home?"
             mc.name "I guess so, yeah. She's just worried that you wouldn't approve."
             the_person "Why wouldn't I? Models can be very successful. And there are no photographers or agents to take advantage of her."
             the_person "I'm going to tell her how proud I am of her. Maybe she'll even let her Mom take a few photos with her."
             "She laughs and shrugs."
             the_person "Never mind, nobody's interested in looking at someone old like me."
-            mc.name "You should absolutely ask [lily.title] to take some pictures with you. I think you'd be surprised."
+            mc.name "You should absolutely ask [lily.name] to take some pictures with you. I think you'd be surprised."
             the_person "Aww, you're too sweet."
             $ lily.event_triggers_dict["sister_instathot_mom_knows"] = True
             $ add_sister_instapic_discover_crisis()
