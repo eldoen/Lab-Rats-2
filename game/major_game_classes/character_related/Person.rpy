@@ -267,7 +267,7 @@ init -2 python:
             self.sexed_count = 0
 
         def __call__(self, what, *args, **kwargs): #Required to play nicely with statement equivalent say() when passing only Peron object.
-            self.char(what, *args, **kwargs)
+            self.char(self.personalise_text(what), *args, **kwargs)
 
         @property
         def identifier(self):

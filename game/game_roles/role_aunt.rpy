@@ -134,12 +134,12 @@ label aunt_intro_label():
     mom "You remember your aunt [aunt.title], right? Well, she's been having a rough time with her husband lately and they're separating."
     "You nod and listen. [aunt.possessive_title] never spent much time visiting when you were a kid and it's been years since you've seen her at all."
     mom "It seems like he's going to be keeping the house, so she's going to be staying with us for a few days while she finds a new place to live."
-    mom "She'll be bringing your cousin [cousin.title], too. You two haven't seen each other since you were kids, have you?"
+    mom "She'll be bringing your cousin [cousin.name], too. You two haven't seen each other since you were kids, have you?"
     mc.name "No, it's been a long time."
     mom "I know it's going to be a little tight here while we sort this out, but she's family and I need to be there for her."
     mc.name "I understand [mom.title]. I'll help out however I can."
     $ mom.change_happiness(5)
-    mom "That's so nice to hear [mom.mc_title], thank you. [cousin.possessive_title] will be sharing [lily.title]'s room with her and [aunt.title] will be on the couch in the living room."
+    mom "That's so nice to hear [mom.mc_title], thank you. [cousin.name] will be sharing [lily.title]'s room with her and [aunt.title] will be on the couch in the living room."
     mom "They're going to be here in the morning. If you have a few minutes, could you help me pull out some sheets and get their beds made?"
     menu:
         "Help [mom.possessive_title] set up":
@@ -150,9 +150,9 @@ label aunt_intro_label():
             "You fold out the couch in the living room and dress it up as a temporary bed for your aunt."
             "Next, you drag an air mattress into [lily.title]'s room and start inflating it."
             $ lily.draw_person()
-            lily "Mom, I don't even know [cousin.title]. Can't she have [lily.mc_title]'s room and he can sleep somewhere else?"
+            lily "Mom, I don't even know [cousin.name]. Can't she have [lily.mc_title]'s room and he can sleep somewhere else?"
             $ mom.draw_person()
-            mom "Your brother has to worry about his work. It's just for a couple of days. I'm sure you and [cousin.title] will get along just fine."
+            mom "Your brother has to worry about his work. It's just for a couple of days. I'm sure you and [cousin.name] will get along just fine."
             "[lily.possessive_title] pouts but stops complaining. You and [mom.possessive_title] finish setting up the air mattress."
             mom "Alright, I think that's everything. Thank you so much for the help [mom.mc_title]. I know it's late and you probably want to get to bed."
             "[mom.possessive_title] gives you a hug and kiss on the forehead. You head off to your room and go to sleep."
@@ -190,10 +190,10 @@ label aunt_intro_phase_two_label():
     $ the_group.draw_group()
     $ mc.change_locked_clarity(10)
     "[aunt.title] lets out an excited, high pitched yell and rushes forward to hug [mom.possessive_title]."
-    aunt "Thank you so much for taking us in. It means the world to me and [cousin.title]."
+    aunt "Thank you so much for taking us in. It means the world to me and [cousin.name]."
     $ the_group.draw_person(mom)
     "[mom.possessive_title] breaks the hug. Your cousin, [cousin.title], sits outside the door on a suitcase, idly scrolling through her phone."
-    mom "How are you doing [cousin.title]? Holding up okay?"
+    mom "How are you doing [cousin.name]? Holding up okay?"
     $ the_group.draw_person(cousin)
     "She shrugs and doesn't take her eyes off her phone."
     cousin "Eh. Fine..."
@@ -213,7 +213,7 @@ label aunt_intro_phase_two_label():
     $ the_group.set_primary(lily)
     $ the_group.redraw_group()
     "[mom.possessive_title] leads [aunt.possessive_title] into the house. When they're gone [lily.possessive_title] takes a step towards [cousin.title]."
-    lily "Hi [cousin.title], it's nice to see you again. I don't think we've talked since we were little kids."
+    lily "Hi [cousin.name], it's nice to see you again. I don't think we've talked since we were little kids."
     $ the_group.draw_person(cousin)
     cousin "Yep..."
     "There's a long period of awkward silence."
@@ -251,12 +251,12 @@ label aunt_intro_phase_three_label():
     $ aunt.draw_person(emotion = "happy")
     "[aunt.possessive_title] throws your bedroom door open and steps in before you have a chance to answer."
     mc.name "Morning [aunt.title], uh... What's up?"
-    aunt "Earlier today I got a call with some fantastic news. My realtor found this beautiful little apartment downtown for me and [cousin.title]!"
+    aunt "Earlier today I got a call with some fantastic news. My realtor found this beautiful little apartment downtown for me and [cousin.name]!"
     aunt "That means in a few days we'll be out of your hair and your house can go back to normal."
     mc.name "It was nice having you around [aunt.title], but I'm happy you're getting back on your feet. Things will be back to normal for you soon, too."
     aunt "I hope so. I actually had one {i}tiny{/i} little favour to ask while I was here..."
     mc.name "What is it?"
-    aunt "Well now that it's just me and [cousin.title], we don't have anyone to help us with the heavy lifting when we move in."
+    aunt "Well now that it's just me and [cousin.name], we don't have anyone to help us with the heavy lifting when we move in."
     aunt "We'll be moving our things starting tomorrow. If you have any free time to help us, it would mean the world to me."
     mc.name "I'll see if I have some spare time in my schedule and come to you if I do."
     $ aunt.draw_person(position = "sitting", emotion = "happy")
@@ -280,7 +280,7 @@ label aunt_intro_moving_apartment_label(the_person):
         #You help them and get a brief overview of what they're bringing in the future
         "You follow [aunt.possessive_title] to the stack of boxes, luggage, and furniture that are being stored in the garage."
         aunt "With your help I think we can manage this in four trips. Today we'll rent a truck and move all of the big stuff in."
-        aunt "Once that's done we can move all of my things into my room, then we move [cousin.title]'s stuff."
+        aunt "Once that's done we can move all of my things into my room, then we move [cousin.name]'s stuff."
         aunt "Last, we move in the kitchen things and get the place all tidied up. Sound good?"
         mc.name "Yeah, let's get started I guess."
         $ aunt.change_happiness(5)
@@ -320,7 +320,7 @@ label aunt_intro_moving_apartment_label(the_person):
         $ aunt.draw_person()
         $ aunt_apartment.show_background()
         "The apartment is small but tidy, with two bedrooms and a combined living area and kitchen. [aunt.title] gestures to one of the bedrooms."
-        aunt "My room will be in there, and the other one will be [cousin.title]'s room. You can put that box down and go get another, I'll start unpacking."
+        aunt "My room will be in there, and the other one will be [cousin.name]'s room. You can put that box down and go get another, I'll start unpacking."
         "The next couple of hours are spent unloading the truck and bringing everything up to [aunt.possessive_title]."
         "When you're done [aunt.title] returns the truck and drives you both home. When you get out of the car she gives you a tight hug."
         $ aunt.change_love(3)
@@ -398,12 +398,12 @@ label aunt_intro_moving_apartment_label(the_person):
     elif aunt.event_triggers_dict.get("moving_apartment") == 2:
         #You help move your cousin's wardrobe and get a chance to dig through her underwear. She catches you and taunts you "You little perv, you'll never get to see me wear something like that." kind of stuff.
         "You head to the garage and look at the dwindling pile of boxes that need to be moved."
-        aunt "I think we can move [cousin.title]'s things today. I'll go get her."
+        aunt "I think we can move [cousin.name]'s things today. I'll go get her."
         $ clear_scene()
         $ the_group = GroupDisplayManager([cousin, aunt], primary_speaker = aunt)
         $ the_group.draw_group()
         "[aunt.possessive_title] is gone for a few minutes before coming back with [cousin.title] in tow."
-        aunt "Let's get this show on the road! I know [cousin.title] is excited to have a room to herself again, aren't you sweetheart."
+        aunt "Let's get this show on the road! I know [cousin.name] is excited to have a room to herself again, aren't you sweetheart."
         $ the_group.draw_person(cousin)
         cousin "I'm not your sweetheart Mom. Let's just get this over with."
         $ the_group.draw_person(cousin, position = "sitting")
@@ -422,7 +422,7 @@ label aunt_intro_moving_apartment_label(the_person):
         cousin "I could, but I don't want to. You're doing fine."
         $ the_group.draw_person(aunt)
         "[aunt.possessive_title] pokes her head into the room."
-        aunt "[cousin.title], sweety, we should go downstairs and get an extra key for you."
+        aunt "[cousin.name], sweety, we should go downstairs and get an extra key for you."
         $ the_group.draw_person(cousin, position = "back_peek")
         "[cousin.title] rolls her eyes dramatically, then gets up and follows her mother. She stops just before leaving and looks back at you."
         cousin "Don't touch my stuff."
@@ -560,7 +560,7 @@ label aunt_intro_phase_final_label():
     aunt "Good morning [aunt.mc_title]."
     "She smiles at you warmly and sips coffee from a mug. [mom.possessive_title] is drinking a cup of tea across the table from her."
     mc.name "Morning. You two are up early."
-    aunt "All the paperwork for my new apartment has been finished, so [cousin.title] and I will be moving out today."
+    aunt "All the paperwork for my new apartment has been finished, so [cousin.name] and I will be moving out today."
     $ the_group.draw_person(mom, position = "sitting")
     mom "We're just finishing our drinks, then they'll be heading out."
     $ the_group.draw_person(aunt, position = "sitting")
@@ -607,7 +607,7 @@ label aunt_intro_phase_final_label():
     $ clear_scene()
     $ lily.draw_person()
     "When the moment has passed [mom.title] walks them out to the driveway, leaving you alone with [lily.possessive_title]."
-    lily "I'm going to miss them. I think [cousin.title] and I were really getting along."
+    lily "I'm going to miss them. I think [cousin.name] and I were really getting along."
     mc.name "Really?"
     lily "Yeah! She may not talk much but she's a great listener. I hope she stays in touch."
     "You shrug and head back to your room to get ready for the day."
@@ -911,7 +911,7 @@ label aunt_share_drinks_label(the_person):
                     # She wants your opinion about some underwear
                     the_person "So [the_person.mc_title], since you're here I could use some help with something. It's a little... delicate."
                     mc.name "What do you need?"
-                    the_person "Well, I want to put myself out there and meet someone, but I haven't done that since [cousin.title] was born."
+                    the_person "Well, I want to put myself out there and meet someone, but I haven't done that since [cousin.name] was born."
                     the_person "I've got plenty of lingerie, but I need to know what looks good on me. Can I trust you to give me an honest opinion?"
                     mc.name "Of course, I'll tell you exactly what I think."
                     "She smiles, drinks the last of her wine, and leads you into her bedroom."
