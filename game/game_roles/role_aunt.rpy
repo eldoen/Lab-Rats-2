@@ -1011,10 +1011,11 @@ label aunt_share_drinks_label(the_person):
                     if the_person.outfit.remove_random_any(exclude_feet = True, do_not_remove = True):
                         the_person "You don't mind if I get a little more comfortable, do you?"
                         $ strip_choice = the_person.outfit.remove_random_upper(top_layer_first = True, do_not_remove = True)
-                        $ the_person.draw_animated_removal(strip_choice)
-                        $ mc.change_locked_clarity(10)
-                        "Before you can answer she peels off her [strip_choice.name] and drops it onto the couch."
-                        mc.name "No, go right ahead."
+                        if strip_choice:
+                            $ the_person.draw_animated_removal(strip_choice)
+                            $ mc.change_locked_clarity(10)
+                            "Before you can answer she peels off her [strip_choice.name] and drops it onto the couch."
+                            mc.name "No, go right ahead."
                         if the_person.outfit.remove_random_lower(do_not_remove = True):
                             $ strip_choice = the_person.outfit.remove_random_lower(top_layer_first = True, do_not_remove = True)
                             if not strip_choice is None:
