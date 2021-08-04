@@ -677,7 +677,7 @@ init -2 python:
             production_amount = self.production_progress(mc.focus,mc.int,mc.production_skill)
             self.listener_system.fire_event("player_production", amount = production_amount)
             self.listener_system.fire_event("general_work")
-            renpy.say(None, "You spend time in the lab synthesizing serum from the it's raw chemical precursors. You generate " + str(production_amount) + " production points.")
+            renpy.say(None, "You spend time in the lab synthesizing serum from the raw chemical precursors. You generate " + str(production_amount) + " production points.")
             return production_amount
 
         def player_hr(self):
