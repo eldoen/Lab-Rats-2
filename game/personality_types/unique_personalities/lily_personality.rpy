@@ -1319,7 +1319,7 @@ label lily_bare_tits_taboo_break(the_person, the_clothing):
     return
 
 label lily_bare_pussy_taboo_break(the_person, the_clothing):
-    the_person "Hey, what are you doing? If you take off my [the_clothing.display_name] you'll be able to see my... Pussy."
+    the_person "Hey, what are you doing? If you take off my [the_clothing.display_name] you'll be able to see my...pussy."
     "[the_person.possessive_title] seems excited rather than scared of the idea, but needs a little more convincing."
     if the_person.has_taboo("touching_vagina"):
         mc.name "Come on [the_person.title], I saw it when we were kids and it wasn't a big deal."
