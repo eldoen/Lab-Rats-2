@@ -86,7 +86,7 @@ label study_check_up(the_student, the_mom):
 
         menu:
             "Stay for dinner":
-                mc.name "I'd love to say for dinner. Thank you [the_mom.title]."
+                mc.name "I'd love to stay for dinner. Thank you [the_mom.title]."
                 $ the_group.draw_person(the_mom)
                 if the_mom.event_triggers_dict["stayed_for_dinner"] == 0:
                     the_mom "Excellent! Mr.[the_mom.last_name] will be home soon, he has wanted to meet you for a long time."

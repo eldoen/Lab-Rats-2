@@ -1490,7 +1490,7 @@ label student_punish_suck(the_person, was_failure, wants_to_fail, successes = 0,
         $ the_person.change_arousal(8 if was_failure else 15)
         $ the_person.draw_person(position = "blowjob", special_modifier = "blowjob", the_animation = blowjob_bob, animation_effect_strength = 1.0)
         $ mc.change_locked_clarity(25)
-        "You don't waste any time. As soon as you're cock is in her mouth you slam it down to the base. [the_person.title] gags, throwing her arms out to her side."
+        "You don't waste any time. As soon as your cock is in her mouth you slam it down to the base. [the_person.title] gags, throwing her arms out to her side."
         $ mc.change_locked_clarity(25)
         "You slam [the_person.possessive_title]'s head up and down, forcing her to facefuck you."
         $ mc.change_locked_clarity(25)
