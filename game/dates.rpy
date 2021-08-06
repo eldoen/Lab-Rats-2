@@ -1441,11 +1441,11 @@ label shopping_date_inside_changing_room(the_person, new_outfit, changing_type, 
                     mc.name "Yeah, that's exactly what I need right now."
                     call condom_ask(the_person)
                     if _return:
-                        call fuck_person(the_person, private = True, start_position = against_wall)
+                        call fuck_person(the_person, private = True, start_position = against_wall, skip_condom = True)
                         $ the_report = _return
                         $ the_person.call_dialogue("sex_review", the_report = the_report)
                     else:
-                        call fuck_person(the_person, private = True) #ie. enter the normal sex system, so you can still get a blowjob or something.
+                        call fuck_person(the_person, private = True, skip_condom = True) #ie. enter the normal sex system, so you can still get a blowjob or something.
                         $ the_report = _return
                         $ the_person.call_dialogue("sex_review", the_report = the_report)
 

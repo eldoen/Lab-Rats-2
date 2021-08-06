@@ -1694,7 +1694,7 @@ label student_test(the_person): #TODO: Hook this up
                     "You bottom out inside of her warm pussy, then lean forward and put a finger on her lips."
                     mc.name "You're going to have to try and keep quiet, or someone will find us."
                     "She nods conspiratorially and rocks her hips, encouraging you to start moving again."
-                    call fuck_person(the_person, private = True, start_position = missionary, start_object = front_desk, skip_intro = True)
+                    call fuck_person(the_person, private = True, start_position = missionary, start_object = front_desk, skip_intro = True, skip_condom = True)
                     $ the_report = _return
                 else:
                     the_person "Fine, what do you want to do then?"

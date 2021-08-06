@@ -3408,7 +3408,7 @@ label horny_at_work_crisis_label():
                                 else:
                                     "You pull back a little and line the tip of your dick up with [the_person.title]'s cunt."
                                     "With one smooth thrust you push yourself inside of her. She arches her head back and moans as you bottom out inside of her."
-                                    call fuck_person(the_person, private = False, start_position = missionary, start_object = desk, skip_intro = True) from _call_fuck_person_32
+                                    call fuck_person(the_person, private = False, start_position = missionary, start_object = desk, skip_intro = True, skip_condom = True) from _call_fuck_person_32
                                     $ the_report = _return
                                     $ the_person.review_outfit()
 
