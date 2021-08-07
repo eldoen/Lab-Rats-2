@@ -1082,6 +1082,7 @@ label wild_work_enter_greeting(the_person):
 
     else:
         if the_person.sluttiness > 60:
+            $ the_person.draw_person(position = "stand4")
             "[the_person.title] walks over to you when you come into the room."
             the_person "Just the person I was hoping would stop by. I'm here if you need anything."
             "She winks and slides a hand down your chest, stomach, and finally your crotch."
