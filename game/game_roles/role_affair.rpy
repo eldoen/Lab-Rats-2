@@ -130,8 +130,6 @@ label fuck_date_label(the_person):
 
 label fuck_date_event(the_person): #A breakout function so we can call the fuck_date stuff any time you go back to a girls place.
     #Figure out her outfit for this
-    $ so_title = SO_relationship_to_title(the_person.relationship)
-
     if the_person.get_opinion_score("not wearing anything") > the_person.get_opinion_score("lingerie"):
         $ the_person.apply_outfit(Outfit("Nude"), update_taboo = True) #She's wearing nothing at all. nothing at all. nothing at all...
 
@@ -167,6 +165,8 @@ label fuck_date_event(the_person): #A breakout function so we can call the fuck_
     $ count = 0
     $ energy_gain_amount = mc.max_energy // 3 #Drops each round, representing your flagging endurance.
     while not done:   # maximum of 8 loops
+        $ so_title = SO_relationship_to_title(the_person.relationship)
+
         if the_report.get("girl orgasms", 0) > 0: #TODO: Have some variation to this based on how many times we've looped around.
             $ the_person.change_love(2 + the_person.get_opinion_score("cheating on men"))
             $ the_person.change_slut_temp(1)
@@ -482,7 +482,7 @@ label fuck_date_event(the_person): #A breakout function so we can call the fuck_
                                         $ the_person.break_taboo("condomless_sex")
 
                                 $ the_person.break_taboo("vaginal_sex")
-                                the_person "Mmmhm? Oh sweetheart, it sounds like you're having a long hard day"
+                                the_person "Mmmhm? Oh sweetheart, it sounds like you're having a long hard day."
                                 $ mc.change_locked_clarity(20)
                                 "She holds the phone to her chest and turns her head to the side as you start to pump into her. You hear the tinny voice of her [so_title] through the cellphone speaker."
                                 "She moans softly, then lifts the phone back to her face."
@@ -493,7 +493,7 @@ label fuck_date_event(the_person): #A breakout function so we can call the fuck_
                                 the_person "Oh fuck, you're crazy [the_person.mc_title]! What if we get caught?"
                                 mc.name "We'll deal with that if it happens. Just relax and enjoy."
 
-                                call fuck_person(the_person, private = True, start_position = missionary, start_object = mc.location.get_object_with_name("bed"), skip_intro = True, skip_condom = True) from _call_fuck_person_102
+                                call fuck_person(the_person, private = True, start_position = missionary, start_object = make_bed(), skip_intro = True, skip_condom = True) from _call_fuck_person_102
                                 $ the_report = _return
 
                         #TODO: At this point run a check on her arousal.

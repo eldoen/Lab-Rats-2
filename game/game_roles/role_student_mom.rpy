@@ -347,6 +347,9 @@ label student_mom_appologise_label(the_person): #TODO Provide a way to not activ
     if affair_role in the_person.special_role or the_person.effective_sluttiness() >= 60:
         $ the_person.event_triggers_dict["student_mom_door_kiss"] = 2
         return # There's nothing to worry about, she's either already fooling around with you or she's slutty enough she doesn't care.
+
+    # first show apartment
+    $ renpy.show("Apartment Entrance", what = apartment_background, layer = "master")
     $ the_person.draw_person()
     the_person "[the_person.mc_title], it's nice to see you."
     "She avoids making eye contact with you, looking off to the side."
