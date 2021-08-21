@@ -141,7 +141,7 @@ label outro_doggy_anal(the_girl, the_location, the_object):
             the_girl.char "Oh fuck... I'm so full of cum. Put it back in me."
             mc.name "What?"
             the_girl.char "Your cock, put it back in me... Just a little bit more, please!"
-            "She lowers her shoulders to the [the_object.name] and wiggles ass at you. You slide the tip of your still-hard dick into her asshole."
+            "She lowers her shoulders to the [the_object.name] and wiggles her ass at you. You slide the tip of your still-hard dick into her asshole."
             the_girl.char "Ah..."
             "Your semen gives you the lubrication you need to slide into her smoothly and easily. She shivers with pleasure as you push yourself in balls deep."
             the_girl.char "Just... hold it there. Mphfhhh."
