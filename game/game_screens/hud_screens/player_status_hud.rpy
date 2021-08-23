@@ -9,8 +9,10 @@ screen main_ui(): #The UI that shows most of the important information to the sc
         ysize 400
         yalign 0.0
         vbox:
+            $ month_count = int((day/30)+1)
+            $ day_count = day%30
             spacing -5
-            text day_names[day%7] + " - " + time_names[time_of_day] + " (day [day])" style "menu_text_style" size 18
+            text day_names[day%7] + " - " + time_names[time_of_day] + " (Month [month_count] Day [day_count])" style "menu_text_style" size 18
             textbutton "Outfit Manager" action Call("outfit_master_manager",from_current=True) style "textbutton_style" text_style "textbutton_text_style" xsize 220 tooltip "Design outfits to set as uniforms or give to suggest to women."
             textbutton "Check Inventory" action ui.callsinnewcontext("check_inventory_loop") style "textbutton_style" text_style "textbutton_text_style" xsize 220 tooltip "Check what serums you are currently carrying."
             if mc.stat_goal.completed or mc.work_goal.completed or mc.sex_goal.completed:
