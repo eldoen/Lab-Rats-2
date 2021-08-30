@@ -29,6 +29,9 @@ init -1 python:
     def ask_new_title_requirement(the_person):
         if the_person.obedience > 130: #If she has higher obedience she ONLY lets you change her title.
             return False
+        # no available titles for event
+        if __builtin__.len(get_titles(the_person)) <= 1 and __builtin__.len(get_player_titles(the_person)) <= 1:
+            return False
         return True
 
     def new_insta_account_requirement(the_person):
