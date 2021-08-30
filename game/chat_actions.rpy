@@ -266,7 +266,6 @@ label person_introduction(the_person, girl_introduction = True):
 
 label person_new_title(the_person): #She wants a new title or to give you a new title.
     if __builtin__.len(get_titles(the_person)) <= 1: #There's only the one title available to them. Don't bother asking to change
-        "[the_person.name] gives you a look as if she wanted to ask something, but it seems she changed her mind."
         return
     $ ran_num = the_person.obedience + renpy.random.randint(-20, 20) #Randomize their effective obedience a little so they sometimes ask, sometimes demand
 
@@ -357,7 +356,6 @@ label person_new_title(the_person): #She wants a new title or to give you a new 
 
 label person_new_mc_title(the_person):
     if __builtin__.len(get_player_titles(the_person)) <= 1: #There's only the one title available to them. Don't bother asking to change
-        "[the_person.name] gives you a look as if she wanted to ask something, but it seems she changed her mind."
         return
     $ ran_num = the_person.obedience + renpy.random.randint(-20, 20)
     if ran_num > 120: #She just asks you for something "fresh". Her obedience is high enough that we already have control over this.

@@ -56,6 +56,8 @@ init -1 python:
             return False
         elif the_person.effective_sluttiness() < 40 - (5*the_person.get_opinion_score("masturbating")):
             return False
+        elif the_person.arousal < (the_person.max_arousal * .8):
+            return False
         return True
 
     #TODO: We really need to be able to assign LTE's to roles instead of being general events

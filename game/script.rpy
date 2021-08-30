@@ -225,6 +225,12 @@ init 0 python:
             person.on_talk_event_list.remove(out_of_uniform)
             return out_of_uniform
 
+        non_lte_events = [x for x in person.on_talk_event_list if x.is_action_enabled(person) and not isinstance(x, Limited_Time_Action)]
+        if non_lte_events: # non LTE events take priority over LTE events
+            chosen = get_random_from_list(non_lte_events)
+            person.on_talk_event_list.remove(chosen)
+            return chosen
+
         enabled_talk_events = []
         for possible_talk_event in person.on_talk_event_list:
             if possible_talk_event.is_action_enabled(person):

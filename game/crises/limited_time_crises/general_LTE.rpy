@@ -39,7 +39,7 @@ init -1 python:
             return False #We want explicit control of when these characters generate their Insta accounts
         elif the_person.has_role(instapic_role):
             return False
-        elif renpy.random.randint(0,100) >= the_person.personality.insta_chance + 5*(the_person.get_opinion_score("showing her tits") + the_person.get_opinion_score("showing her ass")):
+        elif the_person.effective_sluttiness() < (100 - the_person.personality.insta_chance) - 5 * the_person.get_opinion_score("showing her tits") - 5 * the_person.get_opinion_score("showing her ass"):
             return False #Personality type and Opinions has a large impact on chance to generate a new profile.
         elif the_person.love < 15: #Girls who don't like you won't tell you they've made a profile (and are assumed to either have one or not depending on their starting generation)
             return False
@@ -50,7 +50,7 @@ init -1 python:
             return False #We want explicit control of when these characters generate their Insta accounts
         elif the_person.has_role(dikdok_role):
             return False
-        elif renpy.random.randint(0,100) >= the_person.personality.dikdok_chance + 5*(the_person.get_opinion_score("showing her tits") + the_person.get_opinion_score("showing her ass")):
+        elif the_person.effective_sluttiness() < (100 - the_person.personality.dikdok_chance) - 5 * the_person.get_opinion_score("showing her tits") + 5 * the_person.get_opinion_score("showing her ass"):
             return False #Personality type and Opinions has a large impact on chance to generate a new profile.
         elif the_person.love < 15: #Girls who don't like you won't tell you they've made a profile (and are assumed to either have one or not depending on their starting generation)
             return False
@@ -61,9 +61,7 @@ init -1 python:
             return False #We want explicit control of when these characters generate their Insta accounts
         elif the_person.has_role(onlyfans_role):
             return False
-        elif renpy.random.randint(0,100) >= -5 + 10*(the_person.get_opinion_score("showing her tits") + the_person.get_opinion_score("showing her ass") + the_person.get_opinion_score("public sex")):
-            return False #Personality type and Opinions has a large impact on chance to generate a new profile.
-        elif the_person.effective_sluttiness() < 50 + 10*(the_person.get_opinion_score("showing her tits") + the_person.get_opinion_score("showing her ass") + the_person.get_opinion_score("public sex")):
+        elif the_person.effective_sluttiness() < 50 + 10 * the_person.get_opinion_score("showing her tits") + 5 * the_person.get_opinion_score("showing her ass") + 5 * the_person.get_opinion_score("public sex"):
             return False
         elif the_person.love < 30: #Girls who don't like you won't tell you they've made a profile (and are assumed to either have one or not depending on their starting generation)
             return False
