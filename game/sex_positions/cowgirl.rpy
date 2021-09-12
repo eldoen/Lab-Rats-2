@@ -122,7 +122,7 @@ label outro_cowgirl(the_girl, the_location, the_object):
                 "[the_girl.possessive_title] reaches below her for your cock. With delicate fingers she slides your condom off, pinching above the bulge to keep your cum from spilling out."
                 the_girl "It would be a shame to waste all of this, right?"
                 "She smiles and brings the condom to her mouth. She tips the bottom up and drains it into her mouth."
-                $ the_girl.change_slut_temp(the_girl.get_opinion_score("drinking cum"))
+                $ the_girl.change_slut(the_girl.get_opinion_score("drinking cum"))
             else:
                 "[the_girl.possessive_title] reaches for your cock, removes the condom carefully, and ties the end in a knot."
                 the_girl "Look at all that cum. Well done."
@@ -141,7 +141,7 @@ label outro_cowgirl(the_girl, the_location, the_object):
         the_girl "Oh shit, you can't cum inside me!"
         "[the_girl.possessive_title] jerks up, pulls off your cock, and lowers herself back down."
         "She leans back and uses one hand to push your shaft against the lips of her pussy, grinding against it until you climax."
-        the_girl.char "Cum for me [the_girl.mc_title], I want you to cum on me!"
+        the_girl "Cum for me [the_girl.mc_title], I want you to cum on me!"
         $ climax_controller = ClimaxController(["Cum on her", "body"])
         $ climax_controller.show_climax_menu()
         the_girl "Cum for me [the_girl.mc_title], I want you to cum on me!"
@@ -160,8 +160,8 @@ label outro_cowgirl(the_girl, the_location, the_object):
         $ the_choice = climax_controller.show_climax_menu()
         if the_choice == "Pull her down and cum inside her":
             "You reach up and grab [the_girl.possessive_title] by the hips. With one confident pull she plunges back onto your cock, gasping with pleasure."
-            "The feeling of her warm, wet pussy sliding down and englufing your cock again pushes you over the edge. You pull [the_girl.title] tight against you and unload inside of her."
-            the_girl.char "Ah! Just... Just this once!"
+            "The feeling of her warm, wet pussy sliding down and engulfing your cock again pushes you over the edge. You pull [the_girl.title] tight against you and unload inside of her."
+            the_girl "Ah! Just... Just this once!"
             $ the_girl.call_dialogue("cum_vagina")
             $ climax_controller.do_clarity_release(the_girl)
             $ the_girl.cum_in_vagina()
@@ -174,7 +174,7 @@ label outro_cowgirl(the_girl, the_location, the_object):
             $ the_girl.cum_on_stomach()
             $ climax_controller.do_clarity_release(the_girl)
             $ cowgirl.redraw_scene(the_girl)
-            the_girl.char "Whew, that was close..."
+            the_girl "Whew, that was close..."
             "She rolls off and lies next to you on the [the_object.name]."
     return
 

@@ -254,7 +254,6 @@ label sister_girlfriend_return(the_person):
     if the_person.event_triggers_dict.get("sister_girlfriend_mom_blessing_given", False):
         mc.name "A little, at first, but I talked it out with her and she agrees with us."
         mc.name "She gave us her blessing, she won't give us any trouble."
-        #TOOD: A little more dialogue here
         call sister_girlfriend_setup(the_person, mom_knows = True) from _call_sister_girlfriend_setup_2
 
     else:

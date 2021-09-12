@@ -120,7 +120,7 @@ label scene_blowjob_1(the_girl, the_location, the_object):
                     $ the_girl.discover_opinion("giving blowjobs")
                     "She rubs her cheek against your wet shaft."
                     if the_girl.get_opinion_score("drinking cum") > 0:
-                        the_girl "Now just relax and enjoy. I want you cum right into my mouth, okay?"
+                        the_girl "Now just relax and enjoy. I want you to cum right into my mouth, okay?"
                         $ the_girl.discover_opinion("drinking cum")
                     else:
                         the_girl "Now just relax and enjoy, I'll take care of everything."
@@ -374,9 +374,8 @@ label orgasm_blowjob(the_girl, the_location, the_object):
 
             mc.name "A cock sleeve like you deserves to have her throat stuffed when she cums."
             if the_girl.get_opinion_score("being submissive") > 0:
-                if the_girl.sluttiness > the_girl.core_sluttiness and the_girl.core_sluttiness < blowjob.slut_cap:
-                    $ the_girl.change_slut_core(the_girl.get_opinion_score("being submissive")) #If she likes being submissive this makes her cum and become sluttier super hard.
-                    $ the_girl.change_slut_temp(-the_girl.get_opinion_score("being submissive"))
+                if the_girl.sluttiness < blowjob.slut_cap:
+                    $ the_girl.change_slut(-the_girl.get_opinion_score("being submissive")) #If she likes being submissive this makes her cum and become sluttier super hard.
                 $ the_girl.change_obedience(2*the_girl.get_opinion_score("being submissive"))
                 "[the_girl.possessive_title] closes her eyes tight. You can feel her throat spasm around your shaft in time with her orgasmic contractions."
                 if the_girl.outfit.vagina_visible():

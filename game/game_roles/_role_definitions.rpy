@@ -159,7 +159,7 @@ init -1 python:
 
         sister_boobjob_ask_action = Action("Talk to her about getting implants", sister_get_boobjob_talk_requirment, "sister_get_boobjob",
             menu_tooltip = "Talk to your sister about the implants she wants to get.", priority = 10)
-            
+
         sister_mom_girlfriend_blessing_action = Action("Talk to her about Mom", mom_girlfriend_ask_blessing_requirement, "mom_girlfriend_sister_blessing",
             menu_tooltip = "Try and convince her to give you and Mom her blessing.", priority = 100)
 
@@ -213,7 +213,7 @@ init -1 python:
         girlfriend_ask_trim_pubes_action = Action("Ask her to trim her pubes", girlfriend_ask_trim_pubes_requirement, "girlfriend_ask_trim_pubes_label", menu_tooltip = "Ask her to do a little personal landscaping. Tell her to wax it off, grow it out, or shape it into anything in between.")
 
         return [ask_break_up_action, ask_get_boobjob_action, girlfriend_ask_trim_pubes_action]
-        
+
     def get_girlfriend_role_dates():
         girlfriend_shopping_date = Action("Go shopping together {image=gui/heart/Time_Advance.png}", shopping_date_requirement, "shopping_date_intro", menu_tooltip = "Take her to the mall and do some shopping together.")
         return [girlfriend_shopping_date]
@@ -247,10 +247,35 @@ init -1 python:
         #EMPLOYEE FREEUSE ACTIONS#
         freeuse_fuck = Action("Fuck her", freeuse_fuck_requirement, "employee_freeuse_fuck", menu_tooltip = "Grab your free use slut and have some fun with her.")
         return [freeuse_fuck]
+
     def get_nora_role_actions():
+        #NORA ROLE#
         nora_student_exam_rewrite_request_action = Action("Ask her about the exam rewrite.", nora_student_exam_rewrite_request_requirement, "nora_student_exam_rewrite_request",
-            menu_tooltip = "Ask if she can set up a new exam for your student.")
+            menu_tooltip = "Ask if she can set up a new exam for your student.") # This crisis triggers if your RL ever gets to 2 or higher without her introing herself. Provides an alternative way to the university.
+
         return [nora_student_exam_rewrite_request_action]
+
+    def get_trance_role_actions():
+        trance_training_action = Action("Take advantage of her trance", trance_train_requirement, "trance_train_label", menu_tooltip = "Take advantage of her orgasm-induced trance and make some changes while she is highly suggestible.")
+        return [trance_training_action]
+
+    def get_breeder_role_actions():
+        breeder_fuck_action = Action("Offer to knock her up", breeder_fuck_requirement, "breeder_fuck", menu_tooltip = "She wants to get pregnant, you could help with that.")
+        return [breeder_fuck_action]
+
+    def get_lactating_serum_role_actions():
+        milk_for_serum_action = Action("Milk her for serum\n{color=#ff0000}{size=18}Costs: 15 {image=gui/extra_images/energy_token.png}{/size}{/color}", milk_for_serum_requirement, "milk_for_serum_label", menu_tooltip = "Those tits contain company property!")
+
+        return [milk_for_serum_action]
+
+    def get_hypno_orgasm_role_orgasm_actions():
+        hypno_trigger_orgasm_action = Action("Trigger an orgasm", hypno_trigger_orgasm_requirement, "hypno_trigger_orgasm", menu_tooltip = "You've implanted a trigger word. You can make her cum whenever you want.")
+
+        return [hypno_trigger_orgasm_action]
+
+    def get_hypno_orgasm_role_online_actions():
+        hypno_trigger_online_action = Action("Trigger an orgasm", hypno_trigger_orgasm_requirement, "hypno_trigger_online", menu_tooltip = "You've implanted a trigger word, it should work over a text message.")
+        return [hypno_trigger_online_action]
 
 label instantiate_roles(): #This section instantiates all of the key roles in the game. It is placed here to ensure it is properly created, saved, ect. by Renpy.
     #All of the role labels and requirements are defined in their own file, but their Action representations are stored here for saving purposes.
@@ -341,12 +366,27 @@ label instantiate_roles(): #This section instantiates all of the key roles in th
 
 
         ###################
+        ### TRANCE ROLE ###
+        ###################
+
+        trance_role = Role("In a Trance", actions = get_trance_role_actions(), on_turn = trance_on_turn, on_day = trance_on_day)
+        heavy_trance_role = Role("In a Deep Trance", actions = get_trance_role_actions(), on_turn = trance_on_turn, on_day = trance_on_day, looks_like = trance_role)
+        very_heavy_trance_role = Role("In a Very Deep Trance", actions = get_trance_role_actions(), on_turn = trance_on_turn, on_day = trance_on_day, looks_like = heavy_trance_role)
+
+        #######################
+        ### TRAINABLE ROLES ###
+        #######################
+
+        breeder_role = Role("Eager Breeder", actions = get_breeder_role_actions()) #TODO: Add an on-day (or on-turn?) LTE when her fertility is really high and she begs you to fuck her.
+        hypno_orgasm_role = Role("Hypno Orgasm", actions = get_hypno_orgasm_role_orgasm_actions(), hidden = True, on_turn = hypno_orgasm_on_turn, internet_actions = get_hypno_orgasm_role_online_actions())
+
+        ###################
         ### OTHER ROLES ###
         ###################
 
-
         prostitute_role = Role("Prostitute", get_prostitute_role_actions())
         pregnant_role = Role("Pregnant", [], hidden = True)
+        lactating_serum_role = Role("Lactating Serum", get_lactating_serum_role_actions(), hidden = True)
     return
 
 
@@ -493,7 +533,7 @@ label pay_strip_scene(the_person):
                                     "You pull the cash out of your wallet and hand it over."
                                     $ mc.business.funds += -price
                                     $ the_person.change_obedience(-1)
-                                    $ the_person.change_slut_temp(1)
+                                    $ the_person.change_slut(1, 40)
                                     $ the_person.draw_animated_removal(the_clothing, position = picked_pose)
                                     "[the_person.title] takes it, puts it to the side, and starts to slide her [the_clothing.display_name] off."
                                     if the_person.update_outfit_taboos():
@@ -573,14 +613,14 @@ label pay_strip_scene(the_person):
                     "You pull some cash from your wallet and offer it to [the_person.title]. She takes it and looks at it for a long second."
                     the_person "Oh my god... I shouldn't be doing this..."
                     $ the_person.change_obedience(2)
-                    $ the_person.change_slut_temp(1)
+                    $ the_person.change_slut(1, 40)
                     $ the_person.draw_animated_removal(strip_choice[0], position = picked_pose)
                     "Nevertheless, she keeps the money and pulls off her [the_clothing.display_name]."
                 elif strip_willingness < 20:
                     "You pull some cash out from your wallet and hand it over to [the_person.title]. She puts it to the side and grabs her [the_clothing.display_name]."
                     the_person "Ready?"
                     $ the_person.change_obedience(1)
-                    $ the_person.change_slut_temp(1)
+                    $ the_person.change_slut(1, 40)
                     $ the_person.draw_animated_removal(strip_choice[0], position = picked_pose)
                     "You nod and [the_person.title] pulls off the piece of clothing, throwing it to the side."
                 else:

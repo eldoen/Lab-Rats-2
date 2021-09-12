@@ -29,7 +29,7 @@ label intro_piledriver(the_girl, the_location, the_object):
     "You get your hard cock out and kneel down in front of her. She yelps in surprise when you grab her ankles and bring them up and over her waist."
     mc.name "There we go, this will be even better."
     "You rub the tip of your cock against her clit a few times, then press forward and slide yourself inside of her."
-    $the_girl.call_dialogue("sex_responses_vaginal")
+    $ the_girl.call_dialogue("sex_responses_vaginal")
     return
 
 label taboo_break_piledriver(the_girl, the_location, the_object):
@@ -166,7 +166,7 @@ label scene_piledriver_2(the_girl, the_location, the_object):
             "You grab [the_girl.title]'s ankles and hold them out to the side, spreading her legs and putting her pussy front and center."
             "The position doesn't leave [the_girl.possessive_title] much to do other than get fucked by you. She pants loudly underneath you."
             the_girl "I feel so open like this... What are you doing to me [the_girl.mc_title], you're making me into such a slut..."
-            if the_girl.core_sluttiness > 90:
+            if the_girl.sluttiness > 90:
                 "She moans loudly and turns her head to the side."
                 the_girl "And I think I like it!"
 
@@ -231,12 +231,12 @@ label outro_piledriver(the_girl, the_location, the_object):
             if the_girl.get_opinion_score("drinking cum") > 0 and the_girl.sluttiness > 50:
                 $ the_girl.discover_opinion("drinking cum")
                 "When you let [the_girl.possessive_title] down she reaches for your cock. With delicate fingers she slides the condom off of you."
-                the_girl.char "It would be a shame to waste all of this, right?"
+                the_girl "It would be a shame to waste all of this, right?"
                 "She smiles and brings the condom to her mouth. She tips the bottom up and drains it into her mouth."
-                $ the_girl.change_slut_temp(the_girl.get_opinion_score("drinking cum"))
+                $ the_girl.change_slut(the_girl.get_opinion_score("drinking cum"))
             else:
                 "When you let [the_girl.possessive_title] down she reaches for your cock, removes the condom, and ties the end in a knot."
-                the_girl.char "Look at all that cum. Well done."
+                the_girl "Look at all that cum. Well done."
 
         else:
             "You gasp and push yourself as deep as you can, draining your balls into [the_girl.title]'s cunt."

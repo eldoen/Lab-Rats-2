@@ -135,7 +135,7 @@ label outro_skull_fuck(the_girl, the_location, the_object):
             "When the last moments of your climax have passed you pull back, cock trailing spit and cum as you leave her mouth."
             if the_girl.get_opinion_score("drinking cum") > 0:
                 the_girl "I thought you were going to drown me with your cum for a moment... Mmmm."
-                $ the_girl.change_slut_temp(1)
+                $ the_girl.change_slut(the_girl.get_opinion_score("drinking cum"))
                 $ the_girl.change_happiness(1)
                 "She shivers with pleasure at the thought."
             else:
@@ -152,9 +152,9 @@ label outro_skull_fuck(the_girl, the_location, the_object):
             $ skull_fuck.redraw_scene(the_girl)
             $ climax_controller.do_clarity_release(the_girl)
             "Finally you're spent and you finally let [the_person.title] pull off of your cock."
-            the_girl.char "Guahh... Guahh... Ah.... Ah...."
+            the_girl "Guahh... Guahh... Ah.... Ah...."
             mc.name "Fuck that felt good."
-            the_girl.char "There was so much... Ah... I thought I was going to drown in it..."
+            the_girl "There was so much... Ah... I thought I was going to drown in it..."
             "Still gasping for air, she wipes your sperm away from her nose and chin, then swallows loudly to get rid of the rest of it."
             $ the_girl.call_dialogue("cum_mouth")
 

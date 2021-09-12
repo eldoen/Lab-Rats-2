@@ -98,7 +98,7 @@ label pregnant_announce(the_person):
         the_person "I have some big news."
         mc.name "Okay, what's up?"
 
-    if girlfriend_role in the_person.special_role:
+    if the_person.has_role(girlfriend_role):
         if the_person.event_triggers_dict.get("immaculate_conception", False):
             $ mc.change_locked_clarity(100)
             the_person "I know this might sound crazy but... I'm pregnant!"
@@ -118,7 +118,7 @@ label pregnant_announce(the_person):
         "You hug [the_person.title], and she squeezes you back. After a long moment she breaks the hug."
         the_person "That's all for now, I don't need you to do anything. I'm just so happy to be able to share this with you!"
 
-    elif affair_role in the_person.special_role: #Note: Requires her to be in a relationship, so there's no "immaculate conception" chance. She'll just think it's his.
+    elif the_person.has_role(affair_role): #Note: Requires her to be in a relationship, so there's no "immaculate conception" chance. She'll just think it's his.
         $ so_title = SO_relationship_to_title(the_person.relationship)
         if the_person.event_triggers_dict.get("immaculate_conception", False):
             $ mc.change_locked_clarity(100)
@@ -370,7 +370,7 @@ label pregnant_finish_announce(the_person): #TODO: have more variants for girlfr
     "You get a call from [the_person.possessive_title]. You answer it."
     mc.name "Hey [the_person.title], what's up?"
 
-    if employee_role in the_person.special_role:
+    if the_person.has_role(employee_role):
         the_person "Hi [the_person.mc_title]. I wanted to let you to know that I won't be at work for a few days."
     else:
         the_person "Hi [the_person.mc_title], I have some exciting news."
@@ -443,7 +443,7 @@ label pregnant_finish(the_person):
         "You say goodbye and [the_person.title] hangs up."
         return
 
-    if employee_role in the_person.special_role:
+    if the_person.has_role(employee_role):
         if day%7 == 5 or day%7 == 6:    # event triggers at start of day (so on sat or sun, next workday is monday)
             the_person "Hey [the_person.mc_title], good news! Two days ago I had a beautiful, healthy baby girl! I'll be coming back to work monday." #Obviously they're all girls for extra fun in 18 years.
         else:
@@ -455,7 +455,7 @@ label pregnant_finish(the_person):
         mc.name "That's amazing, how are you doing?"
 
 
-    if affair_role in the_person.special_role:
+    if the_person.has_role(affair_role):
         $ so_title = SO_relationship_to_title(the_person.relationship)
         the_person "I'll be fine, I'll be leaving our girl with her \"father\" so I can come back and see you again."
     else:

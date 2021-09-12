@@ -441,7 +441,7 @@ label cousin_blackmail_list(the_person):
                     $ the_person.update_outfit_taboos()
                     $ the_person.apply_outfit()
                     $ the_person.draw_person()
-                    $ the_person.change_slut_temp(5)
+                    $ the_person.change_slut(2, 20)
 
                 elif the_person.effective_sluttiness("bare_tits") <= 40:
                     #She'll show you her tits.
@@ -485,7 +485,7 @@ label cousin_blackmail_list(the_person):
                     $ the_person.update_outfit_taboos()
                     $ the_person.apply_outfit()
                     $ the_person.draw_person()
-                    $ the_person.change_slut_temp(5)
+                    $ the_person.change_slut(2, 40)
 
                 else:
                     #She'll get completely naked.
@@ -523,7 +523,6 @@ label cousin_blackmail_list(the_person):
                     $ the_person.draw_person(position = "back_peek")
                     $ mc.change_locked_clarity(20)
                     "She spins on the spot, letting you get a look at her ass."
-                    #TODO: keep a record of how many times you've (fucked, been sucked by, etc.) the person so she can comment on that.
                     mc.name "I'm not sure this is enough [the_person.title]. I think you need to convince me."
                     "[the_person.possessive_title] sighs dramatically."
                     $ the_person.draw_person()
@@ -536,7 +535,7 @@ label cousin_blackmail_list(the_person):
                     $ the_person.update_outfit_taboos()
                     $ the_person.apply_outfit()
                     $ the_person.draw_person()
-                    $ the_person.change_slut_temp(5)
+                    $ the_person.change_slut(2, 60)
 
                 $ the_person.event_triggers_dict["last_blackmailed"] = day
                 $ the_person.change_love(-1)
@@ -567,7 +566,7 @@ label cousin_blackmail_list(the_person):
             if the_report.get("girl orgasms", 0) > 0:
                 "[the_person.title] is left flush and panting when you're finished making out."
                 mc.name "Did you enjoy yourself? You're pretty good at that."
-                $ the_person.change_slut_temp(2)
+                $ the_person.change_slut(2, 60)
                 $ the_person.change_obedience(4)
                 the_person "Shut up, I'm just glad that's over..."
             else:
@@ -870,7 +869,7 @@ label cousin_boobjob_ask_label(the_person):
                 the_person "Thanks, I guess."
 
             $ the_person.change_obedience(5)
-            $ the_person.change_slut_temp(2)
+            $ the_person.change_slut(2, 60)
             $ mc.business.funds += -5000
 
         "Pay for it\n{color=#ff0000}{size=18}Requires: $5000{/size}{/color} (disabled)" if mc.business.funds < 5000:
@@ -931,7 +930,7 @@ label cousin_boobjob_ask_label(the_person):
                         $ the_person.add_situational_obedience("event", 20, "My new tits will make this all worth it!")
                         call fuck_person(the_person) from _call_fuck_person_42
                         $ the_person.clear_situational_obedience("event")
-                        $ the_person.change_slut_temp(5)
+                        $ the_person.change_slut(2, 80)
                         $ mc.business.funds += -5000
 
                     "Refuse to pay":
@@ -977,7 +976,7 @@ label cousin_talk_boobjob_again_label(the_person):
 
             python:
                 the_person.change_obedience(5)
-                the_person.change_slut_temp(2)
+                the_person.change_slut(2, 50)
                 mc.business.funds += -5000
                 add_cousin_boobjob_get_action(the_person)
                 remove_cousin_talk_boobjob_again_action()
@@ -1052,7 +1051,7 @@ label cousin_new_boobs_brag_label(the_person):
                 the_person "Whatever. Who even asked you anyway?"
                 mc.name "You did."
                 the_person "Shut up."
-            $ the_person.change_slut_temp(5)
+            $ the_person.change_slut(1, 60)
             $ the_person.change_love(-2)
 
     mc.name "So, when can I expect to be paid back for your new sweater puppies?"
@@ -1075,7 +1074,7 @@ label cousin_new_boobs_brag_label(the_person):
         menu:
             "Show them to me":
                 mc.name "Alright, I want to see my investment."
-                $ the_person.change_slut_temp(1)
+                $ the_person.change_slut(1, 60)
                 if mc.location.get_person_count() > 1:
                     "You and [the_person.possessive_title] find a quiet spot away from anyone else, and she strips down in front of you."
                 else:
@@ -1195,7 +1194,7 @@ label stripclub_dance():
     $ the_person.draw_person()
     "A new song starts playing over the speakers and a girl steps out onto the stage."
     if performer_title is not None:
-        if cousin_role in the_person.special_role:
+        if the_person.has_role(cousin_role):
             if the_person.event_triggers_dict.get("blackmail_level",-1) < 2 and not the_person.event_triggers_dict.get("seen_cousin_stripping",False):
                 $ add_cousin_blackmail_2_confront_action()
 
@@ -1209,16 +1208,16 @@ label stripclub_dance():
             else:
                 "You recognize your cousin almost as soon as she steps onto the stage."
 
-        elif sister_role in the_person.special_role:
+        elif the_person.has_role(sister_role):
             "You recognize your little sister almost as soon as she steps onto the stage."
 
-        elif aunt_role in the_person.special_role:
+        elif the_person.has_role(aunt_role):
             "You recognize your aunt as she steps into the stage spotlights."
 
-        elif mother_role in the_person.special_role:
+        elif the_person.has_role(mother_role):
             "You recognize your mother as soon as she steps into the stage spotlight."
 
-        elif employee_role in the_person.special_role:
+        elif the_person.has_role(employee_role):
             "You recognize [performer_title] as one of your employees."
 
         else:

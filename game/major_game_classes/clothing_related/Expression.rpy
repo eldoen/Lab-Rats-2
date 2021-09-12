@@ -3,7 +3,7 @@ init -2 python:
         emotion_set = ["default","happy","sad","angry","orgasm"]
         ignore_position_set = ["doggy","walking_away","standing_doggy"] #The set of positions that we are not goign to draw emotions for. These look away from the camera TODO: This should reference the Position class somehow.
 
-        def __init__(self,name,skin_colour,facial_style):
+        def __init__(self,name,skin_colour,facial_style, colour = None):
             self.name = name
             self.skin_colour = skin_colour
             self.facial_style = facial_style #The style of face the person has, currently creatively named "Face_1", "Face_2", "Face_3", etc..
@@ -29,6 +29,11 @@ init -2 python:
                     for emotion in self.emotion_set:
                         modified_emotion = emotion + "_" + modifier
                         self.position_dict[position][modified_emotion] = modified_emotion + "_" + facial_style + "_" + position + "_" + skin_colour + ".png"#Add a new emotion titled "<emotion>_<modifier>", for example "sad_blowjob".
+
+            if not colour:
+                self.colour = [1,1,1,1]
+            else:
+                self.colour = colour
 
         def generate_emotion_displayable(self,position,emotion, special_modifier = None, eye_colour = None, lighting = None):
             if not emotion in self.emotion_set:
@@ -56,7 +61,8 @@ init -2 python:
             #mask_image = im.MatrixColor(mask_image, [1,0,0,0,0, 0,1,0,0,0, 0,0,1,0,0, 0,0,0,1,0]) #Does this even do anything??? #TODO: Check that this does something. (Might have been used to ensure image values were capped properly)
 
             # correctly lighted
-            base_image = im.MatrixColor(base_image, im.matrix.tint(*lighting))
+            skin_colour_matrix = im.matrix.tint(self.colour[0], self.colour[1], self.colour[2]) * im.matrix.tint(*lighting)
+            base_image = im.MatrixColor(base_image, skin_colour_matrix)
 
             # grey-scaled with slight brightness boost
             shader_image = im.MatrixColor(base_image, im.matrix.saturation(0) * im.matrix.brightness(.2))

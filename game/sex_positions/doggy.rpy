@@ -208,7 +208,7 @@ label scene_doggy_2(the_girl, the_location, the_object):
                         "Her [top_clothing.name] gets in the way, but after a few moments she starts to grind her hips back against you."
                         $ top_clothing = None
 
-            the_girl "I... I want you to keep going"
+            the_girl "I... I want you to keep going."
             "Fuck her hard anyways.":
                 mc.name "Don't worry, just relax and you'll manage."
                 "You pull hard on her hips and fuck her hard. She yelps in a combination of surprise and pain."
@@ -257,12 +257,12 @@ label outro_doggy(the_girl, the_location, the_object):
             if the_girl.get_opinion_score("drinking cum") > 0 and the_girl.sluttiness > 50:
                 $ the_girl.discover_opinion("drinking cum")
                 "[the_girl.possessive_title] turns around and reaches for your cock. With delicate fingers she slides the condom off of you."
-                the_girl.char "It would be a shame to waste all of this, right?"
+                the_girl "It would be a shame to waste all of this, right?"
                 "She winks and brings the condom to her mouth. She tips the bottom up and drains it into her mouth."
-                $ the_girl.change_slut_temp(the_girl.get_opinion_score("drinking cum"))
+                $ the_girl.change_slut(the_girl.get_opinion_score("drinking cum"))
             else:
                 "[the_girl.possessive_title] turns around and reaches for your cock. She removes the condom and ties the end in a knot."
-                the_girl.char "Look at all that cum. Well done."
+                the_girl "Look at all that cum. Well done."
             "You sigh contentedly and enjoy the post-orgasm feeling of relaxation."
         else:
             "You pull back on [the_girl.possessive_title]'s hips and drive your cock deep inside of her as you cum. She gasps softly in time with each new shot of hot semen inside of her."
@@ -282,10 +282,10 @@ label outro_doggy(the_girl, the_location, the_object):
         $ doggy.redraw_scene(the_girl)
         $ climax_controller.do_clarity_release(the_girl)
         if the_girl.effective_sluttiness() > 120:
-            the_girl.char "What a waste, you should have put that inside of me."
+            the_girl "What a waste, you should have put that inside of me."
             "She reaches back and runs a finger through the puddles of cum you've put on her, then licks her finger clean."
         else:
-            the_girl.char "Oh wow, there's so much of it..."
+            the_girl "Oh wow, there's so much of it..."
         "You sit back and sigh contentedly, enjoying the sight of [the_girl.title] covered in your semen."
     return
 

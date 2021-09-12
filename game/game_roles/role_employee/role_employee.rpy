@@ -175,9 +175,11 @@ label employee_pay_cash_bonus(the_person):
     $ the_person.event_triggers_dict["day_last_employee_interaction"] = day
     mc.name "[the_person.title], I noticed you've been putting in a lot of good work at the lab lately. I wanted to give you a little extra to make sure you know you're appreciated."
     "You pull out your wallet and start to pull out a few bills."
-    $weeks_wages = the_person.salary*5
-    $months_wages = the_person.salary*20
-    $raise_amount = __builtin__.int(the_person.salary*0.1)
+    $ days_wages = the_person.salary
+    if days_wages < 5:
+        $ days_wages = 5
+    $ weeks_wages = days_wages * 5
+    $ months_wages = days_wages * 20
     menu:
         "Give her a pat on the back":
             mc.name "And I'll absolutely do that once the next batch of sales go through."
@@ -187,7 +189,7 @@ label employee_pay_cash_bonus(the_person):
             "[the_person.title] looks visibly disappointed."
             the_person "Right, of course."
 
-        "Give her a days wages\n{color=#ff0000}{size=18}Costs: $[the_person.salary]{/size}{/color}" if mc.business.funds >= the_person.salary:
+        "Give her a days wages\n{color=#ff0000}{size=18}Costs: $[days_wages]{/size}{/color}" if mc.business.funds >= days_wages:
             mc.name "Here you go, treat yourself to something nice tonight."
             $ the_person.draw_person(emotion = "happy")
             $ mc.business.funds -= the_person.salary
@@ -268,6 +270,9 @@ label employee_performance_review(the_person):
     menu:
         "Reward her for work well done":
             $ raise_amount = __builtin__.round(the_person.salary * 0.1)
+            if raise_amount <= 2:
+                $ raise_amount = 2 #Minimum in case you've nuked their salary somehow.
+
             menu:
                 "Offer her kind words": #Raise happiness and obedience a little.
                     call employee_complement_work(the_person) from _call_employee_complement_work
@@ -296,7 +301,7 @@ label employee_performance_review(the_person):
                     $ the_person.draw_person()
                     if the_report.get("girl orgasms", 0) > 0: #We made her cum! Congratulations!
                         $ the_person.change_happiness(20)
-                        $ the_person.change_slut_temp(5)
+                        $ the_person.change_slut(2, 80)
                         $ the_person.change_love(2)
                         the_person "Oh [the_person.mc_title], that was wonderful! I couldn't have asked for a better performance bonus!"
                     elif the_report.get("guy orgasms", 0) > 0: # You "rewarded" her by cumming and leaving her unsatisfied. Not particularly impressive.
@@ -305,7 +310,7 @@ label employee_performance_review(the_person):
                         the_person "It's not much of a bonus if you're the only one who gets to cum. Cash would be better next time."
                     else: #She didn't cum, but neither did you so maybe you were just both tired
                         $ the_person.change_happiness(5)
-                        $ the_person.change_slut_temp(2)
+                        $ the_person.change_slut(1, 60)
                         the_person "Well, that was a good time [the_person.mc_title]. It's a lot more fun than a normal performance bonus, that's for sure!"
 
                     $ the_person.review_outfit()
@@ -453,7 +458,7 @@ label employee_performance_review(the_person):
                                     mc.name "Not today, at least. I expect to see improvements, or we'll be back here and I won't be so understanding."
                                     $ the_person.change_happiness(-5 + (the_person.get_opinion_score("showing her tits") + the_person.get_opinion_score("showing her ass")))
                                     $ the_person.change_obedience(3 + 3*the_person.get_opinion_score("being submissive"))
-                                    $ the_person.change_slut_temp(1)
+                                    $ the_person.change_slut(1, 40)
                                     the_person "Understood. I'll be doing next time, I promise!"
                                     "[the_person.possessive_title] collects her clothing and gets dressed."
                                     $ the_person.apply_outfit()
@@ -516,7 +521,7 @@ label employee_performance_review(the_person):
                                             the_person "Next time? I mean, of course [the_person.mc_title]."
                                     $ the_person.change_happiness(-5 + (2*the_person.get_opinion_score("giving handjobs")))
                                     $ the_person.change_obedience(3 + the_person.get_opinion_score("being submissive"))
-                                    $ the_person.change_slut_temp(2 + the_person.get_opinion_score("giving handjobs"))
+                                    $ the_person.change_slut(2 + the_person.get_opinion_score("giving handjobs"), 50)
                                     $ the_person.review_outfit()
                                     $ the_person.draw_person()
 
@@ -568,7 +573,7 @@ label employee_performance_review(the_person):
                                     $ the_person.clear_situational_obedience("seduction_approach")
 
                                     $ the_person.change_obedience(5)
-                                    $ the_person.change_slut_temp(3)
+                                    $ the_person.change_slut(2, 60)
                                     $ the_person.change_happiness(-5)
                                     mc.name "Okay [the_person.title], I'll keep you around for a little while longer, but you're going to need to shape up unless you want this to be a regular occurrence."
                                     $ the_person.review_outfit()
@@ -662,11 +667,13 @@ label employee_performance_review(the_person):
                                             "Fuck her raw":
                                                 pass
 
-                                    # there is no standing doggy position, in the base game, so make her switch to doggy
-                                    mc.name "On second thought, why don't you get on your hands and knees, like the little bitch you are."
-                                    the_person "Ah...yes, right away [the_person.mc_title]."
-                                    $ the_person.draw_person(position = "doggy")
-                                    "You line up again behind her and push forward, plunging your hard dick into [the_person.title]'s tight cunt. She gasps softly under her breath."
+                                    if the_person.has_taboo("vaginal_sex"):
+                                        the_person "Wait, I've changed my..."
+                                        "It's too late for second thoughts. You plunge your hard dick into [the_person.title]'s tight cunt. She gasps softly under her breath."
+                                        the_person "... Mind! Oh fuck..."
+                                        "You can hear her mumble: this is happening."
+                                    else:
+                                        "You push forward, plunging your hard dick into [the_person.title]'s tight cunt. She gasps softly under her breath."
                                     "You hold yourself deep inside of her and enjoy the sudden warmth around your shaft."
                                     "When you think she's ready you pull your hips back and start to pump in and out of her."
 
@@ -682,7 +689,7 @@ label employee_performance_review(the_person):
                                     $ the_person.clear_situational_obedience("seduction_approach")
 
                                     $ the_person.change_obedience(10)
-                                    $ the_person.change_slut_temp(4)
+                                    $ the_person.change_slut(2, 80)
                                     $ the_person.change_happiness(-5)
                                     $ the_person.review_outfit()
                                     $ the_person.draw_person()
@@ -735,7 +742,7 @@ label employee_performance_review(the_person):
 
                     elif the_report.get("end arousal", 0) >= 80:
                         $ the_person.change_happiness(5)
-                        $ the_person.change_slut_temp(5)
+                        $ the_person.change_slut(2, 60)
                         $ the_person.change_obedience(5)
                         the_person "Oh my god [the_person.mc_title], you got me so close... Can't you just finish me off, real quick?"
                         mc.name "Do a better job and I'll let you cum next time. Understood?"

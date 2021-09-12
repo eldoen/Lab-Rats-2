@@ -165,7 +165,7 @@ label scene_against_wall_2(the_girl, the_location, the_object):
                 "[the_girl.title] seems put off by your comments, but after a little while she's back to rocking her hips against you."
 
             else:
-                if the_girl.core_sluttiness > 80 or the_girl.get_opinion_score("being submissive") > 0:
+                if the_girl.sluttiness > 80 or the_girl.get_opinion_score("being submissive") > 0:
                     the_girl "Mmm, I do... I love feeling your big cock inside me."
                     mc.name "Do you want me to keep fucking you?"
 
@@ -248,12 +248,12 @@ label outro_against_wall(the_girl, the_location, the_object):
             if the_girl.get_opinion_score("drinking cum") > 0 and the_girl.effective_sluttiness() > 50:
                 $ the_girl.discover_opinion("drinking cum")
                 "[the_girl.possessive_title] reaches for your cock. With delicate fingers she slides the condom off of you."
-                the_girl.char "It would be a shame to waste all of this, right?"
+                the_girl "It would be a shame to waste all of this, right?"
                 "She smiles and brings the condom to her mouth. She tips the bottom up and drains it into her mouth."
-                $ the_girl.change_slut_temp(the_girl.get_opinion_score("drinking cum"))
+                $ the_girl.change_slut(the_girl.get_opinion_score("drinking cum"))
             else:
                 "[the_girl.possessive_title] reaches for your cock, removes the condom, and ties the end in a knot."
-                the_girl.char "Look at all that cum. Well done."
+                the_girl "Look at all that cum. Well done."
         else:
             $ climax_controller.do_clarity_release(the_girl)
             "You push forward as you finally climax, thrusting your cock as deep inside of [the_girl.possessive_title] as you can manage. She gasps softly each time your dick pulses and shoots hot cum into her."
@@ -272,10 +272,10 @@ label outro_against_wall(the_girl, the_location, the_object):
 
         $ climax_controller.do_clarity_release(the_girl)
         if the_girl.effective_sluttiness() > 120:
-            the_girl.char "What a waste, that would have felt so much better inside of me..."
+            the_girl "What a waste, that would have felt so much better inside of me..."
             "She reaches down and runs a finger through the puddles of cum you've put on her, then licks her finger clean and winks at you."
         else:
-            the_girl.char "Oh wow, there's so much of it. It feels so warm..."
+            the_girl "Oh wow, there's so much of it. It feels so warm..."
         "You sigh contentedly and relax for a moment, enjoying the sight of [the_girl.title] covered in your semen."
     return
 

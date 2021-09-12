@@ -58,7 +58,7 @@ label scene_kissing_1(the_girl, the_location, the_object):
 
             "Squeeze her ass":
                 "You move your hands down [the_girl.title]'s waist and around to her butt. You give both cheeks a squeeze."
-                if the_girl.core_sluttiness > 60:
+                if the_girl.sluttiness > 60:
                     $ kissing.current_modifier = None
                     $ kissing.redraw_scene(the_girl)
                     the_girl "Mmm, don't you want to spread those cheeks and fuck me? I'd let you, you know. Just say the word and you can fuck me."
@@ -149,9 +149,9 @@ label scene_kissing_2(the_girl, the_location, the_object):
             $ kissing.redraw_scene(the_girl)
             the_girl "Oh my god..."
             "Her neck is soft and warm. You kiss it up and down while she moans happily into your ear."
-            if the_girl.core_sluttiness > 65:
+            if the_girl.sluttiness > 65:
                 the_girl "I hope you aren't just planning to tease me [the_girl.mc_title], I want you so badly."
-            elif the_girl.core_sluttiness > 40:
+            elif the_girl.sluttiness > 40:
                 the_girl "Ah, when you do that it drives me crazy. Get me warmed up, then maybe we can do something else."
             else:
                 the_girl "[the_girl.mc_title]... Hold me close and don't let go."
@@ -265,8 +265,8 @@ label strip_ask_kissing(the_girl, the_clothing, the_location, the_object):
     "[the_girl.title] breaks the kiss."
     $ kissing.current_modifier = None
     $ kissing.redraw_scene(the_girl)
-    $ return_value = True
     the_girl "[the_girl.mc_title], I'd like to take off my [the_clothing.name], would you mind?"
+    $ return_value = True
     menu:
         "Let her strip":
             mc.name "Take it off for me."

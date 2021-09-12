@@ -30,16 +30,16 @@ init -2 python:
 
 label employee_humiliating_work_remove_label(the_person):
     python:
-        if employee_humiliating_work_role in the_person.special_role:
+        if the_person.has_role(employee_humiliating_work_role):
             the_person.remove_role(employee_humiliating_work_role, remove_linked = False)
 
-        if employee_role in the_person.special_role: #She may have quit/been fired since then.
+        if the_person.has_role(employee_role): #She may have quit/been fired since then.
             add_humiliating_work_report_action(the_person)
 
     return
 
 label employee_humiliating_work_report_label(the_person):
-    if employee_role not in the_person.special_role: #She's already been fired, just finish.
+    if not the_person.has_role(employee_role): #She's already been fired, just finish.
         return
 
     $ the_person.draw_person()

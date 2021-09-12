@@ -59,6 +59,8 @@ init -2 python:
 
             self.research_tier = 0 #The tier of research the main character has unlocked with storyline events. 0 is starting, 3 is max.
 
+            self.blueprinted_traits = [] #List of traits that we have built from trait blueprints.
+
             self.serum_designs = [] #Holds serum designs that you have researched.
             self.active_research_design = None #The current research (serum design or serum trait) the business is working on
 
@@ -228,20 +230,9 @@ init -2 python:
             if time_of_day == 1 and daily_serum_dosage_policy.is_active() and self.is_work_day(): #Not done on run_day because we want it to apply at the _start_ of the day.
                 self.give_daily_serum()
 
-            #Compute efficiency drop
-            for person in [x for x in self.supply_team + self.research_team + self.production_team + self.market_team if x in self.s_div.people + self.r_div.people + self.p_div.people + self.m_div.people]:
-                self.team_effectiveness -= 1 #TODO: Make this dependant on charisma (High charisma have a lower impact on effectiveness) and happiness.
 
-            #Compute efficiency rise from HR
-            for person in [x for x in self.hr_team if x in self.h_div.people]:
-                self.hr_progress(person.charisma,person.int,person.hr_skill)
-                person.change_happiness(person.get_opinion_score("working")+person.get_opinion_score("HR work"), add_to_log = False)
 
-            if self.team_effectiveness < 50:
-                self.team_effectiveness = 50
 
-            if self.team_effectiveness > self.effectiveness_cap:
-                self.team_effectiveness = self.effectiveness_cap
 
             #Compute other department effects
             for person in [x for x in self.supply_team if x in self.s_div.people]:
@@ -267,6 +258,22 @@ init -2 python:
 
             for policy in self.active_policy_list:
                 policy.on_turn()
+
+            #Compute efficiency drop
+            for person in [x for x in self.supply_team + self.research_team + self.production_team + self.market_team if x in self.s_div.people + self.r_div.people + self.p_div.people + self.m_div.people]:
+                self.team_effectiveness -= 1 #TODO: Make this dependant on charisma (High charisma have a lower impact on effectiveness) and happiness.
+
+            #Compute efficiency rise from HR
+            for person in [x for x in self.hr_team if x in self.h_div.people]:
+                self.hr_progress(person.charisma,person.int,person.hr_skill)
+                person.change_happiness(person.get_opinion_score("working")+person.get_opinion_score("HR work"), add_to_log = False)
+
+            if self.team_effectiveness < 50:
+                self.team_effectiveness = 50
+
+            if self.team_effectiveness > self.effectiveness_cap:
+                self.team_effectiveness = self.effectiveness_cap
+
 
         def run_move(self):
             for policy in self.active_policy_list:
@@ -426,7 +433,14 @@ init -2 python:
             for key in delete_list: #Now delete the production lines.
                 del self.serum_production_array[key]
 
+        def remove_trait(self, the_trait):
+            self.blueprinted_traits.remove(the_trait)
+            if the_trait is self.active_research_design:
+                self.active_research_design = None
+
         def set_serum_research(self,new_research):
+            if callable(new_research):
+                new_research = new_research() #Used by serumtrait.unlock_function's, particularly SerumTraitBlueprints to properly set the new trait.
             self.active_research_design = new_research
 
         def research_progress(self,int,focus,skill):

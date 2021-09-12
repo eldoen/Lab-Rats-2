@@ -138,47 +138,48 @@ label outro_doggy_anal(the_girl, the_location, the_object):
         if the_girl.get_opinion_score("anal creampies") > 0:
             # If she's into both...
             $ the_girl.discover_opinion("anal creampies")
-            the_girl.char "Oh fuck... I'm so full of cum. Put it back in me."
+            the_girl "Oh fuck... I'm so full of cum. Put it back in me."
             mc.name "What?"
-            the_girl.char "Your cock, put it back in me... Just a little bit more, please!"
+            the_girl "Your cock, put it back in me... Just a little bit more, please!"
             "She lowers her shoulders to the [the_object.name] and wiggles her ass at you. You slide the tip of your still-hard dick into her asshole."
-            the_girl.char "Ah..."
+            the_girl "Ah..."
             "Your semen gives you the lubrication you need to slide into her smoothly and easily. She shivers with pleasure as you push yourself in balls deep."
-            the_girl.char "Just... hold it there. Mphfhhh."
+            the_girl "Just... hold it there. Mphfhhh."
             "She bites her lip, closes her eyes, and moans."
             "Eventually your dick starts to soften and you pull out."
 
 
         else:
-            the_girl.char "Wow, that was intense. I hope you didn't stretch me out too badly."
+            the_girl "Wow, that was intense. I hope you didn't stretch me out too badly."
 
     elif the_choice == "Cum on her ass":
         "You pull out of [the_girl.possessive_title]'s asshole, leaving it gaping while you stroke yourself to completion."
         if the_girl.sex_skills["Anal"] <= 2:
             "She sighs in relief as you pull out."
-            the_girl.char "Oh thank god..."
+            the_girl "Oh thank god..."
 
         "You grunt and climax, shooting your hot cum out onto [the_girl.title]'s back and ass."
         $ the_girl.cum_on_ass()
         $ doggy_anal.redraw_scene(the_girl)
         $ climax_controller.do_clarity_release(the_girl)
         if the_girl.effective_sluttiness() > 120:
-            the_girl.char "Aw, I feel so empty now. You should have filled my ass with your cum instead."
+            the_girl "Aw, I feel so empty now. You should have filled my ass with your cum instead."
         else:
-            the_girl.char "Mmm, it's so warm."
+            the_girl "Mmm, it's so warm."
     return
 
 label transition_doggy_anal_doggy(the_girl, the_location, the_object):
-#     #transition from anal to normal doggy style.
+    # Transition from anal to normal doggy style.
     "You pull out of [the_girl.title]'s asshole, leaving it gaping and her sighing in relief."
     "You shift your cock downwards and rub the tip of it along the slit of her vagina."
     $ wants_condom = True
-    if the_girl.effective_sluttiness() < the_girl.get_no_condom_threshold(): #She wants a condom
-        the_girl "Mmm, fuck me [the_girl.mc_title]. Use all of my holes for your pleasure!"
-        $ wants_condom = False
-    else: #She doesn't care.
+    if the_girl.wants_condom(): #She wants a condom
         the_girl "Wait, wait... I can't risk getting pregnant, I need you to put on a condom."
         $ wants_condom = True
+
+    else: #She doesn't care.
+        the_girl "Mmm, fuck me [the_girl.mc_title]. Use all of my holes for your pleasure!"
+        $ wants_condom = False
 
     menu:
         "Put on a condom":
@@ -187,7 +188,8 @@ label transition_doggy_anal_doggy(the_girl, the_location, the_object):
         "Ram it home!":
             if wants_condom:
                 mc.name "Don't worry, I'll pull out."
-                $ the_girl.change_happiness(-5)
+                $ the_girl.change_happiness(5*the_person.get_opinion_score("bareback sex") - 5)
+                "She doesn't seem very happy with this, but she's not exactly in a position to argue."
 
             else:
                 pass

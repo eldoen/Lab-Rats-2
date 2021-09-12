@@ -178,7 +178,7 @@ init 0 python:
             return
 
         for an_employee in [x for x in mc.business.get_employee_list() if x.sluttiness < 20]:
-            an_employee.change_slut_temp(1, add_to_log = False)
+            an_employee.change_slut(1, 20, add_to_log = False)
             mc.business.change_team_effectiveness(-1)
         return
 
@@ -201,7 +201,7 @@ init 0 python:
             if an_employee.sluttiness <= 20:
                 an_employee.change_happiness(-5, add_to_log = False)
 
-            an_employee.change_slut_temp(1, add_to_log = False)
+            an_employee.change_slut(1, 40, add_to_log = False)
             mc.business.change_team_effectiveness(-1)
         return
 
@@ -227,7 +227,7 @@ init 0 python:
                 mc.business.change_team_effectiveness(-3)
             else:
                 mc.business.change_team_effectiveness(-1)
-            an_employee.change_slut_temp(1, add_to_log = False)
+            an_employee.change_slut(1, 60, add_to_log = False)
         return
 
     superliminal_office_messaging = Policy(name = "Supraliminal Messaging",

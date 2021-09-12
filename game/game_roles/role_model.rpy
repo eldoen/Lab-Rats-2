@@ -58,7 +58,7 @@ label model_photography_list_label(the_person):
         "Your outfit is fine":
             mc.name "You look great already, I don't think you need to change a thing."
             $ the_person.discover_opinion("skimpy uniforms")
-            $ the_person.change_slut_temp(the_person.get_opinion_score("skimpy uniforms"))
+            $ the_person.change_slut(the_person.get_opinion_score("skimpy uniforms"), 20)
             the_person "Okay, I think I'm ready to go then!"
 
         "Put something else on for me":
@@ -347,7 +347,7 @@ label photo_flash(the_person):
         "Finish the shoot":
             mc.name "I think I've got all the pictures we need, we can call it there."
             the_person "Yay, glad to help!"
-            $ the_person.change_slut_temp(1)
+            $ the_person.change_slut(1, 20)
             $ the_person.change_obedience(2)
             return the_person.outfit.slut_requirement
 
@@ -388,7 +388,7 @@ label photo_naked(the_person):
                     mc.name "If he was a reasonable person he'd be fine with this."
                     mc.name "You're using your, uh, natural talents to perform your job as well as you can. That's an admirable thing to do."
                     $ the_person.change_happiness(2)
-                    $ the_person.change_slut_temp(1)
+                    $ the_person.change_slut(1, 40)
                     "She smiles and nods."
                     the_person "Yeah, that's what I think too."
 
@@ -428,7 +428,7 @@ label photo_naked(the_person):
         "Finish the shoot":
             mc.name "I think that's everything we need."
             $ the_person.change_obedience(2)
-            $ the_person.change_slut_temp(2)
+            $ the_person.change_slut(2, 50)
             "[the_person.title] collects her things and you finish up the photo shoot."
             return the_person.outfit.slut_requirement
     return _return
@@ -454,7 +454,7 @@ label photo_touch(the_person):
             the_person "Yeah, I do. For you. Uh, I mean, for your business."
             mc.name "Then he should respect what you want to do. If he doesn't, that's his problem."
             $ the_person.change_obedience(-1)
-            $ the_person.change_slut_temp(1 + the_person.get_opinion_score("cheating on men"))
+            $ the_person.change_slut(1 + the_person.get_opinion_score("cheating on men"), 60)
             $ the_person.discover_opinion("cheating on men")
             "[the_person.possessive_title] seems filled with a sudden resolve. She takes a deep breath and turns back towards the camera."
             the_person "You're right. Fuck him if he isn't happy about it."
@@ -501,7 +501,7 @@ label photo_touch(the_person):
             mc.name "Yes, I do. I'm going to get some great pictures as it happens."
             "She moans louder and tilts her head back."
             the_person "I'm... going to cum! Fuck!"
-            $ the_person.change_slut_temp(3)
+            $ the_person.change_slut(1, 60)
             $ the_person.change_happiness(5)
             $ mc.change_locked_clarity(10)
             "She gasps and tenses up, both hands moving as fast as she can make them."
@@ -583,7 +583,7 @@ label photo_blowjob(the_person):
             "She looks up at you as you cum, blowing your hot load over her face. You struggle to keep the camera pointed in the right direction."
             $ the_person.cum_on_face()
             $ the_person.draw_person(position = "blowjob")
-            $ the_person.change_slut_temp(the_person.get_opinion_score("being covered in cum"))
+            $ the_person.change_slut(1 + the_person.get_opinion_score("being covered in cum"), 60)
             $ the_person.discover_opinion("being covered in cum")
             $ climax_controller.do_clarity_release(the_person)
             "It takes you a couple long seconds to recover from your orgasm."
@@ -645,7 +645,7 @@ label photo_sex(the_person):
             the_person "You can even cum inside me, if you think you need to."
         else:
             "All resistance drains from her and she starts to rub her hips against you eagerly."
-            the_person "Fine, okay, you cna fuck me raw. Just... Be careful, okay? You need to pull out."
+            the_person "Fine, okay, you can fuck me raw. Just... Be careful, okay? You need to pull out."
             the_person "The pictures will look best with me covered in cum anyways, right?"
         mc.name "You're a team player [the_person.title]. One of the best."
 
@@ -661,7 +661,7 @@ label photo_sex(the_person):
 
     $ mc.change_locked_clarity(50)
     "You lay into her, fucking her until you feel your orgasm approaching."
-    $ the_person.change_slut_temp(5)
+    $ the_person.change_slut(2, 80)
     mc.name "Fuck, here I cum!"
     $ the_person.call_dialogue("cum_pullout")
 
@@ -669,7 +669,7 @@ label photo_sex(the_person):
     $ climax_controller = ClimaxController(["Pull out and cum", "body"],["Cum inside her", "pussy"])
     $ the_choice = climax_controller.show_climax_menu()
     if the_choice == "Pull out and cum":
-        $ the_person.change_slut_temp(the_person.get_opinion_score("being covered in cum"))
+        $ the_person.change_slut(the_person.get_opinion_score("being covered in cum"), 80)
         $ the_person.discover_opinion("being covered in cum")
         if mc.condom:
             "You pull out of [the_person.title]'s tight pussy. You whip the condom off with your left hand, then start to stroke yourself to completion."
@@ -701,7 +701,7 @@ label photo_sex(the_person):
                     $ the_person.draw_person(position = "missionary")
                     if the_person.get_opinion_score("being covered in cum") > 0:
                         the_person "Oh my god, ah..."
-                        $ the_person.change_slut_temp(2 + the_person.get_opinion_score("being covered in cum"))
+                        $ the_person.change_slut(2 + the_person.get_opinion_score("being covered in cum"), 80)
                         $ mc.discover_opinion("being covered in cum")
                     else:
                         the_person "Oh my god, [the_person.mc_title]..."
@@ -714,7 +714,7 @@ label photo_sex(the_person):
                     "You make sure to get some shots of [the_person.title]'s blushing face and dripping wet pussy."
 
         else:
-            $ the_person.change_slut_temp(the_person.get_opinion_score("creampies"))
+            $ the_person.change_slut(1+the_person.get_opinion_score("creampies"), 80)
             $ the_person.discover_opinion("creampies")
             "You pull on [the_person.title]'s hips one handed and thrust as deep as you can into her."
             $ the_person.cum_in_vagina()

@@ -44,7 +44,7 @@ init -2 python:
             if map_pos is None:
                 self.map_pos = [-1,-1] #off screen
             else:
-                self.map_pos = map_pos #A tuple of two int values giving the hex co-ords, starting in the top left. Using this guarantees locations will always tessalate.
+                self.map_pos = map_pos #A tuple of two int values giving the hex coords, starting in the top left. Using this guarantees locations will always tessalate.
 
             self.visible = visible #If true this location is shown on the map. If false it is not on the main map and will need some other way to access it.
             self.hide_in_known_house_map = hide_in_known_house_map #If true this location is hidden in the house map, usually because their house is shown on the main map.
@@ -58,7 +58,7 @@ init -2 python:
             else:
                 self.lighting_conditions = lighting_conditions
 
-            #TODO: add an "appropriateness" or something trait that decides how approrpaite it would be to have sex, be seduced, etc. in this location.
+            #TODO: add an "appropriateness" or something trait that decides how appropriate it would be to have sex, be seduced, etc. in this location.
 
         @property
         def identifier(self):
@@ -127,6 +127,11 @@ init -2 python:
                 if object.has_trait(the_trait):
                     return True
             return False
+
+        def get_object_with_trait(self, the_trait):
+            if self.has_object_with_trait(the_trait):
+                return get_random_from_list(self.objects_with_trait(the_trait))
+            return None
 
         def get_object_with_name(self,name): #Use this to get objects from a room when you know what they should be named but don't have an object reference yet (ik
             for obj in self.objects:

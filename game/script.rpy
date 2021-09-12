@@ -10,6 +10,12 @@ init -10 python: #Init -10 is used for all project wide imports of external reso
     import io
     from collections import defaultdict
     import unittest
+    import unicodedata
+    import sys
+    from functools import partial
+    import re
+    import string
+
 
     # all image sets available
     global supported_positions
@@ -40,6 +46,7 @@ init -2: # Establish some platform specific stuff.
     default persistent.vren_animation = True #By default animation is enabled if possible. If it's not possible because it's on mobile toggling it just does nothing for now.
     default persistent.pregnancy_pref = 0 # 0 = no content, 1 = predictable, 2 = realistic
     default persistent.vren_display_pref = "Float" # "Float" = no BG, "Frame" = Frame with coloured BG for most interactions.
+    default persistent.text_effects = True
 
 init -2 python:
     list_of_positions = [] # These are sex positions that the PC can make happen while having sex.
@@ -478,7 +485,7 @@ label advance_time:
 
     python:
         for (people,place) in people_to_process: #Run the results of people spending their turn in their current location.
-            people.run_turn()
+            people.run_turn() #T
 
         mc.business.run_turn()
         mc.run_turn()
@@ -501,7 +508,7 @@ label advance_time:
     $ mc.location.show_background()
     python: #Needs to be a different python block, otherwise the rest of the block is not called when the action returns.
         for crisis in clear_list:
-            if crisis in mc.business.mandatory_crises_list: 
+            if crisis in mc.business.mandatory_crises_list:
                 mc.business.mandatory_crises_list.remove(crisis) #Clean up the list.
         del clear_list
 
@@ -569,7 +576,7 @@ label advance_time:
         $ mc.location.show_background()
         python: #Needs to be a different python block, otherwise the rest of the block is not called when the action returns.
             for crisis in clear_list:
-                if crisis in mc.business.mandatory_morning_crises_list: 
+                if crisis in mc.business.mandatory_morning_crises_list:
                     mc.business.mandatory_morning_crises_list.remove(crisis) #Clean up the list.
             del clear_list
 
@@ -715,11 +722,14 @@ label initialize_game_state(character_name,business_name,last_name,stat_array,sk
     $ list_of_traits = [] #List of serum traits that can be used. Established here so they play nice with rollback, saving, etc.
     $ list_of_nora_traits = []
     $ list_of_places = [] #By having this in an init block it may be set to null each time the game is reloaded, because the initialization stuff below is only called once.
+    $ list_of_side_effects = []
 
     #NOTE: These need to be established in a separate label to ensure they are loaded/saved correctly
     call instantiate_serum_traits() from _call_instantiate_serum_traits #Creates all of the default LR2 serum traits. TODO: Create a mod loading list that has labels that can be externally added and called here.
     call instantiate_roles() from _call_instantiate_roles
-    call instantiate_business_policies()
+    call instantiate_side_effect_traits() from _call_instantiate_side_effect_traits
+    # only rpyc file exists in original with empty label
+    # call instantiate_business_policies() from _call_instantiate_business_policies
 
 
     python:

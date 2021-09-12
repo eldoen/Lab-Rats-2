@@ -610,7 +610,7 @@ label study_normally(the_person, public = True):
                             $ the_person.draw_person()
                             "Stretch complete, [the_person.title] stands back up and takes a deep breath."
                             the_person "You know what, that actually felt good."
-                            $ the_person.change_slut_temp(2, 15)
+                            $ the_person.change_slut(2, 15)
                             mc.name "Good to hear, now let's get back to it."
 
                         "\"Help\" her push a little further.":
@@ -618,7 +618,7 @@ label study_normally(the_person, public = True):
                             $ mc.change_locked_clarity(15)
                             "You step close behind her and place your hands on her hips. You pull back gently helping her stretch while also pushing her butt against your crotch."
                             the_person "Ooh, I can really feel that..."
-                            $ the_person.change_slut_temp(3, 25)
+                            $ the_person.change_slut(3, 25)
                             $ the_person.change_love(-1)
                             "You enjoy the feeling her ass grinding up against you as long as you think you can get away with, then you ease up on the pressure."
                             $ the_person.draw_person()
@@ -650,7 +650,7 @@ label study_normally(the_person, public = True):
 
                     "You spend some time massaging [the_person.possessive_title]'s shoulders. She relaxes and leans back in her chair, eyes closed."
 
-                    $ the_person.change_slut_temp(1,15)
+                    $ the_person.change_slut(1,15)
 
                     menu:
                         "Finish the massage":
@@ -676,7 +676,7 @@ label study_normally(the_person, public = True):
                                 $ mc.change_locked_clarity(15)
                                 "[the_person.title] sighs happily when you slide your hands onto her tits. You feel her body relax under your touch."
 
-                            $ the_person.change_slut_temp(2)
+                            $ the_person.change_slut(2, 25)
                             if the_person.outfit.tits_available():
                                 "You enjoy the feeling of her bare breasts as you play with them. When her nipples harden, you give them a light pinch."
                             else:
@@ -741,7 +741,7 @@ label student_masturbate_label(the_person):
         mc.name "I really don't mind if..."
         the_person "No, it's just I can't... It's hard with someone watching, you know? Even when it's for a good reason."
         mc.name "Okay, I'll just be waiting outside then."
-        $ the_person.change_slut_temp(2)
+        $ the_person.change_slut(2, 20)
         the_person "Thanks! I'll let you know when I'm... finished."
         $ clear_scene()
         "You stand up and leave [the_person.possessive_title]'s room. You close her door and lean on the frame."
@@ -787,7 +787,7 @@ label student_masturbate_label(the_person):
                 $ mc.change_locked_clarity(10)
                 "She grips at the side of her chair and takes a deep breath. She starts to hammer her fingers in and out of herself."
                 the_person "Oh fuck, there it is! Oh... Oh!"
-                $ the_person.change_slut_temp(3)
+                $ the_person.change_slut(1, 50)
                 $ the_person.change_obedience(1)
                 $ mc.change_locked_clarity(10)
                 "[the_person.title] keeps her fingers moving for a few more seconds, then slows down and stops. She takes a deep sigh and slides them out of her wet cunt."
@@ -844,7 +844,7 @@ label student_masturbate_label(the_person):
                 if the_report.get("girl orgasms", 0) > 0:
                     "[the_person.title] collapses into her chair and sighs happily."
                     the_person "I think... I'm ready to do some studying."
-                    $ the_person.change_slut_temp(2)
+                    $ the_person.change_slut(1, 50)
                     $ the_person.change_obedience(2)
                     $ the_person.change_love(2)
                     $ the_person.event_triggers_dict["current_marks"] = the_person.event_triggers_dict.get("current_marks",0) + 4
@@ -1345,7 +1345,7 @@ label student_punish_spank(the_person, was_failure, wants_to_fail, successes = 0
 
     if the_person.get_opinion_score("being submissive") >= 0:
         $ the_person.change_arousal(5)
-        $ the_person.change_slut_temp(1)
+        $ the_person.change_slut(1, 40)
         $ the_person.discover_opinion("being submissive")
         the_person "Ah..."
 
@@ -1531,7 +1531,7 @@ label student_punish_suck(the_person, was_failure, wants_to_fail, successes = 0,
         $ the_person.draw_person(position = "sitting")
         "[the_person.possessive_title] rests on her knees, then pulls herself back into her chair."
 
-    $ the_person.change_slut_temp(1+the_person.get_opinion_score("giving blowjobs")+the_person.get_opinion_score("being submissive"))
+    $ the_person.change_slut(1+the_person.get_opinion_score("giving blowjobs")+the_person.get_opinion_score("being submissive"), 80)
     $ the_person.change_obedience(1+the_person.get_opinion_score("giving blowjobs")+the_person.get_opinion_score("being submissive"))
     return
 
@@ -1770,7 +1770,7 @@ label student_test(the_person): #TODO: Hook this up
                 "[the_person.title] thinks about it for a moment, then nods."
                 the_person "Yeah, let's do it!"
                 mc.name "That's great to hear. I'll just need to ask you a few questions to confirm you're a good fit for the company..."
-                call hire_select_process([the_person, 1]) #Padded with extra random person to prevent hiring crash
+                call hire_select_process([the_person, 1]) from _call_hire_select_process_student_test #Padded with extra random person to prevent hiring crash
                 if _return == the_person:
                     call hire_someone(the_person) from _call_hire_someone_student_test
                     mc.name "It's a deal then, I'll see you at the office."
@@ -1802,7 +1802,7 @@ label student_test(the_person): #TODO: Hook this up
     mc.name "I need to give your exam to [nora.title], see you around [the_person.title]."
     $ clear_scene()
     "You split up from [the_person.possessive_title], turn the exam in to [nora.title], and head back to the center of campus."
-    call advance_time()
+    call advance_time() from _call_advance_time_student_test
     return
 
 label student_offer_job_reintro(the_person):
@@ -1819,7 +1819,7 @@ label student_offer_job_reintro(the_person):
         the_person "Yeah, let's do it!"
 
     mc.name "Alright, I'm just going to need to ask you a few questions to confirm you're a good fit for the company."
-    call hire_select_process([the_person, 1]) #Padded with extra random person to prevent hiring crash
+    call hire_select_process([the_person, 1]) from _call_hire_select_process_student_offer_job_reintro #Padded with extra random person to prevent hiring crash
     if _return == the_person:
         call hire_someone(the_person) from _call_hire_someone_student_offer_job_reintro
         mc.name "It's a deal then, I'll see you at the office."

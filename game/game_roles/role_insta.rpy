@@ -248,10 +248,10 @@ label comment_description(comment_type, the_person):
             $ the_person.change_happiness(-5 + the_person.get_opinion_score("showing her tits") + the_person.get_opinion_score("showing her ass"), add_to_log = False)
         elif her_slut < 40: #Doesn't mind, is made slightly sluttier by it
             $ the_person.change_happiness(-2 + the_person.get_opinion_score("showing her tits") + the_person.get_opinion_score("showing her ass"), add_to_log = False)
-            $ the_person.change_slut_temp(1 + the_person.get_opinion_score("showing her tits") + the_person.get_opinion_score("showing her ass"), add_to_log = False)
+            $ the_person.change_slut(1 + the_person.get_opinion_score("showing her tits") + the_person.get_opinion_score("showing her ass"), 40, add_to_log = False)
         else: #Likes it, gets sluttier if her opinions line up with that
             $ the_person.change_happiness(5 + the_person.get_opinion_score("showing her tits") + the_person.get_opinion_score("showing her ass"), add_to_log = False)
-            $ the_person.change_slut_temp(0 + the_person.get_opinion_score("showing her tits") + the_person.get_opinion_score("showing her ass"), add_to_log = False)
+            $ the_person.change_slut(1 + the_person.get_opinion_score("showing her tits") + the_person.get_opinion_score("showing her ass"), 40, add_to_log = False)
     call instapic_comment_loop(the_person, posted_today = False) from _call_instapic_comment_loop_1
     return
 

@@ -126,7 +126,7 @@ label mom_work_promotion_one(the_person): #Mom is up for a promotion and asks yo
             mc.name "Once you have their attention your technical skills will shine through."
             the_person "That does make sense... Okay, you're right [the_person.mc_title]."
             the_person "Would you help me pick out my interview outfit? You can tell me how a man thinks about it."
-            $ the_person.change_slut_temp(2)
+            $ the_person.change_slut(2, 30)
             menu:
                 "Help her pick out an outfit":
                     mc.name "Sure thing [the_person.title]. Come on, let's go see what we can find in your closet."
@@ -612,7 +612,7 @@ label mom_work_promotion_two_report(the_person): #TODO: Hook this up as an on_ro
 
         elif the_person.event_triggers_dict.get("mom_work_promotion_outfit_slutty", False):
             the_person "You were right about being a little flirty with him. He had his eyes all over me the entire time."
-            $ the_person.change_slut_temp(2) # She gets a little sluttier after using her looks to get promoted.
+            $ the_person.change_slut(2, 40) # She gets a little sluttier after using her looks to get promoted.
             the_person "I almost think he gave me the job just so he could spend more time looking at me."
 
         $ mc.change_locked_clarity(10)
@@ -647,10 +647,8 @@ label mom_work_promotion_two_report(the_person): #TODO: Hook this up as an on_ro
     return
 
 label mom_work_slutty_report(the_person):
-    #TODO: Called on_talk occasionally where she tells you what it's like at work with her new promotion. Exact actions depend on her outfit, Sluttiness, and how "office_slutty" she's decided to be.
     if not the_person.event_triggers_dict.get("mom_work_secretary_promotion", False):
         return # Only trigger when she's been promoted, just double check that's true.
-
     $ the_person.draw_person()
     "[the_person.possessive_title] smiles as you."
     the_person "Hi [the_person.mc_title], it's good to see you. It was an interesting day at work, I'm glad to be home."
@@ -971,6 +969,10 @@ label mom_work_secretary_replacement_bigger_tits_reintro(the_person):
         mc.name "Well, I think I have an idea..."
         the_person "Well, what is it?"
         mc.name "You need to make sure he wants to keep you around, even if it's just to look at you."
+        $ the_person.event_triggers_dict["mom_replacement_approach"] = "tits"
+        $ the_person.event_triggers_dict["mom_replacement_approach_waiting_for_tits"] = the_person.tits
+        $ work_seduce = Action("mom_work_secretary_replacement_seduction_report", mom_work_secretary_replacement_report_requirement, "mom_work_secretary_replacement_report", requirement_args = [day+1])
+        $ the_person.on_talk_event_list.append(work_seduce)
         call mom_work_secretary_replacement_intro_bigger_tits(the_person) from _call_mom_work_secretary_replacement_intro_bigger_tits_2
 
     else:

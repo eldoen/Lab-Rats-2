@@ -70,7 +70,7 @@ label scene_missionary_1(the_girl, the_location, the_object):
 
         "Talk dirty to her":
             mc.name "You feel amazing [the_girl.title], I wish I could fuck you like this all day."
-            if the_girl.core_sluttiness > 60 or the_girl.get_opinion_score("being submissive" > 0):
+            if the_girl.sluttiness > 60 or the_girl.get_opinion_score("being submissive" > 0):
                 the_girl "Then do it. Pin me against the [the_object.name] and fuck me all you want."
                 "She wraps her legs around your waist and pulls you deep inside of her. The tight, warm feeling of her cunt makes your cock twitch."
                 if the_girl.wants_creampie():
@@ -223,12 +223,12 @@ label outro_missionary(the_girl, the_location, the_object):
             if the_girl.get_opinion_score("drinking cum") > 0 and the_girl.effective_sluttiness() > 50:
                 $ the_girl.discover_opinion("drinking cum")
                 "[the_girl.possessive_title] reaches over for your cock. With delicate fingers she slides the condom off of you, pinching it off do your cum doesn't spill out."
-                the_girl.char "It would be a shame to waste all of this, right?"
+                the_girl "It would be a shame to waste all of this, right?"
                 "She smiles and brings the condom to her mouth. She tips the bottom up and drains it into her mouth."
-                $ the_girl.change_slut_temp(the_girl.get_opinion_score("drinking cum"))
+                $ the_girl.change_slut(the_girl.get_opinion_score("drinking cum"))
             else:
                 "[the_girl.possessive_title] reaches over for your cock, removes the condom, and ties the end in a knot for you."
-                the_girl.char "Look at all that cum. Well done."
+                the_girl "Look at all that cum. Well done."
 
         else:
             $ climax_controller.do_clarity_release(the_girl)
@@ -245,7 +245,7 @@ label outro_missionary(the_girl, the_location, the_object):
         else:
             "You pull out at the last moment and grab your cock. You kneel and stroke yourself off, blowing your load over [the_girl.title]'s stomach."
         $ climax_controller.do_clarity_release(the_girl)
-        the_girl.char "Ah... Good job... Ah..."
+        the_girl "Ah... Good job... Ah..."
         "You sit back and sigh contentedly, enjoying the sight of [the_girl.possessive_title]'s body covered in your semen."
     return
 

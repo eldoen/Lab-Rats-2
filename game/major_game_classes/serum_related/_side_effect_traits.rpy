@@ -6,12 +6,10 @@ init -1 python:
 
     ## libido_suppressant_functions ##
     def libido_suppressant_on_apply(the_person, the_serum, add_to_log):
-        the_person.change_slut_core(-20, fire_event = False)
-        the_person.change_slut_temp(-20)
+        the_person.change_slut(-20)
 
     def libido_suppressant_on_remove(the_person, the_serum, add_to_log):
-        the_person.change_slut_core(20, fire_event = False)
-        the_person.change_slut_temp(20)
+        the_person.change_slut(20)
 
     ## anxiety_provoking_functions ##
     def anxiety_provoking_on_turn(the_person, the_serum, add_to_log):
@@ -30,7 +28,8 @@ init -1 python:
 
     ## mood_swings_functions ##
     def mood_swings_on_turn(the_person, the_serum, add_to_log):
-        if renpy.random.randint(0,1) == 0:
+        swing = renpy.random.randint(0,1)
+        if swing == 0:
             the_person.change_happiness(-10, add_to_log)
         else:
             the_person.change_happiness(10, add_to_log)
@@ -54,8 +53,27 @@ init -1 python:
     def toxic_on_remove(the_person, the_serum, add_to_log):
         the_person.serum_tolerance += 1
 
+    ## libido suppressant ##
+    def libido_suppressant_on_apply(the_person, the_serum, add_to_log):
+        the_person.change_max_arousal(50, add_to_log)
+
+    def libido_suppressant_on_remove(the_person, the_serum, add_to_log):
+        the_person.change_max_arousal(-50, add_to_log)
+
+    ## hair colour changes ##
+    def hair_colour_wild_on_turn(the_person, the_serum, add_to_log):
+        random_colour = Color((renpy.random.randint(0,255), renpy.random.randint(0,255), renpy.random.randint(0,255)))
+
+        hair_colour_change_on_turn(random_colour, the_person, the_serum, add_to_log)
+
+    def hair_colour_dull_on_turn(the_person, the_serum, add_to_log):
+        current_colour = Color(rgb=(the_person.hair_colour[1][0], the_person.hair_colour[1][1], the_person.hair_colour[1][2]))
+        goal_colour = current_colour.replace_hsv_saturation(0.0)
+
+        hair_colour_change_on_turn(goal_colour, the_person, the_serum, add_to_log)
+
     depressant_side_effect = SerumTrait(name = "Depressant",
-        desc = "An unintended interaction produces a sudden and noticeable drop in the recipient's mood without any corresponding improvement when the serum expires.",
+        desc = "An unintended interaction produces a sudden and noticable drop in the recipients mood without any corresponding improvement when the serum expires.",
         positive_slug = "None",
         negative_slug = "-20 Happiness When Applied, -$5 Value",
         value_added = -5,
@@ -77,7 +95,7 @@ init -1 python:
         is_side_effect = True)
 
     unstable_reaction = SerumTrait(name = "Unstable Reaction",
-        desc = "The reaction used to create this serum was less stable than initially hypothesized. Reduces serum duration by two turns.",
+        desc = "The reaction used to create this serum was less stable than initialy hypothesised. Reduces serum duration by two turns.",
         positive_slug = "None",
         negative_slug = "-2 Turn Duration, -$5 Value",
         value_added = -5,
@@ -92,7 +110,7 @@ init -1 python:
         is_side_effect = True)
 
     libido_suppressant = SerumTrait(name = "Libido Suppressant",
-        desc = "An unintended interaction results in a major decrease in the recipient's sex drive for the duration of this serum.",
+        desc = "An unintended interaction results in a major decrease in the recipients sex drive for the duration of this serum.",
         positive_slug = "None",
         negative_slug = "-20 Sluttiness, -$5 Value",
         value_added = -5,
@@ -109,7 +127,7 @@ init -1 python:
         is_side_effect = True)
 
     performance_inhibitor = SerumTrait(name = "Performance Inhibitor",
-        desc = "For reasons not understood by your R&D team this serum causes a general decrease in the recipient's ability to do work for the duration of the serum.",
+        desc = "For reasons not understood by your R&D team this serum causes a general decrease in the recipients to do work for the duration of the serum.",
         positive_slug = "None",
         negative_slug = "-1 Intelligence, Focus, and Charisma, -$5 Value",
         value_added = -5,
@@ -145,22 +163,56 @@ init -1 python:
     toxic_side_effect = SerumTrait(name = "Toxic",
         desc = "Mildly toxic interactions make this serum dangerous to mix with other medications at any dose. Reduces serum tolerance for the duration.",
         positive_slug = "None",
-        negative_slug = "-1 Serum Tolerance, -$5 value",
+        negative_slug = "-1 Serum Tolerance, -$5 Value",
         value_added = -5,
         on_apply = toxic_on_apply,
         on_remove = toxic_on_remove,
         is_side_effect = True)
 
-    list_of_side_effects = []
-    list_of_side_effects.append(depressant_side_effect)
-    list_of_side_effects.append(bad_reputation)
-    list_of_side_effects.append(unpleasant_taste_side_effect)
-    list_of_side_effects.append(unstable_reaction)
-    list_of_side_effects.append(manual_synthesis_required)
-    list_of_side_effects.append(libido_suppressant)
-    list_of_side_effects.append(anxiety_provoking)
-    list_of_side_effects.append(performance_inhibitor)
-    list_of_side_effects.append(mood_swings)
-    list_of_side_effects.append(sedative)
-    list_of_side_effects.append(slow_release_sedative)
-    list_of_side_effects.append(toxic_side_effect)
+    libido_suppressant_effect = SerumTrait(name = "Stimulation Suppressant",
+        desc = "Interactions with the body's nervous system makes it very difficult for the subject to orgasm. A common side effect for many medications.",
+        positive_slug = "None",
+        negative_slug = "+40 Max Arousal, -$5 Value",
+        value_added = -5,
+        on_apply = libido_suppressant_on_apply,
+        on_remove = libido_suppressant_on_remove,
+        is_side_effect = True)
+
+    hair_colour_wild_effect = SerumTrait(name = "Hair Colour Shifts",
+        desc = "Complex interactions produce visible changes in hair colour. Produces random and sometimes striking changes in hair colour over time.",
+        positive_slug = "None",
+        negative_slug = "Random Hair Colour Changes, -$5 Value",
+        value_added = -5,
+        on_turn = hair_colour_wild_on_turn,
+        exclude_tags = "Dye",
+        is_side_effect = True)
+
+    hair_colour_dull_effect = SerumTrait(name = "Dull Hair",
+        desc = "Complex interactions produce visible changes in hair colour. Has the effect of dulling down the hair colour of the subject.",
+        positive_slug = "None",
+        negative_slug = "Reduces Hair Saturation, -$5 Value",
+        value_added = -5,
+        on_turn = hair_colour_dull_on_turn,
+        exclude_tags = "Dye",
+        is_side_effect = True)
+
+
+label instantiate_side_effect_traits(): #Creates all of the default LR2 serum trait objects.
+    python:
+        list_of_side_effects.append(depressant_side_effect)
+        list_of_side_effects.append(bad_reputation)
+        list_of_side_effects.append(unpleasant_taste_side_effect)
+        list_of_side_effects.append(unstable_reaction)
+        list_of_side_effects.append(manual_synthesis_required)
+        list_of_side_effects.append(libido_suppressant)
+        list_of_side_effects.append(anxiety_provoking)
+        list_of_side_effects.append(performance_inhibitor)
+        list_of_side_effects.append(mood_swings)
+        list_of_side_effects.append(sedative)
+        list_of_side_effects.append(slow_release_sedative)
+        list_of_side_effects.append(toxic_side_effect)
+        list_of_side_effects.append(libido_suppressant_effect)
+        list_of_side_effects.append(hair_colour_wild_effect)
+        list_of_side_effects.append(hair_colour_dull_effect)
+
+    return

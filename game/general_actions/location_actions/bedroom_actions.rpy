@@ -122,5 +122,5 @@ label bedroom_masturbation(location_description = "home", edging_available = Tru
                 "You take a few deep breaths as your climax passes, then wad up the spent tissues and chuck them into the trash."
 
     if should_advance_time:
-        call advance_time()
+        call advance_time() from _call_advance_time_bedroom_masturbation
     return

@@ -58,13 +58,20 @@ label relaxed_greetings(the_person):
     return
 
 label relaxed_sex_responses_foreplay(the_person):
-    if the_person.arousal < 25:
+    $ response_value = (the_person.arousal + renpy.random.randint(0,20))*1.0/the_person.max_arousal
+    if response_value < 20:
+        if the_person.sluttiness > 50:
+            the_person "Hey... Mmm..."
+        else:
+            "[the_person.possessive_title] seems a little unsure what to do, but moans softly all the same."
+
+    elif response_value < 40:
         if the_person.sluttiness > 50:
             the_person "Mmm.... You're good at getting me warmed up..."
         else:
             the_person "Mmmm... Ah..."
 
-    elif the_person.arousal < 50:
+    elif response_value < 60:
         if the_person.sluttiness > 50:
             the_person "Oh that's it. Mmm."
             "She purs warmly."
@@ -72,7 +79,7 @@ label relaxed_sex_responses_foreplay(the_person):
             the_person "Oh my god..."
             "It seems like she's trying not to moan too loudly."
 
-    elif the_person.arousal < 75:
+    elif response_value < 80:
         if the_person.sluttiness > 50:
             if the_person.outfit.wearing_panties():
                 the_person "Ah... If you get me any wetter I'm going to soak right through my panties."
@@ -96,19 +103,25 @@ label relaxed_sex_responses_foreplay(the_person):
     return
 
 label relaxed_sex_responses_oral(the_person):
-    if the_person.arousal < 25:
+    $ response_value = (the_person.arousal + renpy.random.randint(0,20))*1.0/the_person.max_arousal
+    if response_value < 20:
+        if the_person.sluttiness > 50:
+            "[the_person.possessive_title] moans quietly, a mixture of surprise and excitement."
+        else:
+            the_person "Hey, you don't need to... Oh wow..."
+    elif response_value < 40:
         if the_person.sluttiness > 50:
             the_person "Oh you know what I want [the_person.mc_title]... Ah..."
         else:
             the_person "Oh wow... that's... Mph!"
 
-    elif the_person.arousal < 50:
+    elif response_value < 60:
         if the_person.sluttiness > 50:
             the_person "Mmmm, that's so good. Ah..."
         else:
             the_person "That... that feels so good [the_person.mc_title]... So fucking good."
 
-    elif the_person.arousal < 75:
+    elif response_value < 80:
         if the_person.sluttiness > 50:
             the_person "God, your tongue feels so good!"
 
@@ -124,23 +137,29 @@ label relaxed_sex_responses_oral(the_person):
         else:
             the_person "Oh no... Oh god, you're going to make me..."
             the_person "Cum!"
-
     return
 
 label relaxed_sex_responses_vaginal(the_person):
-    if the_person.arousal < 25:
+    $ response_value = (the_person.arousal + renpy.random.randint(0,20))*1.0/the_person.max_arousal
+    if response_value < 20:
         if the_person.sluttiness > 50:
-            the_person "Mmm, your cock feels real good inside me."
+            the_person "Go slowly, I need a moment to get really wet for you."
+        else:
+            "[the_person.possessive_title] closes her eyes and takes a deep breath."
+
+    elif the_person.arousal < 40:
+        if the_person.sluttiness > 50:
+            the_person "Keep fucking me [the_person.mc_title], it feels fantastic!"
         else:
             the_person "Oh my god... Ah..."
 
-    elif the_person.arousal < 50:
+    elif the_person.arousal < 60:
         if the_person.sluttiness > 50:
             the_person "Keep fucking me [the_person.mc_title], it feels fantastic!"
         else:
             the_person "Oh my god, that feeling..."
 
-    elif the_person.arousal < 75:
+    elif the_person.arousal < 80:
         if the_person.sluttiness > 50:
             the_person "Ah, fuck me [the_person.mc_title]! Give me that big cock!"
 
@@ -160,20 +179,28 @@ label relaxed_sex_responses_vaginal(the_person):
     return
 
 label relaxed_sex_responses_anal(the_person):
-    if the_person.arousal < 25:
+    $ response_value = (the_person.arousal + renpy.random.randint(0,20))*1.0/the_person.max_arousal
+    if response_value < 20:
         if the_person.sluttiness > 50:
-            the_person "Oh fuck, you're really stretching me out!"
+            the_person "Oh my god... Take it slow, okay? I'm not going anywhere..."
+        else:
+            the_person "I... Oh my god, I don't know if I can do this [the_person.mc_title]!"
+            "Despite her worries she seems willing to give it an honest try!"
+
+    elif response_value < 25:
+        if the_person.sluttiness > 50:
+            the_person "Fuck my ass [the_person.mc_title], I can take it!"
         else:
             the_person "Fuck, it feels so big... That's all of it, right? I can't take any more!"
 
-    elif the_person.arousal < 50:
+    elif response_value < 50:
         if the_person.sluttiness > 50:
             the_person "Fuck my ass [the_person.mc_title], I can take it!"
         else:
             the_person "Oh fuck, my poor ass..."
             "Her groan is a mixture of pain and pleasure."
 
-    elif the_person.arousal < 75:
+    elif response_value < 75:
         if the_person.sluttiness > 50:
             the_person "Oh my poor little ass, you're going to ruin me..."
             "She doesn't seem very upset with the idea."
@@ -468,8 +495,8 @@ label relaxed_flirt_response_low(the_person):
 
     else:
         #She's in her own outfit.
-        $ mc.change_locked_clarity(5)
         the_person "Thank you, I thought it looked cute too."
+        $ mc.change_locked_clarity(5)
         "[the_person.possessive_title] turns to give you a side on look of her and smiles at you."
     return
 
@@ -490,8 +517,8 @@ label relaxed_flirt_response_mid(the_person):
             "[the_person.possessive_title] smiles, blushing a little from the compliment."
 
         else:
-            $ mc.change_locked_clarity(10)
             the_person "I think it shows off a little too much!"
+            $ mc.change_locked_clarity(10)
             if the_person.outfit.vagina_visible():
                 the_person "Look at me, you can practically see everything!"
                 the_person "No offence, but this uniform makes me look like a whore."
@@ -808,7 +835,11 @@ label relaxed_condom_bareback_ask(the_person):
     return
 
 label relaxed_condom_bareback_demand(the_person): # Lead in: mc.name "One sec, let me just get a condom on..."
-    if the_person.get_opinion_score("bareback sex") > 0 or the_person.get_opinion_score("creampies") > 0: #Just likes raw sex
+    if the_person.has_role(breeder_role): #Actively looking to get knocked up.
+        the_person "No, no, no, no condoms!"
+        the_person "I want you to get pregnant, alright? I want it!"
+
+    elif the_person.get_opinion_score("bareback sex") > 0 or the_person.get_opinion_score("creampies") > 0: #Just likes raw sex
         if the_person.on_birth_control:
             the_person "What? Forget it, you don't need one of those. Hurry up and fuck me!"
         else:
@@ -1034,13 +1065,13 @@ label relaxed_sex_watch(the_person, the_sex_person, the_position):
     elif the_person.sluttiness < the_position.slut_requirement:
         $ the_person.draw_person()
         the_person "Oh my god, you two are just... Wow..."
-        $ change_report = the_person.change_slut_temp(1)
+        $ the_person.change_slut(1, 30)
         "[title] averts her gaze, but keeps glancing over while you and [the_sex_person.name] [the_position.verb]."
 
     elif the_person.sluttiness >= the_position.slut_requirement and the_person.sluttiness < the_position.slut_cap:
         $ the_person.draw_person()
         the_person "Oh my god that's... Wow that looks...Hot."
-        $ change_report = the_person.change_slut_temp(2)
+        $ the_person.change_slut(1, 50)
         "[title] watches you and [the_sex_person.name] [the_position.verb]."
 
     else:
@@ -1076,14 +1107,14 @@ label relaxed_being_watched(the_person, the_watcher, the_position):
         #She's into it but shamed by the prude watching her.
         the_person "[the_person.mc_title], maybe we shouldn't be doing this here..."
         $ the_person.change_arousal(-1)
-        $ the_person.change_slut_temp(-1)
+        $ the_person.change_slut(-1)
         "[the_person.title] seems uncomfortable with [the_watcher.name] nearby."
 
     else: #the_person.sluttiness < the_position.slut_cap and the_watcher.sluttiness < the_position.slut_cap:
         #They're both into it but not fanatical about it.
         the_person "Oh my god, having you watch us do this feels so dirty. I think I like it!"
         $ the_person.change_arousal(1)
-        $ the_person.change_slut_temp(1)
+        $ the_person.change_slut(1, 60)
         "[the_person.title] seems more comfortable [the_position.verbing] you with [the_watcher.name] around."
 
     return
@@ -1380,16 +1411,39 @@ label relaxed_sex_review(the_person, the_report):
     return
 
 ## Role Specific Section ##
+
 label relaxed_improved_serum_unlock(the_person):
-    mc.name "[the_person.title], now that you've had some time in the lab there's something I wanted to talk to you about."
-    the_person "Okay, how can I help?"
-    mc.name "All of our research and development up until this point has been based on the limited notes I have from my university days. I'm sure there's more we could learn, and I want you to look into it for me."
-    "[the_person.title] smiles mischievously."
-    the_person "I've got an idea that you might want to hear then. It's not the most... orthodox testing procedure but I think it is necessary if we want to see rapid results."
-    mc.name "Go on, I'm interested."
-    the_person "Our testing procedures focus on human safety, which I'll admit is important, but it doesn't leave us with much information about the subjective effects of our creations."
-    the_person "What I want to do is take a dose of our serum myself, then have you record me while you run me through some questions."
+    mc.name "[the_person.title], now that you've had some time to get use to the lab there is something I want to talk to you about."
+    the_person "Sure, what can I help you with?"
+    mc.name "Our R&D up to this point has been based on my old notes from university."
+    mc.name "There were some unofficial experiment results that suggested the effects might be enhanced by sexual arousal."
+    "[the_person.title] nods her understanding."
+    the_person "Ah, so you had noticed that too? I have a hypothesis that an orgasm opens chemical receptors that are normally blocked."
+    mc.name "What else can we do if we assume that is true? Does that open up any more paths for our research?"
+    the_person "If it's true I could leverage the effect to induce greater effects in our subjects."
+    "[the_person.possessive_title] thinks for a long moment, then smiles mischievously."
+    the_person "But we'll need to do some experiments to be sure."
+    mc.name "What sort of experiments?"
+    the_person "I want to take a dose of serum myself, and you can record the effects."
+    the_person "Then I'll make myself cum, and we can compare the effects after."
+    mc.name "Do you think that's a good idea?"
+    the_person "Not entirely, no. But we can't trust anyone else with this information if we're right."
+    the_person "We might be able to make progress by brute force, but this is a chance to catapult our knowledge to another level."
+    the_person "A finished dose of serum that raises my Suggestibility. The higher it gets my Suggestibility the better, but any amount should do."
+    the_person "Then we'll just need some time and some privacy for me to see what sort of effects my orgasms will have."
     return
+
+# Not needed post v0.43
+# label relaxed_improved_serum_unlock(the_person):
+#     mc.name "[the_person.title], now that you've had some time in the lab there's something I wanted to talk to you about."
+#     the_person "Okay, how can I help?"
+#     mc.name "All of our research and development up until this point has been based on the limited notes I have from my university days. I'm sure there's more we could learn, and I want you to look into it for me."
+#     "[the_person.title] smiles mischievously."
+#     the_person "I've got an idea that you might want to hear then. It's not the most... orthodox testing procedure but I think it is necessaryif we want to see rapid results."
+#     mc.name "Go on, I'm interested."
+#     the_person "Our testing procedures focus on human safety, which I'll admit is important, but it doesn't leave us with much information about the subjective effects of our creations."
+#     the_person "What I want to do is take a dose of our serum myself, then have you record me while you run me through some questions."
+#     return
 
 ## Taboo break dialogue ##
 label relaxed_kissing_taboo_break(the_person):

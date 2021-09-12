@@ -533,9 +533,8 @@ label orgasm_deepthroat(the_girl, the_location, the_object):
                 "Her body tightens up as she climaxes, and you make sure to take advantage of her tight throat by fucking it hard."
 
             if the_girl.get_opinion_score("being submissive") > 0:
-                if the_girl.sluttiness > the_girl.core_sluttiness and the_girl.core_sluttiness < blowjob.slut_cap:
-                    $ the_girl.change_slut_core(the_girl.get_opinion_score("being submissive")) #If she likes being submissive this makes her cum and become sluttier super hard.
-                    $ the_girl.change_slut_temp(-the_girl.get_opinion_score("being submissive"))
+                if the_girl.sluttiness < blowjob.slut_cap:
+                    $ the_girl.change_slut(-the_girl.get_opinion_score("being submissive")) #If she likes being submissive this makes her cum and become sluttier super hard.
                 $ the_girl.change_obedience(2*the_girl.get_opinion_score("being submissive"))
                 if the_girl.outfit.vagina_visible():
                     "You can see that [the_girl.title]'s pussy is dripping wet as she cums."
