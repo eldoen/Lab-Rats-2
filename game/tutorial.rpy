@@ -105,7 +105,7 @@ label tutorial_start:
     $ mom.draw_person(position = "sitting")
     mom "Your brother is starting a business. I'm his first investor."
     $ lily.draw_person(emotion = "happy")
-    mom "Is that what you've been excited about the last couple days? What're you actually making?"
+    lily "Is that what you've been excited about the last couple days? What're you actually making?"
     mc.name "I'll have to tell you more about it later Lily, I've got some calls to make. Thanks Mom, you're the best!"
     $ clear_scene()
     "You leave [mom.possessive_title] and sister in the kitchen to talk. You retreat to your room for some privacy."
@@ -117,7 +117,7 @@ label tutorial_start:
     mc.name "Stephanie, this is [mc.name]."
     stephanie "[stephanie.mc_title]! Good to hear from you, what's up?"
     mc.name "I'd like to talk to you about a business offer. Any chance we could meet somewhere?"
-    stephaniestephanie "Ooh, a business offer. How mysterious. I'm almost done here at the lab, if you buy me a drink you've got a deal."
+    stephanie "Ooh, a business offer. How mysterious. I'm almost done here at the lab, if you buy me a drink you've got a deal."
     mc.name "Done. Where's convenient for you?"
     "Stephanie sends you the address of a bar close to the university."
     scene

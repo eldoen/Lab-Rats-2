@@ -21,7 +21,7 @@ label study_check_up(the_student, the_mom):
     if (the_student.outfit.tits_visible() or the_student.outfit.vagina_visible()) and not (the_student.planned_outfit.tits_visible() or the_student.planned_outfit.vagina_visible()):
         $ the_student.apply_outfit() #Get dressed again
         $ the_student.draw_person()
-        "[the_student.possessive] gets dressed so she can safely show you to the door."
+        "[the_student.possessive_title] gets dressed so she can safely show you to the door."
 
     $ clear_scene()
     "[the_student.title] opens the door to her room and leads you downstairs. [the_mom.title] is waiting at the front door."
