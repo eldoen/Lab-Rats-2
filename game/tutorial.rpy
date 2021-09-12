@@ -130,7 +130,7 @@ label tutorial_start:
     "She stands and gives you a hug."
     stephanie "That was a crazy summer we had together. It seems like such a blur now, but I had a lot of fun."
     mc.name "Me too, that's actually part of what I want to talk to you about."
-    "You ostephanierder a drink for yourself and sit down."
+    "You order a drink for yourself and sit down."
     "You lay out your idea to [stephanie.title]: the commercial production and distribution of the experimental serum."
     stephanie "Well that's... Fuck, it's bold, I'll say that. And you need me to handle the R&D side of the business."
     mc.name "Right. Production processes are my bread and butter, but I need your help to figure out what we're actually making."
