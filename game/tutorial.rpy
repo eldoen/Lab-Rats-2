@@ -21,7 +21,7 @@ label tutorial_start:
 
     "Four months ago you graduated from university with a degree in chemical engineering."
     "Since then you have been living at home and sending out resumes. You have had several interviews, but no job offers yet."
-    "Today you have an interview with a small pharmacutical company. You've gotten up early and dressed in your finest suit."
+    "Today you have an interview with a small pharmaceutical company. You've gotten up early and dressed in your finest suit."
     $ hall.show_background()
     "You head for the front door, eager to get to your interview early."
     mom "[mom.mc_title], are you leaving already?"
@@ -105,7 +105,7 @@ label tutorial_start:
     $ mom.draw_person(position = "sitting")
     mom "Your brother is starting a business. I'm his first investor."
     $ lily.draw_person(emotion = "happy")
-    lily "Is that what you've been excited about the last couple days? What're you actually making?"
+    lily "Is that what you've been excited about the last couple days? What are you actually making?"
     mc.name "I'll have to tell you more about it later Lily, I've got some calls to make. Thanks Mom, you're the best!"
     $ clear_scene()
     "You leave [mom.possessive_title] and sister in the kitchen to talk. You retreat to your room for some privacy."
