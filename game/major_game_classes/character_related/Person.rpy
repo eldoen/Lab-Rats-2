@@ -1110,7 +1110,7 @@ init -2 python:
 
             return updated
 
-        def weaken_opnion(self, topic, add_to_log = True):
+        def weaken_opinion(self, topic, add_to_log = True):
             display_name = self.create_formatted_title("???")
             if self.title:
                 display_name = self.title

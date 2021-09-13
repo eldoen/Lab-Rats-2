@@ -310,7 +310,7 @@ init -2 python:
 
         def buy_point_cost(self):
             point_cost = 50 * (2**(self.clarity_purchase_level/2.0))
-            return point_cost
+            return __builtin__.int(point_cost)
 
         def improve_stat(self, stat_string, amount = 1):
             if amount > self.free_stat_points:

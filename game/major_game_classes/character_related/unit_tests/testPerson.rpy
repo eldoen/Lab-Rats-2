@@ -679,15 +679,15 @@ init 0 python:
 
             self.assertEqual(test_person.get_opinion_score("being fingered"), 2)
 
-            test_person.weaken_opnion("being fingered")
+            test_person.weaken_opinion("being fingered")
 
             self.assertEqual(test_person.get_opinion_score("being fingered"), 1)
 
-            test_person.weaken_opnion("being fingered")
+            test_person.weaken_opinion("being fingered")
 
             self.assertEqual(test_person.get_opinion_score("being fingered"), 0)
 
-            test_person.weaken_opnion("being fingered")
+            test_person.weaken_opinion("being fingered")
 
             self.assertEqual(test_person.get_opinion_score("being fingered"), 0)
 
@@ -703,8 +703,8 @@ init 0 python:
 
             self.assertEqual(test_person.get_opinion_score("being fingered"), -2)
 
-            test_person.weaken_opnion("being fingered")
-            test_person.weaken_opnion("being fingered")
+            test_person.weaken_opinion("being fingered")
+            test_person.weaken_opinion("being fingered")
 
             self.assertEqual(test_person.get_opinion_score("being fingered"), 0)
 

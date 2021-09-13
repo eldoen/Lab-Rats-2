@@ -98,7 +98,7 @@ label train_breeder_label(the_person):
     "You continue to impress upon her how much she will enjoy getting pregnant, being pregnant, and getting pregnant again."
     "When you're finished it seems to be all she can think about."
 
-    call manage_bc(the_person, start = False) #Stop taking birth control if you were before.
+    $ manage_bc(the_person, start = False) #Stop taking birth control if you were before.
     $ the_person.add_role(breeder_role)
     return
 

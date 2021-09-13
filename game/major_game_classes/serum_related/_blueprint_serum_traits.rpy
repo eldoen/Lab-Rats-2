@@ -152,7 +152,7 @@ init 1 python:
         value_added = 30,
         research_added = 80,
         base_side_effect_chance = 20,
-        requires = [basic_hair_dye_trait],
+        requires = [hair_lighten_dye, hair_darken_dye],
         tier = 2,
         research_needed = 400,
         exclude_tags = "Dye",
@@ -167,7 +167,7 @@ init 1 python:
         value_added = 30,
         research_added = 40,
         base_side_effect_chance = 40,
-        requires = [basic_hair_dye_trait],
+        requires = [hair_lighten_dye, hair_darken_dye],
         tier = 2,
         research_needed = 200,
         clarity_cost = 150)
