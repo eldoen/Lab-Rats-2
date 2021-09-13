@@ -1085,10 +1085,6 @@ init -2 python:
             return updated
 
         def strengthen_opinion(self, topic, add_to_log = True):
-            display_name = self.create_formatted_title("???")
-            if self.title:
-                display_name = self.title
-
             display_string = ""
 
             old_opinion = self.get_opinion_topic(topic)
@@ -1103,18 +1099,18 @@ init -2 python:
                     self.opinions[topic] = [new_opinion_value, old_opinion[1]]
                 else:
                     self.sexy_opinions[topic] = [new_opinion_value, old_opinion[1]]
-                display_string += "Opinion Strengthened: " + display_name + " now " + opinion_score_to_string(self.get_opinion_score(topic)) + " " + topic
+                display_string += opinion_score_to_string(self.get_opinion_score(topic)) + " " + topic
 
             if add_to_log and display_string:
+                display_name = self.create_formatted_title("???")
+                if self.title:
+                    display_name = self.title
+                display_string = "Opinion Strengthened: " + display_name + " now " + display_string
                 mc.log_event(display_string, "float_text_grey")
 
             return updated
 
         def weaken_opinion(self, topic, add_to_log = True):
-            display_name = self.create_formatted_title("???")
-            if self.title:
-                display_name = self.title
-
             display_string = ""
 
             old_opinion = self.get_opinion_topic(topic)
@@ -1129,7 +1125,7 @@ init -2 python:
                     self.opinions[topic] = [new_opinion_value, old_opinion[1]]
                 else:
                     self.sexy_opinions[topic] = [new_opinion_value, old_opinion[1]]
-                display_string += "Opinion Weakened: " + display_name + " now " + opinion_score_to_string(self.get_opinion_score(topic)) + " " + topic
+                display_string += opinion_score_to_string(self.get_opinion_score(topic)) + " " + topic
 
             else: #ie it was -1 or 1, because 0 already returned
                 updated = True
@@ -1137,18 +1133,18 @@ init -2 python:
                     self.opinions.pop(topic)
                 else:
                     self.sexy_opinions.pop(topic)
-                display_string += "Opinion Weakened: " + display_name + " now " + opinion_score_to_string(self.get_opinion_score(topic)) + " " + topic
+                display_string += opinion_score_to_string(self.get_opinion_score(topic)) + " " + topic
 
             if add_to_log and display_string:
+                display_name = self.create_formatted_title("???")
+                if self.title:
+                    display_name = self.title
+                display_string = "Opinion Weakened: " + display_name + " now " + display_string
                 mc.log_event(display_string, "float_text_grey")
 
             return updated
 
         def create_opinion(self, topic, start_positive = True, start_known = True, add_to_log = True):
-            display_name = self.create_formatted_title("???")
-            if self.title:
-                display_name = self.title
-
             start_value = 1
             if not start_positive:
                 start_value = -1 #Determines if the opinion starts as like or dislike.
@@ -1166,6 +1162,9 @@ init -2 python:
                 self.opinions[topic] = opinion_tuple
 
             if add_to_log:
+                display_name = self.create_formatted_title("???")
+                if self.title:
+                    display_name = self.title
                 mc.log_event("Opinion Inspired: " + display_name + " now " + opinion_score_to_string(self.get_opinion_score(topic)) + " " + topic, "float_text_grey")
 
             return True
@@ -1177,7 +1176,7 @@ init -2 python:
             if isinstance(the_taboos, basestring):
                 the_taboos = [the_taboos]
 
-            for a_taboo in the_taboos: #We also handle lists, if we wnat to check if someone has _any_ of several taboos at once
+            for a_taboo in the_taboos: #We also handle lists, if we what to check if someone has _any_ of several taboos at once
                 if a_taboo not in self.broken_taboos:
                     return True
             return False
@@ -1185,10 +1184,10 @@ init -2 python:
         def break_taboo(self, the_taboo, add_to_log = True):
             if the_taboo not in self.broken_taboos:
                 self.broken_taboos.append(the_taboo)
-                display_name = self.create_formatted_title("???")
-                if self.title:
-                    display_name = self.title
                 if add_to_log:
+                    display_name = self.create_formatted_title("???")
+                    if self.title:
+                        display_name = self.title
                     mc.log_event(" Taboo broken with " + display_name + "!", "float_text_red")
 
                 self.change_novelty(5, add_to_log)
@@ -1208,7 +1207,6 @@ init -2 python:
                     highest_slut_opinion = slut_opinion
 
             return highest_slut_position
-
 
         def add_outfit(self,the_outfit, outfit_type = "full"):
             if outfit_type == "under":
@@ -1277,20 +1275,17 @@ init -2 python:
                 for trait in serum.traits:
                     trait.add_mastery(0.2)
                     studied_something = True
+
             if studied_something and add_to_log:
                 display_name = self.create_formatted_title("???")
                 if self.title:
                     display_name = self.title
                 mc.log_event("Observed " + display_name + ", mastery of all active serum traits increased by 0.2", "float_text_blue")
 
-
         def change_suggest(self,amount, add_to_log = True): #This changes the base, usually permanent suggest. Use add_suggest_effect to add temporary, only-highest-is-used, suggestion values
             self.suggestibility += amount
             if add_to_log and amount != 0 and self.title:
-                if amount > 0:
-                    mc.log_event(self.title + ": Suggestibility increased permanently by +" + str(amount) + "%", "float_text_blue")
-                else:
-                    mc.log_event(self.title + ": Suggestibility decreased permanently by " + str(amount) + "%", "float_text_blue")
+                mc.log_event(self.title + ": Suggestibility increased permanently by "+ ("+" if amount > 0 else "") + str(amount) + "%", "float_text_blue")
 
             # Note that suggestability can be negative, representing someone who is _resistant_ to trances for some reason.
 
@@ -1317,31 +1312,21 @@ init -2 python:
             if self.happiness < 0:
                 self.happiness = 0
 
-            log_string = ""
-            if amount > 0:
-                log_string = "+" + str(amount) + " Happiness"
-            else:
-                log_string = str(amount) + " Happiness"
-
-            if self.get_trance_multiplier() != 1:
-                log_string += "\nChange amplified by " + str(int((self.get_trance_multiplier()*100)-100)) + "% due to trance."
-
             if add_to_log and amount != 0:
                 display_name = self.create_formatted_title("???")
                 if self.title:
                     display_name = self.title
+                log_string = ("+" if amount > 0 else "")+ str(amount) + " Happiness"
+                if self.get_trance_multiplier() != 1:
+                    log_string += "\nChange amplified by " + str(int((self.get_trance_multiplier()*100)-100)) + "% due to trance"
                 mc.log_event(display_name + ": " + log_string, "float_text_yellow")
 
-        def change_love(self, amount, add_to_log = True, max_modified_to = None):
-            log_string = ""
+        def change_love(self, amount, max_modified_to = None, add_to_log = True):
             amount = __builtin__.int(amount)
             if max_modified_to is not None and self.love + amount > max_modified_to:
-                if amount != 0:
-                    log_string += "Love limit reached for interaction. "
                 amount = max_modified_to - self.love
                 if amount < 0: #Never subtract love because of a cap, only limit how much they gain.
                     amount = 0
-
 
             self.love += amount
             if self.love < -100:
@@ -1349,24 +1334,22 @@ init -2 python:
             elif self.love > 100:
                 self.love = 100
 
-            if amount > 0:
-                log_string += "+" + str(amount) + " Love"
-            else:
-                log_string += str(amount) + " Love"
-
-            if add_to_log and amount != 0:
+            if add_to_log:
                 display_name = self.create_formatted_title("???")
                 if self.title:
                     display_name = self.title
+                if amount == 0:
+                    log_string = "Love limit reached for interaction"
+                else:
+                    log_string = ("+" if amount > 0 else "") + str(amount) + " Love"
                 mc.log_event(display_name + ": " + log_string, "float_text_pink")
 
         def change_slut(self, amount, max_modified_to = None, add_to_log = True):
-            return_report = "" #This is the string that is returned that will report what the final value of the change was.
             if max_modified_to is None:
                 if amount > 0:
-                    max_modified_to = 9999
+                    max_modified_to = 300
                 else:
-                    max_modified_to = -9999
+                    max_modified_to = -10
 
             if amount > 0:
                 if amount + self.sluttiness > max_modified_to:
@@ -1380,21 +1363,16 @@ init -2 python:
                     if amount > 0:
                         amount = 0
 
-            if amount > 0:
-                self.sluttiness += amount
-                return_report = "+" + str(amount) + " Sluttiness"
-
-            elif amount < 0:
-                self.sluttiness += amount
-                return_report = str(amount) + " Sluttiness"
-
-            else: #It is exactly 0
-                return_report = "No Effect on Sluttiness"
+            self.sluttiness += amount
 
             if add_to_log:
                 display_name = self.create_formatted_title("???")
                 if self.title:
                     display_name = self.title
+                if amount != 0:
+                    return_report = ("+" if amount > 0 else "") + str(amount) + " Sluttiness"
+                else: #It is exactly 0
+                    return_report = "No Effect on Sluttiness"
                 mc.log_event(display_name + ": " + return_report, "float_text_pink")
 
         def change_slut_temp(self, amount, add_to_log = True):
@@ -1423,16 +1401,13 @@ init -2 python:
             self.obedience += amount
             if self.obedience < 0:
                 self.obedience = 0
-            log_string = ""
+
             if add_to_log and amount != 0: #If we don't know the title don't add it to the log, because we know nothing about the person
                 display_name = self.create_formatted_title("???")
                 if self.title:
                     display_name = self.title
-                if amount > 0:
-                    log_string = display_name + ": +" + str(amount) + " Obedience"
-                else:
-                    log_string = display_name + ": " + str(amount) + " Obedience"
 
+                log_string = display_name + ": " + ("+" if amount > 0 else "") + str(amount) + " Obedience"
                 mc.log_event(log_string,"float_text_grey")
 
         def change_cha(self, amount, add_to_log = True):
@@ -1444,16 +1419,12 @@ init -2 python:
                 self.charisma_debt = self.charisma #If we are less than 0 store it as a debt.
                 self.charisma = 0
 
-            log_string = ""
             if amount != 0 and add_to_log:
                 display_name = self.create_formatted_title("???")
                 if self.title:
                     display_name = self.title
-                if amount > 0:
-                    log_string = display_name + ": +" + str(amount) + " Charisma"
-                else:
-                    log_string = display_name + ": " + str(amount) + " Charisma"
 
+                log_string = display_name + ": " + ("+" if amount > 0 else "") + str(amount) + " Charisma"
                 mc.log_event(log_string, "float_text_grey")
 
         def change_int(self, amount, add_to_log = True):
@@ -1465,18 +1436,12 @@ init -2 python:
                 self.int_debt = self.int
                 self.int = 0
 
-            log_string = ""
-
             if amount != 0 and add_to_log:
                 display_name = self.create_formatted_title("???")
                 if self.title:
                     display_name = self.title
 
-                if amount > 0:
-                    log_string = display_name + ": +" + str(amount) + " Intelligence"
-                else:
-                    log_string = display_name + ": " + str(amount) + " Intelligence"
-
+                log_string = display_name + ": " + ("+" if amount > 0 else "") + str(amount) + " Intelligence"
                 mc.log_event(log_string, "float_text_grey")
 
         def change_focus(self, amount, add_to_log = True): #See charisma for full comments
@@ -1488,19 +1453,12 @@ init -2 python:
                 self.focus_debt = self.focus
                 self.focus = 0
 
-            log_string = ""
-
             if amount != 0 and add_to_log:
                 display_name = self.create_formatted_title("???")
                 if self.title:
                     display_name = self.title
 
-                if amount > 0:
-                    log_string = display_name + ": +" + str(amount) + " Focus"
-                else:
-                    log_string = display_name + ": " + str(amount) + " Focus"
-
-
+                log_string = display_name + ": " + ("+" if amount > 0 else "") + str(amount) + " Focus"
                 mc.log_event(log_string, "float_text_grey")
 
         def change_hr_skill(self, amount, add_to_log = True):
@@ -1508,16 +1466,12 @@ init -2 python:
                 amount = -self.hr_skill #Min 0
             self.hr_skill += amount
 
-            log_string = ""
-            display_name = self.create_formatted_title("???")
-            if self.title:
-                display_name = self.title
-            if amount > 0:
-                log_string +=  display_name + ": +" + str(amount) + " HR Skill"
-            else:
-                log_string +=  display_name + ": " + str(amount) + " HR Skill"
-
             if add_to_log and amount != 0:
+                display_name = self.create_formatted_title("???")
+                if self.title:
+                    display_name = self.title
+
+                log_string =  display_name + ": " + ("+" if amount > 0 else "") + str(amount) + " HR Skill"
                 mc.log_event(log_string, "float_text_yellow")
 
         def change_market_skill(self, amount, add_to_log = True):
@@ -1525,16 +1479,11 @@ init -2 python:
                 amount = -self.market_skill #Min 0
             self.market_skill += amount
 
-            log_string = ""
-            display_name = self.create_formatted_title("???")
-            if self.title:
-                display_name = self.title
-            if amount > 0:
-                log_string +=  display_name + ": +" + str(amount) + " Market Skill"
-            else:
-                log_string +=  display_name + ": " + str(amount) + " Market Skill"
-
             if add_to_log and amount != 0:
+                display_name = self.create_formatted_title("???")
+                if self.title:
+                    display_name = self.title
+                log_string =  display_name + ": " + ("+" if amount > 0 else "") + str(amount) + " Market Skill"
                 mc.log_event(log_string, "float_text_yellow")
 
         def change_research_skill(self, amount, add_to_log = True):
@@ -1542,16 +1491,11 @@ init -2 python:
                 amount = -self.research_skill #Min 0
             self.research_skill += amount
 
-            log_string = ""
-            display_name = self.create_formatted_title("???")
-            if self.title:
-                display_name = self.title
-            if amount > 0:
-                log_string +=  display_name + ": +" + str(amount) + " Research Skill"
-            else:
-                log_string +=  display_name + ": " + str(amount) + " Research Skill"
-
             if add_to_log and amount != 0:
+                display_name = self.create_formatted_title("???")
+                if self.title:
+                    display_name = self.title
+                log_string =  display_name + ": " + ("+" if amount > 0 else "") + str(amount) + " Research Skill"
                 mc.log_event(log_string, "float_text_yellow")
 
         def change_production_skill(self, amount, add_to_log = True):
@@ -1559,16 +1503,11 @@ init -2 python:
                 amount = -self.production_skill #Min 0
             self.production_skill += amount
 
-            log_string = ""
-            display_name = self.create_formatted_title("???")
-            if self.title:
-                display_name = self.title
-            if amount > 0:
-                log_string +=  display_name + ": +" + str(amount) + " Production Skill"
-            else:
-                log_string +=  display_name + ": " + str(amount) + " Production Skill"
-
             if add_to_log and amount != 0:
+                display_name = self.create_formatted_title("???")
+                if self.title:
+                    display_name = self.title
+                log_string =  display_name + ": " + ("+" if amount > 0 else "") + str(amount) + " Production Skill"
                 mc.log_event(log_string, "float_text_yellow")
 
         def change_supply_skill(self, amount, add_to_log = True):
@@ -1576,16 +1515,11 @@ init -2 python:
                 amount = -self.supply_skill #Min 0
             self.supply_skill += amount
 
-            log_string = ""
-            display_name = self.create_formatted_title("???")
-            if self.title:
-                display_name = self.title
-            if amount > 0:
-                log_string +=  display_name + ": +" + str(amount) + " Supply Skill"
-            else:
-                log_string +=  display_name + ": " + str(amount) + " Supply Skill"
-
             if add_to_log and amount != 0:
+                display_name = self.create_formatted_title("???")
+                if self.title:
+                    display_name = self.title
+                log_string =  display_name + ": " + ("+" if amount > 0 else "") + str(amount) + " Supply Skill"
                 mc.log_event(log_string, "float_text_yellow")
 
         def change_sex_skill(self, skill_name, amount, add_to_log = True): #NOTE: We assume we pass a proper skill name here, otherwise we crash out.
@@ -1594,35 +1528,23 @@ init -2 python:
                 amount = -self.sex_skills[skill_name] #At most we make it 0. No negative values.
             self.sex_skills[skill_name] += amount
 
-            log_string = ""
-            display_name = self.create_formatted_title("???")
-            if self.title:
-                display_name = self.title
-            if amount > 0:
-                log_string +=  display_name + ": +" + str(amount) + " " + skill_name + " Skill"
-            else:
-                log_string +=  display_name + ": " + str(amount) + " " + skill_name + " Skill"
-
             if add_to_log and amount != 0:
+                display_name = self.create_formatted_title("???")
+                if self.title:
+                    display_name = self.title
+                log_string =  display_name + ": " + ("+" if amount > 0 else "") + str(amount) + " " + skill_name + " Skill"
                 mc.log_event(log_string, "float_text_yellow")
-            return
 
         def change_arousal(self,amount, add_to_log = True):
             self.arousal += __builtin__.int(__builtin__.round(amount)) #Round it to an integer if it isn't one already.
             if self.arousal < 0:
                 self.arousal = 0
 
-            log_string = ""
-            display_name = self.create_formatted_title("???")
-            if self.title:
-                display_name = self.title
-
-            if amount > 0:
-                log_string = display_name + ": +" + str(amount) + " Arousal"
-            else:
-                log_string = display_name + ": " + str(amount) + " Arousal"
-
             if add_to_log and amount != 0:
+                display_name = self.create_formatted_title("???")
+                if self.title:
+                    display_name = self.title
+                log_string = display_name + ": " + ("+" if amount > 0 else "") + str(amount) + " Arousal"
                 mc.log_event(log_string, "float_text_red")
 
         def reset_arousal(self):
@@ -1634,37 +1556,26 @@ init -2 python:
 
             self.max_arousal += amount
 
-            log_string = ""
-            display_name = self.create_formatted_title("???")
-            if self.title:
-                display_name = self.title
-
-            if amount > 0:
-                log_string = display_name + ": +" + str(amount) + " Max Arousal"
-            else:
-                log_string = display_name + ": " + str(amount) + " Max Arousal"
-
             if add_to_log and amount != 0:
+                display_name = self.create_formatted_title("???")
+                if self.title:
+                    display_name = self.title
+
+                log_string = display_name + ": " + ("+" if amount > 0 else "") + str(amount) + " Max Arousal"
                 mc.log_event(log_string, "float_text_red")
 
         def change_novelty(self, amount, add_to_log = True):
             amount = __builtin__.int(__builtin__.round(amount))
-
-            log_string = ""
-            display_name = self.create_formatted_title("???")
-            if self.title:
-                display_name = self.title
-
             if amount + self.novelty > 100:
                 amount = 100 - self.novelty
             elif amount + self.novelty < 0:
                 amount = self.novelty
-            if amount > 0:
-                log_string = display_name + ": +" + str(amount) + " Novelty"
-            else:
-                log_string = display_name + ": " + str(amount) + " Novelty" #TODO: Design a novelty token
 
             if add_to_log and amount != 0:
+                display_name = self.create_formatted_title("???")
+                if self.title:
+                    display_name = self.title
+                log_string = display_name + ": " + ("+" if amount > 0 else "") + str(amount) + " Novelty"
                 mc.log_event(log_string, "float_text_yellow")
 
         def change_energy(self, amount, add_to_log = True):
@@ -1675,15 +1586,11 @@ init -2 python:
             elif self.energy < 0:
                 self.energy = 0
 
-            log_string = ""
-            display_name = self.create_formatted_title("???")
-            if self.title:
-                display_name = self.title
-            if amount > 0:
-                log_string +=  display_name+ ": +" + str(amount) + " Energy"
-            else:
-                log_string +=  display_name + ": " + str(amount) + " Energy"
             if add_to_log and amount != 0:
+                display_name = self.create_formatted_title("???")
+                if self.title:
+                    display_name = self.title
+                log_string = display_name+ ": " + ("+" if amount > 0 else "") + str(amount) + " Energy"
                 mc.log_event(log_string, "float_text_yellow")
             return
 
@@ -1696,15 +1603,11 @@ init -2 python:
             if self.energy > self.max_energy: #No having more energy than max
                 self.energy = self.max_energy
 
-            log_string = ""
-            display_name = self.create_formatted_title("???")
-            if self.title:
-                display_name = self.title
-            if amount > 0:
-                log_string +=  display_name + ": +" + str(amount) + " Max Energy"
-            else:
-                log_string +=  display_name + ": " + str(amount) + " Max Energy"
             if add_to_log and amount != 0:
+                display_name = self.create_formatted_title("???")
+                if self.title:
+                    display_name = self.title
+                log_string = display_name+ ": " + ("+" if amount > 0 else "") + str(amount) + " Max Energy"
                 mc.log_event(log_string, "float_text_yellow")
             return
 
@@ -1723,8 +1626,6 @@ init -2 python:
 
                 if dialogue:
                    self.call_dialogue("clothing_review")
-
-
 
         def judge_outfit(self, outfit, temp_sluttiness_boost = 0, use_taboos = True, as_underwear = False, as_overwear = False): #Judge an outfit and determine if it's too slutty or not. Can be used to judge other people's outfits to determine if she thinks they look like a slut.
             # temp_sluttiness can be used in situations (mainly crises) where an outfit is allowed to be temporarily more slutty than a girl is comfortable wearing all the time.
@@ -1764,11 +1665,9 @@ init -2 python:
             if outfit.tits_visible() or (outfit.wearing_bra() and not outfit.bra_covered()):
                 slut_require += -2*self.get_opinion_score("showing her tits")
 
-
             if slut_require > (self.effective_sluttiness(taboo_modifier) + temp_sluttiness_boost): #Arousal is important for judging potential changes to her outfit while being stripped down during sex.
                 return False
-            else:
-                return True
+            return True
 
         def is_wearing_uniform(self): # Returns True if the clothing the girl is wearing contains all of the uniform clothing items. #TODO: may want to support more flexibility for over/underwear sets that had optional bits chosen by the girl.
             #May want to make this a Business side check. Make "is_valid_uniform" check like this against all uniforms available for the character. Would provide the flexiblity I mentioned above.
@@ -1937,8 +1836,7 @@ init -2 python:
                 return "Safe"
             elif day_difference >= 3:
                 return "Normal"
-            else:
-                return "Risky"
+            return "Risky"
 
         def update_birth_control_knowledge(self, force_known_state = None, force_known_day = None): #Called any time a girl gives you information about her BC. Allows for an up to date detailed info screen that doesn't give more than you know
             if force_known_state is None: #Useful when you an event changes a girls BC and you can expect that she's not going to be on birth control the next day.
@@ -2012,9 +1910,7 @@ init -2 python:
                 return 2.0
             elif self.has_exact_role(very_heavy_trance_role):
                 return 3.0
-            else:
-                return 1.0
-
+            return 1.0
 
         def cum_in_mouth(self, add_to_record = True): #Add the appropriate stuff to their current outfit, and peform any personal checks if rquired.
             mc.listener_system.fire_event("sex_cum_mouth", the_person = self)
@@ -2029,7 +1925,6 @@ init -2 python:
 
             if add_to_record:
                 self.sex_record["Cum in Mouth"] += 1
-
 
         def cum_in_vagina(self, add_to_record = True):
             mc.listener_system.fire_event("sex_cum_vagina", the_person = self)
@@ -2173,16 +2068,11 @@ init -2 python:
             if self.salary < 0:
                 self.salary = 0
 
-            log_string = ""
-            display_name = self.create_formatted_title("???")
-            if self.title:
-                display_name = self.title
-            if amount > 0:
-                log_string = display_name + ": +$" + str(amount) + "/Day"
-            else:
-                log_string = display_name + ": -$" + str(-amount) + "/Day"
-
             if add_to_log and amount != 0:
+                display_name = self.create_formatted_title("???")
+                if self.title:
+                    display_name = self.title
+                log_string = display_name + ": " + ("+" if amount > 0 else "") + "$" + str(amount) + "/Day"
                 mc.log_event(log_string, "float_text_green")
 
         def calculate_base_salary(self): #returns the default value this person should be worth on a per day basis.
@@ -2242,7 +2132,7 @@ init -2 python:
                 for act in role.actions:
                     if act.is_action_enabled(self) or act.is_disabled_slug_shown(self): #We should also check if a non-action disabled slug would be available so that the player can check what the requirement would be.
                         count += 1
-                return count
+            return count
 
         def create_formatted_title(self, the_title):
             formatted_title = "{color=" + self.char.who_args["color"] + "}" + "{font=" + self.char.what_args["font"] + "}" + the_title + "{/font}{/color}"
@@ -2290,8 +2180,7 @@ init -2 python:
         def has_exact_role(self, the_role): #As has_role, but checks against all roles and all of their looks_like roles.
             if the_role in self.special_role:
                 return True
-            else:
-                return False
+            return False
 
         def get_role_reference(self, the_role):
             for role in self.special_role:
