@@ -251,10 +251,10 @@ label milk_for_serum_label(the_person): #Note that thee serum types have already
                             the_person "Some of my own milk? Why?"
                             "You fabricate a quick story."
                             mc.name "Women are very sensitive to minor contaminants in their own breast milk. You can save us a lot of time in the lab this way."
-                            if the_person.intelligence < 3:
+                            if the_person.int < 3:
                                 "[the_person.title] doesn't even think about it, trusting you blindly."
                                 the_person "Alright then, you're the expect here."
-                            elif the_person.intelligence < 5:
+                            elif the_person.int < 5:
                                 the_person "I suppose that makes some amount of sense... Alright, just a little bit."
                             else:
                                 "[the_person.title] thinks about this for a long time. You're getting worried she's about to call your bluff when she nods."
