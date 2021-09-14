@@ -19,11 +19,11 @@ init -2 python:
 
     def milk_for_serum_requirement(the_person):
         if the_person.lactation_sources <= 0:
-            return "She's not lactating."
+            return "She's not lactating"
         elif the_person.event_triggers_dict.get("recently_milked", False):
-            return "She's already been milked."
+            return "She's already been milked"
         elif mc.energy < 15:
-            return "Not enough energy."
+            return "Not enough energy"
         else:
             return True
 
@@ -242,7 +242,7 @@ label milk_for_serum_label(the_person): #Note that thee serum types have already
                                 mc.name "Sorry, but it's important I collect as much as I can."
                                 $ the_person.change_obedience(1)
                                 $ the_person.change_love(-1)
-                                "[the_person.possessive_title] doesn't say anything more, other than a few supressed groans."
+                                "[the_person.possessive_title] doesn't say anything more, other than a few suppressed groans."
                                 "She's a trooper, and when you're finished you're sure you've managed to collect an extra dose or two of milk."
                                 $ available_doses += 1
 
@@ -325,7 +325,7 @@ label milk_for_serum_label(the_person): #Note that thee serum types have already
 
                                         else:
                                             $ the_person.give_serum(copy.copy(milk_serum))
-                                            "[the_person.title] is practically drowning in her own milk as it comes torrenting out of her tit."
+                                            "[the_person.title] is practically drowning in her own milk as it comes out of her tit in torrents."
                                             "She sputters briefly, milk splattering around her lips and back onto her own breast."
                                             "Finally she gets into the rhythm and gulps it down as quickly as she makes it."
                                             $ gulp_string = "Gulp!"

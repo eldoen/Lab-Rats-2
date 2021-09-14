@@ -1,12 +1,11 @@
 init -2 python:
     def hypno_orgasm_on_turn(the_person):
-        the_person.event_triggers_dict["hypno_trigger_orgasm_requirement"] = False
+        the_person.event_triggers_dict["hypno_orgasmed_recently"] = False
 
     def hypno_trigger_orgasm_requirement(the_person):
         if the_person.event_triggers_dict.get("hypno_orgasmed_recently", False):
             return "She needs a break."
-        else:
-            return True
+        return True
 
 
 label hypno_trigger_orgasm(the_person, use_intro = True):
