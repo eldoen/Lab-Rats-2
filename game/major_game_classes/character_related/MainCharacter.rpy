@@ -129,12 +129,8 @@ init -2 python:
             elif self.energy < 0:
                 self.energy = 0
 
-            log_string = ""
-            if amount  > 0:
-                log_string += "You: +" + str(amount)  + " Energy"
-            else:
-                log_string += "You: " + str(amount)  + " Energy"
             if add_to_log and amount != 0:
+                log_string = "You: " + ("+" if amount > 0 else "") + str(amount)  + " Energy"
                 mc.log_event(log_string, "float_text_yellow")
             return
 
@@ -147,12 +143,8 @@ init -2 python:
             if self.energy > self.max_energy: #No having more energy than max in case we lower max
                 self.energy = self.max_energy
 
-            log_string = ""
-            if amount > 0:
-                log_string += "You: +" + str(amount) + " Max Energy"
-            else:
-                log_string += "You: " + str(amount) + " Max Energy"
             if add_to_log and amount != 0:
+                log_string = "You: " + ("+" if amount > 0 else "") + str(amount) + " Max Energy"
                 mc.log_event(log_string, "float_text_yellow")
             return
 
@@ -166,28 +158,19 @@ init -2 python:
 
             self.masturbation_novelty += amount
 
-            log_string = ""
-            if amount > 0:
-                log_string += "You: +" + str(amount) + " Masturbation Novelty"
-            else:
-                log_string += "You: " + str(amount) + " Masturbation Novelty"
             if add_to_log and amount != 0:
+                log_string = "You: " + ("+" if amount > 0 else "") + str(amount) + " Masturbation Novelty"
                 mc.log_event(log_string, "float_text_yellow")
 
         def change_locked_clarity(self, amount, add_to_log = True): #TODO: Decide if we need a max locked clarity thing to gate progress in some way.
             amount = __builtin__.int(__builtin__.round(amount))
             self.locked_clarity += amount
-            log_string = ""
-            if amount > 0:
-                log_string += "You: +" + str(amount) + " Locked Clarity"
-            else:
-                log_string += "You: " + str(amount) + " Locked Clarity"
+
             if add_to_log and amount != 0:
+                log_string = "You: " + ("+" if amount > 0 else "") + str(amount) + " Locked Clarity"
                 mc.log_event(log_string, "float_text_blue")
 
-                effect_strength = (amount/80.0) + 0.4
-                if effect_strength > 1.0:
-                    effect_strength = 1.0
+                effect_strength = __builtin__.min((amount/80.0) + 0.4, 1.0)
                 renpy.show_screen("border_pulse", effect_strength, _transient = True)
             return
 
@@ -197,13 +180,12 @@ init -2 python:
                 amount = amount * (with_novelty/100.0) #NOTE: Novelty is a score from 50 to 100, but is often treated as a percent.
             amount = __builtin__.int(__builtin__.round(amount))
             self.locked_clarity = 0
-
             self.free_clarity += amount
-            log_string = ""
-            log_string += "You: " + str(amount) + " Clarity Released!"
-            if with_novelty and with_novelty < 100:
-                log_string += "\n{}% lost due to low Novelty.".format(100-with_novelty)
+
             if add_to_log and amount != 0:
+                log_string = "You: " + str(amount) + " Clarity Released!"
+                if with_novelty and with_novelty < 100:
+                    log_string += "\n{}% lost due to low Novelty.".format(100-with_novelty)
                 mc.log_event(log_string, "float_text_blue")
                 renpy.show_screen("cum_screen", _transient = True)
             return
@@ -217,8 +199,9 @@ init -2 python:
                 amount = self.free_clarity
 
             self.free_clarity += -amount
-            log_string = "You: Spent " + str(amount) + " Clarity"
+
             if add_to_log and amount != 0:
+                log_string = "You: Spent " + str(amount) + " Clarity"
                 mc.log_event(log_string, "float_text_blue")
             return
 
@@ -229,8 +212,8 @@ init -2 python:
 
             self.free_clarity += amount
 
-            log_string = "You: received " + str(amount) + " Clarity"
             if add_to_log and amount != 0:
+                log_string = "You: received " + str(amount) + " Clarity"
                 mc.log_event(log_string, "float_text_blue")
             return
 
@@ -244,10 +227,7 @@ init -2 python:
                 self.designed_wardrobe.add_outfit(the_outfit)
 
         def is_at_work(self): #Checks to see if the main character is at work, generally used in crisis checks.
-            if self.location == self.business.m_div or self.location == self.business.p_div or self.location == self.business.r_div or self.location == self.business.s_div or self.location == self.business.h_div:
-                return True
-            else:
-                return False
+            return self.location in [self.business.m_div, self.business.p_div, self.business.r_div, self.business.s_div, self.business.h_div]
 
         def run_turn(self):
             self.listener_system.fire_event("time_advance")
