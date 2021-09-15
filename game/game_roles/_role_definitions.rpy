@@ -386,7 +386,7 @@ label instantiate_roles(): #This section instantiates all of the key roles in th
 
         prostitute_role = Role("Prostitute", get_prostitute_role_actions())
         pregnant_role = Role("Pregnant", [], hidden = True)
-        lactating_serum_role = Role("Lactating Serum", get_lactating_serum_role_actions(), hidden = True, on_turn = lactating_serum_on_turn)
+        lactating_serum_role = Role("Lactating Serum", get_lactating_serum_role_actions(), hidden = True, on_turn = lactating_serum_on_turn, on_day = lactation_serum_on_day)
     return
 
 

@@ -13,8 +13,8 @@ init -2 python:
         the_person.event_triggers_dict["recently_milked"] = False
 
     def lactation_serum_on_day(the_person):
-        lactation_serum_on_turn(the_person)
-        lactation_serum_on_turn(the_person)
+        lactating_serum_on_turn(the_person)
+        lactating_serum_on_turn(the_person)
         return
 
     def milk_for_serum_requirement(the_person):

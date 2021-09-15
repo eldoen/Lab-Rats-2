@@ -40,18 +40,18 @@ label train_breeder_label(the_person):
     if the_person.relationship != "Single":
         $ so_title = SO_relationship_to_title(the_person.relationship)
         the_person "Maybe my [so_title]?"
-        mc.name "Not even close. What to know what they are"
+        mc.name "Not even close. Want to know what they are?"
     elif the_person.has_role(girlfriend_role) or the_person.has_role(affair_role):
         the_person "Maybe you?"
         mc.name "That's very sweet, but no, even more than me. Want to know what they are?"
     else:
-        "[the_person.possessive_title] tries to summon up an answer, but her cum-addled brain can't quite come up with anything."" "
+        "[the_person.possessive_title] tries to summon up an answer, but her cum-addled brain can't quite come up with anything."
         mc.name "Want to know what they are?"
     "She nods, curious."
     mc.name "First, you love taking raw cock right in your tight little fertile pussy."
     $ the_person.change_arousal(10)
     if the_person.effective_sluttiness() > 50:
-        "[the_person.title] doesn't argue, she just nods in agreement and stares into your eyes."
+        "[the_person.possessive_title] doesn't argue, she just nods in agreement and stares into your eyes."
     else:
         the_person "No... I..."
         mc.name "You can't lie to me, I can see it all over your face."
@@ -110,7 +110,7 @@ label train_hypnotic_orgasm(the_person):
         "She shakes her head, but it's a poor attempt at hiding her true feelings."
         the_person "What? No, of course not..."
         mc.name "Don't lie to me, I can tell."
-        "She blushes and looks away"
+        "She blushes and looks away."
     else:
         "She nods her head slightly, like a child admitting some wrong doing."
 
@@ -133,19 +133,21 @@ label train_hypnotic_orgasm(the_person):
     else:
         $ clothing_phrase = "a hand between her legs."
     if mc.location.get_person_count() > 1:
-        "She glances around, making sure nobody is paying attention to her, then slips [clothing_phrase]."
+        "She glances around, making sure nobody is paying attention to her, then slips [clothing_phrase!i]."
     else:
-        "She hesitates for one last moment, then all resistance breaks down and she slips [clothing_phrase]"
+        "She hesitates for one last moment, then all resistance breaks down and she slips [clothing_phrase!i]"
 
+    $ the_clothing = None
+    $ the_clothing_phrase = None
     $ the_person.change_arousal(10)
     $ mc.change_locked_clarity(20)
     "You watch as she touches herself, gently petting her pussy."
     mc.name "Good. Now I want you to focus on one thing as you make yourself cum."
     the_person "Hmm? What should I focus on?"
-    $ the_word = renpy.input("Pick her trigger word.")
-    while not the_word or " " in  the_word:
-        $ the_word = renpy.input("Pick her trigger word.")
-    $ the_person.event_triggers_dict["hypno_trigger_word"] = the_word
+    $ the_word = renpy.input("Pick her trigger word. (Default: 'Cum')", default='Cum', exclude='{ }')
+    while not the_word:
+        $ the_word = renpy.input("Pick her trigger word. (Default: 'Cum')", default='Cum', exclude='{ }')
+    $ the_person.event_triggers_dict["hypno_trigger_word"] = the_word.strip()
     "You lean very close to [the_person.possessive_title] and whisper \"[the_word]\" into her ear."
     mc.name "Focus on that as you touch yourself. All that pleasure you're feeling, all that pent up desire..."
     mc.name "Focus it all onto that one word. You won't cum until you hear it."
@@ -172,14 +174,14 @@ label train_hypnotic_orgasm(the_person):
             the_person "[the_word]! I need you to say it! Just say it!"
 
     "You lean close and whisper right into her ear."
-    mc.name "[the_word]"
+    mc.name "[the_word]."
     $ the_person.draw_person(emotion = "orgasm")
     $ mc.change_locked_clarity(30)
     "The results are immediate. [the_person.possessive_title] spasms, bucking her hips and gasping for breath."
     the_person "Oh god! Ah! Ah!"
     "Her orgasm is so intense that her knees buckle and she starts to collapse to the ground."
     menu:
-        "Catch her.":
+        "Catch her":
             "You slide an arm around [the_person.title] and hold her up as she cums her brains out. She clings to you on instinct with her free hand."
             "Meanwhile, her other hand doesn't stop pumping in and out of her climaxing cunt."
             $ the_person.run_orgasm()
@@ -188,7 +190,7 @@ label train_hypnotic_orgasm(the_person):
             "She gasps and moans into your ear for a long moment, but little by little her orgasm subsides."
             "When she is in control of herself again she stands under her own power and looks at you, a dumb smile spreading across her face."
 
-        "Let her fall.":
+        "Let her fall":
             "You step back and let her climax run its course."
             $ the_person.draw_person(position = "doggy", emotion = "orgasm")
             "[the_person.title] falls to the ground, barely catching herself at the last minute with her free hand."
@@ -217,6 +219,7 @@ label train_online_attention_whore(the_person):
         the_person "Yeah, I've signed up for those sorts of sites."
         mc.name "Tell me what your username is so I can add you..."
         "In her trance all she can do is nod and tell you what you want to know."
+        $ mc.phone.register_number(the_person)
         if the_person.has_role(instapic_role):
             the_person "You can find me on InstaPic here..."
             $ the_person.event_triggers_dict["insta_known"] = True
@@ -350,6 +353,7 @@ label train_online_attention_whore(the_person):
                 pass
 
     if set_something_up:
+        $ mc.phone.register_number(the_person)
         mc.name "There, now you can be a proper twenty-first century slut."
         mc.name "Tell me, are you excited to shake that ass for the internet?"
         if the_person.sluttiness < 30:
