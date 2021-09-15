@@ -4,12 +4,12 @@
 
 init -2 python:
     def insta_on_turn(the_person):
-        rand_chance = renpy.random.randint(0,100)
-        if rand_chance < 20 + 5*the_person.get_opinion_score("skimpy outfits") + 5*the_person.get_opinion_score("showing her tits") + 5*the_person.get_opinion_score("showing her ass"):
-            the_person.event_triggers_dict["insta_generate_pic"] = True # Generates a new post when you view her profile.
         return
 
     def insta_on_day(the_person):
+        if renpy.random.randint(0,100) < 20 + 5*the_person.get_opinion_score("skimpy outfits") + 5*the_person.get_opinion_score("showing her tits") + 5*the_person.get_opinion_score("showing her ass"):
+            the_person.event_triggers_dict["insta_generate_pic"] = True # Generates a new post when you view her profile.
+
         #TODO: Chance every day that she will make an DikDok or Onlyfans account.
         return
 
@@ -22,13 +22,13 @@ init -2 python:
 
     def comment_action_requirement(the_person):
         if the_person.event_triggers_dict.get("insta_commented_day",-1) >= day:
-            return "Already commented today."
+            return "Already commented today"
         else:
             return True
 
     def dm_action_requirement(the_person):
         if the_person.event_triggers_dict.get("insta_special_request_pending", False):
-            return "Waiting for her reply."
+            return "Waiting for her reply"
         return True
 
     def dm_option_specific_outfit_requirement(the_person):

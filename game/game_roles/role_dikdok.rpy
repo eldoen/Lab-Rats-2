@@ -2,13 +2,11 @@
 
 init -2 python:
     def dikdok_on_turn(the_person):
-        if renpy.random.randint(0,100) < 20 + 5*the_person.get_opinion_score("skimpy outfits") + 5*the_person.get_opinion_score("showing her tits") + 5*the_person.get_opinion_score("showing her ass"):
-            the_person.event_triggers_dict["dikdok_generate_video"] = True
-
         return
 
     def dikdok_on_day(the_person):
-
+        if renpy.random.randint(0,100) < 20 + 5*the_person.get_opinion_score("skimpy outfits") + 5*the_person.get_opinion_score("showing her tits") + 5*the_person.get_opinion_score("showing her ass"):
+            the_person.event_triggers_dict["dikdok_generate_video"] = True
         return
 
 
@@ -196,7 +194,7 @@ label view_dikdok(the_person):
                 "She reaches off screen and comes back holding a dildo. She looks into the camera again and pouts innocently."
                 "After a moment of fake hesitation she opens her mouth and starts to suck on the tip."
                 $ the_person.draw_person(position = "kneeling1", the_animation = blowjob_bob, animation_effect_strength = 0.4)
-                "[the_person.possessive_title] sucks on the fake dick, working it furthur and further into her mouth in time with the music."
+                "[the_person.possessive_title] sucks on the fake dick, working it further and further into her mouth in time with the music."
                 $ mc.change_locked_clarity(20)
                 "Soon she's taken it as deep as she can manage. She flutters her eyes and pulls the toy out, letting the wet toy trail spit down between her cleavage."
                 "She waves goodbye with a free hand, then reaches towards her phone and ends the video."
