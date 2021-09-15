@@ -110,11 +110,7 @@ init -2 python:
         mc.business.event_triggers_dict["nora_research_up"] = university_research_action
         university.actions.append(university_research_action)
 
-        nora_research_visit = Action("Visit Nora's lab", visit_lab_intro_requirement, "nora_research_cash_first_time", args = nora, requirement_args = nora,
-            menu_tooltip = "Visit your old lab and talk to Nora about serum research.")
-        university.actions.append(nora_research_visit) #Prepare this so if we visit the university again under the proper conditions we can start studying traits for her for money.
-
-        university.visible = True
+        add_visit_nora_lab_action(nora)
         return
 
     def add_study_person_for_nora_actions(the_person):
@@ -140,16 +136,14 @@ init -2 python:
         return
 
     def add_visit_nora_lab_action(the_person):
-        mc.business.event_triggers_dict["nora_trait_researched"] = None
-        university.visible = True
+        if not university.visible:
+            nora_research_visit = Action("Visit Nora's lab", visit_lab_intro_requirement, "nora_research_cash_first_time", args = nora, requirement_args = nora,
+                menu_tooltip = "Visit your old lab and talk to Nora about serum research.")
+            university.actions.append(nora_research_visit) #Prepare this so if we visit the university again under the proper conditions we can start studying traits for her for money.
 
-        the_person.set_schedule(university, days=[0, 1, 2, 3, 4], times =[1,2,3])
-        the_person.set_schedule(university, days=[5], times =[1,2])
-
-        nora_research_visit = Action("Visit Nora's lab", visit_lab_intro_requirement, "nora_research_cash_first_time", args = the_person, requirement_args = the_person,
-            menu_tooltip = "Visit your old lab and talk to Nora about serum research.")
-
-        university.actions.append(nora_research_visit)
+            nora.set_schedule(university, days=[0, 1, 2, 3, 4], times =[1,2,3])
+            nora.set_schedule(university, days=[5], times =[1,2])
+            university.visible = True
         return
 
 label nora_intro_label(the_person):
@@ -224,9 +218,6 @@ label nora_intro_label(the_person):
 
     mc.name "Understood. I'll be back once the testing is done."
     $ clear_scene()
-
-    $ the_nora.set_schedule(university, days=[0, 1, 2, 3, 4], times =[1,2,3])
-    $ the_nora.set_schedule(university, days=[5], times =[1,2])
 
     $ the_nora = None
     $ add_nora_university_research_actions()
@@ -311,6 +302,7 @@ label nora_research_cash_intro(the_person, did_research = False):
         mc.name "Will do. Nice talking to you [the_person.title]."
         the_person "Likewise."
         "With that she hangs up. You make a note to stop by your old university at some point and move on with your day."
+        $ mc.business.event_triggers_dict["nora_trait_researched"] = None
         $ add_visit_nora_lab_action(the_person)
 
     $ mc.business.event_triggers_dict["nora_cash_research_trigger"] = True

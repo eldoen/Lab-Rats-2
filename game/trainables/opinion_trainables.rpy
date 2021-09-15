@@ -34,7 +34,7 @@ label train_learn_opinion_label(the_person):
     "You keep prompting [the_person.possessive_title] to share more information."
 
     if sexy_opinion:
-        $ revealed_opinion = the_person.get_random_opinion(include_known = False, include_normal = False)
+        $ revealed_opinion = the_person.get_random_opinion(include_known = False, include_normal = False, include_sexy = True)
 
     else:
         $ revealed_opinion = the_person.get_random_opinion(include_known = False)
