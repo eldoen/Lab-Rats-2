@@ -213,7 +213,7 @@ label improved_serum_unlock_label(the_person): #TODO: Double check this has a ti
             else:
                 mc.name "Not yet, I'll go make some and pick it up from the production division."
                 the_person "Alright, come see me when you have it. I'll be waiting."
-
+            $ picked_serum = None
 
         "Run the Experiment later":
             mc.name "We'll have to do this later. I need to pick up some serum from the production division."

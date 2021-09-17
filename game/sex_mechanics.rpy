@@ -183,7 +183,7 @@ label fuck_person(the_person, private = True, start_position = None, start_objec
 
 
         # Now that a round_choice has been picked we can do something.
-        if round_choice == "Change" or round_choice == "Continue" or round_choice == "Hypno_Orgasm":
+        if round_choice == "Change" or round_choice == "Continue":
             if round_choice == "Change": # If we are changing we first select and transition/intro the position, then run a round of sex. If we are continuing we ignroe all of that
                 $ mc.condom = False # If we're changing position we want to be able to re-check if we need a condom.
                 if start_position is None: #The first time we get here,
@@ -334,7 +334,7 @@ label fuck_person(the_person, private = True, start_position = None, start_objec
         elif round_choice == "Girl Leave":
             $ finished = True
 
-        if round_choice == "Hypno_Orgasm":
+        elif round_choice == "Hypno_Orgasm":
             $ the_person.event_triggers_dict["hypno_orgasmed_recently"] = True
             $ the_word = the_person.event_triggers_dict.get("hypno_trigger_word","Cum")
             $ the_word.capitalize()
