@@ -47,7 +47,7 @@ init -1 python:
         if tits is None:
             tits = get_random_tit()
         if height is None:
-            height = 0.9 + (renpy.random.random()/10)
+            height = 0.825 + (renpy.random.random()/14) + (renpy.random.random()/14)
 
         if hair_colour is None: #If we pass nothing we can pick a random hair colour
             hair_colour = generate_hair_colour() #Hair colour is a list of [string, [colour]], generated with variations by this function,

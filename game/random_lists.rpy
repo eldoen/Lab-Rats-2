@@ -997,7 +997,7 @@ init 1 python:
         # her favourite activities are generally calm and solitary: reading, playing musical instruments, watching TV, etc.
         # She doesn't make friends quickly, but she is pleasant and easy to get along with, and the bonds she does cultivate are likely to last for life.
         # She has no passion for her work, but she is good at it and takes pride in that fact.
-        person_paige = create_random_person(name = "Paige", last_name = "Sallow", body_type = "thin_body", height = 0.98, skin = "white", tits="A", hair_colour="brown", hair_style = messy_ponytail, starting_wardrobe = paige_wardrobe,
+        person_paige = create_random_person(name = "Paige", last_name = "Sallow", body_type = "thin_body", height = 0.92, skin = "white", tits="A", hair_colour="brown", hair_style = messy_ponytail, starting_wardrobe = paige_wardrobe,
             personality = reserved_personality, stat_array = [1,4,3], skill_array = [5,1,2,3,2], sex_array = [2,1,4,2])
         list_of_unique_characters.append(person_paige)
 
@@ -1007,7 +1007,7 @@ init 1 python:
         # By the time Kendra turned 16, she had grown into a stunningly beautiful woman and enjoyed the newfound attention she was receiving from boys. She was a free spirit, who just wanted to enjoy life.
         # When she graduated High School, she decided that college was not for her and pursued a career as glamor model. Kendra's parents were not pleased and cut her off financially but Kendra didn't care.
         # She was ready to be free and live her life.
-        person_kendra = create_random_person(name = "Kendra", last_name = "Rivera", age = 18, body_type = "curvy_body", height = 0.94, skin = "tan", hair_colour = "chestnut", hair_style = shaved_side_hair, starting_wardrobe = kendra_wardrobe,
+        person_kendra = create_random_person(name = "Kendra", last_name = "Rivera", age = 18, body_type = "curvy_body", height = 0.89, skin = "tan", hair_colour = "chestnut", hair_style = shaved_side_hair, starting_wardrobe = kendra_wardrobe,
             personality = relaxed_personality, stat_array = [4,3,1], skill_array = [5,3,1,2,2], sex_array = [2,2,4,1], face_style = "Face_4")
         list_of_unique_characters.append(person_kendra)
 
@@ -1015,13 +1015,13 @@ init 1 python:
         # After graduating from public education, she immediately moved to higher studies. She was hell-bent to learn all she could to help her mother.
         # Unfortunately, her mother died before Svetlanna could find a cure for her mysterious disease, which put her into a deep depression.
         # After some time, she met a woman that rekindled her love for biotechnology and put her on the path of a wild woman, never tied down with any one man or woman.
-        person_svetlanna = create_random_person(name = "Svetlanna", last_name = "Ivanova", body_type= "thin_body", height = 1.00, skin = "white", tits="E", hair_colour = "blond", hair_style = long_hair, starting_wardrobe = svetlanna_wardrobe,
+        person_svetlanna = create_random_person(name = "Svetlanna", last_name = "Ivanova", body_type= "thin_body", height = 0.94, skin = "white", tits="E", hair_colour = "blond", hair_style = long_hair, starting_wardrobe = svetlanna_wardrobe,
             personality = wild_personality, stat_array = [3,1,4], skill_array = [1,3,5,2,2], sex_array = [2,1,2,4])
         person_svetlanna.opinions["research work"] = [2, False] # Patron reward
         list_of_unique_characters.append(person_svetlanna)
 
         #
-        person_kelly = create_random_person(name = "Kelly", last_name = "Uhls", body_type = "curvy_body", height = 0.98, skin = "white", eyes = "dark blue", tits = "E", hair_colour = "chestnut", hair_style = ponytail, starting_wardrobe = kelly_wardrobe,
+        person_kelly = create_random_person(name = "Kelly", last_name = "Uhls", body_type = "curvy_body", height = 0.91, skin = "white", eyes = "dark blue", tits = "E", hair_colour = "chestnut", hair_style = ponytail, starting_wardrobe = kelly_wardrobe,
             personality = reserved_personality, stat_array = [2,2,4], skill_array = [2,1,2,1,5], sex_array = [3,4,2,1])
         list_of_unique_characters.append(person_kelly)
 
@@ -1033,7 +1033,7 @@ init 1 python:
         list_of_unique_characters.append(person_sativa)
 
         #nuoyi_wardrobe = wardrobe_from_xml("Nuoyi_Wardrobe") #NOTE: Patron did not want a specific wardrobe, she'll draw her wardrobe randomly as normal.
-        person_nuyoi = create_random_person(name = "Nuoyi", last_name = "Pan", body_type = "thin_body", height = 0.96, skin = "white", eyes = "dark blue", tits = "FF", hair_colour = "black", hair_style = long_hair,
+        person_nuyoi = create_random_person(name = "Nuoyi", last_name = "Pan", body_type = "thin_body", height = 0.89, skin = "white", eyes = "dark blue", tits = "FF", hair_colour = "black", hair_style = long_hair,
             personality = wild_personality, stat_array = [4,3,1], skill_array = [5,2,2,1,1], sex_array = [1,3,4,2])
 
         list_of_unique_characters.append(person_nuyoi)
@@ -1042,7 +1042,7 @@ init 1 python:
         ### STEPHANIE ###
 
         global stephanie
-        stephanie = create_random_person(name = "Stephanie", age = 29, body_type = "standard_body", face_style = "Face_3",  tits="C", height = 0.94, hair_colour="brown", hair_style = messy_short_hair, skin="white" , \
+        stephanie = create_random_person(name = "Stephanie", age = 29, body_type = "standard_body", face_style = "Face_3",  tits="C", height = 0.87, hair_colour="brown", hair_style = messy_short_hair, skin="white" , \
             eyes = "brown", personality = stephanie_personality, name_color = "#cf3232", dial_color = "#cf3232" , starting_wardrobe = stephanie_wardrobe, \
             stat_array = [3,4,3], skill_array = [1,1,4,2,1], sex_array = [3,4,2,1], start_sluttiness = 14, start_obedience = 12, start_happiness = 119, start_love = 7, \
             title = "Stephanie", possessive_title = "Your friend", mc_title = mc.name, relationship = "Single", kids = 0)
@@ -1054,7 +1054,7 @@ init 1 python:
 
         ### NORA ##
         global nora
-        nora = create_random_person(name = "Nora", age = 47, body_type = "standard_body", face_style = "Face_4", tits = "D", height = 0.98, hair_colour="black", hair_style = bowl_hair, skin = "white", \
+        nora = create_random_person(name = "Nora", age = 47, body_type = "standard_body", face_style = "Face_4", tits = "D", height = 0.86, hair_colour="black", hair_style = bowl_hair, skin = "white", \
             eyes = "grey", personality = nora_personality, name_color = "#dddddd", dial_color = "#dddddd", starting_wardrobe = nora_wardrobe, \
             stat_array = [1,5,4], skill_array = [1,1,5,3,1], sex_array = [3,2,4,1], start_sluttiness = 4, start_obedience = 2, start_happiness = 0, start_love = 3, \
             title = "Nora", possessive_title = "Your old boss", mc_title = mc.name, relationship = "Single", kids = 0, base_outfit = nora_base)
@@ -1100,7 +1100,7 @@ init 1 python:
         christina_base = Outfit("Christina's accessories")
         christina_base.add_accessory(diamond_ring.get_copy())
 
-        christina = create_random_person(name = "Christina", last_name = "Vandenberg", age = 47, body_type = "standard_body", face_style = "Face_8", tits = "DD", height = 0.94, hair_colour = "chestnut", hair_style = braided_bun, pubes_style = diamond_pubes, skin = "white", \
+        christina = create_random_person(name = "Christina", last_name = "Vandenberg", age = 47, body_type = "standard_body", face_style = "Face_8", tits = "DD", height = 0.92, hair_colour = "chestnut", hair_style = braided_bun, pubes_style = diamond_pubes, skin = "white", \
             eyes = "light blue", personality = reserved_personality, starting_wardrobe = christina_wardrobe, stat_array = [4,2,3], skill_array = [2,1,1,1,1], sex_array = [2,3,3,2], \
             start_sluttiness = 10, start_obedience = 5, start_happiness = 85, start_love = 0, start_home = emily.home, relationship = "Married", kids = 1, base_outfit = christina_base)
 
@@ -1127,7 +1127,7 @@ init 1 python:
         global mom
         mom_base = Outfit("Jennifer's accessories")
         mom_base.add_accessory(diamond_ring.get_copy())
-        mom = create_random_person(name = "Jennifer", last_name = mc.last_name, age = 42, body_type = "standard_body", face_style = "Face_1", tits = "DD", height = 0.94, hair_colour = "black", hair_style = long_hair, skin="white", \
+        mom = create_random_person(name = "Jennifer", last_name = mc.last_name, age = 42, body_type = "standard_body", face_style = "Face_1", tits = "DD", height = 0.92, hair_colour = "black", hair_style = long_hair, skin="white", \
             eyes = "brown", personality = mom_personality, name_color = "#8fff66", dial_color = "#8fff66", starting_wardrobe = mom_wardrobe, start_home = mom_bedroom, \
             stat_array = [3,2,4], skill_array = [5,2,0,0,2], sex_array = [2,1,3,0], start_sluttiness = 7, start_obedience = 12, start_happiness = 108, start_love = 8, \
             title = "Mom", possessive_title = "Your mother", mc_title = "Sweetheart", relationship = "Single", kids = 2, base_outfit = mom_base)
@@ -1144,7 +1144,7 @@ init 1 python:
 
         ### AUNT ###
         global aunt
-        aunt = create_random_person(name = "Rebecca", last_name = get_random_last_name(), age = 39, body_type = "thin_body", face_style = "Face_1", tits = "DD", height = 0.92, hair_colour = "blond", hair_style = bobbed_hair, skin="white", \
+        aunt = create_random_person(name = "Rebecca", last_name = get_random_last_name(), age = 39, body_type = "thin_body", face_style = "Face_1", tits = "DD", height = 0.89, hair_colour = "blond", hair_style = bobbed_hair, skin="white", \
             eyes = "brown", personality = aunt_personality, name_color = "#66FF8A", dial_color = "#66FF8A", starting_wardrobe = aunt_wardrobe, start_home = aunt_bedroom, \
             stat_array = [5,2,1], skill_array = [1,2,0,0,0], sex_array = [3,5,3,2], start_sluttiness = 11, start_obedience = 0, start_happiness = 70, start_love = 5, \
             title = "Rebecca", possessive_title = "Your aunt", mc_title = mc.name, relationship = "Single", kids = 1)
@@ -1158,7 +1158,7 @@ init 1 python:
 
         ### COUSIN ###
         global cousin
-        cousin = create_random_person(name = "Gabrielle", last_name = aunt.last_name, age = 18, body_type = "curvy_body", face_style = "Face_3", tits = "DDD", height = 0.90, hair_colour = "black", hair_style = messy_short_hair, skin="white",\
+        cousin = create_random_person(name = "Gabrielle", last_name = aunt.last_name, age = 18, body_type = "curvy_body", face_style = "Face_3", tits = "DDD", height = 0.91, hair_colour = "black", hair_style = messy_short_hair, skin="white",\
             eyes = "brown", personality = cousin_personality, name_color = "#9c4dea", dial_color = "#9c4dea", starting_wardrobe = cousin_wardrobe, start_home = cousin_bedroom, \
             stat_array = [0,4,2], skill_array = [0,0,2,1,0], sex_array = [3,0,0,0], start_sluttiness = 8, start_obedience = -30, start_happiness = 70, start_love = -20, \
             title = "Gabrielle", possessive_title = "Your cousin", mc_title = mc.name, relationship = "Single", kids = 0)
