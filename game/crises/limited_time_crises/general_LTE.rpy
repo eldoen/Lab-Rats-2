@@ -38,7 +38,7 @@ init -1 python:
         if the_person.has_role(mother_role) or the_person.has_role(sister_role):
             return False #We want explicit control of when these characters generate their Insta accounts
         elif the_person.has_role(instapic_role):
-            return False
+            return False #Role exists
         elif the_person.effective_sluttiness() < (100 - the_person.personality.insta_chance) - 5 * the_person.get_opinion_score("showing her tits") - 5 * the_person.get_opinion_score("showing her ass"):
             return False #Personality type and Opinions has a large impact on chance to generate a new profile.
         elif the_person.love < 15: #Girls who don't like you won't tell you they've made a profile (and are assumed to either have one or not depending on their starting generation)
@@ -47,9 +47,9 @@ init -1 python:
 
     def new_dikdok_account_requirement(the_person):
         if the_person.has_role(mother_role) or the_person.has_role(sister_role):
-            return False #We want explicit control of when these characters generate their Insta accounts
+            return False #We want explicit control of when these characters generate their DikDok accounts
         elif the_person.has_role(dikdok_role):
-            return False
+            return False #Role exists
         elif the_person.effective_sluttiness() < (100 - the_person.personality.dikdok_chance) - 5 * the_person.get_opinion_score("showing her tits") + 5 * the_person.get_opinion_score("showing her ass"):
             return False #Personality type and Opinions has a large impact on chance to generate a new profile.
         elif the_person.love < 15: #Girls who don't like you won't tell you they've made a profile (and are assumed to either have one or not depending on their starting generation)
@@ -58,9 +58,9 @@ init -1 python:
 
     def new_onlyfans_account_requirement(the_person):
         if the_person.has_role(mother_role) or the_person.has_role(sister_role):
-            return False #We want explicit control of when these characters generate their Insta accounts
-        elif the_person.has_role(onlyfans_role):
-            return False
+            return False #We want explicit control of when these characters generate their OnlyFans accounts
+        elif the_person.has_role(onlyfans_role) or the_person.has_role(girlfriend_role):
+            return False #Role exists / she's your GF
         elif the_person.effective_sluttiness() < 50 + 10 * the_person.get_opinion_score("showing her tits") + 5 * the_person.get_opinion_score("showing her ass") + 5 * the_person.get_opinion_score("public sex"):
             return False
         elif the_person.love < 30: #Girls who don't like you won't tell you they've made a profile (and are assumed to either have one or not depending on their starting generation)
@@ -513,7 +513,7 @@ label work_walk_in_label(the_person): #Walk into the room and find someone mastu
     return
 
 label new_insta_account(the_person):
-    if the_person.love >= 15:
+    if not the_person.has_role(instapic_role):
         the_person "Hey [the_person.mc_title]! Oh, you'll probably be interested in this."
         the_person "I've started an InstaPic account, you should follow me! I'm just starting out, but I think I'm figuring it all out!"
         $ the_person.event_triggers_dict["insta_known"] = True
@@ -523,7 +523,7 @@ label new_insta_account(the_person):
     return
 
 label new_dikdok_account(the_person):
-    if the_person.love >= 15:
+    if not the_person.has_role(dikdok_role):
         the_person "Hey [the_person.mc_title]! Oh, you'll probably be interested in this. I've started a DikDok channel."
         the_person "You should follow me! I'm just starting out but I think my videos are pretty great."
         $ the_person.event_triggers_dict["dikdok_known"] = True
@@ -533,7 +533,7 @@ label new_dikdok_account(the_person):
     return
 
 label new_onlyfans_account(the_person):
-    if the_person.love >= 30 and the_person.effective_sluttiness() >= 40 and not the_person.has_role(girlfriend_role):
+    if not the_person.has_role(onlyfans_role):
         the_person "Hey [the_person.mc_title], I thought you might want to know..."
         the_person "I'm starting up an OnlyFanatics account. I think it might be a fun way for me to make a little extra money."
         the_person "You should check me out some time, if you don't think that would be too weird."
