@@ -37,8 +37,8 @@ init -1 python:
 
 
 label uniform_disobedience_event(planned_uniform, the_person):
-    $ the_person.draw_person()
     "As you walk up to [the_person.title] you notice that she isn't wearing her company uniform."
+    $ the_person.draw_person()
 
     if the_person.obedience < 110:
         $ the_person.call_dialogue("greetings")

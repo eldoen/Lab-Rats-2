@@ -91,7 +91,7 @@ label train_weaken_opinion_label(the_person): #TODO; Only have this enabled if y
                 show_list.append(("Hates " + topic, topic))
             elif the_person.get_opinion_score(topic) == -1:
                 show_list.append(("Dislikes " + topic, topic))
-            elif the_person.get_opinion_score(topic) == -1:
+            elif the_person.get_opinion_score(topic) == 1:
                 show_list.append(("Likes " + topic, topic))
             else:
                 show_list.append(("Loves " + topic, topic))

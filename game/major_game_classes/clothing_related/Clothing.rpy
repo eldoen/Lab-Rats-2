@@ -27,31 +27,34 @@ init -2 python:
 
         _half_off_regions = {}
         def get_half_off_regions(self):
-            if not self.proper_name in self._half_off_regions:
-                self._half_off_regions[self.proper_name] = []
+            if not self.proper_name or not self.proper_name in self._half_off_regions:
+                return []
             return self._half_off_regions[self.proper_name]
         def set_half_off_regions(self, value):
-            self._half_off_regions[self.proper_name] = value
+            if self.proper_name and value:
+                self._half_off_regions[self.proper_name] = value
 
         half_off_regions = property(get_half_off_regions, set_half_off_regions, None, "Clothing half off regions")
 
         _half_off_ignore_regions = {}
         def get_half_off_ignore_regions(self):
-            if not self.proper_name in self._half_off_ignore_regions:
-                self._half_off_ignore_regions[self.proper_name] = []
+            if not self.proper_name or not self.proper_name in self._half_off_ignore_regions:
+                return []
             return self._half_off_ignore_regions[self.proper_name]
         def set_half_off_ignore_regions(self, value):
-            self._half_off_ignore_regions[self.proper_name] = value
+            if self.proper_name and value:
+                self._half_off_ignore_regions[self.proper_name] = value
 
         half_off_ignore_regions = property(get_half_off_ignore_regions, set_half_off_ignore_regions, None, "Clothing half off regions")
 
         _constrain_regions = {}
         def get_constrain_regions(self):
-            if not self.proper_name in self._constrain_regions:
-                self._constrain_regions[self.proper_name] = []
+            if not self.proper_name or not self.proper_name in self._constrain_regions:
+                return []
             return self._constrain_regions[self.proper_name]
         def set_constrain_regions(self, value):
-            self._constrain_regions[self.proper_name] = value
+            if self.proper_name and value:
+                self._constrain_regions[self.proper_name] = value
 
         constrain_regions = property(get_constrain_regions, set_constrain_regions, None, "Clothing half off regions")
 

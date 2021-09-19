@@ -794,6 +794,7 @@ label mom_date_intercept(the_mom, the_date): #TODO: Add some relationship awaren
                 $ the_mom.draw_person(position = "sitting")
                 "You spend the rest of the evening with [the_mom.possessive_title], sitting on the couch, watching TV, and chatting."
                 #TODO: Add a proper Mom date that this leads into
+                return True
 
             "Tell her no":
                 mc.name "Sorry [the_mom.title], but I just can't cancel my plans this suddenly."
