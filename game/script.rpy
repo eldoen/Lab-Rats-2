@@ -290,8 +290,6 @@ init 0 python:
         for name in common_variable_list:
             if name in globals():
                 del globals()[name]
-        renpy.block_rollback()
-        renpy.checkpoint()
 
     def main_loop_auto_save():
         last_save_day = mc.business.event_triggers_dict.get("last_save_day", 0)
@@ -305,6 +303,9 @@ init 0 python:
 label game_loop(): ##THIS IS THE IMPORTANT SECTION WHERE YOU DECIDE WHAT ACTIONS YOU TAKE
     $ main_loop_cleanup()
     $ main_loop_auto_save()
+    $ renpy.block_rollback()
+    $ renpy.checkpoint()
+
     if "action_mod_list" in globals():
         call screen enhanced_main_choice_display(build_menu_items([build_people_list(), build_actions_list()]))
     else:

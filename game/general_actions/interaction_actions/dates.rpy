@@ -1451,7 +1451,7 @@ label shopping_date_inside_changing_room(the_person, new_outfit, changing_type, 
                         $ the_report = _return
                         $ the_person.call_dialogue("sex_review", the_report = the_report)
 
-                "Fuck hern{color=#ff0000}{size=18}Requires: [sex_slut_token]{/size}{/color} (disabled)" if the_person.effective_sluttiness() < sex_slut_requirement:
+                "Fuck her\n{color=#ff0000}{size=18}Requires: [sex_slut_token]{/size}{/color} (disabled)" if the_person.effective_sluttiness() < sex_slut_requirement:
                     pass
 
         "Pull out your cock\n{color=#ff0000}{size=18}Requires: [sluttiness_token]{/size}{/color} (disabled)" if the_person.effective_sluttiness() < 30:
