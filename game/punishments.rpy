@@ -687,7 +687,7 @@ label punishment_strip_and_spank(the_person, the_infraction):
     the_person "What are you going to do?"
     mc.name "I'm going to bend you over and spank you, until you've learned your lesson."
 
-    if not ((the_person.outfit.vagina_available() or the_person.outfit.vagina_visible()) and (the_person.outfit.tits_visible() or the_person.outfit.tits_visible())): #She's wearing something, let's strip her down.
+    if not ((the_person.outfit.vagina_available() or the_person.outfit.vagina_visible()) and (the_person.outfit.tits_available() or the_person.outfit.tits_visible())): #She's wearing something, let's strip her down.
         mc.name "But first we need to ensure there's nothing that will get in my way. Strip naked."
         call strip_naked_command_helper(the_person, the_infraction) from _call_strip_naked_command_helper
         $ generalised_strip_description(the_person, the_person.outfit.get_full_strip_list(strip_feet = _return))

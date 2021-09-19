@@ -282,7 +282,7 @@ init 0 python:
         "clothing", "formatted_name", "formatted_title", "hair_style_check", "pubic_style_check", "the_cause", \
         "text_one", "text_two", "the_goal", "the_serum", "title", "opinion_tag", "overhear_topic", "the_choice", \
         "opinion_string", "mc_opinion_string", "talk_opinion_text", "opinion_learned", "place", "the_place", "the_taboo",
-        "climax_controller", "the_watcher"]
+        "climax_controller", "the_watcher", "person_choice"]
 
     def main_loop_cleanup():
         clear_scene()
@@ -312,15 +312,17 @@ label game_loop(): ##THIS IS THE IMPORTANT SECTION WHERE YOU DECIDE WHAT ACTIONS
     $ picked_option = _return
 
     if isinstance(picked_option, Person):
-        $ picked_option.draw_person()
         $ talk_action = main_loop_pick_talk_event(picked_option)
         if talk_action:
+            $ picked_option.draw_person()
             $ talk_action.call_action(picked_option)
         else:
             if picked_option.title is None:
                 "You decide to approach the stranger and introduce yourself."
+                $ picked_option.draw_person()
             else:
                 "You approach [picked_option.title] and chat for a little bit."
+                $ picked_option.draw_person()
                 $ picked_option.call_dialogue("greetings")
 
             if picked_option.has_taboo(["underwear_nudity","bare_tits", "bare_pussy"]) and picked_option.judge_outfit(picked_option.outfit, -30): #If she's in anything close to slutty she's self-conscious enough to comment on it.

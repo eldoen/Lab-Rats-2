@@ -149,6 +149,8 @@ label view_insta(the_person):
                 $ the_person.draw_person(position = "kneeling1", the_animation = None)
             $ mc.change_locked_clarity(15)
             the_person "Went to the doc and got some upgrades! Don't they look great?!" (what_style = "text_message_style")
+            $ the_person.apply_outfit() # Reset them to their normal daily wear.
+            $ del skimpy_outfit
 
         elif the_person.event_triggers_dict.get("insta_special_request_outfit", None):
             $ the_person.apply_outfit(the_person.event_triggers_dict.get("insta_special_request_outfit", insta_wardrobe.pick_random_outfit()))
@@ -193,6 +195,7 @@ label view_insta(the_person):
                 $ the_person.event_triggers_dict["onlyfans_known"] = True
 
             $ the_person.apply_outfit() # Reset them to their normal daily wear.
+            $ del skimpy_outfit
         elif the_person.is_wearing_uniform() and not (the_person.outfit.vagina_visible() or the_person.outfit.tits_visible()):
             $ ran_num = renpy.random.randint(0,1)
             if ran_num == 0:
