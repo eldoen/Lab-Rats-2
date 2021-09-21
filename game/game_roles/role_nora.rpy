@@ -124,7 +124,7 @@ init -2 python:
         return
 
     def add_nora_research_intro_action(the_person):
-        nora_research_cash_intro_action = Action("Nora cash research intro", nora_research_cash_intro_requirement, "nora_research_cash_intro", args = the_person, requirement_args = [the_person, day + renpy.random.randint(3,6)])
+        nora_research_cash_intro_action = Action("Nora cash research intro", nora_research_cash_intro_requirement, "nora_research_cash_intro", args = [the_person, True], requirement_args = [the_person, day + renpy.random.randint(3,6)])
         mc.business.mandatory_crises_list.append(nora_research_cash_intro_action)
         return
 
