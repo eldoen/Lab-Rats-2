@@ -87,9 +87,13 @@ init 0 python:
     else:
         config.image_cache_size_mb = 384
 
-    config.has_autosave = False
     config.autosave_frequency = None
-    config.has_quicksave = True
+    config.autosave_on_choice = False
+    config.autosave_on_quit = False
+    config.autosave_on_input = False
+    config.has_autosave = False
+    config.has_quicksave = False
+    config.autosave_slots = 6
 
     config.rollback_enabled = True  # allows for smoother dialogs while skipping
     config.rollback_length = 32
@@ -295,9 +299,8 @@ init 0 python:
         last_save_day = mc.business.event_triggers_dict.get("last_save_day", 0)
         if day > last_save_day and time_of_day == 0:
             #renpy.notify("Saving game: " + str(day))
-            renpy.force_autosave(take_screenshot = False, block = True)
+            renpy.force_autosave(take_screenshot = True, block = True)
             mc.business.event_triggers_dict["last_save_day"] = day
-
 
 
 label game_loop(): ##THIS IS THE IMPORTANT SECTION WHERE YOU DECIDE WHAT ACTIONS YOU TAKE

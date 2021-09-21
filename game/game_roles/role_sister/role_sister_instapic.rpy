@@ -217,6 +217,7 @@ label sister_instathot_label(the_person):
         call sister_instathot_label_solo(the_person) from _call_sister_instathot_label_solo_1
 
     $ clear_scene()
+    $ the_person.apply_outfit() # restore outfit
     call advance_time() from _call_advance_time_23
     return
 
