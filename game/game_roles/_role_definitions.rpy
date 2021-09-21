@@ -520,11 +520,11 @@ label pay_strip_scene(the_person):
                             "[the_person.title] steps a little closer to you and plays with the edge of her [the_clothing.display_name]."
                             if taboo_break: #TODO: If this style of stripping becomes more important this dialogue should be personality based (mainly for family related dialogue)
                                 if taboo_break == "bare_pussy":
-                                    the_person "Would you like a look at my pussy? How about... $[price] and I'll take off my [tease_item.display_name]."
+                                    the_person "Would you like a look at my pussy? How about... $[price] and I'll take off my [the_clothing.display_name]."
                                 elif taboo_break == "bare_tits":
-                                    the_person "So, would you like to see my tits? Just, oh... $[price] and I'll take off my [tease_item.display_name]."
+                                    the_person "So, would you like to see my tits? Just, oh... $[price] and I'll take off my [the_clothing.display_name]."
                                 else: #Underwear_nudity
-                                    the_person "Want to see what I'm wearing underneath this [tease_item.display_name]? Just $[price] and I'll show you."
+                                    the_person "Want to see what I'm wearing underneath this [the_clothing.display_name]? Just $[price] and I'll show you."
                             else:
                                 the_person "$[price] and I'll take this off for you..."
 
