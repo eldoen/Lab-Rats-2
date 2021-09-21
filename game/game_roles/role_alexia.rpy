@@ -363,9 +363,10 @@ label alexia_ad_suggest_reintro_label(the_person):
 
 label alexia_ad_camera_label(the_person):
     if mc.business.get_employee_workstation(the_person): #ie is an employee, otherwise this is None.
-        "You get a text from [the_person.title]."
+        $ mc.start_text_convo(the_person)
         the_person "Hey [the_person.mc_title], the camera for that ad idea I had just arrived."
         the_person "Come see me when you want to do something with it."
+        $ mc.end_text_convo()
     else: #In case you've fired them or something. Future proofing mostly.
         "A package is delivered during the day. It's the camera [the_person.title] ordered while she was still working for you."
     $ mc.business.event_triggers_dict["has_expensive_camera"] = True

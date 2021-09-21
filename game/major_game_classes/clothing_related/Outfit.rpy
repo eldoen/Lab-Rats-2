@@ -465,7 +465,7 @@ init -2 python:
             return True
 
         def underwear_visible(self):
-            return (self.wearing_bra and not self.bra_covered()) or \
+            return (self.wearing_bra() and not self.bra_covered()) or \
                     (self.wearing_panties() and not self.panties_covered())
 
         def wearing_bra(self):

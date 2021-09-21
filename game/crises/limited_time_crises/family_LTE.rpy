@@ -4,6 +4,8 @@ init -1 python:
             return False
         elif the_person not in the_person.home.people:
             return False
+        elif the_person.energy < 40:
+            return False
         elif lily_bedroom.get_person_count() > 1:
             return False
         return True
@@ -53,6 +55,8 @@ init -1 python:
         if not the_person.has_role(employee_role):
             return False
         elif not person_at_work(the_person):
+            return False
+        elif the_person.energy < 40:
             return False
         elif the_person not in mc.business.get_employee_list():
             return False
@@ -106,8 +110,7 @@ init -1 python:
             return False
         elif not (time_of_day == 3):
             return False
-        else:
-            return True
+        return True
 
     def mom_go_shopping_requirement(the_person):
         if not the_person.has_role(mother_role):
