@@ -1,19 +1,18 @@
 label do_training(the_person):
     call screen training_select(the_person)
     if _return:
-        call training_manager(the_person, _return)
-        $ the_person.event_triggers_dict["trance_training_available"] = False
+        call training_manager(the_person, _return) from _call_training_manager_do_training
+        if _return:
+            $ the_person.event_triggers_dict["trance_training_available"] = False
     return
 
 label training_manager(the_person, the_trainable):
     $ renpy.call(the_trainable.on_train_label, the_person, *the_trainable.extra_args) #The on_train label should make any actual changes needed
-    if _return is False: #Note that this does NOT include None, which is the default return
-        return False # Do nothing, we didn't actually finish the training for some reason.
-    else:
-
+    if _return: #Note that this does NOT include None, which is the default return
         $ mc.spend_clarity(the_trainable.get_cost(the_person))
         $ the_person.training_log[the_trainable.training_tag] += 1
         return True
+    return False
 
 screen training_select(the_person):
     add "Paper_Background.png"

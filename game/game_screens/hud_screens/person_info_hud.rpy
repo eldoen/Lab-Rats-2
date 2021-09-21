@@ -1,4 +1,4 @@
-screen person_info_ui(the_person, display_layer = "solo"): #Used to display stats for a person while you're talking to them.
+screen person_info_ui(the_person): #Used to display stats for a person while you're talking to them.
     layer "solo" #It is cleared whenever we draw a person or clear them off the screen.
     $ formatted_tooltip = ""
     $ formatted_obedience_tooltip = ""
