@@ -221,9 +221,25 @@ label student_study_university(the_person):
         the_person "Okay, so what are we working on today?"
         mc.name "Let's start with your grades. Any changes?"
         the_person "Well, I got a [current_marks]%% on my last assignment."
-        if current_marks > 80:
-                mc.name "Fantastic! A little more work and you'll be the best in your class!"
-                the_person "Thanks, you've really helped everything come together!"
+        if current_marks >= 80:
+            mc.name "Fantastic! A little more work and you'll be the best in your class!"
+            the_person "Thanks, you've really helped everything come together!"
+            if nora.event_triggers_dict.get("student_exam_ready", None) is None:
+                menu:
+                    "You're ready to rewrite your exam":
+                        mc.name "I think you're prepared to write your exam now."
+                        the_person "Do you really think so? I'm only going to have one chance."
+                        mc.name "Look at your last few assignments, the numbers don't lie."
+                        "[the_person.possessive_title] smiles and nods happily."
+                        the_person "Can you talk to Professor [nora.last_name] for me and tell her I'm ready to rewrite it?"
+                        mc.name "Sure, I'll make sure to talk to her. There's still some time left for some more studying today."
+                        $ nora.event_triggers_dict["student_exam_ready"] = True
+                    "You need to study some more":
+                        mc.name "You'll be ready to rewrite your exam soon. Just a little more studying to go and I think you're ready."
+                        the_person "I hope I do well, I'm really nervous about it..."
+                        mc.name "Some more studying will help with that. Let's get to it."
+            else:
+                mc.name "Not long now until your exam, let's get some more studying done while we can."        
         elif current_marks > 50:
             mc.name "That sounds like a pass to me!"
             the_person "Yeah! I need to convince Professor [nora.last_name] to shift more weight to my exam, but I might be able to do this!"
