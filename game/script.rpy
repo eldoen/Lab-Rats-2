@@ -71,6 +71,7 @@ init 0 python:
     # config.say_arguments_callback = text_message_say_callback #Recolours and re-fonts say statements made while having a text conversation #NOTE: NOt needed now that we properly store messages into the phone and display them from a custom screen.
 
     config.gl2 = True  #Required to enable the model based renderer and use shaders.
+    config.scene_clears_layer_at_list = True # Restore old (renpy 7.4.3) at layer clear
 
     config.automatic_images = None
     config.optimize_texture_bounds = True

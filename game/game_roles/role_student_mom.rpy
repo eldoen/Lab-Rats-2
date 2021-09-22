@@ -32,7 +32,7 @@ label study_check_up(the_student, the_mom):
 
     if (the_student.outfit.tits_visible() or the_student.outfit.vagina_visible()) and not the_mom.judge_outfit(the_student.outfit, -10):
         "She is about to say something, when she notices her daughter's state of undress."
-        the_mom "[the_student.title], where are your clothes!"
+        the_mom "[the_student.name], where are your clothes!"
         the_student "Hmm? Oh, I was just..."
         "Her mother cuts her off, clearly intending the question to be rhetorical."
         the_mom "Go put something on, right now! I'm sorry [the_mom.mc_title], she shouldn't have been undressed like that around you."
@@ -47,7 +47,7 @@ label study_check_up(the_student, the_mom):
         if the_mom.judge_outfit(the_student.outfit, 10):
             # Just a little too slutty
             "She's about to say something, but pauses and looks over [the_student.title]'s outfit."
-            the_mom "[the_student.title], do you really think that's appropriate to wear when we have guests over?"
+            the_mom "[the_student.name], do you really think that's appropriate to wear when we have guests over?"
             the_student "[the_student.mc_title] isn't just a guest Mom, he's a friend!"
             "She scowls at her daughter."
             the_mom "We'll have a talk about this later."
@@ -56,7 +56,7 @@ label study_check_up(the_student, the_mom):
 
         elif the_student.outfit.underwear_visible():
             "She's about to say something, but pauses when she notices her daughter's lack of clothing."
-            the_mom "[the_student.title], where are your clothes? You shouldn't be wandering around in your underwear when we have a guest."
+            the_mom "[the_student.name], where are your clothes? You shouldn't be wandering around in your underwear when we have a guest."
             the_student "Oh, he doesn't care, right [the_student.mc_title]?"
             "You shrug and nod."
             mc.name "She'll see the best results if she's comfortable while studying, and I suppose she finds that comfortable."
@@ -66,7 +66,7 @@ label study_check_up(the_student, the_mom):
 
         else:
             "She's about to say something, when she notices her daughter's outfit."
-            the_mom "[the_student.title], what are you wearing!"
+            the_mom "[the_student.name], what are you wearing!"
             the_student "Hmm? Oh, I was just..."
             "Her mother cuts her off, clearly intending the question to be rhetorical."
             the_mom "Go put something on, right now! I'm sorry [the_mom.mc_title], she shouldn't have been undressed like that around you."
