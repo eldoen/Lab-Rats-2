@@ -591,7 +591,7 @@ label aunt_intro_phase_final_label():
     $ the_group.draw_person(aunt, position = "sitting", emotion = "happy")
     aunt "Come on [aunt.mc_title], sit down and join us for a few minutes."
     "You join [aunt.possessive_title] and [mom.possessive_title] while they finish their drinks and chat with each other."
-    "[aunt.title] certainly seems happier now than she did a week ago when she arrived."
+    "[aunt.title] certainly seems happier now than she did a few weeks ago when she arrived."
     $ clear_scene()
     $ the_group = GroupDisplayManager([mom, lily, aunt, cousin], aunt)
     $ the_group.draw_group()

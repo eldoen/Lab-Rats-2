@@ -197,13 +197,113 @@ label student_study_propose(the_person):
     $ the_person.event_triggers_dict["last_tutor"] = day
     return
 
+label student_study_check_marks(the_person):
+    $ current_marks = the_person.event_triggers_dict.get("current_marks",0)
+    the_person "Well, I got a [current_marks]%% on my last assignment."
+    if current_marks >= 80:
+        mc.name "Fantastic! A little more work and you'll be the best in your class!"
+        the_person "Thanks, you've really helped everything come together!"
+        if nora.event_triggers_dict.get("student_exam_ready", None) is None:
+            menu:
+                "You're ready to rewrite your exam":
+                    mc.name "I think you're prepared to write your exam now."
+                    the_person "Do you really think so? I'm only going to have one chance."
+                    mc.name "Look at your last few assignments, the numbers don't lie."
+                    "[the_person.possessive_title] smiles and nods happily."
+                    the_person "Can you talk to Professor [nora.last_name] for me and tell her I'm ready to rewrite it?"
+                    mc.name "Sure, I'll make sure to talk to her. There's still some time left for some more studying today."
+                    $ nora.event_triggers_dict["student_exam_ready"] = True
+
+                "You need to study some more":
+                    mc.name "You'll be ready to rewrite your exam soon. Just a little more studying to go and I think you're ready."
+                    the_person "I hope I do well, I'm really nervous about it..."
+                    mc.name "Some more studying will help with that. Let's get to it."
+        else:
+            mc.name "Not long now until your exam, let's get some more studying done while we can."
+    elif current_marks > 50:
+        mc.name "That sounds like a pass to me!"
+        the_person "Yeah! I still need to convince Professor [nora.last_name] to let rewrite my exam, but I might be able to do this!"
+        mc.name "And we still have more time to improve."
+    else:
+        mc.name "So there's some room for improvement. That's fine, we still have time."
+    return
+
+label student_wants_serum(the_person):
+    if the_person.event_triggers_dict.get("student_wants_serum", False): #TODO: Hook up this trigger. Basically if she's had serum before and it made her smarter.
+        the_person "I was wondering... Do you have any more of that stuff you gave me last time?"
+        the_person "I feel like it really helped me focus."
+        menu:
+            "Give her a dose of serum" if mc.inventory.get_any_serum_count() > 0:
+                mc.name "Of course, I'm glad to hear it helped."
+                call give_serum(the_person) from _call_give_serum_25
+                if _return:
+                    $ took_serum = True
+                    $ the_person.change_love(1)
+                    $ the_person.change_obedience(1)
+                    $ the_person.event_triggers_dict["student_given_serum"] = the_person.event_triggers_dict.get("student_given_serum", 0) + 1
+                    "You hand over the dose of serum. [the_person.possessive_title] drinks it down happily."
+
+                else:
+                    mc.name "I'm sorry, I think I left it at home by mistake. Maybe next time."
+                    the_person "Oh, okay."
+
+            "Give her a dose of serum\n{color=#ff0000}{size=18}Requires: Serum{/size}{/color} (disabled)" if mc.inventory.get_any_serum_count() == 0:
+                pass
+
+            "No serum this time":
+                mc.name "We're going to try this session without any serum."
+                the_person "Oh, okay."
+
+    else:
+        menu:
+            "Start studying":
+                pass
+
+            "Give her a dose of serum" if the_person.obedience >= 110 and mc.inventory.get_any_serum_count() > 0:
+                if the_person.event_triggers_dict.get("student_given_serum", 0) == 0:
+                    mc.name "Before we get started I'd like to try something today."
+                    the_person "Okay, what's that?"
+                    mc.name "My pharmaceutical produces a number of products. Some of them help aid focus, and I think that could also help you."
+                    mc.name "I want you to try some."
+                    "[the_person.title] thinks for a moment, then shrugs and nods."
+                    the_person "Yeah, sure. It's not illegal or anything like that, right?"
+                    mc.name "No, it's perfectly safe and legal."
+                    call give_serum(the_person) from _call_give_serum_26
+                    if _return:
+                        $ took_serum = True
+                        $ the_person.change_obedience(2)
+                        $ the_person.event_triggers_dict["student_given_serum"] = the_person.event_triggers_dict.get("student_given_serum", 0) + 1
+                        "You produces a vial of serum and hand it over to [the_person.title]. She drinks it down without hesitation."
+                        the_person "That wasn't so bad. How fast should this work?"
+                        mc.name "It will take a few minutes. Let's focus on your studying."
+                    else:
+                        mc.name "Hmm, it looks like I forgot it at home."
+                        the_person "That's fine, we can try it next time then."
+                        mc.name "I guess we'll have to. Let's focus on your studying then."
+
+                else:
+                    mc.name "Before we start I'd like you to take some serum, to help with your focus."
+                    call give_serum(the_person) from _call_give_serum_27
+                    if _return:
+                        $ took_serum = True
+                        the_person "Do you think it really helps? I didn't notice anything last time."
+                        mc.name "Trust me, it does."
+                        $ the_person.change_love(-1)
+                        $ the_person.change_obedience(1)
+                        $ the_person.event_triggers_dict["student_given_serum"] = the_person.event_triggers_dict.get("student_given_serum", 0) + 1
+                        "[the_person.title] seems unconvinced, but she drinks down the serum anyways."
+                    else:
+                        mc.name "On second thought, I think we'll see how you do without serum this session. Let's focus on your studying."
+
+            "Give her a dose of serum\n{color=#ff0000}{size=18}Requires: 110 Obedience{/size}{/color} (disabled)" if the_person.obedience < 110 or mc.inventory.get_any_serum_count() == 0:
+                pass
+    return
+
 label student_study_university(the_person):
     # TODO: Add an "inside library" location that we can change the background to.
     $ starting_focus = the_person.focus #Record her starting focus so we can compare it at the end (ie. after being given serum)
     $ starting_int = the_person.int
-
     $ took_serum = False #Set to true if you give her serum to study with. If the study session goes well (either from raised focus, int, or she orgasms) she'll want more in the future.
-    $ current_marks = the_person.event_triggers_dict.get("current_marks",0)
 
     if the_person.event_triggers_dict.get("times_studied_university", 0) == 0:
         the_person "Okay, so where should we start?"
@@ -220,110 +320,9 @@ label student_study_university(the_person):
     else:
         the_person "Okay, so what are we working on today?"
         mc.name "Let's start with your grades. Any changes?"
-        the_person "Well, I got a [current_marks]%% on my last assignment."
-        if current_marks >= 80:
-            mc.name "Fantastic! A little more work and you'll be the best in your class!"
-            the_person "Thanks, you've really helped everything come together!"
-            if nora.event_triggers_dict.get("student_exam_ready", None) is None:
-                menu:
-                    "You're ready to rewrite your exam":
-                        mc.name "I think you're prepared to write your exam now."
-                        the_person "Do you really think so? I'm only going to have one chance."
-                        mc.name "Look at your last few assignments, the numbers don't lie."
-                        "[the_person.possessive_title] smiles and nods happily."
-                        the_person "Can you talk to Professor [nora.last_name] for me and tell her I'm ready to rewrite it?"
-                        mc.name "Sure, I'll make sure to talk to her. There's still some time left for some more studying today."
-                        $ nora.event_triggers_dict["student_exam_ready"] = True
-                    "You need to study some more":
-                        mc.name "You'll be ready to rewrite your exam soon. Just a little more studying to go and I think you're ready."
-                        the_person "I hope I do well, I'm really nervous about it..."
-                        mc.name "Some more studying will help with that. Let's get to it."
-            else:
-                mc.name "Not long now until your exam, let's get some more studying done while we can."        
-        elif current_marks > 50:
-            mc.name "That sounds like a pass to me!"
-            the_person "Yeah! I need to convince Professor [nora.last_name] to shift more weight to my exam, but I might be able to do this!"
-            mc.name "And we still have more time to improve."
-        else:
-            mc.name "So there's some room for improvement. That's fine, we still have time."
+        call student_study_check_marks(the_person) from _call_student_check_marks_student_study_university
 
-    if the_person.event_triggers_dict.get("student_wants_serum", False): #TODO: Double check this gives more total buffs than her not wanting it
-        the_person "Hey, so before we get started do you have any more of that stuff you gave me last time?"
-        the_person "I feel like it really helped me focus."
-        menu:
-            "Give her a dose of serum" if mc.inventory.get_any_serum_count() > 0:
-                mc.name "Of course, I'm glad to hear it helped."
-                call give_serum(the_person) from _call_give_serum_22
-                if _return:
-                    $ took_serum = True
-                    $ the_person.change_love(1)
-                    $ the_person.change_obedience(1)
-                    $ the_person.event_triggers_dict["student_given_serum"] = the_person.event_triggers_dict.get("student_given_serum", 0) + 1
-                    "You hand over the dose of serum. [the_person.possessive_title] drinks it down happily."
-
-
-                else:
-                    mc.name "I'm sorry, I think I left it at home by mistake. Maybe next time."
-                    the_person "Oh, okay."
-
-
-
-            "Give her a dose of serum\n{color=#ff0000}{size=18}Requires: Serum{/size}{/color} (disabled)" if mc.inventory.get_any_serum_count() == 0:
-                pass
-
-
-            "No serum this time":
-                mc.name "We're going to try this session without any serum."
-                the_person "Oh, okay."
-
-    elif the_person.event_triggers_dict.get("times_studied_university",0) == 1 or mc.inventory.get_any_serum_count() == 0:
-        pass #Don't talk about serum the first time or if we don't have any on us. (first time counter == 1)
-    else:
-        menu:
-            "Start studying":
-                pass
-
-            "Give her a dose of serum" if the_person.obedience >= 110 and mc.inventory.get_any_serum_count() > 0:
-                if the_person.event_triggers_dict.get("student_given_serum", 0) == 0:
-                    mc.name "Before we get started I'd like to try something today."
-                    the_person "Okay, what's that?"
-                    mc.name "My pharmaceutical produces a number of products. Some of them help aid focus, and I think that could also help you."
-                    mc.name "I want you to try some."
-                    "[the_person.title] thinks for a moment, then shrugs and nods."
-                    the_person "Yeah, sure. It's not illegal or anything like that, right?"
-                    mc.name "No, it's perfectly safe and legal."
-                    call give_serum(the_person) from _call_give_serum_23
-                    if _return:
-                        $ took_serum = True
-                        $ the_person.change_obedience(2)
-                        $ the_person.event_triggers_dict["student_given_serum"] = the_person.event_triggers_dict.get("student_given_serum", 0) + 1
-                        "You produces a vial of serum and hand it over to [the_person.title]. She drinks it down without hesitation."
-                        the_person "That wasn't so bad. How fast should this work?"
-                        mc.name "It will take a few minutes. Let's focus on your studying."
-                    else:
-                        mc.name "Hmm, it looks like I forgot it at home."
-                        the_person "That's fine, we can try it next time then."
-                        mc.name "I guess we'll have to. Let's focus on your studying then."
-
-                else:
-                    mc.name "Before we start I'd like you to take some serum, to help with your focus."
-                    call give_serum(the_person) from _call_give_serum_24
-                    if _return:
-                        $ took_serum = True
-                        the_person "Do you think it really helps? I didn't notice anything last time."
-                        mc.name "Trust me, it does."
-                        $ the_person.change_love(-1)
-                        $ the_person.change_obedience(1)
-                        $ the_person.event_triggers_dict["student_given_serum"] = the_person.event_triggers_dict.get("student_given_serum", 0) + 1
-                        "[the_person.title] seems unconvinced, but she drinks down the serum anyways."
-                    else:
-                        mc.name "On second thought, I think we'll see how you do without serum this session. Let's focus on your studying."
-
-
-
-            "Give her a dose of serum\n{color=#ff0000}{size=18}Requires: 110 Obedience{/size}{/color} (disabled)" if the_person.obedience < 110 or mc.inventory.get_any_serum_count() == 0:
-                pass
-
+    call student_wants_serum(the_person) from _call_student_wants_serum_student_study_university
 
     call study_normally(the_person, public = True) from _call_study_normally
 
@@ -374,10 +373,14 @@ label student_study_university(the_person):
             "Offer to tutor her at home\n{color=#ff0000}{size=18}Requires: 15 Love{/size}{/color} (disabled)" if the_person.love < 15:
                 pass
 
-    $ the_person.event_triggers_dict["times_studied_university"] = the_person.event_triggers_dict.get("times_studied_university", 0) + 1
-    if the_person.event_triggers_dict.get("current_marks",0) > 100:
-        $ the_person.event_triggers_dict["current_marks"] = 100
-    $ clear_scene()
+    python:
+        the_person.event_triggers_dict["times_studied_university"] = the_person.event_triggers_dict.get("times_studied_university", 0) + 1
+        if the_person.event_triggers_dict.get("current_marks",0) > 100:
+            the_person.event_triggers_dict["current_marks"] = 100
+        clear_scene()
+        del starting_int
+        del starting_focus
+
     call advance_time() from _call_advance_time_21
     return
 
@@ -387,9 +390,7 @@ label student_study_home(the_person):
 
     $ starting_focus = the_person.focus #Record her starting focus so we can compare it at the end (ie. after being given serum)
     $ starting_int = the_person.int
-
     $ took_serum = False #Set to true if you give her serum to study with. If the study session goes well (either from raised focus, int, or she orgasms) she'll want more in the future.
-    $ current_marks = the_person.event_triggers_dict.get("current_marks",0)
 
     if the_person.event_triggers_dict.get("times_studied_home", 0) == 0:
         the_person "So, how do you want to do this?"
@@ -402,102 +403,9 @@ label student_study_home(the_person):
     "[the_person.title] gathers up her books and spreads them out on her desk, then pulls up an extra chair and sits down beside you."
 
     mc.name "Let's talk about your grades. How have you been doing recently?"
-    the_person "Well, I got a [current_marks]%% on my last assignment."
-    if current_marks >= 80:
-        mc.name "Fantastic! A little more work and you'll be the best in your class!"
-        the_person "Thanks, you've really helped everything come together!"
-        if nora.event_triggers_dict.get("student_exam_ready", None) is None:
-            menu:
-                "You're ready to rewrite your exam":
-                    mc.name "I think you're prepared to write your exam now."
-                    the_person "Do you really think so? I'm only going to have one chance."
-                    mc.name "Look at your last few assignments, the numbers don't lie."
-                    "[the_person.possessive_title] smiles and nods happily."
-                    the_person "Can you talk to Professor [nora.last_name] for me and tell her I'm ready to rewrite it?"
-                    mc.name "Sure, I'll make sure to talk to her. There's still some time left for some more studying today."
-                    $ nora.event_triggers_dict["student_exam_ready"] = True
+    call student_study_check_marks(the_person) from _call_student_check_marks_student_study_home
 
-                "You need to study some more":
-                    mc.name "You'll be ready to rewrite your exam soon. Just a little more studying to go and I think you're ready."
-                    the_person "I hope I do well, I'm really nervous about it..."
-                    mc.name "Some more studying will help with that. Let's get to it."
-        else:
-            mc.name "Not long now until your exam, let's get some more studying done while we can."
-    elif current_marks > 50:
-        mc.name "That sounds like a pass to me!"
-        the_person "Yeah! I still need to convince Professor [nora.last_name] to let rewrite my exam, but I might be able to do this!"
-        mc.name "And we still have more time to improve."
-    else:
-        mc.name "So there's some room for improvement. That's fine, we still have time."
-
-    if the_person.event_triggers_dict.get("student_wants_serum", False): #TODO: Hook up this trigger. Basically if she's had serum before and it made her smarter.
-        the_person "I was wondering... Do you have any more of that stuff you gave me last time?"
-        the_person "I feel like it really helped me focus."
-        menu:
-            "Give her a dose of serum" if mc.inventory.get_any_serum_count() > 0:
-                mc.name "Of course, I'm glad to hear it helped."
-                call give_serum(the_person) from _call_give_serum_25
-                if _return:
-                    $ took_serum = True
-                    $ the_person.change_love(1)
-                    $ the_person.change_obedience(1)
-                    $ the_person.event_triggers_dict["student_given_serum"] = the_person.event_triggers_dict.get("student_given_serum", 0) + 1
-                    "You hand over the dose of serum. [the_person.possessive_title] drinks it down happily."
-
-
-                else:
-                    mc.name "I'm sorry, I think I left it at home by mistake. Maybe next time."
-                    the_person "Oh, okay."
-
-
-            "No serum this time":
-                mc.name "We're going to try this session without any serum."
-                the_person "Oh, okay."
-
-    else:
-        menu:
-            "Start studying":
-                pass
-
-            "Give her a dose of serum" if the_person.obedience >= 110 and mc.inventory.get_any_serum_count() > 0:
-                if the_person.event_triggers_dict.get("student_given_serum", 0) == 0:
-                    mc.name "Before we get started I'd like to try something today."
-                    the_person "Okay, what's that?"
-                    mc.name "My pharmaceutical produces a number of products. Some of them help aid focus, and I think that could also help you."
-                    mc.name "I want you to try some."
-                    "[the_person.title] thinks for a moment, then shrugs and nods."
-                    the_person "Yeah, sure. It's not illegal or anything like that, right?"
-                    mc.name "No, it's perfectly safe and legal."
-                    call give_serum(the_person) from _call_give_serum_26
-                    if _return:
-                        $ took_serum = True
-                        $ the_person.change_obedience(2)
-                        $ the_person.event_triggers_dict["student_given_serum"] = the_person.event_triggers_dict.get("student_given_serum", 0) + 1
-                        "You produces a vial of serum and hand it over to [the_person.title]. She drinks it down without hesitation."
-                        the_person "That wasn't so bad. How fast should this work?"
-                        mc.name "It will take a few minutes. Let's focus on your studying."
-                    else:
-                        mc.name "Hmm, it looks like I forgot it at home."
-                        the_person "That's fine, we can try it next time then."
-                        mc.name "I guess we'll have to. Let's focus on your studying then."
-
-                else:
-                    mc.name "Before we start I'd like you to take some serum, to help with your focus."
-                    call give_serum(the_person) from _call_give_serum_27
-                    if _return:
-                        $ took_serum = True
-                        the_person "Do you think it really helps? I didn't notice anything last time."
-                        mc.name "Trust me, it does."
-                        $ the_person.change_love(-1)
-                        $ the_person.change_obedience(1)
-                        $ the_person.event_triggers_dict["student_given_serum"] = the_person.event_triggers_dict.get("student_given_serum", 0) + 1
-                        "[the_person.title] seems unconvinced, but she drinks down the serum anyways."
-                    else:
-                        mc.name "On second thought, I think we'll see how you do without serum this session. Let's focus on your studying."
-
-            "Give her a dose of serum\n{color=#ff0000}{size=18}Requires: 110 Obedience{/size}{/color} (disabled)" if the_person.obedience < 110 or mc.inventory.get_any_serum_count() == 0:
-                pass
-
+    call student_wants_serum(the_person) from _call_student_wants_serum_student_study_home
 
     menu:
         "Study normally":
@@ -556,7 +464,6 @@ label student_study_home(the_person):
         if the_person.event_triggers_dict.get("current_marks",0) > 100:
             the_person.event_triggers_dict["current_marks"] = 100
         clear_scene()
-        del current_marks
         del starting_int
         del starting_focus
 
@@ -629,7 +536,7 @@ label study_normally(the_person, public = True):
                             $ the_person.change_slut(2, 15)
                             mc.name "Good to hear, now let's get back to it."
 
-                        "\"Help\" her push a little further.":
+                        "\"Help\" her push a little further":
                             mc.name "You can push your hips out a little further. Here."
                             $ mc.change_locked_clarity(15)
                             "You step close behind her and place your hands on her hips. You pull back gently helping her stretch while also pushing her butt against your crotch."
