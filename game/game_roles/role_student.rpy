@@ -453,7 +453,7 @@ label student_study_home(the_person):
         $ mc.log_event((the_person.title or "She") + " stayed focused while studying and learned more than usual.", "float_text_grey")
 
     # make sure she dresses up, before we go down (and maybe meet the mom)
-    $ the_person.apply_outfit()
+    $ the_person.review_outfit()
 
     if time_of_day == 3 and christina in christina.home.people:
         call study_check_up(the_person, christina) from _call_study_check_up

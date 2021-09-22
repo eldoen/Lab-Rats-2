@@ -632,7 +632,7 @@ init -2 python:
         def run_day(self): #Called at the end of the day.
             #self.outfit = self.wardrobe.decide_on_outfit(self.sluttiness) #Put on a new outfit for the day!
 
-            self.change_energy(60, add_to_log = False)
+            self.change_energy(.6 * self.max_energy, add_to_log = False)
             self.change_novelty(1, add_to_log = False)
 
             #Now we will normalize happiness towards 100 over time. Every 5 points of happiness above or below 100 results in a -+1 per time chunk, rounded towards 0.
@@ -640,13 +640,12 @@ init -2 python:
             hap_diff = __builtin__.int(hap_diff/5.0) #python defaults to truncation towards 0, so this gives us the number we should be changing our happinss by
             self.change_happiness(-hap_diff, add_to_log = False) #Apply the change
 
-            if self.arousal > (self.max_arousal/2): #If her arousal is high she masturbates at night, generating a small amount of sluttiness #TODO: Have this trigger an LTE where girls might be getting off when you walk in.
+            if self.arousal > (self.max_arousal / 2.0): #If her arousal is high she masturbates at night, generating a small amount of sluttiness #TODO: Have this trigger an LTE where girls might be getting off when you walk in.
                 self.arousal = 0
                 if self.get_opinion_score("masturbating") > 0: # Masturbating turns her on, so just getting off turns her back on!
                     self.arousal = 15*self.get_opinion_score("masturbating")
                 self.change_happiness(5+5*self.get_opinion_score("masturbating"), add_to_log = False)
                 self.run_orgasm(show_dialogue = False, trance_chance_modifier = self.get_opinion_score("masturbating"), add_to_log = False)
-
 
             remove_list = []
             for serum in self.serum_effects:

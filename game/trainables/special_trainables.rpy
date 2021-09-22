@@ -9,8 +9,7 @@ init -2 python:
             return True
         elif the_person.get_known_opinion_score("creampies") > 0 or the_person.get_known_opinion_score("bareback sex") > 0:
             return "Loves Creampies and Bareback Sex"
-        else:
-            return False
+        return False
 
     def train_hypnotic_orgasm_requirement(the_person):
         if the_person.has_role(hypno_orgasm_role):
@@ -19,8 +18,7 @@ init -2 python:
             return False
         elif the_person.arousal < 1.0*the_person.arousal/the_person.max_arousal:
             return ">50% Suggestibility, >50% Arousal"
-        else:
-            return True
+        return True
 
     def train_online_attention_whore_requirement(the_person):
         if the_person.event_triggers_dict.get("insta_known", False) and the_person.event_triggers_dict.get("dikdok_known", False) and the_person.event_triggers_dict.get("onlyfans_known", False):
@@ -29,8 +27,7 @@ init -2 python:
             return True
         elif the_person.get_known_opinion_score("showing her tits") > 0 or the_person.get_known_opinion_score("showing her ass") > 0 or the_person.get_known_opinion_score("skimpy outfits") > 0:
             return "Likes Showing her Tits, Ass, and Skimpy Outfits"
-        else:
-            return
+        return False
 
 label train_breeder_label(the_person):
     mc.name "I've got something to talk to you about [the_person.title]."
@@ -100,7 +97,7 @@ label train_breeder_label(the_person):
 
     $ manage_bc(the_person, start = False) #Stop taking birth control if you were before.
     $ the_person.add_role(breeder_role)
-    return
+    return True
 
 label train_hypnotic_orgasm(the_person):
     mc.name "There's something I want to talk to you about."
@@ -207,7 +204,7 @@ label train_hypnotic_orgasm(the_person):
     "You spend some more time with [the_person.possessive_title], reinforcing the strength of her trigger word."
     "When you're finished you feel confident you can use it to make her cum on command."
     $ the_person.add_role(hypno_orgasm_role)
-    return
+    return True
 
 label train_online_attention_whore(the_person):
     mc.name "I've got a question for you [the_person.title]."
@@ -364,8 +361,7 @@ label train_online_attention_whore(the_person):
 
         mc.name "Good, because you're built for it. You're going to have guys drooling all over the world."
         "You spend a little longer reminding her to post as often as she can, and make a mental note to check in on her progress yourself."
-    else:
-        "You reconsider putting [the_person.possessive_title] on the internet for other men to ogle at."
-        return False #You didn't actually set anything up, so you don't have to pay the training cost (you get the account info for free, congrats)
+        return True
 
-    return
+    "You reconsider putting [the_person.possessive_title] on the internet for other men to ogle at."
+    return False #You didn't actually set anything up, so you don't have to pay the training cost (you get the account info for free, congrats)

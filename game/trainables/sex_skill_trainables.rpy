@@ -31,7 +31,7 @@ label train_foreplay_label(the_person): #TODO: All of these should require you h
     the_person "Oh, I see..."
     $ the_person.change_sex_skill("Foreplay", 1)
     "You keep [the_person.title]'s attention fixed on the screen until you think the lesson has sunk into her suggestible mind."
-    return
+    return True
 
 label train_oral_label(the_person):
     mc.name "I want to talk to you about your oral skills. You really need to work on it."
@@ -42,7 +42,7 @@ label train_oral_label(the_person):
     mc.name "It's just a matter of practice. You'll get rid of that gag reflex in no time..."
     $ the_person.change_sex_skill("Oral", 1)
     "You keep [the_person.title]'s attention fixed on the screen until you think the lesson has sunk into her suggestible mind."
-    return
+    return True
 
 label train_vaginal_label(the_person):
     mc.name "I need to talk to you about your bedroom skills. They need some work."
@@ -53,7 +53,7 @@ label train_vaginal_label(the_person):
     "She watches without saying anything, eyes fixed on the videos."
     $ the_person.change_sex_skill("Vaginal", 1)
     "You keep feeding her more porn until you think the lesson has sunk into her suggestible mind."
-    return
+    return True
 
 label train_anal_label(the_person):
     mc.name "Let's talk about anal. You have a lot you need to learn if you're going to be impressing anyone."
@@ -63,4 +63,4 @@ label train_anal_label(the_person):
     "[the_person.title] watches without saying anything, her attention grabbed completely by the videos."
     $ the_person.change_sex_skill("Anal", 1)
     "You keep feeding her more porn until you think the lesson has sunk into her suggestible mind."
-    return
+    return True

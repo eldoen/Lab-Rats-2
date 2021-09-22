@@ -27,7 +27,7 @@ label train_slut_label(the_person):
     "You spend time talking to [the_person.title], carefully moulding her personality while she is in this suggestible state."
     $ the_person.change_slut(5)
     "When you're done she's happily agreeing with you that she should be \"just a little bit\" sluttier."
-    return
+    return True
 
 label train_obedience_label(the_person):
     if the_person.obedience < 100:
@@ -50,7 +50,7 @@ label train_obedience_label(the_person):
     mc.name "I'm absolutely sure this is what you need to do. Let's talk about it, I'm sure I can convince you..."
     $ the_person.change_obedience(5)
     "When you're done she's realized that you're right, and she should think less and follow instructions more."
-    return
+    return True
 
 label train_love_label(the_person):
     if the_person.love < 0:
@@ -71,7 +71,7 @@ label train_love_label(the_person):
     mc.name "Let's just spend some time together, I'm sure you'll feel the same way soon..."
     $ the_person.change_love(5)
     "When you're done she's warmed significantly to you, mostly thanks to the orgasm-trance you put her in."
-    return
+    return True
 
 label train_suggest_label(the_person):
     mc.name "How are you feeling right now [the_person.title]?"
@@ -82,7 +82,7 @@ label train_suggest_label(the_person):
     mc.name "You should try and capture this feeling more often. Let me give you some advice..."
     $ the_person.change_suggest(2)
     "You spend some time weakening [the_person.possessive_title]'s defenses against slipping into a trance when she cums."
-    return
+    return True
 
 label train_charisma_label(the_person):
     mc.name "You should spend some time and work on your people skills [the_person.title]."
@@ -91,7 +91,7 @@ label train_charisma_label(the_person):
     mc.name "Well, I've got some ideas. Let me tell you..."
     $ the_person.change_cha(1)
     "You explain to [the_person.possessive_title] how best to make friends and influence people."
-    return
+    return True
 
 label train_intelligence_label(the_person):
     mc.name "You need to try and smarten up [the_person.title]. Go back to school, take lessons on line, whatever."
@@ -100,7 +100,7 @@ label train_intelligence_label(the_person):
     mc.name "Well, I've got some ideas. Let me tell you..."
     $ the_person.change_int(1)
     "You explain to [the_person.possessive_title] how she should get smarter."
-    return
+    return True
 
 label train_focus_label(the_person):
     mc.name "You need to be a more focused person [the_person.title]."
@@ -109,4 +109,4 @@ label train_focus_label(the_person):
     mc.name "Well, let me give you some ideas..."
     $ the_person.change_focus(1)
     "You make use of [the_person.possessive_title]'s moldable state to strengthen her mental willpower."
-    return
+    return True
