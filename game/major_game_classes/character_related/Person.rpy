@@ -1348,7 +1348,7 @@ init -2 python:
                 if amount > 0:
                     max_modified_to = 300
                 else:
-                    max_modified_to = -10
+                    max_modified_to = 0
 
             if amount > 0:
                 if amount + self.sluttiness > max_modified_to:
@@ -1569,6 +1569,7 @@ init -2 python:
                 amount = 100 - self.novelty
             elif amount + self.novelty < 0:
                 amount = self.novelty
+            self.novelty += amount
 
             if add_to_log and amount != 0:
                 display_name = self.create_formatted_title("???")
