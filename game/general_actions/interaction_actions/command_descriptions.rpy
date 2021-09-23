@@ -749,7 +749,7 @@ label suck_demand_label(the_person):
         "Let her worship your cock":
             "You sigh and enjoy the feeling of her warm, wet blowjob."
             mc.name "That's a good girl..."
-            call fuck_person(the_person, private = private, start_position = deepthroat, skip_intro = True) from _call_fuck_person_87
+            call fuck_person(the_person, private = private, start_position = deepthroat, start_object = mc.location.get_object_with_trait("Kneel"), skip_intro = True) from _call_fuck_person_87
 
 
         "Grab her head and fuck her mouth":
@@ -775,7 +775,7 @@ label suck_demand_label(the_person):
             else:
                 "[the_person.title] squirms and gags reflexively, but she seems to be trying her best to stay still as you fuck her face."
 
-            call fuck_person(the_person, private = private, start_position = skull_fuck, skip_intro = True) from _call_fuck_person_88
+            call fuck_person(the_person, private = private, start_position = skull_fuck, start_object = mc.location.get_object_with_trait("Kneel"), skip_intro = True) from _call_fuck_person_88
 
     $ the_person.call_dialogue("sex_review", the_report = _return)
     $ the_person.review_outfit()
