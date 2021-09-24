@@ -868,7 +868,10 @@ label mom_date_intercept(the_mom, the_date): #TODO: Add some relationship awaren
         "She steps closer to you and puts a hand to your crotch. It twitches in response, quickly growing hard."
         the_mom "I don't want you out getting in trouble with girls if all you really need is some physical relief."
         the_mom "If you decide to stay home, maybe I can... take care of this for you?"
-        mc.name "[the_mom.title], [the_date.title] won't be happy with me if I cancel last minute."
+        if the_date.is_family():
+            mc.name "[the_mom.title], my date won't be happy with me if I cancel last minute."
+        else:
+            mc.name "[the_mom.title], [the_date.title] won't be happy with me if I cancel last minute."
         $ the_mom.draw_person(position = "kneeling1")
         "[the_mom.possessive_title] gets onto her knees in front of you, face level with the large bulge in your pants."
         if the_mom.has_taboo("sucking_cock"):
