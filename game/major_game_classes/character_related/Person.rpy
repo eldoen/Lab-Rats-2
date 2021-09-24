@@ -543,7 +543,7 @@ init -2 python:
             # Check for serum overdoses after expired effects have been removed.
             over_tolerance_count = len(self.serum_effects) - self.serum_tolerance
             if over_tolerance_count > 0:
-                self.change_happiness(over_tolerance_count*5, add_to_log = False)
+                self.change_happiness(over_tolerance_count*-5, add_to_log = False)
                 self.add_situational_slut("over serum tolerance", over_tolerance_count*-5, "My body feels strange...")
                 self.add_situational_obedience("over serum tolerance", over_tolerance_count*-5, "My body feels strange...")
             else:

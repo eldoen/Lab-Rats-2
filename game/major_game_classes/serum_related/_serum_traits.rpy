@@ -638,7 +638,7 @@ init -1:
             clarity_cost = 30)
 
         simple_aphrodesiac = SerumTrait(name = "Inhibition Suppression",
-            desc = "Direct delivery of alchoholic molecules to the subject's brain produces notably reduced inhibitions. Side effects are common, but always include drowsiness.",
+            desc = "Direct delivery of alcoholic molecules to the subject's brain produces notably reduced inhibitions. Side effects are common, but always include drowsiness.",
             positive_slug = "+$15 Value, +10 Sluttiness (Max 30)",
             negative_slug = "-20 Energy, +50 Serum Research",
             value_added = 15,
