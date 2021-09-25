@@ -891,7 +891,7 @@ label aunt_share_drinks_label(the_person):
                                 the_person "It doesn't even have a bra for me!"
                             mc.name "I think it would be a good look for you. You should try it on."
                             "[the_person.possessive_title] blushes and shakes her head."
-                            the_person "I don't think I can... Maybe that extra glass of wine wasn't such a good idea [the_person.mc_title], its gone straight to my head."
+                            the_person "I don't think I can... Maybe that extra glass of wine wasn't such a good idea [the_person.mc_title], it's gone straight to my head."
                             "She sits down on her bed and sighs."
                             the_person "I think I just need to have a rest. You can help me out with this some other day, okay?"
                             "[the_person.title] lies down and seems to be drifting off to sleep almost instantly. You say goodbye and head to the door."
