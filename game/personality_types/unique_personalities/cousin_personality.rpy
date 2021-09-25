@@ -287,7 +287,7 @@ label cousin_flirt_response_high(the_person):
                     mc.name "Come on, you're really going to make me wait?"
                     $ the_person.draw_person(the_animation = blowjob_bob)
                     $ mc.change_locked_clarity(15)
-                    "[the_person.possessive_title] smiles mischeviously and grabs her tits, jiggling them in front of your face."
+                    "[the_person.possessive_title] smiles mischievously and grabs her tits, jiggling them in front of your face."
                     the_person "Yeah, I am. Be a patient boy and maybe you'll get to see these later."
                     "She winks and lets go of her tits. It takes a second before they stop jiggling completely."
                     $ the_person.draw_person()
@@ -606,7 +606,7 @@ label cousin_condomless_sex_taboo_break(the_person):
                 the_person "Me too, but we need to be really careful if you're going to take me bareback. I'm not on birth control."
                 $ the_person.update_birth_control_knowledge()
                 mc.name "Fine, I'll pull out."
-            the_person "You better. If you get me prengant you're going to be the one to tell both of our moms."
+            the_person "You better. If you get me pregnant you're going to be the one to tell both of our moms."
         the_person "Come on, hurry up and fuck me before I realise this is a bad idea."
 
     else:

@@ -175,7 +175,7 @@ label work_walk_in_label(the_person): #Walk into the room and find someone mastu
                         if office_punishment.is_active():
                             menu:
                                 "Punish her for her inappropriate behaviour":
-                                    mc.name "Of course, this will also be going on your record. There may be furthur punishment for this inappropriate behaviour"
+                                    mc.name "Of course, this will also be going on your record. There may be further punishment for this inappropriate behaviour."
                                     $ the_person.add_infraction(Infraction.inappropriate_behaviour_factory())
 
                                 "Let it go":

@@ -58,7 +58,7 @@ label train_vaginal_label(the_person):
 label train_anal_label(the_person):
     mc.name "Let's talk about anal. You have a lot you need to learn if you're going to be impressing anyone."
     "[the_person.possessive_title] nods passively."
-    mc.name "Here, I've got some examples of what you should be able to do. Let's take a look and I'll tell you waht to do..."
+    mc.name "Here, I've got some examples of what you should be able to do. Let's take a look and I'll tell you what to do..."
     "You pull out your phone and bring up a collection of porn clips, each one showing a girl getting happily railed in the ass."
     "[the_person.title] watches without saying anything, her attention grabbed completely by the videos."
     $ the_person.change_sex_skill("Anal", 1)

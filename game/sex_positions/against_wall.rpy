@@ -241,7 +241,7 @@ label outro_against_wall(the_girl, the_location, the_object):
     $ the_choice = climax_controller.show_climax_menu()
     if the_choice == "Cum inside of her":
         if mc.condom:
-            "You push forward as you climax, thrusting your cock as deep inside of [the_girl.possessive_title] as you can manage. She pants quitly as you pulse your hot cum into the condom you're wearing."
+            "You push forward as you climax, thrusting your cock as deep inside of [the_girl.possessive_title] as you can manage. She pants quietly as you pulse your hot cum into the condom you're wearing."
             $ the_girl.call_dialogue("cum_condom")
             $ climax_controller.do_clarity_release(the_girl)
             "Once your climax has passed you step back and pull your cock out from [the_girl.title]. Your condom is ballooned out, filled with your seed."

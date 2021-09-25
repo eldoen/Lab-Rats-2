@@ -117,7 +117,7 @@ label outro_skull_fuck(the_girl, the_location, the_object):
             $ the_girl.discover_opinion("drinking cum")
             "When you're done she closes her mouth and happily gulps down all of the cum you had landed in there."
         else:
-            "When you're done she lets your cum dripple out of her mouth, down her chin, and finally between her tits."
+            "When you're done she lets your cum dribble out of her mouth, down her chin, and finally between her tits."
         $ the_girl.call_dialogue("cum_face")
 
 

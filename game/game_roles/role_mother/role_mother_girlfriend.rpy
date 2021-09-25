@@ -87,7 +87,7 @@ label mom_girlfriend_intro(the_person):
 
 
         "Order her to agree" if the_person.obedience >= 200:
-            "You step closer to [the_person.title] and put your hand on the back of her neck. Her breath catches in her throat as whe waits for you to speak."
+            "You step closer to [the_person.title] and put your hand on the back of her neck. Her breath catches in her throat as she waits for you to speak."
             mc.name "Because I don't want to share you with anyone else. I want you to be mine, and only mine. Do you understand?"
             "She nods obediently, eyes wide and fixed on yours. She trembles slightly under your touch."
             the_person "Yes [the_person.mc_title], I understand. I'll be whatever you want me to be."

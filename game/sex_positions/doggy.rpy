@@ -218,7 +218,7 @@ label scene_doggy_2(the_girl, the_location, the_object):
                     $ the_girl.change_arousal(the_girl.get_opinion_score("being submissive"))
                     the_girl "Ah! Oh god [the_girl.mc_title], you're going to rip me in half!"
                     "Despite her reservations [the_girl.title] moans in pleasure as you pound her cunt."
-                    mc.name "Do you you like it."
+                    mc.name "Do you like it."
                     the_girl "It's so big, I... I can't take it! I... I... I love it! Ah!"
                     "Her breath comes in short gasps between thrusts. Your own stamina forces you to slow down, so you settle into a more maintainable rhythm while [the_girl.title] recovers."
                 else:
@@ -307,7 +307,7 @@ label transition_doggy_doggy_anal(the_girl, the_location, the_object):
             if the_girl.get_opinion_score("being submissive") > 0 or the_girl.get_opinion_score("anal sex"):
                 the_girl "Ah! Yes! Tear that ass up!"
                 $ the_girl.change_arousal(5*( the_girl.get_opinion_score("being submissive") + the_girl.get_opinion_score("anal sex") ))
-                "Using her pussy juice as lube you lay into her tight ass, waisting no time in fucking her hard."
+                "Using her pussy juice as lube you lay into her tight ass, wasting no time in fucking her hard."
 
             else:
                 the_girl "Oh fuck! FUCK!"

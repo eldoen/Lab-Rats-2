@@ -698,7 +698,7 @@ init -2 python:
             eff_amount = self.hr_progress(mc.charisma,mc.int,mc.hr_skill)
             self.listener_system.fire_event("player_efficiency_restore", amount = eff_amount)
             self.listener_system.fire_event("general_work")
-            renpy.say(None, "You settle in and spend a few hours filling out paperwork, raising company efficency by " + str(eff_amount )+ "%%.")
+            renpy.say(None, "You settle in and spend a few hours filling out paperwork, raising company efficiency by " + str(eff_amount )+ "%%.")
             return eff_amount
 
         def hr_progress(self,cha,int,skill): #Don't compute efficiency cap here so that player HR effort will be applied against any efficiency drop even though it's run before the rest of the end of the turn.

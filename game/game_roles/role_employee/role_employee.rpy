@@ -449,7 +449,7 @@ label employee_performance_review(the_person):
                                         the_person "Turn around, let me take a look at your ass."
                                         $ the_person.draw_person(position = "back_peek", the_animation = ass_bob, animation_effect_strength = 0.4)
                                         $ mc.change_locked_clarity(10)
-                                        "[the_person.possessive_title] obediently follows your instructions. She bounces her hips, jiggling her butt as you oggle her."
+                                        "[the_person.possessive_title] obediently follows your instructions. She bounces her hips, jiggling her butt as you ogle her."
 
                                     mc.name "Okay, that's enough."
                                     $ the_person.draw_person()

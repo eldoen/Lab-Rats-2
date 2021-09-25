@@ -1425,7 +1425,7 @@ label reserved_improved_serum_unlock(the_person):
     the_person "Ah, so you had noticed that too? I have a hypothesis that an orgasm opens chemical receptors that are normally blocked."
     mc.name "What else can we do if we assume that is true? Does that open up any more paths for our research?"
     the_person "If it's true I could leverage the effect to induce greater effects in our subjects."
-    "[the_person.possessive_title] thinks for a long moment, then smiles mischeviously."
+    "[the_person.possessive_title] thinks for a long moment, then smiles mischievously."
     the_person "But we'll need to do some experiments to be sure."
     mc.name "What sort of experiments?"
     the_person "I want to take a dose of serum myself, and you can record the effects."

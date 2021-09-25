@@ -826,16 +826,16 @@ label introvert_cum_pullout(the_person):
                 the_person "Fuck, I want you to feel your cum inside me [the_person.mc_title]!"
                 the_person "Do you... want to take the condom off? Just this once, I'm on the pill."
                 $ the_person.update_birth_control_knowledge()
-                "She moans deserately."
+                "She moans desperately."
                 the_person "Come on, I need it so badly!"
             else:
                 the_person "Oh fuck... Do you want to knock me up?"
                 "She seems almost desperate as asks between breathy moans."
                 the_person "You can take the condom off and cum inside me. I want you to fuck my life up and get me pregnant!"
-            #TODO: Add some more varients if she has a boyfriend or something
-            #TODO: Add a varient if she's related to you ("Get me pregnant with our incest baby!")
+            #TODO: Add some more variants if she has a boyfriend or something
+            #TODO: Add a variant if she's related to you ("Get me pregnant with our incest baby!")
 
-            menu: #TODO: Add a varient of this normally so you can stealth a girl (don't do that in real life, it's super fucked up).
+            menu: #TODO: Add a variant of this normally so you can stealth a girl (don't do that in real life, it's super fucked up).
                 "Take off the condom.":
                     "You don't have much time to spare. You pull out, barely clearing her pussy, and pull the condom off as quickly as you can manage."
                     $ mc.condom = False
@@ -1344,7 +1344,7 @@ label introvert_improved_serum_unlock(the_person):
     the_person "Ah, so you had noticed that too? I have a hypothesis that an orgasm opens chemical receptors that are normally blocked."
     mc.name "What else can we do if we assume that is true? Does that open up any more paths for our research?"
     the_person "If it's true I could leverage the effect to induce greater effects in our subjects."
-    "[the_person.possessive_title] thinks for a long moment, then smiles mischeviously."
+    "[the_person.possessive_title] thinks for a long moment, then smiles mischievously."
     the_person "But we'll need to do some experiments to be sure."
     mc.name "What sort of experiments?"
     the_person "I want to take a dose of serum myself, and you can record the effects."
@@ -1500,7 +1500,7 @@ label introvert_anal_sex_taboo_break(the_person):
             the_person "Oh fuck..."
         else:
             the_person "Oh my god, you're actually going to do it! Fuck, I hope you even fit!"
-            mc.name "Don't worry, I'll stetch out your ass like I've stretched out all your other holes."
+            mc.name "Don't worry, I'll stretch out your ass like I've stretched out all your other holes."
     return
 
 label introvert_condomless_sex_taboo_break(the_person):

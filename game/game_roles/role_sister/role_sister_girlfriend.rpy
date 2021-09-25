@@ -333,7 +333,7 @@ label sister_girlfriend_mom_blessing(the_person):
             $ the_person.change_happiness(-10)
             $ the_person.change_love(-1)
             the_person "I don't think that's a very funny joke [the_person.mc_title]."
-            "[the_person.title] scowls at you. You fake a laugh and hold you your hands in innocence"
+            "[the_person.title] scowls at you. You fake a laugh and hold up your hands in innocence."
             mc.name "I'm sorry, maybe it was funnier in our heads."
             "[the_person.possessive_title] lets the subject drop for now."
 

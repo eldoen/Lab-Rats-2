@@ -260,7 +260,7 @@ label bimbo_clothing_reject(the_person):
     else:
         if the_person.sluttiness > 60:
             the_person "That's not really an outfit, is it? I like something a little cuter - some heels, add a dash of pink, and a top to show off my tits!"
-            "[the_person.title] looks the outfit over again for a momnt and shakes her head."
+            "[the_person.title] looks the outfit over again for a moment and shakes her head."
             the_person "Yeah, this just isn't going to do it. Thanks for the thought though!"
         else:
             the_person "Aww, I don't think I could ever wear something like that! I wish I could though, could you imagine the looks I would get? It would be. So. Hot."
@@ -356,7 +356,7 @@ label bimbo_sex_angry_reject(the_person):
         the_person "Perv."
     elif the_person.sluttiness < 20:
         the_person "Uh, what the ACTUAL FUCK?! What do you think you're doing? Just saying that must be... illegal, or something!"
-        "[the_person.title] glares at you you and walks away."
+        "[the_person.title] glares at you and walks away."
     else:
         the_person "Eew! No, no, no! I will NEVER do that with ANYONE! Eew!"
         "[the_person.title] shakes her head and walks away."
@@ -1374,7 +1374,7 @@ label bimbo_improved_serum_unlock(the_person):
     the_person "Ah, so you had noticed that too? I have a hypothesis that an orgasm opens chemical receptors that are normally blocked."
     mc.name "What else can we do if we assume that is true? Does that open up any more paths for our research?"
     the_person "If it's true I could leverage the effect to induce greater effects in our subjects."
-    "[the_person.possessive_title] thinks for a long moment, then smiles mischeviously."
+    "[the_person.possessive_title] thinks for a long moment, then smiles mischievously."
     the_person "But we'll need to do some experiments to be sure."
     mc.name "What sort of experiments?"
     the_person "I want to take a dose of serum myself, and you can record the effects."

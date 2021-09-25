@@ -425,7 +425,7 @@ label friends_help_friends_be_sluts_label():
                     person_one "Oh come on, so are you. Wouldn't you like to be at home right now with a vibe pressed up against your clit?"
                     $ the_group.draw_person(person_two)
                     $ mc.change_locked_clarity(10)
-                    "[person_two.title] laughes and shrugs, then suddenly tenses up and starts to blush when she notices you at the door."
+                    "[person_two.title] laughs and shrugs, then suddenly tenses up and starts to blush when she notices you at the door."
                     person_two "Uh, hello [person_two.mc_title]. I was just... Uhh..."
                     $ the_group.draw_person(person_one)
                     person_one "Hey [person_one.mc_title], don't mind her, she's just horny and thinking about her vibrator at home."

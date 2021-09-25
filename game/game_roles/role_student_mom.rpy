@@ -412,7 +412,7 @@ label student_mom_appologise_label(the_person): #TODO Provide a way to not activ
     the_person "Could I speak with you for a moment, privately?"
     $ renpy.show(name = "living room", what = house_background, layer = "master")
     "You nod and follow her to the sitting room."
-    the_person "I wanted to appologise for my moment of indiscretion."
+    the_person "I wanted to apologize for my moment of indiscretion."
     the_person "I was angry, and lonely, and drunk, and I lost control. I'm sorry."
     mc.name "You mean when you kissed me?"
     "She nods meekly."

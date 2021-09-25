@@ -1580,7 +1580,7 @@ label student_test(the_person): #TODO: Hook this up
                 $ the_person.add_situational_slut("tutor", 20, "My favorite tutor deserves a special reward!")
                 $ the_person.draw_person(position = "blowjob", special_modifier = "blowjob")
                 if the_person.sex_skills["Oral"] >= 4:
-                    "She winks at you before slipping the tip of your cock into her mouth and slams herself down the the base."
+                    "She winks at you before slipping the tip of your cock into her mouth and slams herself down to the base."
                     "[the_person.title] gags slightly, then repositions on her knees and starts to bob her head."
                     call fuck_person(the_person, private = True, start_position = deepthroat, skip_intro = True)
                     $ the_report = _return

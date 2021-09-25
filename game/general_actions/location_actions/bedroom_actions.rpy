@@ -76,7 +76,7 @@ label faq_loop:
     jump faq_loop
     return
 
-label bedroom_masturbation(location_description = "home", edging_available = True, should_advance_time = True): #Baseline efficiency for masturbating. Advances time, consumes energy, and releases Clarity inefficently.
+label bedroom_masturbation(location_description = "home", edging_available = True, should_advance_time = True): #Baseline efficiency for masturbating. Advances time, consumes energy, and releases Clarity inefficiently.
     if location_description == "home":
         "You sit down in front of your computer and start to look around for some porn to jerk off to."
 

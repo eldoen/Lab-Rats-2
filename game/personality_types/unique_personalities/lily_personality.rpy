@@ -697,7 +697,7 @@ label lily_condom_demand(the_person):
         the_person "You have one on you, right?"
     else:
         the_person "Put on a condom first, alright?"
-        the_person "Better hurry, I might have second thoughs if you make me wait too long."
+        the_person "Better hurry, I might have second thoughts if you make me wait too long."
     return
 
 label lily_condom_ask(the_person):
@@ -707,7 +707,7 @@ label lily_condom_ask(the_person):
     elif the_person.get_opinion_score("creampies") > 0:
         # the_person "If you want to cum inside me you should put on a condom."
         # the_person "I know it's less fun than fucking raw, but it's still better than pulling out, right?"
-        the_person "Put on a condom, then you don't need to worry about cuming inside me."
+        the_person "Put on a condom, then you don't need to worry about cumming inside me."
         $ the_person.discover_opinion("creampies")
     else:
         the_person "You should really put on a condom. It would be really bad if you... finished inside of me."

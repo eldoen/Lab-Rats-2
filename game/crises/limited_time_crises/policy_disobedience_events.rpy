@@ -13,7 +13,7 @@ init -1 python:
         if highest_active_priority != uniform_disobedience_priority: #ie. only run this function if we have the highest priority, otherwise some other policy is responsible for it.
             return
 
-        for person in [x for x in mc.business.get_employee_list() if x.should_wear_uniform() and x.is_wearing_uniform()]:
+        for person in [x for x in mc.business.get_employee_list() if x.should_wear_uniform() and x.planned_uniform and x.is_wearing_uniform()]:
             disobedience_chance = 0
             if not person.judge_outfit(person.planned_uniform):
                 disobedience_chance = person.planned_uniform.slut_requirement - __builtin__.int( person.effective_sluttiness() * (person.obedience / 120.0) ) #Girls who find the outfit too slutty might disobey, scaled by their obedience
@@ -69,7 +69,7 @@ label uniform_disobedience_event(planned_uniform, the_person):
             the_person "I just can't wear it [the_person.mc_title], it's demeaning!"
             the_person "If I wear your uniform I would have my tits out, all day long! How am I supposed to focus like that?"
         else:
-            the_person "I'm sorry [the_person.mc_title], I know I should be waring it, but..."
+            the_person "I'm sorry [the_person.mc_title], I know I should be wearing it, but..."
             the_person "It's just so revealing! If I could wear a bra, or anything, to keep me a little covered I would be more comfortable."
     elif planned_uniform.underwear_visible():
         if the_person.obedience < 120:

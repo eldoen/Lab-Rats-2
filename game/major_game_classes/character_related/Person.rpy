@@ -494,7 +494,7 @@ init -2 python:
             else:
                 eyes = None
 
-            if renpy.random.randint(0,100) < 60: #Have heights that roughly match (but not exactly, and readjusted for the the general scaling factor.)
+            if renpy.random.randint(0,100) < 60: #Have heights that roughly match (but not exactly, and readjusted for the general scaling factor.)
                 height = (self.height/0.8) * (renpy.random.randint(95,105)/100.0)
                 if height > 1.0:
                     height = 1.0
@@ -1327,11 +1327,12 @@ init -2 python:
                 if amount < 0: #Never subtract love because of a cap, only limit how much they gain.
                     amount = 0
 
+            if self.love + amount < -100:
+                amount = -100 - self.love
+            elif self.love + amount > 100:
+                amount = 100 - self.love
+
             self.love += amount
-            if self.love < -100:
-                self.love = -100
-            elif self.love > 100:
-                self.love = 100
 
             if add_to_log:
                 display_name = self.create_formatted_title("???")
@@ -1344,23 +1345,15 @@ init -2 python:
                 mc.log_event(display_name + ": " + log_string, "float_text_pink")
 
         def change_slut(self, amount, max_modified_to = None, add_to_log = True):
-            if max_modified_to is None:
-                if amount > 0:
-                    max_modified_to = 300
-                else:
-                    max_modified_to = 0
+            if max_modified_to and self.sluttiness + amount > max_modified_to:
+                amount = max_modified_to - self.sluttiness
+                if amount < 0:
+                    amount = 0
 
-            if amount > 0:
-                if amount + self.sluttiness > max_modified_to:
-                    amount = max_modified_to - self.sluttiness
-                    if amount < 0:
-                        amount = 0
-
-            if amount < 0:
-                if amount + self.sluttiness < max_modified_to:
-                    amount = max_modified_to - self.sluttiness
-                    if amount > 0:
-                        amount = 0
+            if self.sluttiness + amount < 0:
+                amount = -self.sluttiness
+            elif self.sluttiness + amount > 300:
+                amount = 300 - self.sluttiness
 
             self.sluttiness += amount
 
@@ -1368,11 +1361,11 @@ init -2 python:
                 display_name = self.create_formatted_title("???")
                 if self.title:
                     display_name = self.title
-                if amount != 0:
-                    return_report = ("+" if amount > 0 else "") + str(amount) + " Sluttiness"
+                if amount == 0:
+                    log_string = "No Effect on Sluttiness"
                 else: #It is exactly 0
-                    return_report = "No Effect on Sluttiness"
-                mc.log_event(display_name + ": " + return_report, "float_text_pink")
+                    log_string = ("+" if amount > 0 else "") + str(amount) + " Sluttiness"
+                mc.log_event(display_name + ": " + log_string, "float_text_pink")
 
         def change_slut_temp(self, amount, add_to_log = True):
             self.change_slut(amount, add_to_log = add_to_log)

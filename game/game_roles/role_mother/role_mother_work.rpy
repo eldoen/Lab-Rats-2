@@ -702,7 +702,7 @@ label mom_work_slutty_report(the_person):
                     the_person "It was certainly all younger women he was looking at. I had to nip that in the bud!"
                     the_person "When I had a chance I got the girls out..."
                     $ mc.change_locked_clarity(30)
-                    "She puffs out her chest and wiggles her shoulders, emphasising her tits with a jiggle."
+                    "She puffs out her chest and wiggles her shoulders, emphasizing her tits with a jiggle."
                     the_person "... to remind him why he keeps me around. I think that set him straight!"
 
                 elif random_result == 2: # G) Showed her tits to help secure a big deal for her boss.

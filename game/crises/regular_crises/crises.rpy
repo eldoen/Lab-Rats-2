@@ -406,7 +406,7 @@ label broken_AC_crisis_label():
                     $ girl_choice = None
                     "The girls laugh and tease each other as they strip down, and they all seem to be more comfortable with the heat once they are less clothed."
                     "For a while all of the girls work in various states of undress while under your watchful eye."
-                    "The repair man shows up early, and you lead him directly to the the AC unit. The problem turns out to be a quick fix, and production is back to a comfortable temperature within a couple of hours."
+                    "The repair man shows up early, and you lead him directly to the AC unit. The problem turns out to be a quick fix, and production is back to a comfortable temperature within a couple of hours."
                 else:
                     "The other girls exchange glances, and everyone seems decides it's best not to take this too far."
                     "They get back to work fully dressed, and soon the repair man has shown up. The problem turns out to be a quick fix, and production is back to a comfortable temperature within a couple of hours."
@@ -416,7 +416,7 @@ label broken_AC_crisis_label():
                     "The repair man shows up early, and you lead him directly to the AC unit. The problem turns out to be a quick fix, and production is back to a comfortable temperature within a couple of hours."
                 else:
                     "[the_person.title] gets back to work, still fully clothed."
-                    "The repair man shows up early, and you lead him directly to the the AC unit. The problem turns out to be a quick fix, and production is back to a comfortable temperature within a couple of hours."
+                    "The repair man shows up early, and you lead him directly to the AC unit. The problem turns out to be a quick fix, and production is back to a comfortable temperature within a couple of hours."
 
             if removed_something:
                 $ broken_AC_crisis_update_sluttiness();
@@ -1468,7 +1468,7 @@ label invest_opportunity_crisis_label():
         "Offer [rep_name] a tour":
             mc.name "That sounds like a wonderful idea. Would you be available this coming Monday?"
             rep_name "Monday will be fine. Thank you for your time [mc.name], we will be in touch again soon."
-            "[rep_name] hangs up the phone. You make a note on your calender for next Monday, leaving a reminder to be in the office during working hours."
+            "[rep_name] hangs up the phone. You make a note on your calendar for next Monday, leaving a reminder to be in the office during working hours."
             $ add_invest_rep_visit_action(rep_name)
 
         "Turn [rep_name] away":
@@ -1838,7 +1838,7 @@ label work_chat_crisis_label:
                         if the_person.get_opinion_score("drinking cum") > 0:
                             "[the_person.possessive_title] gets up from her chair and kneels down between your legs."
                             $ the_person.draw_person(position="blowjob")
-                            the_person "Do you you want to cum in my mouth?"
+                            the_person "Do you want to cum in my mouth?"
                             $ the_person.draw_person(position="blowjob", special_modifier="blowjob")
                             $ climax_controller = ClimaxController(["Cum in her mouth","mouth"])
                             $ climax_controller.show_climax_menu()
@@ -2361,7 +2361,7 @@ label cat_fight_crisis_label():
                     $ the_group.draw_person(loser, position = "against_wall", the_animation = tit_bob, animation_effect_strength = 0.8)
                     "[loser.title] looks right into your eyes. She doesn't look embarrassed - in fact it looks like she's turned on by you watching her get finger banged right in the middle of the office."
                     $ mc.change_locked_clarity(20)
-                    loser "I'm goint to... I'm going to... AH!"
+                    loser "I'm going to... I'm going to... AH!"
                     $ loser.change_arousal(25)
                     $ the_group.draw_person(loser, position = "against_wall", emotion = "orgasm", the_animation = tit_bob, animation_effect_strength = 1.0)
                     winner "That's it, cum for me slut!"
@@ -2903,7 +2903,7 @@ label horny_at_work_crisis_label():
     elif the_cause == "tits_visible":
         $ the_person.draw_person()
         if the_person.has_large_tits():
-            "You're at your desk, trying hard to focus. Unfortunately, [the_person.title]'s tits are on prominent display, bouncing pleasently every time she takes a step."
+            "You're at your desk, trying hard to focus. Unfortunately, [the_person.title]'s tits are on prominent display, bouncing pleasantly every time she takes a step."
             $ mc.change_locked_clarity(20)
             "The more you try and ignore them the hornier you get, and it's starting to get in the way of your work."
         else:
@@ -3362,7 +3362,7 @@ label horny_at_work_crisis_label():
                                 "Frustrated with her service, you let [the_person.title] out from under your desk and finish yourself off with your hand."
                                 $ climax_controller = ClimaxController(["Cum!","masturbation"])
                                 $ climax_controller.show_climax_menu()
-                                "You grunt as you shoot your load efficently into some tissue."
+                                "You grunt as you shoot your load efficiently into some tissue."
                                 $ climax_controller.do_clarity_release()
                             else:
                                 "Fully spent, you let [the_person.title] out from under your desk and get back to work, mind now crystal clear."
@@ -3430,7 +3430,7 @@ label horny_at_work_crisis_label():
                                         "You still haven't gotten off, so you stroke your cock until you cum."
                                         $ climax_controller = ClimaxController(["Cum!","masturbation"])
                                         $ climax_controller.show_climax_menu()
-                                        "You grunt and blow your load efficently into some tissue."
+                                        "You grunt and blow your load efficiently into some tissue."
                                         $ climax_controller.do_clarity_release()
                                         "With that finally taken care of, you get yourself cleaned up and get back to work."
                                         "Thanks to your post orgasm clarity you're able to focus perfectly."

@@ -104,7 +104,7 @@ label mom_sex_responses_oral(the_person):
             "[the_person.possessive_title] quivers underneath your tongue."
             the_person "Be gentle, that's a very sensitive area!"
         else:
-            the_person "You really should't [the_person.mc_title]... Maybe we should do something else?"
+            the_person "You really should not [the_person.mc_title]... Maybe we should do something else?"
             "She quivers underneath your tongue, obviously enjoying your stimulation."
             the_person "Maybe just... just a little bit more..."
     elif response_value < 40:

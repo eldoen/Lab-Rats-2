@@ -223,7 +223,7 @@ label strip_ask_doggy_anal(the_girl, the_clothing, the_location, the_object):
             mc.name "Take it off for me."
             $ the_girl.draw_animated_removal(the_clothing, position = doggy.position_tag)
             "She leans forward and pops off your dick. [the_girl.possessive_title] struggles out of her [the_clothing.name] and throws it to the side."
-            "When she's ready you line your cock back up with her asshole and slide back in, a little easier than the first itme now that it's been stretched out."
+            "When she's ready you line your cock back up with her asshole and slide back in, a little easier than the first time now that it's been stretched out."
             return True
 
         "Leave it on":

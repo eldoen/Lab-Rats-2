@@ -549,7 +549,7 @@ label mom_selfie_label():
             else:
                 the_person "I'm so glad I'm not stuck at work, I can finally let these girls out..."
                 $ the_person.draw_person(emotion = "happy")
-                "She sends you a selfie fron the kitchen with her top off."
+                "She sends you a selfie from the kitchen with her top off."
                 the_person "I hope your day is going well, love you!"
             $ the_person.update_outfit_taboos()
 
@@ -882,7 +882,7 @@ label mom_morning_surprise_label():
 
         elif the_choice == "Cum!":
             mc.name "I'm almost there Mom, keep going!"
-            "She nods and strokes your dick as fast as she can manage, pusing you over the edge."
+            "She nods and strokes your dick as fast as she can manage, pushing you over the edge."
             $ climax_controller.do_clarity_release(the_person)
             "You grunt and fire your hot load into up into the air. It falls back down onto your stomach and [the_person.possessive_title]'s hand."
             "Mom strokes you slowly for a few seconds, then lets go and places her hand on her lap while you take a second to recover."
@@ -1853,7 +1853,7 @@ label cousin_tease_crisis_label():
                                         "There's yet another pause, then another video."
                                         $ the_person.draw_person(position = "kneeling1", emotion = "happy", the_animation = blowjob_bob, animation_effect_strength = 1.0)
                                         if the_person.has_large_tits():
-                                            "This time [the_person.title] has a nice, fake smile for you. She bounces herself a little more vigerously and really gets her big tits moving."
+                                            "This time [the_person.title] has a nice, fake smile for you. She bounces herself a little more vigorously and really gets her big tits moving."
                                         else:
                                             "This time [the_person.title] has a nice, fake smile for you."
                                             "She bounces herself a little more vigorously, but there's not much chest for her to shake to shake."

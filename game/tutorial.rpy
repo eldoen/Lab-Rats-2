@@ -230,7 +230,7 @@ label research_tutorial_intro():
             $ climax_controller.show_climax_menu()
             $ climax_controller.do_clarity_release()
             "You snatch at some tissues and do your best to contain the mess as you cum."
-            "A cold calm washes over you now that you're finished, and alongwith it the razor sharp focus you'll need to achieve your goals."
+            "A cold calm washes over you now that you're finished, and along with it the razor sharp focus you'll need to achieve your goals."
             "You double check that you're presentable and return to the research lab."
             $ stephanie.draw_person()
             stephanie "Well, any ideas?"
@@ -240,7 +240,7 @@ label research_tutorial_intro():
             stephanie "That's a very clever thought [stephanie.mc_title], I'll start studying that right away."
 
         "Pick your research later.":
-            mc.name "I'll need some time to look these options over. Make sure all of these machines are working at peak efficency until then."
+            mc.name "I'll need some time to look these options over. Make sure all of these machines are working at peak efficiency until then."
             "[stephanie.title] seems disappointed by the slow start."
             stephanie "Fine, I'll run them all through a diagnostic cycle. Don't keep me waiting though, I don't want to just sit around and waste time."
 
