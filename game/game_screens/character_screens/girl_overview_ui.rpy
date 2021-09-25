@@ -77,7 +77,7 @@ screen person_info_detailed(the_person):
                         if persistent.pregnancy_pref == 2:
                             $ modified_fertility = the_person.calculate_realistic_fertility()
                             text "Fertility: " + str(round(modified_fertility)) + "%" style "menu_text_style"
-                            text "Monthly Peak Day: " + str(the_person.ideal_fertile_day) style "menu_text_style"
+                            text "Monthly Peak Day: " + str(the_person.ideal_fertile_day ) style "menu_text_style"
                             #TODO: replace this with less specific info. Replace fertility peak with the_person.fertility_cycle_string()
 
                         if the_person.event_triggers_dict.get("birth_control_status", None) is None:
