@@ -808,6 +808,7 @@ label aunt_share_drinks_label(the_person):
                     if isinstance(_return, Outfit):
                         $ created_outfit = _return
                         "You pull out a few pieces of clothing and lay them out on [the_person.possessive_title]'s bed."
+                        $ the_person.draw_person()
                         "She looks at the outfit you've laid out for her and seems to think for a second."
                         if the_person.judge_outfit(created_outfit): #She likes it enough to try it on.
                             if created_outfit.vagina_visible():
