@@ -801,6 +801,7 @@ label aunt_share_drinks_label(the_person):
                     the_person "Would you help me? It'll just take a few minutes."
                     mc.name "Of course. Come on, show me what you've got."
                     "She smiles, drinks the last of her wine, and leads you into her bedroom."
+                    $ the_person.draw_person()
                     call change_location(aunt_bedroom) from _call_change_location_1 #Change our location so that the background is correct,
                     the_person "Okay, so here's what I have to work with. Tell me what you think."
                     "She opens her wardrobe and stands back, giving you room to look around."
@@ -916,6 +917,7 @@ label aunt_share_drinks_label(the_person):
                     the_person "I've got plenty of lingerie, but I need to know what looks good on me. Can I trust you to give me an honest opinion?"
                     mc.name "Of course, I'll tell you exactly what I think."
                     "She smiles, drinks the last of her wine, and leads you into her bedroom."
+                    $ the_person.draw_person()
                     call change_location(aunt_bedroom) from _call_change_location_2 #Change our location so that the background is correct,
                     the_person "Okay, so I have a few things I want your opinion on. You just tell me what looks good and what I should keep around."
                     "She starts to strip down, then pauses and looks at you."
