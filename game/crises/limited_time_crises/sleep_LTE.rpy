@@ -855,7 +855,7 @@ label sleep_climax_manager(the_person, straddle = False, stomach_allowed = False
         if the_person.effective_sluttiness() >= cum_inside_slut_requirement or mc.condom:
             $ climax_options.append(["Cum inside her","pussy"])
         else:
-            $ climax_options.append(["Cum inside her\n{color=#ff0000}{size=18}Requires:[fuck_slut_token]{/size}{/color} (disabled)", "pussy"])
+            $ climax_options.append(["Cum inside her\n{color=#ff0000}{size=18}Requires:[cum_inside_slut_token]{/size}{/color} (disabled)", "pussy"])
 
     $ climax_controller = ClimaxController(*climax_options)
     $ the_choice = climax_controller.show_climax_menu()

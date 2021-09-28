@@ -1083,6 +1083,7 @@ label sister_convince_mom_boobjob(the_mom, the_sister):
 
 
     if boobjob_allowed:
+        $ the_person.event_triggers_dict["sister_boobjob_convince_mom_enabled"] = False # convinced mom reset flag
         "[the_sister.title] squeals happily and hugs [the_mom.possessive_title]."
         $ the_group.draw_person(the_sister, position = "kneeling1", emotion = "happy")
         the_sister "Thank you, thank you! They're going to look great, I just know it!"
