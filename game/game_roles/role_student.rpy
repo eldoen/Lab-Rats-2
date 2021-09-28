@@ -1565,9 +1565,8 @@ label student_test(the_person): #TODO: Hook this up
         "Fuck her" if the_person.effective_sluttiness() >= 30:
             "You take her hand and place it on your cock, which twitches reflexively."
             $ front_desk = make_desk()
-            $ the_room = Room("classroom", "Classroom", background_image = standard_campus_backgrounds, objects = [front_desk, make_chair(), make_floor(), make_door()], lighting_conditions = standard_indoor_lighting)
             $ old_location = mc.location
-            $ mc.change_location(the_room)
+            $ mc.change_location(university)
             $ mc.location.show_background()
             "[the_person.title] bites her lip and nods her understanding."
             the_person "Of course, it's the least I can do..."

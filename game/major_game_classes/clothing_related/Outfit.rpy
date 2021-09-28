@@ -649,20 +649,13 @@ init -2 python:
         def get_tit_strip_list(self, visible_enough = True): #Generates a list of clothing that, when removed from this outfit, result in tits being visible. Useful for animated clothing removal.
             test_outfit = self.get_copy()
             items_to_strip = []
-            if visible_enough:
-                while not test_outfit.tits_visible():
-                    the_item = test_outfit.remove_random_upper(top_layer_first = True)
-                    if not the_item:
-                        break
-                    else:
-                        items_to_strip.append(the_item)
-            else:
-                while not (test_outfit.tits_visible() and test_outfit.tits_available()):
-                    the_item = test_outfit.remove_random_upper(top_layer_first = True)
-                    if not the_item:
-                        break
-                    else:
-                        items_to_strip.append(the_item)
+            while not ((test_outfit.tits_visible() and visible_enough) or (test_outfit.tits_available() and not visible_enough)):
+                the_item = test_outfit.remove_random_upper(top_layer_first = True)
+                if not the_item:
+                    the_item = test_outfit.remove_random_any(top_layer_first = True, exclude_feet = True)
+                if not the_item:
+                    break
+                items_to_strip.append(the_item)
             return items_to_strip
 
         def strip_to_tits(self, visible_enough = True): #Removes all clothing from this item until breasts are visible.
@@ -681,17 +674,13 @@ init -2 python:
         def get_vagina_strip_list(self, visible_enough = False):
             test_outfit = self.get_copy()
             items_to_strip = []
-
             while not ((test_outfit.vagina_visible() and visible_enough) or (test_outfit.vagina_available() and not visible_enough)):
                 the_item = test_outfit.remove_random_lower(top_layer_first = True) #Try and remove lower layer clothing first each loop
-                if the_item is None:
+                if not the_item:
                     the_item = test_outfit.remove_random_any(top_layer_first = True, exclude_feet = True) #If that fails to make progress (ie. due to upper body items blocking things) remove upper body stuff until we can make progress again.
-
-                if the_item is None:
+                if not the_item:
                     break
-                else:
-                    items_to_strip.append(the_item)
-
+                items_to_strip.append(the_item)
             return items_to_strip
 
         def strip_to_vagina(self, visible_enough = False):
@@ -700,9 +689,9 @@ init -2 python:
 
         def can_half_off_to_tits(self, visible_enough = True):
             # Returns true if all of the clothing blocking her tits can be moved half-off to gain access, or if you already have access
-            if (visible_enough and self.tits_visible()) or (not visible_enough and self.tits_available()) or self.get_half_off_to_tits_list(visible_enough = visible_enough):
-                return True
-            return False
+            return (visible_enough and self.tits_visible()) \
+                or (not visible_enough and self.tits_available()) \
+                or self.get_half_off_to_tits_list(visible_enough = visible_enough)
 
         def get_half_off_to_tits_list(self, visible_enough = True):
             # If possible returns the list of clothing items, from outer to inner, that must be half-offed to gain view/access to her tits
@@ -747,9 +736,9 @@ init -2 python:
 
         def can_half_off_to_vagina(self, visible_enough = True):
             # Returns true if all of the clothing blocking her vagina can be moved half-off to gain access
-            return (visible_enough and self.vagina_visible()) or \
-                (not visible_enough and self.vagina_available()) or  \
-                self.get_half_off_to_vagina_list(visible_enough = visible_enough)
+            return ((visible_enough and self.vagina_visible()) \
+                or (not visible_enough and self.vagina_available())) \
+                or self.get_half_off_to_vagina_list(visible_enough = visible_enough)
 
         def get_half_off_to_vagina_list(self, visible_enough = True):
             # If possible returns the list of clothing items, from outer to inner, that must be half-offed to gain view/access to her vagina

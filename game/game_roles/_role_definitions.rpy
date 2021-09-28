@@ -238,9 +238,9 @@ init -1 python:
         #student_study_meetup_action = Action("Tutor her. {image=gui/heart/Time_Advance.png}", student_study_meetup_requirement, "student_study_meetup")
         student_reintro_action = Action("Ask about tutoring her", student_reintro_requirement, "student_reintro")
         student_study_propose_action = Action("Tutor her {image=gui/heart/Time_Advance.png}", student_study_propose_requirement, "student_study_propose")
-        student_test_intro_action = Action("Tell her she can rewrite her exam.", student_test_intro_requirement, "student_test_intro")
+        student_test_intro_action = Action("Tell her she can rewrite her exam", student_test_intro_requirement, "student_test_intro")
         student_test_action = Action("Time to rewrite her exam. {image=gui/heart/Time_Advance.png}", student_test_requirement, "student_test")
-        student_offer_job_reintro_action = Action("Offer her a job.", student_offer_job_requirement, "student_offer_job_reintro")
+        student_offer_job_reintro_action = Action("Offer her a job", student_offer_job_requirement, "student_offer_job_reintro")
         return [student_reintro_action, student_study_propose_action, student_test_intro_action, student_test_action, student_offer_job_reintro_action]
 
     def get_freeuse_actions():
@@ -250,7 +250,7 @@ init -1 python:
 
     def get_nora_role_actions():
         #NORA ROLE#
-        nora_student_exam_rewrite_request_action = Action("Ask her about the exam rewrite.", nora_student_exam_rewrite_request_requirement, "nora_student_exam_rewrite_request",
+        nora_student_exam_rewrite_request_action = Action("Ask her about the exam rewrite", nora_student_exam_rewrite_request_requirement, "nora_student_exam_rewrite_request",
             menu_tooltip = "Ask if she can set up a new exam for your student.") # This crisis triggers if your RL ever gets to 2 or higher without her introing herself. Provides an alternative way to the university.
 
         return [nora_student_exam_rewrite_request_action]

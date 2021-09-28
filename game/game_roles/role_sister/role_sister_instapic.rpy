@@ -577,7 +577,7 @@ label sister_instathot_special_pictures(the_person, is_topless_shoot = True):
                         mc.name "Maybe she would be fine with this too."
                         the_person "Maybe... I don't know, I don't think it's a good idea."
                         menu:
-                            "I'll convince her for you.":
+                            "I'll convince her for you":
                                 $ the_person.event_triggers_dict["sister_boobjob_in_progress"] = True
                                 $ the_person.event_triggers_dict["sister_boobjob_convince_mom_enabled"] = True #Enables a branch in the InstaPic event.
                                 mc.name "What if I convince her for you?"
@@ -586,7 +586,7 @@ label sister_instathot_special_pictures(the_person, is_topless_shoot = True):
                                 mc.name "Of course, I won't tell her anything. I'll just mention it next time you're taking some InstaPic's together."
                                 the_person "That's going to be so embarrassing! But if you think it will actually work, I guess you can try it."
 
-                            "Use serum instead.":
+                            "Use serum instead":
                                 $ the_person.event_triggers_dict["sister_boobjob_in_progress"] = True
                                 $ the_person.event_triggers_dict["sister_boobjob_serum_enabled"] = True
                                 $ the_person.event_triggers_dict["sister_boobjob_serum_count"] = 0
@@ -617,7 +617,7 @@ label sister_instathot_special_pictures(the_person, is_topless_shoot = True):
                                             mc.name "It might take some time, and it might take a few doses."
                                             the_person "Alright, I guess I'll just let you know if I see any changes then."
 
-                                    "Bring her some serum later.":
+                                    "Bring her some serum later":
                                         mc.name "I'll need to pick up some from the lab first."
                                         the_person "Okay, bring it to me when you have it then."
                                         the_person "Oh, and thank you for helping me [the_person.mc_title]!"
@@ -1067,7 +1067,7 @@ label sister_convince_mom_boobjob(the_mom, the_sister):
         "Order [the_mom.title] to allow it\n{color=#ff0000}{size=18}Requires: 140 Obedience{/size}{/color} (disabled)" if the_mom.obedience < 140:
             pass
 
-        "You got yourself implants already." if the_mom.event_triggers_dict.get("boobjob_count", 0) > 0:
+        "You got yourself implants already" if the_mom.event_triggers_dict.get("boobjob_count", 0) > 0:
             mc.name "Don't be a hypocrite [the_mom.title]. You were fine with getting implants for yourself."
             mc.name "If you can do it, why can't [the_sister.title]?"
             $ the_group.draw_person(the_mom, position = "kneeling1")
