@@ -1323,6 +1323,12 @@ label reserved_sex_review(the_person, the_report):
             mc.name "Don't worry, I really enjoyed giving you the time of your life."
             the_person "Indeed, that was quite a feat, I didn't even know I could do that."
 
+    # special condition abort due to lack of girl energy without orgasm
+    elif the_report.get("girl orgasms", 0) == 0 and the_person.energy < 20:
+        the_person "I'm sorry, but I'm done for now."
+        mc.name "No problem, we had fun, right?"
+        the_person "It was very enjoyable."
+
     #No special conditions, just respond based on how orgasmed and how slutty the position was.
     elif the_report.get("girl orgasms", 0) > 0 and the_report.get("guy orgasms", 0) > 0: #You both came
         if the_person.effective_sluttiness() > comment_position.slut_cap: #She's sluttier than the position cap, it was tame

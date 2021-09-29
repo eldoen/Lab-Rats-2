@@ -522,7 +522,7 @@ label sex_description(the_person, the_position, the_object, private = True, repo
     $ mc.listener_system.fire_event("sex_event", the_person = the_person, the_position = the_position, the_object = the_object)
 
     if the_person.lactation_sources > 0:
-        call lactation_description(the_person, the_position, the_object, report_log)
+        call lactation_description(the_person, the_position, the_object, report_log) from _call_lactation_description
 
     if report_log is not None:
         $ report_log["total rounds"] += 1

@@ -115,10 +115,10 @@ label ask_be_girlfriend_label(the_person):
     #Hide this event at low love, show it when it at it's lowest love possibility and let it fail out for specific reasons (thus informing the player WHY it failed out).
 
     if the_person.has_role(sister_role): #She has specific dialogue
-        call sister_girlfriend_intro(the_person)
+        call sister_girlfriend_intro(the_person) from _call_sister_girlfriend_intro
 
     elif the_person.has_role(mother_role):
-        call mom_girlfriend_intro(the_person)
+        call mom_girlfriend_intro(the_person) from _call_mom_girlfriend_intro
 
     else: #General dialogue used for everyone.
         mc.name "[the_person.title], can I talk to you about something important?"

@@ -110,7 +110,7 @@ label sleep_action_description:
     return
 
 label faq_action_description:
-    call faq_loop
+    call faq_loop from _call_faq_loop_1
     return
 
 label hr_work_action_description:

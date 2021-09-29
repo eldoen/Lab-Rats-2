@@ -106,6 +106,13 @@ label cousin_sex_review(the_person, the_report):
             the_person "Ah, fuck you, this won't happen again!"
             "[the_person.possessive_title] tries to look angry, but she isn't very convincing."
 
+    # special condition abort due to lack of girl energy without orgasm
+    elif the_report.get("girl orgasms", 0) == 0 and the_person.energy < 20:
+        the_person "Now fuck off, I'm tired."
+        mc.name "Don't be coy, you liked it."
+        the_person "No I didn't, now leave me alone."
+        "[the_person.possessive_title] tries to look frustrated, but she isn't very convincing."
+
     #No special conditions, just respond based on how orgasmed and how slutty the position was.
     elif the_report.get("girl orgasms", 0) > 0 and the_report.get("guy orgasms", 0) > 0: #You both came
         if the_person.effective_sluttiness() > comment_position.slut_cap: #She's sluttier than the position cap, it was tame

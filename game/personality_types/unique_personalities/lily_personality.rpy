@@ -85,6 +85,12 @@ label lily_sex_review(the_person, the_report):
             "She seems dazed by her orgasms as she struggles to put full sentences together."
             the_person "We shouldn't have done that... But it felt really good."
 
+    # special condition abort due to lack of girl energy without orgasm
+    elif the_report.get("girl orgasms", 0) == 0 and the_person.energy < 20:
+        the_person "I'm sorry [the_person.mc_title], but I'm tired."
+        mc.name "No problem [the_person.title], we had fun, right?"
+        the_person "I had fun, now let me study."
+
     #No special conditions, just respond based on how orgasmed and how slutty the position was.
     elif the_report.get("girl orgasms", 0) > 0 and the_report.get("guy orgasms", 0) > 0: #You both came
         if the_person.effective_sluttiness() > comment_position.slut_cap: #She's sluttier than the position cap, it was tame

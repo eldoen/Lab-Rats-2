@@ -141,7 +141,7 @@ label breeder_fuck(the_person):
                 "She reaches down and holds onto your shaft, rubbing the tip of your cock against her pussy lips. She strokes your cheek lovingly with her other hand."
                 "You push forward, sinking your dick inside of her. Her eyes flutter and she gasps softly."
                 the_person "Oh [the_person.title]..."
-                call fuck_person(the_person, private = should_be_private, start_position = missionary, start_object = start_object, skip_intro = True, skip_condom = True)
+                call fuck_person(the_person, private = should_be_private, start_position = missionary, start_object = start_object, skip_intro = True, skip_condom = True) from _call_fuck_person_129
                 $ sex_record = _return
 
             "Have her suck you off first":
@@ -152,7 +152,7 @@ label breeder_fuck(the_person):
                 $ the_person.draw_person(position = "blowjob")
                 $ mc.change_locked_clarity(20)
                 "She swings her legs off of the [start_object.name] and gets onto her knees in front of you. She holds onto your shaft with one hand and slips your tip into her mouth eagerly."
-                call fuck_person(the_person, private = should_be_private, start_position = blowjob, skip_intro = True, skip_condom = True)
+                call fuck_person(the_person, private = should_be_private, start_position = blowjob, skip_intro = True, skip_condom = True) from _call_fuck_person_130
                 $ sex_record = _return
 
 

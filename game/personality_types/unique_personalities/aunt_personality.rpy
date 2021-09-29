@@ -75,6 +75,12 @@ label aunt_sex_review(the_person, the_report):
             mc.name "No, not at all [the_person.title]."
             "She sighs and smiles."
 
+    # special condition abort due to lack of girl energy without orgasm
+    elif the_report.get("girl orgasms", 0) == 0 and the_person.energy < 20:
+        the_person "I'm sorry, [the_person.mc_title], but I'm no spring chicken anymore."
+        mc.name "No problem, we had fun, right?"
+        the_person "Yes, and next time I will show a few tricks to rock a girls world."
+
     #No special conditions, just respond based on how orgasmed and how slutty the position was.
     elif the_report.get("girl orgasms", 0) > 0 and the_report.get("guy orgasms", 0) > 0: #You both came
         if the_person.effective_sluttiness() > comment_position.slut_cap: #She's sluttier than the position cap, it was tame

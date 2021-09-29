@@ -1558,6 +1558,6 @@ label instantiate_serum_traits(): #Creates all of the default LR2 serum trait ob
         list_of_nora_traits.append(nora_obedience_swing)
         list_of_nora_traits.append(nora_sluttiness_boost)
 
-    call instantiate_serum_trait_blueprints() #Broken into their own file for clarity.
+    call instantiate_serum_trait_blueprints() from _call_instantiate_serum_trait_blueprints #Broken into their own file for clarity.
 
     return

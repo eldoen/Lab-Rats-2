@@ -235,7 +235,7 @@ label research_tutorial_intro():
             $ stephanie.draw_person()
             stephanie "Well, any ideas?"
             "This time when you look at her notes they all make perfect sense. You see what will need to be studied, and how to turn that knowledge into a useful discovery."
-            call research_select_action_description
+            call research_select_action_description from _call_research_select_action_description_1
             $ stephanie.draw_person(emotion = "happy")
             stephanie "That's a very clever thought [stephanie.mc_title], I'll start studying that right away."
 

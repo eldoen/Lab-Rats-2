@@ -1256,6 +1256,12 @@ label bimbo_sex_review(the_person, the_report):
             the_person "You're so bad for me [the_person.mc_title], you're turning me into, like, a total slut!"
             "She giggles. Not in the least bit too upset by the idea."
 
+    # special condition abort due to lack of girl energy without orgasm
+    elif the_report.get("girl orgasms", 0) == 0 and the_person.energy < 20:
+        the_person "I'm sorry cutie, but I'm pooped."
+        mc.name "No problem, we had fun, right?"
+        the_person "Like, yeah, we did!"
+
     #No special conditions, just respond based on how orgasmed and how slutty the position was.
     elif the_report.get("girl orgasms", 0) > 0 and the_report.get("guy orgasms", 0) > 0: #You both came
         if the_person.effective_sluttiness() > comment_position.slut_cap: #She's sluttier than the position cap, it was tame

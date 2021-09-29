@@ -1322,6 +1322,12 @@ label relaxed_sex_review(the_person, the_report):
             "She seems dazed by her orgasm as she struggles to put full sentences together."
             the_person "Something took over...and I did....just gimme a second."
 
+    # special condition abort due to lack of girl energy without orgasm
+    elif the_report.get("girl orgasms", 0) == 0 and the_person.energy < 20:
+        the_person "I'm sorry, but I'm done, it was a long day."
+        mc.name "No problem, we had fun, right?"
+        the_person "Indeed, it was very enjoyable."
+
     #No special conditions, just respond based on how orgasmed and how slutty the position was.
     elif the_report.get("girl orgasms", 0) > 0 and the_report.get("guy orgasms", 0) > 0: #You both came
         if the_person.effective_sluttiness() > comment_position.slut_cap: #She's sluttier than the position cap, it was tame

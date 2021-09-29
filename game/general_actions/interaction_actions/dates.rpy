@@ -747,15 +747,15 @@ label shopping_date_loop(the_person, previous_choice = None):
 
     menu:
         "Get some food" if previous_choice != "Food":
-            call shopping_date_food(the_person)
+            call shopping_date_food(the_person) from _call_shopping_date_food
             return "Food"
 
         "Go clothes shopping" if previous_choice != "Overwear":
-            call shopping_date_overwear(the_person)
+            call shopping_date_overwear(the_person) from _call_shopping_date_overwear
             return "Overwear"
 
         "Go lingerie shopping" if previous_choice != "Underwear":
-            call shopping_date_underwear(the_person)
+            call shopping_date_underwear(the_person) from _call_shopping_date_underwear
             return "Underwear"
         #
         # "Look at electronics." if previous_choice != "Electronics": #TODO: Write these other options when we have time
@@ -807,7 +807,7 @@ label shopping_date_food(the_person):
             "You collect your order and move over to the condiment station."
             menu:
                 "Add serum to her drink" if mc.inventory.get_any_serum_count() > 0:
-                    call give_serum(the_person)
+                    call give_serum(the_person) from _call_give_serum_22
                     if _return is None:
                         "You reconsider, and bring [the_person.title]'s food back to her without any additions."
                     else:
@@ -859,7 +859,7 @@ label shopping_date_overwear(the_person, skip_intro = False):
     $ the_person.change_happiness(10)
     menu:
         "Pick out an outfit for her" if the_person.obedience >= 110:
-            call outfit_master_manager(show_outfits = False, show_underwear = False)
+            call outfit_master_manager(show_outfits = False, show_underwear = False) from _call_outfit_master_manager
             if _return:
                 $ new_overwear = _return
                 "You move between the racks and pick out a few pieces for [the_person.title]."
@@ -884,7 +884,7 @@ label shopping_date_overwear(the_person, skip_intro = False):
             $ the_person.draw_person()
             "When she feels like she had collected enough she leads you to the changing rooms at the back of the store."
             $ new_overwear = default_wardrobe.pick_random_overwear()
-    call shopping_date_changing_room(the_person, new_overwear, "overwear")
+    call shopping_date_changing_room(the_person, new_overwear, "overwear") from _call_shopping_date_changing_room
     if _return:
         "You and [the_person.possessive_title] move to the cashier at the front of the store."
         $ cost = (10 * len(new_overwear.generate_clothing_list())) + (5 * new_overwear.get_overwear_slut_score())
@@ -923,7 +923,7 @@ label shopping_date_underwear(the_person):
         the_person "I don't want to shop for that kind of... stuff with you [the_person.mc_title]!"
         the_person "Come on, let's just go look for some normal clothes. There's a place right over there."
         "It doesn't seem like you can change her mind, so you follow her to the opposite side of the hall into a normal clothing store."
-        call shopping_date_overwear(the_person, skip_intro = True)
+        call shopping_date_overwear(the_person, skip_intro = True) from _call_shopping_date_overwear_1
         return
     elif the_person.has_taboo("underwear_nudity") and the_person.is_family():
         "[the_person.possessive_title] seems unsure for a moment."
@@ -939,7 +939,7 @@ label shopping_date_underwear(the_person):
     menu:
         "Pick out some lingerie for her" if the_person.obedience >= 120:
             "You move between the racks of bras and display boxes of panties, picking out a cute little outfit for [the_person.possessive_title]."
-            call outfit_master_manager(show_outfits = False, show_overwear = False, show_underwear = True)
+            call outfit_master_manager(show_outfits = False, show_overwear = False, show_underwear = True) from _call_outfit_master_manager_3
             if _return:
                 $ new_underwear = _return
                 mc.name "Here you go [the_person.title]. You should try this on."
@@ -976,7 +976,7 @@ label shopping_date_underwear(the_person):
             the_person "I want to go try some of this on. The changing rooms are at the back."
 
 
-    call shopping_date_changing_room(the_person, new_underwear, "underwear")
+    call shopping_date_changing_room(the_person, new_underwear, "underwear") from _call_shopping_date_changing_room_1
     if _return:
         "You and [the_person.possessive_title] move to the cashier at the front of the store."
         $ cost = (5 * len(new_underwear.generate_clothing_list())) + (15 * new_underwear.get_overwear_slut_score())
@@ -1205,10 +1205,10 @@ label shopping_date_changing_room(the_person, new_outfit, changing_type):
                 the_person "What do you think? Does it look good on me?"
                 "She poses for you briefly, then turns around so you can see it from behind."
                 $ the_person.draw_person(position = "back_peek")
-                call shopping_date_inside_changing_room(the_person, new_outfit, changing_type, skip_get_changed = True)
+                call shopping_date_inside_changing_room(the_person, new_outfit, changing_type, skip_get_changed = True) from _call_shopping_date_inside_changing_room
                 $ wants_outfit = _return
     else:
-        call shopping_date_inside_changing_room(the_person, new_outfit, changing_type)
+        call shopping_date_inside_changing_room(the_person, new_outfit, changing_type) from _call_shopping_date_inside_changing_room_1
         $ wants_outfit = _return
 
     return wants_outfit
@@ -1330,7 +1330,7 @@ label shopping_date_inside_changing_room(the_person, new_outfit, changing_type, 
                 "She lets you caress her body from your seat, leaning herself against your hands happily."
                 "You stand up and wrap your arms around her, kissing her neck sensually."
                 the_person "As long as we're quiet..."
-                call fuck_person(the_person, private = True, start_position = standing_grope, skip_intro = True)
+                call fuck_person(the_person, private = True, start_position = standing_grope, skip_intro = True) from _call_fuck_person_124
                 $ the_report = _return
                 $ the_person.call_dialogue("sex_review", the_report = the_report)
             else:
@@ -1414,7 +1414,7 @@ label shopping_date_inside_changing_room(the_person, new_outfit, changing_type, 
                         $ the_person.break_taboo("touching_penis")
                     $ mc.change_locked_clarity(10)
                     "[the_person.title] wraps her hand around your shaft and starts to stroke it for you."
-                    call fuck_person(the_person, private = True, start_position = handjob, skip_intro = True, girl_in_charge = True, position_locked = True)
+                    call fuck_person(the_person, private = True, start_position = handjob, skip_intro = True, girl_in_charge = True, position_locked = True) from _call_fuck_person_125
                     $ the_report = _return
                     $ the_person.call_dialogue("sex_review", the_report = the_report)
 
@@ -1431,7 +1431,7 @@ label shopping_date_inside_changing_room(the_person, new_outfit, changing_type, 
                     the_person "Ah..."
                     "She leans back and brings the tip of your dick to her lips. After giving it a quick kiss she bobs forward, sliding you into her mouth."
                     "You have to stifle a moan as her slippery tongue begins to work it's magic up and down your shaft."
-                    call fuck_person(the_person, private = True, start_position = blowjob, skip_intro = True, girl_in_charge = True, position_locked = True)
+                    call fuck_person(the_person, private = True, start_position = blowjob, skip_intro = True, girl_in_charge = True, position_locked = True) from _call_fuck_person_126
                     $ the_report = _return
                     $ the_person.call_dialogue("sex_review", the_report = the_report)
 
@@ -1441,13 +1441,13 @@ label shopping_date_inside_changing_room(the_person, new_outfit, changing_type, 
 
                 "Fuck her" if sex_valid and the_person.effective_sluttiness() >= sex_slut_requirement:
                     mc.name "Yeah, that's exactly what I need right now."
-                    call condom_ask(the_person)
+                    call condom_ask(the_person) from _call_condom_ask_4
                     if _return:
-                        call fuck_person(the_person, private = True, start_position = against_wall, skip_condom = True)
+                        call fuck_person(the_person, private = True, start_position = against_wall, skip_condom = True) from _call_fuck_person_127
                         $ the_report = _return
                         $ the_person.call_dialogue("sex_review", the_report = the_report)
                     else:
-                        call fuck_person(the_person, private = True, skip_condom = True) #ie. enter the normal sex system, so you can still get a blowjob or something.
+                        call fuck_person(the_person, private = True, skip_condom = True) from _call_fuck_person_128 #ie. enter the normal sex system, so you can still get a blowjob or something.
                         $ the_report = _return
                         $ the_person.call_dialogue("sex_review", the_report = the_report)
 

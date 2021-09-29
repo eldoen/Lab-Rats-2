@@ -80,7 +80,7 @@ label hypno_trigger_online(the_person):
         $ the_person.draw_person()
         the_person "I'm right here, what's up?"
         mc.name "[the_word]."
-        call hypno_trigger_orgasm(the_person, use_intro = False)
+        call hypno_trigger_orgasm(the_person, use_intro = False) from _call_hypno_trigger_orgasm
         return
 
     "There's a short pause before [the_person.possessive_title] responds."

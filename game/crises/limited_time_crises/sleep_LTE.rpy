@@ -519,7 +519,7 @@ label nightime_grope(the_person, masturbating = False):
             "You speed up your strokes, aware of the limited amount of time you might have before [the_person.possessive_title] wakes up."
             "With her exposed body as motivation it doesn't take long to push yourself to the edge."
 
-            call sleep_climax_manager(the_person, face_allowed = True, tits_allowed = True)
+            call sleep_climax_manager(the_person, face_allowed = True, tits_allowed = True) from _call_sleep_climax_manager
             $ awake = _return
 
         "Tit fuck her" if the_person.has_large_tits() and the_person.outfit.tits_available() and masturbating and the_person.effective_sluttiness() >= titfuck_slut_requirement:
@@ -581,7 +581,7 @@ label nightime_grope(the_person, masturbating = False):
                 $ mc.change_locked_clarity(20)
                 "You enjoy [the_person.possessive_title]'s body for a few minutes, each stroke between her breasts pulling you closer to your orgasm."
                 "Soon you're right at the edge, with nothing left to do but decide where to finish."
-                call sleep_climax_manager(the_person, face_allowed = True, tits_allowed = True)
+                call sleep_climax_manager(the_person, face_allowed = True, tits_allowed = True) from _call_sleep_climax_manager_1
                 $ awake = _return
 
         "Tit fuck her\n{color=#ff0000}{size=18}Requires: [titfuck_slut_token]{/size}{/color} (disabled)" if the_person.has_large_tits() and the_person.outfit.tits_available() and masturbating and the_person.effective_sluttiness() < titfuck_slut_requirement:
@@ -652,7 +652,7 @@ label nightime_grope(the_person, masturbating = False):
                 $ mc.change_locked_clarity(20)
                 "Each stroke of your cock in and out of [the_person.title]'s mouth feels better than the last, and the added thrill of being caught only heightens the experience."
                 "It doesn't take long before you're at the edge and ready to cum."
-                call sleep_climax_manager(the_person, face_allowed = True, tits_allowed = True, throat_allowed = True, straddle = True)
+                call sleep_climax_manager(the_person, face_allowed = True, tits_allowed = True, throat_allowed = True, straddle = True) from _call_sleep_climax_manager_2
                 $ awake = _return
 
         "Face fuck her\n{color=#ff0000}{size=18}Requires: [facefuck_slut_token]{/size}{/color} (disabled)" if masturbating and the_person.effective_sluttiness() < facefuck_slut_requirement:
@@ -757,7 +757,7 @@ label nightime_grope(the_person, masturbating = False):
                 $ mc.change_locked_clarity(30)
                 "Each stroke into her warm, wet slit draws you closer and closer to your climax. The risk of being caught only makes the experience more exciting."
                 "It doesn't take long before you're at the very edge, just barely holding back from cumming."
-                call sleep_climax_manager(the_person, stomach_allowed = True, inside_allowed = True)
+                call sleep_climax_manager(the_person, stomach_allowed = True, inside_allowed = True) from _call_sleep_climax_manager_3
                 $ awake = _return
 
             $ mc.condom = False #Make sure to take the condom off at the end of the encounter
@@ -861,27 +861,27 @@ label sleep_climax_manager(the_person, straddle = False, stomach_allowed = False
     $ the_choice = climax_controller.show_climax_menu()
     "You take a deep breath and pass the point of no return."
     if the_choice == "Cum in your hand":
-        call sleep_cum_hand(the_person, climax_controller)
+        call sleep_cum_hand(the_person, climax_controller) from _call_sleep_cum_hand
         return _return
 
     elif the_choice == "Cum on her stomach":
-        call sleep_cum_stomach(the_person, climax_controller)
+        call sleep_cum_stomach(the_person, climax_controller) from _call_sleep_cum_stomach
         return _return
 
     elif the_choice == "Cum on her face":
-        call sleep_cum_face(the_person, climax_controller, straddle = straddle)
+        call sleep_cum_face(the_person, climax_controller, straddle = straddle) from _call_sleep_cum_face
         return _return
 
     elif the_choice == "Cum on her tits":
-        call sleep_cum_tits(the_person, climax_controller, straddle = straddle)
+        call sleep_cum_tits(the_person, climax_controller, straddle = straddle) from _call_sleep_cum_tits
         return _return
 
     elif the_choice == "Cum down her throat":
-        call sleep_cum_throat(the_person, climax_controller)
+        call sleep_cum_throat(the_person, climax_controller) from _call_sleep_cum_throat
         return _return
 
     elif the_choice == "Cum inside her":
-        call sleep_cum_vagina(the_person, climax_controller)
+        call sleep_cum_vagina(the_person, climax_controller) from _call_sleep_cum_vagina
         return _return
 
     return False

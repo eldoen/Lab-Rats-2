@@ -605,7 +605,7 @@ label aunt_home_lingerie_label(the_person):
         "You lock the door again and step inside."
         the_person "I'm so happy you stopped by!"
 
-    call talk_person(the_person)
+    call talk_person(the_person) from _call_talk_person_1
     return
 
 label cousin_home_panties_label(the_person):
@@ -656,7 +656,7 @@ label cousin_home_panties_label(the_person):
         "She cuts you off."
         the_person "Whatever. What do you want?"
 
-    call talk_person(the_person)
+    call talk_person(the_person) from _call_talk_person_30
     return
 
 label sister_go_shopping_label(the_person): #TODO: Hook this up as an on_enter event in her room.
@@ -707,7 +707,7 @@ label sister_go_shopping_label(the_person): #TODO: Hook this up as an on_enter e
 
     if trigger_date:
         "You and [the_person.possessive_title] head downtown, to the largest shopping mall around."
-        call shopping_date_intro(the_person, skip_intro = True)
+        call shopping_date_intro(the_person, skip_intro = True) from _call_shopping_date_intro
 
     #TODO: Have a version of this event for Mom
     #TOOO: Have a version where both Lily and Mom go shopping together.
@@ -761,7 +761,7 @@ label mom_go_shopping_label(the_person):
 
     if trigger_date:
         "You and [the_person.possessive_title] head downtown, to the largest shopping mall around."
-        call shopping_date_intro(the_person, skip_intro = True)
+        call shopping_date_intro(the_person, skip_intro = True) from _call_shopping_date_intro_1
     else:
         $ clear_scene()
     return

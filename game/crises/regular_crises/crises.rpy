@@ -2925,7 +2925,7 @@ label horny_at_work_crisis_label():
 
         "Jerk off at your desk (tooltip)With nobody around, what's stopping you?" if not mc.location.people:
             "There's no reason to be self conscious when you're all by yourself inside your own business. You lean back in your chair and unzip your pants."
-            call bedroom_masturbation(location_description = "work", edging_available = False, should_advance_time = False)
+            call bedroom_masturbation(location_description = "work", edging_available = False, should_advance_time = False) from _call_bedroom_masturbation_3
             "You tidy up and get back to work, feeling much more focused."
 
 
@@ -3122,7 +3122,7 @@ label horny_at_work_crisis_label():
 
 
             else: #You get yourself off.
-                call bedroom_masturbation(location_description = "work", edging_available = False, should_advance_time = False)
+                call bedroom_masturbation(location_description = "work", edging_available = False, should_advance_time = False) from _call_bedroom_masturbation_4
                 if masturbating_people:
                     if len(masturbating_people) > 1:
                         "Not long after you're finished you hear girls around the office climax, each one punctuated by a little gasp and moan."
@@ -3184,7 +3184,7 @@ label horny_at_work_crisis_label():
                         $ your_follower.draw_person(position = "walking_away")
                         $ clear_scene()
                         "She blushes and turns around, leaving quickly. You pull up some porn on your phone and get comfortable, jerking yourself off until you cum."
-                        call bedroom_masturbation(location_description = "bathroom", edging_available = False, should_advance_time = False)
+                        call bedroom_masturbation(location_description = "bathroom", edging_available = False, should_advance_time = False) from _call_bedroom_masturbation_5
                         "When you're finished you clean up and get back to work, your mind now crystal clear."
 
                     "Punish her for inappropriate behaviour" if office_punishment.is_active():
@@ -3192,7 +3192,7 @@ label horny_at_work_crisis_label():
                         your_follower "I... Oh, I'm sorry [your_follower.mc_title], I don't know what I was thinking..."
                         $ the_person.add_infraction(Infraction.inappropriate_behaviour_factory())
                         "She blushes and turns around, leaving quickly. You pull up some porn on your phone and get comfortable."
-                        call bedroom_masturbation(location_description = "bathroom", edging_available = False, should_advance_time = False)
+                        call bedroom_masturbation(location_description = "bathroom", edging_available = False, should_advance_time = False) from _call_bedroom_masturbation_6
                         "When you're finished you clean up and get back to work, your mind now crystal clear."
 
                 $ mc.change_location(old_location)
@@ -3202,7 +3202,7 @@ label horny_at_work_crisis_label():
 
             else:
                 "Once you have some privacy you pull some porn up on your phone, pull out your dick, and take matters into your own hand."
-                call bedroom_masturbation(location_description = "bathroom", edging_available = False, should_advance_time = False)
+                call bedroom_masturbation(location_description = "bathroom", edging_available = False, should_advance_time = False) from _call_bedroom_masturbation_7
                 "When you're finished you clean up and get back to work, your mind now crystal clear."
 
 

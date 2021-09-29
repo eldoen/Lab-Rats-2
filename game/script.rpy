@@ -156,7 +156,7 @@ label start:
     "Vren" "Would you like to view the FAQ?"
     menu:
         "View the FAQ.":
-            call faq_loop
+            call faq_loop from _call_faq_loop
         "Get on with the game!":
             "You can access the FAQ from your bedroom at any time."
 
@@ -174,11 +174,11 @@ label start:
     $ renpy.block_rollback()
     call screen character_create_screen()
     $ return_arrays = _return #These are the stat, skill, and sex arrays returned from the character creator.
-    call initialize_game_state(store.name,store.b_name,store.l_name,return_arrays[0],return_arrays[1],return_arrays[2])
+    call initialize_game_state(store.name,store.b_name,store.l_name,return_arrays[0],return_arrays[1],return_arrays[2]) from _call_initialize_game_state_1
     $ renpy.block_rollback()
     menu:
         "Play introduction and tutorial.":
-            call tutorial_start
+            call tutorial_start from _call_tutorial_start_1
 
         "Skip introduction and tutorial.":
             $ mc.business.event_triggers_dict["Tutorial_Section"] = False
