@@ -135,7 +135,7 @@ label strip_standing_grope(the_girl, the_clothing, the_location, the_object):
     return
 
 label strip_ask_standing_grope(the_girl, the_clothing, the_location, the_object):
-    the_girl "I want to feel you touch me everywhere... Can I talk off my [the_clothing.name] for you?"
+    the_girl "I want to feel you touch me everywhere... Can I take off my [the_clothing.name] for you?"
     menu:
         "Let her strip":
             mc.name "Take it off for me."

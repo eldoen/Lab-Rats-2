@@ -617,7 +617,7 @@ label photo_sex(the_person):
         "[the_person.title] nods excitedly."
 
     if not the_person.outfit.vagina_available():
-        "You tell her to take of some clothes."
+        "You tell her to take off some clothes."
         if the_person.outfit.can_half_off_to_vagina():
             $ generalised_strip_description(the_person, the_person.outfit.get_half_off_to_vagina_list(), position = "stand3", half_off_instead = True)
         else:

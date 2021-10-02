@@ -302,18 +302,21 @@ init -1:
 
         def massive_pregnancy_accelerator_on_turn(the_person, the_serum, add_to_log):
             if pregnant_role in the_person.special_role: # only has effect when pregnant
+                the_person.event_triggers_dict["preg_announce_day"] = the_person.event_triggers_dict.get("preg_announce_day", day) - 1
                 the_person.event_triggers_dict["preg_tits_date"] = the_person.event_triggers_dict.get("preg_tits_date", day) - 1
                 the_person.event_triggers_dict["preg_transform_day"] = the_person.event_triggers_dict.get("preg_transform_day", day) - 1
                 the_person.event_triggers_dict["preg_finish_announce_day"] = the_person.event_triggers_dict.get("preg_finish_announce_day", day) - 1
 
         def pregnancy_accelerator_on_day(the_person, the_serum, add_to_log):
             if pregnant_role in the_person.special_role: # only has effect when pregnant
+                the_person.event_triggers_dict["preg_announce_day"] = the_person.event_triggers_dict.get("preg_announce_day", day) - 1
                 the_person.event_triggers_dict["preg_tits_date"] = the_person.event_triggers_dict.get("preg_tits_date", day) - 1
                 the_person.event_triggers_dict["preg_transform_day"] = the_person.event_triggers_dict.get("preg_transform_day", day) - 1
                 the_person.event_triggers_dict["preg_finish_announce_day"] = the_person.event_triggers_dict.get("preg_finish_announce_day", day) - 1
 
         def pregnancy_decellerator_on_day(the_person, the_serum, add_to_log):
             if pregnant_role in the_person.special_role: # only has effect when pregnant
+                the_person.event_triggers_dict["preg_announce_day"] = the_person.event_triggers_dict.get("preg_announce_day", day) + 1
                 the_person.event_triggers_dict["preg_tits_date"] = the_person.event_triggers_dict.get("preg_tits_date", day) + 1
                 the_person.event_triggers_dict["preg_transform_day"] = the_person.event_triggers_dict.get("preg_transform_day", day) + 1
                 the_person.event_triggers_dict["preg_finish_announce_day"] = the_person.event_triggers_dict.get("preg_finish_announce_day", day) + 1

@@ -1,11 +1,11 @@
 # Contains all of the information related to characters being pregnant.
 
 init -1 python:
-    def preg_announce_requirement(person, start_day):   # VREN
-        return pregnant_announce_requirement(person, start_day)
+    def preg_announce_requirement(person):   # VREN
+        return pregnant_announce_requirement(person)
 
-    def pregnant_announce_requirement(person, start_day):
-        if day >= start_day:
+    def pregnant_announce_requirement(person):
+        if day >= person.event_triggers_dict.get("preg_announce_day", 0):
             return True
         return False
 
@@ -38,14 +38,14 @@ init -1 python:
         person.event_triggers_dict["immaculate_conception"] = person.has_taboo("vaginal_sex")
         person.event_triggers_dict["preg_accident"] = person.on_birth_control # If a girl is on birth control the pregnancy is an accident.
         person.event_triggers_dict["preg_start_date"] = day
+        person.event_triggers_dict["preg_announce_day"] = day + renpy.random.randint(10, 14)
         person.event_triggers_dict["preg_tits_date"] = day + 14 + renpy.random.randint(0,5)
         person.event_triggers_dict["preg_transform_day"] = day + 30 + renpy.random.randint(0,10)
         person.event_triggers_dict["preg_finish_announce_day"] = day + 90 + renpy.random.randint(0,10)
         person.event_triggers_dict["pre_preg_tits"] = person.tits
 
-        random = renpy.random.randint(10,14)
-        preg_announce_action = Action("Pregnancy Announcement", pregnant_announce_requirement, "pregnant_announce", requirement_args = day + random)
-        person.on_room_enter_event_list.append(Limited_Time_Action(preg_announce_action, (5 * random) + (5 * 5))) #LTA is turns valid, not days (5 slots per day), yield 5 days after it becomes active
+        preg_announce_action = Action("Pregnancy Announcement", pregnant_announce_requirement, "pregnant_announce")
+        person.on_room_enter_event_list.append(Limited_Time_Action(preg_announce_action, (5 * 10) + (5 * 5))) #LTA is turns valid, not days (5 slots per day), yield 5 days after it becomes active
 
         preg_tits_action = Action("Pregnancy Tits Grow", pregnant_tits_requirement, "pregnant_tits_start", args = person, requirement_args = person)
         mc.business.mandatory_morning_crises_list.append(preg_tits_action)

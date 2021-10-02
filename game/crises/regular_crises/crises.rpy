@@ -2410,8 +2410,6 @@ label cat_fight_crisis_label():
 
 
     python:
-        del relationship
-        del list_of_possible_people
         del person_one
         del person_two
 

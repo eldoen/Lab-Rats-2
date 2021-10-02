@@ -182,19 +182,18 @@ init -2 python:
             self.personal_region_modifiers = {"breasts":0.1+0.1 * rank_tits(self.tits)} #A dict that stores information about modifiers that should be used for specific regions of animations. Default is 1.
 
             ##Personality Stats##
-            #Things like sugestability, that change over the course of the game when the player interacts with the girl
-            self.suggestibility = 0 + suggest #How quickly/efficently bleeding temporary sluttiness is turned into core sluttiness.
-            self.suggest_bag = [] #This will store a list of ints which are the different suggestion values fighting for control. Only the highest is used, maintained when serums are added and removed.
+            #Things like suggestibility, that change over the course of the game when the player interacts with the girl
+            self.suggestibility = 0 + suggest #How quickly/efficiently bleeding temporary sluttiness is turned into core sluttiness.
+            self.suggest_bag = [] #This will store a list of integers which are the different suggestion values fighting for control. Only the highest is used, maintained when serums are added and removed.
 
             self.happiness = happiness #Higher happiness makes a girl less likely to quit and more willing to put up with you pushing her using obedience.
             self.love = love
             self.sluttiness = 0 + sluttiness #How slutty the girl is by default. Higher will have her doing more things just because she wants to or you asked.
-            self.core_sluttiness = self.sluttiness #Core sluttiness is the base level of what a girl considers normal. normal "sluttiness" is the more variable version, technically refered to as "temporary slutiness".
             self.obedience = 100 + obedience #How likely the girl is to listen to commands. Default is 100 (normal person), lower actively resists commands, higher follows them.
 
             #Situational modifiers are handled by events. These dicts and related functions provide a convenient way to avoid double contributions. Remember to clear your situational modifiers when you're done with them!!
-            self.situational_sluttiness = {} #A dict that stores a "situation" string and the corrisponding amount it is contributing to the girls sluttiness.
-            self.situational_obedience = {} #A dict that stores a "situation" string and a corrisponding amount that it has affected their obedience by.
+            self.situational_sluttiness = {} #A dict that stores a "situation" string and the corresponding amount it is contributing to the girls sluttiness.
+            self.situational_obedience = {} #A dict that stores a "situation" string and a corresponding amount that it has affected their obedience by.
 
             ##Sex Stats##
             #These are physical stats about the girl that impact how she behaves in a sex scene. Future values might include things like breast sensitivity, pussy tighness, etc.
@@ -1286,14 +1285,14 @@ init -2 python:
             if add_to_log and amount != 0 and self.title:
                 mc.log_event(self.title + ": Suggestibility increased permanently by "+ ("+" if amount > 0 else "") + str(amount) + "%", "float_text_blue")
 
-            # Note that suggestability can be negative, representing someone who is _resistant_ to trances for some reason.
+            # Note that suggestibility can be negative, representing someone who is _resistant_ to trances for some reason.
 
         def add_suggest_effect(self,amount, add_to_log = True):
             if amount > __builtin__.max(self.suggest_bag or [0]):
                 self.change_suggest(-__builtin__.max(self.suggest_bag or [0]), add_to_log = False) #Subtract the old max and...
                 self.change_suggest(amount, add_to_log = False) #add our new suggest.
                 if add_to_log and amount != 0 and self.title:
-                    mc.log_event(self.title + ": Suggestibility increased, now " + str(amount), "float_text_blue")
+                    mc.log_event(self.title + ": Suggestibility increased, by " + str(amount), "float_text_blue")
             else:
                 if add_to_log and amount != 0 and self.title:
                     mc.log_event(self.title + ": Suggestibility " + str(amount) + " lower than current " + str(self.suggestibility) + " amount. Suggestibility unchanged.", "float_text_blue")

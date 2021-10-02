@@ -221,7 +221,7 @@ label improved_serum_unlock_label(the_person): #TODO: Double check this has a ti
 
     # TODO: You tell her you want to advance your research
     # TODO: You reveal (or Steph points out) that there was some sort of effect related to orgasms before.
-    # TODO: She offers to be a test subject. You need to get her a dose of serum that raises suggestability (maybe all serums should raise suggestability)
+    # TODO: She offers to be a test subject. You need to get her a dose of serum that raises suggestibility (maybe all serums should raise suggestibility)
     # TODO: She jills off in a private room until she's in a trance.
     # TODO: You have the opportunity to train her if you have Clarity.
     # TODO: Advance research
@@ -255,7 +255,7 @@ label improved_serum_unlock_label(the_person): #TODO: Double check this has a ti
 #                 if mc.charisma > 4:
 #                     "You take a keen look at [the_person.title]. She might not be able to tell but you certainly can. You mark her down as \"Highly Suggestible\"."
 #                 else:
-#                     "You can't tell any better than [the_person.title]. You put down \"Suggestability Uncertain\" on your notepad."
+#                     "You can't tell any better than [the_person.title]. You put down \"suggestibility Uncertain\" on your notepad."
 #                 mc.name "That's fine, you're doing great."
 #                 mc.name "Next question: Early research has suggested that our serums might deliver performance enhancing effects. What do you think about this?"
 #                 the_person "Well, I think I need to know more about it. I suppose that's why I'm doing this - to learn more."
