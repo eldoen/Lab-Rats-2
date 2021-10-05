@@ -1059,7 +1059,6 @@ label water_spill_crisis_label():
 
     "You're hard at work when [the_person.title] comes up to you. She's got her phone clutched in one hand, a water bottle in the other."
     $ the_person.draw_person()
-    $ the_person.call_dialogue("greetings")
     mc.name "Hey [the_person.title], how can I help you?"
     the_person "I had a few questions about how my taxes were going to be calculated this year, and I was hoping you could answer some of them."
     "You listen as [the_person.possessive_title] dives into her tax situation."

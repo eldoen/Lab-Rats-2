@@ -708,7 +708,7 @@ label mom_morning_surprise_label():
             $ the_person.change_slut(2, 25)
             $ mc.change_locked_clarity(5)
             "She stares at it for a short moment before pulling her eyes back up to meet yours."
-            the_person "Certainly nothing to be embarrassed, but I think you should take care of it before you leave."
+            the_person "Certainly nothing to be embarrassed about, but I think you should take care of it before you leave."
             "[the_person.possessive_title] turns around and starts rifling through your closet."
             $ the_person.draw_person(position = "walking_away")
             the_person "I'll find you a nice outfit to wear to save you some time. Go ahead [the_person.mc_title], pretend I'm not even here. It's nothing I haven't seen before."

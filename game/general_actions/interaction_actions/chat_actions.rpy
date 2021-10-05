@@ -612,17 +612,19 @@ label flirt_person(the_person): #Tier 1. Raises a character's sluttiness up to a
 
     return
 
-label give_serum(the_person):
+label give_serum(the_person, add_to_log = True):
     call screen serum_inventory_select_ui(mc.inventory, the_person)
     if not _return == "None":
         $ the_serum = _return
-        "You decide to give [the_person.title] a dose of [the_serum.name]."
+        if add_to_log:
+            "You decide to give [the_person.title] a dose of [the_serum.name]."
         $ mc.inventory.change_serum(the_serum,-1)
-        $ the_person.give_serum(copy.copy(the_serum)) #Use a copy rather than the main class, so we can modify and delete the effects without changing anything else.
+        $ the_person.give_serum(copy.copy(the_serum), add_to_log = add_to_log) #Use a copy rather than the main class, so we can modify and delete the effects without changing anything else.
         return the_serum
-    else:
+
+    if add_to_log:
         "You decide not to give [the_person.title] anything."
-        return False
+    return None
 
 label date_person(the_person): #You invite them out on a proper date
     if "action_mod_list" in globals():

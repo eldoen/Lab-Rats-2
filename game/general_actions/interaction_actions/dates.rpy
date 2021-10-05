@@ -62,7 +62,7 @@ label lunch_date_label(the_person): #Could technically be included in the planni
     $ the_person.apply_outfit(the_person.planned_outfit)
     $ the_person.draw_person()
     "You and [the_person.title] walk together to a little lunch place nearby. You chat comfortably with each other as you walk."
-    $ renpy.show("restaurant", what = restaraunt_background)
+    $ renpy.show("restaurant", what = restaraunt_background, layer = "master")
     "A bell on the door jingles as you walk in."
     mc.name "You grab a seat and I'll order for us."
     $ clear_scene()
@@ -158,7 +158,7 @@ label movie_date_label(the_person):
     $ the_person.draw_person()
     the_person "Hey, good to see you!"
     the_person "I'm ready to go in, what do you want to see?"
-    $ renpy.show("Theater", what = theater_background)
+    $ renpy.show("Theater", what = theater_background, layer = "master")
     $ movie_type = None
     $ likes_movie = False
     menu:
@@ -281,7 +281,7 @@ label movie_date_label(the_person):
                                 call fuck_person(the_person, private = True) from _call_fuck_person_28
                                 $ the_person.draw_person()
                                 $ the_person.apply_outfit(the_person.planned_outfit)
-                                $ renpy.show("Theater", what = theater_background)
+                                $ renpy.show("Theater", what = theater_background, layer = "master")
                                 $ the_person.draw_person(position = "sitting", lighting = [0.5,0.5,0.5])
                                 "You slip out of the bathroom as quickly as possible and return to your seats with some time pleasantly passed."
 
@@ -451,7 +451,7 @@ label dinner_date_label(the_person):
         "An expensive restaurant\n{color=#ff0000}{size=18}Requires: $300{/size}{/color} (disabled)" if mc.business.funds < 300:
             pass
 
-    $ renpy.show("restaurant", what = restaraunt_background)
+    $ renpy.show("restaurant", what = restaraunt_background, layer = "master")
     $ the_person.draw_person(emotion = "happy", position = "sitting")
     if the_person.has_role(sister_role) or the_person.has_role(mother_role):
         if the_person.sluttiness >= 20:

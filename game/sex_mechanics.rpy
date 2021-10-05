@@ -444,7 +444,7 @@ label pick_object(the_person, the_position, forced_object = None):
             picked_object = forced_object
         else:
             for object in mc.location.objects:
-                if object.has_trait(position_choice.requires_location):
+                if object.has_trait(the_position.requires_location):
                     object_option_list.append([object.get_formatted_name(),object]) #Displays a list of objects in the room related to that position and their appropriate bonuses/penalties
 
 
@@ -679,7 +679,6 @@ label watcher_check(the_person, the_position, the_object, the_report): # Check t
                     renpy.say(None,a_person.title + " gasps when she sees what you and " + the_person.title + " are doing.")
 
     $ the_watcher = get_random_from_list(other_people) #Get a random person from the people in the area, if there are any.
-    $ del other_people
     if the_watcher:
         # NOTE: the dialogue here often draws the person talking with various emotions or positions, so we redraw the scene after we call them.
         $ the_watcher.call_dialogue("sex_watch", the_sex_person = the_person, the_position = the_position) #Get the watcher's reaction to the people having sex. This might include dialogue calls from other personalities as well!
@@ -689,8 +688,9 @@ label watcher_check(the_person, the_position, the_object, the_report): # Check t
         $ the_person.discover_opinion("public sex")
 
     python:
-         for a_person in other_people:
-             a_person.clear_situational_slut("public sex watcher")
+        for a_person in other_people:
+            a_person.clear_situational_slut("public sex watcher")
+        del other_people
     return
 
 label describe_girl_climax(the_person, the_position, the_object, private, report_log):
@@ -1024,7 +1024,7 @@ label lactation_description(the_person, the_position, the_object, report_log): #
         elif strength <= 1.0:
             "[the_person.title]'s naked tits drip milk, a drop every couple of seconds."
         elif strength <= 1.5:
-            "[the_person.title]'s are leaking faster now. She shakes a couple of drops free with every movement." #Triggers at 100% arousal w/ 1 lactation source, 50% arousal w/ 2 sources or max sized tits.
+            "[the_person.title]'s tits are leaking faster now. With every move a couple of drops escape from her nipples." #Triggers at 100% arousal w/ 1 lactation source, 50% arousal w/ 2 sources or max sized tits.
         elif strength <= 2.0:
             "[the_person.title] has a steady trickle of milk running from her nipples and over her breasts."
         elif strength <= 3.0:

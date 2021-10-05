@@ -120,7 +120,7 @@ label scene_doggy_1(the_girl, the_location, the_object):
                 if the_girl.arousal < 50:
                     mc.name "You're nice and tight, I love fucking your hot little pussy!"
                 else:
-                    mc.name "You're nice and wet, I love fucking your fluid dripping pussy!"
+                    mc.name "Damn, [the_girl.title], your pussy is fucking dripping! I love how wet you get for me..."
                 "You fuck her a little faster for a while then settle back down to a slower, more sustainable rhythm."
 
         "Slap her ass":

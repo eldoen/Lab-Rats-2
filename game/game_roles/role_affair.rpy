@@ -161,7 +161,7 @@ label fuck_date_event(the_person): #A breakout function so we can call the fuck_
 
     $ done = False
     $ girl_came = False
-    $ so_called = False
+    $ so_called = the_person.relationship == "Single"
     $ count = 0
     $ energy_gain_amount = mc.max_energy // 3 #Drops each round, representing your flagging endurance.
     while not done:   # maximum of 8 loops
@@ -170,7 +170,10 @@ label fuck_date_event(the_person): #A breakout function so we can call the fuck_
         if the_report.get("girl orgasms", 0) > 0: #TODO: Have some variation to this based on how many times we've looped around.
             $ the_person.change_love(2 + the_person.get_opinion_score("cheating on men"))
             $ the_person.change_slut(1, 80)
-            the_person "Oh god... That was amazing. You're so much better at that than my [so_title]."
+            if the_person.relationship != "Single":
+                the_person "Oh god... That was amazing. You're so much better at that than my [so_title]."
+            else:
+                the_person "Oh god... That was amazing."
             $ the_person.draw_person(position = "missionary")
             "[the_person.title] lies down on her bed and catches her breath."
             the_person "Ready to get back to it?"
@@ -189,8 +192,10 @@ label fuck_date_event(the_person): #A breakout function so we can call the fuck_
             if girl_came:
                 the_person "Well, I guess that's all I'm going to be drawing out of you for tonight. That was fun."
                 "She kisses you and runs her hand over your back."
-                the_person "Now you should get going before my [so_title] gets home."
-
+                if the_person.relationship != "Single":
+                    the_person "Now you should get going before my [so_title] gets home."
+                else:
+                    the_person "I'm totally spent, I hope you'll be back soon."
             else:
 
                 $ the_person.change_love(-1)
