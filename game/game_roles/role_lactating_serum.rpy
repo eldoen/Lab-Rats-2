@@ -229,7 +229,7 @@ label milk_for_serum_label(the_person): #Note that thee serum types have already
                         "Milk her {i}hard{/i}":
                             mc.name "Let's make sure we get every last drop..."
                             "You squeeze down hard on [the_person.possessive_title]'s breast. She gasps in a mixture of surprise and pain."
-                            if the_person.has_role(breeder_role) or the_person.get_opinion_score("being in control") < 0:
+                            if the_person.has_role(breeder_role) or the_person.get_opinion_score("being submissive") > 0:
                                 the_person "Mmm, get it all [the_person.mc_title]..."
                                 $ the_person.change_slut(1,50)
                                 "She sounds a little too happy to be milked roughly."
