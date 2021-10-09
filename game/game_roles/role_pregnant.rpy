@@ -4,7 +4,7 @@ init -1 python:
     def preg_announce_requirement(person):   # VREN
         return pregnant_announce_requirement(person)
 
-    def pregnant_announce_requirement(person):
+    def pregnant_announce_requirement(person, *args):
         if day >= person.event_triggers_dict.get("preg_announce_day", 0):
             return True
         return False
