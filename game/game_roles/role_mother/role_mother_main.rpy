@@ -247,7 +247,7 @@ label mom_high_sluttiness_weekly_pay(the_person): #TODO: Change all of these ove
 
         #TODO: "I want to breed Lily" option, once you've got Mom at high sluttiness, obedience, and Love. She gives you the go-ahead to knock up your sister.
 
-        "Suck me off\n{color=#ff0000}{size=18}Costs: $300{/size}{/color}" if mc.business.funds >= 300 and the_person.effective_sluttiness("sucking_cock") >= 30:
+        "Suck me off\n{color=#ff0000}{size=18}Costs: $300{/size}{/color}" if mc.business.funds >= 300 and the_person.effective_sluttiness("sucking_cock") >= 30 and not the_person.get_opinion_score("giving blowjobs") <= -2:
             mc.name "Alright, I'll pay you to give me a blowjob."
             if (not the_person.has_taboo("sucking_cock")) or the_person.effective_sluttiness("sucking_cock") >= 60:
                 the_person "If that's what you need."
@@ -290,7 +290,7 @@ label mom_high_sluttiness_weekly_pay(the_person): #TODO: Change all of these ove
                 "You pull your pants up while [the_person.possessive_title] gets off of her knees and cleans herself up."
             $ the_person.change_obedience(4)
 
-        "Suck me off\n{color=#ff0000}{size=18}Requires: $300{/size}{/color} (disabled)" if mc.business.funds < 300 and the_person.effective_sluttiness("sucking_cock") >= 30:
+        "Suck me off\n{color=#ff0000}{size=18}Requires: $300{/size}{/color} (disabled)" if mc.business.funds < 300 or the_person.effective_sluttiness("sucking_cock") < 30 or the_person.get_opinion_score("giving blowjobs") <= -2:
             pass
 
         "Stop your birth control\n{color=#ff0000}{size=18}Costs: $150{/size}{/color}" if mc.business.funds >= 150 and the_person.effective_sluttiness() >= 30 and persistent.pregnancy_pref > 0 and not the_person.event_triggers_dict.get("Mom_forced_off_bc", False) and not pregnant_role in the_person.special_role:
