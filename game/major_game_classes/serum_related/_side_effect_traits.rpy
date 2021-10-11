@@ -13,34 +13,34 @@ init -1 python:
 
     ## anxiety_provoking_functions ##
     def anxiety_provoking_on_turn(the_person, the_serum, add_to_log):
-        the_person.change_happiness(-3, add_to_log)
+        the_person.change_happiness(-3, add_to_log = add_to_log)
 
     ## performance_inhibitor_functions ##
     def performance_inhibitor_on_apply(the_person, the_serum, add_to_log):
-        the_person.change_int(-1, add_to_log)
-        the_person.change_focus(-1, add_to_log)
-        the_person.change_cha(-1, add_to_log)
+        the_person.change_int(-1, add_to_log = add_to_log)
+        the_person.change_focus(-1, add_to_log = add_to_log)
+        the_person.change_cha(-1, add_to_log = add_to_log)
 
     def performance_inhibitor_on_remove(the_person, the_serum, add_to_log):
-        the_person.change_int(1, add_to_log)
-        the_person.change_focus(1, add_to_log)
-        the_person.change_cha(1, add_to_log)
+        the_person.change_int(1, add_to_log = add_to_log)
+        the_person.change_focus(1, add_to_log = add_to_log)
+        the_person.change_cha(1, add_to_log = add_to_log)
 
     ## mood_swings_functions ##
     def mood_swings_on_turn(the_person, the_serum, add_to_log):
         swing = renpy.random.randint(0,1)
         if swing == 0:
-            the_person.change_happiness(-10, add_to_log)
+            the_person.change_happiness(-10, add_to_log = add_to_log)
         else:
-            the_person.change_happiness(10, add_to_log)
+            the_person.change_happiness(10, add_to_log = add_to_log)
 
     ## Sedative functions ##
     def sedative_on_apply(the_person, the_serum, add_to_log):
-        the_person.change_energy(-20, add_to_log)
-        the_person.change_max_energy(-20, add_to_log)
+        the_person.change_energy(-20, add_to_log = add_to_log)
+        the_person.change_max_energy(-20, add_to_log = add_to_log)
 
     def sedative_on_remove(the_person, the_serum, add_to_log):
-        the_person.change_max_energy(20, add_to_log) #They don't get the normal energy back instantly, it has to come back on it's own
+        the_person.change_max_energy(20, add_to_log = add_to_log) #They don't get the normal energy back instantly, it has to come back on it's own
 
     ## Slow release sedative functions ##
     def slow_release_sedative_on_turn(the_person, the_serum, add_to_log):
@@ -55,10 +55,10 @@ init -1 python:
 
     ## libido suppressant ##
     def libido_suppressant_on_apply(the_person, the_serum, add_to_log):
-        the_person.change_max_arousal(50, add_to_log)
+        the_person.change_max_arousal(50, add_to_log = add_to_log)
 
     def libido_suppressant_on_remove(the_person, the_serum, add_to_log):
-        the_person.change_max_arousal(-50, add_to_log)
+        the_person.change_max_arousal(-50, add_to_log = add_to_log)
 
     ## hair colour changes ##
     def hair_colour_wild_on_turn(the_person, the_serum, add_to_log):

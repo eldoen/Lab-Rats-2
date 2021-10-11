@@ -1188,7 +1188,7 @@ init -2 python:
                         display_name = self.title
                     mc.log_event(" Taboo broken with " + display_name + "!", "float_text_red")
 
-                self.change_novelty(5, add_to_log)
+                self.change_novelty(5, add_to_log = add_to_log)
                 return True
             return False
 

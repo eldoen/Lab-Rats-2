@@ -85,7 +85,7 @@ label scene_tit_fuck_3(the_girl, the_location, the_object):
     "She lets a long line of saliva drip down between her tits and onto the tip of your cock."
     "She gives your shaft a few strokes, spreading her spit and lubricating her cleavage. She looks up at you from her knees and smiles."
     the_girl "There, much better."
-    "She starts servicing you her tits again, now gliding quickly and easily over your hard dick."
+    "She starts servicing you with her tits again, now gliding quickly and easily over your hard dick."
     return
 
 
