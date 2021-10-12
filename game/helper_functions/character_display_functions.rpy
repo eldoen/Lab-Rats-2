@@ -9,7 +9,7 @@ init -1 python:
                 renpy.scene(a_layer)
 
     def can_use_animation(): #Checks key properties to determine if we can or cannot use animation (mainly rendering type and config option
-        if renpy.mobile: #Unfortunately no animation support for mobile devices.
+        if renpy.android or renpy.mobile: #Unfortunately no animation support for mobile devices.
             return False
 
         if not renpy.display.draw.info["renderer"] == "gl2": #Software rendering does not support the screen capture technique we use, so we can only use static images for it. (also it runs painfully slow, so it needs everything it can get).

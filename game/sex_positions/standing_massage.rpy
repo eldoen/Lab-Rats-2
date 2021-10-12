@@ -27,7 +27,7 @@ label intro_standing_grope(the_girl, the_location, the_object):
     "You stand behind [the_girl.title] and put your arms around her, pulling her close against you."
     "You reach one hand down, running across her stomach and towards her waist and the other up towards her tits."
     if the_girl.has_large_tits():
-        "She sighs and leans into, you cup one of her large tits and heft it up, massaging it gently."
+        "She sighs and leans into you as you cup one of her large tits and heft it up, massaging it gently."
         "Your other hand slides between her legs, brushing against her inner thighs and caressing her pussy."
     else:
         "She sighs and leans into you as your hand slides between her legs, brushing her thighs and petting her pussy."
