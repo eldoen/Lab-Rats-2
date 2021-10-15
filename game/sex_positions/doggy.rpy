@@ -294,6 +294,7 @@ label transition_doggy_doggy_anal(the_girl, the_location, the_object):
     if mc.condom:
         "You pull out of [the_girl.title]'s pussy, pausing for a moment to pull off your condom and drop it to the ground."
         "You line your cock up with her asshole, the tip just barely pressing against it."
+        $ mc.condom = False
     else:
         "You pull out of [the_girl.title]'s pussy and line your cock up with her asshole, the tip just barely pressing against it."
 
