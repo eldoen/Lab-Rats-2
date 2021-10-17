@@ -587,7 +587,7 @@ label flirt_person(the_person): #Tier 1. Raises a character's sluttiness up to a
         mc.name "[the_person.title], you're looking nice today. That outfit looks good on you."
         $ the_person.call_dialogue("flirt_response_low")
 
-    elif the_person.love <= 40: #20 to 40
+    elif the_person.love <= 40 or the_person.get_opinion_score("kissing") < -1: #20 to 40 or hates kissing
         # Mid Love
         mc.name "You're looking hot today [the_person.title]. That outfit really shows off your body."
         $ the_person.call_dialogue("flirt_response_mid")
