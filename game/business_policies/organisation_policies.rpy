@@ -61,7 +61,7 @@ init 0 python:
         return True
 
     public_advertising_license_policy = Policy(name = "Public Advertising License",
-        desc = "After filling out the proper paperwork and familiarizing yourself with publishing regultions you will be ready to advertise your product in print publications. Allows you to pick a girl as your company model and launch ad campaigns.",
+        desc = "After filling out the proper paperwork and familiarizing yourself with publishing regulations you will be ready to advertise your product in print publications. Allows you to pick a girl as your company model and launch ad campaigns.",
         cost = 2500,
         toggleable = False,
         requirement = public_advertising_license_requirement)
