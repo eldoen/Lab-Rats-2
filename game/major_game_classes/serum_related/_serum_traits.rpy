@@ -736,7 +736,7 @@ init -1:
             research_needed = 300,
             clarity_cost = 200)
 
-        large_obedience_enhancer = SerumTrait(name = "Experimental Obedience Treatment.",
+        large_obedience_enhancer = SerumTrait(name = "Experimental Obedience Treatment",
             desc = "The combination of several only recently released compounds should produce a larger increase in obedience. Unfortunately the effect leaves the recipient rather stuck up and stuffy.",
             positive_slug = "+$20 Value, +20 Obedience",
             negative_slug = "-1 Sluttiness/Turn, +75 Serum Research",

@@ -177,7 +177,7 @@ label mom_sex_responses_anal(the_person):
     $ response_value = (the_person.arousal + renpy.random.randint(0,20))*1.0/the_person.max_arousal
     if response_value < 20:
         if the_person.sluttiness > 50:
-            the_person "Take your time, I know I can take your entire cock if patient with me."
+            the_person "Take it slow, I know I can take your entire cock if you'll be patient."
         else:
             the_person "Oh my... Do you really think I can do this [the_person.mc_title]?"
             "She whimpers, stuck somewhere between pain and pleasure."

@@ -166,7 +166,7 @@ label train_new_opinion_label(the_person, sexy_list = False):
             "It takes some time, but after a long conversation you feel confident you've put a strong opinion in [the_person.title]'s mind."
             return True
         else:
-            the_person "[player_choice]? Yeah, I have some thoughts about that..."
+            the_person "[player_choice!c]? Yeah, I have some thoughts about that..."
             $ the_person.discover_opinion(player_choice)
             "It quickly becomes clear that [the_person.possessive_title] already has an opinion about [player_choice]."
             "You'll need a different approach if you want to change an opinion she has already formed."
