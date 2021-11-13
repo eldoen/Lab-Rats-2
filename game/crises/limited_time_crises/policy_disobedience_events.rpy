@@ -51,7 +51,7 @@ label uniform_disobedience_event(planned_uniform, the_person):
         if random_excuse == 0:
             the_person "I'm sorry, I just had to step out for a moment to pick something up. I was assuming that wouldn't be a problem."
         elif random_excuse == 1:
-            the_person "It's so impractical, I couldn't get anything done. I'm just wear this for a few hours and get some real work done."
+            the_person "It's so impractical, I couldn't get anything done. I'm going to wear this for a few hours and get some real work done."
         else: # random_excuse == 2:
             the_person "That uniform policy is just a suggestion, right? There's no way you expect us to actually wear it all the time."
 

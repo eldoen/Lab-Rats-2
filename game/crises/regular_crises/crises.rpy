@@ -1898,7 +1898,7 @@ label work_chat_crisis_label:
                             the_person "Oh god... there it is..."
                             "You hear [the_person.title] gasp. You glance over and watch as she climaxes."
                         $ the_person.draw_person(position = "sitting", emotion = "orgasm")
-                        $ the_person.run_orgasm()
+                        $ the_person.run_orgasm(fire_event = False)
                         "[the_person.possessive_title]'s breath catches in her throat as she cums. Her free hand grasps at the arm of her office chair. She holds still for a few seconds, then lets out a long sigh."
                         $ the_person.change_slut(1+the_person.get_opinion_score("masturbating"), 40)
                         $ mc.change_locked_clarity(20)
@@ -3072,7 +3072,7 @@ label horny_at_work_crisis_label():
                     while mc.energy >= 20 and len(helpful_people) > 0 and wants_to_continue:
                         $ the_group.redraw_group()
                         $ the_group.draw_person(active_person, position = "sitting", emotion = "happy")
-                        if the_report.get("girl orgasms", 0) > 0:
+                        if the_report.get("girl orgasms", 0) == 0:
                             "[active_person.title] goes back to her desk and sits down when you're finished with her. She spreads her legs and starts to touch herself."
                         else:
                             "[active_person.title] stumbles back to her desk and collapses into her chair, legs still quivering."

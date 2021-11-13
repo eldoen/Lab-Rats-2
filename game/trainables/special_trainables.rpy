@@ -126,13 +126,13 @@ label train_hypnotic_orgasm(the_person):
 
     $ the_clothing = the_person.outfit.get_lower_top_layer()
     if the_clothing:
-        $ clothing_phrase = "a hand between her legs and under her [the_clothing.display_name]."
+        $ clothing_phrase = "a hand between her legs and under her " + the_clothing.display_name
     else:
-        $ clothing_phrase = "a hand between her legs."
+        $ clothing_phrase = "a hand between her legs"
     if mc.location.get_person_count() > 1:
         "She glances around, making sure nobody is paying attention to her, then slips [clothing_phrase!i]."
     else:
-        "She hesitates for one last moment, then all resistance breaks down and she slips [clothing_phrase!i]"
+        "She hesitates for one last moment, then all resistance breaks down and she slips [clothing_phrase!i]."
 
     $ the_clothing = None
     $ the_clothing_phrase = None

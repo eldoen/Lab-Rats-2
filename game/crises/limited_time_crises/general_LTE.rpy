@@ -234,7 +234,7 @@ label work_walk_in_label(the_person): #Walk into the room and find someone mastu
                 "Her pace quickens, and she pushes herself over the edge."
                 $ the_person.draw_person(position = "sitting", emotion = "orgasm")
                 the_person "Ah! Ah... Ah..."
-                $ the_person.run_orgasm()
+                $ the_person.run_orgasm(fire_event = False)
                 $ mc.change_locked_clarity(10)
                 "[the_person.possessive_title] slumps in her chair, panting quietly. After taking a moment to recover she sits up and glances around."
                 $ the_person.draw_person(position = "sitting")

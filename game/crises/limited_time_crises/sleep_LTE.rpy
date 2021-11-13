@@ -26,8 +26,16 @@ label sleeping_walk_in_label(the_person): #TODO: This event is currently for Mom
     else: #Evening
         "For a moment you think the room is empty. Then you notice [the_person.title], already in bed and asleep."
 
-    $ the_person.apply_outfit(the_person.wardrobe.get_random_appropriate_underwear(the_person.effective_sluttiness(), guarantee_output = True)) #She's sleeping in her underwear.
-    $ the_person.draw_person(position = "missionary")
+    python:
+        (sleep_wear, ran_num) = the_person.event_triggers_dict.get("event_sleepwear", (None, 1))
+        if sleep_wear is None or ran_num < day:
+            sleep_wear = the_person.wardrobe.get_random_appropriate_underwear(the_person.effective_sluttiness(), guarantee_output = True)
+            the_person.event_triggers_dict["event_sleepwear"] = (sleep_wear, day)
+
+        the_person.apply_outfit(sleep_wear) #She's sleeping in her underwear.
+        the_person.draw_person(position = "missionary")
+        sleep_wear = None
+
     menu:
         "Go inside":
             "You close the door behind you slowly, careful not to wake [the_person.possessive_title] up."
@@ -231,24 +239,58 @@ label nightime_grope(the_person, masturbating = False):
         fuck_slut_requirement = 50
         fuck_slut_token = get_red_heart(fuck_slut_requirement)
 
-        cum_tits_slut_requirement = 30
-        cum_tits_slut_token = get_red_heart(cum_tits_slut_requirement)
-
-        cum_face_slut_requirement = 40
-        cum_face_slut_token = get_red_heart(cum_face_slut_requirement)
-
-        cum_throat_slut_requirement = 55
-        cum_throat_slut_token = get_red_heart(cum_throat_slut_requirement)
-
-        cum_inside_slut_requirement = 65
-        cum_inside_slut_token = get_red_heart(cum_inside_slut_requirement)
-
-
-    if masturbating: #TODO: Add a few variations of this since we might loop through here a few times
-        "You stroke your cock, thinking about what you want to do with [the_person.possessive_title]."
+    if masturbating:
+        $ random_variant = renpy.random.randint(0,3)
+        if random_variant == 0:
+            "You stroke your cock, thinking about what you want to do with [the_person.possessive_title]."
+        elif random_variant == 1:
+            "You play with your cock and oggle [the_person.possessive_title]'s sleeping body."
+        elif random_variant == 2:
+            "You jerk yourself off next to [the_person.title] while you think about what else to do."
+        else:
+            "Your cock twitches in your hand as you stare at [the_person.title]'s beautiful body."
+        $ mc.change_locked_clarity(5)
 
     #TODO: We may want to replace this with an Action based menu at some point to more conveniently format all of the options
     menu:
+        "Give her some serum" if mc.inventory.get_any_serum_count() > 0:
+            call give_serum(the_person)
+            if _return:
+                "You uncork the serum and feed it into [the_person.title]'s mouth drop by drop."
+                "She instinctively drinks it up, licking it off of her lips."
+                if renpy.random.randint(0,100) < 10:
+                    $ awake = True
+                    "Her eyes flutter lightly. You stash the empty vial in a pocket and try to look innocent."
+                    the_person "[the_person.mc_title]? Is that you?"
+                    mc.name "Hey [the_person.title], I was just checking in on you."
+                    $ the_person.change_happiness(-5)
+                    "She rubs her eyes."
+                    the_person "I'm fine, do you need anything?"
+                    mc.name "No, I was just going... Sorry for waking you up."
+                    "[the_person.possessive_title] seems slightly confused as you back quickly out of the room."
+                    return True
+                else:
+                    "She murmers quietly in her sleep, but doesn't wake up."
+            else:
+                "You stuff your unused vials of serum back into your pocket, trying to move as quietly as you can."
+                if renpy.random.randint(0,100) < 10:
+                    $ awake = True
+                    "Her eyes flutter lightly. You try to look as innocent as possible."
+                    the_person "[the_person.mc_title]? Is that you?"
+                    mc.name "Hey [the_person.title], I was just checking in on you."
+                    $ the_person.change_happiness(-5)
+                    "She rubs her eyes."
+                    the_person "I'm fine, do you need anything?"
+                    mc.name "No, I was just going... Sorry for waking you up."
+                    "[the_person.possessive_title] seems slightly confused as you back quickly out of the room."
+                    return True
+                else:
+                    "She murmers quietly in her sleep, but doesn't wake up."
+
+
+            call nightime_grope(the_person, masturbating)
+            return _return
+
         "Grope her tits -5{image=gui/extra_images/energy_token.png}" if mc.energy >= 5 and the_person.effective_sluttiness() >= grope_tits_slut_requirement:
             $ mc.change_energy(-5)
             if the_person.outfit.tits_available():
@@ -532,7 +574,7 @@ label nightime_grope(the_person, masturbating = False):
                 the_person "Mmm... Mmmph... Hmm?"
                 "[the_person.possessive_title] moans softly, then lifts her head up and opens her eyes."
                 the_person "[the_person.mc_title]?"
-                if the_person.effective_sluttiness("touching_body") + 5*(the_person.get_opinion_score("being submissive") + the_person.get_opinion_score("giving tit fucks")) >= 45 and not the_person.has_taboo("touching body"):
+                if the_person.effective_sluttiness("touching_body") + 5*(the_person.get_opinion_score("being submissive") + 5*the_person.get_opinion_score("giving tit fucks")) >= 45 and the_person.has_broken_taboo("touching body"):
                     "She looks you up and down, her eyes eventually settling on your hard cock sandwiched between her tits."
                     the_person "Mmm... You don't have to stop, I was having the most amazing dream."
                     "She reaches down and puts her own hands over yours, squeezing her breasts together even harder."

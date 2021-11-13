@@ -288,7 +288,7 @@ label sister_walk_in_label(the_person):
                 $ mc.change_arousal(5)
                 the_person "Ah... Mmmm."
                 "She opens her eyes and glances at her laptop, then finally notices you."
-                if the_person.effective_sluttiness("bare_pussy") < (40 - (the_person.obedience-100)): #If she's not slutty or obedient she yells at you to get out
+                if the_person.effective_sluttiness("bare_pussy") + (the_person.obedience - 100) < 40: #If she's not slutty or obedient she yells at you to get out
                     the_person "Oh my god, [the_person.mc_title]! What are you... I... Get out of here!"
                     mc.name "Don't be so dramatic [the_person.title], just keep going."
                     the_person "What?! Ew, how long have you been there? Oh god!"

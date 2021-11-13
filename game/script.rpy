@@ -15,6 +15,7 @@ init -10 python: #Init -10 is used for all project wide imports of external reso
     from functools import partial
     import re
     import string
+    from operator import attrgetter
 
 
     # all image sets available
@@ -51,6 +52,7 @@ init -2: # Establish some platform specific stuff.
 init -2 python:
     list_of_positions = [] # These are sex positions that the PC can make happen while having sex.
     list_of_girl_positions = [] # These are sex positions that the girl can make happen while having sex.
+    list_of_strip_positions = [] # These are positiosn a girl can take while putting on a stirp tease for you.
 
     day_names = ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"] #Arrays that hold the names of the days of the week and times of day. Arrays start at 0.
     time_names = ["Early Morning","Morning","Afternoon","Evening","Night"]
@@ -267,6 +269,18 @@ init 0 python:
             return chosen
         return None
 
+    def main_loop_pick_location_event(location):
+        enabled_room_events = []
+        for possible_room_event in location.on_room_enter_event_list:
+            if possible_room_event.is_action_enabled():
+                enabled_room_events.append(possible_room_event)
+
+        if enabled_room_events:
+            chosen = get_random_from_list(enabled_room_events)
+            location.on_room_enter_event_list.remove(chosen)
+            return chosen
+        return None
+
     def main_loop_select_greeter(location):
         possible_greetings = []
         for a_person in new_location.people:
@@ -361,10 +375,15 @@ label game_loop(): ##THIS IS THE IMPORTANT SECTION WHERE YOU DECIDE WHAT ACTIONS
         call screen map_manager
         $ new_location = _return
         call change_location(new_location) from _call_change_location #_return is the location returned from the map manager.
+
+        $ picked_room_event = main_loop_pick_location_event(new_location)
+
         if new_location.people: #There are people in the room, let's see if there are any room events
             $ picked_event = main_loop_pick_room_event(new_location)
             if picked_event: #If there are room events to take care of run those right now.
                 $ picked_event[1].call_action(picked_event[0]) #Run the action with the person as an extra argument.
+            elif picked_room_event:
+                $ picked_room_event.call_action()
             elif renpy.random.randint(0,2) == 0 and new_location in [mc.business.m_div, mc.business.p_div, mc.business.r_div, mc.business.s_div, mc.business.h_div]: #There are no room events, so generate a quick room greeting from an employee if one is around.
                 $ the_greeter = main_loop_select_greeter(new_location)
                 if the_greeter:
@@ -372,6 +391,10 @@ label game_loop(): ##THIS IS THE IMPORTANT SECTION WHERE YOU DECIDE WHAT ACTIONS
                     $ the_greeter.call_dialogue("work_enter_greeting")
                     $ clear_scene()
                     $ del the_greeter
+            $ picked_event = None
+        elif picked_room_event:
+            $ picked_room_event.call_action()
+        $ picked_room_event = None
 
     elif picked_option == "Phone":
         call browse_internet() from _call_browse_internet
@@ -794,6 +817,8 @@ label initialize_game_state(character_name,business_name,last_name,stat_array,sk
             map_pos = [8,3], lighting_conditions = standard_indoor_lighting)
         office_store = Room("office supply store","Office Supply Store", background_image = standard_mall_backgrounds[:], public = True,
             map_pos = [9,1], lighting_conditions = standard_indoor_lighting)
+        electronics_store = Room("electornics store", "Electronics Store", background_image = standard_mall_backgrounds[:], public = True,
+            map_pos = [7,2], lighting_conditions = standard_indoor_lighting)
 
         ## Mall supporting locations
         changing_room = Room("Changing Room", objects = [Object("Changing Room Wall", "Lean"), Object("Floor", ["Lay", "Kneel"]), Object("Changing Room Chair", ["Sit", "Low"])], public = False)
@@ -854,6 +879,7 @@ label initialize_game_state(character_name,business_name,last_name,stat_array,sk
         list_of_places.append(sex_store)
         list_of_places.append(home_store)
         list_of_places.append(gym)
+        list_of_places.append(electronics_store)
         list_of_places.append(mall)
         list_of_places.append(changing_room)
 
@@ -875,7 +901,7 @@ label initialize_game_state(character_name,business_name,last_name,stat_array,sk
         room = None
 
         home_bathroom.add_object(make_wall())
-        home_bathroom.add_object(Object("shower door", ["Lean"], sluttiness_modifier = 0, obedience_modifier = 0))
+        home_bathroom.add_object(Object("shower door", ["Lean"]))#, sluttiness_modifier = 5, obedience_modifier = 5))
         home_bathroom.add_object(make_floor())
 
         kitchen.add_object(make_wall())
@@ -946,6 +972,9 @@ label initialize_game_state(character_name,business_name,last_name,stat_array,sk
         home_store.add_object(make_wall())
         home_store.add_object(make_floor())
         home_store.add_object(make_chair())
+
+        electronics_store.add_object(make_wall())
+        electronics_store.add_object(make_floor())
 
         mall.add_object(make_wall())
         mall.add_object(make_floor())

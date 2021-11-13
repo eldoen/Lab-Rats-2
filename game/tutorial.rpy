@@ -99,7 +99,7 @@ label tutorial_start:
     mom "Okay, you've convinced me. I'll get in touch with the bank and put a loan on the house."
     "You jump up and throw your arms around [mom.possessive_title]. She laughs and hugs you back."
 
-    mom "What's going on?"
+    lily "What's going on?"
     $ lily.draw_person()
     "[lily.possessive_title] steps into the doorway and looks at you both."
     $ mom.draw_person(position = "sitting")
@@ -220,7 +220,7 @@ label research_tutorial_intro():
             "You close the door and sit down at the desk, pulling out your phone to find some porn to get you off."
             "You settle on an old favourite and start to jack off, determined to make it quick."
             "After a couple of minutes you notice something odd - you're barely paying attention to the bouncing tits on your tiny screen."
-            "Instead your remembering all the trouble you got up to last year, and all of the new opportunities you will have now."
+            "Instead you're remembering all the trouble you got up to last year, and all of the new opportunities you will have now."
             "Does [stephanie.title] really not care what you're making here, and what it can do? How could she not?"
             "Maybe she likes it? Maybe you really left an impression on her with your last serum-based mind control spree?"
             $ mc.change_locked_clarity(10)

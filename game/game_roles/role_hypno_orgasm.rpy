@@ -54,7 +54,7 @@ label hypno_trigger_orgasm(the_person, use_intro = True):
                 $ the_person.draw_person(position = "doggy", emotion = "orgasm")
                 "[the_person.title] falls to the ground, barely catching herself at the last minute."
                 "She ends up face down, hips bucking with each new climactic spasm. Her thighs twitch in sync with her hands free orgasm."
-                $ the_person.run_orgasm(trance_chance_modifier = the_person.get_opinion_score("taking control"))
+                $ the_person.run_orgasm(trance_chance_modifier = the_person.get_opinion_score("being submissive"))
                 $ the_person.reset_arousal()
                 $ the_person.change_slut(2)
                 "She moans and writhes on the floor for a long moment, but little by little her orgasm subsides and she gains control of herself again."
@@ -81,12 +81,12 @@ label hypno_trigger_online(the_person):
         the_person "I'm right here, what's up?"
         mc.name "[the_word]."
         call hypno_trigger_orgasm(the_person, use_intro = False) from _call_hypno_trigger_orgasm
-        return
+        return False
 
     "There's a short pause before [the_person.possessive_title] responds."
     the_person "Yeah, what's up?"
     mc.name "[the_word]."
-    $ the_person.run_orgasm(trance_chance_modifier = the_person.get_opinion_score("being submissive"), show_dialogue = False, add_to_log = False) #ie. negative opinions of being in control make her more likely to trance off of this.
+    $ the_person.run_orgasm(trance_chance_modifier = the_person.get_opinion_score("being submissive"), show_dialogue = False, add_to_log = False) #ie. positive opinion of being submissive make her more likely to trance off of this.
     $ the_person.reset_arousal()
     $ mc.change_locked_clarity(10)
     "[the_person.title] isn't around, so you're forced to use your imagination of her cumming her brains out the moment she checks her phone."
@@ -101,4 +101,4 @@ label hypno_trigger_online(the_person):
         the_person "Fuukkk, nww I cnnt loook at my phone wiiithout cumming!"
         "She's clearly having a hard time just writing out her message."
     "You chuckle to yourself and don't say anything more."
-    return
+    return True

@@ -476,9 +476,8 @@ init -1:
             for count in range(0, tit_changes):
                 the_person.tits = get_larger_tits(the_person.tits) #Her tits start to swell.
 
-            # store original tit-size
-            the_person.event_triggers_dict["hucow_previous_tits"] = the_person.tits
-            the_person.personal_region_modifiers["breasts"] = the_person.personal_region_modifiers["breasts"] + 0.2 #As her tits get larger they also become softer, unlike large fake tits. (Although even huge fake tits get softer)
+            the_serum.effects_dict["nora_hucow_tit_changes"] = tit_changes
+            the_person.personal_region_modifiers["breasts"] = the_person.personal_region_modifiers["breasts"] + (tit_changes*0.1) #As her tits get larger they also become softer, unlike large fake tits. (Although even huge fake tits get softer)
 
             if add_to_log:
                 display_name = the_person.create_formatted_title("???")
@@ -498,7 +497,7 @@ init -1:
             for count in range(0, tit_changes):
                 the_person.tits = get_smaller_tits(the_person.tits) #Her tits start to swell.
 
-            the_person.personal_region_modifiers["breasts"] = the_person.personal_region_modifiers["breasts"] - 0.2 #As her tits get larger they also become softer, unlike large fake tits. (Although even huge fake tits get softer)
+            the_person.personal_region_modifiers["breasts"] = the_person.personal_region_modifiers["breasts"] -  (0.1*tit_changes) #As her tits get larger they also become softer, unlike large fake tits. (Although even huge fake tits get softer)
 
             if add_to_log:
                 display_name = the_person.create_formatted_title("???")

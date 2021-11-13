@@ -400,6 +400,8 @@ label employee_performance_review(the_person):
                                     if the_person.has_taboo("underwear_nudity") or (the_person.has_taboo("bare_pussy") and the_person.outfit.vagina_visible()) or (the_person.has_taboo("bare_tits") and the_person.outfit.tits_visible()):
                                         the_person "Is this what you wanted to see? Are we done?"
                                         "[the_person.title] tries to cover herself up with her hands, shuffling nervously in front of your desk."
+                                        $ the_person.update_outfit_taboos()
+
                                     else: #No taboo broken, no big deal
                                         the_person "Is this what you wanted to see [the_person.mc_title]? I hope it's worth keeping me around..."
 
@@ -670,10 +672,15 @@ label employee_performance_review(the_person):
                                     if the_person.has_taboo("vaginal_sex"):
                                         the_person "Wait, I've changed my..."
                                         "It's too late for second thoughts. You plunge your hard dick into [the_person.title]'s tight cunt. She gasps softly under her breath."
+                                        $ the_person.break_taboo("vaginal_sex")
                                         the_person "... Mind! Oh fuck..."
                                         "You can hear her mumble: this is happening."
                                     else:
                                         "You push forward, plunging your hard dick into [the_person.title]'s tight cunt. She gasps softly under her breath."
+
+                                    if not mc.condom and the_person.has_taboo("condomless_sex"):
+                                        $ the_person.break_taboo("condomless_sex")
+                                        
                                     "You hold yourself deep inside of her and enjoy the sudden warmth around your shaft."
                                     "When you think she's ready you pull your hips back and start to pump in and out of her."
 
@@ -684,7 +691,7 @@ label employee_performance_review(the_person):
                                     else:
                                         $ the_person.add_situational_slut("seduction_approach", -5 + (-5*the_person.get_opinion_score("being submissive")), "I'm just a toy to him.")
                                     $ the_person.add_situational_obedience("seduction_approach", 25, "I'll do what I need to keep my job!")
-                                    call fuck_person(the_person, private = True, start_position = doggy, start_object = make_floor(), skip_intro = True, skip_condom = True) from _call_fuck_person_106
+                                    call fuck_person(the_person, private = True, start_position = doggy, start_object = make_desk(), skip_intro = True, skip_condom = True) from _call_fuck_person_106
                                     $ the_person.clear_situational_slut("seduction_approach")
                                     $ the_person.clear_situational_obedience("seduction_approach")
 
