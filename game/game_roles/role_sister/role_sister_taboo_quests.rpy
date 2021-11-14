@@ -17,14 +17,16 @@ init -1 python:
             return False
         elif the_person.event_triggers_dict.get("sister_kissing_quest_progress", 0) < 3:
             return str(the_person.event_triggers_dict.get("sister_kissing_quest_progress", 0)) + "/3 InstaPic Sessions."
-        return True
+        else:
+            return True
 
     def sister_oral_quest_1_requirement(the_person):
         if not the_person.event_triggers_dict.get("sister_oral_quest_active", False):
             return False
         elif not the_person.event_triggers_dict.get("sister_oral_quest_progress", 0) == 0:
             return False
-        return True
+        else:
+            return True
 
     def sister_oral_quest_2_requirement(the_person):
         if not the_person.event_triggers_dict.get("sister_oral_quest_active", False):
@@ -33,21 +35,24 @@ init -1 python:
             return False
         elif mc.business.funds < 1200:
             return "Insufficient funds"
-        return True
+        else:
+            return True
 
     def sister_oral_revisit_quest_complete_requirement(the_person):
         if not the_person.event_triggers_dict.get("sister_oral_quest_active", False):
             return False
         elif not the_person.event_triggers_dict.get("sister_oral_quest_progress", 0) == 2:
             return "Buy her a πphone"
-        return True
+        else:
+            return True
 
     def sister_anal_revisit_quest_complete_requirement(the_person):
         if not the_person.event_triggers_dict.get("sister_anal_quest_active", False):
             return False
         elif the_person.event_triggers_dict.get("sister_instathot_mom_shirtless_covered_count", 0) == 0:
             return "Convince [mom.title] to take shirtless InstaPic shots."
-        return True
+        else:
+            return True
 
     def sister_vaginal_quest_revisit_requirement(the_person):
         if not the_person.event_triggers_dict.get("sister_vaginal_quest_active", False):
@@ -56,7 +61,8 @@ init -1 python:
             return "Requires: 10 identical serum doses"
         elif mc.location.get_person_count() > 1:
             return "Not while other people are around"
-        return True
+        else:
+            return True
 
 label sister_kissing_taboo_break_revisit(the_person):
     $ the_person.draw_person()
@@ -270,10 +276,11 @@ label sister_oral_taboo_break_revisit(the_person):
             mc.name "I'm sure I can manage it."
 
             $ the_person.event_triggers_dict["sister_oral_quest_active"] = True
+            $ the_person.event_triggers_dict["sister_oral_quest_progress"] = 0
             $ the_person.change_slut(-10)
             $ mc.log_event(the_person.title + "'s taboos restored!", "float_text_red")
 
-            #$ electronics_store.on_room_enter_event_list.append(Action("pi phone discover", sister_oral_quest_1_requirement, "sister_oral_taboo_break_revisit_quest_1", args = the_person, requirement_args = the_person))
+            $ electronics_store.on_room_enter_event_list.append(Action("pi phone discover", sister_oral_quest_1_requirement, "sister_oral_taboo_break_revisit_quest_1", args = the_person, requirement_args = the_person))
             $ electronics_store.actions.append(Action("Buy a πphone\n{color=#ff0000}{size=18}Costs: $1200{/size}{/color}", sister_oral_quest_2_requirement, "sister_oral_taboo_break_revisit_quest_2", args = the_person, requirement_args = the_person))
 
             $ the_person.get_role_reference(sister_role).actions.append(Action("Check back in...", sister_oral_revisit_quest_complete_requirement, "sister_oral_taboo_break_revisit_complete"))
@@ -587,6 +594,8 @@ label sister_anal_taboo_break_revisit_complete(the_person):
     "She laughs, missing the irony."
     $ the_person.change_slut(10, 65)
     $ the_person.break_taboo("anal_sex")
+    $ the_person.event_triggers_dict["sister_anal_quest_active"] = False
+    $ the_person.event_triggers_dict["anal_revisit_complete"] = True
     the_person "I guess you've proved yourself. I won't make a big deal out of... whatever it is we do."
     return
 
