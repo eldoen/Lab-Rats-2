@@ -957,7 +957,7 @@ label shopping_date_underwear(the_person):
 
             else:
                 if the_person.effective_sluttiness() > 50 or the_person.get_opinion_score("lingerie") > 0:
-                    $ new_underwear = lingerie_wardrobe.get_random_appropriate_underwear(the_person.sluttiness, 6, guarantee_output = True)
+                    $ new_underwear = lingerie_wardrobe.get_random_appropriate_outfit(the_person.sluttiness, 6, guarantee_output = True)
                 else:
                     $ new_underwear = default_wardrobe.get_random_appropriate_underwear(the_person.sluttiness, 0, guarantee_output = True)
                 "[the_person.title] moves between the racks of bras and display boxes of panties, picking out a few choice pieces."
@@ -969,7 +969,7 @@ label shopping_date_underwear(the_person):
 
         "Let her do her own shopping":
             if the_person.effective_sluttiness() > 50 or the_person.get_opinion_score("lingerie") > 0:
-                $ new_underwear = lingerie_wardrobe.get_random_appropriate_underwear(the_person.sluttiness, 6, guarantee_output = True)
+                $ new_underwear = lingerie_wardrobe.get_random_appropriate_outfit(the_person.sluttiness, 6, guarantee_output = True)
             else:
                 $ new_underwear = default_wardrobe.get_random_appropriate_underwear(the_person.sluttiness, 0, guarantee_output = True)
             "[the_person.title] moves between the racks of bras and display boxes of panties, picking out a few choice pieces."
