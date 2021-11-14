@@ -201,7 +201,8 @@ label mom_kissing_taboo_break_revisit(the_person):
             $ hall.actions.append(Action("Clean the living room {image=gui/heart/Time_Advance.png}\n{color=#ff0000}{size=18}Costs: 20 {image=gui/extra_images/energy_token.png}{/size}{/color}", mom_kissing_quest_3_requirement, "mom_kissing_taboo_break_revisit_quest_3", args = the_person, requirement_args = the_person))
             $ kitchen.actions.append(Action("Clean the fridge {image=gui/heart/Time_Advance.png}\n{color=#ff0000}{size=18}Costs: 20 {image=gui/extra_images/energy_token.png}{/size}{/color}", mom_kissing_quest_4_requirement, "mom_kissing_taboo_break_revisit_quest_4", args = the_person, requirement_args = the_person))
 
-            $ the_person.get_role_reference(mother_role).actions.append(Action("Check back in...", mom_kissing_taboo_break_revisit_complete_requirement , "mom_kissing_taboo_break_revisit_complete"))
+            # add check back action
+            $ the_person.get_role_reference(mother_role).add_action(Action("Check back in...", mom_kissing_taboo_break_revisit_complete_requirement , "mom_kissing_taboo_break_revisit_complete"))
 
             $ the_person.change_slut(-10)
             $ mc.log_event(the_person.title + "'s taboos restored!", "float_text_red")
@@ -276,6 +277,7 @@ label mom_kissing_taboo_break_revisit_complete(the_person):
     $ the_person.event_triggers_dict["mom_kissing_quest_active"] = False
     $ the_person.event_triggers_dict["kissing_revisit_complete"] = True
     $ the_person.change_slut(10, 40)
+    $ the_person.get_role_reference(mother_role).remove_action("mom_kissing_taboo_break_revisit_complete")
     python:
         for a_taboo in the_person.event_triggers_dict.get("kissing_revisit_restore_taboos", []):
             the_person.break_taboo(a_taboo)
@@ -362,7 +364,7 @@ label mom_oral_taboo_break_revisit(the_person):
             $ the_person.event_triggers_dict["mom_oral_quest_active"] = True
 
             #We get the role reference here in case save/loading breaks that link (but it shouldn't, I think).
-            $ the_person.get_role_reference(mother_role).actions.append(Action("Check back in...", mom_oral_quest_complete_requirement, "mom_oral_taboo_break_revisit_complete"))
+            $ the_person.get_role_reference(mother_role).add_action(Action("Check back in...", mom_oral_quest_complete_requirement, "mom_oral_taboo_break_revisit_complete"))
             $ the_person.change_slut(-10)
             $ mc.log_event(the_person.title + "'s taboos restored!", "float_text_red")
 
@@ -393,6 +395,7 @@ label mom_oral_taboo_break_revisit_complete(the_person):
     $ the_person.event_triggers_dict["mom_oral_quest_active"] = False
     $ the_person.event_triggers_dict["oral_revisit_complete"] = True
     $ the_person.change_slut(10, 50)
+    $ the_person.get_role_reference(mother_role).remove_action("mom_oral_taboo_break_revisit_complete")
 
     the_person "It means a lot to me either way."
     menu:
@@ -560,7 +563,7 @@ label mom_anal_taboo_break_revisit(the_person):
             $ the_person.change_slut(-10)
             $ mc.log_event(the_person.title + "'s taboos restored!", "float_text_red")
             $ the_person.event_triggers_dict["mom_anal_quest_active"] = True
-            $ the_person.get_role_reference(mother_role).actions.append(Action("Pay off her debt\n{color=#ff0000}{size=18}Costs: $5000{/size}{/color}", mom_anal_quest_complete_requirement, "mom_anal_taboo_break_revisit_complete"))
+            $ the_person.get_role_reference(mother_role).add_action(Action("Pay off her debt\n{color=#ff0000}{size=18}Costs: $5000{/size}{/color}", mom_anal_quest_complete_requirement, "mom_anal_taboo_break_revisit_complete"))
 
         "Understood":
             mc.name "I understand."
@@ -578,6 +581,7 @@ label mom_anal_taboo_break_revisit_complete(the_person):
 
     $ the_person.event_triggers_dict["mom_anal_quest_active"] = False
     $ the_person.event_triggers_dict["anal_revisit_complete"] = True
+    $ the_person.get_role_reference(mother_role).remove_action("mom_anal_taboo_break_revisit_complete")
 
     mc.name "[the_person.title], I have some money for you."
     the_person "Hmm? Money for what?"

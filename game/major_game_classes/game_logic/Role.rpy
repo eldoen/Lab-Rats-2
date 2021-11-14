@@ -81,3 +81,18 @@ init -2 python:
                     return True
                 return lookalike.check_looks_like(the_role)
             return False
+
+        def add_action(self, action):
+            found = next((x for x in self.actions if x.effect == action.effect), None)
+            if not found:
+                self.actions.append(action)
+
+        def remove_action(self, action):
+            found = None
+            if isinstance(action, Action):
+                found = next((x for x in self.actions if x == action), None)
+            elif isinstance(action, basestring):
+                found = next((x for x in self.actions if x.effect == action), None)
+
+            if found:
+                self.actions.remove(found)

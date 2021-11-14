@@ -166,7 +166,8 @@ label sister_kissing_taboo_break_revisit(the_person):
             $ the_person.change_slut(-10)
             $ mc.log_event(the_person.title + "'s taboos restored!", "float_text_red")
 
-            $ the_person.get_role_reference(sister_role).actions.append(Action("Check back in...", sister_kissing_quest_complete_requirement, "sister_kissing_taboo_break_revisit_complete"))
+            # add check-in action
+            $ the_person.get_role_reference(sister_role).add_action(Action("Check back in...", sister_kissing_quest_complete_requirement, "sister_kissing_taboo_break_revisit_complete"))
 
         "I understand.":
             "You want to complain or argue, but you know that will only make things worse."
@@ -182,6 +183,9 @@ label sister_kissing_taboo_break_revisit(the_person):
 label sister_kissing_taboo_break_revisit_complete(the_person):
     $ the_person.event_triggers_dict["sister_kissing_quest_active"] = False
     $ the_person.event_triggers_dict["kissing_revisit_complete"] = True
+    # remove check in action
+    $ the_person.get_role_reference(sister_role).remove_action("sister_kissing_taboo_break_revisit_complete")
+
     mc.name "Are you happy with all the help I've given you with InstaPic?"
     the_person "Yeah, I guess you have helped me out a bunch lately."
     mc.name "So does that mean we can..."
@@ -281,9 +285,9 @@ label sister_oral_taboo_break_revisit(the_person):
             $ mc.log_event(the_person.title + "'s taboos restored!", "float_text_red")
 
             $ electronics_store.on_room_enter_event_list.append(Action("pi phone discover", sister_oral_quest_1_requirement, "sister_oral_taboo_break_revisit_quest_1", args = the_person, requirement_args = the_person))
-            $ electronics_store.actions.append(Action("Buy a πphone\n{color=#ff0000}{size=18}Costs: $1200{/size}{/color}", sister_oral_quest_2_requirement, "sister_oral_taboo_break_revisit_quest_2", args = the_person, requirement_args = the_person))
+            $ electronics_store.add_action(Action("Buy a πphone\n{color=#ff0000}{size=18}Costs: $1200{/size}{/color}", sister_oral_quest_2_requirement, "sister_oral_taboo_break_revisit_quest_2", args = the_person, requirement_args = the_person))
 
-            $ the_person.get_role_reference(sister_role).actions.append(Action("Check back in...", sister_oral_revisit_quest_complete_requirement, "sister_oral_taboo_break_revisit_complete"))
+            $ the_person.get_role_reference(sister_role).add_action(Action("Check back in...", sister_oral_revisit_quest_complete_requirement, "sister_oral_taboo_break_revisit_complete"))
 
         "I understand":
             mc.name "I understand [the_person.title]."
@@ -378,6 +382,10 @@ label sister_oral_taboo_break_revisit_quest_2(the_person):
             "You get your phone, pay for it, and are directed towards the exit without any issues."
             $ mc.business.funds += -1200
             $ the_person.event_triggers_dict["sister_oral_quest_progress"] = 2
+            $ electronics_store.remove_action("sister_oral_taboo_break_revisit_quest_2")
+            $ lead_girl = None
+            $ other_girl_1 = None
+            $ other_girl_2 = None
             call advance_time()
 
         "Keep waiting {image=gui/heart/Time_Advance.png}\n{color=#ff0000}{size=18}Not enough time{/size}{/color} (disabled)" if time_of_day == 4:
@@ -395,6 +403,7 @@ label sister_oral_taboo_break_revisit_quest_2(the_person):
             "A hell of a lot better than waiting in line for hours, you think to yourself."
             $ mc.business.funds += -2400
             $ the_person.event_triggers_dict["sister_oral_quest_progress"] = 2
+            $ electronics_store.remove_action("sister_oral_taboo_break_revisit_quest_2")
 
         "Buy one from a scalper\n{color=#ff0000}{size=18}Requires: $2400{/size}{/color} (disabled)" if mc.business.funds < 2400:
             pass
@@ -407,6 +416,7 @@ label sister_oral_taboo_break_revisit_complete(the_person):
 
     $ the_person.event_triggers_dict["sister_oral_quest_active"] = False
     $ the_person.event_triggers_dict["oral_revisit_complete"] = True
+    $ the_person.get_role_reference(sister_role).remove_action("sister_oral_taboo_break_revisit_complete")
 
     mc.name "Hey, you were looking for this, right?"
     "You pull out [the_person.title]'s new πphone and wave it in front of her."
@@ -573,7 +583,7 @@ label sister_anal_taboo_break_revisit(the_person):
                 $ the_person.change_slut(-10)
                 $ mc.log_event(the_person.title + "'s taboos restored!", "float_text_red")
                 $ the_person.event_triggers_dict["sister_anal_quest_active"] = True
-                $ the_person.get_role_reference(sister_role).actions.append(Action("Check back in...", sister_anal_revisit_quest_complete_requirement, "sister_anal_taboo_break_revisit_complete"))
+                $ the_person.get_role_reference(sister_role).add_action(Action("Check back in...", sister_anal_revisit_quest_complete_requirement, "sister_anal_taboo_break_revisit_complete"))
 
 
         "I understand":
@@ -594,8 +604,7 @@ label sister_anal_taboo_break_revisit_complete(the_person):
     "She laughs, missing the irony."
     $ the_person.change_slut(10, 65)
     $ the_person.break_taboo("anal_sex")
-    $ the_person.event_triggers_dict["sister_anal_quest_active"] = False
-    $ the_person.event_triggers_dict["anal_revisit_complete"] = True
+    $ the_person.get_role_reference(sister_role).remove_action("sister_anal_taboo_break_revisit_complete")
     the_person "I guess you've proved yourself. I won't make a big deal out of... whatever it is we do."
     return
 
@@ -722,8 +731,6 @@ label sister_vaginal_taboo_break_revisit_quest_1(the_person):
         "[the_person.possessive_title] pouts, but nods her understanding."
         return
 
-    $ mc.inventory.change_serum(the_serum, -10)
-
     "You pull out a cardboard box filled with serum vials."
     the_person "And these are going to get us high, right?"
     mc.name "That's what you asked for."
@@ -742,6 +749,7 @@ label sister_vaginal_taboo_break_revisit_quest_1(the_person):
     the_person "How long does this stuff take to kick in?"
     mc.name "It shouldn't be too long."
     if happy_serum and slutty_serum:
+        $ mc.inventory.change_serum(the_serum, -10)
         $ the_person.event_triggers_dict["sister_vaginal_quest_active"] = False
         $ the_person.event_triggers_dict["vaginal_revisit_complete"] = True
         the_person "I don't know, I'm not... Oh wait a second."
@@ -804,6 +812,7 @@ label sister_vaginal_taboo_break_revisit_quest_1(the_person):
 
         $ the_person.event_triggers_dict["sister_vaginal_quest_active"] = False
         $ the_person.event_triggers_dict["vaginal_revisit_complete"] = True
+        $ mc.inventory.change_serum(the_serum, -10)
 
         the_person "Oh wait, I think... Oooh..."
         $ the_person.draw_person(position = "sitting")
@@ -845,22 +854,23 @@ label sister_vaginal_taboo_break_revisit_quest_1(the_person):
                     the_person "Yeah, yeah, we can fuck every once in a while. We've already done it once, so I guess it's not a big deal."
                     $ the_person.event_triggers_dict["sister_vaginal_quest_active"] = False
                     $ the_person.event_triggers_dict["vaginal_revisit_complete"] = True
+                    $ mc.inventory.change_serum(the_serum, -10)
 
                 else:
                     the_person "That was fun [the_person.mc_title], but I still don't think your drugs are very good."
                     the_person "Bring me something else, something that's fun!"
                     mc.name "Alright, I'll be back with a different design."
-                    $ mc.inventory.change_serum(the_serum, 9)
+                    $ mc.inventory.change_serum(the_serum, -1)
 
             "Bring her something else":
                 mc.name "Alright, give those back. I'll make you something else you might like."
                 "She nods and hands back the rest of the serum doses."
-                $ mc.inventory.change_serum(the_serum, 9)
+                $ mc.inventory.change_serum(the_serum, -1)
     else:
         the_person "I don't know if it's working [the_person.mc_title]..."
         "She waits a few moments longer, then shakes her head."
         $ the_person.change_obedience(-1)
         the_person "No, this isn't doing it for me. The girls want something fun, something that makes us feel good."
         the_person "Make us something like that, okay?"
-        $ mc.inventory.change_serum(the_serum, -9)
+        $ mc.inventory.change_serum(the_serum, -1)
     return

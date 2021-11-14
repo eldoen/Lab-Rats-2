@@ -1347,6 +1347,8 @@ label mom_promotion_boss_phase_one(the_secretary):
     $ mc.change_location(downtown) #Make sure we move you downtown
     $ mc.location.show_background()
     $ del mom_boss_quick_name
+    $ del the_wife
+    $ del the_daughter
 
     call advance_time() from _call_advance_time_33 #All of that took some time, so let's advance it a little bit.
     return
