@@ -151,3 +151,18 @@ init -2 python:
 
         def get_lighting_conditions(self):
             return self.lighting_conditions[time_of_day]
+
+        def add_action(self, action):
+            found = next((x for x in self.actions if x.effect == action.effect), None)
+            if not found:
+                self.actions.append(action)
+
+        def remove_action(self, action):
+            found = None
+            if isinstance(action, Action):
+                found = next((x for x in self.actions if x == action), None)
+            elif isinstance(action, basestring):
+                found = next((x for x in self.actions if x.effect == action), None)
+
+            if found:
+                self.actions.remove(found)
