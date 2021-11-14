@@ -253,7 +253,6 @@ label sister_instathot_label_solo(the_person):
 
     $ skip_change = False
     if the_person.has_taboo(["bare_tits", "bare_pussy"]):
-        $ skip_change = True
         "She looks at you expectantly."
         the_person "Can, you give me a moment? I'm not going to get undressed in front of you."
         menu:

@@ -1656,7 +1656,7 @@ init -2 python:
                     self.draw_person()
 
                 if dialogue:
-                   self.call_dialogue("clothing_review")
+                    self.call_dialogue("clothing_review")
 
         def judge_outfit(self, outfit, temp_sluttiness_boost = 0, use_taboos = True, as_underwear = False, as_overwear = False): #Judge an outfit and determine if it's too slutty or not. Can be used to judge other people's outfits to determine if she thinks they look like a slut.
             # temp_sluttiness can be used in situations (mainly crises) where an outfit is allowed to be temporarily more slutty than a girl is comfortable wearing all the time.
@@ -1908,7 +1908,7 @@ init -2 python:
 
         def run_orgasm(self, show_dialogue = True, force_trance = False, trance_chance_modifier = 0, add_to_log = True, sluttiness_increase_limit = 30, fire_event = True):
             self.change_slut(1, sluttiness_increase_limit, add_to_log = add_to_log)
-            mc.listener_system.fire_event("girl_climax", the_person= self)
+            mc.listener_system.fire_event("girl_climax", the_person = self)
             if renpy.random.randint(0,100) < self.suggestibility + trance_chance_modifier or force_trance:
                 display_name = self.create_formatted_title("???")
                 if self.title:
