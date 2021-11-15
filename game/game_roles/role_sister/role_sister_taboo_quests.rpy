@@ -42,9 +42,8 @@ init -1 python:
         if not the_person.event_triggers_dict.get("sister_oral_quest_active", False):
             return False
         elif not the_person.event_triggers_dict.get("sister_oral_quest_progress", 0) == 2:
-            return "Buy her a πphone"
-        else:
-            return True
+            return "Buy her a {size=+12}{font=fonts/Crimson-Bold.ttf}\u03C0{/font}{/size}phone"
+        return True
 
     def sister_anal_revisit_quest_complete_requirement(the_person):
         if not the_person.event_triggers_dict.get("sister_anal_quest_active", False):
@@ -271,9 +270,9 @@ label sister_oral_taboo_break_revisit(the_person):
             the_person "No, I don't think so... I mean, what could you do for me?"
             mc.name "You tell me."
             "She seems about to refuse, but pauses to think."
-            the_person "Well... There is a new πphone out, and the camera is {i}amazing{/i} on it. Everyone on InstaPic wants one."
+            the_person "Well... There is a new {size=+12}{font=fonts/Crimson-Bold.ttf}\u03C0{/font}{/size}phone out, and the camera is {i}amazing{/i} on it. Everyone on InstaPic wants one."
             the_person "Too bad it's really expensive..."
-            mc.name "If I get you the new πphone, we're good?"
+            mc.name "If I get you the new {size=+12}{font=fonts/Crimson-Bold.ttf}\u03C0{/font}{/size}phone, we're good?"
             the_person "That's really all it's going to take? Yeah, get me the phone and I'll think about... you know."
             "She mimes a blowjob, poking out her tongue with her cheek. She giggles and winks."
             the_person "Good luck though, I've heard the lines are massive. You'll probably be waiting there all day!"
@@ -285,7 +284,7 @@ label sister_oral_taboo_break_revisit(the_person):
             $ mc.log_event(the_person.title + "'s taboos restored!", "float_text_red")
 
             $ electronics_store.on_room_enter_event_list.append(Action("pi phone discover", sister_oral_quest_1_requirement, "sister_oral_taboo_break_revisit_quest_1", args = the_person, requirement_args = the_person))
-            $ electronics_store.add_action(Action("Buy a πphone\n{color=#ff0000}{size=18}Costs: $1200{/size}{/color}", sister_oral_quest_2_requirement, "sister_oral_taboo_break_revisit_quest_2", args = the_person, requirement_args = the_person))
+            $ electronics_store.add_action(Action("Buy a {size=+12}{font=fonts/Crimson-Bold.ttf}\u03C0{/font}{/size}phone\n{color=#ff0000}{size=18}Costs: $1200{/size}{/color}", sister_oral_quest_2_requirement, "sister_oral_taboo_break_revisit_quest_2", args = the_person, requirement_args = the_person))
 
             $ the_person.get_role_reference(sister_role).add_action(Action("Check back in...", sister_oral_revisit_quest_complete_requirement, "sister_oral_taboo_break_revisit_complete"))
 
@@ -300,7 +299,7 @@ label sister_oral_taboo_break_revisit(the_person):
 
 label sister_oral_taboo_break_revisit_quest_1(the_person):
     "As you get close to the electronics store you see a long line snaking out the front and down one arm of the mall."
-    "The front of the store is covered in posters, all advertising \"The New πphone. Only $1200!\"."
+    "The front of the store is covered in posters, all advertising \"The New {size=+12}{font=fonts/Crimson-Bold.ttf}\u03C0{/font}{/size}phone. Only $1200!\"."
     $ the_person.event_triggers_dict["sister_oral_quest_progress"] = 1
     return
 
@@ -337,7 +336,7 @@ label sister_oral_taboo_break_revisit_quest_2(the_person):
 
                 "Talk to them":
                     "You don't have anything better to do with your time, so you turn around and try and strike up a conversation."
-                    mc.name "Hey, you three here for the πphone release too?"
+                    mc.name "Hey, you three here for the {size=+12}{font=fonts/Crimson-Bold.ttf}\u03C0{/font}{/size}phone release too?"
                     $ the_group.set_primary(other_girl_2)
                     $ the_group.draw_group()
                     other_girl_2 "Uh, duh. Why else would we be here?"
@@ -399,7 +398,7 @@ label sister_oral_taboo_break_revisit_quest_2(the_person):
             "Stranger" "Seriously? Uh..."
             mc.name "Come on, you can take the cash and get back into line right away."
             "Stranger" "Aaaah, fuck it. Fine, do you have actual cash?"
-            "You have to find an ATM to get the man his cash, but after a few minutes you have a new πphone in your hands."
+            "You have to find an ATM to get the man his cash, but after a few minutes you have a new {size=+12}{font=fonts/Crimson-Bold.ttf}\u03C0{/font}{/size}phone in your hands."
             "A hell of a lot better than waiting in line for hours, you think to yourself."
             $ mc.business.funds += -2400
             $ the_person.event_triggers_dict["sister_oral_quest_progress"] = 2
@@ -419,7 +418,7 @@ label sister_oral_taboo_break_revisit_complete(the_person):
     $ the_person.get_role_reference(sister_role).remove_action("sister_oral_taboo_break_revisit_complete")
 
     mc.name "Hey, you were looking for this, right?"
-    "You pull out [the_person.title]'s new πphone and wave it in front of her."
+    "You pull out [the_person.title]'s new {size=+12}{font=fonts/Crimson-Bold.ttf}\u03C0{/font}{/size}phone and wave it in front of her."
     $ the_person.draw_person(emotion = "happy")
     the_person "Oh my god, you actually got one? Aaaah!"
     $ the_person.change_happiness(20)
@@ -436,7 +435,7 @@ label sister_oral_taboo_break_revisit_complete(the_person):
             the_person "What? Oh... Very funny [the_person.mc_title]. Come on, just give me the phone."
             the_person "It's not like I'm going to give you a blowjob just for a phone."
             mc.name "Aren't you? All of the girls at the store were talking about their InstaPic accounts."
-            mc.name "Imagine how you'll look, if you're the only who doesn't have a πphone..."
+            mc.name "Imagine how you'll look, if you're the only who doesn't have a {size=+12}{font=fonts/Crimson-Bold.ttf}\u03C0{/font}{/size}phone..."
             "You leave the question hanging. [the_person.possessive_title] pouts again, but sighs when it's clear that won't break you."
             the_person "You're the worst, you know that? Fiiiine."
             if mc.location.get_person_count() > 1:
