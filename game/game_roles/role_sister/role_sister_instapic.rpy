@@ -1142,6 +1142,7 @@ label sister_instathot_label_mom_shirtless(the_sister, the_mom, the_group): #Cal
                 if the_sister.event_triggers_dict.get("sister_instathot_mom_shirtless_uncovered_count", 0) > 0:
                     $ show_them_requirement = 50
                     $ red_heart_token = get_red_heart(show_them_requirement)
+                    $ first_time = the_sister.event_triggers_dict.get("sister_instathot_mom_shirtless_uncovered_count", 0) <= 1
 
                     menu:
                         "Now show them to the camera" if (the_mom.effective_sluttiness() >= show_them_requirement or the_mom.get_known_opinion_score("incest") > 0) and (the_sister.effective_sluttiness() >= show_them_requirement or the_sister.get_known_opinion_score("incest") > 0):

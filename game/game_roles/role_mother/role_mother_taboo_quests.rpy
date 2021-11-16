@@ -196,10 +196,10 @@ label mom_kissing_taboo_break_revisit(the_person):
 
             $ the_person.event_triggers_dict["mom_kissing_quest_active"] = True
 
-            $ bedroom.actions.append(Action("Clean you're room {image=gui/heart/Time_Advance.png}\n{color=#ff0000}{size=18}Costs: 20 {image=gui/extra_images/energy_token.png}{/size}{/color}", mom_kissing_quest_1_requirement, "mom_kissing_taboo_break_revisit_quest_1", args = the_person, requirement_args = the_person))
-            $ hall.actions.append(Action("Clean the bathroom {image=gui/heart/Time_Advance.png}\n{color=#ff0000}{size=18}Costs: 20 {image=gui/extra_images/energy_token.png}{/size}{/color}", mom_kissing_quest_2_requirement, "mom_kissing_taboo_break_revisit_quest_2", args = the_person, requirement_args = the_person))
-            $ hall.actions.append(Action("Clean the living room {image=gui/heart/Time_Advance.png}\n{color=#ff0000}{size=18}Costs: 20 {image=gui/extra_images/energy_token.png}{/size}{/color}", mom_kissing_quest_3_requirement, "mom_kissing_taboo_break_revisit_quest_3", args = the_person, requirement_args = the_person))
-            $ kitchen.actions.append(Action("Clean the fridge {image=gui/heart/Time_Advance.png}\n{color=#ff0000}{size=18}Costs: 20 {image=gui/extra_images/energy_token.png}{/size}{/color}", mom_kissing_quest_4_requirement, "mom_kissing_taboo_break_revisit_quest_4", args = the_person, requirement_args = the_person))
+            $ bedroom.add_action(Action("Clean you're room {image=gui/heart/Time_Advance.png}\n{color=#ff0000}{size=18}Costs: 20 {image=gui/extra_images/energy_token.png}{/size}{/color}", mom_kissing_quest_1_requirement, "mom_kissing_taboo_break_revisit_quest_1", args = the_person, requirement_args = the_person, priority = 20))
+            $ hall.add_action(Action("Clean the bathroom {image=gui/heart/Time_Advance.png}\n{color=#ff0000}{size=18}Costs: 20 {image=gui/extra_images/energy_token.png}{/size}{/color}", mom_kissing_quest_2_requirement, "mom_kissing_taboo_break_revisit_quest_2", args = the_person, requirement_args = the_person, priority = 20))
+            $ hall.add_action(Action("Clean the living room {image=gui/heart/Time_Advance.png}\n{color=#ff0000}{size=18}Costs: 20 {image=gui/extra_images/energy_token.png}{/size}{/color}", mom_kissing_quest_3_requirement, "mom_kissing_taboo_break_revisit_quest_3", args = the_person, requirement_args = the_person, priority = 20))
+            $ kitchen.add_action(Action("Clean the fridge {image=gui/heart/Time_Advance.png}\n{color=#ff0000}{size=18}Costs: 20 {image=gui/extra_images/energy_token.png}{/size}{/color}", mom_kissing_quest_4_requirement, "mom_kissing_taboo_break_revisit_quest_4", args = the_person, requirement_args = the_person, priority = 20))
 
             # add check back action
             $ the_person.get_role_reference(mother_role).add_action(Action("Check back in...", mom_kissing_taboo_break_revisit_complete_requirement , "mom_kissing_taboo_break_revisit_complete"))
@@ -225,6 +225,7 @@ label mom_kissing_taboo_break_revisit_quest_1(the_person):
     $ mc.change_energy(-20)
     $ the_person.event_triggers_dict["kissing_taboo_revisit_quest_progress"] = the_person.event_triggers_dict.get("kissing_taboo_revisit_quest_progress", 0) + 1
     $ the_person.event_triggers_dict["mom_kissing_quest_1_complete"] = True
+    $ bedroom.remove_action("mom_kissing_taboo_break_revisit_quest_1")
     if the_person.event_triggers_dict.get("kissing_taboo_revisit_quest_progress", 0) == 4:
         "That's the last chore. Time to talk to [the_person.possessive_title]."
     call advance_time()
@@ -236,6 +237,7 @@ label mom_kissing_taboo_break_revisit_quest_2(the_person):
     $ mc.change_energy(-20)
     $ the_person.event_triggers_dict["kissing_taboo_revisit_quest_progress"] = the_person.event_triggers_dict.get("kissing_taboo_revisit_quest_progress", 0) + 1
     $ the_person.event_triggers_dict["mom_kissing_quest_2_complete"] = True
+    $ hall.remove_action("mom_kissing_taboo_break_revisit_quest_2")
     if the_person.event_triggers_dict.get("kissing_taboo_revisit_quest_progress", 0) == 4:
         "That's the last chore. Time to talk to [the_person.possessive_title]."
     call advance_time()
@@ -248,6 +250,7 @@ label mom_kissing_taboo_break_revisit_quest_3(the_person):
     $ mc.change_energy(-20)
     $ the_person.event_triggers_dict["kissing_taboo_revisit_quest_progress"] = the_person.event_triggers_dict.get("kissing_taboo_revisit_quest_progress", 0) + 1
     $ the_person.event_triggers_dict["mom_kissing_quest_3_complete"] = True
+    $ hall.remove_action("mom_kissing_taboo_break_revisit_quest_3")
     if the_person.event_triggers_dict.get("kissing_taboo_revisit_quest_progress", 0) == 4:
         "That's the last chore. Time to talk to [the_person.possessive_title]."
     call advance_time()
@@ -261,6 +264,7 @@ label mom_kissing_taboo_break_revisit_quest_4(the_person):
     $ mc.change_energy(-20)
     $ the_person.event_triggers_dict["kissing_taboo_revisit_quest_progress"] = the_person.event_triggers_dict.get("kissing_taboo_revisit_quest_progress", 0) + 1
     $ the_person.event_triggers_dict["mom_kissing_quest_4_complete"] = True
+    $ kitchen.remove_action("mom_kissing_taboo_break_revisit_quest_4")
     if the_person.event_triggers_dict.get("kissing_taboo_revisit_quest_progress", 0) == 4:
         "That's the last chore. Time to talk to [the_person.possessive_title]."
     call advance_time()
@@ -669,6 +673,7 @@ label mom_anal_taboo_break_revisit_complete(the_person):
 
 label mom_vaginal_taboo_break_revisit(the_person):
     $ the_person.draw_person()
+    $ first_time = the_person.event_triggers_dict.get("vaginal_revisit_count", 0) <= 1
     the_person "[the_person.mc_title], we need to talk."
     "[the_person.possessive_title] hurries up to you, wringing her hands together in front of her."
     if first_time:

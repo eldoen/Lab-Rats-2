@@ -609,6 +609,8 @@ label sister_anal_taboo_break_revisit_complete(the_person):
 
 label sister_vaginal_taboo_break_revisit(the_person):
     $ the_person.draw_person()
+    $ first_time = the_person.event_triggers_dict.get("vaginal_revisit_count", 0) <= 1
+
     the_person "So [the_person.mc_title]... about yesterday..."
     "She calls out to you and hurries over."
     the_person "So that happened, huh? I think we both know it was kind of a mistake."
