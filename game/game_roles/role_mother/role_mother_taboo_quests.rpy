@@ -917,6 +917,7 @@ label mom_vaginal_quest_3(the_person):
         "Don't reply":
             "You shrug and put your phone back in your pocket."
 
+    $ mc.end_text_convo()
     $ the_person.on_room_enter_event_list.append(Action("Seduce my son", mom_vaginal_quest_complete_requirement, "mom_vaginal_taboo_break_revisit_complete"))
     return
 

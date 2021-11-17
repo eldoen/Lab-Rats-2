@@ -50,7 +50,7 @@ init -2 python:
             return False
         elif mc.location.has_person(the_person) and mc.location.public:
             return False #If she's in the same location as us and we are in public she doesn't take the picture.
-        elif the_person.home.has_person(the_person) and mc.location == the_person.home: #Doesn't do it if she's at home and you're in the room with her (mainly for Lily/Mom)
+        elif mc.location == the_person.home and the_person.home and the_person.home.has_person(the_person): #Doesn't do it if she's at home and you're in the room with her (mainly for Lily/Mom)
             return False
         return True
 
