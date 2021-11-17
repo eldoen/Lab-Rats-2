@@ -83,7 +83,7 @@ init -1 python:
     def mom_vaginal_quest_2_requirement(the_person):
         if not the_person.event_triggers_dict.get("mom_vaginal_quest_active", False):
             return False
-        elif the_person.event_triggers_dict.get("mom_vaginal_quest_progress", 0) == 1:
+        elif the_person.event_triggers_dict.get("mom_vaginal_quest_progress", 0) <= 1:
             return False
         elif time_of_day >= 4:
             return "Not enough time"
@@ -802,7 +802,7 @@ label mom_vaginal_taboo_break_revisit_quest_2(the_person):
 
     call advance_time()
 
-    $ mc.business.mandatory_crises_list(Action("make a decision", mom_vaginal_quest_3_requirement, "mom_vaginal_quest_3", args = the_person, requirement_args = [the_person, day + renpy.random(1,3)]))
+    $ mc.business.mandatory_crises_list.append(Action("make a decision", mom_vaginal_quest_3_requirement, "mom_vaginal_quest_3", args = the_person, requirement_args = [the_person, day + renpy.random(1,3)]))
     return
 
 label mom_advice_dm(the_person):

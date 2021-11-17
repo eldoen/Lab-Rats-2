@@ -536,7 +536,7 @@ label sister_anal_taboo_break_revisit(the_person):
             $ the_person.break_taboo("anal_sex", add_to_log = False, fire_event = False)
             $ the_person.event_triggers_dict["anal_revisit_complete"] = True
 
-        "I know you want more though\n{color=#ff0000}{size=18}Requires: Likes Incest{/size}{/color} (disabled)" if the_person.get_known_opinion_score("incest") <= 1:
+        "I know you want more though\n{color=#ff0000}{size=18}Requires: Loves Incest{/size}{/color} (disabled)" if the_person.get_known_opinion_score("incest") <= 1:
             pass
 
         "But it keeps happening..." if the_person.event_triggers_dict.get("anal_revisit_count", 0) >= anal_count_threshold:
