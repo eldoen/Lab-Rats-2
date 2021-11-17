@@ -2,7 +2,7 @@ init 0 python:
     strip_dancing = StripteasePosition(name = "Strip_Dancing",
         slut_requirement = 10,
         position_towards_pose = "stand3", position_away_pose = "back_peek",
-        girl_energy_cost = 12, guy_arousal_gain = 15,
+        girl_energy_cost = 6, guy_arousal_gain = 7,
         intro_label = "strip_dancing_intro",
         transition_label = "strip_dancing_transition",
         turn_towards_label = "strip_awkward_stand_turn_towards",

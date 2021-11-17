@@ -4,7 +4,7 @@ init 0 python:
         is_close = True,
         allows_touching = True, allows_jerking = True, allows_turning = True,
         position_towards_pose = "stand4", position_away_pose = "walking_away",
-        girl_energy_cost = 12, guy_arousal_gain = 17,
+        girl_energy_cost = 6, guy_arousal_gain = 8,
         intro_label = "strip_close_dancing_intro",
         transition_label = "strip_close_dancing_transition",
         turn_towards_label = "strip_close_dancing_turn_towards",

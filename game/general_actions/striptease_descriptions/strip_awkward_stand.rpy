@@ -1,6 +1,6 @@
 init 0 python:
     strip_awkward_stand = StripteasePosition(name = "Awkward_stand",
-        girl_energy_cost = 8, guy_arousal_gain = 8,
+        girl_energy_cost = 4, guy_arousal_gain = 4,
         intro_label = "strip_awkward_stand_intro",
         transition_label = "strip_awkward_transition",
         turn_towards_label = "strip_awkward_stand_turn_towards",
