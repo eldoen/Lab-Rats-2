@@ -83,7 +83,7 @@ init -1 python:
     def mom_vaginal_quest_2_requirement(the_person):
         if not the_person.event_triggers_dict.get("mom_vaginal_quest_active", False):
             return False
-        elif the_person.event_triggers_dict.get("mom_vaginal_quest_progress", 0) <= 1:
+        elif the_person.event_triggers_dict.get("mom_vaginal_quest_progress", 0) != 1:
             return False
         elif time_of_day >= 4:
             return "Not enough time"
@@ -765,7 +765,7 @@ label mom_vaginal_taboo_break_revisit_quest_1(the_person):
     "VeryNaughtyMommy" "So what do you girls think? I want to have more sex with my son, but I don't know if I should!" (what_style = "text_message_style")
     "You write down the site name along with [the_person.title]'s username so you can follow this up on your own computer."
     menu:
-        "Read the responses.":
+        "Read the responses":
             "The post already has a few responses, so you scroll down and take a look at them."
             "SphinxyBaby" "This post went from 0 to 100 real quick!" (what_style = "text_message_style")
             "MTeresa" "What the heck is this post? Reported to moderator." (what_style = "text_message_style")
@@ -774,7 +774,7 @@ label mom_vaginal_taboo_break_revisit_quest_1(the_person):
             "It doesn't seem like public opinion is swinging your way."
             "Hopefully [the_person.possessive_title] doesn't check back until you've fixed that." (what_style = "text_message_style")
 
-        "Finish up.":
+        "Finish up":
             pass
 
     $ the_person.event_triggers_dict["mom_vaginal_quest_progress"] = 1
