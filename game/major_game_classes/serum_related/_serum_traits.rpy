@@ -632,6 +632,7 @@ init -1:
             on_apply = caffeine_trait_on_apply,
             on_remove = caffeine_trait_on_remove,
             research_needed = 150,
+            exclude_tags = "Energy",
             clarity_cost = 10)
 
         birth_control_suppression = SerumTrait(name = "Birth Control Suppression",
@@ -844,6 +845,7 @@ init -1:
             requires = [caffeine_trait],
             tier = 1,
             research_needed = 300,
+            exclude_tags = "Energy",
             clarity_cost = 250)
 
         fertility_enhancement_trait = SerumTrait(name = "Fertility Enhancement",
@@ -1105,6 +1107,7 @@ init -1:
             requires = [fertility_enhancement_trait],
             tier = 2,
             research_needed = 800,
+            exclude_tags = "Pregnancy",
             clarity_cost = 1200)
 
         pregnancy_decelerator_trait = SerumTrait(name = "Pregnancy Deceleration Hormones",
@@ -1118,6 +1121,7 @@ init -1:
             requires = [fertility_enhancement_trait],
             tier = 2,
             research_needed = 800,
+            exclude_tags = "Pregnancy",
             clarity_cost = 800)
 
         vaginal_enhancer = SerumTrait(name = "Natural Lubrication Stimulation",
@@ -1268,6 +1272,7 @@ init -1:
             requires = [pregnancy_accelerator_trait],
             tier = 3,
             research_needed = 1400,
+            exclude_tags = "Pregnancy",
             clarity_cost = 1800)
 
         self_generating_serum = SerumTrait(name = "Self Replicating Serum",
