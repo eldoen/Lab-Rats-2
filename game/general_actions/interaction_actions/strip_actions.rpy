@@ -1,25 +1,25 @@
 init 1 python:
-    def get_strip_menu_options():
+    def get_strip_menu_options(person):
         pay_strip_list = ["Strip"] #Tuple of menu things.
         # High obedience characters are more willing to be told to strip down (although they still expect to be paid for it)
         # Low obedience characters will strip off less when told but can be left to run the show on their own and will remove some.
-        for item in the_person.outfit.get_unanchored():
+        for item in person.outfit.get_unanchored():
             if item.is_extension:
                 continue
 
-            test_outfit = the_person.outfit.get_copy()
+            test_outfit = person.outfit.get_copy()
             test_outfit.remove_clothing(item)
-            new_willingness = the_person.effective_sluttiness("underwear_nudity") + (5*the_person.get_opinion_score("not wearing anything")) - test_outfit.slut_requirement
+            new_willingness = person.effective_sluttiness("underwear_nudity") + (5*person.get_opinion_score("not wearing anything")) - test_outfit.slut_requirement
 
             taboo_break = False
-            if test_outfit.vagina_visible() and the_person.has_taboo("bare_pussy"):
+            if test_outfit.vagina_visible() and person.has_taboo("bare_pussy"):
                 taboo_break = "bare_pussy"
-            elif test_outfit.tits_visible() and the_person.has_taboo("bare_tits"):
+            elif test_outfit.tits_visible() and person.has_taboo("bare_tits"):
                 taboo_break = "bare_tits"
-            elif test_outfit.underwear_visible() and the_person.has_taboo("underwear_nudity"):
+            elif test_outfit.underwear_visible() and person.has_taboo("underwear_nudity"):
                 taboo_break = "underwear_nudity"
 
-            if new_willingness + (the_person.obedience-100) >= -20:
+            if new_willingness + (person.obedience-100) >= -20:
                 #They're willing to strip it off.
                 price = 0 # Default value
                 price_display = "Free"
@@ -183,9 +183,9 @@ label pay_strip_scene(the_person):
                 "[the_person.title] wiggles her hips side to side and bites her bottom lip, as if imagining some greater pleasure yet to come."
 
         if "action_mod_list" in globals():
-            call screen enhanced_main_choice_display(build_menu_items(get_strip_menu_options()))
+            call screen enhanced_main_choice_display(build_menu_items(get_strip_menu_options(the_person)))
         else:
-            call screen main_choice_display(get_strip_menu_options())
+            call screen main_choice_display(get_strip_menu_options(the_person))
 
         $ strip_choice = _return
         if strip_choice == "Watch":
@@ -443,7 +443,7 @@ label strip_tease(the_person, in_private = True, for_pay = False, start_girl_dir
         $ girl_state.call_intro(the_person, guy_state = guy_state, for_pay = False)
 
     $ should_continue = True
-    while should_continue:
+    while should_continue and not the_person is None:
         $ chosen_action = None
 
         if "action_mod_list" in globals():

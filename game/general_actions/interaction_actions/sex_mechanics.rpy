@@ -651,13 +651,17 @@ label apply_sex_slut_modifiers(the_person, in_private = True):
     return
 
 label clear_sex_slut_modifiers(the_person):
-    $ the_person.clear_situational_slut("love_modifier")
-    $ the_person.clear_situational_slut("happiness_modifier")
-    $ the_person.clear_situational_slut("cheating")
-    $ the_person.clear_situational_slut("taboo_sex")
-    $ the_person.clear_situational_slut("sex_object")
-    $ the_person.clear_situational_slut("public_sex")
-    $ the_person.clear_situational_obedience("sex_object")
+    if the_person is None:
+        return
+
+    python:
+        the_person.clear_situational_slut("love_modifier")
+        the_person.clear_situational_slut("happiness_modifier")
+        the_person.clear_situational_slut("cheating")
+        the_person.clear_situational_slut("taboo_sex")
+        the_person.clear_situational_slut("sex_object")
+        the_person.clear_situational_slut("public_sex")
+        the_person.clear_situational_obedience("sex_object")
     return
 
 # TODO: Replace Private being a boolean with being a bool OR a list, when a list it is the people we should consider being in the scene. When it is true it is everyone, when false no one.
