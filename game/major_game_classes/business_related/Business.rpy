@@ -464,7 +464,7 @@ init -2 python:
                 if the_research.add_research(research_amount): #Returns true if the research is completed by this amount'
                     if isinstance(the_research, SerumDesign):
                         the_research.generate_side_effects() #The serum will generate any side effects that are needed.
-                        self.mandatory_crises_list.append(Action("Research Finished Crisis",serum_creation_crisis_requirement,"serum_creation_crisis_label",the_research)) #Create a serum finished crisis, it will trigger at the end of the round
+                        self.mandatory_crises_list.append(Action("Research Finished Crisis",serum_creation_crisis_requirement,"serum_creation_crisis_label",the_research,priority=100)) #Create a serum finished crisis, it will trigger at the end of the round
                         self.add_normal_message("New serum design researched: " + the_research.name)
                         self.active_research_design = None
                     elif isinstance(the_research, SerumTrait):

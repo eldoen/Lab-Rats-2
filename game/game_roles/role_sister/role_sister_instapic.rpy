@@ -290,10 +290,13 @@ label sister_instathot_label_solo(the_person):
 
 
     if skip_change:
+        $ hall.show_background()
+        $ clear_scene()
         "You consider risking a peek, but the soft click of her door lock cuts that thought short."
-        $ the_person.draw_person()
         "After a short wait there's another click and she opens the door."
         the_person "Come back in!"
+        $ mc.location.show_background()
+
         if the_person.event_triggers_dict.get("insta_special_request_outfit", False):
             $ insta_outfit = the_person.event_triggers_dict.get("insta_special_request_outfit")
             $ the_person.apply_outfit(insta_outfit, update_taboo = True)
