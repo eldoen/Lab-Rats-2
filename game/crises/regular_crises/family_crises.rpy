@@ -343,6 +343,8 @@ init 1 python:
 label mom_lingerie_surprise_label():
     #In which your Mom comes to your room at night in some sexy lingerie and fools around with you. Triggers at high sluttiness and love.
     $ the_person = mom
+    $ mc.change_location(bedroom)
+    $ mc.location.show_background()
     "You are woken up in the middle of the night by the sound of your bedroom door closing."
     "You sit up and turn on the lamp beside your bed."
     $ the_person.apply_outfit(lingerie_wardrobe.pick_random_outfit(), update_taboo = True)
