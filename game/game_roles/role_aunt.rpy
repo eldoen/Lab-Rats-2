@@ -553,7 +553,8 @@ label aunt_intro_moving_apartment_label(the_person):
 
 label aunt_intro_phase_final_label():
     #You have finished moving all of their stuff over so your aunt and cousin can move out of your house.
-
+    $ mc.change_location(kitchen)
+    $ mc.location.show_background()
     "When you get up for breakfast you find [aunt.title] and [mom.title] in the kitchen, both awake earlier than normal."
     $ the_group = GroupDisplayManager([mom, aunt], aunt)
     $ the_group.draw_group(position = "sitting")
@@ -593,6 +594,8 @@ label aunt_intro_phase_final_label():
     "You join [aunt.possessive_title] and [mom.possessive_title] while they finish their drinks and chat with each other."
     "[aunt.title] certainly seems happier now than she did a few weeks ago when she arrived."
     $ clear_scene()
+    $ mc.change_location(hall)
+    $ mc.location.show_background()
     $ the_group = GroupDisplayManager([mom, lily, aunt, cousin], aunt)
     $ the_group.draw_group()
     "When her drink is done [aunt.title] collects [cousin.possessive_title] and heads to the door. [lily.title] joins you as you say goodbye."
@@ -632,6 +635,9 @@ label aunt_intro_phase_final_label():
 
         add_aunt_share_drink_intro()
         the_group = None
+
+        mc.change_location(bedroom)
+        mc.location.show_background()
     return
 
 

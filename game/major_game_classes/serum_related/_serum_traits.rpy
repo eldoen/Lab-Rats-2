@@ -1118,7 +1118,7 @@ init -1:
             research_added = 250,
             base_side_effect_chance = 60,
             on_day = pregnancy_decellerator_on_day,
-            requires = [fertility_enhancement_trait],
+            requires = [fertility_suppression_trait],
             tier = 2,
             research_needed = 800,
             exclude_tags = "Pregnancy",
@@ -1487,7 +1487,9 @@ init -1:
             base_side_effect_chance = 80,
             on_apply = nora_reward_hucow_trait_on_apply,
             on_remove = nora_reward_hucow_trait_on_remove,
+            requires = [birth_control_suppression],
             tier = 2,
+            start_researched = False,
             research_needed = 750,
             clarity_cost = 500)
 
@@ -1500,6 +1502,7 @@ init -1:
             base_side_effect_chance = 75,
             on_apply = nora_reward_instant_trance_on_apply,
             tier = 2,
+            start_researched = False,
             research_needed = 750,
             clarity_cost = 500)
 

@@ -309,7 +309,8 @@ label sister_oral_taboo_break_revisit_quest_2(the_person):
     menu:
         "Keep waiting {image=gui/heart/Time_Advance.png}" if time_of_day < 4:
             $ lead_girl = iris
-            $ iris.set_schedule(iris.home, times = [3])
+            $ iris.generate_home()
+            $ iris.set_schedule(None, times = [3])
             $ iris.set_schedule(university, times = [1,2])
             $ electronics_store.add_person(iris) #Now that she's added the world her turns process as normal too.
             "You sigh and resign yourself to the long wait."
