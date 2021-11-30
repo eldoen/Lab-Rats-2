@@ -922,6 +922,13 @@ label strip_tease(the_person, in_private = True, for_pay = False, start_girl_dir
             $ should_continue = False
 
     call clear_sex_slut_modifiers(the_person)
+
+    python:
+        girl_state = None
+        girl_action = None
+        girl_direction = None
+        guy_state = None
+        a_state = None
     return
 
 

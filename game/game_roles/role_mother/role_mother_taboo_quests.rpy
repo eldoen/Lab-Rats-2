@@ -620,7 +620,7 @@ label mom_anal_taboo_break_revisit_complete(the_person):
             $ the_person.change_slut(10, 65)
             $ the_person.break_taboo("anal_sex")
             the_person "Oh yes, I'll have to take care of this later. No sex though, remember? You can only fuck my ass."
-            "She nibbles fondles your cock for a moment longer, then steps back with a relieved laugh."
+            "She nimbly fondles your cock for a moment longer, then steps back with a relieved laugh."
 
 
         "Claim your reward first":

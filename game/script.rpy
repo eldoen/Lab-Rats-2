@@ -291,13 +291,13 @@ init 0 python:
     common_variable_list = ["talk_action", "new_location", "picked_option", "picked_event", "outfit", "insta_outfit", \
         "the_outfit", "new_outfit", "old_outfit", "the_uniform", "the_underwear", "person_one", "person_two", "the_person_one", \
         "the_person_two", "the_item", "the_clothing", "the_group", "the_report", "the_trait", "the_mom", "the_action", \
-        "the_aunt", "the_sister", "the_student", "the_place", "the_girl", "test_outfit", "the_object", \
+        "the_aunt", "the_sister", "the_student", "the_place", "the_girl", "test_outfit", "object", "the_object", \
         "the_location", "next_item", "file_path", "title_choice", "title_one", "title_two", "placeholder", \
         "formatted_title_one", "formatted_title_two", "new_title", "the_type", "the_person", "player_choice", \
         "strip_list", "first_item", "feet_ordered", "top_feet", "crisis", "the_morning_crisis", "people_to_process", \
         "report_log", "position_choice", "object_choice", "round_choice", "start_position", "the_group", \
         "report", "the_relationship", "partner", "the_subject", "the_suggested_outfit", "stripper", \
-        "not_stripper", "the_student", "strip_choice", "new_pose", "picked_pose", "pose_choice", "new_person" \
+        "not_stripper", "the_student", "strip_choice", "new_pose", "picked_object", "picked_position", "picked_pose", "picked_serum", "pose_choice", "new_person" \
         "clothing", "formatted_name", "formatted_title", "hair_style_check", "pubic_style_check", "the_cause", \
         "text_one", "text_two", "the_goal", "the_serum", "title", "opinion_tag", "overhear_topic", "the_choice", \
         "opinion_string", "mc_opinion_string", "talk_opinion_text", "opinion_learned", "place", "the_place", "the_taboo",

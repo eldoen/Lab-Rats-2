@@ -603,7 +603,7 @@ label sister_anal_taboo_break_revisit_complete(the_person):
     the_person "My fans {i}love{/i} them! They're such perverts!"
     "She laughs, missing the irony."
     $ the_person.change_slut(10, 65)
-    $ the_person.break_taboo("anal_sex")
+    $ the_person.event_triggers_dict["sister_anal_quest_active"] = False
     $ the_person.get_role_reference(sister_role).remove_action("sister_anal_taboo_break_revisit_complete")
     the_person "I guess you've proved yourself. I won't make a big deal out of... whatever it is we do."
     return

@@ -779,20 +779,30 @@ label sister_instathot_label_mom(the_sister, the_mom):
     $ kitchen.show_background()
     $ the_mom.draw_person(position = "back_peek")
     "You find her in the kitchen, standing in front of the open fridge."
-    the_mom "Oh, hi sweetheart. I'm just thinking about what to make for dinner. Do you need anything?"
+    if time_of_day < 2:
+        the_mom "Oh, hi sweetheart. I'm just thinking about what to make for breakfast. Do you need anything?"
+    else:
+        the_mom "Oh, hi sweetheart. I'm just thinking about what to make for dinner. Do you need anything?"
     if the_mom.event_triggers_dict.get("mom_instathot_pic_count",0) == 0:
         mc.name "[the_sister.title] is getting ready to take some pictures for her InstaPic account."
         mc.name "She wanted to know if you wanted to join in."
         $ the_mom.draw_person(emotion = "happy")
         the_mom "Really? She's not just saying that to make me happy, is she?"
         mc.name "No, she really wants to spend time with you [the_mom.title]."
-        the_mom "Okay then, I'll give it a try. Dinner can be a little late tonight."
+        if time_of_day < 2:
+            the_mom "Okay then, I'll give it a try. Breakfast can be a little late this morning."
+        else:
+            the_mom "Okay then, I'll give it a try. Dinner can be a little late tonight."
     else:
         mc.name "[the_sister.title] is getting ready to take some more pictures for her InstaPic."
         mc.name "Do you want to join in?"
         $ the_mom.draw_person(emotion = "happy")
-        the_mom "I really should be getting dinner started, but it was a lot of fun..."
-        the_mom "Oh what the heck, dinner can be a little late tonight."
+        if time_of_day < 2:
+            the_mom "I really should be getting breakfast started, but it was a lot of fun..."
+            the_mom "Oh what the heck, breakfast can be a little late this morning."
+        else:
+            the_mom "I really should be getting dinner started, but it was a lot of fun..."
+            the_mom "Oh what the heck, dinner can be a little late tonight."
 
     "[the_mom.possessive_title] closes the fridge and follows you back to [the_sister.possessive_title]'s room."
     $ clear_scene()
