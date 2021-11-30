@@ -1487,7 +1487,6 @@ init -1:
             base_side_effect_chance = 80,
             on_apply = nora_reward_hucow_trait_on_apply,
             on_remove = nora_reward_hucow_trait_on_remove,
-            requires = [birth_control_suppression],
             tier = 2,
             start_researched = False,
             research_needed = 750,

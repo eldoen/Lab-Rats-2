@@ -37,6 +37,7 @@ label .continue_manage_outfit:  # internal loop label
         #If we are returning an outfit we should be in one of the three sets (if not: panic!)
         $ command = _return[0]
         $ outfit = _return[1]
+        $ the_outfit = _return[1]
 
         if command == "select":
             return outfit
@@ -60,7 +61,10 @@ label .continue_manage_outfit:  # internal loop label
             if command == "duplicate":
                 $ outfit.name = ""
             if command == "modify":
-                $ mc.designed_wardrobe.remove_outfit(outfit)
+                # remove original outfit
+                $ mc.designed_wardrobe.remove_outfit(the_outfit)
+
+        $ the_outfit = None
 
     if outfit != "Not_New":
         $ new_outfit_name = renpy.input("Please name this outfit.", default = outfit.name)
