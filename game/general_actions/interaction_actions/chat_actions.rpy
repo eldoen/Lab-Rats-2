@@ -49,7 +49,8 @@ init -2 python:
             love_requirement += 15
         elif the_person.relationship == "Married":
             love_requirement += 20
-        love_requirement += -10*the_person.get_opinion_score("cheating on men")
+        if the_person.relationship != "Single":
+            love_requirement += -10*the_person.get_opinion_score("cheating on men")
         if love_requirement < 30:
             love_requirement = 30
 
@@ -69,7 +70,8 @@ init -2 python:
             love_requirement += 30
         elif the_person.relationship == "Married":
             love_requirement += 40
-        love_requirement += -10*the_person.get_opinion_score("cheating on men")
+        if the_person.relationship != "Single":
+            love_requirement += -10*the_person.get_opinion_score("cheating on men")
         if love_requirement < 40:
             love_requirement = 40
 
