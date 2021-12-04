@@ -1078,11 +1078,17 @@ label sister_instathot_label_mom(the_sister, the_mom):
         the_sister "No, you can keep it if you want. It's obviously not my size, and I don't think they'll take returns."
         $ the_mom.wardrobe.add_outfit(insta_outfit_mom)
         $ the_mom.planned_outfit = insta_outfit_mom #She wears it for the rest of the day.
-        the_mom "Thank you! It's so cute, it would be a shame for it to go to waste. Now I need to get back to making dinner!"
+        if time_of_day < 2:
+            the_mom "Thank you! It's so cute, it would be a shame for it to go to waste. Now I need to get back to making breakfast!"
+        else:
+            the_mom "Thank you! It's so cute, it would be a shame for it to go to waste. Now I need to get back to making dinner!"
         "[the_mom.title] collects her clothing and hurries off to her room. You give [the_sister.title] her phone back and leave her to upload the pics."
 
     else:
-        the_mom "Well, I need to go get changed and get back to making dinner."
+        if time_of_day < 2:
+            the_mom "Well, I need to go get changed and get back to making breakfast."
+        else:
+            the_mom "Well, I need to go get changed and get back to making dinner."
         "[the_mom.title] collects her clothing and hurries off to her room. You give [the_sister.title] her phone back and leave her to upload the pics."
 
 
