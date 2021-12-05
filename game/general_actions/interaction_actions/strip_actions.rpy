@@ -1374,7 +1374,7 @@ label strip_cum_question_loop(the_person, girl_state, girl_direction, girl_aware
                 if the_person.get_opinion_score("being covered in cum") > 0:
                     $ the_person.discover_opinion("being covered in cum")
                     the_person "Mmm, I love feeling your cum sprayed all over me... It's intoxicating!"
-                "you take a moment and catch your breath."
+                "You take a moment and catch your breath."
                 mc.name "Thanks [the_person.title], you're a fun target."
                 the_person "My pleasure."
     elif the_choice == "Cum on her legs": #Always looking towards
@@ -1435,7 +1435,7 @@ label strip_cum_question_loop(the_person, girl_state, girl_direction, girl_aware
                 if the_person.get_opinion_score("being covered in cum") > 0:
                     $ the_person.discover_opinion("being covered in cum")
                     the_person "Mmm, I love feeling your cum sprayed all over me... It's intoxicating!"
-                "you take a moment and catch your breath."
+                "You take a moment and catch your breath."
                 mc.name "Thanks [the_person.title], you're a fun target."
                 the_person "My pleasure."
 

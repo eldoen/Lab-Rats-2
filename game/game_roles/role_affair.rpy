@@ -111,6 +111,13 @@ label fuck_date_label(the_person):
             the_person "And I just finished getting all dressed up for you. Oh well."
             return
 
+    if mom_date_intercept_requirement(mom, the_person) and renpy.random.randint(0,100) < (mom.love):
+        call mom_date_intercept(mom, the_person) from _call_mom_date_intercept_fuck_date
+        if _return:
+            $ clear_scene()
+            return "Advance Time"
+
+    $ clear_scene()
     $ mc.change_location(the_person.home)
     $ mc.location.show_background()
     $ so_title = SO_relationship_to_title(the_person.relationship) #TODO: Make sure she's still in a relationship, or void this date if she isn't (because she's your girlfriend now).

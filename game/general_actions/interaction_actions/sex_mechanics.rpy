@@ -71,7 +71,7 @@ label fuck_person(the_person, private = True, start_position = None, start_objec
 
             if position_choice is not None:
                 if initial_position != position_choice:
-                   $ object_choice = None
+                    $ object_choice = None
                 # We need to make sure we're using an appopriate object
                 if object_choice is None:
                     call girl_choose_object(the_person, position_choice,forced_object = start_object) from _call_girl_choose_object
@@ -612,7 +612,6 @@ label climax_check():
                 $ is_cumming = True
 
     return is_cumming
-return
 
 label apply_sex_slut_modifiers(the_person, in_private = True):
     # Family situational modifiers
