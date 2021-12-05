@@ -124,7 +124,7 @@ init -2 python:
         return True
 
     def add_cousin_blackmail_hint_action(the_person):
-        the_person.set_schedule(hall, times = [2])
+        the_person.set_schedule(hall, days = [0, 1, 2, 3, 4], times = [2])
         the_person.event_triggers_dict["blackmail_level"] = 1
 
         blackmail_2_event = Action("Blackmail hint", blackmail_hint_requirement, "aunt_cousin_hint_label", args = [aunt, the_person], requirement_args = [the_person, day + renpy.random.randint(2,4)])

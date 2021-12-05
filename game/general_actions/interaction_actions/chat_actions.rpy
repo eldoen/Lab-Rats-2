@@ -58,8 +58,9 @@ init -2 python:
             return "Requires: " + str(love_requirement) + " Love"
         elif mc.business.event_triggers_dict.get("movie_date_scheduled", False):
             return "Already planned movie date!"
-        else:
-            return True
+        elif day%7 == 1 and time_of_day >= 3:
+            return "Too late to plan movie date"
+        return True
 
 
     def dinner_date_requirement(the_person):
@@ -79,8 +80,9 @@ init -2 python:
             return "Requires: " + str(love_requirement) + " Love"
         elif mc.business.event_triggers_dict.get("dinner_date_scheduled", False):
             return "Already planned dinner date!"
-        else:
-            return True
+        elif day%7 == 4 and time_of_day >= 3:
+            return "Too late to plan dinner date"
+        return True
 
     def evening_date_trigger(day_of_week): #Used for a mandatory crisis that triggers on the next Friday in time chunk 3.
         if time_of_day == 3 and day%7 == day_of_week: #Day of week is a number from 0 to 6, where 0 is Monday.

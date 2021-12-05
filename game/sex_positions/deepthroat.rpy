@@ -329,6 +329,7 @@ label scene_deepthroat_3(the_girl, the_location, the_object):
                                                     mc.name "That's enough [the_girl.title], you've done enough."
                                                     "You put your hand under her chin and pull her back. She leaves your cock with a satisfying, wet pop followed by a huge gasp for air."
                                                     "It takes a few long moments until [the_girl.title] shakes her head and comes to her senses."
+                                                    $ the_girl.increase_trance(show_dialogue = False)
                                                     the_girl "I... Oh my god... How long was I... Ah... Ah..."
                                                     $ the_girl.change_arousal(the_girl.get_opinion_score("being submissive"))
                                                     "The thought of passing out on your cock seems to turn her on."

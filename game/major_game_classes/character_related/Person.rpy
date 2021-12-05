@@ -1908,35 +1908,38 @@ init -2 python:
 
         def run_orgasm(self, show_dialogue = True, force_trance = False, trance_chance_modifier = 0, add_to_log = True, sluttiness_increase_limit = 30, fire_event = True):
             self.change_slut(1, sluttiness_increase_limit, add_to_log = add_to_log)
-            mc.listener_system.fire_event("girl_climax", the_person = self)
+            if fire_event:
+                mc.listener_system.fire_event("girl_climax", the_person = self)
             if renpy.random.randint(0,100) < self.suggestibility + trance_chance_modifier or force_trance:
-                display_name = self.create_formatted_title("???")
-                if self.title:
-                    display_name = self.title
+                self.increase_trance(show_dialogue = show_dialogue, add_to_log = add_to_log)
 
-                if not self.has_role(trance_role):
-                    self.add_role(trance_role)
-                    if add_to_log:
-                        mc.log_event(display_name + " sinks into a trance!", "float_text_red")
-                    if show_dialogue:
-                        renpy.say(None, self.possessive_title + "'s eyes lose focus slightly as she slips into a climax induced trance.")
+        def increase_trance(self, show_dialogue = True, add_to_log = True):
+            display_name = self.create_formatted_title("???")
+            if self.title:
+                display_name = self.title
 
-                elif self.has_exact_role(trance_role):
-                    self.remove_role(trance_role)
-                    self.add_role(heavy_trance_role)
-                    if add_to_log:
-                        mc.log_event(display_name + " sinks deeper into a trance!", "float_text_red")
-                    if show_dialogue:
-                        renpy.say(None, self.possessive_title + " seems to lose all focus as her brain slips deeper into a post-orgasm trance.")
+            if not self.has_role(trance_role):
+                self.add_role(trance_role)
+                if add_to_log:
+                    mc.log_event(display_name + " sinks into a trance!", "float_text_red")
+                if show_dialogue:
+                    renpy.say(None, self.possessive_title + "'s eyes lose focus slightly as she slips into a climax induced trance.")
 
+            elif self.has_exact_role(trance_role):
+                self.remove_role(trance_role)
+                self.add_role(heavy_trance_role)
+                if add_to_log:
+                    mc.log_event(display_name + " sinks deeper into a trance!", "float_text_red")
+                if show_dialogue:
+                    renpy.say(None, self.possessive_title + " seems to lose all focus as her brain slips deeper into a post-orgasm trance.")
 
-                elif self.has_exact_role(heavy_trance_role):
-                    self.remove_role(heavy_trance_role)
-                    self.add_role(very_heavy_trance_role)
-                    if add_to_log:
-                        mc.log_event(display_name + " sinks deeper into a trance!", "float_text_red")
-                    if show_dialogue:
-                        renpy.say(None, self.possessive_title + " eyes glaze over, and she sinks completely into a cum addled trance.")
+            elif self.has_exact_role(heavy_trance_role):
+                self.remove_role(heavy_trance_role)
+                self.add_role(very_heavy_trance_role)
+                if add_to_log:
+                    mc.log_event(display_name + " sinks deeper into a trance!", "float_text_red")
+                if show_dialogue:
+                    renpy.say(None, self.possessive_title + " eyes glaze over, and she sinks completely into a cum addled trance.")
 
         def get_trance_multiplier(self):
             if self.has_exact_role(trance_role):
