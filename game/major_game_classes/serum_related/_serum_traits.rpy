@@ -1361,7 +1361,7 @@ init -1:
 
         nora_reward_sister_trait = SerumTrait(name = "Sisterly Obedience",
             desc = "A special serum trait developed by Nora after studying your sister. Permanently increases the recipient's Sluttiness by 1 per day for every 10 points that their Obedience is above 100.",
-            positive_slug = "+1 Core Sluttiness/day per 10 Obedience over 100, +$35 Value",
+            positive_slug = "+1 Sluttiness/day per 10 Obedience over 100, +$35 Value",
             negative_slug = "+300 Serum Research",
             value_added = 35,
             research_added = 300,
@@ -1374,7 +1374,7 @@ init -1:
 
         nora_reward_cousin_trait = SerumTrait(name = "Cousinly Hate",
             desc = "A special serum trait developed by Nora after studying your cousin. Permanently increases the recipient's Sluttiness by 1 per day for every 5 Love that they are below 0.",
-            positive_slug = "+1 Core Sluttiness/day per 5 Love below 0, +$35 Value",
+            positive_slug = "+1 Sluttiness/day per 5 Love below 0, +$35 Value",
             negative_slug = "+300 Serum Research",
             value_added = 35,
             research_added = 300,

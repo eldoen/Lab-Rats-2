@@ -522,7 +522,7 @@ label futuristic_serum_stage_1_label(the_person):
     the_person "What I need right now are test subjects. Girls who have taken a few doses of serum and been affected by it. If we can do that I can build up some data and maybe discover something new."
     mc.name "It's probably best these girls come from inside the company. How many test subjects do you need?"
     the_person "Not including me: three. I'll need them to be obedient and open to... intimate testing procedures."
-    "[the_person.title] requires three employees who satisfy the following requirements: Core Sluttiness 50+ and Obedience 130+."
+    "[the_person.title] requires three employees who satisfy the following requirements: Sluttiness 50+ and Obedience 130+."
     mc.name "Alright [the_person.title], I'll do what I can. I'll come back when I've got some girls who fit your requirements."
     $ mc.business.event_triggers_dict["futuristic_serum_stage_1"] = True
     return
@@ -531,7 +531,7 @@ label futuristic_serum_stage_2_label(the_person):
     if __builtin__.len(mc.business.get_requirement_employee_list(slut_required = 50, obedience_required = 130)) <= 3: # If you don't have enough people who meet the requirements just get an update.
         mc.name "I'm still working on getting your test subjects ready. Could you remind me what you need?"
         the_person "To learn anything useful I need at least three girls who have been seriously affected by our serums. I need them to be obedient and open to some intimate testing procedures."
-        "[the_person.title] requires three employees who satisfy the following requirements: Core Sluttiness 50+ and Obedience 130+"
+        "[the_person.title] requires three employees who satisfy the following requirements: Sluttiness 50+ and Obedience 130+"
         $ satisfying_list = mc.business.get_requirement_employee_list(slut_required = 50, obedience_required = 130, exclude_list = [the_person])
         $ my_string = "The following people currently satisfy the requirements: "
         python:
