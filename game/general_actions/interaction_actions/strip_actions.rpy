@@ -823,7 +823,7 @@ label strip_tease(the_person, in_private = True, for_pay = False, start_girl_dir
                 if the_person.has_taboo("touching_body"):
                     the_person "You don't have to be so shy, you know. Go on, touch me..."
                 else:
-                    the_person "Mmm, touch me [the_person.title]..."
+                    the_person "Mmm, touch me [the_person.mc_title]..."
 
                 menu:
                     "Feel her up":

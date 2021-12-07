@@ -430,7 +430,7 @@ init -1:
             constrain_regions = [torso_region, stomach_region, skirt_region])
         dress_list.append(nightgown_dress)
 
-        bath_robe_bottom = Clothing("Bathrobe bottom", 2, False, False, "Bath_Robe_Bot", False, False, 0, is_extension = True, display_name = "rob bottom",
+        bath_robe_bottom = Clothing("Bathrobe bottom", 2, False, False, "Bath_Robe_Bot", False, False, 0, is_extension = True, display_name = "robe bottom",
             can_be_half_off = True, half_off_regions = [pelvis_region, upper_leg_region, lower_leg_region], half_off_ignore_regions = [lower_arm_region, stomach_region], half_off_gives_access = True, half_off_reveals = True)
         bath_robe = Clothing("Bathrobe", 2, False, True, "Bath_Robe", True, True, 1, has_extension = bath_robe_bottom, supported_patterns = {"Flowers":"Pattern_1"}, display_name = "robe",
             can_be_half_off = True, half_off_regions = [breast_region], half_off_ignore_regions = [upper_arm_region], half_off_gives_access = True, half_off_reveals = True,
