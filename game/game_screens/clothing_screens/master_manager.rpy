@@ -36,7 +36,7 @@ label .continue_manage_outfit:  # internal loop label
     elif isinstance(_return, list):
         #If we are returning an outfit we should be in one of the three sets (if not: panic!)
         $ command = _return[0]
-        $ outfit = _return[1]
+        $ outfit = _return[1].get_copy()
         $ the_outfit = _return[1]
 
         if command == "select":

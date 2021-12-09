@@ -369,7 +369,7 @@ label sister_oral_taboo_break_revisit_quest_2(the_person):
                     $ lead_girl.set_title(lead_girl.name)
                     $ lead_girl.set_possessive_title(lead_girl.name)
                     lead_girl "My name's [lead_girl.title]."
-                    call person_introduction(lead_girl, girl_introduction = False)
+                    call person_introduction(lead_girl, girl_introduction = False) from _call_person_introduction_sister_oral_taboo_break_revisit_quest_2
                     $ mc.phone.register_number(lead_girl)
                     $ lead_girl.event_triggers_dict["insta_known"] = True
                     lead_girl "Oh, and I added my InstaPic name too. Look me up some time."
@@ -386,7 +386,7 @@ label sister_oral_taboo_break_revisit_quest_2(the_person):
             $ lead_girl = None
             $ other_girl_1 = None
             $ other_girl_2 = None
-            call advance_time()
+            call advance_time() from _call_advance_time_sister_oral_taboo_break_revisit_quest_2
 
         "Keep waiting {image=gui/heart/Time_Advance.png}\n{color=#ff0000}{size=18}Not enough time{/size}{/color} (disabled)" if time_of_day == 4:
             pass
@@ -464,7 +464,7 @@ label sister_oral_taboo_break_revisit_complete(the_person):
             "[the_person.title] holds you there for a second, then swirls her tongue around her lips to get everything wet, and finally slides you inside."
             $ the_person.draw_person(position = "blowjob", special_modifier = "blowjob")
             "She starts to blow you, timidly at first, but after a short adjustment period she's going down on you with adequate enthusiasm."
-            call fuck_person(the_person, private = True, start_position = blowjob, start_object = mc.location.get_object_with_name("floor"), girl_in_charge = True, position_locked = True)
+            call fuck_person(the_person, private = True, start_position = blowjob, start_object = mc.location.get_object_with_name("floor"), girl_in_charge = True, position_locked = True) from _call_fuck_person_sister_oral_taboo_break_revisit_complete
             $ the_report = _return
             $ the_person.call_dialogue("sex_review", the_report = the_report)
             "Satisfied with her work, you chuck [the_person.title]'s new phone onto her bed. She watches it sail over her head and land on her pillow."
@@ -604,6 +604,7 @@ label sister_anal_taboo_break_revisit_complete(the_person):
     "She laughs, missing the irony."
     $ the_person.change_slut(10, 65)
     $ the_person.event_triggers_dict["sister_anal_quest_active"] = False
+    $ the_person.event_triggers_dict["anal_revisit_complete"] = True
     $ the_person.get_role_reference(sister_role).remove_action("sister_anal_taboo_break_revisit_complete")
     the_person "I guess you've proved yourself. I won't make a big deal out of... whatever it is we do."
     return
@@ -793,9 +794,9 @@ label sister_vaginal_taboo_break_revisit_quest_1(the_person):
                     "[the_person.title] squeals happily and rolls over, getting onto all fours on top of her bed."
                     "She wiggles her hips, taunting you with her cute butt and tight pussy."
 
-                call condom_ask(the_person)
+                call condom_ask(the_person) from _call_condom_ask_sister_vaginal_taboo_break_revisit_quest_1
                 if _return:
-                    call fuck_person(the_person, start_position = doggy, start_object = mc.location.get_object_with_name("bed"), skip_intro = True)
+                    call fuck_person(the_person, start_position = doggy, start_object = mc.location.get_object_with_name("bed"), skip_intro = True) from _call_fuck_person_sister_vaginal_taboo_break_revisit_quest_1
                     $ the_report = _return
                     $ the_person.call_dialogue("sex_review", the_report = the_report)
 
@@ -843,7 +844,7 @@ label sister_vaginal_taboo_break_revisit_quest_1(the_person):
             "Convince her to take them":
                 mc.name "You just need to be in the right mindset. I'll show you how good they can make you feel."
                 the_person "Oh..."
-                call fuck_person(the_person)
+                call fuck_person(the_person) from _call_fuck_person_sister_vaginal_taboo_break_revisit_quest_1_2
                 $ the_report = _return
                 if the_report.get("girl orgasms") > 0:
                     "[the_person.title] seems satisfied with the demonstration you've given her."

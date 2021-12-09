@@ -228,7 +228,7 @@ label mom_kissing_taboo_break_revisit_quest_1(the_person):
     $ bedroom.remove_action("mom_kissing_taboo_break_revisit_quest_1")
     if the_person.event_triggers_dict.get("kissing_taboo_revisit_quest_progress", 0) == 4:
         "That's the last chore. Time to talk to [the_person.possessive_title]."
-    call advance_time()
+    call advance_time() from _call_advance_time_kissing_taboo_break_quest_1
     return
 
 label mom_kissing_taboo_break_revisit_quest_2(the_person):
@@ -240,7 +240,7 @@ label mom_kissing_taboo_break_revisit_quest_2(the_person):
     $ hall.remove_action("mom_kissing_taboo_break_revisit_quest_2")
     if the_person.event_triggers_dict.get("kissing_taboo_revisit_quest_progress", 0) == 4:
         "That's the last chore. Time to talk to [the_person.possessive_title]."
-    call advance_time()
+    call advance_time() from _call_advance_time_kissing_taboo_break_quest_2
     return
 
 label mom_kissing_taboo_break_revisit_quest_3(the_person):
@@ -253,7 +253,7 @@ label mom_kissing_taboo_break_revisit_quest_3(the_person):
     $ hall.remove_action("mom_kissing_taboo_break_revisit_quest_3")
     if the_person.event_triggers_dict.get("kissing_taboo_revisit_quest_progress", 0) == 4:
         "That's the last chore. Time to talk to [the_person.possessive_title]."
-    call advance_time()
+    call advance_time() from _call_advance_time_kissing_taboo_break_quest_3
     return
 
 label mom_kissing_taboo_break_revisit_quest_4(the_person):
@@ -267,7 +267,7 @@ label mom_kissing_taboo_break_revisit_quest_4(the_person):
     $ kitchen.remove_action("mom_kissing_taboo_break_revisit_quest_4")
     if the_person.event_triggers_dict.get("kissing_taboo_revisit_quest_progress", 0) == 4:
         "That's the last chore. Time to talk to [the_person.possessive_title]."
-    call advance_time()
+    call advance_time() from _call_advance_time_kissing_taboo_break_quest_4
     return
 
 label mom_kissing_taboo_break_revisit_complete(the_person):
@@ -444,7 +444,7 @@ label mom_oral_taboo_break_revisit_complete(the_person):
                     $ the_person.draw_person(position = "blowjob", special_modifier = "blowjob")
                     "She kisses it a few more times, each more passionate than the last, then slips the very top of it inside of her lips."
                     "After a moment of adjustment she has it inside of her mouth, tongue licking at the shaft as she sucks you off."
-                    call fuck_person(the_person, private = True, start_position = blowjob, start_object = mc.location.get_object_with_trait("kneel"), skip_intro = True, girl_in_charge = True)
+                    call fuck_person(the_person, private = True, start_position = blowjob, start_object = mc.location.get_object_with_trait("kneel"), skip_intro = True, girl_in_charge = True) from _call_fuck_person_mom_oral_taboo_break_revisit_complete
                     $ the_report = _return #TODO double check if we want something special here.
                     $ the_person.call_dialogue("sex_review", the_report = the_report)
 
@@ -666,7 +666,7 @@ label mom_anal_taboo_break_revisit_complete(the_person):
             "You start to pump, fucking her with the first half of your cock and getting deeper with every thrust."
             the_person "Ah... Oh... Fuck..."
             "With a little patience on your end, and a little grit on hers you eventually have your entire cock at work fucking her ass."
-            call fuck_person(the_person, private = True, start_position = doggy_anal, start_object = mc.location.get_object_with_name("bed"), skip_intro = True)
+            call fuck_person(the_person, private = True, start_position = doggy_anal, start_object = mc.location.get_object_with_name("bed"), skip_intro = True) from _call_fuck_person_mom_anal_taboo_break_revisit_complete
             $ the_report = _return
             $ the_person.call_dialogue("sex_review", the_report = the_report)
     return
@@ -787,22 +787,22 @@ label mom_vaginal_taboo_break_revisit_quest_2(the_person):
     menu:
         "Message her directly first":
             "A direct message is the best way to talk to her directly, and is a lot less likely to get you banned off of the site."
-            call mom_advice_dm(the_person)
+            call mom_advice_dm(the_person) from _call_mom_advice_dm_mom_vaginal_taboo_break_revisit_quest_2_1
             "You still need to make sure her public post doesn't give her any silly ideas."
-            call mom_advice_astroturf(the_person)
+            call mom_advice_astroturf(the_person) from _call_mom_advice_astroturf_mom_vaginal_taboo_break_revisit_quest_2_1
 
         "Astroturf her advice post first":
             "The most important thing to do is make it look like most people on the site want her to fuck you."
-            call mom_advice_astroturf(the_person)
+            call mom_advice_astroturf(the_person) from _call_mom_advice_astroturf_mom_vaginal_taboo_break_revisit_quest_2_2
             "Now you should write to her directly. She's more likely to listen to a private message, and it's less likely to get you banned off the site."
-            call mom_advice_dm(the_person)
+            call mom_advice_dm(the_person) from _call_mom_advice_dm_mom_vaginal_taboo_break_revisit_quest_2_2
 
     "You sit back, feeling satisfied with your deception. There's nothing to do now but wait for [the_person.title] to make up her mind."
     $ the_person.event_triggers_dict["mom_vaginal_quest_progress"] = 2
 
-    call advance_time()
+    $ mc.business.mandatory_crises_list.append(Action("make a decision", mom_vaginal_quest_3_requirement, "mom_vaginal_quest_3", args = the_person, requirement_args = [the_person, day + renpy.random.randint(1,3)]))
 
-    $ mc.business.mandatory_crises_list.append(Action("make a decision", mom_vaginal_quest_3_requirement, "mom_vaginal_quest_3", args = the_person, requirement_args = [the_person, day + renpy.random(1,3)]))
+    call advance_time() from _call_advance_time_vaginal_taboo_break_quest_2
     return
 
 label mom_advice_dm(the_person):
@@ -963,13 +963,13 @@ label mom_vaginal_taboo_break_revisit_complete(the_person):
             the_person "Hurry, hurry! Put that big cock inside your mother. Give her slutty pussy what it's been begging for!"
             "You climb on top of [the_person.title], who spreads her legs and lets you settle down between them."
             "She reaches down and holds onto your cock, rubbing the tip against her pussy lips for a moment."
-            call condom_ask(the_person)
+            call condom_ask(the_person) from _call_condom_ask_mom_vaginal_taboo_break_revisit_complete
             if _return:
                 "You're caught off guard when she wraps her legs around your hips and pulls you, gently, inside of her."
                 "Her pussy is wet already, she was clearly playing with herself before you arrived."
                 "You slide in, all the way to the base, as [the_person.possessive_title] moans in your ear."
                 the_person "Yes, that's it... Fuck me... Mmmm... Fuck me..."
-                call fuck_person(the_person, private = True, start_position = missionary, start_object = mc.location.get_object_with_name("bed"), skip_intro = True)
+                call fuck_person(the_person, private = True, start_position = missionary, start_object = mc.location.get_object_with_name("bed"), skip_intro = True) from _call_fuck_person_mom_vaginal_taboo_break_revisit_complete
                 $ the_report = _return
                 $ the_person.call_dialogue("sex_review", the_report = the_report)
             else:
