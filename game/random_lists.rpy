@@ -1136,7 +1136,10 @@ init 1 python:
 
         iris.add_role(instapic_role)
         iris.add_role(dikdok_role)
-        # NOTE: SHe doesn't exist on the map until you run into her at the mall doing one of Lily's events. (TODO: Add an alternative way to intro that if you avoid that quest.)
+
+        iris.generate_home()
+        iris.set_schedule(iris.home, times = [0,1,2,3,4])
+        iris.home.add_person(iris)
 
         ### LILY ###
         global lily

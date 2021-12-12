@@ -46,7 +46,7 @@ label wild_greetings(the_person):
                 the_person "Hey there [the_person.mc_title], I hope this is for pleasure and not business."
         else:
             if the_person.obedience > 130:
-                the_person "Hello [the_person.mc_title]"
+                the_person "Hello [the_person.mc_title]."
             else:
                 the_person "Hey, how's it going?"
     return

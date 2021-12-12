@@ -676,7 +676,7 @@ label aunt_share_drinks_label(the_person):
             mc.name "Well, work's been keeping me busy lately..."
             "You talk to [the_person.possessive_title] about your work. She nods politely but doesn't understand most of it."
             $ the_person.change_obedience(1)
-            the_person "It sounds like you're a very important person, doing some very important work. I'm proud of you [the_person.mc_title]"
+            the_person "It sounds like you're a very important person, doing some very important work. I'm proud of you [the_person.mc_title]."
 
         "Talk about girls":
             mc.name "Well, I've been trying to meet someone lately..."

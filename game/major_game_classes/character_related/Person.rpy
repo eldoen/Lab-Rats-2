@@ -281,7 +281,7 @@ init -2 python:
                     new_colour = new_colour.multiply_hsv_saturation(0.7)
                 elif self.has_exact_role(heavy_trance_role):
                     new_colour = new_colour.multiply_hsv_saturation(0.4)
-                elif self.has_exact_role(heavy_trance_role):
+                elif self.has_exact_role(very_heavy_trance_role):
                     new_colour = new_colour.multiply_hsv_saturation(0.1)
 
             flattened_phrase = remove_punctuation(what).lower() #Strip the entire phrase so we can check for individual words.

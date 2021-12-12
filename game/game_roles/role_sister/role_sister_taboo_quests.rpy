@@ -308,11 +308,15 @@ label sister_oral_taboo_break_revisit_quest_2(the_person):
     "The line is moving at a crawl, it's clear that this is going to take some time."
     menu:
         "Keep waiting {image=gui/heart/Time_Advance.png}" if time_of_day < 4:
-            $ lead_girl = iris
-            $ iris.generate_home()
-            $ iris.set_schedule(None, times = [1, 2, 3])
-            $ iris.set_schedule(university, times = [1,2], days = [0, 1, 2, 3, 4])
-            $ electronics_store.add_person(iris) #Now that she's added the world her turns process as normal too.
+            python:
+                if not iris.home: # save compatible (no home, not added to game)
+                    iris.generate_home()
+                    iris.home.add_person(iris)
+                iris.set_schedule(None, times = [1, 2, 3])
+                iris.set_schedule(university, times = [1,2], days = [0, 1, 2, 3, 4])
+                iris.location.move_person(iris, electronics_store)
+                lead_girl = iris
+
             "You sigh and resign yourself to the long wait."
             $ other_girl_1 = create_random_person()
             $ other_girl_2 = create_random_person()
