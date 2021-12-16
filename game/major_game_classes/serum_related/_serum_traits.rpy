@@ -439,7 +439,7 @@ init -1:
             the_person.change_obedience(-amount, add_to_log = add_to_log)
 
         def nora_reward_high_love_trait_on_turn(the_person, the_serum, add_to_log):
-            if the_person.sluttiness > the_person.love:
+            if the_person.sluttiness > the_person.love and the_person.love < 100:
                 the_person.change_slut(-1, add_to_log = add_to_log)
                 the_person.change_love(1, add_to_log = add_to_log)
 
