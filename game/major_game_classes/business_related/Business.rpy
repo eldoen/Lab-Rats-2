@@ -596,7 +596,7 @@ init -2 python:
             production_amount = __builtin__.int(((3*focus) + int + (2*skill) + 10) * (self.team_effectiveness / 100.0))
             self.production_potential += production_amount
 
-            if self.serum_production_array is None:
+            if self.serum_production_array is None or self.supply_count <= 0:
                 return #If we don't have anything in production just tally how much we could have produced and move on.
 
             if production_amount > self.supply_count:
