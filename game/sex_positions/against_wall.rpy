@@ -147,7 +147,7 @@ label scene_against_wall_2(the_girl, the_location, the_object):
                     if the_girl.sex_skills["Vaginal"] > 2:
                         "[the_girl.title] rocks her hips in time with yours to let you get as deep as possible."
                         if the_girl.wants_creampie():
-                            the_girl "That's it, fuck me hard you stud. Fuck me and pump then that hot load inside of me!"
+                            the_girl "That's it, fuck me hard you stud. Fuck me and pump that hot load inside of me!"
 
                     else:
                         the_girl "Oh my god! [the_girl.mc_title], you feel so... Oh my god!"

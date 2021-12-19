@@ -765,6 +765,7 @@ label strip_tease(the_person, in_private = True, for_pay = False, start_girl_dir
                                     "She takes the cash, checks that it's the correct amount, and smiles at you."
                                     the_person "Alright then..."
 
+                                $ del top_layer
                                 if the_person.get_opinion_score("taking control") < 0:
                                     $ the_person.change_obedience(-the_person.get_opinion_score("taking control")) #Putting her in control builds her confidence.
                                 $ mc.business.funds += -strip_cost
@@ -1086,6 +1087,7 @@ label strip_tease_remove(the_person, the_clothing, girl_state, girl_direction, g
                     "She takes the cash, checks that it's the correct amount, and smiles at you."
                     the_person "Alright then..."
 
+                $ del top_layer
                 if resist_level == "mid":
                     $ the_person.change_obedience(1)
                 $ mc.business.funds += -strip_cost
