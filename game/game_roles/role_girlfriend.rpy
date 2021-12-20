@@ -288,7 +288,7 @@ label ask_get_boobjob_label(the_person):
                 "She hesitates, as if waiting for you to offer to pay, then nods dutifully."
                 $ the_person.change_happiness(-5)
 
-        "Have her pay for it\n{color=#ff0000}{size=18}Requires: [self_pay_requirement] Obedience{/size}{/color} (disabled)" if the_person.obedience >= self_pay_requirement and the_person.has_role(girlfriend_role):
+        "Have her pay for it\n{color=#ff0000}{size=18}Requires: [self_pay_requirement] Obedience{/size}{/color} (disabled)" if the_person.obedience < self_pay_requirement and the_person.has_role(girlfriend_role):
             pass
 
         "Have her [so_title] pay for it" if the_person.obedience >= so_obedience_requirement and the_person.has_role(affair_role):
