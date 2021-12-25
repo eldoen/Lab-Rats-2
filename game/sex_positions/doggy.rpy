@@ -19,9 +19,9 @@
         list_of_positions.append(doggy)
 
 init 1:
-   python:
-       doggy.link_positions(doggy_anal,"transition_doggy_doggy_anal")
-       #Here is where you would put connections if they existed.
+    python:
+        doggy.link_positions(doggy_anal,"transition_doggy_doggy_anal")
+        #Here is where you would put connections if they existed.
 
 label intro_doggy(the_girl, the_location, the_object):
     mc.name "[the_girl.title], I want you to get on your hands and knees for me."
@@ -209,7 +209,7 @@ label scene_doggy_2(the_girl, the_location, the_object):
                         $ top_clothing = None
 
             the_girl "I... I want you to keep going."
-            "Fuck her hard anyways.":
+            "Fuck her hard anyways":
                 mc.name "Don't worry, just relax and you'll manage."
                 "You pull hard on her hips and fuck her hard. She yelps in a combination of surprise and pain."
                 if the_girl.get_opinion_score("being submissive") > 0:

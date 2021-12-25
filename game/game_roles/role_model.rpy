@@ -734,7 +734,7 @@ label photo_sex(the_person):
 
 label photo_strip_naked(the_person): #A helper label that strips a girl until her top and bottom are available for whatever you want to use them fore
     #Possible alternative: just strip until tits and vagina are usable.
-    $ generalised_strip_description(the_person, the_person.outfit.get_full_strip_list())
+    $ generalised_strip_description(the_person, the_person.outfit.get_full_strip_list(strip_feet = False))
     $ mc.change_locked_clarity(20)
 
     # while the_person.outfit.get_upper_top_layer() is not None or the_person.outfit.get_lower_top_layer() is not None: #Strip until the top and bottom are empty, ie not None.

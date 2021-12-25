@@ -415,7 +415,7 @@ label nora_special_research(the_person):
     $ clear_scene()
     "[the_person.title] leaves for her lab. True to her word, she's back in less than half an hour with her findings in hand."
     $ the_person.draw_person()
-    if the_subject.has_exact_role(very_heavy_trance_role) and nora_reward_instant_trance not in list_of_traits:
+    if the_subject.has_role(trance_role) and nora_reward_instant_trance not in list_of_traits:
         the_person "A very interesting case [the_person.mc_title]. I have some leads for you."
         the_person "The subject's level of suggestibility is remarkable. With persistence I believe you could convince them of almost anything in this state."
         the_person "It reminded me of some of our old research work. I've dug out the notes on those early designs and identified the molecule responsible for this state."

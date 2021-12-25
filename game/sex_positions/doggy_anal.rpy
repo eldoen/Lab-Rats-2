@@ -20,9 +20,9 @@ init:
         list_of_positions.append(doggy_anal)
 
 init 1:
-   python:
-       doggy_anal.link_positions(doggy,"transition_doggy_anal_doggy")
-       #Here is where you would put connections if they existed.
+    python:
+        doggy_anal.link_positions(doggy,"transition_doggy_anal_doggy")
+        #Here is where you would put connections if they existed.
 
 
 
@@ -194,7 +194,7 @@ label transition_doggy_anal_doggy(the_girl, the_location, the_object):
             else:
                 pass
 
-    "You pull on her hips and thrust yourself inside her tight, wet pussy."
+    "You pull on her hips and thrust yourself inside deep into her tight ass."
     return
 
 label transition_default_doggy_anal(the_girl, the_location, the_object):

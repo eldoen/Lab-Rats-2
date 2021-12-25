@@ -19,8 +19,8 @@ init:
         list_of_girl_positions.append(handjob)
 
 #init 1:
-   #python:
-       #Here is where you would put connections if they existed.
+    #python:
+        #Here is where you would put connections if they existed.
 
 label intro_handjob(the_girl, the_location, the_object):
     "[the_girl.title] places her hand on your chest and strokes it gently."

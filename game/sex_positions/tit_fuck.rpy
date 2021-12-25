@@ -20,9 +20,9 @@ init:
         list_of_positions.append(tit_fuck) #TODO: Decide if this should be a girl_position too.
 
 #init 1:
-   #python:
-       #Here is where you would put connections if they existed.
-       #TODO: Transition to a tit-blowjob.
+    #python:
+        #Here is where you would put connections if they existed.
+        #TODO: Transition to a tit-blowjob.
 
 label intro_tit_fuck(the_girl, the_location, the_object):
     #This position requires free (and big) tits, so we can assume they're available for everything.
