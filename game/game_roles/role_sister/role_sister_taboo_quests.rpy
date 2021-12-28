@@ -17,16 +17,14 @@ init -1 python:
             return False
         elif the_person.event_triggers_dict.get("sister_kissing_quest_progress", 0) < 3:
             return str(the_person.event_triggers_dict.get("sister_kissing_quest_progress", 0)) + "/3 InstaPic Sessions."
-        else:
-            return True
+        return True
 
     def sister_oral_quest_1_requirement(the_person):
         if not the_person.event_triggers_dict.get("sister_oral_quest_active", False):
             return False
         elif not the_person.event_triggers_dict.get("sister_oral_quest_progress", 0) == 0:
             return False
-        else:
-            return True
+        return True
 
     def sister_oral_quest_2_requirement(the_person):
         if not the_person.event_triggers_dict.get("sister_oral_quest_active", False):
@@ -35,8 +33,7 @@ init -1 python:
             return False
         elif mc.business.funds < 1200:
             return "Insufficient funds"
-        else:
-            return True
+        return True
 
     def sister_oral_revisit_quest_complete_requirement(the_person):
         if not the_person.event_triggers_dict.get("sister_oral_quest_active", False):
