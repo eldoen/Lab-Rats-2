@@ -47,8 +47,7 @@ init -1 python:
             return False
         elif the_person.event_triggers_dict.get("sister_instathot_mom_shirtless_covered_count", 0) == 0:
             return "Convince [mom.title] to take shirtless InstaPic shots."
-        else:
-            return True
+        return True
 
     def sister_vaginal_quest_revisit_requirement(the_person):
         if not the_person.event_triggers_dict.get("sister_vaginal_quest_active", False):
@@ -57,8 +56,7 @@ init -1 python:
             return "Requires: 10 identical serum doses"
         elif mc.location.get_person_count() > 1:
             return "Not while other people are around"
-        else:
-            return True
+        return True
 
 label sister_kissing_taboo_break_revisit(the_person):
     $ the_person.draw_person()
