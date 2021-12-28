@@ -1322,7 +1322,7 @@ label shopping_date_inside_changing_room(the_person, new_outfit, changing_type, 
                 mc.name "You were shoving this in my face, isn't this what you want?"
                 the_person "Not here, obviously! I..."
                 mc.name "Quiet, [the_person.title], or someone's going to hear us."
-                "[the_person.title] sighs and relents, planting her hands hands on the far side of the changing room and arching her back a little."
+                "[the_person.title] sighs and relents, planting her hands on the far side of the changing room and arching her back a little."
 
             $ the_person.draw_person(position = "standing_doggy")
             if the_person.effective_sluttiness() + 10*the_person.get_opinion_score("public sex") >= 40:
