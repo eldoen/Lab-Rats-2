@@ -234,7 +234,7 @@ init -2 python:
                 self.on_birth_control = True
             self.bc_penalty = 0 #Lowers the chance of birht control preventing a pregnancy. (Default is 100% if predictable or 90% if realistic). #TODO: Add serum traits that affect this.
             self.fertility_percent = 20.0 - ((self.age-18.0)/3.0) #The chance, per creampie, that a girl gets pregnant.
-            self.ideal_fertile_day = renpy.random.randint(0,30) #Influences a girls fertility chance. It is double on the exact day of the month, dropping down to half 15 days before/after. Only applies on realistic setting.
+            self.ideal_fertile_day = renpy.random.randint(0,29) #Influences a girls fertility chance. It is double on the exact day of the month, dropping down to half 15 days before/after. Only applies on realistic setting.
 
             self.lactation_sources = 0 #How many things are causing this girl to lactate. Mainly serum traits, side effects, or pregnancy.
 
