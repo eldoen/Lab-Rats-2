@@ -797,7 +797,7 @@ label student_masturbate_label(the_person):
 
 label student_pick_reward(the_person, punishment):
     #TODO: First time dialogue variation
-    if (the_person.effective_sluttiness() >= 80 or the_person.get_opinion_score("giving blowjobs")) and punishment != "student_punish_suck" > 0:
+    if (the_person.effective_sluttiness() >= 80 or the_person.get_opinion_score("giving blowjobs") > 0) and punishment != "student_punish_suck" > 0:
         $ mc.change_locked_clarity(10)
         the_person "If I get a question right I want you to get your cock out and let me suck you off."
         mc.name "That's all you want?"
