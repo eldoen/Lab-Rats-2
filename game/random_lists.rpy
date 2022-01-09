@@ -1,6 +1,9 @@
 init -2:
     python:
 
+        def VrenNullAction(): #For some reason the NullAction still returns None, so it still transitions screens.
+            pass
+
         def get_random_from_list(list):
             if len(list) > 0:
                 return list[renpy.random.randint(0,len(list)-1)]
@@ -173,6 +176,25 @@ init -2:
         list_of_names.append("Ariel")
         list_of_names.append("Jade")
         list_of_names.append("Kaia")
+        list_of_names.append("Madeline")
+        list_of_names.append("Nu")
+        list_of_names.append("Piper")
+        list_of_names.append("Kelly")
+        list_of_names.append("Claire")
+        list_of_names.append("Elizabeth")
+        list_of_names.append("Hayley")
+        list_of_names.append("Melanie")
+        list_of_names.append("Morrigan")
+        list_of_names.append("Talia")
+        list_of_names.append("Sandra")
+        list_of_names.append("Kaylani")
+        list_of_names.append("Emily")
+        list_of_names.append("Steffi")
+        list_of_names.append("Vanessa")
+        list_of_names.append("Bonnie")
+        list_of_names.append("Jasmine")
+        list_of_names.append("Sasha")
+
 
         def get_random_name():
             return get_random_from_list(list_of_names)
@@ -313,6 +335,22 @@ init -2:
         list_of_last_names.append("Rose")
         list_of_last_names.append("Collins")
         list_of_last_names.append("Jones")
+        list_of_last_names.append("Cakes")
+        list_of_last_names.append("Nguyen")
+        list_of_last_names.append("Perri")
+        list_of_last_names.append("Archer")
+        list_of_last_names.append("Grant")
+        list_of_last_names.append("Black")
+        list_of_last_names.append("Williams")
+        list_of_last_names.append("Glaser")
+        list_of_last_names.append("Meade")
+        list_of_last_names.append("Crusher")
+        list_of_last_names.append("Lei")
+        list_of_last_names.append("Swann")
+        list_of_last_names.append("Wildmoser")
+        list_of_last_names.append("Sánchez")
+        list_of_last_names.append("Jones")
+        list_of_last_names.append("Tanaka")
 
         def get_random_last_name():
             return get_random_from_list(list_of_last_names)
@@ -637,6 +675,8 @@ init -2:
         sexy_opinions_list.append("cheating on men") #Has gameplay effect
         sexy_opinions_list.append("anal creampies") #Has gameplay effect
         sexy_opinions_list.append("incest") #Has gameplay effect
+        #TODO: Add an "open relationships" sexy opinion. Reduces penalties of a girl seeing you cheating on her (at high levels add a special training to give a "harem member" role).
+        #TODO: Add a "voyeurism" sexy opinion. Increases effects of watching someone having sex.
 
         def get_random_sexy_opinion():
             return get_random_from_list(sexy_opinions_list)
@@ -993,8 +1033,21 @@ init 1 python:
         #nuoyi_wardrobe = wardrobe_from_xml("Nuoyi_Wardrobe") #NOTE: Patron did not want a specific wardrobe, she'll draw her wardrobe randomly as normal.
         person_nuyoi = create_random_person(name = "Nuoyi", last_name = "Pan", body_type = "thin_body", height = 0.96, skin = "white", eyes = "dark blue", tits = "FF", hair_colour = "black", hair_style = long_hair,
             personality = wild_personality, stat_array = [4,3,1], skill_array = [5,2,2,1,1], sex_array = [1,3,4,2])
-
         list_of_unique_characters.append(person_nuyoi)
+
+        # lynn_wardrobe = wardrobe_from_xml("Lynn_Wardrobe") #NOTE: Patron did not want a specific wardrobe, she'll draw her wardrobe randomly as normal.
+        # An exchange student who is doing a year abroad at a Catholic school. Especially to get away from her helicopter parents.
+        person_lynn = create_random_person(name = "Lynn", last_name = "Borch", body_type = "thin_body", height = 0.94, skin = "white", eyes = "brown", tits = "C", hair_colour = "brown", hair_style = long_hair,
+            personality = introvert_personality, stat_array = [1,3,4], skill_array = [1,2,1,5,2], sex_array = [2,1,5,1])
+        list_of_unique_characters.append(person_lynn)
+
+        # Olga is a young library employee who likes to dress colorfully and is childish by behavior.
+        # As if she wants to overplay something.
+        olga_wardrobe = wardrobe_from_xml("Olga_Wardrobe")
+        person_olga = create_random_person(name = "Olga", last_name = "Schaad", body_type = "standard_body", height = 0.95, skin = "tan", eyes = "green", tits = "E", hair_colour = "blond", hair_style = messy_ponytail,
+            personality = wild_personality, stat_array = [4,1,3], skill_array = [2,5,2,1,1], sex_array = [2,4,1,1])
+        person_olga.create_opinion("working", start_positive = True, start_known = False, add_to_log = False)
+        list_of_unique_characters.append(person_olga)
 
 
         ### STEPHANIE ###
@@ -1090,6 +1143,41 @@ init 1 python:
         christina.home.add_person(christina)
         #Note: She plays an important role to Emily's story, but she is just given the normal affair role during the game.
 
+        ### IRIS ###
+        #iris_wardrobe = wardrobe_from_xml("Iris_Wardrobe")
+        iris_base = Outfit("Iris's accessories") #TODO: Decide what accessories we want her to haven
+
+        global iris
+        iris = create_random_person(name = "Iris", age = 18, body_type = "thin_body", face_style = "Face_7", tits = "DD", height = 0.9, hair_colour = "blond", hair_style = twintail, pubes_style = shaved_pubes, skin = "white", \
+            eyes = "green", personality = relaxed_personality, stat_array = [6,2,1], skill_array = [1,4,0,0,1], sex_array = [4,4,0,0], \
+            start_sluttiness = 5, start_obedience = -20, start_happiness = 120, start_love = 0, relationship = "Single", kids = 0)
+
+        iris.add_role(instapic_role)
+        iris.add_role(dikdok_role)
+
+        iris.generate_home()
+        iris.set_schedule(iris.home, times = [0,1,2,3,4])
+        iris.home.add_person(iris)
+
+
+        ### ??? ###
+        city_rep_wardrobe = wardrobe_from_xml("City_Rep_Wardrobe")
+        city_rep_base = city_rep_wardrobe.get_outfit_with_name("City_Rep_Accessories")
+
+        global city_rep
+        city_rep = create_random_person(age = 34, body_type = "thin_body", face_style = "Face_9", tits = "D", height = 0.98, hair_colour = "black", hair_style = ponytail, pubes_style = trimmed_pubes, skin = "white", \
+            starting_wardrobe = city_rep_wardrobe, base_outfit = city_rep_base, \
+            personality = introvert_personality, stat_array = [1,4,4], skill_array = [5,0,0,0,2], sex_array = [1,4,3,0], \
+            start_sluttiness = 0, start_obedience = -20, start_happiness = 100, start_love = -20)
+
+        city_rep.add_role(city_rep_role)
+        city_rep.generate_home().add_person(city_rep)
+        city_rep.set_schedule(city_rep.home, times = [0,4])
+
+        city_rep.set_title("???")
+        city_rep.set_mc_title("Mr."+mc.last_name)
+        city_rep.set_possessive_title("???")
+
         ### LILY ###
         lily_wardrobe = wardrobe_from_xml("Lily_Wardrobe")
 
@@ -1135,6 +1223,10 @@ init 1 python:
 
         mom_promotion_one_crisis = Action("mom promotion one crisis", mom_work_promotion_one_requirement, "mom_work_promotion_one")
         mom.on_talk_event_list.append(mom_promotion_one_crisis)
+
+        mom_find_serum_crisis = Action("mom find serum", mom_found_serums_requirement, "mom_found_serums", requirement_args = 3)
+        mc.business.mandatory_morning_crises_list.append(mom_find_serum_crisis)
+
 
         mom.home.add_person(mom)
         mc.phone.register_number(mom)

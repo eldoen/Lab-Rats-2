@@ -273,7 +273,7 @@ label sister_walk_in_label(the_person):
                 $ mc.change_arousal(5)
                 the_person "Ah... Mmmm."
                 "She opens her eyes and glances at her laptop, then finally notices you."
-                if the_person.effective_sluttiness("bare_pussy") < (40 - (the_person.obedience-100)): #If she's not slutty or obedient she yells at you to get out
+                if the_person.effective_sluttiness("bare_pussy") + (the_person.obedience - 100) < 40: #If she's not slutty or obedient she yells at you to get out
                     the_person "Oh my god, [the_person.mc_title]! What are you... I... Get out of here!"
                     mc.name "Don't be so dramatic [the_person.title], just keep going."
                     the_person "What?! Ew, how long have you been there? Oh god!"
@@ -314,6 +314,7 @@ label sister_walk_in_label(the_person):
 
             "Leave her alone.":
                 $ clear_scene()
+                $ the_person.run_orgasm()
                 "You take a quick step back and, as quietly as you can manage, close her door."
                 $ mc.change_location(hall)
                 $ the_person.apply_outfit(the_person.planned_outfit)
@@ -631,7 +632,7 @@ label cousin_home_panties_label(the_person):
             $ the_person.apply_outfit()
             "You hear [the_person.possessive_title]'s bed creak, then her shuffle around her room for a moment."
             the_person "Alright dweeb, come in and say what you have to say."
-            $ draw_person()
+            $ the_person.draw_person()
 
     elif the_person.effective_sluttiness() < 40:
         "She looks up and glares at you."

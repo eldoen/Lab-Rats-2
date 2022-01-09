@@ -129,7 +129,7 @@ label train_hypnotic_orgasm(the_person):
 
     $ the_clothing = the_person.outfit.get_lower_top_layer()
     if the_clothing:
-        $ clothing_phrase = "a hand between her legs and under her [the_clothing.display_name]."
+        $ clothing_phrase = "a hand between her legs and under her " + the_clothing.display_name
     else:
         $ clothing_phrase = "a hand between her legs."
     if mc.location.get_person_count() > 1:
@@ -184,7 +184,6 @@ label train_hypnotic_orgasm(the_person):
             "Meanwhile, her other hand doesn't stop pumping in and out of her climaxing cunt."
             $ the_person.run_orgasm()
             $ the_person.change_love(2)
-            $ the_person.reset_arousal()
             "She gasps and moans into your ear for a long moment, but little by little her orgasm subsides."
             "When she is in control of herself again she stands under her own power and looks at you, a dumb smile spreading across her face."
 
@@ -194,7 +193,6 @@ label train_hypnotic_orgasm(the_person):
             "[the_person.title] falls to the ground, barely catching herself at the last minute with her free hand."
             "She ends up face down, hips bucking with each new climactic spasm. Her thighs twitch in sync, all while she continues to finger herself."
             $ the_person.run_orgasm()
-            $ the_person.reset_arousal()
             $ the_person.change_slut(2)
             "She moans and writhes on the floor for a long moment, but little by little her orgasm subsides and she gains control of herself again."
             $ the_person.draw_person(position = "missionary", emotion = "happy")
@@ -363,7 +361,7 @@ label train_online_attention_whore(the_person):
         mc.name "Good, because you're built for it. You're going to have guys drooling all over the world."
         "You spend a little longer reminding her to post as often as she can, and make a mental note to check in on her progress yourself."
     else:
-        "You reconsider putting [the_person.possessive_title] on the internet for other men to oggle at."
+        "You reconsider putting [the_person.possessive_title] on the internet for other men to ogle at."
         return False #You didn't actually set anything up, so you don't have to pay the training cost (you get the account info for free, congrats)
 
     return

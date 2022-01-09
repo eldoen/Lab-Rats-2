@@ -34,7 +34,7 @@ label train_learn_opinion_label(the_person):
     "You keep prompting [the_person.possessive_title] to share more information."
 
     if sexy_opinion:
-        $ revealed_opinion = the_person.get_random_opinion(include_known = False, include_normal = False)
+        $ revealed_opinion = the_person.get_random_opinion(include_known = False, include_normal = False, include_sexy = True)
 
     else:
         $ revealed_opinion = the_person.get_random_opinion(include_known = False)
@@ -103,7 +103,7 @@ label train_weaken_opinion_label(the_person): #TODO; Only have this enabled if y
         mc.name "You've got it all wrong, you need to think about this some more."
         mc.name "Here, let me explain it to you..."
         "[the_person.possessive_title] listens attentively while you mould her opinions of [player_choice]."
-        $ the_person.weaken_opnion(player_choice)
+        $ the_person.weaken_opinion(player_choice)
         "When you're finished you feel confident that you have weakened her opinion."
     else:
         mc.name "On second thought, never mind."
@@ -119,7 +119,7 @@ label train_new_opinion_label(the_person, sexy_list = False):
     else:
         $ opinion_train_options = opinions_list[:]
     python:
-        for known_opinion in the_person.get_opinion_topics_list(include_unknown = False, include_sexy = False):
+        for known_opinion in the_person.get_opinion_topics_list(include_unknown = False, include_sexy = sexy_list, include_normal = not sexy_list):
             if known_opinion in opinion_train_options:
                 opinion_train_options.remove(known_opinion) #Remove opinions we already know about.
 

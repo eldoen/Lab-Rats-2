@@ -18,6 +18,21 @@ init -2 python:
                 count += design[1]
             return count
 
+        def get_matching_serum_count(self, check_function): #Hand a function to the inventory and get a count of the number of serums that match that requirement.
+            count = 0
+            for design in self.get_serum_type_list():
+                if check_function(design):
+                    count += self.get_serum_count(design)
+            return count
+
+        def get_max_serum_count(self): #Returns the count of the highest group of serums you have available.
+            highest_count = 0
+            for design in self.get_serum_type_list():
+                if self.get_serum_count(design) > highest_count:
+                    highest_count = self.get_serum_count(design)
+
+            return highest_count
+
         def change_serum(self, serum_design,change_amount): ##Serum count must be greater than 0. Adds to stockpile of serum_design if it is already there, creates it otherwise.
             found = False
             for design in self.serums_held:
@@ -37,3 +52,13 @@ init -2 python:
             for design in self.serums_held:
                 return_values.append(design[0])
             return return_values
+
+        def get_highest_serum_count(self):
+            return_value = none
+            largest_amount = -1
+            for design in self.serums_held:
+                if self.get_serum_count(design) > largest_amount:
+                    return_value = design
+                    largest_amount = self.get_serum_count(design)
+
+            return return_value

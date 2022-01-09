@@ -5,6 +5,74 @@
 #TODO: Purposeful teasing events
 
 init -2 python:
+    #Sister on day events to set up taboo breaks
+    def sister_on_day(the_person):
+        # Set up taboo break revisits if taboos have been broken.
+        if the_person.has_broken_taboo(["touching_body","kissing","bare_pussy","bare_tits","touching_vagina"]) and not the_person.event_triggers_dict.get("kissing_revisit_complete", False): #Checks if they have all of these taboos or not.
+            if the_person.has_role(sister_girlfriend_role):
+                the_person.event_triggers_dict["kissing_revisit_complete"] = True
+            else:
+                broken_taboos = the_person.event_triggers_dict.get("kissing_revisit_restore_taboos",[]) #Note: this will result in duplicates sometimes.
+                if the_person.has_broken_taboo("bare_tits"):
+                    broken_taboos.append("bare_tits")
+                if the_person.has_broken_taboo("bare_pussy"):
+                    broken_taboos.append("bare_pussy")
+                if the_person.has_broken_taboo("kissing"):
+                    broken_taboos.append("kissing")
+                if the_person.has_broken_taboo("touching_body"):
+                    broken_taboos.append("touching_body")
+                if the_person.has_broken_taboo("touching_vagina"):
+                    broken_taboos.append("touching_vagina")
+
+                taboo_revisit_event = Action("sis kissing taboo revisit", sister_kissing_taboo_revisit_requirement, "sister_kissing_taboo_break_revisit")
+                if not the_person.has_queued_event(taboo_revisit_event):
+                    the_person.event_triggers_dict["kissing_revisit_count"] = the_person.event_triggers_dict.get("kissing_revisit_count",0) + 1
+                    the_person.on_room_enter_event_list.append(taboo_revisit_event)
+                    for a_taboo in broken_taboos:
+                        the_person.restore_taboo(a_taboo, add_to_log = False)
+                the_person.event_triggers_dict["kissing_revisit_restore_taboos"] = broken_taboos
+
+        if the_person.has_broken_taboo(["sucking_cock", "licking_pussy"]) and not the_person.event_triggers_dict.get("oral_revisit_complete", False):
+            if the_person.has_role(sister_girlfriend_role):
+                the_person.event_triggers_dict["oral_revisit_complete"] = True
+            else:
+                broken_taboos = the_person.event_triggers_dict.get("oral_revisit_restore_taboos",[])
+                if the_person.has_broken_taboo("sucking_cock"):
+                    broken_taboos.append("sucking_cock")
+                if the_person.has_broken_taboo("licking_pussy"):
+                    broken_taboos.append("licking_pussy")
+                taboo_revisit_event = Action("sis oral taboo revisit", sister_oral_taboo_revisit_requirement, "sister_oral_taboo_break_revisit")
+                if not the_person.has_queued_event(taboo_revisit_event):
+                    for a_taboo in broken_taboos:
+                        the_person.restore_taboo(a_taboo, add_to_log = False)
+                    the_person.event_triggers_dict["oral_revisit_count"] = the_person.event_triggers_dict.get("oral_revisit_count", 0) + 1
+                    the_person.on_room_enter_event_list.append(taboo_revisit_event)
+                the_person.event_triggers_dict["oral_revisit_restore_taboos"] = broken_taboos
+
+        if the_person.has_broken_taboo("anal_sex") and not the_person.event_triggers_dict.get("anal_revisit_complete", False):
+            if the_person.has_role(sister_girlfriend_role):
+                the_person.event_triggers_dict["anal_revisit_complete"] = True
+            else:
+                taboo_revisit_event = Action("sis anal taboo revisit", sister_anal_taboo_revisit_requirement, "sister_anal_taboo_break_revisit")
+                if not the_person.has_queued_event(taboo_revisit_event):
+                    the_person.restore_taboo("anal_sex", add_to_log = False)
+                    the_person.event_triggers_dict["anal_revisit_count"] = the_person.event_triggers_dict.get("anal_revisit_count", 0) + 1
+                    the_person.on_room_enter_event_list.append(taboo_revisit_event)
+
+        if the_person.has_broken_taboo("vaginal_sex") and not the_person.event_triggers_dict.get("vaginal_revisit_complete", False):
+            if the_person.has_role(sister_girlfriend_role):
+                the_person.event_triggers_dict["vaginal_revisit_complete"] = True
+            else:
+                taboo_revisit_event = Action("sis vaginal taboo revisit", sister_vaginal_taboo_revisit_requirement, "sister_vaginal_taboo_break_revisit")
+                if not the_person.has_queued_event(taboo_revisit_event):
+                    the_person.restore_taboo("vaginal_sex", add_to_log = False)
+                    the_person.event_triggers_dict["vaginal_revisit_count"] = the_person.event_triggers_dict.get("vaginal_revisit_count", 0) + 1
+                    the_person.on_room_enter_event_list.append(taboo_revisit_event)
+
+
+        return
+
+init -2 python:
     #SISTER ACTION REQUIREMENTS#
     def sister_intro_crisis_requirements(the_person, day_trigger):
         if time_of_day == 4 and mc.location == bedroom and day >= day_trigger: #We use time == 4 because we want it to trigger during our night/day transition (ie. when you're guaranteed to be at home)
@@ -19,7 +87,7 @@ init -2 python:
     def sister_serum_test_requirement(the_person):
         if not mc.business.event_triggers_dict.get("sister_serum_test", False):
             return False
-        elif mc.business.funds < 50:
+        elif not mc.business.has_funds(50):
             return "Requires: $50"
         else:
             return True
@@ -49,7 +117,7 @@ init -2 python:
             return False
         elif len(lily_bedroom.people) > 1:
             return False
-        elif the_person.sluttiness < 30 or mc.business.funds < 100:
+        elif the_person.sluttiness < 30 or not mc.business.has_funds(100):
             return "Requires: $100, " + get_red_heart(30)
         else:
             return True
@@ -135,7 +203,7 @@ label sister_serum_test_label(the_person):
     the_person "Alright, $50 and I'll try it."
     call give_serum(the_person) from _call_give_serum_7
     if _return:
-        $ mc.business.funds += -50
+        $ mc.business.change_funds(-50)
         "You give [the_person.possessive_title] the cash and the serum. She puts the money away then drinks the serum, handing back the empty vial."
         $ the_person.change_obedience(1)
         the_person "Easiest fifty bucks I've ever earned. I guess you can hang around and keep an eye on me if it's important for your research."
@@ -211,13 +279,13 @@ label sister_strip_explanation(the_person):
     "[the_person.title] nods. There's a long silence before she speaks again."
     the_person "So... do you want me to do it for you now?"
     menu:
-        "Ask her to strip for you." if mc.business.funds >= 100:
+        "Ask her to strip for you." if mc.business.has_funds(100):
             mc.name "I don't see why not."
-            $ mc.business.funds += -100
+            $ mc.business.change_funds(-100)
             "You pull a hundred dollars out of your wallet and hand it over to [the_person.possessive_title]. She tucks it away and gets ready."
-            call pay_strip_scene(the_person) from _call_pay_strip_scene
+            call strip_tease(the_person, for_pay = True)
 
-        "Ask her to strip for you.\n{size=22}Requires: $100{/size} (disabled)" if mc.business.funds < 100:
+        "Ask her to strip for you.\n{size=22}Requires: $100{/size} (disabled)" if not mc.business.has_funds(100):
             pass
 
         "Not right now.":
@@ -233,10 +301,11 @@ label sister_strip_label(the_person):
         the_person "Oh, do you want me to... show off for you?"
     else:
         the_person "You want me to strip down for you?"
-    $ mc.business.funds += -100
+    $ mc.business.change_funds(-100)
+    $ the_person.change_obedience(1)
     "You nod and sit down on [the_person.possessive_title]'s bed. She holds her hand out and you hand over her money."
     "She tucks the money away and gets ready in front of you."
-    call pay_strip_scene(the_person) from _call_pay_strip_scene_1
+    call strip_tease(the_person, for_pay = True)
     return
 
 label sister_cam_girl_intro_label(the_person):

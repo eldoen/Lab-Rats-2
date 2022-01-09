@@ -77,7 +77,7 @@ init -2 python:
             return False #Don't show anything if we have a higher level to show.
         elif not mandatory_paid_serum_testing_policy.is_active():
             return False #"Requires Policy: Mandatory Paid Serum Testing"
-        elif mc.business.funds < 100:
+        elif not mc.business.has_funds(100):
             return "Requires: $100"
         else:
             return True
@@ -168,35 +168,35 @@ label employee_pay_cash_bonus(the_person):
             "[the_person.title] looks visibly disappointed."
             the_person "Right, of course."
 
-        "Give her a days wages. -$[days_wages]" if mc.business.funds >= days_wages:
+        "Give her a days wages. -$[days_wages]" if mc.business.has_funds(days_wages):
             mc.name "Here you go, treat yourself to something nice tonight."
             $ the_person.draw_person(emotion = "happy")
             $ change_amount = 1+mc.charisma
-            $ mc.business.funds -= the_person.salary
+            $ mc.business.change_funds(-the_person.salary)
             $ the_person.change_happiness(change_amount)
             "[the_person.title] takes the bills from you and smiles."
             the_person "Thank you sir."
 
 
-        "Give her a weeks wages. -$[weeks_wages]" if mc.business.funds >= weeks_wages:
+        "Give her a weeks wages. -$[weeks_wages]" if mc.business.has_funds(weeks_wages):
             mc.name "Here you go, don't spend it all in once place."
             $ the_person.draw_person(emotion = "happy")
             $ change_amount = 1+mc.charisma
             $ change_amount_happiness = 5+mc.charisma
             $ the_person.change_happiness(change_amount_happiness)
             $ the_person.change_obedience(change_amount)
-            $ mc.business.funds -= weeks_wages
+            $ mc.business.change_funds(-weeks_wages)
             "[the_person.title] takes the bills, then smiles broadly at you."
             the_person "That's very generous of you sir, thank you."
 
-        "Give her a months wages. -$[months_wages]" if mc.business.funds >= months_wages:
+        "Give her a months wages. -$[months_wages]" if mc.business.has_funds(months_wages):
             mc.name "Here, you're a key part of the team and you deserved to be rewarded as such."
             $ the_person.draw_person(emotion = "happy")
             $ change_amount = 5+mc.charisma
             $ change_amount_happiness = 10+mc.charisma
             $ the_person.change_happiness(change_amount_happiness)
             $ the_person.change_obedience(change_amount)
-            $ mc.business.funds -= months_wages
+            $ mc.business.change_funds(-months_wages)
             "[the_person.title] takes the bills, momentarily stunned by the amount."
             if the_person.effective_sluttiness() > 40 and the_person.happiness > 100:
                 the_person "Wow... this is amazing sir. I'm sure there's something I can do to pay you back, right?"
@@ -387,6 +387,8 @@ label employee_performance_review(the_person):
                                     if the_person.has_taboo("underwear_nudity") or (the_person.has_taboo("bare_pussy") and the_person.outfit.vagina_visible()) or (the_person.has_taboo("bare_tits") and the_person.outfit.tits_visible()):
                                         the_person "Is this what you wanted to see? Are we done?"
                                         "[the_person.title] tries to cover herself up with her hands, shuffling nervously in front of your desk."
+                                        $ the_person.update_outfit_taboos()
+
                                     else: #No taboo broken, no big deal
                                         the_person "Is this what you wanted to see [the_person.mc_title]? I hope it's worth keeping me around..."
 
@@ -437,7 +439,7 @@ label employee_performance_review(the_person):
                                         the_person "Turn around, let me take a look at your ass."
                                         $ the_person.draw_person(position = "back_peek", the_animation = ass_bob, animation_effect_strength = 0.4)
                                         $ mc.change_locked_clarity(10)
-                                        "[the_person.possessive_title] obediently follows your instructions. She bounces her hips, jiggling her butt as you oggle her."
+                                        "[the_person.possessive_title] obediently follows your instructions. She bounces her hips, jiggling her butt as you ogle her."
 
                                     mc.name "Okay, that's enough."
                                     $ the_person.draw_person()
@@ -651,10 +653,15 @@ label employee_performance_review(the_person):
                                     if the_person.has_taboo("vaginal_sex"):
                                         the_person "Wait, I've changed my..."
                                         "It's too late for second thoughts. You plunge your hard dick into [the_person.title]'s tight cunt. She gasps softly under her breath."
+                                        $ the_person.break_taboo("vaginal_sex")
                                         the_person "... Mind! Oh fuck..."
                                         "You can hear the understanding in her voice: this is happening."
                                     else:
                                         "You push forward, plunging your hard dick into [the_person.title]'s tight cunt. She gasps softly under her breath."
+
+                                    if not mc.condom and the_person.has_taboo("condomless_sex"):
+                                        $ the_person.break_taboo("condomless_sex")
+
                                     "You hold yourself deep inside of her and enjoy the sudden warmth around your shaft."
                                     "When you think she's ready you pull your hips back and start to pump in and out of her."
 
@@ -663,7 +670,7 @@ label employee_performance_review(the_person):
                                     else:
                                         $ the_person.add_situational_slut("seduction_approach", -5 + (-5*the_person.get_opinion_score("being submissive")), "I'm just a toy to him.")
                                     $ the_person.add_situational_obedience("seduction_approach", 25, "I'll do what I need to keep my job!")
-                                    $ the_desk = mc.location.get_object_with_name("Desk")
+                                    $ the_desk = mc.location.get_object_with_name("desk")
                                     call fuck_person(the_person, private = True, start_position = doggy, start_object = the_desk, skip_intro = True, skip_condom = True) from _call_fuck_person_106
                                     $ the_person.clear_situational_slut("seduction_approach")
                                     $ the_person.clear_situational_obedience("seduction_approach")
@@ -809,7 +816,7 @@ label employee_paid_serum_test_label(the_person):
     mc.name "[the_person.title], we're running field trials and you're one of the test subjects. I'm going to need you to take this, a bonus will be added onto your paycheck."
     call give_serum(the_person) from _call_give_serum_18
     if _return:
-        $ mc.business.funds += -pay_serum_cost
+        $ mc.business.change_funds(-pay_serum_cost)
     return
 
 label employee_unpaid_serum_test_label(the_person):
