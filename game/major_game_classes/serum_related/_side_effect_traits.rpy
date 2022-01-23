@@ -74,7 +74,7 @@ init -1:
         def hair_colour_dull_on_turn(the_person, the_serum, add_to_log):
             current_colour = Color(rgb=(the_person.hair_colour[1][0], the_person.hair_colour[1][1], the_person.hair_colour[1][2]))
             goal_colour = current_colour.replace_hsv_saturation(0.0)
-    
+            
             hair_colour_change_on_turn(goal_colour, the_person, the_serum, add_to_log)
     
         depressant_side_effect = SerumTrait(name = "Depressant",
