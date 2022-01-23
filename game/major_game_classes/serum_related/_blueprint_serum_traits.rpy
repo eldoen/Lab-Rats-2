@@ -126,21 +126,6 @@ init 1 python:
     basic_hair_dye_trait = SerumTraitBlueprint(
         unlock_label = "basic_hair_dye_unlock_label",
         name = "Encapsulated Hair Dyes",
-        desc = "Precise delivery of commonly available hair dyes recolours the targets hair over the course of hours. Only a limited ranges of hair colours are suitable for this procedure.",
-        positive_slug = "+$15 Value, Shifts Hair Colour Towards Selected Preset Colour",
-        negative_slug = "+40 Research Needed",
-        value_added = 15,
-        research_added = 40,
-        base_side_effect_chance = 5,
-        requires = [hair_lighten_dye, hair_darken_dye],
-        tier = 1,
-        research_needed = 100,
-        exclude_tags = "Dye",
-        clarity_cost = 50)
-
-    basic_hair_dye_trait = SerumTraitBlueprint(
-        unlock_label = "basic_hair_dye_unlock_label",
-        name = "Encapsulated Hair Dyes",
         desc = "Precise delivery of commonly available hair dyes recolours the targets hair over the course of hours. Only a limited ranges of hair colours are available with this procedure.",
         positive_slug = "Shifts Hair Colour Towards Selected Preset Colour",
         negative_slug = "",
@@ -161,7 +146,7 @@ init 1 python:
         unlock_label = "hair_colour_change_unlock_label",
         name = "Organic Hair Chemicals",
         desc = "Triggers the production of natural hair dyes, which quickly recolours the subject's hair over the course of hours. Application for several days is suggested for perfect colour accuracy. Test on hidden patch first.",
-        positive_slug = "+$30 Value, Shifts Hair Colour Towards Set Target Colour",
+        positive_slug = "Shifts Hair Colour Towards Set Target Colour",
         negative_slug = "",
         research_added = 80,
         base_side_effect_chance = 20,

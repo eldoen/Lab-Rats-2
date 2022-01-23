@@ -113,8 +113,8 @@ init -1:
         negative_slug = "+15 Production/Batch",
         production_added = 15,
         is_side_effect = True,
-        mental_aspect = 0, physical_aspect = 0, sexual_aspect = 0, medical_aspect = 0, flaws_aspect = 0, attention = 0)	
-
+        mental_aspect = 0, physical_aspect = 0, sexual_aspect = 0, medical_aspect = 0, flaws_aspect = 0, attention = 0)
+        
     libido_suppressant = SerumTrait(name = "Libido Suppressant",
         desc = "An unintended interaction results in a major decrease in the recipients sex drive for the duration of this serum.",
         positive_slug = "",
