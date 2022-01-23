@@ -65,7 +65,7 @@ init -2 python:
             return False
         elif mc.business.get_employee_workstation(the_person) is None:
             return False
-        elif mc.business.funds < 500:
+        elif not mc.business.has_funds(500):
             return "Requires: $500"
         else:
             return True
@@ -333,14 +333,14 @@ label alexia_ad_suggest_label(the_person):
     mc.name "Good to hear. What will you need to get this going?"
     the_person "We should probably get a proper camera instead of my phone, and we'll need to pay to have the cards printed professionally."
     menu:
-        "Pay for equipment\n{color=#ff0000}{size=18}Costs: $500{/size}{/color}" if mc.business.funds >= 500:
+        "Pay for equipment\n{color=#ff0000}{size=18}Costs: $500{/size}{/color}" if mc.business.has_funds(500):
             mc.name "That sounds reasonable. Buy whatever you think is reasonable and I will cover the expense."
-            $ mc.business.funds += -500
+            $ mc.business.change_funds(-500)
             the_person "You got it! I'll order it A.S.A.P and let you know when it arrives."
             mc.name "Great work [the_person.title], you're a credit to the team."
             $ add_camera_arrive_action(the_person)
 
-        "Pay for equipment\n{color=#ff0000}{size=18}Requires $500{/size}{/color} (disabled)" if mc.business.funds < 500:
+        "Pay for equipment\n{color=#ff0000}{size=18}Requires $500{/size}{/color} (disabled)" if mc.business.has_funds(500):
             pass
 
         "Talk to her later":
@@ -357,7 +357,7 @@ label alexia_ad_suggest_reintro_label(the_person):
     mc.name "[the_person.title], I want you to order whatever camera equipment you think is best for your ad photoshoot."
     the_person "Okay. I'll get right on that and order it ASAP!"
     mc.name "Send me any receipts and I'll cover the cost."
-    $ mc.business.funds += -500
+    $ mc.business.change_funds(-500)
     $ add_camera_arrive_action(the_person)
     return
 

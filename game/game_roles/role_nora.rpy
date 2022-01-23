@@ -401,7 +401,7 @@ label nora_research_cash(the_person):
         "You say goodbye to [the_person.possessive_title] and split up. She sends your final payment and her research questionnaire soon after."
 
         $ add_study_person_for_nora_actions(the_person)
-    $ mc.business.funds += 2000
+    $ mc.business.change_funds(2000)
     $ clear_scene()
     return
 

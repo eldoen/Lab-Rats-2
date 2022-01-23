@@ -993,7 +993,7 @@ init 2 python:
 
 label mom_work_secretary_replacement_bigger_tits_options(the_person):
     menu:
-        "I'll pay\n{color=#ff0000}{size=18}Costs: $7,000{/size}{/color}" if mc.business.funds >= 7000: #NOTE: Requirements not needed, you can come back and pay in a few days.
+        "I'll pay\n{color=#ff0000}{size=18}Costs: $7,000{/size}{/color}" if mc.business.has_funds(7000): #NOTE: Requirements not needed, you can come back and pay in a few days.
             mc.name "I'll pay for it [the_person.title]."
             the_person "I can't let you do that for me [the_person.mc_title]! It would be so expensive!"
             mc.name "Don't worry about the cost, business is good right now and i want to give back a little."
@@ -1002,11 +1002,11 @@ label mom_work_secretary_replacement_bigger_tits_options(the_person):
             the_person "Thank you [the_person.mc_title]. What would I do without you?"
             mc.name "Happy to help [the_person.title]."
             $ the_person.event_triggers_dict["mom_work_tit_options_reintro"] = False
-            $ mc.business.funds += -7000
+            $ mc.business.change_funds(-7000)
 
             $ add_mom_got_boobjob_action(the_person)
 
-        "I'll pay\n{color=#ff0000}{size=18}Requires: $7,000{/size}{/color} (disabled)" if mc.business.funds < 7000:
+        "I'll pay\n{color=#ff0000}{size=18}Requires: $7,000{/size}{/color} (disabled)" if mc.business.has_funds(7000):
             pass
 
         "Give her some serum" if mc.inventory.get_any_serum_count() > 0: #Note: The seduce event has already been added and is watching her breast size, so if it goes up she'll trigger it right away

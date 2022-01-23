@@ -230,9 +230,9 @@ label pay_strip_scene(the_person):
                                 the_person "$[price] and I'll take this off for you..."
 
                             menu:
-                                "Pay her $[price]." if price <= mc.business.funds:
+                                "Pay her $[price]." if mc.business.has_funds(price):
                                     "You pull the cash out of your wallet and hand it over."
-                                    $ mc.business.funds += -price
+                                    $ mc.business.change_funds(-price)
                                     $ the_person.change_obedience(-1)
                                     $ the_person.change_slut(1, 40)
                                     $ the_person.draw_animated_removal(tease_item, position = picked_pose)
@@ -241,7 +241,7 @@ label pay_strip_scene(the_person):
                                     if the_person.update_outfit_taboos():
                                         "She seems momentarily uneasy about undressing, but shakes the feeling quickly and returns her attention to you."
 
-                                "Pay her $[price]. (disabled)" if price > mc.business.funds:
+                                "Pay her $[price]. (disabled)" if not mc.business.has_funds(price):
                                     pass
 
                                 "Don't pay her.":
@@ -299,7 +299,7 @@ label pay_strip_scene(the_person):
                 the_person "Oh, is that all you wanted to see? I feel like we were just getting started!"
 
         else: #The only other result is an actual strip. Pay the cash, remove the piece and loop or end.
-            $ mc.business.funds += -strip_choice[1]
+            $ mc.business.change_funds(-strip_choice[1])
             $ test_outfit = the_person.outfit.get_copy() #We use a temp copy so that we can get her reaction first.
             $ test_outfit.remove_clothing(strip_choice[0])
             $ the_clothing = strip_choice[0]
@@ -488,7 +488,7 @@ label strip_tease(the_person, in_private = True, for_pay = False, start_girl_dir
                 "She stares at your hard cock and stumbles over her words as she tries to think of anything other than \"impressive\"."
                 the_person "...Disgusting! That's what it is!"
                 menu:
-                    "Pay her\n{color=#ff0000}{size=18}Costs: $200{/size}{/color}" if mc.business.funds >= 200 and for_pay:
+                    "Pay her\n{color=#ff0000}{size=18}Costs: $200{/size}{/color}" if mc.business.has_funds(200) and for_pay:
                         "You sigh dramatically and pull out your wallet, cock still standing at attention."
                         mc.name "Here, two hundred dollars. This is why you're doing this in the first place, right?"
                         "You hold up the cash and motion for her to take it."
@@ -498,10 +498,10 @@ label strip_tease(the_person, in_private = True, for_pay = False, start_girl_dir
                         $ the_person.change_slut(1, 30)
                         $ the_person.change_obedience(1)
                         $ the_person.change_love(-1)
-                        $ mc.business.funds += -200
+                        $ mc.business.change_funds(-200)
                         the_person "Fine, just don't... think this is going any further!"
 
-                    "Pay her\n{color=#ff0000}{size=18}Requires: $200{/size}{/color} (disabled)" if mc.business.funds < 200 and for_pay:
+                    "Pay her\n{color=#ff0000}{size=18}Requires: $200{/size}{/color} (disabled)" if mc.business.has_funds(200) and for_pay:
                         pass
 
                     "Order her" if the_person.obedience >= 120:
@@ -573,7 +573,7 @@ label strip_tease(the_person, in_private = True, for_pay = False, start_girl_dir
                     "She sighs and shakes her head disapprovingly."
                     the_person "You should know that touching costs extra. How about... $200?"
                     menu:
-                        "Pay her\n{color=#ff0000}{size=18}Costs: $200{/size}{/color}" if mc.business.funds >= 200 and for_pay:
+                        "Pay her\n{color=#ff0000}{size=18}Costs: $200{/size}{/color}" if mc.business.has_funds(200) and for_pay:
                             mc.name "Well that's not a hard decision, here you go."
                             "You pull out the cash and hold it up for her to take."
                             if the_person.has_taboo("touching_body"):
@@ -586,7 +586,7 @@ label strip_tease(the_person, in_private = True, for_pay = False, start_girl_dir
                                 "She grabs the bills and counts them quickly before tucking them away."
                                 the_person "But this is as far as it goes!"
 
-                            $ mc.business.funds += -200
+                            $ mc.business.change_funds(-200)
 
                             "You hold up the cash and motion for her to take it."
                             the_person "I... I mean..."
@@ -596,8 +596,8 @@ label strip_tease(the_person, in_private = True, for_pay = False, start_girl_dir
                             $ the_person.change_obedience(-1)
                             the_person "Fine, just don't... think this is going any further!"
 
-                        "Pay her\n{color=#ff0000}{size=18}Requires: $200{/size}{/color} (disabled)" if mc.business.funds < 200 and for_pay:
-                            pass
+                        "Pay her\n{color=#ff0000}{size=18}Requires: $200{/size}{/color} (disabled)" if mc.business.has_funds(200) and for_pay:
+                            has_funds(200)
 
                         "Order her" if the_person.obedience >= 125:
                             "You shrug and pull her closer to you."
@@ -748,7 +748,7 @@ label strip_tease(the_person, in_private = True, for_pay = False, start_girl_dir
                             "She sounds like she's looking for an excuse to keep going."
 
                         menu:
-                            "Pay her\n{color=#ff0000}{size=18}Costs: $[strip_cost]{/size}{/color}" if mc.business.funds >= strip_cost and for_pay:
+                            "Pay her\n{color=#ff0000}{size=18}Costs: $[strip_cost]{/size}{/color}" if mc.business.has_funds(strip_cost) and for_pay:
                                 $ top_layer = the_person.outfit.get_lower_top_layer()
                                 if girl_state.is_close and top_layer and top_layer.underwear: #Slip it into her g-string or similar.
                                     "You pull out some cash and slip it carefully into the waist of her [top_layer.display_name]."
@@ -768,9 +768,9 @@ label strip_tease(the_person, in_private = True, for_pay = False, start_girl_dir
                                 $ del top_layer
                                 if the_person.get_opinion_score("taking control") < 0:
                                     $ the_person.change_obedience(-the_person.get_opinion_score("taking control")) #Putting her in control builds her confidence.
-                                $ mc.business.funds += -strip_cost
+                                $ mc.business.change_funds(-strip_cost)
 
-                            "Pay her\n{color=#ff0000}{size=18}Requires: $[strip_cost]{/size}{/color} (disabled)" if mc.business.funds < strip_cost and for_pay:
+                            "Pay her\n{color=#ff0000}{size=18}Requires: $[strip_cost]{/size}{/color} (disabled)" if mc.business.has_funds(strip_cost) and for_pay:
                                 pass
 
                             "Encourage her" if not for_pay:
@@ -1070,7 +1070,7 @@ label strip_tease_remove(the_person, the_clothing, girl_state, girl_direction, g
 
         $ do_strip = False
         menu:
-            "Pay her\n{color=#ff0000}{size=18}Costs: $[strip_cost]{/size}{/color}" if mc.business.funds >= strip_cost and for_pay and not resist_level == "high":
+            "Pay her\n{color=#ff0000}{size=18}Costs: $[strip_cost]{/size}{/color}" if mc.business.has_funds(strip_cost) and for_pay and not resist_level == "high":
                 $ top_layer = the_person.outfit.get_lower_top_layer()
                 if girl_state.is_close and top_layer and top_layer.underwear: #Slip it into her g-string or similar.
                     "You pull out some cash and slip it carefully into the waist of her [top_layer.display_name]."
@@ -1090,13 +1090,13 @@ label strip_tease_remove(the_person, the_clothing, girl_state, girl_direction, g
                 $ del top_layer
                 if resist_level == "mid":
                     $ the_person.change_obedience(1)
-                $ mc.business.funds += -strip_cost
+                $ mc.business.change_funds(-strip_cost)
                 $ do_strip = True
 
-            "Pay her\n{color=#ff0000}{size=18}Requires: $[strip_cost]{/size}{/color} (disabled)" if mc.business.funds < strip_cost and for_pay and not resist_level == "high":
+            "Pay her\n{color=#ff0000}{size=18}Requires: $[strip_cost]{/size}{/color} (disabled)" if mc.business.has_funds(strip_cost) and for_pay and not resist_level == "high":
                 pass
 
-            "Pay her\n{color=#ff0000}{size=18}Costs: $[strip_cost]{/size}{/color}" if resist_level == "high" and for_pay and mc.business.funds >= strip_cost and the_person.obedience >= pay_obedience_requirement:
+            "Pay her\n{color=#ff0000}{size=18}Costs: $[strip_cost]{/size}{/color}" if resist_level == "high" and for_pay and mc.business.has_funds(strip_cost) and the_person.obedience >= pay_obedience_requirement:
                 mc.name "I'm not paying you to stand around and be a prude."
                 "You ignore her and pull a wad of cash out of your wallet."
                 mc.name "Now take this, stop bitching, and take it off."
@@ -1104,10 +1104,10 @@ label strip_tease_remove(the_person, the_clothing, girl_state, girl_direction, g
                 "[the_person.possessive_title] looks shocked, but she can't take her eyes off of your money."
                 "After a long moment of thought her resolve breaks down."
                 "She snatches the money from you, looking guilty while she does so."
-                $ mc.business.funds += -strip_cost
+                $ mc.business.change_funds(-strip_cost)
                 $ do_strip = True
 
-            "Pay her\n{color=#ff0000}{size=18}Requires: $[strip_cost], [pay_obedience_requirement] Obedience{/size}{/color} (disabled)" if resist_level == "high" and for_pay and (mc.business.funds < strip_cost or the_person.obedience < pay_obedience_requirement):
+            "Pay her\n{color=#ff0000}{size=18}Requires: $[strip_cost], [pay_obedience_requirement] Obedience{/size}{/color} (disabled)" if resist_level == "high" and for_pay and (mc.business.has_funds(strip_cost) or the_person.obedience < pay_obedience_requirement):
                 pass
 
             "Order her" if the_person.obedience >= obedience_requirement:
@@ -1465,7 +1465,7 @@ label strip_cum_question_loop(the_person, girl_state, girl_direction, girl_aware
                 "You don't have time to argue with her!"
 
             menu:
-                "Pay her\n{color=#ff0000}{size=18}Costs: $[cum_cost]{/size}{/color}" if mc.business.funds <= cum_cost and for_pay:
+                "Pay her\n{color=#ff0000}{size=18}Costs: $[cum_cost]{/size}{/color}" if mc.business.has_funds(cum_cost) and for_pay:
                     $ pay_after = True
                     mc.name "Fine! Whatever you want!"
                     $ the_person.change_obedience(-(1 + the_person.get_opinion_score("being submissive"))) #She loses obedience, more if she likes being submissive (you're betgging her!)
@@ -1530,7 +1530,7 @@ label strip_cum_question_loop(the_person, girl_state, girl_direction, girl_aware
             if pay_after:
                 the_person "Wow... Well, I hope that was worth it to you."
                 "You nod wordlessly and hand her the cash she demanded."
-                $ mc.business.funds += cum_cost
+                $ mc.business.change_funds(cum_cost)
             else:
                 the_person "Wow, you were really saving that up..."
 
@@ -1559,7 +1559,7 @@ label strip_cum_question_loop(the_person, girl_state, girl_direction, girl_aware
                 "You don't have time to argue with her!"
 
             menu:
-                "Pay her\n{color=#ff0000}{size=18}Costs: $[cum_cost]{/size}{/color}" if mc.business.funds <= cum_cost and for_pay:
+                "Pay her\n{color=#ff0000}{size=18}Costs: $[cum_cost]{/size}{/color}" if mc.business.has_funds(cum_cost) and for_pay:
                     $ pay_after = True
                     mc.name "Fine! Whatever you want!"
                     $ the_person.change_obedience(-(1 + the_person.get_opinion_score("being submissive")))
@@ -1612,7 +1612,7 @@ label strip_cum_question_loop(the_person, girl_state, girl_direction, girl_aware
             if pay_after:
                 the_person "Wow... Well, I hope that was worth it to you."
                 "You nod wordlessly and hand her the cash she demanded."
-                $ mc.business.funds += cum_cost
+                $ mc.business.change_funds(cum_cost)
             else:
                 the_person "Wow, you were really saving that up..."
 
@@ -1640,7 +1640,7 @@ label strip_cum_question_loop(the_person, girl_state, girl_direction, girl_aware
                 "You don't have time to argue with her!"
 
             menu:
-                "Pay her\n{color=#ff0000}{size=18}Costs: $[cum_cost]{/size}{/color}" if mc.business.funds <= cum_cost and for_pay:
+                "Pay her\n{color=#ff0000}{size=18}Costs: $[cum_cost]{/size}{/color}" if mc.business.has_funds(cum_cost) and for_pay:
                     $ pay_after = True
                     mc.name "Fine! Whatever you want! Just get my cock in your mouth!"
                     $ the_person.change_obedience(-(1 + the_person.get_opinion_score("being submissive")))
@@ -1712,7 +1712,7 @@ label strip_cum_question_loop(the_person, girl_state, girl_direction, girl_aware
                 if pay_after:
                     the_person "Wow... Well, I hope that was worth it to you."
                     "You nod wordlessly and hand her the cash she demanded."
-                    $ mc.business.funds += cum_cost
+                    $ mc.business.change_funds(cum_cost)
                 else:
                     the_person "Wow, you were really saving that up..."
 
@@ -1813,7 +1813,7 @@ label strip_cum_question_loop(the_person, girl_state, girl_direction, girl_aware
                         "Pay her\n{color=#ff0000}{size=18}Costs: $[bribe_cost]{/size}{/color}" if bribe_cost <= mc.business.funds:
                             "You sigh and roll your eyes, but [the_person.title] seems unlikely to budge on the price."
                             "You pull out the cash, thinking to yourself that you're lucky she'll take a bribe at all."
-                            $ mc.business.funds += -bribe_cost
+                            $ mc.business.change_funds(-bribe_cost)
                             $ the_person.change_obedience(1 - the_person.get_opinion_score("taking control")) #If she likes taking control she may actually lose Obedience by demanding a bribe.
 
                         "Pay her\n{color=#ff0000}{size=18}Requires: $[bribe_cost]{/size}{/color} (disabled)" if bribe_cost > mc.business.funds:

@@ -1754,7 +1754,7 @@ label cousin_tease_crisis_label():
         the_person "I need some cash. Do you have a hundred bucks?"
         menu:
             "Send [the_person.title] some money\n{color=#ff0000}{size=18}Costs: $100{/color}{/size}" if mc.business.funds >= 100:
-                $ mc.business.funds += -100
+                $ mc.business.change_funds(-100)
                 "You pull up your banking app and send [the_person.possessive_title] some money, then text back."
                 mc.name "There you go, sent."
                 the_person "Just like that? Well, thanks I guess."
@@ -1765,7 +1765,7 @@ label cousin_tease_crisis_label():
                 the_person "Sure thing, nerd."
 
 
-            "Send [the_person.title] some money\n{color=#ff0000}{size=18}Costs: $100{/color}{/size} (disabled)" if mc.business.funds < 100:
+            "Send [the_person.title] some money\n{color=#ff0000}{size=18}Costs: $100{/color}{/size} (disabled)" if mc.business.has_funds(100):
                 pass
 
             "Ask why she needs it":
@@ -1786,7 +1786,7 @@ label cousin_tease_crisis_label():
                     $ mc.change_locked_clarity(5)
                     menu:
                         "Send [the_person.title] some money\n{color=#ff0000}{size=18}Costs: $100{/color}{/size}" if mc.business.funds >= 100:
-                            $ mc.business.funds += -100
+                            $ mc.business.change_funds(-100)
                             "You send her the money from your phone."
                             mc.name "Alright, there's your cash. Whip those girls out for me."
                             the_person "Ugh, I didn't think you'd actually do it."
@@ -1807,7 +1807,7 @@ label cousin_tease_crisis_label():
 
                             menu:
                                 "Reverse the payment anyways":
-                                    $ mc.business.funds += 100
+                                    $ mc.business.change_funds(100)
                                     "You don't respond to her, but you do open up your banking app again."
                                     "You flag the recent transfer as \"accidental\" and in a few minutes the money is back in your account."
                                     "It doesn't take long before you get a string of angry texts from [the_person.possessive_title]."
@@ -1823,7 +1823,7 @@ label cousin_tease_crisis_label():
                                     $ the_person.break_taboo("bare_tits")
 
 
-                        "Send [the_person.title] some money\n{color=#ff0000}{size=18}Costs: $100{/color}{/size} (disabled)" if mc.business.funds < 100:
+                        "Send [the_person.title] some money\n{color=#ff0000}{size=18}Costs: $100{/color}{/size} (disabled)" if mc.business.has_funds(100):
                             pass
 
                         "Blackmail her for some nudes" if the_person.event_triggers_dict.get("blackmail_level",-1) > 0 and the_person.event_triggers_dict.get("last_blackmailed", -5) + 5 <= day:

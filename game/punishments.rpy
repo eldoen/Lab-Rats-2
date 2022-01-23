@@ -235,7 +235,7 @@ label punishment_serum_test(the_person, the_infraction):
                     $ the_person.change_obedience(1)
                     $ the_person.change_love(-1)
                 "[the_person.title] hands over the market value of the dose you gave her."
-                $ mc.business.funds += _return.value
+                $ mc.business.change_funds(mc.business.get_serum_base_value(_return))
 
             "Make her pay for it\n{color=#ff0000}{size=18}Requires Policy: Mandatory Unpaid Serum Testing{/size}{/color} (disabled)" if not mandatory_unpaid_serum_testing_policy.is_active():
                 pass

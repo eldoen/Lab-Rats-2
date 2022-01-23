@@ -272,11 +272,11 @@ label ask_get_boobjob_label(the_person):
     if the_person.relationship != "Single":
         $ so_title = SO_relationship_to_title(the_person.relationship)
     menu:
-        "Pay for her boobjob\n{color=#ff0000}{size=18}Costs: $7000{/size}{/color}" if mc.business.funds >= 7000:
+        "Pay for her boobjob\n{color=#ff0000}{size=18}Costs: $7000{/size}{/color}" if mc.has_funds(7000):
             mc.name "If you arrange for it I don't mind paying for it."
-            $ mc.business.funds += -7000
+            $ mc.business.change_funds(-7000)
 
-        "Pay for her boobjob\n{color=#ff0000}{size=18}Requires: $7000{/size}{/color} (disabled)" if mc.business.funds < 7000:
+        "Pay for her boobjob\n{color=#ff0000}{size=18}Requires: $7000{/size}{/color} (disabled)" if mc.has_funds(7000):
             pass
 
         "Have her pay for it" if the_person.obedience >= self_pay_requirement and the_person.has_role(girlfriend_role):
