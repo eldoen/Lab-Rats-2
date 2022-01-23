@@ -138,20 +138,20 @@ init 1 python:
         exclude_tags = "Dye",
         clarity_cost = 50)
 
-        basic_hair_dye_trait = SerumTraitBlueprint(
-            unlock_label = "basic_hair_dye_unlock_label",
-            name = "Encapsulated Hair Dyes",
-            desc = "Precise delivery of commonly available hair dyes recolours the targets hair over the course of hours. Only a limited ranges of hair colours are available with this procedure.",
-            positive_slug = "Shifts Hair Colour Towards Selected Preset Colour",
-            negative_slug = "",
-            research_added = 40,
-            base_side_effect_chance = 5,
-            requires = [hair_lighten_dye, hair_darken_dye],
-            tier = 1,
-            research_needed = 100,
-            exclude_tags = "Dye",
-            clarity_cost = 50,
-            mental_aspect = 0, physical_aspect = 4, sexual_aspect = 0, medical_aspect = 1, flaws_aspect = 0, attention = 1)
+    basic_hair_dye_trait = SerumTraitBlueprint(
+        unlock_label = "basic_hair_dye_unlock_label",
+        name = "Encapsulated Hair Dyes",
+        desc = "Precise delivery of commonly available hair dyes recolours the targets hair over the course of hours. Only a limited ranges of hair colours are available with this procedure.",
+        positive_slug = "Shifts Hair Colour Towards Selected Preset Colour",
+        negative_slug = "",
+        research_added = 40,
+        base_side_effect_chance = 5,
+        requires = [hair_lighten_dye, hair_darken_dye],
+        tier = 1,
+        research_needed = 100,
+        exclude_tags = "Dye",
+        clarity_cost = 50,
+        mental_aspect = 0, physical_aspect = 4, sexual_aspect = 0, medical_aspect = 1, flaws_aspect = 0, attention = 1)
     #################
     # Tier 2 Traits #
     #################
