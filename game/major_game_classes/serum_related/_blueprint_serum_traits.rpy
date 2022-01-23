@@ -168,7 +168,7 @@ init 1 python:
         requires = [hair_lighten_dye, hair_darken_dye],
         tier = 2,
         research_needed = 200,
-        clarity_cost = 150.
+        clarity_cost = 150,
         mental_aspect = 0, physical_aspect = 6, sexual_aspect = 0, medical_aspect = 1, flaws_aspect = 0, attention = 1)
 
     breast_milk_serum_production = SerumTraitBlueprint(name = "Serum Lactation",
