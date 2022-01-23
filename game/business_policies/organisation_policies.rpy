@@ -206,7 +206,7 @@ init 0 python:
     def research_journal_subscription_on_day():
         if mc.business.is_work_day():
             mc.business.change_funds(-30)
-		return
+        return
 
     research_journal_subscription = Policy(name = "Research Journal Subscription",
         desc = "Ensuring your research team has access to all of the latest research isn't cheap, but it is important if you want to push your own progress further and faster. Converts an additional 5% of idle Research Points into Clarity when your R&D team is idle. Costs $30 a day to maintain your subscription.",

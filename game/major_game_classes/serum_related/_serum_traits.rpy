@@ -848,7 +848,7 @@ init -1:
             on_remove = refined_caffeine_trait_on_remove,
             requires = [caffeine_trait],
             tier = 1,
-			research_needed = 300,
+            research_needed = 300,
             exclude_tags = "Energy",
             clarity_cost = 250,
             mental_aspect = 0, physical_aspect = 3, sexual_aspect = 0, medical_aspect = 1, flaws_aspect = 0, attention = 0)

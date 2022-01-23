@@ -170,7 +170,7 @@ init 1 python:
         research_needed = 400,
         exclude_tags = "Dye",
         clarity_cost = 300,
-		mental_aspect = 0, physical_aspect = 7, sexual_aspect = 0, medical_aspect = 1, flaws_aspect = 0, attention = 2)
+        mental_aspect = 0, physical_aspect = 7, sexual_aspect = 0, medical_aspect = 1, flaws_aspect = 0, attention = 2)
 
     eye_dye_trait = SerumTraitBlueprint(
         unlock_label = "eye_colour_change_unlock_label",

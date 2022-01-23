@@ -83,7 +83,7 @@ init -1:
         negative_slug = "Immediate -20 Happiness",
         on_apply = depressant_side_effect_on_apply,
         is_side_effect = True,
-		mental_aspect = 0, physical_aspect = 0, sexual_aspect = 0, medical_aspect = 0, flaws_aspect = 1, attention = 1)
+        mental_aspect = 0, physical_aspect = 0, sexual_aspect = 0, medical_aspect = 0, flaws_aspect = 1, attention = 1)
 
     unpleasant_taste_side_effect = SerumTrait(name =  "Unpleasant Taste",
         desc = "This serum has a prominent and decidedly unpleasant taste. While it does not decrease the effectiveness of the serum it has a large impact on its value when sold.",
