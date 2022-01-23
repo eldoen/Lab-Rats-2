@@ -597,7 +597,7 @@ label strip_tease(the_person, in_private = True, for_pay = False, start_girl_dir
                             the_person "Fine, just don't... think this is going any further!"
 
                         "Pay her\n{color=#ff0000}{size=18}Requires: $200{/size}{/color} (disabled)" if mc.business.has_funds(200) and for_pay:
-                            has_funds(200)
+                            pass
 
                         "Order her" if the_person.obedience >= 125:
                             "You shrug and pull her closer to you."
