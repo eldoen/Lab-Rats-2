@@ -184,7 +184,7 @@ init 1 python:
         tier = 2,
         research_needed = 200,
         clarity_cost = 150.
-		mental_aspect = 0, physical_aspect = 6, sexual_aspect = 0, medical_aspect = 1, flaws_aspect = 0, attention = 1)
+        mental_aspect = 0, physical_aspect = 6, sexual_aspect = 0, medical_aspect = 1, flaws_aspect = 0, attention = 1)
 
     breast_milk_serum_production = SerumTraitBlueprint(name = "Serum Lactation",
         unlock_label = "breast_milk_serum_production_unlock_label",
@@ -206,7 +206,7 @@ init 1 python:
         research_needed = 1000,
         exclude_tags = "Production",
         clarity_cost = 1500,
-		mental_aspect = 0, physical_aspect = 2, sexual_aspect = 0, medical_aspect = 2, flaws_aspect = 0, attention = 2)
+        mental_aspect = 0, physical_aspect = 2, sexual_aspect = 0, medical_aspect = 2, flaws_aspect = 0, attention = 2)
 
 label instantiate_serum_trait_blueprints(): # Called from instantiate_serum_traits.
     python:

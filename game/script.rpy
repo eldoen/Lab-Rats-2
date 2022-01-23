@@ -677,12 +677,12 @@ init 0 python:
     ##Breakthrough Actions##
     mc_breakthrough_1 = Action("Have a Breakthrough\n-500 Clarity, {image=gui/heart/Time_Advance.png}", mc_breakthrough_requirement, "mc_research_breakthrough", args = [1, 500], requirement_args = [1, 500],
         menu_tooltip = "Put your intelect to work and unlock a new tier of research! There may be other was to achieve this breakthrough as well", priority = 100)
-	mc_breakthrough_2 = Action("Have a Breakthrough.\n-5000 Clarity, {image=gui/heart/Time_Advance.png}", mc_breakthrough_requirement, "mc_research_breakthrough", args = [2, 5000], requirement_args = [2, 5000],
+    mc_breakthrough_2 = Action("Have a Breakthrough.\n-5000 Clarity, {image=gui/heart/Time_Advance.png}", mc_breakthrough_requirement, "mc_research_breakthrough", args = [2, 5000], requirement_args = [2, 5000],
         menu_tooltip = "Put your intelect to work and unlock a new tier of research! There may be other was to achieve this breakthrough as well", priority = 100)
     mc_breakthrough_3 = Action("Have a Breakthrough.\n-25000 Clarity, {image=gui/heart/Time_Advance.png}", mc_breakthrough_requirement, "mc_research_breakthrough", args = [3, 25000], requirement_args = [3, 25000],
        menu_tooltip = "Put your intelect to work and unlock a new tier of research! There may be other was to achieve this breakthrough as well", priority = 100
 
-	
+
     ##Complex Work Actions##
     interview_action = Action("Hire someone new.\n{image=gui/heart/Time_Advance.png}", interview_action_requirement,"interview_action_description",
         menu_tooltip = "Look through the resumes of several candidates. More information about a candidate can be revealed by purchasing new business policies.")
