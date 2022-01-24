@@ -71,7 +71,7 @@ init -1 python:
         if eyes is None:
             eyes = generate_eye_colour()
         elif isinstance(eyes, basestring):
-            eyes = generate_eye_colour(eyes) #If it's a string assume we want a variation within that eye catagory
+            eyes = generate_eye_colour(eyes) #If it's a string assume we want a variation within that eye category
         # else: we assume at this point what was passed is a correct [description, colour] list.
 
         if skin is None:

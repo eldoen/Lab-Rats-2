@@ -904,7 +904,7 @@ label relaxed_cum_pullout(the_person):
                 "She seems almost desperate as she moans."
                 the_person "I don't care if you knock me up! I'm just your... breeding slut!"
 
-            menu: #TODO: Add a varient of this normally so you can stealth a girl (don't do that in real life, it's super fucked up).
+            menu: #TODO: Add a variant of this normally so you can stealth a girl (don't do that in real life, it's super fucked up).
                 "Take off the condom.":
                     "You don't have much time to spare. You pull out, barely clearing her pussy, and pull the condom off as quickly as you can manage."
                     $ mc.condom = False
@@ -1314,13 +1314,13 @@ label relaxed_sex_review(the_person, the_report):
     # special condition - you fucked her brains out
     elif the_report.get("girl orgasms", 0) > 2:
         if used_obedience:
-            the_person "Oh wow...I just can't believe...I got so...nasty..."
+            the_person "Oh wow... I just can't believe... I got so... nasty..."
             mc.name "A minute ago you were begging me to make you cum again."
             "[the_person.possessive_title] looks away, embarrassed by what she's done with you."
         else:
-            the_person "I have never...fucked like that...It was just amazing..."
+            the_person "I have never... fucked like that.... It was just amazing..."
             "She seems dazed by her orgasm as she struggles to put full sentences together."
-            the_person "Something took over...and I did....just gimme a second."
+            the_person "Something took over... and I did... just gimme a second."
 
     # special condition abort due to lack of girl energy without orgasm
     elif the_report.get("girl orgasms", 0) == 0 and the_person.energy < 20:
@@ -1411,7 +1411,7 @@ label relaxed_sex_review(the_person, the_report):
 
     # Gave creampie while she is not on birth control (extra dialog when she could get pregnant)
     if the_report.get("creampies", 0) > 0 and not the_person.on_birth_control and not the_person.event_triggers_dict.get("preg_knows", False):
-        the_person "Oh my...you know that you could get me pregnant, right?"
+        the_person "Oh my... you know that you could get me pregnant, right?"
 
     $ del comment_position
     return
@@ -1419,7 +1419,7 @@ label relaxed_sex_review(the_person, the_report):
 ## Role Specific Section ##
 
 label relaxed_improved_serum_unlock(the_person):
-    mc.name "[the_person.title], now that you've had some time to get use to the lab there is something I want to talk to you about."
+    mc.name "[the_person.title], now that you've had some time to get used to the lab there is something I want to talk to you about."
     the_person "Sure, what can I help you with?"
     mc.name "Our R&D up to this point has been based on my old notes from university."
     mc.name "There were some unofficial experiment results that suggested the effects might be enhanced by sexual arousal."

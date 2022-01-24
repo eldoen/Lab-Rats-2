@@ -325,7 +325,7 @@ label scene_deepthroat_3(the_girl, the_location, the_object):
                                                     "Little by little her movements slow down, her eyelids start to droop down over her rolled up eyes, and she slips into a half-conscious state."
                                                     $ the_girl.change_arousal(the_girl.get_opinion_score("being submissive"))
                                                     "[the_girl.possessive_title]'s body doesn't stop reacting to you and your cock. Her tongue licks lazily at the base of your shaft and she keeps moaning softly."
-                                                    "Satisfied, you take your hand off of [the_girl.title]'s head. She doesn't move and keeps sucking on you in her oxygen deprived stupor."
+                                                    "Satisfied, you take your hand off of [the_girl.title]'s head. She doesn't move and keeps sucking on you in her oxygen-deprived stupor."
                                                     mc.name "That's enough [the_girl.title], you've done enough."
                                                     "You put your hand under her chin and pull her back. She leaves your cock with a satisfying, wet pop followed by a huge gasp for air."
                                                     "It takes a few long moments until [the_girl.title] shakes her head and comes to her senses."

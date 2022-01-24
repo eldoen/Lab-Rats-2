@@ -266,7 +266,7 @@ init -2 python:
 
             self.training_log = defaultdict(int) #Contains a list of Trainable.training_tag's that this person has had trained already, which is used to increase the cost of future training in similar things.
 
-        def __call__(self, what, *args, **kwargs): #Required to play nicely with statement equivalent say() when passing only Peron object.
+        def __call__(self, what, *args, **kwargs): #Required to play nicely with statement equivalent say() when passing only Person object.
             new_what = self.personalise_text(what) #keep the old what as a reference in case we need it.
 
             if not persistent.text_effects:

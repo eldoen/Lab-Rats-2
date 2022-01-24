@@ -4,7 +4,7 @@ init -2 python:
             if starting_list is None:
                 self.serums_held = []
             else:
-                self.serums_held = starting_list ##Starting list is a list of tuples, going [SerumDesign,count]. Count should be possitive.
+                self.serums_held = starting_list ##Starting list is a list of tuples, going [SerumDesign,count]. Count should be positive.
 
         def get_serum_count(self, serum_design):
             for design in self.serums_held:

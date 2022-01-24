@@ -1121,7 +1121,7 @@ init -1:
             negative_slug = "",
             research_added = 250,
             base_side_effect_chance = 60,
-            on_day = pregnancy_decellerator_on_day,
+            on_day = pregnancy_decelerator_on_day,
             requires = [fertility_suppression_trait],
             tier = 2,
             research_needed = 800,
@@ -1390,7 +1390,7 @@ init -1:
             clarity_cost = 500,
             mental_aspect = 4, physical_aspect = 0, sexual_aspect = 7, medical_aspect = 0, flaws_aspect = 0, attention = 3)
 
-        nora_reward_aunt_trait = SerumTrait(name = "Aunty Potential",
+        nora_reward_aunt_trait = SerumTrait(name = "Auntly Potential",
             desc = "A special serum trait developed by Nora after studying your aunt. Increases the number of traits a serum design may contain by 2.",
             positive_slug = "+2 Extra Trait Slots",
             negative_slug = "",

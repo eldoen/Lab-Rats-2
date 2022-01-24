@@ -103,7 +103,7 @@ label reserved_sex_responses_oral(the_person):
     $ response_value = (the_person.arousal + renpy.random.randint(0,20))*1.0/the_person.max_arousal
     if response_value < 20:
         if the_person.sluttiness > 50:
-            the_person "Oh.... Oh! Mmm, I could get use to this!"
+            the_person "Oh.... Oh! Mmm, I could get used to this!"
             "She laughs happily as you eat her out."
         else:
             "[the_person.possessive_title] twitches and squirms."
@@ -1161,7 +1161,7 @@ label reserved_date_seduction(the_person):
             the_person "Come home with me. I want to repay you for this wonderful night by throating your cock."
             the_person "Doesn't that sound like fun?"
         elif the_person.effective_sluttiness() > 40 and the_person.get_opinion_score("being covered in cum") > 0:
-            the_person "Come home with me. I want to end tonight in my favourite way; covered in cum."
+            the_person "Come home with me. I want to end tonight in my favourite way: covered in cum."
             the_person "Do you think you could help me out with that?"
         elif the_person.effective_sluttiness(["touching_body"]) > 40 and the_person.get_opinion_score("giving tit fucks") > 0 and the_person.has_large_tits():
             the_person "Come home with me [the_person.mc_title]. I want to repay you for this wonderful night by working your cock with my tits."
@@ -1316,12 +1316,12 @@ label reserved_sex_review(the_person, the_report):
             "[the_person.possessive_title] looks away, embarrassed by what she's done with you."
             the_person "Are we done now? It was nice, but a little too much for me..."
             mc.name "Really, so that multi-orgasmic train you were riding is your default setting?"
-            the_person "Well not that...perhaps we could give it another try, someday."
+            the_person "Well not that... perhaps we could give it another try, someday."
         else:
             "[the_person.possessive_title] looks away, embarrassed by her own actions."
-            the_person "Oh my...my apologies, it seems I lost control of myself."
+            the_person "Oh my... my apologies, it seems I lost control of myself."
             mc.name "Don't worry, I really enjoyed giving you the time of your life."
-            the_person "Indeed, that was quite a feat, I didn't even know I could do that."
+            the_person "Indeed, that was quite a feat; I didn't even know I could do that."
 
     # special condition abort due to lack of girl energy without orgasm
     elif the_report.get("girl orgasms", 0) == 0 and the_person.energy < 20:
@@ -1423,7 +1423,7 @@ label reserved_sex_review(the_person, the_report):
 
 ## Role Specific Section ##
 label reserved_improved_serum_unlock(the_person):
-    mc.name "[the_person.title], now that you've had some time to get use to the lab there is something I want to talk to you about."
+    mc.name "[the_person.title], now that you've had some time to get used to the lab there is something I want to talk to you about."
     the_person "Sure, what can I help you with?"
     mc.name "Our R&D up to this point has been based on my old notes from university."
     mc.name "There were some unofficial experiment results that suggested the effects might be enhanced by sexual arousal."

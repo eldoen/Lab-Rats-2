@@ -313,7 +313,7 @@ label wild_grope_body_reject(the_person):
         the_person "... Keep your hands to yourself? Thanks."
         mc.name "Oh yeah, of course. My bad."
         the_person "No problem, just don't make a habit of it. Alright?"
-        "She doesn't say anything else, but she still seams uncomfortable with the situation."
+        "She doesn't say anything else, but she still seems uncomfortable with the situation."
     return
 
 label wild_sex_accept(the_person):
@@ -331,7 +331,7 @@ label wild_sex_obedience_accept(the_person):
         the_person "God, what have you done to me? I should say no, but... I just want you to use me however you want, [the_person.mc_title]."
     else:
         if the_person.obedience > 130:
-            the_person "If that's what you want to do then I will do what you tell me to do."
+            the_person "If that's what you want to do then I'll do what you tell me to do."
         else:
             the_person "I shouldn't... but if you want to try it out I'm game. Try everything once, right?"
     return
@@ -888,7 +888,7 @@ label wild_cum_pullout(the_person):
                 "She moans desperately."
                 the_person "Fuck it! Take the condom off and cum inside of me [the_person.mc_title]!"
                 the_person "I want you to get me pregnant and fuck my life up!"
-            menu: #TODO: Add a varient of this normally so you can stealth a girl (don't do that in real life, it's super fucked up).
+            menu: #TODO: Add a variant of this normally so you can stealth a girl (don't do that in real life, it's super fucked up).
                 "Take off the condom.":
                     "You don't have much time to spare. You pull out, barely clearing her pussy, and pull the condom off as quickly as you can manage."
                     $ mc.condom = False
@@ -1395,7 +1395,7 @@ label wild_sex_review(the_person, the_report):
 
 ## Role Specific Section ##
 label wild_improved_serum_unlock(the_person):
-    mc.name "[the_person.title], now that you've had some time to get use to the lab there is something I want to talk to you about."
+    mc.name "[the_person.title], now that you've had some time to get used to the lab there is something I want to talk to you about."
     the_person "Sure, what can I help you with?"
     mc.name "Our R&D up to this point has been based on my old notes from university."
     mc.name "There were some unofficial experiment results that suggested the effects might be enhanced by sexual arousal."

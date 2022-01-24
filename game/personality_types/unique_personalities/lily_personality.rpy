@@ -359,7 +359,7 @@ label lily_sex_responses_anal(the_person):
 
     elif response_value < 80:
         if the_person.sluttiness > 50:
-            the_person "Your cock is so big, it feels like you're moulding me to it!"
+            the_person "Your cock is so big, it feels like you're molding me to it!"
         else:
             the_person "I think you're starting to stretch me out, I'm starting to..."
             "She moans loudly."
@@ -793,7 +793,7 @@ label lily_cum_pullout(the_person):
                 "She pants happily."
                 the_person "It's my fault if I get pregnant, okay? You don't need to worry, I know it would be my fault!"
 
-            menu: #TODO: Add a varient of this normally so you can stealth a girl (don't do that in real life, it's super fucked up).
+            menu: #TODO: Add a variant of this normally so you can stealth a girl (don't do that in real life, it's super fucked up).
                 "Take off the condom.":
                     "You don't have much time to spare. You pull out, barely clearing her pussy, and pull the condom off as quickly as you can manage."
                     $ mc.condom = False
@@ -1057,7 +1057,7 @@ label lily_kissing_taboo_break(the_person):
     mc.name "I'm going to kiss you [the_person.title]."
     if the_person.event_triggers_dict.get("kissing_revisit_count", 0) == 0:
         the_person "Ew. You're my brother, that's weird."
-        mc.name "Why? We use to kiss when we were kids."
+        mc.name "Why? We used to kiss when we were kids."
         the_person "Oh my god, I forgot about that. That was different, we were young and just practicing."
         mc.name "Let's practice some more. I'm sure we can both get better at it if we try."
         the_person "You're serious? I... I don't know [the_person.mc_title], what if [mom.title] finds out?"

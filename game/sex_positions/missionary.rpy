@@ -184,7 +184,7 @@ label scene_missionary_2(the_girl, the_location, the_object):
                     the_girl "Don't stop..."
 
                 elif the_girl.get_opinion_score("being submissive") < 0:
-                    the_girl "Whoah, easy there..."
+                    the_girl "Whoa, easy there..."
                     mc.name "Keep those legs spread for me."
                     "She rolls her eyes and spreads her legs. You start to fuck her hard and fast."
                     the_girl "Let my hands go, I want to be able to feel you. I want to touch you."

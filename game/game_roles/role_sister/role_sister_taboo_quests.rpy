@@ -74,7 +74,7 @@ label sister_kissing_taboo_break_revisit(the_person):
     if first_time:
         "She shuffles around nervously for a moment before speaking again."
         if noteable_taboo == "touching":
-            the_person "Well you know how we were touching each other? I don't know if it was right... " #TODO: Have a non-con varient where you ordered her.
+            the_person "Well you know how we were touching each other? I don't know if it was right... " #TODO: Have a non-con variant where you ordered her.
             mc.name "Why not? We both liked it, right?"
             "She shrugs noncommittally."
             the_person "Sure, but you're my brother. It's a little weird."

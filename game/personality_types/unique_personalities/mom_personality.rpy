@@ -655,7 +655,7 @@ label mom_cum_pullout(the_person):
                 $ the_person.update_birth_control_knowledge()
                 "She moans happily, excited just by the thought."
 
-            menu: #TODO: Add a varient of this normally so you can stealth a girl (don't do that in real life, it's super fucked up).
+            menu: #TODO: Add a variant of this normally so you can stealth a girl (don't do that in real life, it's super fucked up).
                 "Take off the condom.":
                     "You don't have much time to spare. You pull out, barely clearing her pussy, and pull the condom off as quickly as you can manage."
                     $ mc.condom = False
@@ -1082,7 +1082,7 @@ label mom_kissing_taboo_break(the_person):
 label mom_touching_body_taboo_break(the_person):
     "[the_person.mc_title], what are you doing? You shouldn't be touching me like this!"
     if the_person.event_triggers_dict.get("kissing_revisit_count", 0) == 0:
-        if the_person.love > 20: # Love varient
+        if the_person.love > 20: # Love variant
             mc.name "Why not? You love me, don't you?"
             the_person "Of course I love you, but I'm still your mother!"
             mc.name "Please [the_person.title]? I feel so lonely sometimes, and I feel loved when I'm close to you."
@@ -1095,7 +1095,7 @@ label mom_touching_body_taboo_break(the_person):
             "She seems to be trying to convince herself more than you."
 
 
-        else: # High slut varient
+        else: # High slut variant
             mc.name "Why not? Don't you like it?"
             the_person "That's... That's not the point! I'm your mother! I'm twice your age!"
             mc.name "So? I think older women are hot."

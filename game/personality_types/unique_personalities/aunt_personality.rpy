@@ -24,7 +24,7 @@ init 1300:
                 valid_titles.append("Your personal MILF")
 
             if the_person.sluttiness > 100:
-                valid_titles.append("Your cock hungry aunt")
+                valid_titles.append("Your cock-hungry aunt")
                 valid_titles.append("Your cumdump aunt")
 
             return valid_titles
@@ -324,7 +324,7 @@ label aunt_cum_pullout(the_person):
                 "She moans desperately."
                 the_person "I don't even care if you get me pregnant, I just want to feel all of your cum inside of me!"
 
-            menu: #TODO: Add a varient of this normally so you can stealth a girl (don't do that in real life, it's super fucked up).
+            menu: #TODO: Add a variant of this normally so you can stealth a girl (don't do that in real life, it's super fucked up).
                 "Take off the condom.":
                     "You don't have much time to spare. You pull out, barely clearing her pussy, and pull the condom off as quickly as you can manage."
                     $ mc.condom = False
