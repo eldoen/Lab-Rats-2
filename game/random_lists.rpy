@@ -65,6 +65,7 @@ init -2:
         list_of_names.append("Melanie")
         list_of_names.append("Tina")
         list_of_names.append("Raven")
+        list_of_names.append("Sarah")
         list_of_names.append("Antonia")
         list_of_names.append("Mina")
         list_of_names.append("Marisha")
@@ -124,6 +125,7 @@ init -2:
         list_of_names.append("Raislyn")
         list_of_names.append("Gina")
         list_of_names.append("Chrystal")
+        list_of_names.append("Jenny")
         list_of_names.append("Selene")
         list_of_names.append("Piper")
         list_of_names.append("Nicole")
@@ -135,6 +137,7 @@ init -2:
         list_of_names.append("Lystra")
         list_of_names.append("Katreena")
         list_of_names.append("Hannah")
+        list_of_names.append("Mara")
         list_of_names.append("Trinity")
         list_of_names.append("Stephine")
         list_of_names.append("Sydney")
@@ -211,6 +214,7 @@ init -2:
         list_of_last_names.append("Kurokami")
         list_of_last_names.append("Bergstrom")
         list_of_last_names.append("Fernandez")
+        list_of_last_names.append("Bergstrom")
         list_of_last_names.append("Sasamiya")
         list_of_last_names.append("Onihime")
         list_of_last_names.append("Lancie")
@@ -1194,6 +1198,7 @@ init 1 python:
 
         city_rep.set_title("???")
         city_rep.set_mc_title("Mr."+mc.last_name)
+        city_rep.set_mc_title("Mr. "+mc.last_name)
         city_rep.set_possessive_title("???")
 
        
