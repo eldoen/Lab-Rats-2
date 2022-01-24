@@ -119,132 +119,134 @@ init -2 python:
             self.default_aspect_price = 10 # THis is the starting price that most aspects are "worth".
             self.aspect_price_max_variance = 8 # This is the todal amount each aspect can be worht (ie no aspect is ever worth base more than 18 or less than 2).
             self.aspect_price_daily_variance = 2 #This is the +- amount the price of each apsect can fluctuate.
-        @property
-        def active_policy_list(self):
-            if not hasattr(self, "_active_policy_list"):
-                self._active_policy_list = MappedList(Policy, all_policies_in_the_game)
-            return self._active_policy_list
+           
+           
+            @property
+            def active_policy_list(self):
+                if not hasattr(self, "_active_policy_list"):
+                    self._active_policy_list = MappedList(Policy, all_policies_in_the_game)
+                return self._active_policy_list
+#
+            @property
+            def policy_list(self):
+                if not hasattr(self, "_policy_list"):
+                    self._policy_list = MappedList(Policy, all_policies_in_the_game)
+                return self._policy_list
+#
+            @property
+            def m_div(self):
+                if not hasattr(self, "_m_div"):
+                    self._m_div = None
+                return next((x for x in list_of_places if x.identifier == self._m_div), None)
+#
+            @m_div.setter
+            def m_div(self, value):
+                if isinstance(value, Room):
+                    self._m_div = value.identifier
+#
+            @property
+            def p_div(self):
+                if not hasattr(self, "_p_div"):
+                    self._p_div = None
+                return next((x for x in list_of_places if x.identifier == self._p_div), None)
+#
+            @p_div.setter
+            def p_div(self, value):
+                if isinstance(value, Room):
+                    self._p_div = value.identifier
+#
+            @property
+            def r_div(self):
+                if not hasattr(self, "_r_div"):
+                    self._r_div = None
+                return next((x for x in list_of_places if x.identifier == self._r_div), None)
+#
+            @r_div.setter
+            def r_div(self, value):
+                if isinstance(value, Room):
+                    self._r_div = value.identifier
+#
+            @property
+            def s_div(self):
+                if not hasattr(self, "_s_div"):
+                    self._s_div = None
+                return next((x for x in list_of_places if x.identifier == self._s_div), None)
+#
+            @s_div.setter
+            def s_div(self, value):
+                if isinstance(value, Room):
+                    self._s_div = value.identifier
+#
+            @property
+            def h_div(self):
+                if not hasattr(self, "_h_div"):
+                    self._h_div = None
+                return next((x for x in list_of_places if x.identifier == self._h_div), None)
+#
+            @h_div.setter
+            def h_div(self, value):
+                if isinstance(value, Room):
+                    self._h_div = value.identifier
+#
+            @property
+            def head_researcher(self):
+                if not hasattr(self, "_head_researcher"):
+                    self._head_researcher = None
+                return next((x for x in all_people_in_the_game() if x.identifier == self._head_researcher), None)
+#
+            @head_researcher.setter
+            def head_researcher(self, value):
+                if isinstance(value, Person):
+                    self._head_researcher = value.identifier
+                else:
+                    self._head_researcher = None
+#
+            @property
+            def company_model(self):
+                if not hasattr(self, "_company_model"):
+                    self._company_model = None
+                return next((x for x in all_people_in_the_game() if x.identifier == self._company_model), None)
+#
+            @company_model.setter
+            def company_model(self, value):
+                if isinstance(value, Person):
+                    self._company_model = value.identifier
+                else:
+                    self._company_model = None
 
-        @property
-        def policy_list(self):
-            if not hasattr(self, "_policy_list"):
-                self._policy_list = MappedList(Policy, all_policies_in_the_game)
-            return self._policy_list
+            @property
+            def research_team(self):
+                if not hasattr(self, "_research_team"):
+                    self._research_team = MappedList(Person, all_people_in_the_game)
+                return self._research_team
+#
+    #    @property
+    #    def market_team(self):
+    #        if not hasattr(self, "_market_team"):
+    #            self._market_team = MappedList(Person, all_people_in_the_game)
+    #        return self._market_team
+#
+    #    @property
+    #    def supply_team(self):
+    #        if not hasattr(self, "_supply_team"):
+    #            self._supply_team = MappedList(Person, all_people_in_the_game)
+    #        return self._supply_team
 
-        @property
-        def m_div(self):
-            if not hasattr(self, "_m_div"):
-                self._m_div = None
-            return next((x for x in list_of_places if x.identifier == self._m_div), None)
+            @property
+            def production_team(self):
+                if not hasattr(self, "_production_team"):
+                    self._production_team = MappedList(Person, all_people_in_the_game)
+                return self._production_team
 
-        @m_div.setter
-        def m_div(self, value):
-            if isinstance(value, Room):
-                self._m_div = value.identifier
+            @property
+            def hr_team(self):
+                if not hasattr(self, "_hr_team"):
+                    self._hr_team = MappedList(Person, all_people_in_the_game)
+                return self._hr_team
 
-        @property
-        def p_div(self):
-            if not hasattr(self, "_p_div"):
-                self._p_div = None
-            return next((x for x in list_of_places if x.identifier == self._p_div), None)
-
-        @p_div.setter
-        def p_div(self, value):
-            if isinstance(value, Room):
-                self._p_div = value.identifier
-
-        @property
-        def r_div(self):
-            if not hasattr(self, "_r_div"):
-                self._r_div = None
-            return next((x for x in list_of_places if x.identifier == self._r_div), None)
-
-        @r_div.setter
-        def r_div(self, value):
-            if isinstance(value, Room):
-                self._r_div = value.identifier
-
-        @property
-        def s_div(self):
-            if not hasattr(self, "_s_div"):
-                self._s_div = None
-            return next((x for x in list_of_places if x.identifier == self._s_div), None)
-
-        @s_div.setter
-        def s_div(self, value):
-            if isinstance(value, Room):
-                self._s_div = value.identifier
-
-        @property
-        def h_div(self):
-            if not hasattr(self, "_h_div"):
-                self._h_div = None
-            return next((x for x in list_of_places if x.identifier == self._h_div), None)
-
-        @h_div.setter
-        def h_div(self, value):
-            if isinstance(value, Room):
-                self._h_div = value.identifier
-
-        @property
-        def head_researcher(self):
-            if not hasattr(self, "_head_researcher"):
-                self._head_researcher = None
-            return next((x for x in all_people_in_the_game() if x.identifier == self._head_researcher), None)
-
-        @head_researcher.setter
-        def head_researcher(self, value):
-            if isinstance(value, Person):
-                self._head_researcher = value.identifier
-            else:
-                self._head_researcher = None
-
-        @property
-        def company_model(self):
-            if not hasattr(self, "_company_model"):
-                self._company_model = None
-            return next((x for x in all_people_in_the_game() if x.identifier == self._company_model), None)
-
-        @company_model.setter
-        def company_model(self, value):
-            if isinstance(value, Person):
-                self._company_model = value.identifier
-            else:
-                self._company_model = None
-
-        @property
-        def research_team(self):
-            if not hasattr(self, "_research_team"):
-                self._research_team = MappedList(Person, all_people_in_the_game)
-            return self._research_team
-
-        @property
-        def market_team(self):
-            if not hasattr(self, "_market_team"):
-                self._market_team = MappedList(Person, all_people_in_the_game)
-            return self._market_team
-
-        @property
-        def supply_team(self):
-            if not hasattr(self, "_supply_team"):
-                self._supply_team = MappedList(Person, all_people_in_the_game)
-            return self._supply_team
-
-        @property
-        def production_team(self):
-            if not hasattr(self, "_production_team"):
-                self._production_team = MappedList(Person, all_people_in_the_game)
-            return self._production_team
-
-        @property
-        def hr_team(self):
-            if not hasattr(self, "_hr_team"):
-                self._hr_team = MappedList(Person, all_people_in_the_game)
-            return self._hr_team
-
-        def run_turn(self): #Run each time the time segment changes. Most changes are done here.
-            if time_of_day == 1 and daily_serum_dosage_policy.is_active() and self.is_work_day(): #Not done on run_day because we want it to apply at the _start_ of the day.
-                self.give_daily_serum()
+            def run_turn(self): #Run each time the time segment changes. Most changes are done here.
+                if time_of_day == 1 and daily_serum_dosage_policy.is_active() and self.is_work_day(): #Not done on run_day because we want it to apply at the _start_ of the day.
+                    self.give_daily_serum()
 
 
             self.mental_aspect_price = self.default_aspect_price #These are the actual current values of each aspect, which will vary from day to day
