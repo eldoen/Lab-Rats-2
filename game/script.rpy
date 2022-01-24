@@ -53,7 +53,7 @@ init -2: # Establish some platform specific stuff.
 init -2 python:
     list_of_positions = [] # These are sex positions that the PC can make happen while having sex.
     list_of_girl_positions = [] # These are sex positions that the girl can make happen while having sex.
-    list_of_strip_positions = [] # These are positiosn a girl can take while putting on a stirp tease for you.
+    list_of_strip_positions = [] # These are positions a girl can take while putting on a stirp tease for you.
 
     day_names = ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"] #Arrays that hold the names of the days of the week and times of day. Arrays start at 0.
     time_names = ["Early Morning","Morning","Afternoon","Evening","Night"]
@@ -826,7 +826,7 @@ label initialize_game_state(character_name,business_name,last_name,stat_array,sk
             map_pos = [8,3], lighting_conditions = standard_indoor_lighting)
         office_store = Room("office supply store","Office Supply Store", background_image = standard_mall_backgrounds[:], public = True,
             map_pos = [9,1], lighting_conditions = standard_indoor_lighting)
-        electronics_store = Room("electornics store", "Electronics Store", background_image = standard_mall_backgrounds[:], public = True,
+        electronics_store = Room("electronics store", "Electronics Store", background_image = standard_mall_backgrounds[:], public = True,
             map_pos = [7,2], lighting_conditions = standard_indoor_lighting)
 
         ## Mall supporting locations
