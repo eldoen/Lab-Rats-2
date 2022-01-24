@@ -947,7 +947,7 @@ label wild_cum_vagina(the_person):
                 $ so_title = SO_relationship_to_title(the_person.relationship)
                 the_person "Oh fuck, wow! My [so_title] never cums like that, there's so much of it!"
             else:
-                if the_person.has_role(pregnant_role):
+                if the_person.event_triggers_dict.get("preg_knows", False):
                     the_person "Oh fuck that's a lot of cum. Good thing I'm already pregnant, because I don't think you're firing blanks."
                 else:
                     the_person "Oh fuck that's a lot of cum. Good thing I'm on the pill, because I don't think you're firing blanks."

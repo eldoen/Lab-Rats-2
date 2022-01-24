@@ -8,88 +8,88 @@ init -1:
     python:
         ## suggestion_drugs_functions ##
         def suggestion_drugs_on_apply(the_person, the_serum, add_to_log):
-            the_person.add_suggest_effect(10, add_to_log = add_to_log)
+            the_person.add_suggest_effect(10, add_to_log=add_to_log)
 
         def suggestion_drugs_on_remove(the_person, the_serum, add_to_log):
             the_person.remove_suggest_effect(10)
 
         ## high_concentration_drug_functions ##
         def high_con_drugs_on_apply(the_person, the_serum, add_to_log):
-            the_person.add_suggest_effect(25, add_to_log = add_to_log)
+            the_person.add_suggest_effect(25, add_to_log=add_to_log)
 
         def high_con_drugs_on_remove(the_person, the_serum, add_to_log):
             the_person.remove_suggest_effect(25)
 
         def high_con_drugs_on_turn(the_person, the_serum, add_to_log):
-            the_person.change_happiness(-2, add_to_log = add_to_log)
+            the_person.change_happiness(-2, add_to_log=add_to_log)
 
         ## sedatives_trait_functions ##
         def sedatives_trait_on_apply(the_person, the_serum, add_to_log):
-            the_person.change_obedience(10, add_to_log = add_to_log)
-            the_person.change_cha(-1, add_to_log = add_to_log)
-            the_person.change_focus(-1, add_to_log = add_to_log)
-            the_person.change_int(-1, add_to_log = add_to_log)
+            the_person.change_obedience(10, add_to_log=add_to_log)
+            the_person.change_cha(-1, add_to_log=add_to_log)
+            the_person.change_focus(-1, add_to_log=add_to_log)
+            the_person.change_int(-1, add_to_log=add_to_log)
 
         def sedatives_trait_on_remove(the_person, the_serum, add_to_log):
-            the_person.change_obedience(-10, add_to_log = add_to_log)
-            the_person.change_cha(1, add_to_log = add_to_log)
-            the_person.change_focus(1, add_to_log = add_to_log)
-            the_person.change_int(1, add_to_log = add_to_log)
+            the_person.change_obedience(-10, add_to_log=add_to_log)
+            the_person.change_cha(1, add_to_log=add_to_log)
+            the_person.change_focus(1, add_to_log=add_to_log)
+            the_person.change_int(1, add_to_log=add_to_log)
 
         ## obedience_enhancer_functions ##
         def obedience_enhancer_on_apply(the_person, the_serum, add_to_log):
-            the_person.change_obedience(10, add_to_log = add_to_log)
+            the_person.change_obedience(10, add_to_log=add_to_log)
 
         def obedience_enhancer_on_remove(the_person, the_serum, add_to_log):
-            the_person.change_obedience(-10, add_to_log = add_to_log)
+            the_person.change_obedience(-10, add_to_log=add_to_log)
 
         ## large_obedience_enhancer_functions ##
         def large_obedience_enhancer_on_apply(the_person, the_serum, add_to_log):
-            the_person.change_obedience(20, add_to_log = add_to_log)
+            the_person.change_obedience(20, add_to_log=add_to_log)
 
         def large_obedience_enhancer_on_remove(the_person, the_serum, add_to_log):
-            the_person.change_obedience(-20, add_to_log = add_to_log)
+            the_person.change_obedience(-20, add_to_log=add_to_log)
 
         def large_obedience_enhancer_on_turn(the_person, the_serum, add_to_log):
-            the_person.change_slut(-1, add_to_log = add_to_log)
+            the_person.change_slut(-1, add_to_log=add_to_log)
 
         ## aphrodisiac_functions ##
         def aphrodisiac_on_apply(the_person, the_serum, add_to_log):
-            the_person.change_slut(15, add_to_log = add_to_log)
+            the_person.change_slut(15, add_to_log=add_to_log)
 
         def aphrodisiac_on_remove(the_person, the_serum, add_to_log):
-            the_person.change_slut(-15, add_to_log = add_to_log)
+            the_person.change_slut(-15, add_to_log=add_to_log)
 
         def aphrodisiac_on_day(the_person, the_serum, add_to_log):
-            the_person.change_obedience(-1, add_to_log = add_to_log)
+            the_person.change_obedience(-1, add_to_log=add_to_log)
 
         ## caffeine_trait functions##
         def caffeine_trait_on_apply(the_person, the_serum, add_to_log):
-            the_person.change_max_energy(20, add_to_log = add_to_log)
-            the_person.change_energy(20, add_to_log = add_to_log)
-            the_person.change_obedience(-15, add_to_log = add_to_log)
+            the_person.change_max_energy(20, add_to_log=add_to_log)
+            the_person.change_energy(20, add_to_log=add_to_log)
+            the_person.change_obedience(-15, add_to_log=add_to_log)
 
         def caffeine_trait_on_remove(the_person, the_serum, add_to_log):
-            the_person.change_max_energy(-20, add_to_log = add_to_log)
-            the_person.change_obedience(15, add_to_log = add_to_log)
+            the_person.change_max_energy(-20, add_to_log=add_to_log)
+            the_person.change_obedience(15, add_to_log=add_to_log)
 
         ## refined_caffeine_trait functions ##
         def refined_caffeine_trait_on_apply(the_person, the_serum, add_to_log):
-            the_person.change_max_energy(20, add_to_log = add_to_log)
-            the_person.change_energy(20, add_to_log = add_to_log)
+            the_person.change_max_energy(20, add_to_log=add_to_log)
+            the_person.change_energy(20, add_to_log=add_to_log)
 
         def refined_caffeine_trait_on_remove(the_person, the_serum, add_to_log):
-            the_person.change_max_energy(-20, add_to_log = add_to_log)
+            the_person.change_max_energy(-20, add_to_log=add_to_log)
 
         ## slutty_caffeine_trait functions ##
         def slutty_caffeine_trait_on_apply(the_person, the_serum, add_to_log):
-            the_person.change_max_energy(20, add_to_log = add_to_log)
-            the_person.change_energy(20, add_to_log = add_to_log)
-            the_person.change_slut(15, add_to_log = add_to_log)
+            the_person.change_max_energy(20, add_to_log=add_to_log)
+            the_person.change_energy(20, add_to_log=add_to_log)
+            the_person.change_slut(15, add_to_log=add_to_log)
 
         def slutty_caffeine_trait_on_remove(the_person, the_serum, add_to_log):
             the_person.change_max_energy(-20, add_to_log)
-            the_person.change_slut(-15, add_to_log = add_to_log)
+            the_person.change_slut(-15, add_to_log=add_to_log)
 
         ## love_potion_functions ##
         def love_potion_on_apply(the_person, the_serum, add_to_log):
@@ -98,27 +98,27 @@ init -1:
                 change_amount = 100 - the_person.love
             the_serum.effects_dict["love_potion_change"] = change_amount
 
-            the_person.change_love(change_amount, add_to_log = add_to_log)
+            the_person.change_love(change_amount, add_to_log=add_to_log)
 
         def love_potion_on_remove(the_person, the_serum, add_to_log):
             change_amount = the_serum.effects_dict.get("love_potion_change", 20)
-            the_person.change_love(-change_amount, add_to_log = add_to_log)
+            the_person.change_love(-change_amount, add_to_log=add_to_log)
 
         ## off_label_drugs_functions ##
         def off_label_drugs_on_apply(the_person, the_serum, add_to_log):
-            the_person.add_suggest_effect(30, add_to_log = add_to_log)
+            the_person.add_suggest_effect(30, add_to_log=add_to_log)
 
         def off_label_drugs_on_remove(the_person, the_serum, add_to_log):
             the_person.remove_suggest_effect(30)
 
         ## mood_enhancer_functions ##
         def mood_enhancer_on_turn(the_person, the_serum, add_to_log):
-            the_person.change_happiness(10, add_to_log = add_to_log)
-            the_person.change_obedience(-1, add_to_log = add_to_log)
+            the_person.change_happiness(10, add_to_log=add_to_log)
+            the_person.change_obedience(-1, add_to_log=add_to_log)
 
         ## blood_brain_pen_functions ##
         def blood_brain_pen_on_apply(the_person, the_serum, add_to_log):
-            the_person.add_suggest_effect(50, add_to_log = add_to_log)
+            the_person.add_suggest_effect(50, add_to_log=add_to_log)
 
         def blood_brain_pen_on_remove(the_person, the_serum, add_to_log):
             the_person.remove_suggest_effect(50)
@@ -140,40 +140,40 @@ init -1:
 
         ## focus_enhancement_functions ##
         def focus_enhancement_on_apply(the_person, the_serum, add_to_log):
-            the_person.change_focus(2, add_to_log = add_to_log)
+            the_person.change_focus(2, add_to_log=add_to_log)
 
         def focus_enhancement_on_remove(the_person, the_serum, add_to_log):
-            the_person.change_focus(-2, add_to_log = add_to_log)
+            the_person.change_focus(-2, add_to_log=add_to_log)
 
         ## int_enhancement_functions ##
         def int_enhancement_on_apply(the_person, the_serum, add_to_log):
-            the_person.change_int(2, add_to_log = add_to_log)
+            the_person.change_int(2, add_to_log=add_to_log)
 
         def int_enhancement_on_remove(the_person, the_serum, add_to_log):
-            the_person.change_int(-2, add_to_log = add_to_log)
+            the_person.change_int(-2, add_to_log=add_to_log)
 
         ## cha_enhancement_functions ##
         def cha_enhancement_on_apply(the_person, the_serum, add_to_log):
-            the_person.change_cha(2, add_to_log = add_to_log)
+            the_person.change_cha(2, add_to_log=add_to_log)
 
         def cha_enhancement_on_remove(the_person, the_serum, add_to_log):
-            the_person.change_cha(-2, add_to_log = add_to_log)
+            the_person.change_cha(-2, add_to_log=add_to_log)
 
         ## happiness_tick_functions ##
         def happiness_tick_on_turn(the_person, the_serum, add_to_log):
-            the_person.change_happiness(5, add_to_log = add_to_log)
+            the_person.change_happiness(5, add_to_log=add_to_log)
 
         ## mind_control_agent_functions ##
         def mind_control_agent_on_apply(the_person, the_serum, add_to_log):
-            the_person.add_suggest_effect(70, add_to_log = add_to_log)
+            the_person.add_suggest_effect(70, add_to_log=add_to_log)
 
         def mind_control_agent_on_remove(the_person, the_serum, add_to_log):
             the_person.remove_suggest_effect(70)
 
         ## permanent_bimbo_functions ##
         def permanent_bimbo_on_apply(the_person, the_serum, add_to_log):
-            the_person.change_slut(10, add_to_log = add_to_log)
-            the_person.change_obedience(10, add_to_log = add_to_log)
+            the_person.change_slut(10, add_to_log=add_to_log)
+            the_person.change_obedience(10, add_to_log=add_to_log)
 
             display_name = the_person.create_formatted_title("???")
             if the_person.title:
@@ -227,74 +227,74 @@ init -1:
             elif change_amount < 0:
                 change_amount = 0
 
-            the_person.change_slut(change_amount, add_to_log = add_to_log)
+            the_person.change_slut(change_amount, add_to_log=add_to_log)
             the_serum.effects_dict["simple_aphrodesiac_amount"] = change_amount
 
-            the_person.change_max_energy(-20, add_to_log = add_to_log)
+            the_person.change_max_energy(-20, add_to_log=add_to_log)
 
         def simple_aphrodesiac_on_remove(the_person, the_serum, add_to_log):
             change_amount = the_serum.effects_dict.get("simple_aphrodesiac_amount", 10)
-            the_person.change_slut(-change_amount, add_to_log = add_to_log)
+            the_person.change_slut(-change_amount, add_to_log=add_to_log)
 
-            the_person.change_max_energy(20, add_to_log = add_to_log)
+            the_person.change_max_energy(20, add_to_log=add_to_log)
 
         def climax_limiter_on_apply(the_person, the_serum, add_to_log):
-            the_person.change_max_arousal(40, add_to_log = add_to_log)
+            the_person.change_max_arousal(40, add_to_log=add_to_log)
 
         def climax_limiter_on_remove(the_person, the_serum, add_to_log):
-            the_person.change_max_arousal(-40, add_to_log = add_to_log)
+            the_person.change_max_arousal(-40, add_to_log=add_to_log)
 
         def climax_enhancer_on_apply(the_person, the_serum, add_to_log):
             change_amount = -20
             if the_person.max_arousal - 20 < 0:
                 change_amount = the_person.max_arousal - 20
             the_serum.effects_dict["climax_enhancer_amount"] = change_amount
-            the_person.change_max_arousal(change_amount, add_to_log = add_to_log)
+            the_person.change_max_arousal(change_amount, add_to_log=add_to_log)
 
         def climax_enhancer_on_remove(the_person, the_serum, add_to_log):
             change_amount = the_serum.effects_dict.get("climax_enhancer_amount", -20)
-            the_person.change_max_arousal(-change_amount, add_to_log = add_to_log)
+            the_person.change_max_arousal(-change_amount, add_to_log=add_to_log)
 
         def climax_enhancer_on_turn(the_person, the_serum, add_to_log):
-            the_person.change_happiness(-5, add_to_log = add_to_log)
+            the_person.change_happiness(-5, add_to_log=add_to_log)
 
 
         def rolling_orgasm_on_apply(the_person, the_serum, add_to_log):
-            the_person.change_max_energy(-10, add_to_log = add_to_log)
+            the_person.change_max_energy(-10, add_to_log=add_to_log)
 
         def rolling_orgasm_on_remove(the_person, the_serum, add_to_log):
-            the_person.change_max_energy(10, add_to_log = add_to_log)
+            the_person.change_max_energy(10, add_to_log=add_to_log)
 
         def rolling_orgasm_on_move(the_person, the_serum, add_to_log):
-            the_person.run_orgasm(show_dialogue = False, add_to_log = add_to_log)
-            the_person.change_happiness(5, add_to_log = add_to_log)
+            the_person.run_orgasm(show_dialogue = False, add_to_log=add_to_log)
+            the_person.change_happiness(5, add_to_log=add_to_log)
 
 
         ## Sex skill enhancements ##
 
         def foreplay_enhancer_on_apply(the_person, the_serum, add_to_log):
-            the_person.change_sex_skill("Foreplay", 2, add_to_log = add_to_log)
+            the_person.change_sex_skill("Foreplay", 2, add_to_log=add_to_log)
 
         def foreplay_enhancer_on_remove(the_person, the_serum, add_to_log):
-            the_person.change_sex_skill("Foreplay", -2, add_to_log = add_to_log)
+            the_person.change_sex_skill("Foreplay", -2, add_to_log=add_to_log)
 
         def oral_enhancer_on_apply(the_person, the_serum, add_to_log):
-            the_person.change_sex_skill("Oral", 2, add_to_log = add_to_log)
+            the_person.change_sex_skill("Oral", 2, add_to_log=add_to_log)
 
         def oral_enhancer_on_remove(the_person, the_serum, add_to_log):
-            the_person.change_sex_skill("Oral", -2, add_to_log = add_to_log)
+            the_person.change_sex_skill("Oral", -2, add_to_log=add_to_log)
 
         def vaginal_enhancer_on_apply(the_person, the_serum, add_to_log):
-            the_person.change_sex_skill("Vaginal", 2, add_to_log = add_to_log)
+            the_person.change_sex_skill("Vaginal", 2, add_to_log=add_to_log)
 
         def vaginal_enhancer_on_remove(the_person, the_serum, add_to_log):
-            the_person.change_sex_skill("Vaginal", -2, add_to_log = add_to_log)
+            the_person.change_sex_skill("Vaginal", -2, add_to_log=add_to_log)
 
         def anal_enhancer_on_apply(the_person, the_serum, add_to_log):
-            the_person.change_sex_skill("Anal", 2, add_to_log = add_to_log)
+            the_person.change_sex_skill("Anal", 2, add_to_log=add_to_log)
 
         def anal_enhancer_on_remove(the_person, the_serum, add_to_log):
-            the_person.change_sex_skill("Anal", -2, add_to_log = add_to_log)
+            the_person.change_sex_skill("Anal", -2, add_to_log=add_to_log)
 
         def lactation_hormones_on_apply(the_person, the_serum, add_to_log):
             the_person.lactation_sources += 1
@@ -324,7 +324,7 @@ init -1:
                 the_person.event_triggers_dict["preg_transform_day"] = the_person.event_triggers_dict.get("preg_transform_day", day) - 1
                 the_person.event_triggers_dict["preg_finish_announce_day"] = the_person.event_triggers_dict.get("preg_finish_announce_day", day) - 1
 
-        def pregnancy_decellerator_on_day(the_person, the_serum, add_to_log):
+        def pregnancy_decelerator_on_day(the_person, the_serum, add_to_log):
             if pregnant_role in the_person.special_role: # only has effect when pregnant
                 the_person.event_triggers_dict["preg_announce_day"] = the_person.event_triggers_dict.get("preg_announce_day", day) + 1
                 the_person.event_triggers_dict["preg_tits_date"] = the_person.event_triggers_dict.get("preg_tits_date", day) + 1
@@ -350,10 +350,10 @@ init -1:
             the_person.set_hair_colour(new_colour)
 
         def weight_gain_on_apply(the_person, the_serum, add_to_log):
-            the_person.change_max_energy(-20, add_to_log = add_to_log)
+            the_person.change_max_energy(-20, add_to_log=add_to_log)
 
         def weight_gain_on_remove(the_person, the_serum, add_to_log):
-            the_person.change_max_energy(20, add_to_log = add_to_log)
+            the_person.change_max_energy(20, add_to_log=add_to_log)
 
         def weight_gain_on_turn(the_person, the_serum, add_to_log):
             if renpy.random.randint(0,100) < 15:
@@ -363,10 +363,10 @@ init -1:
                     the_person.body_type = "curvy_body"
 
         def weight_loss_on_apply(the_person, the_serum, add_to_log):
-            the_person.change_max_energy(-20, add_to_log = add_to_log)
+            the_person.change_max_energy(-20, add_to_log=add_to_log)
 
         def weight_loss_on_remove(the_person, the_serum, add_to_log):
-            the_person.change_max_energy(20, add_to_log = add_to_log)
+            the_person.change_max_energy(20, add_to_log=add_to_log)
 
         def weight_loss_on_turn(the_person, the_serum, add_to_log):
             if renpy.random.randint(0,100) < 15:
@@ -397,69 +397,69 @@ init -1:
 
         ## nora_serum_up_trait ##
         def nora_suggest_up_on_apply(the_person, the_serum, add_to_log):
-            the_person.add_suggest_effect(40, add_to_log = add_to_log)
+            the_person.add_suggest_effect(40, add_to_log=add_to_log)
 
         def nora_suggest_up_on_remove(the_person, the_serum, add_to_log):
             the_person.remove_suggest_effect(40)
 
         def nora_nightmares_on_day(the_person, the_serum, add_to_log):
-            the_person.change_happiness(-15, add_to_log = add_to_log)
+            the_person.change_happiness(-15, add_to_log=add_to_log)
 
         def nora_obedience_swing_on_turn(the_person, the_serum, add_to_log):
             change_amount = renpy.random.randint(-15,15)
             the_person.change_obedience(change_amount)
 
         def nora_sluttiness_boost_on_apply(the_person, the_serum, add_to_log):
-            the_person.change_slut(20, add_to_log = add_to_log)
+            the_person.change_slut(20, add_to_log=add_to_log)
 
         def nora_sluttiness_boost_on_remove(the_person, the_serum, add_to_log):
-            the_person.change_slut(-20, add_to_log = add_to_log)
+            the_person.change_slut(-20, add_to_log=add_to_log)
 
 
         ## nora_special_unlock_taits
         def nora_reward_mother_trait_on_turn(the_person, the_serum, add_to_log):
             amount_change = __builtin__.round((the_person.sluttiness - the_person.love)/10)
             if amount_change > 0:
-                the_person.change_love(amount_change, add_to_log = add_to_log)
+                the_person.change_love(amount_change, add_to_log=add_to_log)
 
 
         def nora_reward_sister_trait_on_day(the_person, the_serum, add_to_log):
             amount_change = __builtin__.round((the_person.obedience - 100)/10)
             if amount_change > 0:
-                the_person.change_slut(amount_change, add_to_log = add_to_log)
+                the_person.change_slut(amount_change, add_to_log=add_to_log)
 
         def nora_reward_cousin_trait_on_day(the_person, the_serum, add_to_log):
             amount_change = __builtin__.round((the_person.love)/-5)
             if amount_change > 0:
-                the_person.change_slut(amount_change, add_to_log = add_to_log)
+                the_person.change_slut(amount_change, add_to_log=add_to_log)
 
         def nora_reward_nora_trait_on_apply(the_person, the_serum, add_to_log):
             amount = 5 * mc.int
-            the_person.change_slut(amount, add_to_log = add_to_log)
-            the_person.change_obedience(amount, add_to_log = add_to_log)
+            the_person.change_slut(amount, add_to_log=add_to_log)
+            the_person.change_obedience(amount, add_to_log=add_to_log)
 
         def nora_reward_nora_trait_on_remove(the_person, the_serum, add_to_log):
             amount = 5 * mc.int
-            the_person.change_slut(-amount, add_to_log = add_to_log)
-            the_person.change_obedience(-amount, add_to_log = add_to_log)
+            the_person.change_slut(-amount, add_to_log=add_to_log)
+            the_person.change_obedience(-amount, add_to_log=add_to_log)
 
         def nora_reward_high_love_trait_on_turn(the_person, the_serum, add_to_log):
             if the_person.sluttiness > the_person.love and the_person.love < 100:
-                the_person.change_slut(-1, add_to_log = add_to_log)
-                the_person.change_love(1, add_to_log = add_to_log)
+                the_person.change_slut(-1, add_to_log=add_to_log)
+                the_person.change_love(1, add_to_log=add_to_log)
 
         def nora_reward_low_love_trait_on_apply(the_person, the_serum, add_to_log):
-            the_person.change_love(-50, add_to_log = add_to_log)
+            the_person.change_love(-50, add_to_log=add_to_log)
 
         def nora_reward_low_love_trait_on_remove(the_person, the_serum, add_to_log):
-            the_person.change_love(50, add_to_log = add_to_log)
+            the_person.change_love(50, add_to_log=add_to_log)
 
         def nora_reward_high_obedience_trait_on_turn(the_person, the_serum, add_to_log):
             amount = __builtin__.round((the_person.obedience-100)/5)
-            the_person.change_happiness(amount, add_to_log = add_to_log)
+            the_person.change_happiness(amount, add_to_log=add_to_log)
 
         def nora_reward_high_slut_trait_on_apply(the_person, the_serum, add_to_log):
-            the_person.change_slut(5, add_to_log = add_to_log)
+            the_person.change_slut(5, add_to_log=add_to_log)
 
         def nora_reward_genius_trait_on_apply(the_person, the_serum, add_to_log):
             if (the_person.charisma < 7):
@@ -502,7 +502,7 @@ init -1:
             for count in range(0, tit_changes):
                 the_person.tits = get_smaller_tits(the_person.tits) #Her tits start to swell.
 
-            the_person.personal_region_modifiers["breasts"] = the_person.personal_region_modifiers["breasts"] -  (0.1*tit_changes) #As her tits get larger they also become softer, unlike large fake tits. (Although even huge fake tits get softer)
+            the_person.personal_region_modifiers["breasts"] = the_person.personal_region_modifiers["breasts"] - (0.1*tit_changes) #As her tits get larger they also become softer, unlike large fake tits. (Although even huge fake tits get softer)
 
             if add_to_log:
                 display_name = the_person.create_formatted_title("???")
@@ -512,7 +512,7 @@ init -1:
 
         def nora_reward_instant_trance_on_apply(the_person, the_serum, add_to_log):
             if not the_person.has_role(trance_role):
-                the_person.run_orgasm(show_dialogue = False, force_trance = True, add_to_log = add_to_log)
+                the_person.run_orgasm(show_dialogue = False, force_trance = True, add_to_log=add_to_log)
 
 
         #####
@@ -559,7 +559,7 @@ init -1:
             clarity_added = 25,
             start_researched = True,
             research_needed = 75,
-            exclude_tags = "Production",
+            exclude_tags = ["Production"],
             clarity_cost = 50,
             mental_aspect = 0, physical_aspect = 0, sexual_aspect = 0, medical_aspect = 1, flaws_aspect = 0, attention = 0)
 
@@ -595,7 +595,7 @@ init -1:
             on_remove = suggestion_drugs_on_remove,
             base_side_effect_chance = 10,
             research_needed = 100,
-            exclude_tags = "Suggest",
+            exclude_tags = ["Suggest"],
             clarity_cost = 15,
             mental_aspect = 2, physical_aspect = 0, sexual_aspect = 0, medical_aspect = 1, flaws_aspect = 0, attention = 1)
 
@@ -610,7 +610,7 @@ init -1:
             on_turn = high_con_drugs_on_turn,
             requires = [basic_med_app, suggestion_drugs_trait],
             research_needed = 150,
-            exclude_tags = "Suggest",
+            exclude_tags = ["Suggest"],
             clarity_cost = 40,
             mental_aspect = 3, physical_aspect = 0, sexual_aspect = 0, medical_aspect = 1, flaws_aspect = 0, attention = 2)
 
@@ -636,7 +636,7 @@ init -1:
             on_apply = caffeine_trait_on_apply,
             on_remove = caffeine_trait_on_remove,
             research_needed = 150,         
-            exclude_tags = "Energy",
+            exclude_tags = ["Energy"],
             clarity_cost = 10,
             mental_aspect = 1, physical_aspect = 1, sexual_aspect = 0, medical_aspect = 0, flaws_aspect = 0, attention = 0)
 
@@ -687,7 +687,7 @@ init -1:
             on_turn = hair_lighten_dye_on_turn,
             tier = 0,
             research_needed = 75,
-            exclude_tags = "Dye",
+            exclude_tags = ["Dye"],
             clarity_cost = 20,
             mental_aspect = 0, physical_aspect = 2, sexual_aspect = 0, medical_aspect = 0, flaws_aspect = 0, attention = 0)
 
@@ -700,7 +700,7 @@ init -1:
             on_turn = hair_darken_dye_on_turn,
             tier = 0,
             research_needed = 75,
-            exclude_tags = "Dye",
+            exclude_tags = ["Dye"],
             clarity_cost = 20,
             mental_aspect = 0, physical_aspect = 2, sexual_aspect = 0, medical_aspect = 0, flaws_aspect = 0, attention = 0)
 
@@ -723,7 +723,7 @@ init -1:
             requires = primitive_serum_prod,
             tier = 1,
             research_needed = 200,
-            exclude_tags = "Production",
+            exclude_tags = ["Production"],
             clarity_cost = 500,
             mental_aspect = 0, physical_aspect = 0, sexual_aspect = 0, medical_aspect = 2, flaws_aspect = 0, attention = 0)
 
@@ -809,7 +809,7 @@ init -1:
             requires = suggestion_drugs_trait,
             tier = 1,
             research_needed = 300,
-            exclude_tags = "Suggest",
+            exclude_tags = ["Suggest"],
             clarity_cost = 250,
             mental_aspect = 4, physical_aspect = 0, sexual_aspect = 1, medical_aspect = 1, flaws_aspect = 0, attention = 2)
 
@@ -849,7 +849,7 @@ init -1:
             requires = [caffeine_trait],
             tier = 1,
             research_needed = 300,
-            exclude_tags = "Energy",
+            exclude_tags = ["Energy"],
             clarity_cost = 250,
             mental_aspect = 0, physical_aspect = 3, sexual_aspect = 0, medical_aspect = 1, flaws_aspect = 0, attention = 0)
 
@@ -973,7 +973,7 @@ init -1:
             requires = [improved_serum_prod,basic_med_app],
             tier = 2,
             research_needed = 800,
-            exclude_tags = "Production",
+            exclude_tags = ["Production"],
             clarity_cost = 1500,
             mental_aspect = 0, physical_aspect = 0, sexual_aspect = 0, medical_aspect = 3, flaws_aspect = 0, attention = 1)
 
@@ -988,7 +988,7 @@ init -1:
             requires = [off_label_drugs, clinical_testing],
             tier = 2,
             research_needed = 500,
-            exclude_tags = "Suggest",
+            exclude_tags = ["Suggest"],
             clarity_cost = 800,
             mental_aspect = 6, physical_aspect = 0, sexual_aspect = 2, medical_aspect = 1, flaws_aspect = 0, attention = 3)
 
@@ -1097,7 +1097,7 @@ init -1:
             requires = [refined_caffeine_trait, aphrodisiac],
             tier = 2,
             research_needed = 800,
-            exclude_tags = "Energy",
+            exclude_tags = ["Energy"],
             clarity_cost = 1200,
             mental_aspect = 0, physical_aspect = 3, sexual_aspect = 5, medical_aspect = 0, flaws_aspect = 0, attention = 2)
 
@@ -1111,7 +1111,7 @@ init -1:
             requires = [fertility_enhancement_trait],
             tier = 2,
             research_needed = 800,
-            exclude_tags = "Pregnancy",
+            exclude_tags = ["Pregnancy"],
             clarity_cost = 1200,
             mental_aspect = 0, physical_aspect = 3, sexual_aspect = 0, medical_aspect = 6, flaws_aspect = 0, attention = 3)
 
@@ -1125,7 +1125,7 @@ init -1:
             requires = [fertility_suppression_trait],
             tier = 2,
             research_needed = 800,
-            exclude_tags = "Pregnancy",
+            exclude_tags = ["Pregnancy"],
             clarity_cost = 800,
             mental_aspect = 0, physical_aspect = 3, sexual_aspect = 0, medical_aspect = 6, flaws_aspect = 0, attention = 3)
 
@@ -1233,7 +1233,7 @@ init -1:
             requires = advanced_serum_prod,
             tier = 3,
             research_needed = 3000,
-            exclude_tags = "Production",
+            exclude_tags = ["Production"],
             clarity_cost = 2500,
             mental_aspect = 0, physical_aspect = 0, sexual_aspect = 0, medical_aspect = 5, flaws_aspect = 0, attention = 2)
 
@@ -1248,7 +1248,7 @@ init -1:
             requires = blood_brain_pen,
             tier = 3,
             research_needed = 1500,
-            exclude_tags = "Suggest",
+            exclude_tags = ["Suggest"],
             clarity_cost = 2000,
             mental_aspect = 7, physical_aspect = 0, sexual_aspect = 0, medical_aspect = 5, flaws_aspect = 0, attention = 4)
 
@@ -1276,7 +1276,7 @@ init -1:
             requires = [pregnancy_accelerator_trait],
             tier = 3,
             research_needed = 1400,
-            exclude_tags = "Pregnancy",
+            exclude_tags = ["Pregnancy"],
             clarity_cost = 1800,
             mental_aspect = 0, physical_aspect = 9, sexual_aspect = 0, medical_aspect = 3, flaws_aspect = 0, attention = 4)
 

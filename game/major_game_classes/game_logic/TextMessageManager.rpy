@@ -34,7 +34,7 @@ init -2 python:
             self.add_message(person, new_entry)
 
         def get_person_list(self):
-            return sorted([x for x in all_people_in_the_game() if x.identifier in self.message_history], key = lambda x: x.name)
+            return sorted([x for x in all_people_in_the_game() if x.identifier in self.message_history], key=lambda x: x.name)
 
         def has_number(self, person):
             return person.identifier in self.message_history

@@ -453,7 +453,10 @@ init -2 python:
             # generate new home location if we don't have one
             start_home = self.home
             if not start_home:
-                start_home = Room(self.name + " " + self.last_name + " home", self.name + " " + self.last_name + " home", [], standard_house_backgrounds, [make_wall(), make_floor(), make_couch(), make_window()],[],[],False,[0.5,0.5], visible = False, hide_in_known_house_map = False, lighting_conditions = standard_indoor_lighting)
+                start_home = Room(self.name + " " + self.last_name + " home", self.name + " " + self.last_name + " home",
+                    [], standard_house_backgrounds, [make_wall(), make_floor(), make_couch(), make_window()],[],[],False,
+                    [0.5,0.5], visible = False, hide_in_known_house_map = False, lighting_conditions = standard_indoor_lighting,
+                )
 
             # add home location to list of places, before assignment
             if not start_home in list_of_places:
@@ -635,8 +638,8 @@ init -2 python:
         def run_day(self): #Called at the end of the day.
             #self.outfit = self.wardrobe.decide_on_outfit(self.sluttiness) #Put on a new outfit for the day!
 
-            self.change_energy(.6 * self.max_energy, add_to_log = False)
-            self.change_novelty(1, add_to_log = False)
+            self.change_energy(.6 * self.max_energy, add_to_log=False)
+            self.change_novelty(1, add_to_log=False)
 
             #Now we will normalize happiness towards 100 over time. Every 5 points of happiness above or below 100 results in a -+1 per turn, rounded towards 0.
             hap_diff = self.happiness - 100
@@ -734,6 +737,7 @@ init -2 python:
                 recoloured_blur = im.MatrixColor(blurred_image, im.matrix.colorize(aura_colour, aura_colour))
 
                 final_composite = Composite((x_size, y_size), (0,0), recoloured_blur, (0,0), character_composite)
+
             else:
                 final_composite = character_composite
 
@@ -1091,7 +1095,7 @@ init -2 python:
 
             return updated
 
-        def strengthen_opinion(self, topic, add_to_log = True):
+        def strengthen_opinion(self, topic, add_to_log=True):
             display_string = ""
 
             old_opinion = self.get_opinion_topic(topic)
@@ -1117,7 +1121,7 @@ init -2 python:
 
             return updated
 
-        def weaken_opinion(self, topic, add_to_log = True):
+        def weaken_opinion(self, topic, add_to_log=True):
             display_string = ""
 
             old_opinion = self.get_opinion_topic(topic)
@@ -1151,7 +1155,7 @@ init -2 python:
 
             return updated
 
-        def create_opinion(self, topic, start_positive = True, start_known = True, add_to_log = True):
+        def create_opinion(self, topic, start_positive=True, start_known=True, add_to_log=True):
             start_value = 1
             if not start_positive:
                 start_value = -1 #Determines if the opinion starts as like or dislike.
@@ -1200,12 +1204,12 @@ init -2 python:
                     return True
             return False
 
-        def break_taboo(self, the_taboo, add_to_log = True, fire_event = True):
+        def break_taboo(self, the_taboo, add_to_log=True, fire_event=True):
             if the_taboo in self.broken_taboos:
                 return False
 
             self.broken_taboos.append(the_taboo)
-            self.change_novelty(5, add_to_log = add_to_log)
+            self.change_novelty(5, add_to_log=add_to_log)
 
             if add_to_log:
                 display_name = self.create_formatted_title("???")
@@ -1296,9 +1300,9 @@ init -2 python:
             return return_value
 
 
-        def give_serum(self,the_serum_design, add_to_log = True): ##Make sure you are passing a copy of the serum, not a reference.
+        def give_serum(self,the_serum_design, add_to_log=True): ##Make sure you are passing a copy of the serum, not a reference.
             self.serum_effects.append(the_serum_design)
-            the_serum_design.run_on_apply(self, add_to_log)
+            the_serum_design.run_on_apply(self, add_to_log=add_to_log)
 
         def is_under_serum_effect(self):
             if self.serum_effects:
@@ -1322,29 +1326,29 @@ init -2 python:
         def change_suggest(self,amount, add_to_log = True): #This changes the base, usually permanent suggest. Use add_suggest_effect to add temporary, only-highest-is-used, suggestion values
             self.suggestibility += amount
             if add_to_log and amount != 0 and self.title:
-                mc.log_event(self.title + ": Suggestibility increased permanently by "+ ("+" if amount > 0 else "") + str(amount) + "%", "float_text_blue")
+                mc.log_event(self.title + ": Suggestibility " + ("in" if amount > 0 else "de") + "creased permanently by "+ ("+" if amount > 0 else "") + str(amount), "float_text_blue")
 
             # Note that suggestibility can be negative, representing someone who is _resistant_ to trances for some reason.
 
-        def add_suggest_effect(self,amount, add_to_log = True):
+        def add_suggest_effect(self,amount, add_to_log=True):
             if amount > __builtin__.max(self.suggest_bag or [0]):
-                self.change_suggest(-__builtin__.max(self.suggest_bag or [0]), add_to_log = False) #Subtract the old max and...
-                self.change_suggest(amount, add_to_log = False) #add our new suggest.
+                self.change_suggest(-__builtin__.max(self.suggest_bag or [0]), add_to_log=False) #Subtract the old max and...
+                self.change_suggest(amount, add_to_log=False) #add our new suggest.
                 if add_to_log and amount != 0 and self.title:
-                    mc.log_event(self.title + ": Suggestibility increased, by " + str(amount), "float_text_blue")
+                    mc.log_event(self.title + ": Suggestibility " + ("in" if amount > 0 else "de") + "creased by "+ ("+" if amount > 0 else "") + str(amount), "float_text_blue")
             else:
                 if add_to_log and amount != 0 and self.title:
                     mc.log_event(self.title + ": Suggestibility " + str(amount) + " lower than current " + str(self.suggestibility) + " amount. Suggestibility unchanged.", "float_text_blue")
             self.suggest_bag.append(amount) #Add it to the bag, so we can check to see if it is max later.
 
 
-        def remove_suggest_effect(self,amount):
+        def remove_suggest_effect(self, amount):
             if amount in self.suggest_bag: # Avoid removing the "amount" if we don't actually have it in the bag.
                 self.change_suggest(- __builtin__.max(self.suggest_bag or [0]), add_to_log = False) #Subtract the max
                 self.suggest_bag.remove(amount)
                 self.change_suggest(__builtin__.max(self.suggest_bag or [0]), add_to_log = False) # Add the new max. If we were max, it is now lower, otherwie it cancels out.
 
-        def change_happiness(self,amount, add_to_log = True):
+        def change_happiness(self,amount, add_to_log=True):
             self.happiness += amount*self.get_trance_multiplier()
             if self.happiness < 0:
                 self.happiness = 0
@@ -1358,7 +1362,7 @@ init -2 python:
                     log_string += "\nChange amplified by " + str(int((self.get_trance_multiplier()*100)-100)) + "% due to trance"
                 mc.log_event(display_name + ": " + log_string, "float_text_yellow")
 
-        def change_love(self, amount, max_modified_to = None, add_to_log = True):
+        def change_love(self, amount, max_modified_to=None, add_to_log=True):
             amount = __builtin__.int(amount)
             if max_modified_to is not None and self.love + amount > max_modified_to:
                 amount = max_modified_to - self.love
@@ -1382,7 +1386,7 @@ init -2 python:
                     log_string = ("+" if amount > 0 else "") + str(amount) + " Love"
                 mc.log_event(display_name + ": " + log_string, "float_text_pink")
 
-        def change_slut(self, amount, max_modified_to = None, add_to_log = True):
+        def change_slut(self, amount, max_modified_to=None, add_to_log=True):
             if max_modified_to and self.sluttiness + amount > max_modified_to:
                 amount = max_modified_to - self.sluttiness
                 if amount < 0:
@@ -1405,29 +1409,30 @@ init -2 python:
                     log_string = ("+" if amount > 0 else "") + str(amount) + " Sluttiness"
                 mc.log_event(display_name + ": " + log_string, "float_text_pink")
 
-        def change_slut_temp(self, amount, add_to_log = True):
-            self.change_slut(amount, add_to_log = add_to_log)
-        def change_slut_core(self, amount, add_to_log = True, fire_event = True):
-            self.change_slut(amount, add_to_log = add_to_log)
+        def change_slut_temp(self, amount, add_to_log=True):
+            self.change_slut(amount, add_to_log=add_to_log)
 
-        def add_situational_slut(self, source, amount, description = ""):
-            self.situational_sluttiness[source] = (amount,description)
+        def change_slut_core(self, amount, add_to_log=True, fire_event=True):
+            self.change_slut(amount, add_to_log=add_to_log)
+
+        def add_situational_slut(self, source, amount, description=""):
+            self.situational_sluttiness[source] = (amount, description)
 
         def clear_situational_slut(self, source):
             self.add_situational_slut(source, 0) #We don't actually ever care if we remove the key, we just want to set the amount to 0.
 
-        def add_situational_obedience(self, source, amount, description = ""):
+        def add_situational_obedience(self, source, amount, description=""):
             if source in self.situational_obedience:
                 difference = amount - self.situational_obedience[source][0]
-                self.change_obedience(difference, add_to_log = False)
+                self.change_obedience(difference, add_to_log=False)
             else:
-                self.change_obedience(amount, add_to_log = False)
+                self.change_obedience(amount, add_to_log=False)
             self.situational_obedience[source] = (amount,description)
 
         def clear_situational_obedience(self, source):
             self.add_situational_obedience(source, 0)
 
-        def change_obedience(self,amount, add_to_log = True):
+        def change_obedience(self,amount, add_to_log=True):
             self.obedience += amount
             if self.obedience < 0:
                 self.obedience = 0
@@ -1907,11 +1912,11 @@ init -2 python:
             return return_amount
 
         def run_orgasm(self, show_dialogue = True, force_trance = False, trance_chance_modifier = 0, add_to_log = True, sluttiness_increase_limit = 30, reset_arousal = True, fire_event = True):
-            self.change_slut(1, sluttiness_increase_limit, add_to_log = add_to_log)
+            self.change_slut(1, sluttiness_increase_limit, add_to_log=add_to_log)
             if fire_event:
                 mc.listener_system.fire_event("girl_climax", the_person = self)
             if renpy.random.randint(0,100) < self.suggestibility + trance_chance_modifier or force_trance:
-                self.increase_trance(show_dialogue = show_dialogue, add_to_log = add_to_log)
+                self.increase_trance(show_dialogue = show_dialogue, add_to_log=add_to_log)
 
         def increase_trance(self, show_dialogue = True, add_to_log = True):
             display_name = self.create_formatted_title("???")
@@ -2171,7 +2176,7 @@ init -2 python:
 
             return self.get_destination(check_day, check_time)
 
-        def person_meets_requirements(self, slut_required = 0, obedience_required = 0, obedience_max = 2000, love_required = -200):
+        def person_meets_requirements(self, slut_required=0, obedience_required=0, obedience_max=2000, love_required=-200):
             if self.sluttiness >= slut_required and self.obedience >= obedience_required and self.obedience <= obedience_max and self.love >= love_required:
                 return True
             return False

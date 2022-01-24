@@ -6,8 +6,7 @@ init 1300:
         def bimbo_possessive_titles(the_person):
             return bimbo_titles(the_person)
         def bimbo_player_titles(the_person):
-            valid_titles = [mc.name]
-            valid_titles.append("Cutie")
+            valid_titles = [mc.name, "Cutie"]
             return valid_titles
         bimbo_personality = Personality("bimbo", #Currently used in the head researcher event line.
         common_likes = ["skirts", "small talk", "the colour pink", "makeup", "pop"],

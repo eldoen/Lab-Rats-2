@@ -14,9 +14,7 @@ init 1300:
             return valid_titles
 
         def aunt_possessive_titles(the_person):
-            valid_titles = []
-            valid_titles.append(the_person.name)
-            valid_titles.append("Your aunt")
+            valid_titles = [the_person.name, "Your aunt"]
 
             if the_person.love > 20:
                 valid_titles.append("Your loving aunt")
@@ -35,8 +33,7 @@ init 1300:
             valid_titles = [mc.name]
 
             if the_person.love > 20:
-                valid_titles.append("Sweetheart")
-                valid_titles.append("Sweety")
+                valid_titles += ["Sweetheart", "Sweety"]
             return valid_titles
 
         aunt_personality = Personality("aunt", default_prefix = "wild",

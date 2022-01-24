@@ -1156,9 +1156,9 @@ label introvert_date_seduction(the_person):
                 $ mc.change_locked_clarity(20)
                 the_person "My [so_title] is never around. Do you want to come home with me? I would be happy if you did..."
             else:
+                $ mc.change_locked_clarity(20)
                 "[the_person.title] wrings her hands together nervously, as if working up the courage to speak."
                 the_person "I really like you. I have a [so_title], but I want to spend more time with you too."
-                $ mc.change_locked_clarity(20)
                 the_person "Do you... want to come home with me? He won't be around."
     return
 

@@ -3,13 +3,13 @@ init 1300:
     python:
         def relaxed_titles(the_person):
             if the_person.love < 20:
-                return "Mrs." + the_person.last_name #If she doesn't like you she's much more formal.
+                return ["Mrs. " + the_person.last_name] #If she doesn't like you she's much more formal.
             else:
-                return the_person.name
+                return [the_person.name]
         def relaxed_possessive_titles(the_person):
             return relaxed_titles(the_person) #If we don't have a special possessive just use their normal title.
         def relaxed_player_titles(the_person):
-            return mc.name
+            return [mc.name]
         #Default personality is a well rounded personaity, without any strong tendencies. Default "Lily" personality.
         relaxed_personality = Personality("relaxed", #Lily style personality
         common_likes = ["skirts", "the weekend", "small talk", "the colour pink", "HR work", "supply work", "flirting","punk","pop"],
@@ -1438,18 +1438,6 @@ label relaxed_improved_serum_unlock(the_person):
     the_person "A finished dose of serum that raises my Suggestibility. The higher it gets my Suggestibility the better, but any amount should do."
     the_person "Then we'll just need some time and some privacy for me to see what sort of effects my orgasms will have."
     return
-
-# Not needed post v0.43
-# label relaxed_improved_serum_unlock(the_person):
-#     mc.name "[the_person.title], now that you've had some time in the lab there's something I wanted to talk to you about."
-#     the_person "Okay, how can I help?"
-#     mc.name "All of our research and development up until this point has been based on the limited notes I have from my university days. I'm sure there's more we could learn, and I want you to look into it for me."
-#     "[the_person.title] smiles mischievously."
-#     the_person "I've got an idea that you might want to hear then. It's not the most... orthodox testing procedure but I think it is necessaryif we want to see rapid results."
-#     mc.name "Go on, I'm interested."
-#     the_person "Our testing procedures focus on human safety, which I'll admit is important, but it doesn't leave us with much information about the subjective effects of our creations."
-#     the_person "What I want to do is take a dose of our serum myself, then have you record me while you run me through some questions."
-#     return
 
 ## Taboo break dialogue ##
 label relaxed_kissing_taboo_break(the_person):

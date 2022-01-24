@@ -21,10 +21,7 @@ init -2 python:
             insta_chance = 0, dikdok_chance = 0):
 
             self.personality_type_prefix = personality_type_prefix
-            if default_prefix is None:
-                self.default_prefix = personality_type_prefix
-            else:
-                self.default_prefix = default_prefix
+            self.default_prefix = default_prefix
 
             self.titles_function = titles_function
             self.possessive_titles_function = possessive_titles_function
@@ -38,7 +35,7 @@ init -2 python:
             for ending in self.response_label_ending:
                 if renpy.has_label(self.personality_type_prefix + "_" + ending):
                     self.response_dict[ending] = self.personality_type_prefix + "_" + ending
-                elif default_prefix is not None and renpy.has_label(self.default_prefix + "_" + ending): #A default is used when one personality is similar to anouther and has only specific responses overwritten (ex. Stephanie is a modified wild personality).
+                elif default_prefix is not None: #A default is used when one personality is similar to anouther and has only specific responses overwritten (ex. Stephanie is a modified wild personality).
                     self.response_dict[ending] = self.default_prefix + "_" + ending
                 else:
                     self.response_dict[ending] = "relaxed_" + ending #If nothing is given we assume we don't want to crash and we should put in some sort of value.

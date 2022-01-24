@@ -8,8 +8,7 @@ init 1300:
             return valid_titles
 
         def alexia_possessive_titles(the_person):
-            valid_titles = []
-            valid_titles.append("Your old classmate")
+            valid_titles = ["Your old classmate"]
             return valid_titles
 
         def alexia_player_titles(the_person):

@@ -99,7 +99,6 @@ init 1 python:
     #     desc = "serum description",
     #     positive_slug = "description of the positive effects",
     #     negative_slug = "description of the negative effects",
-    #     value_added = a_number,
     #     research_added = a_number,
     #     slots_added = a_number,
     #     production_added = a_number,
@@ -134,9 +133,10 @@ init 1 python:
         requires = [hair_lighten_dye, hair_darken_dye],
         tier = 1,
         research_needed = 100,
-        exclude_tags = "Dye",
+        exclude_tags = ["Dye"],
         clarity_cost = 50,
         mental_aspect = 0, physical_aspect = 4, sexual_aspect = 0, medical_aspect = 1, flaws_aspect = 0, attention = 1)
+
     #################
     # Tier 2 Traits #
     #################
@@ -202,4 +202,5 @@ label instantiate_serum_trait_blueprints(): # Called from instantiate_serum_trai
         list_of_traits.append(hair_dye_trait)
         list_of_traits.append(eye_dye_trait)
         list_of_traits.append(breast_milk_serum_production)
+
     return

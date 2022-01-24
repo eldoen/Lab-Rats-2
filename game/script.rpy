@@ -53,7 +53,7 @@ init -2: # Establish some platform specific stuff.
 init -2 python:
     list_of_positions = [] # These are sex positions that the PC can make happen while having sex.
     list_of_girl_positions = [] # These are sex positions that the girl can make happen while having sex.
-    list_of_strip_positions = [] # These are positions a girl can take while putting on a stirp tease for you.
+    list_of_strip_positions = [] # These are positions a girl can take while putting on a strip tease for you.
 
     day_names = ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"] #Arrays that hold the names of the days of the week and times of day. Arrays start at 0.
     time_names = ["Early Morning","Morning","Afternoon","Evening","Night"]
@@ -111,6 +111,7 @@ init 0 python:
 
     #config.debug_text_overflow = True
     config.debug_text_overflow = False #If enabled finds locations with text overflow. Turns out I have a lot, kind of blows up when enabled and generates a large text file. A problem for another day.
+
     config.debug_image_cache = False
     config.debug = True
 
@@ -409,6 +410,7 @@ label game_loop(): ##THIS IS THE IMPORTANT SECTION WHERE YOU DECIDE WHAT ACTIONS
         $ mc.location.show_background() #Redraw the background in case it has changed due to the new time.
 
     jump game_loop
+
 
 label change_location(the_place):
     $ renpy.scene()
@@ -720,7 +722,7 @@ init 0 python:
     faq_action = Action("Check the FAQ",faq_action_requirement,"faq_action_description",
         menu_tooltip = "Answers to frequently asked questions about Lab Rats 2.")
 
-        
+
 
     downtown_search_action = Action("Wander the streets {image=gui/heart/Time_Advance.png}", downtown_search_requirement, "downtown_search_label",
         menu_tooltip = "Spend time exploring the city and seeing what interesting locations it has to offer.")
@@ -736,15 +738,12 @@ init 0 python:
     # test_action = Action("This is a test", faq_action_requirement, "debug_label")
     # integration_test_action = Action("Run Integration Tests", integration_test_dev_requirement, "run_integration_tests")
 
-
     ##Actions unlocked by policies##
     set_uniform_action = Action("Manage Employee Uniforms",set_uniform_requirement,"uniform_manager_loop")
     set_serum_action = Action("Set Daily Serum Doses",set_serum_requirement,"set_serum_description")
 
     business_wardrobe = wardrobe_from_xml("Business_Wardrobe") #Used in some of Mom's events when we need a business-ish outfit
 
-
-init 0 python:
     def add_stripclub_strippers():
         for i in __builtin__.range(0,4):
             a_girl = create_random_person(start_sluttiness = renpy.random.randint(15,30))
@@ -754,7 +753,12 @@ init 0 python:
             stripclub_strippers.append(a_girl)
         return
 
-    stripclub_wardrobe = wardrobe_from_xml("Stripper_Wardrobe")
+    def initialize_stephanie_in_our_business():
+        mc.business.add_employee_research(stephanie)
+        mc.business.hire_head_researcher(stephanie)
+        stephanie.location.move_person(stephanie, lobby)
+        return
+
 
 label initialize_game_state(character_name,business_name,last_name,stat_array,skill_array,_sex_array,max_num_of_random=5): #Gets all of the variables ready. TODO: Move some of this stuff to an init block?
 
@@ -776,7 +780,7 @@ label initialize_game_state(character_name,business_name,last_name,stat_array,sk
         hall = Room("main hall","Home", background_image = standard_house_backgrounds[:],
             map_pos = [3,3], lighting_conditions = standard_indoor_lighting)
         bedroom = Room("your bedroom", "Your Bedroom", background_image = standard_bedroom_backgrounds[:],
-            actions = [sleep_action,bedroom_masturbate_action,faq_action],
+            actions = [sleep_action,bedroom_masturbate_action,faq_action,integration_test_action, test_action],
             map_pos = [3,2], lighting_conditions = standard_indoor_lighting)
         lily_bedroom = Room("Lily's bedroom", "Lily's Bedroom", background_image = standard_bedroom_backgrounds[:],
             map_pos = [2,3], lighting_conditions = standard_indoor_lighting)
@@ -861,10 +865,16 @@ label initialize_game_state(character_name,business_name,last_name,stat_array,sk
             map_pos = [10,10], visible = False, lighting_conditions = standard_indoor_lighting)
 
         ##PC starts in his bedroom##
-        mc = MainCharacter(bedroom,character_name,last_name, Business(business_name, m_division, p_division, rd_division, office, office),stat_array,skill_array,_sex_array)
+        mc = MainCharacter(bedroom,character_name,last_name,
+            Business(business_name, m_division, p_division, rd_division,
+                office, office),
+                stat_array,skill_array,_sex_array,
+        )
+        mc.change_locked_clarity(50, add_to_log = False) #PC starts with 50 locked clarity, which can be masturbated into the 25 Clarity needed to unlock the med trait.
+        mc.generate_goals()
 
         town_relationships = RelationshipArray() #Singleton class used to track relationships. Removes need for recursive character references (which messes with Ren'py's saving methods)
-        mc.generate_goals()
+        generate_premade_list() # Creates the list with all the premade characters for the game in it. Without this we both break the policies call in create_random_person, and regenerate the premade list on each restart.
 
         ##Keep a list of all the places##
         list_of_places.append(bedroom)
@@ -907,7 +917,6 @@ label initialize_game_state(character_name,business_name,last_name,stat_array,sk
             room.add_object(make_bed())
             room.add_object(make_window())
 
-        room = None
 
         home_bathroom.add_object(make_wall())
         home_bathroom.add_object(Object("shower door", ["Lean"]))#, sluttiness_modifier = 5, obedience_modifier = 5))
@@ -1012,9 +1021,10 @@ label initialize_game_state(character_name,business_name,last_name,stat_array,sk
                 for x in range(0,ran_num):
                     the_person = create_random_person()
                     the_person.generate_home()
-                    the_person.home.add_person(the_person) #We are using create_random_person instead of make_person because we want premade character bodies to be hirable instead of being eaten up by towns-folk.
+                    place.add_person(the_person) #We are using create_random_person instead of make_person because we want premade character bodies to be hirable instead of being eaten up by towns-folk.
 
-        generate_premade_list() # Creates the list with all the pre-made characters for the game in it. Without this we both break the policies call in create_random_person, and regenerate the premade list on each restart.
+        stripclub_wardrobe = wardrobe_from_xml("Stripper_Wardrobe")
+        business_wardrobe = wardrobe_from_xml("Business_Wardrobe") #Used in some of Mom's events when we need a business-ish outfit
 
         stripclub_strippers = MappedList(Person, all_people_in_the_game)
         add_stripclub_strippers()
