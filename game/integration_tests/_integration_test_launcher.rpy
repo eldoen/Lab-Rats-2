@@ -34,7 +34,7 @@ label run_integration_tests():
             else:
                 "Integration tests successful."
 
-        "Run specific integraiton test.":
+        "Run specific integration test.":
             python:
                 choices = []
                 for integration_test in integration_test_labels:
