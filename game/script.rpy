@@ -733,8 +733,8 @@ init 0 python:
         menu_tooltip = "Select and import a wardrobe file, adding all outfits to your current wardrobe.")
 
     ## Temp and Test Actions
-    test_action = Action("This is a test", faq_action_requirement, "debug_label")
-    integration_test_action = Action("Run Integration Tests", integration_test_dev_requirement, "run_integration_tests")
+    # test_action = Action("This is a test", faq_action_requirement, "debug_label")
+    # integration_test_action = Action("Run Integration Tests", integration_test_dev_requirement, "run_integration_tests")
 
     ##Actions unlocked by policies##
     set_uniform_action = Action("Manage Employee Uniforms",set_uniform_requirement,"uniform_manager_loop")
@@ -773,7 +773,7 @@ label initialize_game_state(character_name,business_name,last_name,stat_array,sk
         hall = Room("main hall","Home", background_image = standard_house_backgrounds[:],
             map_pos = [3,3], lighting_conditions = standard_indoor_lighting)
         bedroom = Room("your bedroom", "Your Bedroom", background_image = standard_bedroom_backgrounds[:],
-            actions = [sleep_action,bedroom_masturbate_action,faq_action,integration_test_action, test_action],
+            actions = [sleep_action,bedroom_masturbate_action,faq_action],
             map_pos = [3,2], lighting_conditions = standard_indoor_lighting)
         lily_bedroom = Room("Lily's bedroom", "Lily's Bedroom", background_image = standard_bedroom_backgrounds[:],
             map_pos = [2,3], lighting_conditions = standard_indoor_lighting)
