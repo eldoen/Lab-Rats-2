@@ -25,7 +25,7 @@ init 0 python:
         cost = 600,
         toggleable = True,
         requirement = recruitment_batch_two_requirement,
-        dependant_policies = recruitment_batch_one_policy)
+        dependent_policies = recruitment_batch_one_policy)
 
     recruitment_policies_list.append(recruitment_batch_two_policy)
 
@@ -40,7 +40,7 @@ init 0 python:
         cost = 1200,
         toggleable = True,
         requirement = recruitment_batch_three_requirement,
-        dependant_policies = recruitment_batch_two_policy)
+        dependent_policies = recruitment_batch_two_policy)
 
     recruitment_policies_list.append(recruitment_batch_three_policy)
 
@@ -65,7 +65,7 @@ init 0 python:
         cost = 800,
         toggleable = True,
         requirement = recruitment_knowledge_two_requirement,
-        dependant_policies = recruitment_knowledge_one_policy)
+        dependent_policies = recruitment_knowledge_one_policy)
     recruitment_policies_list.append(recruitment_knowledge_two_policy)
 
     def recruitment_knowledge_three_requirement():
@@ -79,7 +79,7 @@ init 0 python:
         cost = 1500,
         toggleable = True,
         requirement = recruitment_knowledge_three_requirement,
-        dependant_policies = recruitment_knowledge_two_policy)
+        dependent_policies = recruitment_knowledge_two_policy)
     recruitment_policies_list.append(recruitment_knowledge_three_policy)
 
     def recruitment_knowledge_four_requirement():
@@ -93,7 +93,7 @@ init 0 python:
         cost = 2500,
         toggleable = True,
         requirement = recruitment_knowledge_four_requirement,
-        dependant_policies = recruitment_knowledge_three_policy)
+        dependent_policies = recruitment_knowledge_three_policy)
     recruitment_policies_list.append(recruitment_knowledge_four_policy)
 
     def recruitment_skill_improvement_requirement():
@@ -118,7 +118,7 @@ init 0 python:
         cost = 1500,
         toggleable = True,
         requirement = recruitment_stat_improvement_requirement,
-        dependant_policies = recruitment_skill_improvement_policy)
+        dependent_policies = recruitment_skill_improvement_policy)
 
     recruitment_policies_list.append(recruitment_stat_improvement_policy)
 

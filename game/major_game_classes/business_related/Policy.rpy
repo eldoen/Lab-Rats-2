@@ -1,7 +1,7 @@
 init -2 python:
     class Policy(renpy.store.object): # An upgrade that can be purchased by the character for their business.
         def __init__(self, name, desc, requirement, cost, toggleable = False,
-            on_buy_function = None, extra_arguments = None, on_apply_function = None, on_remove_function = None, on_turn_function = None, on_move_function = None, on_day_function = None, dependant_policies = None):
+            on_buy_function = None, extra_arguments = None, on_apply_function = None, on_remove_function = None, on_turn_function = None, on_move_function = None, on_day_function = None, dependent_policies = None):
 
             self.name = name #A short name for the policy.
             self.desc = desc #A text description of the policy.
@@ -23,15 +23,15 @@ init -2 python:
             self.on_move_function = on_move_function
             self.on_day_function = on_day_function
 
-            if dependant_policies is None:
-                self.dependant_policies = []
-            elif isinstance(dependant_policies, Policy):
-                self.dependant_policies = [dependant_policies] #If we hand a single item wrap it in a list for iteration purposes
+            if dependent_policies is None:
+                self.dependent_policies = []
+            elif isinstance(dependent_policies, Policy):
+                self.dependent_policies = [dependent_policies] #If we hand a single item wrap it in a list for iteration purposes
             else:
-                self.dependant_policies = dependant_policies # Otherwise we have a list already.
+                self.dependent_policies = dependent_policies # Otherwise we have a list already.
 
             self.depender_policies = MappedList(Policy, all_policies_in_the_game) #These policies depend _on_ us, and are declared when other policies are defined. If they are on, we cannot toggle off.
-            for policy in self.dependant_policies:
+            for policy in self.dependent_policies:
                 policy.depender_policies.append(self) #Esentially builds a two way linked list of policies while allowing us to only define the requirements from the base up. Also conveniently stops dependency cycles from forming.
 
 
@@ -76,8 +76,8 @@ init -2 python:
                         if policy.is_active(): #If any of the policies that rely on this are active we cannot toggle off.
                             return_toggle = False
 
-                else: # We are owned but not active. We can only be toggled if every policy in our dependant list is active
-                    for policy in self.dependant_policies:
+                else: # We are owned but not active. We can only be toggled if every policy in our dependent list is active
+                    for policy in self.dependent_policies:
                         if not policy.is_active():
                             return_toggle = False
 

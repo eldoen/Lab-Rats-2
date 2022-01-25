@@ -192,7 +192,7 @@ screen policy_selection_screen():
 
                                     else:
                                         $ the_button_name += "\n{size=12}{color=#800000}Requires Active:\n"
-                                        $ blocking_policies = [a_policy for a_policy in selected_policy.dependant_policies if not a_policy.is_active()]
+                                        $ blocking_policies = [a_policy for a_policy in selected_policy.dependent_policies if not a_policy.is_active()]
                                         for requirement in blocking_policies:
                                             $ the_button_name += requirement.name
                                             if requirement is not blocking_policies[-1]:

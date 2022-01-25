@@ -292,7 +292,7 @@ init -2 python:
 
             #Compute efficiency drop
             for person in [x for x in self.supply_team + self.research_team + self.production_team + self.market_team if x in self.s_div.people + self.r_div.people + self.p_div.people + self.m_div.people]:
-                self.team_effectiveness -= 1 #TODO: Make this dependant on charisma (High charisma have a lower impact on effectiveness) and happiness.
+                self.team_effectiveness -= 1 #TODO: Make this dependent on charisma (High charisma have a lower impact on effectiveness) and happiness.
 
             #Compute efficiency rise from HR
             for person in [x for x in self.hr_team if x in self.h_div.people]:

@@ -80,7 +80,7 @@ init -2 python:
         #Layer 3: Over shirts
         #Layer 4: Over everything
 
-        def __init__(self, name, layer, hide_below, anchor_below, proper_name, draws_breasts, underwear, slut_value, has_extension = None, is_extension = False, colour = None, tucked = False, body_dependant = True,
+        def __init__(self, name, layer, hide_below, anchor_below, proper_name, draws_breasts, underwear, slut_value, has_extension = None, is_extension = False, colour = None, tucked = False, body_dependent = True,
         opacity_adjustment = 1, whiteness_adjustment = 0.0, contrast_adjustment = 1.0, supported_patterns = None, pattern = None, colour_pattern = None, ordering_variable = 0, display_name = None,
         can_be_half_off = False, half_off_regions = None, half_off_ignore_regions = None, half_off_gives_access = None, half_off_reveals = None, constrain_regions = None,
         crop_offset_dict = None):
@@ -104,12 +104,12 @@ init -2 python:
             self.supported_patterns["Default"] = None
 
             for set in supported_positions:
-                self.position_sets[set] = Clothing_Images(proper_name,set,draws_breasts, body_dependant = body_dependant)
+                self.position_sets[set] = Clothing_Images(proper_name,set,draws_breasts, body_dependent = body_dependent)
                 if supported_patterns and not proper_name is None:
                     for the_pattern in supported_patterns:
                         pattern_name = supported_patterns[the_pattern]
                         if pattern_name:
-                            self.pattern_sets[set + "_" + pattern_name] = Clothing_Images(proper_name+"_"+pattern_name, set, draws_breasts, body_dependant = body_dependant)
+                            self.pattern_sets[set + "_" + pattern_name] = Clothing_Images(proper_name+"_"+pattern_name, set, draws_breasts, body_dependent = body_dependent)
 
 
             # self.crop_offset_dict = master_clothing_offset_dict.get(self.proper_name, {}) # All of the offsets are stored in a single array and distributed. Saves time having to manually change values any time a clothing item render is updated.
@@ -125,7 +125,7 @@ init -2 python:
                 self.colour = colour
             self.tucked = tucked #Items of clothign that are tucked are drawn a "half level", aka we cycle thorugh all layer 2's and do untucked items, then do all tucked items.
 
-            self.body_dependant = body_dependant #Items that are not body dependant are always draw as if they are on a standard body, ideal for facial accessories that do not vary with emotion like earings.
+            self.body_dependent = body_dependent #Items that are not body dependent are always draw as if they are on a standard body, ideal for facial accessories that do not vary with emotion like earings.
 
             self.whiteness_adjustment = whiteness_adjustment #A modifier applied to the greyscale version of a piece of clothing to bring it closer to a white piece of clothing instead of grey. Default is 0, ranges from -1 to 1.
             self.contrast_adjustment = contrast_adjustment #Changes the contrast, good for getting proper whites and blacks after changing whiteness. Default is 1.0, 0.0 is min contrast, >1 is increasing contrast
@@ -240,7 +240,7 @@ init -2 python:
             return cloth_info
 
         def generate_item_image_name(self, body_type, tit_size, position):
-            if not self.body_dependant:
+            if not self.body_dependent:
                 body_type = "standard_body"
             image_set = self.position_sets.get(position)
             if image_set is None:
@@ -254,7 +254,7 @@ init -2 python:
             return image_name
 
         def generate_raw_image(self, body_type, tit_size, position): #Returns the raw ZipFileImage or Image, instead of the displayable (used for generating region masks)
-            if not self.body_dependant:
+            if not self.body_dependent:
                 body_type = "standard_body"
             image_set = self.position_sets.get(position)
             if image_set is None:
@@ -271,7 +271,7 @@ init -2 python:
             if lighting is None:
                 lighting = [1,1,1]
 
-            if not self.body_dependant:
+            if not self.body_dependent:
                 body_type = "standard_body"
 
             image_set = self.position_sets.get(position) # The image set we are using should corrispond to the set named "positon".
@@ -370,7 +370,7 @@ init -2 python:
 
             if self.half_off or (self.has_extension and self.has_extension.half_off):
                 #NOTE: This actually produces some really good looking effects for water/stuff. We should add these kinds of effects as a general thing, probably on the pattern level.
-                #NOTE: Particularly for water/stains, this could work really well (and can use skin-tight region marking, ie. not clothing item dependant).
+                #NOTE: Particularly for water/stains, this could work really well (and can use skin-tight region marking, ie. not clothing item dependent).
 
                 composite_list = [position_size_dict.get(position)]
 

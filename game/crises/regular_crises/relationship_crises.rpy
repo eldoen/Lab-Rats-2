@@ -1,4 +1,4 @@
-# Holds all relationship dependant relationships (your girlfriend, paramour, friends, enemies, ect.)
+# Holds all relationship dependent relationships (your girlfriend, paramour, friends, enemies, ect.)
 
 
 init 1 python:

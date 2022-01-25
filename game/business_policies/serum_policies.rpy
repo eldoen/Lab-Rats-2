@@ -24,7 +24,7 @@ init 0 python:
         cost = 2000,
         toggleable = True,
         requirement = mandatory_unpaid_serum_testing_policy_requirement,
-        dependant_policies = mandatory_paid_serum_testing_policy)
+        dependent_policies = mandatory_paid_serum_testing_policy)
 
     serum_policies_list.append(mandatory_unpaid_serum_testing_policy)
 
@@ -39,7 +39,7 @@ init 0 python:
         cost = 5000,
         toggleable = True,
         requirement = daily_serum_dosage_policy_requirement,
-        dependant_policies = mandatory_unpaid_serum_testing_policy)
+        dependent_policies = mandatory_unpaid_serum_testing_policy)
 
     serum_policies_list.append(daily_serum_dosage_policy)
 
@@ -71,7 +71,7 @@ init 0 python:
         requirement = batch_size_2_requirement,
         on_buy_function = batch_size_increase,
         extra_arguments = {"increase_amount":2},
-        dependant_policies = serum_size_1_policy)
+        dependent_policies = serum_size_1_policy)
     serum_policies_list.append(serum_size_2_policy)
 
     def batch_size_3_requirement():
@@ -87,7 +87,7 @@ init 0 python:
         requirement = batch_size_3_requirement,
         on_buy_function = batch_size_increase,
         extra_arguments = {"increase_amount":2},
-        dependant_policies = serum_size_2_policy)
+        dependent_policies = serum_size_2_policy)
     serum_policies_list.append(serum_size_3_policy)
 
     def serum_production_improvement(increase_amount = 1, operating_cost_increase = 0):
@@ -163,5 +163,5 @@ init 0 python:
         requirement = production_line_addition_2_requirement,
         on_buy_function = add_production_lines,
         extra_arguments = {"amount":1},
-        dependant_policies = production_line_addition_1_policy)
+        dependent_policies = production_line_addition_1_policy)
     serum_policies_list.append(production_line_addition_2_policy)

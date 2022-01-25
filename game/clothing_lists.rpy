@@ -651,10 +651,10 @@ init -1:
         ##Accessories##
         earings_list = [] #Note: now more properly known as facial accessories
 
-        chandelier_earings = Clothing("Chandelier Earrings", 2, False, False, "Chandelier_Earings", False, False, 0, body_dependant = False, display_name = "earings")
+        chandelier_earings = Clothing("Chandelier Earrings", 2, False, False, "Chandelier_Earings", False, False, 0, body_dependent = False, display_name = "earings")
         earings_list.append(chandelier_earings)
 
-        gold_earings = Clothing("Gold Earings", 2 , False, False, "Gold_Earings", False, False, 0, body_dependant = False, display_name = "earings")
+        gold_earings = Clothing("Gold Earings", 2 , False, False, "Gold_Earings", False, False, 0, body_dependent = False, display_name = "earings")
         earings_list.append(gold_earings)
 
         modern_glasses = Facial_Accessory("Modern Glasses", 2, False, False, "Modern_Glasses", False, False, 0, display_name = "earings")
@@ -666,7 +666,7 @@ init -1:
         sunglasses = Facial_Accessory("Sunglasses", 2, False, False, "Sunglasses", False, False, 0, display_name = "sunglasses")
         earings_list.append(sunglasses)
 
-        head_towel = Clothing("Head Towel", 2, False, False, "Head_Towel", False, False, 0, body_dependant = False, display_name = "head towel")
+        head_towel = Clothing("Head Towel", 2, False, False, "Head_Towel", False, False, 0, body_dependent = False, display_name = "head towel")
         #earings_list.append(head_towel) #TEMPORARY FOR TESTING
 
         ball_gag = Facial_Accessory("Ball Gag", 2, False, False, "Ball_Gag", False, False, 15, display_name = "Gag", modifier_lock = "blowjob") #TODO: Get the ball gag text modifier working

@@ -172,7 +172,7 @@ init 0 python:
         toggleable = True,
         requirement = draconian_enforcement_policy_requirement,
         on_day_function = draconian_enforcement_on_day,
-        dependant_policies = strict_enforcement)
+        dependent_policies = strict_enforcement)
     organisation_policies_list.append(draconian_enforcement)
 
     def bureaucratic_nightmare_policy_requirement():
@@ -267,7 +267,7 @@ init 0 python:
         toggleable = True,
         requirement = mandatory_staff_reading_requirement,
         on_day_function = mandatory_staff_reading_on_day,
-        dependant_policies = office_conduct_guidelines)
+        dependent_policies = office_conduct_guidelines)
     organisation_policies_list.append(mandatory_staff_reading)
 
     def superliminal_office_messaging_requirement():
@@ -292,7 +292,7 @@ init 0 python:
         toggleable = True,
         requirement = superliminal_office_messaging_requirement,
         on_day_function = superliminal_office_messaging_on_day,
-        dependant_policies = mandatory_staff_reading)
+        dependent_policies = mandatory_staff_reading)
     organisation_policies_list.append(superliminal_office_messaging)
 
     def max_attention_increase(amount = 100):
