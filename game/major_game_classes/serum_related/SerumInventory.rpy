@@ -13,6 +13,8 @@ init -2 python:
             return 0
 
         def get_any_serum_count(self):
+            if not self.serums_held:
+                return 0
             return __builtin__.sum(list(zip(*self.serums_held))[1])
 
         def get_matching_serum_count(self, check_function): #Hand a function to the inventory and get a count of the number of serums that match that requirement.
@@ -23,6 +25,8 @@ init -2 python:
             return count
 
         def get_max_serum_count(self): #Returns the count of the highest group of serums you have available.
+            if not self.serums_held:
+                return 0
             return __builtin__.max(list(zip(*self.serums_held))[1])
 
         def change_serum(self, serum_design,change_amount): ##Serum count must be greater than 0. Adds to stockpile of serum_design if it is already there, creates it otherwise.
@@ -40,8 +44,12 @@ init -2 python:
 
 
         def get_serum_type_list(self): ## returns a list of all the serum types that are in the inventory, without their counts.
+            if not self.serums_held:
+                return []
             return list(zip(*self.serums_held))[0]
 
         def get_highest_serum_count(self):
             # sort the list; get the last tuple [-1]; get the design [0]
+            if not self.serums_held:
+                return None
             return sorted(self.serums_held,key=lambda x:x[1])[-1][0]
