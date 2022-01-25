@@ -222,9 +222,9 @@ label work_walk_in_label(the_person): #Walk into the room and find someone mastu
                 $ the_item = the_person.outfit.get_lower_top_layer()
                 $ mc.change_locked_clarity(10)
                 if the_item:
-                    "[the_person.possessive_title] swivels her chair around to face you, wiping her hand off onto her thigh."
-                else:
                     "[the_person.possessive_title] swivels her chair around to face you, wiping her hand off onto her [the_item.display_name]."
+                else:
+                    "[the_person.possessive_title] swivels her chair around to face you, wiping her hand off onto her thigh."
                 $ the_person.change_slut(1 + the_person.get_opinion_score("masturbating"), 40)
                 the_person "I, was just... relieving some tension. Have you read some of our product reports?"
                 the_person "They really got my motor running and I couldn't focus."

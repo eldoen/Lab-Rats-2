@@ -285,39 +285,14 @@ init -2 python:
                     new_colour = new_colour.multiply_hsv_saturation(0.1)
 
             flattened_phrase = remove_punctuation(what).lower() #Strip the entire phrase so we can check for individual words.
-            if "knocked up" in new_what.lower():
-                if self.arousal > 40 - (10*self.get_opinion_score("bareback sex") + self.get_opinion_score("creampies")) or self.has_role(breeder_role):
-                    start_index = new_what.lower().find("knocked up")
-                    start_substring = new_what[start_index:start_index + len("knocked up")]
-                    replace_substring = "{sc=1}"+self.wrap_string(start_substring, the_colour = new_colour)+"{/sc}"
-                    new_what = new_what.replace(start_substring, replace_substring)
-
-            if "knock me up" in new_what.lower():
-                if self.arousal > 40 - (10*self.get_opinion_score("bareback sex") + self.get_opinion_score("creampies")) or self.has_role(breeder_role):
-                    start_index = new_what.lower().find("knock me up")
-                    start_substring = new_what[start_index:start_index + len("knock me up")]
-                    replace_substring = "{sc=1}"+self.wrap_string(start_substring, the_colour = new_colour)+"{/sc}"
-                    new_what = new_what.replace(start_substring, replace_substring)
-
-            if "preg me" in new_what.lower():
-                if self.arousal > 40 - (10*self.get_opinion_score("bareback sex") + self.get_opinion_score("creampies")) or self.has_role(breeder_role):
-                    start_index = new_what.lower().find("preg me")
-                    start_substring = new_what[start_index:start_index + len("preg me")]
-                    replace_substring = "{sc=1}"+self.wrap_string(start_substring, the_colour = new_colour)+"{/sc}"
-                    new_what = new_what.replace(start_substring, replace_substring)
-
-            if "oh god" in new_what.lower():
-                if self.arousal > 40 - (10*self.get_opinion_score("bareback sex") + self.get_opinion_score("creampies")) or self.has_role(breeder_role):
-                    start_index = new_what.lower().find("oh god")
-                    start_substring = new_what[start_index:start_index + len("oh god")]
-                    replace_substring = "{sc=1}"+self.wrap_string(start_substring, the_colour = new_colour)+"{/sc}"
-                    new_what = new_what.replace(start_substring, replace_substring)
-
-            if "oh my god" in new_what.lower():
-                if self.arousal > 40 - (10*self.get_opinion_score("bareback sex") + self.get_opinion_score("creampies")) or self.has_role(breeder_role):
-                    start_index = new_what.lower().find("oh my god")
-                    start_substring = new_what[start_index:start_index + len("oh my god")]
-                    replace_substring = "{sc=1}"+self.wrap_string(start_substring, the_colour = new_colour)+"{/sc}"
+            # this is likely bugged; it doesn't account for changes from removing punctuation or personalising text
+            for phrase in ['knocked up', 'knock me up', 'preg me', 'oh god', 'oh my god']:
+                if phrase in flattened_phrase and\
+                        self.arousal > 40 - (10*self.get_opinion_score("bareback sex") + self.get_opinion_score("creampies"))\
+                        or self.has_role(breeder_role):
+                    start_index = new_what.lower().find(phrase)
+                    start_substring = new_what[start_index:start_index + len(phrase)]
+                    replace_substring = "{sc=1}"+self.wrap_string(start_substring, the_colour=new_colour)+"{/sc}"
                     new_what = new_what.replace(start_substring, replace_substring)
 
 
