@@ -264,7 +264,7 @@ label sister_walk_in_label(the_person):
                         "You step out of the room to give her some time to recover."
 
                     elif the_report.get("guy orgasms", 0) > 0:
-                        $ the_person.draw_person(position = "stand4", emotion = "angry")
+                        $ the_person.draw_person(position="stand4", emotion="angry")
                         the_person "So... Is that it?"
                         mc.name "What do you mean?"
                         $ the_person.change_love(-2)
@@ -277,7 +277,7 @@ label sister_walk_in_label(the_person):
                         $ the_person.draw_person(position = "stand4", emotion = "angry")
                         the_person "So... are you finished?"
                         mc.name "Heh, yeah. Sorry [the_person.title], I'm just not feeling it."
-                        $ the_person.draw_person(position = "missionary", emotion = "angry")
+                        $ the_person.draw_person(position="missionary", emotion="angry")
                         "She frowns, but nods. She gathers her blankets over herself as you are walking out of her room."
                         $ the_person.change_obedience(-2)
 
@@ -379,7 +379,7 @@ label nude_walk_in_label(the_person):
     else:
         # She's in her underwear
         $ the_person.apply_outfit(the_person.wardrobe.get_random_appropriate_underwear(the_person.effective_sluttiness(), guarantee_output = True))
-        $ the_person.draw_person(position = "sitting")
+        $ the_person.draw_person(position="sitting")
         $ mc.change_locked_clarity(10)
         "You open the door to [the_person.possessive_title]'s room and find her sitting on her bed, wearing nothing but her underwear."
         if the_person.effective_sluttiness("underwear_nudity") < (30 - (the_person.get_opinion_score("not wearing anything")*10)):

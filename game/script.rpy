@@ -577,7 +577,7 @@ init 0 python:
         menu_tooltip = "Decide what serum designs are being produced. Production is divided between multiple factory lines, and auto sell thresholds can be set to automatically flag serum for sale.")
     pick_supply_goal_action = Action("Set the amount of supply you would like to maintain.", pick_supply_goal_action_requirement,"pick_supply_goal_action_description",
         menu_tooltip = "Set a maximum amount of serum you and your staff will attempt to purchase.")
-    policy_purhase_action = Action("Manage business policies.", policy_purchase_requirement,"policy_purchase_description",
+    policy_purchase_action = Action("Manage business policies.", policy_purchase_requirement,"policy_purchase_description",
         menu_tooltip = "New business policies changes the way your company runs and expands your control over it. Once purchased business policies are always active.")
     set_head_researcher_action = Action("Select a Head Researcher.", head_researcher_select_requirement, "head_researcher_select_description",
         menu_tooltip = "Pick a member of your R&D staff to be your head researcher. A head resercher with a high intelligence score will increase the amount of research produced by the entire division.")
@@ -681,7 +681,7 @@ label initialize_game_state(character_name,business_name,last_name,stat_array,sk
         lobby = Room(business_name + " lobby",business_name + " Lobby", background_image = standard_office_backgrounds[:],
             map_pos = [11,3], tutorial_label = "lobby_tutorial_intro", lighting_conditions = standard_indoor_lighting)
         office = Room("main office","Main Office", background_image = standard_office_backgrounds[:],
-            actions = [policy_purhase_action,hr_work_action,supplies_work_action,interview_action,pick_supply_goal_action,set_uniform_action,set_serum_action],
+            actions = [policy_purchase_action,hr_work_action,supplies_work_action,interview_action,pick_supply_goal_action,set_uniform_action,set_serum_action],
             map_pos = [11,2], tutorial_label = "office_tutorial_intro", lighting_conditions = standard_indoor_lighting)
         m_division = Room("marketing division","Marketing Division", background_image = standard_office_backgrounds[:],
             actions = [sell_serum_action, market_work_action,set_company_model_action],

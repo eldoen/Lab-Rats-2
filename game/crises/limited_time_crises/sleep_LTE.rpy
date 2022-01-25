@@ -29,7 +29,7 @@ label sleeping_walk_in_label(the_person): #TODO: This event is currently for Mom
     python:
         (sleep_wear, ran_num) = the_person.event_triggers_dict.get("event_sleepwear", (None, 1))
         if sleep_wear is None or ran_num < day:
-            sleep_wear = the_person.wardrobe.get_random_appropriate_underwear(the_person.effective_sluttiness(), guarantee_output = True)
+            sleep_wear = the_person.wardrobe.get_random_appropriate_underwear(the_person.effective_sluttiness(), guarantee_output=True)
             the_person.event_triggers_dict["event_sleepwear"] = (sleep_wear, day)
 
         the_person.apply_outfit(sleep_wear) #She's sleeping in her underwear.
