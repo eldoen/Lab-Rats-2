@@ -46,7 +46,7 @@ init -2 python:
         def get_serum_type_list(self): ## returns a list of all the serum types that are in the inventory, without their counts.
             if not self.serums_held:
                 return []
-            return list(zip(*self.serums_held))[0]
+            return list(map(list, zip(*self.serums_held)))[0]
 
         def get_highest_serum_count(self):
             # sort the list; get the last tuple [-1]; get the design [0]
