@@ -125,7 +125,7 @@ init -1:
             mental_aspect = 0, physical_aspect = 0, sexual_aspect = 0, medical_aspect = 0, flaws_aspect = 1, attention = 1)
     
         anxiety_provoking = SerumTrait(name = "Anxiety Provoking",
-            desc = "An unintended interaction creates a subtle but pervasive sense of anxiety in the recipient. This has a direct effect on their happiness.",
+            desc = "An unintended interaction creates a subtle but pervasive sense of anxiety in the recipient. This has a direct effect on their happiness",
             positive_slug = "",
             negative_slug = "-3 Happiness/Turn",
             on_turn = anxiety_provoking_on_turn,
