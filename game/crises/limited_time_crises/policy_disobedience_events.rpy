@@ -5,9 +5,8 @@
 
 init -1 python:
     def uniform_disobedience_on_move(uniform_disobedience_priority): #This is an on_move function called by the business on_move phase. It is only run once, by the uniform policy with the highest priority
-        highest_active_priority = __builtin__.max([policy.extra_arguments.get("uniform_disobedience_priority",-1)\
-            for policy in mc.business.active_policy_list if "uniform_disobedience_priority" in policy.extra_arguments])
-        
+        highest_active_priority = __builtin__.max([policy.extra_arguments.get("uniform_disobedience_priority",-1) for policy in mc.business.active_policy_list if "uniform_disobedience_priority" in policy.extra_arguments])
+
         if highest_active_priority != uniform_disobedience_priority: #ie. only run this function if we have the highest priority, otherwise some other policy is responsible for it.
             return
 

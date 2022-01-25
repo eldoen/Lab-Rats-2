@@ -144,7 +144,7 @@ init -2 python:
 
             self.on_room_enter_event_list = [] #Checked when you enter a room with this character. If an event is in this list and enabled it is run (and no other event is until the room is reentered)
                 # If handed a list of [action, positive_int], the integer is how many turns this action is kept around before being removed, triggered or not.
-            self.on_talk_event_list = [] #Checked when you start to interact with a character. If an event is in this list and enabled it is run (and no other event is until you talk to the character again.)\
+            self.on_talk_event_list = [] #Checked when you start to interact with a character. If an event is in this list and enabled it is run (and no other event is until you talk to the character again.)
                 # If handed a list of [action, positive_int], the integer is how many turns this action is kept around before being removed, triggered or not.
 
             self.event_triggers_dict = {} #A dict used to store extra parameters used by events, like how many days has it been since a performance review.
@@ -287,9 +287,7 @@ init -2 python:
             flattened_phrase = remove_punctuation(what).lower() #Strip the entire phrase so we can check for individual words.
             # this is likely bugged; it doesn't account for changes from removing punctuation or personalising text
             for phrase in ['knocked up', 'knock me up', 'preg me', 'oh god', 'oh my god']:
-                if phrase in flattened_phrase and\
-                        self.arousal > 40 - (10*self.get_opinion_score("bareback sex") + self.get_opinion_score("creampies"))\
-                        or self.has_role(breeder_role):
+                if phrase in flattened_phrase and self.arousal > 40 - (10*self.get_opinion_score("bareback sex") + self.get_opinion_score("creampies")) or self.has_role(breeder_role):
                     start_index = new_what.lower().find(phrase)
                     start_substring = new_what[start_index:start_index + len(phrase)]
                     replace_substring = "{sc=1}"+self.wrap_string(start_substring, the_colour=new_colour)+"{/sc}"

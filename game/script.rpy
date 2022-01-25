@@ -375,7 +375,7 @@ label talk_person(the_person, keep_talking = True):
         $ _return.call_action(the_person)
 
         if the_person in mc.location.people and time_of_day == starting_time_of_day and keep_talking:
-            call talk_person(the_person) from _call_talk_person_1 #If we're in the same place and time hasn't advanced keep talking to them until we stop talking on purpose.
+            call talk_person(the_person) from _call_talk_person_31 #If we're in the same place and time hasn't advanced keep talking to them until we stop talking on purpose.
 
         $ explicit_exit = False
     $ clear_scene()
@@ -524,7 +524,7 @@ label advance_time:
                     the_crisis = get_random_from_weighted_list(possible_crisis_list, return_everything = True)
                     del possible_crisis_list
                     if the_crisis is not None:
-                        limited_time_event = Limited_Time_Action(the_crisis[0], the_crisis[0].event_duration) #Wraps the action so that we can have an instanced duration counter and add/remove it easily.\
+                        limited_time_event = Limited_Time_Action(the_crisis[0], the_crisis[0].event_duration) #Wraps the action so that we can have an instanced duration counter and add/remove it easily.
                         #renpy.notify("Created event: " + the_crisis[0].name + " for " + people.name)
                         if the_crisis[2] == "on_talk":
                             people.on_talk_event_list.append(limited_time_event)
@@ -757,7 +757,6 @@ label initialize_game_state(character_name,business_name,last_name,stat_array,sk
         mc.generate_goals()
 
         town_relationships = RelationshipArray() #Singleton class used to track relationships. Removes need for recursive character references (which messes with Ren'py's saving methods)
-        generate_premade_list() # Creates the list with all the premade characters for the game in it. Without this we both break the policies call in create_random_person, and regenerate the premade list on each restart.
 
         ##Keep a list of all the places##
         list_of_places.append(bedroom)
@@ -906,6 +905,7 @@ label initialize_game_state(character_name,business_name,last_name,stat_array,sk
                     the_person.generate_home()
                     place.add_person(the_person) #We are using create_random_person instead of make_person because we want premade character bodies to be hirable instead of being eaten up by towns-folk.
 
+        generate_premade_list() # Creates the list with all the premade characters for the game in it. Without this we both break the policies call in create_random_person, and regenerate the premade list on each restart.
 
         stripclub_strippers = MappedList(Person, all_people_in_the_game)
         add_stripclub_strippers()

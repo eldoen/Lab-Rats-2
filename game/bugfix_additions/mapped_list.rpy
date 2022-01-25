@@ -21,13 +21,14 @@ init -3 python:
     ##################################################################
 
     class MappedList():
-        def __init__(self, type, list_func, new_list = []):
-            self.type = type
+        def __init__(self, list_type, list_func, new_list=None):
+            self.type = list_type
             self.list_func = list_func
-            if new_list:
-                self.mapped_list = new_list
-            else:
+            # be very careful (translate: don't!) pass an empty (mutable!) list as a default arg
+            if new_list is None:
                 self.mapped_list = []
+            else:
+                self.mapped_list = new_list
 
         def __getitem__(self, key):
             if isinstance( key, slice ) :

@@ -937,7 +937,6 @@ label extra_mastery_crisis_label():
         #She's in the same room as you.
         the_person "[the_person.mc_title], I have something interesting to show you."
         $ the_person.draw_person()
-        $ the_person.draw_person()
     else:
         #She comes to meet you,
         "Your work is interrupted when [the_person.title] comes into the room."
