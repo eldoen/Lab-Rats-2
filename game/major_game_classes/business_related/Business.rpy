@@ -80,10 +80,6 @@ init -2 python:
             self.max_offered_contracts = 2
             self.offered_contracts = []
 
-
-            self.policy_list = [] #This is a list of Policy objects.
-            self.active_policy_list = [] #This is a list of currently active policies (vs just owned ones)
-
             self.message_list = [] #This list of strings is shown at the end of each day on the business update screen. Cleared each day.
             self.counted_message_list = {} #This is a dict holding the count of each message stored in it. Used when you want to have a message that is counted and the total shown at the end of the day.
             self.production_potential = 0 #How many production points the team was capable of
