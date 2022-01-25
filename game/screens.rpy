@@ -281,7 +281,7 @@ init -2 python:
         act_choice = renpy.display_menu(valid_actions_list,True,"Choice")
         return act_choice #We've shown the screen and the player picked something. return that to them.
 
-screen main_choice_display(elements_list, draw_hearts_for_people = True, draw_person_previews = True, person_preview_args = None): #Elements_list is a list of lists, with each internal list receiving an individual column
+screen main_choice_display(elements_list, draw_hearts_for_people=True, draw_person_previews=True, person_preview_args=None): #Elements_list is a list of lists, with each internal list receiving an individual column
     #The first element in a column should be the title, either text or a displayable. After that it should be a tuple of (displayable/text, return_value).
     #[["Title",["Item",Return] ]]
 

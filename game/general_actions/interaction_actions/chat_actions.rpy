@@ -245,14 +245,13 @@ init -2 python:
         dinner_date_action = Action("Ask her out to a romantic dinner", dinner_date_requirement, "dinner_date_plan_label",
             menu_tooltip = "Plan a romantic, expensive dinner with her. Impress her and you might find yourself in a more intimate setting.")
 
-        date_list = [[lunch_date_action, the_person], [movie_date_action, the_person], [dinner_date_action, the_person]]
+        date_list = ["Select Date", [lunch_date_action, the_person], [movie_date_action, the_person], [dinner_date_action, the_person]]
         for a_role in the_person.special_role:
             for a_date in a_role.role_dates:
                 date_list.append([a_date, the_person])
 
-        date_list.insert(0, "Select Date")
         date_list.append(["Never mind", None])
-        return date_list
+        return [date_list]
 
     def create_movie_date_action(the_person):
         movie_action = Action("Movie date", evening_date_trigger, "movie_date_label", args=the_person, requirement_args=1) #it happens on a tuesday.
@@ -672,9 +671,9 @@ label give_serum(the_person, add_to_log = True):
 
 label date_person(the_person): #You invite them out on a proper date
     if "action_mod_list" in globals():
-        call screen enhanced_main_choice_display(build_menu_items([get_date_plan_actions(the_person)]))
+        call screen enhanced_main_choice_display(build_menu_items(get_date_plan_actions(the_person)))
     else:
-        call screen main_choice_display([get_date_plan_actions(the_person)])
+        call screen main_choice_display(get_date_plan_actions(the_person))
     if isinstance(_return, Action):
         $ _return.call_action(the_person) #This is where you're asked to plan out the date, or whatever.
     return
@@ -1134,16 +1133,16 @@ init -2 python:
         bc_demand_action = Action("Talk about birth control", requirement = demand_bc_requirement, effect = "bc_demand_label", args = the_person, requirement_args = the_person,
             menu_tooltip = "Discuss " + the_person.title + "'s use of birth control.", priority = -5)
 
-        return ["Command", change_titles_action, wardrobe_change_action, serum_demand_action, strip_demand_action, touch_demand_action, suck_demand_action, bc_demand_action, ["Never mind", "Return"]]
+        return [["Command", change_titles_action, wardrobe_change_action, serum_demand_action, strip_demand_action, touch_demand_action, suck_demand_action, bc_demand_action], ["Never mind", "Return"]]
 
 label command_person(the_person):
     mc.name "[the_person.title], I want you to do something for me."
     the_person "Yes [the_person.mc_title]?"
 
     if "action_mod_list" in globals():
-        call screen enhanced_main_choice_display(build_menu_items([build_command_person_actions_menu(the_person)]))
+        call screen enhanced_main_choice_display(build_menu_items(build_command_person_actions_menu(the_person)))
     else:
-        call screen main_choice_display([build_command_person_actions_menu(the_person)])
+        call screen main_choice_display(build_command_person_actions_menu(the_person))
 
     if isinstance(_return, Action):
         $ _return.call_action()

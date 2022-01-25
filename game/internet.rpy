@@ -82,9 +82,9 @@ label browse_internet(is_phone = True): #TODO: Maybe make this a generic functio
     #TODO: Provide a bunch of internet browsing options. Later on this leads to "OnlyFanatics" and "InstaPic", but it might start out with just some porn (or a comment about how "normal porn just seems boring now")
 label .continue_browsing:
     if "action_mod_list" in globals():
-        call screen enhanced_main_choice_display(build_menu_items(build_phone_menu(), draw_hearts_for_people = False, draw_person_previews = False))
+        call screen enhanced_main_choice_display(build_menu_items(build_phone_menu(), draw_hearts_for_people=False, draw_person_previews=False))
     else:
-        call screen main_choice_display(build_phone_menu(), draw_hearts_for_people = False, draw_person_previews = False)
+        call screen main_choice_display(build_phone_menu(), draw_hearts_for_people=False, draw_person_previews=False)
 
     $ clear_scene()
     if _return == "Back":
@@ -102,7 +102,10 @@ label .continue_browsing:
         $ return_to_phone = True
         $ mc.start_text_convo(the_person)
 
-        call screen main_choice_display(build_text_menu(the_person))
+        if "action_mod_list" in globals():
+            call screen enhanced_main_choice_display(build_menu_items(build_text_menu(the_person)))
+        else:
+            call screen main_choice_display(build_text_menu(the_person))
         if _return == "Back":
             pass
 

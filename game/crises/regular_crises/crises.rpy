@@ -176,9 +176,7 @@ init 1 python:
         return False
 
     def broken_AC_crisis_get_watch_list_menu(person):
-        people_list = [x for x in mc.business.production_team if not x is person]
-        people_list.insert(0, "Watch")
-        return people_list
+        return [["Watch"] + [x for x in mc.business.production_team if not x is person]]
 
     broken_AC_crisis = Action("Crisis Test",broken_AC_crisis_requirement,"broken_AC_crisis_label")
     crisis_list.append([broken_AC_crisis,5])
@@ -245,7 +243,7 @@ label broken_AC_crisis_label():
 
         "Tell everyone to strip down and keep working" if casual_uniform_policy.is_active():
             if len(mc.business.production_team) > 1: #We have more than one person, do a group strip scene.
-                mc.name "I know it's uncomfortable in here right now, but we're just going to have to make due."
+                mc.name "I know it's uncomfortable in here right now, but we're just going to have to make do."
                 mc.name "If anyone feels the need to take something off to get comfortable, I'm lifting the dress code until the air conditioning is fixed."
 
                 if the_person.effective_sluttiness() < 20:
@@ -329,9 +327,9 @@ label broken_AC_crisis_label():
                         #Gives you the chance to watch one of the other girls in the department strip.
 
                     if "action_mod_list" in globals():
-                        call screen enhanced_main_choice_display(build_menu_items([broken_AC_crisis_get_watch_list_menu(the_person)]))
+                        call screen enhanced_main_choice_display(build_menu_items(broken_AC_crisis_get_watch_list_menu(the_person)))
                     else:
-                        call screen main_choice_display([broken_AC_crisis_get_watch_list_menu(the_person)])
+                        call screen main_choice_display(broken_AC_crisis_get_watch_list_menu(the_person))
                     $ girl_choice = _return
 
                     "You pay special attention to [girl_choice.title] as she follows the lead of [the_person.possessive_title]."
@@ -3007,17 +3005,13 @@ init 1 python:
                 potential_cause.append([person, "tits_visible"])
 
         if potential_cause:
-            the_cause = get_random_from_list(potential_cause)
-            return (the_cause[0], the_cause[1])
+            person, cause = get_random_from_list(potential_cause)
+            return (person, cause)
 
         return (None, "nothing")
 
     def build_helpful_people_menu(helpful_people, exit_option):
-        people = []
-        people.extend(helpful_people)
-        people.insert(0, "Pick")
-        people.extend([exit_option])
-        return people
+        return [["Pick"] + helpful_people + [exit_option]]
 
     def horny_at_work_get_follower():
         potential_follower = []
@@ -3228,9 +3222,9 @@ label horny_at_work_crisis_label():
                     $ exit_option = "Just have her watch."
 
                 if "action_mod_list" in globals():
-                    call screen enhanced_main_choice_display(build_menu_items([build_helpful_people_menu(helpful_people, exit_option)]))
+                    call screen enhanced_main_choice_display(build_menu_items(build_helpful_people_menu(helpful_people, exit_option)))
                 else:
-                    call screen main_choice_display([build_helpful_people_menu(helpful_people, exit_option)]) #Shows a list of people w/ predictive imaging when you hover
+                    call screen main_choice_display(build_helpful_people_menu(helpful_people, exit_option)) #Shows a list of people w/ predictive imaging when you hover
                 $ active_person = _return
                 if active_person == exit_option:
                     #Power move, just jerk yourself off as they watch.
