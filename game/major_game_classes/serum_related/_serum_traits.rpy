@@ -220,7 +220,7 @@ init -1:
         def birth_control_suppression_on_remove(the_person, the_serum, add_to_log):
             the_person.bc_penalty -= 40
 
-        def simple_aphrodesiac_on_apply(the_person, the_serum, add_to_log):
+        def simple_aphrodisiac_on_apply(the_person, the_serum, add_to_log):
             change_amount = 30 - the_person.effective_sluttiness()
             if change_amount > 10:
                 change_amount = 10
@@ -228,12 +228,12 @@ init -1:
                 change_amount = 0
 
             the_person.change_slut(change_amount, add_to_log=add_to_log)
-            the_serum.effects_dict["simple_aphrodesiac_amount"] = change_amount
+            the_serum.effects_dict["simple_aphrodisiac_amount"] = change_amount
 
             the_person.change_max_energy(-20, add_to_log=add_to_log)
 
-        def simple_aphrodesiac_on_remove(the_person, the_serum, add_to_log):
-            change_amount = the_serum.effects_dict.get("simple_aphrodesiac_amount", 10)
+        def simple_aphrodisiac_on_remove(the_person, the_serum, add_to_log):
+            change_amount = the_serum.effects_dict.get("simple_aphrodisiac_amount", 10)
             the_person.change_slut(-change_amount, add_to_log=add_to_log)
 
             the_person.change_max_energy(20, add_to_log=add_to_log)
@@ -652,14 +652,14 @@ init -1:
             clarity_cost = 30,
             mental_aspect = 0, physical_aspect = 0, sexual_aspect = 2, medical_aspect = 1, flaws_aspect = 0, attention = 1)
 
-        simple_aphrodesiac = SerumTrait(name = "Inhibition Suppression",
+        simple_aphrodisiac = SerumTrait(name = "Inhibition Suppression",
             desc = "Direct delivery of alcoholic molecules to the subject's brain produces notably reduced inhibitions. Side effects are common, but always include drowsiness.",
             positive_slug = "+10 Sluttiness (Max 30)",
             negative_slug = "-20 Energy",
             research_added = 50,
             base_side_effect_chance = 50,
-            on_apply = simple_aphrodesiac_on_apply,
-            on_remove = simple_aphrodesiac_on_remove,
+            on_apply = simple_aphrodisiac_on_apply,
+            on_remove = simple_aphrodisiac_on_remove,
             research_needed = 75,
             clarity_cost = 25,
             mental_aspect = 1, physical_aspect = 0, sexual_aspect = 2, medical_aspect = 0, flaws_aspect = 0, attention = 1)
@@ -1521,7 +1521,7 @@ label instantiate_serum_traits(): #Creates all of the default LR2 serum trait ob
         list_of_traits.append(high_con_drugs)
         list_of_traits.append(sedatives_trait)
         list_of_traits.append(caffeine_trait)
-        list_of_traits.append(simple_aphrodesiac)
+        list_of_traits.append(simple_aphrodisiac)
         list_of_traits.append(foreplay_enhancer)
         list_of_traits.append(hair_lighten_dye)
         list_of_traits.append(hair_darken_dye)

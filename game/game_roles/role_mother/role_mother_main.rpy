@@ -1367,7 +1367,7 @@ label mom_found_serums(): #TODO: Triggers a couple of days after the start of th
     $ blue_serum.add_trait(primitive_serum_prod)
     $ blue_serum.add_trait(high_capacity_design)
     $ blue_serum.add_trait(high_con_drugs)
-    $ blue_serum.add_trait(simple_aphrodesiac)
+    $ blue_serum.add_trait(simple_aphrodisiac)
 
     $ red_serum = SerumDesign()
     $ red_serum.name = "Red Serum"

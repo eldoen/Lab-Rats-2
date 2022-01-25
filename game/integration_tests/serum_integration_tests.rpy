@@ -6,7 +6,7 @@ label give_serum_integration_test():
     $ test_serum = SerumDesign()
     $ test_serum.name = "Integration Test Design"
     $ test_serum.add_trait(primitive_serum_prod)
-    $ test_serum.add_trait(simple_aphrodesiac)
+    $ test_serum.add_trait(simple_aphrodisiac)
     $ mc.inventory.change_serum(test_serum, 1)
 
     $ test_person = create_random_person()

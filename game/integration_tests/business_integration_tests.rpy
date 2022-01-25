@@ -106,8 +106,8 @@ label business_research_integration_tests():
     $ basic_med_app.unlock_trait(pay_clarity = False)
     $ basic_med_app.unlocked = True
 
-    $ simple_aphrodesiac.unlock_trait(pay_clarity = False)
-    $ simple_aphrodesiac.unlocked = True
+    $ simple_aphrodisiac.unlock_trait(pay_clarity = False)
+    $ simple_aphrodisiac.unlocked = True
     "Testing serum design. Design a new serum."
 
     call serum_design_action_description
@@ -129,7 +129,7 @@ label business_set_production_integration_test():
     $ test_serum = SerumDesign()
     $ test_serum.name = "Integration Test Design"
     $ test_serum.add_trait(primitive_serum_prod)
-    $ test_serum.add_trait(simple_aphrodesiac)
+    $ test_serum.add_trait(simple_aphrodisiac)
     $ test_serum.unlocked = True
     $ test_serum.researched = True
     $ mc.business.serum_designs.append(test_serum)
