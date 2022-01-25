@@ -1129,7 +1129,7 @@ init -2 python:
             updated = False
             if old_opinion[0] == 2 or old_opinion[0] == -2:
                 updated = True
-                new_opinion_value = int(old_opinion[0]/2)
+                new_opinion_value = __builtin__.int(old_opinion[0]/2)
                 if topic in self.opinions:
                     self.opinions[topic] = [new_opinion_value, old_opinion[1]]
                 else:
@@ -1207,7 +1207,7 @@ init -2 python:
                 mc.log_event(" Taboo broken with " + self.display_name + "!", "float_text_red")
 
             if fire_event:
-                mc.listener_system.fire_event("girl_taboo_break", the_taboo = the_taboo)
+                mc.listener_system.fire_event("girl_taboo_break", the_taboo=the_taboo)
             return True
 
         def restore_taboo(self, the_taboo, add_to_log = True):
@@ -1235,7 +1235,7 @@ init -2 python:
 
             return highest_slut_position
 
-        def add_outfit(self,the_outfit, outfit_type = "full"):
+        def add_outfit(self, the_outfit, outfit_type="full"):
             if outfit_type == "under":
                 self.wardrobe.add_underwear_set(the_outfit)
             elif outfit_type == "over":
@@ -1243,18 +1243,18 @@ init -2 python:
             else: #outfit_type = full
                 self.wardrobe.add_outfit(the_outfit)
 
-        def set_outfit(self,new_outfit):
+        def set_outfit(self, new_outfit):
             if new_outfit is not None:
                 self.planned_outfit = new_outfit.get_copy() #Get a copy to return to when we are done.
                 self.apply_outfit(new_outfit)
 
-        def set_uniform(self,uniform, wear_now = False):
+        def set_uniform(self,uniform, wear_now=False):
             if uniform is not None:
                 self.planned_uniform = uniform.get_copy()
                 if wear_now:
                     self.wear_uniform()
 
-        def apply_outfit(self, the_outfit = None, ignore_base = False, update_taboo = False): #Hand over an outfit, we'll take a copy and apply it to the person, along with their base accessories unless told otherwise.
+        def apply_outfit(self, the_outfit=None, ignore_base=False, update_taboo=False): #Hand over an outfit, we'll take a copy and apply it to the person, along with their base accessories unless told otherwise.
             if the_outfit is None:
                 # put on uniform if required
                 if self.should_wear_uniform():
@@ -1339,7 +1339,7 @@ init -2 python:
             if add_to_log and amount != 0:
                 log_string = ("+" if amount > 0 else "")+ str(amount) + " Happiness"
                 if self.get_trance_multiplier() != 1:
-                    log_string += "\nChange amplified by " + str(__builtin__.int((self.get_trance_multiplier()*100)-100)) + "% due to trance"
+                    log_string += "\nChange amplified by " + str(__builtin__.int((self.get_trance_multiplier()*100) - 100)) + "% due to trance"
                 mc.log_event(self.display_name + ": " + log_string, "float_text_yellow")
 
         def change_love(self, amount, max_modified_to=None, add_to_log=True):
@@ -1834,14 +1834,15 @@ init -2 python:
 
             return return_amount
 
-        def run_orgasm(self, show_dialogue = True, force_trance = False, trance_chance_modifier = 0, add_to_log = True, sluttiness_increase_limit = 30, reset_arousal = True, fire_event = True):
+        def run_orgasm(self, show_dialogue=True, force_trance=False, trance_chance_modifier=0,
+                add_to_log=True, sluttiness_increase_limit=30, reset_arousal=True, fire_event=True):
             self.change_slut(1, sluttiness_increase_limit, add_to_log=add_to_log)
             if fire_event:
-                mc.listener_system.fire_event("girl_climax", the_person = self)
+                mc.listener_system.fire_event("girl_climax", the_person=self)
             if renpy.random.randint(0,100) < self.suggestibility + trance_chance_modifier or force_trance:
-                self.increase_trance(show_dialogue = show_dialogue, add_to_log=add_to_log)
+                self.increase_trance(show_dialogue=show_dialogue, add_to_log=add_to_log)
 
-        def increase_trance(self, show_dialogue = True, add_to_log = True):
+        def increase_trance(self, show_dialogue=True, add_to_log=True):
             if not self.has_role(trance_role):
                 self.add_role(trance_role)
                 if add_to_log:
@@ -1886,7 +1887,7 @@ init -2 python:
 
             self.change_slut(self.get_opinion_score("drinking cum"))
             self.change_happiness(5*self.get_opinion_score("drinking cum"))
-            self.discover_opinion("drinking cum", add_to_log = add_to_record)
+            self.discover_opinion("drinking cum", add_to_log=add_to_record)
 
             if add_to_record:
                 self.sex_record["Cum in Mouth"] += 1
@@ -1908,7 +1909,7 @@ init -2 python:
                 slut_change_amount += self.get_opinion_score("being_submissive")
 
             self.change_slut(slut_change_amount)
-            self.discover_opinion("creampies", add_to_log = add_to_record)
+            self.discover_opinion("creampies", add_to_log=add_to_record)
 
             if add_to_record:
                 self.sex_record["Vaginal Creampies"] += 1
@@ -1950,7 +1951,7 @@ init -2 python:
 
             self.change_happiness(5 * self.get_opinion_score("anal creampies"))
             self.change_slut_temp(self.get_opinion_score("anal creampies"))
-            self.discover_opinion("anal creampies", add_to_log = add_to_record)
+            self.discover_opinion("anal creampies", add_to_log=add_to_record)
 
             if add_to_record:
                 self.sex_record["Anal Creampies"] += 1
@@ -1967,11 +1968,11 @@ init -2 python:
 
             self.change_slut(self.get_opinion_score("cum facials"))
             self.change_happiness(5*self.get_opinion_score("cum facials"))
-            self.discover_opinion("cum facials", add_to_log = add_to_record)
+            self.discover_opinion("cum facials", add_to_log=add_to_record)
 
             self.change_slut(self.get_opinion_score("being covered in cum"))
             self.change_happiness(5*self.get_opinion_score("being covered in cum"))
-            self.discover_opinion("being covered in cum", add_to_log = add_to_record)
+            self.discover_opinion("being covered in cum", add_to_log=add_to_record)
 
             if add_to_record:
                 self.sex_record["Cum Facials"] += 1
@@ -1988,7 +1989,7 @@ init -2 python:
 
             self.change_slut(self.get_opinion_score("being covered in cum"))
             self.change_happiness(5*self.get_opinion_score("being covered in cum"))
-            self.discover_opinion("being covered in cum", add_to_log = add_to_record)
+            self.discover_opinion("being covered in cum", add_to_log=add_to_record)
 
             if add_to_record:
                 self.sex_record["Cum Covered"] += 1
@@ -2005,7 +2006,7 @@ init -2 python:
 
             self.change_slut(self.get_opinion_score("being covered in cum"))
             self.change_happiness(5*self.get_opinion_score("being covered in cum"))
-            self.discover_opinion("being covered in cum", add_to_log = add_to_record)
+            self.discover_opinion("being covered in cum", add_to_log=add_to_record)
 
             if add_to_record:
                 self.sex_record["Cum Covered"] += 1
@@ -2022,7 +2023,7 @@ init -2 python:
 
             self.change_slut(self.get_opinion_score("being covered in cum"))
             self.change_happiness(5*self.get_opinion_score("being covered in cum"))
-            self.discover_opinion("being covered in cum", add_to_log = add_to_record)
+            self.discover_opinion("being covered in cum", add_to_log=add_to_record)
 
             if add_to_record:
                 self.sex_record["Cum Covered"] += 1
