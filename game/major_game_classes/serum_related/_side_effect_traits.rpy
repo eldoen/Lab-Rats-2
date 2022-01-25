@@ -8,29 +8,29 @@ init -1:
         ## depressant_side_effect_functions ##
         def depressant_side_effect_on_apply(the_person, the_serum, add_to_log):
             the_person.change_happiness(-20)
-    
+
         ## libido_suppressant_functions ##
         def libido_suppressant_on_apply(the_person, the_serum, add_to_log):
             the_person.change_slut(-20)
-    
+
         def libido_suppressant_on_remove(the_person, the_serum, add_to_log):
             the_person.change_slut(20)
-    
+
         ## anxiety_provoking_functions ##
         def anxiety_provoking_on_turn(the_person, the_serum, add_to_log):
             the_person.change_happiness(-3, add_to_log=add_to_log)
-    
+
         ## performance_inhibitor_functions ##
         def performance_inhibitor_on_apply(the_person, the_serum, add_to_log):
             the_person.change_int(-1, add_to_log=add_to_log)
             the_person.change_focus(-1, add_to_log=add_to_log)
             the_person.change_cha(-1, add_to_log=add_to_log)
-    
+
         def performance_inhibitor_on_remove(the_person, the_serum, add_to_log):
             the_person.change_int(1, add_to_log=add_to_log)
             the_person.change_focus(1, add_to_log=add_to_log)
             the_person.change_cha(1, add_to_log=add_to_log)
-    
+
         ## mood_swings_functions ##
         def mood_swings_on_turn(the_person, the_serum, add_to_log):
             swing = renpy.random.randint(0,1)
@@ -38,45 +38,45 @@ init -1:
                 the_person.change_happiness(-10, add_to_log=add_to_log)
             else:
                 the_person.change_happiness(10, add_to_log=add_to_log)
-    
+
         ## Sedative functions ##
         def sedative_on_apply(the_person, the_serum, add_to_log):
             the_person.change_energy(-20, add_to_log=add_to_log)
             the_person.change_max_energy(-20, add_to_log=add_to_log)
-    
+
         def sedative_on_remove(the_person, the_serum, add_to_log):
             the_person.change_max_energy(20, add_to_log=add_to_log) #They don't get the normal energy back instantly, it has to come back on it's own
-    
+
         ## Slow release sedative functions ##
         def slow_release_sedative_on_turn(the_person, the_serum, add_to_log):
             the_person.change_energy(-10)
-    
+
         ## Toxic functions ##
         def toxic_on_apply(the_person, the_serum, add_to_log):
             the_person.serum_tolerance += -1
-    
+
         def toxic_on_remove(the_person, the_serum, add_to_log):
             the_person.serum_tolerance += 1
-    
+
         ## libido suppressant ##
         def libido_suppressant_on_apply(the_person, the_serum, add_to_log):
             the_person.change_max_arousal(50, add_to_log=add_to_log)
-    
+
         def libido_suppressant_on_remove(the_person, the_serum, add_to_log):
             the_person.change_max_arousal(-50, add_to_log=add_to_log)
-    
+
         ## hair colour changes ##
         def hair_colour_wild_on_turn(the_person, the_serum, add_to_log):
             random_colour = Color((renpy.random.randint(0,255), renpy.random.randint(0,255), renpy.random.randint(0,255)))
-    
+
             hair_colour_change_on_turn(random_colour, the_person, the_serum, add_to_log)
-    
+
         def hair_colour_dull_on_turn(the_person, the_serum, add_to_log):
             current_colour = Color(rgb=(the_person.hair_colour[1][0], the_person.hair_colour[1][1], the_person.hair_colour[1][2]))
             goal_colour = current_colour.replace_hsv_saturation(0.0)
-            
+
             hair_colour_change_on_turn(goal_colour, the_person, the_serum, add_to_log)
-    
+
         depressant_side_effect = SerumTrait(name = "Depressant",
             desc = "An unintended interaction produces a sudden and noticable drop in the recipients mood without any corresponding improvement when the serum expires",
             positive_slug = "None",
@@ -84,21 +84,21 @@ init -1:
             on_apply = depressant_side_effect_on_apply,
             is_side_effect = True,
             mental_aspect = 0, physical_aspect = 0, sexual_aspect = 0, medical_aspect = 0, flaws_aspect = 1, attention = 1)
-    
+
         unpleasant_taste_side_effect = SerumTrait(name =  "Unpleasant Taste",
             desc = "This serum has a prominent and decidedly unpleasant taste. While it does not decrease the effectiveness of the serum it has a large impact on its value when sold",
             positive_slug = "None",
             negative_slug = "",
             is_side_effect = True,
             mental_aspect = 0, physical_aspect = 0, sexual_aspect = 0, medical_aspect = 0, flaws_aspect = 2, attention = 1)
-    
+
         bad_reputation = SerumTrait(name = "Bad Reputation",
             desc = "This serum design has developed a particularly bad reputation. Regardless of if it is based on facts is has a significant effect on the price customers are willing to pay",
             positive_slug = "",
             negative_slug = "",
             is_side_effect = True,
             mental_aspect = 0, physical_aspect = 0, sexual_aspect = 0, medical_aspect = 0, flaws_aspect = 2, attention = 2)
-    
+
         unstable_reaction = SerumTrait(name = "Unstable Reaction",
             desc = "The reaction used to create this serum was less stable than initialy hypothesised. Reduces serum duration by two turns",
             positive_slug = "",
@@ -106,7 +106,7 @@ init -1:
             duration_added = -2,
             is_side_effect = True,
             mental_aspect = 0, physical_aspect = 0, sexual_aspect = 0, medical_aspect = 0, flaws_aspect = 1, attention = 1)
-    
+
         manual_synthesis_required = SerumTrait(name = "Manual Synthesis Required",
             desc = "A step in this serums manufacturing process requires manual intervention, preventing the use of time saving automation. This has no impact on effectivness or value, but increases the amount of production effort required",
             positive_slug = "",
@@ -114,7 +114,7 @@ init -1:
             production_added = 15,
             is_side_effect = True,
             mental_aspect = 0, physical_aspect = 0, sexual_aspect = 0, medical_aspect = 0, flaws_aspect = 0, attention = 0)
-    
+
         libido_suppressant = SerumTrait(name = "Libido Suppressant",
             desc = "An unintended interaction results in a major decrease in the recipients sex drive for the duration of this serum",
             positive_slug = "",
@@ -123,7 +123,7 @@ init -1:
             on_remove = libido_suppressant_on_remove,
             is_side_effect = True,
             mental_aspect = 0, physical_aspect = 0, sexual_aspect = 0, medical_aspect = 0, flaws_aspect = 1, attention = 1)
-    
+
         anxiety_provoking = SerumTrait(name = "Anxiety Provoking",
             desc = "An unintended interaction creates a subtle but pervasive sense of anxiety in the recipient. This has a direct effect on their happiness",
             positive_slug = "",
@@ -131,8 +131,8 @@ init -1:
             on_turn = anxiety_provoking_on_turn,
             is_side_effect = True,
             mental_aspect = 0, physical_aspect = 0, sexual_aspect = 0, medical_aspect = 0, flaws_aspect = 1, attention = 1)
-    
-    
+
+
         performance_inhibitor = SerumTrait(name = "Performance Inhibitor",
             desc = "For reasons not understood by your R&D team this serum causes a general decrease in the recipients to do work for the duration of the serum",
             positive_slug = "",
@@ -141,7 +141,7 @@ init -1:
             on_remove = performance_inhibitor_on_remove,
             is_side_effect = True,
             mental_aspect = 0, physical_aspect = 0, sexual_aspect = 0, medical_aspect = 0, flaws_aspect = 1, attention = 1)
-    
+
         mood_swings = SerumTrait(name = "Mood Swings",
             desc = "The recipient suffers large, sudden, and unpleasant mood swings",
             positive_slug = "",
@@ -149,7 +149,7 @@ init -1:
             on_day = mood_swings_on_turn,
             is_side_effect = True,
             mental_aspect = 0, physical_aspect = 0, sexual_aspect = 0, medical_aspect = 0, flaws_aspect = 1, attention = 1)
-    
+
         sedative = SerumTrait(name = "Accidental Sedative",
             desc = "This serum has the unintended side effect of slightly sedating the recipient. Their maximum energy is reduced for the duration",
             positive_slug = "",
@@ -158,7 +158,7 @@ init -1:
             on_remove = sedative_on_remove,
             is_side_effect = True,
             mental_aspect = 0, physical_aspect = 0, sexual_aspect = 0, medical_aspect = 0, flaws_aspect = 1, attention = 1)
-    
+
         slow_release_sedative = SerumTrait(name = "Slow Acting Sedative",
             desc = "This serum produces slow acting sedative effects, reducing how quickly the recipient bounces back from tiring tasks. Reduces energy gain for the duration",
             positive_slug = "",
@@ -166,7 +166,7 @@ init -1:
             on_turn = slow_release_sedative_on_turn,
             is_side_effect = True,
             mental_aspect = 0, physical_aspect = 0, sexual_aspect = 0, medical_aspect = 0, flaws_aspect = 1, attention = 1)
-    
+
         toxic_side_effect = SerumTrait(name = "Toxic",
             desc = "Mildly toxic interactions make this serum dangerous to mix with other medications at any dose. Reduces serum tolerance for the duration",
             positive_slug = "",
@@ -175,7 +175,7 @@ init -1:
             on_remove = toxic_on_remove,
             is_side_effect = True,
             mental_aspect = 0, physical_aspect = 0, sexual_aspect = 0, medical_aspect = 0, flaws_aspect = 1, attention = 1)
-    
+
         libido_suppressant_effect = SerumTrait(name = "Stimulation Suppressant",
             desc = "Interactions with the body's nervous system makes it very difficult for the subject to orgasm. A common side effect for many medications",
             positive_slug = "",
@@ -184,7 +184,7 @@ init -1:
             on_remove = libido_suppressant_on_remove,
             is_side_effect = True,
             mental_aspect = 0, physical_aspect = 0, sexual_aspect = 0, medical_aspect = 0, flaws_aspect = 1, attention = 1)
-    
+
         hair_colour_wild_effect = SerumTrait(name = "Hair Colour Shifts",
             desc = "Complex interactions produce visible changes in hair colour. Produces random and sometimes striking changes in hair colour over time",
             positive_slug = "",
@@ -193,7 +193,7 @@ init -1:
             exclude_tags = ["Dye"],
             is_side_effect = True,
             mental_aspect = 0, physical_aspect = 0, sexual_aspect = 0, medical_aspect = 0, flaws_aspect = 1, attention = 2)
-    
+
         hair_colour_dull_effect = SerumTrait(name = "Dull Hair",
             desc = "Complex interactions produce visible changes in hair colour. Has the effect of dulling down the hair colour of the subject",
             positive_slug = "",
