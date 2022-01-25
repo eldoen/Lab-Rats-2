@@ -53,20 +53,21 @@ init -2: # Establish some platform specific stuff.
 init -2 python:
     list_of_positions = [] # These are sex positions that the PC can make happen while having sex.
     list_of_girl_positions = [] # These are sex positions that the girl can make happen while having sex.
-    list_of_strip_positions = [] # These are positiosn a girl can take while putting on a stirp tease for you.
+    list_of_strip_positions = [] # These are positions a girl can take while putting on a strip tease for you.
 
     day_names = ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"] #Arrays that hold the names of the days of the week and times of day. Arrays start at 0.
     time_names = ["Early Morning","Morning","Afternoon","Evening","Night"]
 
-    global emotion_images_dict
-    emotion_images_dict = {}
-    for skin in ["white", "tan", "black"]:
-        emotion_images_dict[skin] = {}
-        for face in list_of_faces:
-            emotion_images_dict[skin][face] = Expression(skin + "_" + face, skin, face)
 
 
 init 0 python:
+    global mobile_zip_dict
+    mobile_zip_dict = {}
+    for position in ["stand2", "stand3", "stand4", "stand5", "walking_away", "back_peek", "sitting", "kissing", "doggy", "missionary", "blowjob", "against_wall", "standing_doggy", "kneeling1", "cowgirl"]:
+        file_path = "images/character_images/" + position + ".zip"
+        renpy_file = renpy.file(file_path)
+        mobile_zip_dict[position] = zipfile.ZipFile(renpy_file, "a") #Cache all of the zip files so we have a single static pointer to them.
+
     #config.use_cpickle = False #Set to True for more useful save failure info
 
     #config.interact_callbacks.append(take_animation_screenshot)
@@ -111,6 +112,7 @@ init 0 python:
 
     #config.debug_text_overflow = True
     config.debug_text_overflow = False #If enabled finds locations with text overflow. Turns out I have a lot, kind of blows up when enabled and generates a large text file. A problem for another day.
+
     config.debug_image_cache = False
     config.debug = True
 
@@ -187,13 +189,6 @@ label start:
             $ mc.business.event_triggers_dict["Tutorial_Section"] = False
     jump normal_start
 
-init 0 python:
-    def initialize_stephanie_in_our_business():
-        mc.business.add_employee_research(stephanie)
-        mc.business.hire_head_researcher(stephanie)
-        stephanie.location.move_person(stephanie, lobby)
-        return
-
 label normal_start:
     ## For now, this ensures reloading the game doesn't reset any of the variables.
     $ renpy.scene()
@@ -207,142 +202,56 @@ label normal_start:
     "[stephanie.title] said she would meet you at your new office for a tour."
     #TODO: Have an on_enter event for Steph if you see her the first day. Minor interaction stuff.
 
-    #Add Stepyhanie to our business and flag her with a special role.
+    #Add Stephanie to our business and flag her with a special role.
     $ initialize_stephanie_in_our_business()
 
     #TODO: movement overlay tutorial thing.
     jump game_loop
 
-init 0 python:
-    def build_actions_list():
-        actions_list = []
-        if time_of_day == 4:
-            if sleep_action not in mc.location.actions: #If they're in a location they can sleep we shouldn't show this because they can just sleep here.
-                actions_list.append(["Go home and sleep {image=gui/heart/Time_Advance.png}{image=gui/heart/Time_Advance.png} (tooltip)It's late. Go home and sleep.", "Wait"])
-        else:
-            actions_list.append(["Wait here {image=gui/heart/Time_Advance.png}\n{color=#FFFF00}10% Extra{/color} {image=gui/extra_images/energy_token.png} (tooltip)Kill some time and wait around. Recovers more energy than working.", "Wait"])
-        actions_list.append(["Go somewhere else", "Travel"])
-        actions_list.append(["Check your phone", "Phone"])
-        actions_list.extend(mc.location.get_valid_actions())
-        actions_list.insert(0, "Do Something")
-        return actions_list
-
-    def build_people_list():
-        people_list = []
-        people_list.extend(mc.location.people)
-        people_list.sort(key = sort_display_list, reverse = True)
-        people_list.insert(0, "Talk to Someone")
-        return people_list
-
-    def main_loop_pick_talk_event(person):
-        out_of_uniform = next((x for x in person.on_talk_event_list if x.name == "Uniform Disobedience LTE" and x.is_action_enabled(person)), None)
-        if out_of_uniform: # out of uniform takes precedence of other LTE events
-            person.on_talk_event_list.remove(out_of_uniform)
-            return out_of_uniform
-
-        non_lte_events = [x for x in person.on_talk_event_list if x.is_action_enabled(person) and not isinstance(x, Limited_Time_Action)]
-        if non_lte_events: # non LTE events take priority over LTE events
-            chosen = get_random_from_list(non_lte_events)
-            person.on_talk_event_list.remove(chosen)
-            return chosen
-
-        enabled_talk_events = []
-        for possible_talk_event in person.on_talk_event_list:
-            if possible_talk_event.is_action_enabled(person):
-                enabled_talk_events.append(possible_talk_event)
-
-        if enabled_talk_events:
-            chosen = get_random_from_list(enabled_talk_events)
-            person.on_talk_event_list.remove(chosen)
-            return chosen
-        return None
-
-    def main_loop_pick_room_event(location):
-        enabled_room_events = []
-        for a_person in location.people:
-            for possible_room_event in a_person.on_room_enter_event_list:
-                if possible_room_event.is_action_enabled(a_person): #See what events the are enabled...
-                    enabled_room_events.append([a_person, possible_room_event]) #Then keep track of the person so we know who to remove it from if it triggers.
-
-        if enabled_room_events:
-            chosen = get_random_from_list(enabled_room_events)
-            chosen[0].on_room_enter_event_list.remove(chosen[1]) #Remove the event from their list since we will be running it.
-            return chosen
-        return None
-
-    def main_loop_pick_location_event(location):
-        enabled_room_events = []
-        for possible_room_event in location.on_room_enter_event_list:
-            if possible_room_event.is_action_enabled():
-                enabled_room_events.append(possible_room_event)
-
-        if enabled_room_events:
-            chosen = get_random_from_list(enabled_room_events)
-            location.on_room_enter_event_list.remove(chosen)
-            return chosen
-        return None
-
-    def main_loop_select_greeter(location):
-        possible_greetings = []
-        for a_person in new_location.people:
-            if mc.business.get_employee_title(a_person) != "None":
-                possible_greetings.append(a_person)
-        return get_random_from_list(possible_greetings)
-
-    common_variable_list = ["talk_action", "new_location", "picked_option", "picked_event", "outfit", "insta_outfit", \
-        "the_outfit", "new_outfit", "old_outfit", "the_uniform", "the_underwear", "person_one", "person_two", "the_person_one", \
-        "the_person_two", "the_item", "the_clothing", "the_group", "the_report", "the_trait", "the_mom", "the_action", \
-        "the_aunt", "the_sister", "the_student", "the_place", "the_girl", "test_outfit", "object", "the_object", \
-        "the_location", "next_item", "file_path", "title_choice", "title_one", "title_two", "placeholder", \
-        "formatted_title_one", "formatted_title_two", "new_title", "the_type", "the_person", "player_choice", \
-        "strip_list", "first_item", "feet_ordered", "top_feet", "crisis", "the_morning_crisis", "people_to_process", \
-        "report_log", "position_choice", "object_choice", "round_choice", "start_position", "the_group", \
-        "report", "the_relationship", "partner", "the_subject", "the_suggested_outfit", "stripper", \
-        "not_stripper", "the_student", "strip_choice", "new_pose", "picked_object", "picked_position", "picked_pose", "picked_serum", "pose_choice", "new_person" \
-        "clothing", "formatted_name", "formatted_title", "hair_style_check", "pubic_style_check", "the_cause", \
-        "text_one", "text_two", "the_goal", "the_serum", "title", "opinion_tag", "overhear_topic", "the_choice", \
-        "opinion_string", "mc_opinion_string", "talk_opinion_text", "opinion_learned", "place", "the_place", "the_taboo",
-        "climax_controller", "the_watcher", "person_choice"]
-
-    def main_loop_cleanup():
-        clear_scene()
-        # generic cleanup routine for common variable names
-        for name in common_variable_list:
-            if name in globals():
-                del globals()[name]
-
-    def main_loop_auto_save():
-        last_save_day = mc.business.event_triggers_dict.get("last_save_day", 0)
-        if day > last_save_day and time_of_day == 0:
-            #renpy.notify("Saving game: " + str(day))
-            renpy.force_autosave(take_screenshot = True, block = True)
-            mc.business.event_triggers_dict["last_save_day"] = day
-
-
 label game_loop(): ##THIS IS THE IMPORTANT SECTION WHERE YOU DECIDE WHAT ACTIONS YOU TAKE
-    $ main_loop_cleanup()
-    $ main_loop_auto_save()
-    $ renpy.block_rollback()
-    $ renpy.checkpoint()
+    $ people_list = []
+    $ people_list.extend(mc.location.people)
+    $ actions_list = []
 
-    if "action_mod_list" in globals():
-        call screen enhanced_main_choice_display(build_menu_items([build_people_list(), build_actions_list()]))
+    $ actions_list.append(["Check your phone.", "Phone"])
+    $ actions_list.extend(mc.location.get_valid_actions())
+
+    $ people_list.sort(key = sort_display_list, reverse = True)
+    $ actions_list.sort(key = sort_display_list, reverse = True)
+
+    $ actions_list.insert(0,["Go somewhere else.", "Travel"])
+    if time_of_day == 4:
+        if sleep_action not in mc.location.actions: #If they're in a location they can sleep we shouldn't show this because they can just sleep here.
+            $ actions_list.insert(0, ["Go home and sleep.{image=gui/heart/Time_Advance.png}{image=gui/heart/Time_Advance.png} (tooltip)It's late. Go home and sleep.", "Wait"])
     else:
-        call screen main_choice_display([build_people_list(), build_actions_list()])
-    $ picked_option = _return
+        $ actions_list.insert(0, ["Wait here\n{image=gui/heart/Time_Advance.png}, +10 Extra {image=gui/extra_images/energy_token.png} (tooltip)Kill some time and wait around. Recovers more energy than working.", "Wait"])
+    $ actions_list.insert(0,"Do Something")
+    $ people_list.insert(0,"Talk to Someone")
 
+
+    call screen main_choice_display([people_list,actions_list], person_preview_args = {"show_person_info":False})
+
+    $ picked_option = _return
     if isinstance(picked_option, Person):
-        $ talk_action = main_loop_pick_talk_event(picked_option)
-        if talk_action:
-            $ picked_option.draw_person()
+        $ picked_option.draw_person()
+        $ enabled_talk_events = []
+        python:
+            for possible_talk_event in picked_option.on_talk_event_list:
+                if possible_talk_event.is_action_enabled(picked_option):
+                    enabled_talk_events.append(possible_talk_event)
+        if enabled_talk_events:
+            #If there are any events we want to trigger it happens instead of talking to the person. If we want it to lead into talk_person we can call that separately. Only one event per interaction.
+            $ talk_action = get_random_from_list(enabled_talk_events)
             $ talk_action.call_action(picked_option)
+            if talk_action in picked_option.on_talk_event_list: #This shouldn't come up much, but it an event is double removed this helps us fail gracefully.
+                $ picked_option.on_talk_event_list.remove(talk_action)
+
+
         else:
             if picked_option.title is None:
                 "You decide to approach the stranger and introduce yourself."
-                $ picked_option.draw_person()
             else:
                 "You approach [picked_option.title] and chat for a little bit."
-                $ picked_option.draw_person()
                 $ picked_option.call_dialogue("greetings")
 
             if picked_option.has_taboo(["underwear_nudity","bare_tits", "bare_pussy"]) and picked_option.judge_outfit(picked_option.outfit, -30): #If she's in anything close to slutty she's self-conscious enough to comment on it.
@@ -410,6 +319,7 @@ label game_loop(): ##THIS IS THE IMPORTANT SECTION WHERE YOU DECIDE WHAT ACTIONS
 
     jump game_loop
 
+
 label change_location(the_place):
     $ renpy.scene()
     $ the_place.show_background()
@@ -419,80 +329,53 @@ label change_location(the_place):
 
     return
 
-init 0 python:
-    def build_chat_action_list(the_person):
-        small_talk_action = Action("Make small talk   {color=#FFFF00}-15{/color} {image=gui/extra_images/energy_token.png}", requirement = small_talk_requirement, effect = "small_talk_person", args=the_person, requirement_args=the_person,
-            menu_tooltip = "A pleasant chat about your likes and dislikes. A good way to get to know someone and the first step to building a lasting relationship. Provides a chance to study the effects of active serum traits and raise their mastery level.")
-        compliment_action = Action("Compliment her   {color=#FFFF00}-15{/color} {image=gui/extra_images/energy_token.png}", requirement = compliment_requirement, effect = "compliment_person", args=the_person, requirement_args=the_person,
-            menu_tooltip = "Lay the charm on thick and heavy. A great way to build a relationship, and every girl is happy to receive a compliment! Provides a chance to study the effects of active serum traits and raise their mastery level.")
-        flirt_action = Action("Flirt with her   {color=#FFFF00}-15{/color} {image=gui/extra_images/energy_token.png}", requirement = flirt_requirement, effect = "flirt_person", args=the_person, requirement_args=the_person,
-            menu_tooltip = "A conversation filled with innuendo and double entendre. Both improves your relationship with a girl and helps make her a little bit sluttier. Provides a chance to study the effects of active serum traits and raise their mastery level.")
-        date_action = Action("Ask her on a date", requirement = date_option_requirement, effect = "date_person", args=the_person, requirement_args=the_person,
-            menu_tooltip = "Ask her out on a date. The more you impress her the closer you'll grow. If you play your cards right you might end up back at her place.")
-        make_girlfriend_action = Action("Ask her to be your girlfriend", requirement = ask_girlfriend_requirement, effect = "ask_be_girlfriend_label", args = the_person, requirement_args = the_person,
-            menu_tooltip = "Ask her to start an official, steady relationship and be your girlfriend.", priority = 10)
-        bc_talk_action = Action("Talk about her birth control", requirement = bc_talk_requirement, effect = "bc_talk_label", args = the_person, requirement_args = the_person,
-            menu_tooltip = "Talk to her about her use of birth control. Ask her to start or stop taking it, or just check what she's currently doing.")
-        chat_list = [small_talk_action, compliment_action, flirt_action, date_action, make_girlfriend_action, bc_talk_action]
-        chat_list.sort(key = sort_display_list, reverse = True)
-        chat_list.insert(0,"Chat with her")
-        return chat_list
+label talk_person(the_person, keep_talking = True):
+    $ mc.having_text_conversation = None #Just in case some event hasn't properly reset this.
+    # $ the_person.draw_person() #Removed v0.28.1, this was often called when no character change was required. Character draw should be handled by events that lead into this label if required.
+    if the_person.title is None:
+        call person_introduction(the_person) from _call_person_introduction #If their title is none we assume it is because we have never met them before. We have a special introduction scene for new people.
+        #Once that's done we continue to talk to the person.
 
-    def build_specific_action_list(the_person):
-        grope_action = Action("Grope her   {color=#FFFF00}-5{/color} {image=gui/extra_images/energy_token.png}", requirement = grope_requirement, effect = "grope_person", args = the_person, requirement_args = the_person,
-            menu_tooltip = "Be \"friendly\" and see how far she is willing to let you take things. May make her more comfortable with physical contact, but at the cost of her opinion of you.")
+    python:
+        chat_list = []
+        specific_actions_list = ["Say goodbye", command_action, grope_action]
+        special_role_actions = []
 
-        command_action = Action("Give her a command", requirement = command_requirement, effect = "command_person", args = the_person, requirement_args = the_person,
-            menu_tooltip = "Leverage her obedience and command her to do something.")
+        for act in chat_actions:
+            if keep_talking or act.is_fast:
+                chat_list.append([act, the_person])
 
-        specific_action_list = ["Say goodbye", grope_action, command_action]
-        specific_action_list.sort(key = sort_display_list, reverse = True)
-        specific_action_list.insert(0,"Do something specific")
-        return specific_action_list
+        for act in specific_actions:
+            if keep_talking or act.is_fast:
+                specific_actions_list.append([act, the_person])
 
-    def get_special_role_actions(the_person):
-        role_actions = []
         for role in the_person.special_role:
             for act in role.actions:
-                role_actions.append(act)
-        return role_actions
-
-    def build_special_role_actions_list(the_person):
-        special_role_actions = []
-        for act in get_special_role_actions(the_person):
-            special_role_actions.append([act,the_person]) #They're a list of actions and their extra arg so that gets passed through properly.
+                if keep_talking or act.is_fast:
+                    special_role_actions.append([act, the_person]) #They're a list of actions and their extra arg so that gets passed through properly.
 
         for act in mc.main_character_actions: #The main character has a "role" that lets us add special actions as well.
-            special_role_actions.append([act,the_person])
+            if keep_talking or act.is_fast:
+                special_role_actions.append([act,the_person])
+
+        chat_list.sort(key = sort_display_list, reverse = True)
+        chat_list.insert(0,"Chat with her")
+
+        specific_actions_list.sort(key = sort_display_list, reverse = True)
+        specific_actions_list.insert(0,"Do something specific")
 
         special_role_actions.sort(key = sort_display_list, reverse = True)
         special_role_actions.insert(0,"Special Actions")
-        return special_role_actions
 
+    call screen main_choice_display([chat_list, specific_actions_list, special_role_actions])
 
-label talk_person(the_person):
-    $ mc.having_text_conversation = None #Just in case some event hasn't properly reset this.
-    if the_person.title is None:
-        $ the_person.draw_person()
-        call person_introduction(the_person) from _call_person_introduction #If their title is none we assume it is because we have never met them before. We have a special introduction scene for new people.
-
-label .continue_talk:
-    $ renpy.restart_interaction()
-    $ the_person.draw_person()
-    if "action_mod_list" in globals():
-        call screen enhanced_main_choice_display(build_menu_items([build_chat_action_list(the_person), build_specific_action_list(the_person), build_special_role_actions_list(the_person)]))
-    else:
-        call screen main_choice_display([build_chat_action_list(the_person), build_specific_action_list(the_person), build_special_role_actions_list(the_person)])
-
+    $ explicit_exit = True # Use to check if the player selected an explicit "stop talking" option
     if isinstance(_return, Action):
         $ starting_time_of_day = time_of_day
-        if _return in get_special_role_actions(the_person) + mc.main_character_actions:
-            $ _return.call_action(the_person)
-        else:
-            $ _return.call_action()
+        $ _return.call_action(the_person)
 
         if the_person in mc.location.people and time_of_day == starting_time_of_day and keep_talking:
-            jump talk_person.continue_talk #If we're in the same place and time hasn't advanced keep talking to them until we stop talking on purpose.
+            call talk_person(the_person) from _call_talk_person_31 #If we're in the same place and time hasn't advanced keep talking to them until we stop talking on purpose.
 
         $ explicit_exit = False
     $ clear_scene()
@@ -641,7 +524,7 @@ label advance_time:
                     the_crisis = get_random_from_weighted_list(possible_crisis_list, return_everything = True)
                     del possible_crisis_list
                     if the_crisis is not None:
-                        limited_time_event = Limited_Time_Action(the_crisis[0], the_crisis[0].event_duration) #Wraps the action so that we can have an instanced duration counter and add/remove it easily.\
+                        limited_time_event = Limited_Time_Action(the_crisis[0], the_crisis[0].event_duration) #Wraps the action so that we can have an instanced duration counter and add/remove it easily.
                         #renpy.notify("Created event: " + the_crisis[0].name + " for " + people.name)
                         if the_crisis[2] == "on_talk":
                             people.on_talk_event_list.append(limited_time_event)
@@ -694,7 +577,7 @@ init 0 python:
         menu_tooltip = "Decide what serum designs are being produced. Production is divided between multiple factory lines, and auto sell thresholds can be set to automatically flag serum for sale.")
     pick_supply_goal_action = Action("Set the amount of supply you would like to maintain.", pick_supply_goal_action_requirement,"pick_supply_goal_action_description",
         menu_tooltip = "Set a maximum amount of serum you and your staff will attempt to purchase.")
-    policy_purhase_action = Action("Manage business policies.", policy_purchase_requirement,"policy_purchase_description",
+    policy_purchase_action = Action("Manage business policies.", policy_purchase_requirement,"policy_purchase_description",
         menu_tooltip = "New business policies changes the way your company runs and expands your control over it. Once purchased business policies are always active.")
     set_head_researcher_action = Action("Select a Head Researcher.", head_researcher_select_requirement, "head_researcher_select_description",
         menu_tooltip = "Pick a member of your R&D staff to be your head researcher. A head resercher with a high intelligence score will increase the amount of research produced by the entire division.")
@@ -720,7 +603,7 @@ init 0 python:
     faq_action = Action("Check the FAQ",faq_action_requirement,"faq_action_description",
         menu_tooltip = "Answers to frequently asked questions about Lab Rats 2.")
 
-        
+
 
     downtown_search_action = Action("Wander the streets {image=gui/heart/Time_Advance.png}", downtown_search_requirement, "downtown_search_label",
         menu_tooltip = "Spend time exploring the city and seeing what interesting locations it has to offer.")
@@ -729,13 +612,13 @@ init 0 python:
         menu_tooltip = "Take a seat and wait for the next girl to come out on stage.")
     mom_office_person_request_action = Action("Approach the receptionist", mom_office_person_request_requirement, "mom_office_person_request",
         menu_tooltip = "The receptionist might be able to help you, if you're looking for someone.")
+
     import_wardrobe_action = Action("Import a wardrobe file", faq_action_requirement, "wardrobe_import",
         menu_tooltip = "Select and import a wardrobe file, adding all outfits to your current wardrobe.")
 
     ## Temp and Test Actions
-    # test_action = Action("This is a test", faq_action_requirement, "debug_label")
-    # integration_test_action = Action("Run Integration Tests", integration_test_dev_requirement, "run_integration_tests")
-
+    test_action = Action("This is a test", faq_action_requirement, "debug_label")
+    integration_test_action = Action("Run Integration Tests", integration_test_dev_requirement, "run_integration_tests")
 
     ##Actions unlocked by policies##
     set_uniform_action = Action("Manage Employee Uniforms",set_uniform_requirement,"uniform_manager_loop")
@@ -743,8 +626,6 @@ init 0 python:
 
     business_wardrobe = wardrobe_from_xml("Business_Wardrobe") #Used in some of Mom's events when we need a business-ish outfit
 
-
-init 0 python:
     def add_stripclub_strippers():
         for i in __builtin__.range(0,4):
             a_girl = create_random_person(start_sluttiness = renpy.random.randint(15,30))
@@ -753,8 +634,14 @@ init 0 python:
             a_girl.home.add_person(a_girl)
             stripclub_strippers.append(a_girl)
         return
-
     stripclub_wardrobe = wardrobe_from_xml("Stripper_Wardrobe")
+
+    def initialize_stephanie_in_our_business():
+        mc.business.add_employee_research(stephanie)
+        mc.business.hire_head_researcher(stephanie)
+        stephanie.location.move_person(stephanie, lobby)
+        return
+
 
 label initialize_game_state(character_name,business_name,last_name,stat_array,skill_array,_sex_array,max_num_of_random=5): #Gets all of the variables ready. TODO: Move some of this stuff to an init block?
 
@@ -776,7 +663,7 @@ label initialize_game_state(character_name,business_name,last_name,stat_array,sk
         hall = Room("main hall","Home", background_image = standard_house_backgrounds[:],
             map_pos = [3,3], lighting_conditions = standard_indoor_lighting)
         bedroom = Room("your bedroom", "Your Bedroom", background_image = standard_bedroom_backgrounds[:],
-            actions = [sleep_action,bedroom_masturbate_action,faq_action],
+            actions = [sleep_action,bedroom_masturbate_action,faq_action,integration_test_action, test_action],
             map_pos = [3,2], lighting_conditions = standard_indoor_lighting)
         lily_bedroom = Room("Lily's bedroom", "Lily's Bedroom", background_image = standard_bedroom_backgrounds[:],
             map_pos = [2,3], lighting_conditions = standard_indoor_lighting)
@@ -794,7 +681,7 @@ label initialize_game_state(character_name,business_name,last_name,stat_array,sk
         lobby = Room(business_name + " lobby",business_name + " Lobby", background_image = standard_office_backgrounds[:],
             map_pos = [11,3], tutorial_label = "lobby_tutorial_intro", lighting_conditions = standard_indoor_lighting)
         office = Room("main office","Main Office", background_image = standard_office_backgrounds[:],
-            actions = [policy_purhase_action,hr_work_action,supplies_work_action,interview_action,pick_supply_goal_action,set_uniform_action,set_serum_action],
+            actions = [policy_purchase_action,hr_work_action,supplies_work_action,interview_action,pick_supply_goal_action,set_uniform_action,set_serum_action],
             map_pos = [11,2], tutorial_label = "office_tutorial_intro", lighting_conditions = standard_indoor_lighting)
         m_division = Room("marketing division","Marketing Division", background_image = standard_office_backgrounds[:],
             actions = [sell_serum_action, market_work_action,set_company_model_action],
@@ -826,7 +713,7 @@ label initialize_game_state(character_name,business_name,last_name,stat_array,sk
             map_pos = [8,3], lighting_conditions = standard_indoor_lighting)
         office_store = Room("office supply store","Office Supply Store", background_image = standard_mall_backgrounds[:], public = True,
             map_pos = [9,1], lighting_conditions = standard_indoor_lighting)
-        electronics_store = Room("electornics store", "Electronics Store", background_image = standard_mall_backgrounds[:], public = True,
+        electronics_store = Room("electronics store", "Electronics Store", background_image = standard_mall_backgrounds[:], public = True,
             map_pos = [7,2], lighting_conditions = standard_indoor_lighting)
 
         ## Mall supporting locations
@@ -861,10 +748,15 @@ label initialize_game_state(character_name,business_name,last_name,stat_array,sk
             map_pos = [10,10], visible = False, lighting_conditions = standard_indoor_lighting)
 
         ##PC starts in his bedroom##
-        mc = MainCharacter(bedroom,character_name,last_name, Business(business_name, m_division, p_division, rd_division, office, office),stat_array,skill_array,_sex_array)
+        mc = MainCharacter(bedroom,character_name,last_name,
+            Business(business_name, m_division, p_division, rd_division,
+                office, office),
+                stat_array,skill_array,_sex_array,
+        )
+        mc.change_locked_clarity(50, add_to_log = False) #PC starts with 50 locked clarity, which can be masturbated into the 25 Clarity needed to unlock the med trait.
+        mc.generate_goals()
 
         town_relationships = RelationshipArray() #Singleton class used to track relationships. Removes need for recursive character references (which messes with Ren'py's saving methods)
-        mc.generate_goals()
 
         ##Keep a list of all the places##
         list_of_places.append(bedroom)
@@ -907,7 +799,6 @@ label initialize_game_state(character_name,business_name,last_name,stat_array,sk
             room.add_object(make_bed())
             room.add_object(make_window())
 
-        room = None
 
         home_bathroom.add_object(make_wall())
         home_bathroom.add_object(Object("shower door", ["Lean"]))#, sluttiness_modifier = 5, obedience_modifier = 5))
@@ -1012,9 +903,9 @@ label initialize_game_state(character_name,business_name,last_name,stat_array,sk
                 for x in range(0,ran_num):
                     the_person = create_random_person()
                     the_person.generate_home()
-                    the_person.home.add_person(the_person) #We are using create_random_person instead of make_person because we want premade character bodies to be hirable instead of being eaten up by towns-folk.
+                    place.add_person(the_person) #We are using create_random_person instead of make_person because we want premade character bodies to be hirable instead of being eaten up by towns-folk.
 
-        generate_premade_list() # Creates the list with all the pre-made characters for the game in it. Without this we both break the policies call in create_random_person, and regenerate the premade list on each restart.
+        generate_premade_list() # Creates the list with all the premade characters for the game in it. Without this we both break the policies call in create_random_person, and regenerate the premade list on each restart.
 
         stripclub_strippers = MappedList(Person, all_people_in_the_game)
         add_stripclub_strippers()

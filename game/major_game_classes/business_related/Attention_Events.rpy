@@ -160,7 +160,7 @@ label attention_seize_inventory(the_person):
                             doses_seized += inventory.get_serum_count(design)
                             inventory.change_serum(design, -inventory.get_serum_count(design))
 
-    "[the_person.title]'s enforcers return. One is holding one of the cardboard boxes you use to store ready-to-ship serum."
+    "[the_person.title]'s enforcers return. One of them is holding one of the cardboard boxes you use to store ready-to-ship serum."
     "Enforcer" "Found it Ma'am, right where you said it would be."
     the_person "Good. Let me take a look..."
     "[the_person.possessive_title] flips open one of the boxes and pulls out the plastic vial inside."
@@ -169,7 +169,7 @@ label attention_seize_inventory(the_person):
     "She slips it back into it's box and turns back to you."
     if the_person.event_triggers_dict.get("city_rep_reduced_penalties_trained", False):
         the_person "We'll be taking..."
-        "She pauses. You can see the trance_planted obedience taking hold."
+        "She pauses. You can see the trance-planted obedience taking hold."
         the_person "... Some of this with us. You, go put half of that back."
         "Enforcer" "Ma'am? Are you sure?"
         the_person "Of course I'm sure! Now hurry up, before I have to report you when we get back."

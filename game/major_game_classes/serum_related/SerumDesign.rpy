@@ -127,29 +127,28 @@ init -2 python:
             else:
                 return False #Returns false when there is more time to go
 
+        def run_on_apply(self, the_person, add_to_log=True):
+            self.effects_dict = {} #Ensure this is clear and it isn't a reference to the main dict.
+            for trait in self.traits + self.side_effects:
+                trait.run_on_apply(the_person, self, add_to_log=add_to_log)
+
+        def run_on_remove(self, the_person, add_to_log=False):
+            for trait in self.traits + self.side_effects:
+                trait.run_on_remove(the_person, self, add_to_log=add_to_log)
+
         def run_on_turn(self, the_person, add_to_log = False): #Increases the counter, applies serum effect if there is still some duration left
             if self.duration_counter < self.duration:
                 for trait in self.traits + self.side_effects:
-                    trait.run_on_turn(the_person, self, add_to_log)
+                    trait.run_on_turn(the_person, self, add_to_log=add_to_log)
             if self.expires:
                 self.duration_counter += 1
 
-        def run_on_move(self, the_person, add_to_log = False):
+        def run_on_move(self, the_person, add_to_log=False):
             for trait in self.traits + self.side_effects:
-                trait.run_on_move(the_person, self, add_to_log)
-
-        def run_on_apply(self, the_person, add_to_log = True):
-            self.effects_dict = {} #Ensure this is clear and it isn't a reference to the main dict.
+                trait.run_on_move(the_person, self, add_to_log=add_to_log)
+        def run_on_day(self, the_person, add_to_log=False):
             for trait in self.traits + self.side_effects:
-                trait.run_on_apply(the_person, self, add_to_log)
-
-        def run_on_remove(self, the_person, add_to_log = False):
-            for trait in self.traits + self.side_effects:
-                trait.run_on_remove(the_person, self, add_to_log)
-
-        def run_on_day(self, the_person, add_to_log = False):
-            for trait in self.traits + self.side_effects:
-                trait.run_on_day(the_person, self, add_to_log)
+                trait.run_on_day(the_person, self, add_to_log=add_to_log)
 
         def add_research(self, amount): #Returns true if "amount" research completes the research
             self.current_research += amount

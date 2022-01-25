@@ -6,8 +6,7 @@ init 1300:
         def bimbo_possessive_titles(the_person):
             return bimbo_titles(the_person)
         def bimbo_player_titles(the_person):
-            valid_titles = [mc.name]
-            valid_titles.append("Cutie")
+            valid_titles = [mc.name, "Cutie"]
             return valid_titles
         bimbo_personality = Personality("bimbo", #Currently used in the head researcher event line.
         common_likes = ["skirts", "small talk", "the colour pink", "makeup", "pop"],
@@ -359,7 +358,7 @@ label bimbo_sex_angry_reject(the_person):
         "[the_person.title] glares at you and walks away."
     else:
         the_person "Eew! No, no, no! I will NEVER do that with ANYONE! Eew!"
-        "[the_person.title] shakes her head and walks away."
+        "[the_person.title] shakes her head and stalks away."
     return
 
 label bimbo_seduction_response(the_person):
@@ -369,7 +368,7 @@ label bimbo_seduction_response(the_person):
         else:
             the_person "All I can think about is that cute little dress I saw this morning. Oh, that's not you meant, was it..."
             "[the_person.title] giggles."
-            the_person "Never mind, lead the way!"
+            the_person "Nevermind, lead the way!"
     else:
         if the_person.sluttiness > 50:
             the_person "Yay! I was getting so horny that I was ready to jump you in the hall!"
@@ -843,7 +842,7 @@ label bimbo_cum_pullout(the_person):
                 the_person "[the_person.mc_title], I want you to knock me up! Take off the condom and cum inside of me, okay?"
                 the_person "I want you to make me your personal breeding slut! It would make me so happy if you knocked me up!"
 
-            menu: #TODO: Add a varient of this normally so you can stealth a girl (don't do that in real life, it's super fucked up).
+            menu: #TODO: Add a variant of this normally so you can stealth a girl (don't do that in real life, it's super fucked up).
                 "Take off the condom.":
                     "You don't have much time to spare. You pull out, barely clearing her pussy, and pull the condom off as quickly as you can manage."
                     $ mc.condom = False
@@ -910,7 +909,7 @@ label bimbo_cum_vagina(the_person):
                 $ so_title = SO_relationship_to_title(the_person.relationship)
                 the_person "My [so_title] gets angry when I forget, but it's not like he fucks me much anyways."
         elif pregnant_role in the_person.special_role:
-            the_person "Mmm, wow you really pumped it into me. But since i've already got one in the oven, that's fine."
+            the_person "Mmm, wow you really pumped it into me. But since I've already got one in the oven, that's fine."
             if the_person.relationship != "Single":
                 $ so_title = SO_relationship_to_title(the_person.relationship)
                 the_person "My [so_title] can't get mad about me getting knocked up, right? He already did it."
@@ -1372,7 +1371,7 @@ label bimbo_sex_beg_finish(the_person):
 
 ## Role Specific Section ##
 label bimbo_improved_serum_unlock(the_person):
-    mc.name "[the_person.title], now that you've had some time to get use to the lab there is something I want to talk to you about."
+    mc.name "[the_person.title], now that you've had some time to get used to the lab there is something I want to talk to you about."
     the_person "Sure, what can I help you with?"
     mc.name "Our R&D up to this point has been based on my old notes from university."
     mc.name "There were some unofficial experiment results that suggested the effects might be enhanced by sexual arousal."

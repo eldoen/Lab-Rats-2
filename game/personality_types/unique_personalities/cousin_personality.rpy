@@ -80,13 +80,13 @@ label cousin_sex_review(the_person, the_report):
     elif the_report.get("was_public", False) and (the_person.effective_sluttiness()+10*the_person.get_opinion_score("public sex") < comment_position.slut_cap):
         if used_obedience:
             the_person "Fuck, staying here was dumb. Why couldn't you just wait two minutes so we could find somewhere private?"
-            the_person "What if someone recognizes both of us?"
+            the_person "What if someone recognises both of us?"
             mc.name "Relax, nobody here cares who you are. It's going to be fine."
             the_person "Uh huh, sure..."
 
         else:
             the_person "Fuck, staying here was dumb. I should have dragged us somewhere private..."
-            the_person "What do we do if someone recognizes us? That could be really bad."
+            the_person "What do we do if someone recognises us? That could be really bad."
             mc.name "Relax. Nobody here cares who you are, it's going to be fine."
             "[the_person.title] seems unconvinced, but she shrugs and drops the subject."
             the_person "I hope you're right..."
@@ -331,7 +331,7 @@ label cousin_cum_pullout(the_person):
                 the_person "I... Oh fuck, I can't think straight! Take that condom off before you cum [the_person.mc_title]!"
                 the_person "Don't waste your load, put it into my fertile little pussy! Try and get me fucking pregnant!"
 
-            menu: #TODO: Add a varient of this normally so you can stealth a girl (don't do that in real life, it's super fucked up).
+            menu: #TODO: Add a variant of this normally so you can stealth a girl (don't do that in real life, it's super fucked up).
                 "Take off the condom.":
                     "You don't have much time to spare. You pull out, barely clearing her pussy, and pull the condom off as quickly as you can manage."
                     $ mc.condom = False
@@ -691,7 +691,7 @@ label cousin_creampie_taboo_break(the_person):
         the_person "Oh fuck, you actually did it. I thought you were going to chicken out."
         mc.name "Why would I chicken out? This is the one thing your pussy is good for."
         if the_person.on_birth_control:
-            the_person "Ugh, whatever. Congratulations, you managed to cum in a girls pussy. You aren't a complete failure of the human race."
+            the_person "Ugh, whatever. Congratulations, you managed to cum in a girl's pussy. You aren't a complete failure of the human race."
 
         else:
             the_person "Because I'm not on the pill, you idiot. I thought you were supposed to be the smart one in the family."

@@ -1083,11 +1083,6 @@ init -1 python:
         mc.business.mandatory_crises_list.append(clear_action)
         return
 
-    def employee_unpaid_intern_remove_requirement(person, trigger_day):
-        if day >= trigger_day:
-            return True
-        return False
-
     def add_unpaid_intern_clear_punishment_action(person):
         clear_action = Action("Clear employee freeuse", employee_freeuse_remove_requirement, "employee_unpaid_remove_label", args = person, requirement_args = [person, day + 7])
         mc.business.mandatory_crises_list.append(clear_action)

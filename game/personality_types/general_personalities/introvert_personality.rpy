@@ -272,7 +272,7 @@ label introvert_strip_reject(the_person, the_clothing, strip_type = "Full"):
 
 label introvert_strip_obedience_accept(the_person, the_clothing, strip_type = "Full"):
     if the_person.obedience > 130:
-        "[the_person.title] seems uncomfortable as you grab onto her [the_clothing.display_name], but doesn't say anything."
+        "[the_person.title] seems uncomfortable as you grab her [the_clothing.display_name], but doesn't say anything."
     else:
         the_person "I... I don't know if you should do that."
     return
@@ -1156,9 +1156,9 @@ label introvert_date_seduction(the_person):
                 $ mc.change_locked_clarity(20)
                 the_person "My [so_title] is never around. Do you want to come home with me? I would be happy if you did..."
             else:
+                $ mc.change_locked_clarity(20)
                 "[the_person.title] wrings her hands together nervously, as if working up the courage to speak."
                 the_person "I really like you. I have a [so_title], but I want to spend more time with you too."
-                $ mc.change_locked_clarity(20)
                 the_person "Do you... want to come home with me? He won't be around."
     return
 
@@ -1342,7 +1342,7 @@ label introvert_sex_review(the_person, the_report):
 ## Role Specific Section ##
 
 label introvert_improved_serum_unlock(the_person):
-    mc.name "[the_person.title], now that you've had some time to get use to the lab there is something I want to talk to you about."
+    mc.name "[the_person.title], now that you've had some time to get used to the lab there is something I want to talk to you about."
     the_person "Sure, what can I help you with?"
     mc.name "Our R&D up to this point has been based on my old notes from university."
     mc.name "There were some unofficial experiment results that suggested the effects might be enhanced by sexual arousal."

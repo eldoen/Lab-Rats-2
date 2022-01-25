@@ -1273,23 +1273,23 @@
             </Feet>
             <Accessories />
         </Outfit>
-		<Outfit name="Generic Pink Underwear 1">
-			<UpperBody>
-				<Item alpha="1.0" blue="1.0" green="0.0" name="Lace_Bra" palpha="1" pattern="Pattern_1" pblue="1" pgreen="1" pred="1" red="1.0" />
-			</UpperBody>
-			<LowerBody>
-				<Item alpha="1.0" blue="1.0" green="0.0" name="Lace_Panties" palpha="1" pattern="Pattern_1" pblue="1" pgreen="1" pred="1" red="1.0" />
-			</LowerBody>
-			<Feet>
-				<Item alpha="1" blue="1" green="1" name="Thigh_Highs" red="1" />
-			</Feet>
-			<Accessories>
-				<Item alpha="0.8" blue="1.0" green="0.0" name="Lipstick" red="1.0" />
-				<Item alpha="0.8" blue="1.0" green="0.0" name="Upper_Eye_Shadow" red="0.67" />
-				<Item alpha="0.95" blue="0.29" green="0.42" name="Blush" red="0.53" />
-			</Accessories>
-		</Outfit>
-		<Outfit name="Slutty_Kitty">
+	<Outfit name="Generic Pink Underwear 1">
+		<UpperBody>
+			<Item alpha="1.0" blue="1.0" green="0.0" name="Lace_Bra" palpha="1" pattern="Pattern_1" pblue="1" pgreen="1" pred="1" red="1.0" />
+		</UpperBody>
+		<LowerBody>
+			<Item alpha="1.0" blue="1.0" green="0.0" name="Lace_Panties" palpha="1" pattern="Pattern_1" pblue="1" pgreen="1" pred="1" red="1.0" />
+		</LowerBody>
+		<Feet>
+			<Item alpha="1" blue="1" green="1" name="Thigh_Highs" red="1" />
+		</Feet>
+		<Accessories>
+			<Item alpha="0.8" blue="1.0" green="0.0" name="Lipstick" red="1.0" />
+			<Item alpha="0.8" blue="1.0" green="0.0" name="Upper_Eye_Shadow" red="0.67" />
+			<Item alpha="0.95" blue="0.29" green="0.42" name="Blush" red="0.53" />
+		</Accessories>
+	</Outfit>
+	<Outfit name="Slutty_Kitty">
             <UpperBody>
                 <Item alpha="1.0" blue="0.15" green="0.15" name="Quarter_Cup_Bra" red="0.6" />
             </UpperBody>
@@ -1303,7 +1303,7 @@
                 <Item alpha="1.0" blue="0.1" green="0.1" name="Lace_Choker" red="0.1" />
             </Accessories>
         </Outfit>
-		<Outfit name="Kitty_1">
+	<Outfit name="Kitty_1">
             <UpperBody>
                 <Item alpha="1.0" blue="0.91" green="0.82" name="Kitty_Babydoll" red="1.0" />
             </UpperBody>

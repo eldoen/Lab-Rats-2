@@ -234,7 +234,7 @@ label broken_AC_crisis_label():
     menu:
         "Take a break":
             "You tell everyone in the production lab to take a break for a few hours while the air conditioning is repaired."
-            "The unexpected break raises moral and makes the production staff feel more independent."
+            "The unexpected break raises morale and makes the production staff feel more independent."
             $ broken_AC_crisis_update_stats(5, -2)
             "The repair man shows up early and it turns out to be an easy fix. The lab is soon back up and running."
 
@@ -744,7 +744,7 @@ label special_training_crisis_label():
     the_person "[the_person.mc_title], I've just gotten word about a training seminar going on right now a few blocks away. I would love to take a trip over and see if there is anything I could learn."
     the_person "There's a sign up fee of $500. If you can cover that, I'll head over right away."
     menu:
-        "Send [the_person.title] to the Seminar\n{color=#ff0000}{size=18}Costs: $500{/size}{/color}" if mc.business.funds >= 500:
+        "Send [the_person.title] to the Seminar\n{color=#ff0000}{size=18}Costs: $500{/size}{/color}" if mc.business.has_funds(500):
             $ mc.business.change_funds(-500)
             mc.name "That sounds like a great idea. I'll call and sort out the fee, you start heading over."
             the_person "Understood, thank you sir! What would you like me to focus on?"
@@ -936,7 +936,6 @@ label extra_mastery_crisis_label():
     if mc.location.has_person(the_person):
         #She's in the same room as you.
         the_person "[the_person.mc_title], I have something interesting to show you."
-        $ the_person.draw_person()
         $ the_person.draw_person()
     else:
         #She comes to meet you,

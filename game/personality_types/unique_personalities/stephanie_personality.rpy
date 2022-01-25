@@ -85,7 +85,7 @@ label stephanie_cum_mouth(the_person):
 #     return
 
 label stephanie_improved_serum_unlock(the_person):
-    mc.name "[the_person.title], now that you've had some time to get use to the lab there is something I want to talk to you about."
+    mc.name "[the_person.title], now that you've had some time to get used to the lab there is something I want to talk to you about."
     the_person "Sure, what can I help you with?"
     mc.name "Our R&D up to this point has been based on the notes you and I have from our days at the lab."
     mc.name "Remember how some of the effects we saw were enhanced by sexual arousal?"

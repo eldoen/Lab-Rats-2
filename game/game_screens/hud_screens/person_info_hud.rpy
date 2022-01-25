@@ -79,7 +79,7 @@ screen person_info_ui(the_person): #Used to display stats for a person while you
                 textbutton "Arousal: " + str(disp_arousal) + "/" + str(disp_max_arousal) + " {image=gui/extra_images/arousal_token.png}":
                     ysize 24
                     text_style "menu_text_style"
-                    tooltip "When a girl is brought to 100% arousal she will start to climax. Climaxing will make a girl happier and may put them into a Trance if their suggestability is higher than 0."
+                    tooltip "When a girl is brought to 100% arousal she will start to climax. Climaxing will make a girl happier and may put them into a Trance if their suggestibility is higher than 0."
                     action NullAction()
                     sensitive True
 

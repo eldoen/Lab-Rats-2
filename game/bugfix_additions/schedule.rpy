@@ -24,8 +24,8 @@ init -3 python:
 
     class Schedule():
         def __init__(self, home_location = None):
-            self.schedule =[]
-            for x in range(7):
+            self.schedule = []
+            for _ in range(7):
                 self.schedule.append(DaySchedule(home_location))
 
         def __getitem__(self, key):

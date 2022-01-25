@@ -131,7 +131,7 @@ label fuck_date_label(the_person):
     the_person "Come on in, the door is unlocked. I'm in the bedroom"
     $ aunt_bedroom.show_background()
     "You go inside. The only light in the house comes from a room with its door ajar. When you swing it open you see [the_person.title] waiting."
-    $ the_person.add_situational_slut("Date", 20, "There's no reason to hold back, he's here to fuck me!") # Bonus to sluttiness since you're in an affair and this is blatently a date to get fucked on.
+    $ the_person.add_situational_slut("Date", 20, "There's no reason to hold back, he's here to fuck me!") # Bonus to sluttiness since you're in an affair and this is blatantly a date to get fucked on.
     call fuck_date_event(the_person) from _call_fuck_date_event
     return "Advance Time"
 

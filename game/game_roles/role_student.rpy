@@ -1548,8 +1548,8 @@ label student_test(the_person): #TODO: Hook this up
     mc.name "Like [nora.title] said, you have three hours. Good luck."
     the_person "Right, here we go!"
     "She opens up the stack of papers and starts working on it."
-    #TODO: Add a varient if she's really slutty where she needs to get off first.
-    #TODO: Add a varient where she tries to "convince" you to give her the answers.
+    #TODO: Add a variant if she's really slutty where she needs to get off first.
+    #TODO: Add a variant where she tries to "convince" you to give her the answers.
     "You pass the time browsing the internet on your phone."
     $ the_person.draw_person()
     "Two hours in [the_person.possessive_title] stands up and walks towards you, test in hand."

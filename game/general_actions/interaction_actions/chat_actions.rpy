@@ -663,7 +663,7 @@ label give_serum(the_person, add_to_log = True):
         if add_to_log:
             "You decide to give [the_person.title] a dose of [the_serum.name]."
         $ mc.inventory.change_serum(the_serum,-1)
-        $ the_person.give_serum(copy.copy(the_serum), add_to_log = add_to_log) #Use a copy rather than the main class, so we can modify and delete the effects without changing anything else.
+        $ the_person.give_serum(copy.copy(the_serum), add_to_log=add_to_log) #Use a copy rather than the main class, so we can modify and delete the effects without changing anything else.
         return the_serum
 
     if add_to_log:

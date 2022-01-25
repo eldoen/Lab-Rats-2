@@ -122,7 +122,7 @@ init 0 python:
 
     recruitment_policies_list.append(recruitment_stat_improvement_policy)
 
-    # def recruitment_high_suggest_requirement(): #TODO: Figure out what this means with suggestibility. What the hell do we even want suggestability to do right now?
+    # def recruitment_high_suggest_requirement(): #TODO: Figure out what this means with suggestibility. What the hell do we even want suggestibility to do right now?
     #     return True
     #
     # recruitment_suggest_improvment_policy = Policy(name = "High Suggestibility Recruits",

@@ -483,7 +483,7 @@ init -2 python:
 
             #TODO: Decide if we want to also comment on her stripping to her underwear.
             else:
-                rand = renpy.random.randint(0,3) #Add some random varients so it's not always the same.
+                rand = renpy.random.randint(0,3) #Add some random variants so it's not always the same.
                 if rand == 0:
                     if half_off_instead:
                         renpy.say(None, the_person.title + " slides her " + item.display_name + " away.")

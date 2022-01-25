@@ -1442,7 +1442,7 @@ label family_games_night_drinks(the_mom, the_aunt): #Breakout function for the d
     # Get Lily and bring her back, gather around the kitchen table to play.
     return
 
-label family_games_night_cards(the_mom, the_aunt, the_sister): #Breakout function for the card game to keep things organized (and support adding new varients later)
+label family_games_night_cards(the_mom, the_aunt, the_sister): #Breakout function for the card game to keep things organized (and support adding new variants later)
 
     $ the_group = GroupDisplayManager([the_mom, the_aunt, the_sister], the_mom)
     $ the_group.draw_group()

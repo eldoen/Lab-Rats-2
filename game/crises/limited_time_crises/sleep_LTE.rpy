@@ -29,7 +29,7 @@ label sleeping_walk_in_label(the_person): #TODO: This event is currently for Mom
     python:
         (sleep_wear, ran_num) = the_person.event_triggers_dict.get("event_sleepwear", (None, 1))
         if sleep_wear is None or ran_num < day:
-            sleep_wear = the_person.wardrobe.get_random_appropriate_underwear(the_person.effective_sluttiness(), guarantee_output = True)
+            sleep_wear = the_person.wardrobe.get_random_appropriate_underwear(the_person.effective_sluttiness(), guarantee_output=True)
             the_person.event_triggers_dict["event_sleepwear"] = (sleep_wear, day)
 
         the_person.apply_outfit(sleep_wear) #She's sleeping in her underwear.
@@ -244,7 +244,7 @@ label nightime_grope(the_person, masturbating = False):
         if random_variant == 0:
             "You stroke your cock, thinking about what you want to do with [the_person.possessive_title]."
         elif random_variant == 1:
-            "You play with your cock and oggle [the_person.possessive_title]'s sleeping body."
+            "You play with your cock and ogle [the_person.possessive_title]'s sleeping body."
         elif random_variant == 2:
             "You jerk yourself off next to [the_person.title] while you think about what else to do."
         else:

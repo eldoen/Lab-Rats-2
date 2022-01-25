@@ -5,7 +5,7 @@ init -3 python:
         return what + " | it worked! |"
 
 
-    def gagged_speach(Person, what):
+    def gagged_speech(Person, what):
         #TODO: We need to make sure we strip the text of notational stuff before we start modifying it (and then add it in after).
         modified_response = what #TODO: We still need to work on stripping out the existing modifiers and preserving them somehow.
         #Gagged characters can't make plosive sounds. Now I only wish english was written with proper phonetics!
@@ -23,10 +23,10 @@ init -3 python:
         for word in split_list: #We need to be able to scan forwards and backwards in the list.
             for count, letter in enumerate(word):
                 if letter == ">":
-                    return_response += gagged_speach_get_letter(word, count).lower()
+                    return_response += gagged_speech_get_letter(word, count).lower()
 
                 elif letter == "^":
-                    return_response += gagged_speach_get_letter(word, count).upper()
+                    return_response += gagged_speech_get_letter(word, count).upper()
 
                 else:
                     return_response += letter
@@ -38,7 +38,7 @@ init -3 python:
 
         return return_response
 
-    def gagged_speach_get_letter(word, position):
+    def gagged_speech_get_letter(word, position):
         print("Trying: " + word + " at position " + str(position))
         for scan_position in range(position, -1, -1):
             if word[scan_position].isalpha():

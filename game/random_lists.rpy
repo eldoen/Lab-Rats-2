@@ -65,6 +65,7 @@ init -2:
         list_of_names.append("Melanie")
         list_of_names.append("Tina")
         list_of_names.append("Raven")
+        list_of_names.append("Sarah")
         list_of_names.append("Antonia")
         list_of_names.append("Mina")
         list_of_names.append("Marisha")
@@ -124,6 +125,7 @@ init -2:
         list_of_names.append("Raislyn")
         list_of_names.append("Gina")
         list_of_names.append("Chrystal")
+        list_of_names.append("Jenny")
         list_of_names.append("Selene")
         list_of_names.append("Piper")
         list_of_names.append("Nicole")
@@ -135,6 +137,7 @@ init -2:
         list_of_names.append("Lystra")
         list_of_names.append("Katreena")
         list_of_names.append("Hannah")
+        list_of_names.append("Mara")
         list_of_names.append("Trinity")
         list_of_names.append("Stephine")
         list_of_names.append("Sydney")
@@ -211,6 +214,7 @@ init -2:
         list_of_last_names.append("Kurokami")
         list_of_last_names.append("Bergstrom")
         list_of_last_names.append("Fernandez")
+        list_of_last_names.append("Bergstrom")
         list_of_last_names.append("Sasamiya")
         list_of_last_names.append("Onihime")
         list_of_last_names.append("Lancie")
@@ -880,7 +884,7 @@ init -2:
                     else:
                         return_string += "and " + a_person.title
 
-            #TODO: Add a varient of this that lets you set a max number of people. A kind of "blah, blah, blah, and 7 more people..." response.
+            #TODO: Add a variant of this that lets you set a max number of people. A kind of "blah, blah, blah, and 7 more people..." response.
             return return_string
 
         def format_list_of_clothing(the_list): # Takes a list of strings and formats them to the form "ThingA, thingB, and ThingC"
@@ -1193,10 +1197,9 @@ init 1 python:
         city_rep.set_schedule(city_rep.home, times = [0,4])
 
         city_rep.set_title("???")
-        city_rep.set_mc_title("Mr."+mc.last_name)
+        city_rep.set_mc_title("Mr. "+mc.last_name)
         city_rep.set_possessive_title("???")
 
-       
         ### LILY ###
         global lily
         lily = create_random_person(name = "Lily", last_name = mc.last_name, age = 19, body_type = "thin_body", face_style = "Face_6", tits = "B", height = 0.90, hair_colour="blond", hair_style = ponytail, skin="white", \
@@ -1204,11 +1207,12 @@ init 1 python:
             stat_array = [5,2,2], skill_array = [2,2,0,1,1], sex_array = [2,1,0,0], start_sluttiness = 8, start_obedience = -26, start_happiness = 122, start_love = 8, \
             title = "Lily", possessive_title = "Your sister", mc_title = mc.name, relationship = "Single", kids = 0)
 
-        add_lily_introduction_actions()
-
         lily.add_role(sister_role)
         lily.set_schedule(lily.home, times = [3])
         lily.set_schedule(university, days = [0, 1, 2, 3, 4, 5], times = [1,2])
+
+        add_lily_introduction_actions()
+
         lily.home.add_person(lily)
         mc.phone.register_number(lily)
 
@@ -1221,12 +1225,12 @@ init 1 python:
             stat_array = [3,2,4], skill_array = [5,2,0,0,2], sex_array = [2,1,3,0], start_sluttiness = 7, start_obedience = 12, start_happiness = 108, start_love = 8, \
             title = "Mom", possessive_title = "Your mother", mc_title = "Sweetheart", relationship = "Single", kids = 2, base_outfit = mom_base)
 
-        add_mom_weekly_pay_action()
-        add_mom_introduction_actions()
-
         mom.add_role(mother_role)
         mom.set_schedule(kitchen, times = [3])
         mom.set_work(mom_offices, work_times = [1,2])
+
+        add_mom_weekly_pay_action()
+        add_mom_introduction_actions()
 
         mom.home.add_person(mom)
         mc.phone.register_number(mom)
@@ -1264,7 +1268,6 @@ init 1 python:
         town_relationships.update_relationship(aunt, lily, "Niece", "Aunt")
         town_relationships.update_relationship(lily, cousin, "Cousin")
         town_relationships.update_relationship(christina, emily, "Daughter", "Mother")
-
 
 
     def get_premade_character(): #Get a premade character and return them when the function is called.

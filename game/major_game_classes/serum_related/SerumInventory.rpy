@@ -4,7 +4,7 @@ init -2 python:
             if starting_list is None:
                 self.serums_held = []
             else:
-                self.serums_held = starting_list ##Starting list is a list of tuples, going [SerumDesign,count]. Count should be possitive.
+                self.serums_held = starting_list ##Starting list is a list of tuples, going [SerumDesign,count]. Count should be positive.
 
         def get_serum_count(self, serum_design):
             for design in self.serums_held:
@@ -13,10 +13,7 @@ init -2 python:
             return 0
 
         def get_any_serum_count(self):
-            count = 0
-            for design in self.serums_held:
-                count += design[1]
-            return count
+            return __builtin__.sum(list(zip(*self.serums_held))[1])
 
         def get_matching_serum_count(self, check_function): #Hand a function to the inventory and get a count of the number of serums that match that requirement.
             count = 0
@@ -26,12 +23,7 @@ init -2 python:
             return count
 
         def get_max_serum_count(self): #Returns the count of the highest group of serums you have available.
-            highest_count = 0
-            for design in self.get_serum_type_list():
-                if design[1] > highest_count:
-                    highest_count = design[1]
-
-            return highest_count
+            return __builtin__.max(list(zip(*self.serums_held))[1])
 
         def change_serum(self, serum_design,change_amount): ##Serum count must be greater than 0. Adds to stockpile of serum_design if it is already there, creates it otherwise.
             found = False
@@ -48,17 +40,8 @@ init -2 python:
 
 
         def get_serum_type_list(self): ## returns a list of all the serum types that are in the inventory, without their counts.
-            return_values = []
-            for design in self.serums_held:
-                return_values.append(design[0])
-            return return_values
+            return list(zip(*self.serums_held))[0]
 
         def get_highest_serum_count(self):
-            return_value = none
-            largest_amount = -1
-            for design in self.serums_held:
-                if self.get_serum_count(design) > largest_amount:
-                    return_value = design
-                    largest_amount = self.get_serum_count(design)
-
-            return return_value
+            # sort the list; get the last tuple [-1]; get the design [0]
+            return sorted(self.serums_held,key=lambda x:x[1])[-1][0]
