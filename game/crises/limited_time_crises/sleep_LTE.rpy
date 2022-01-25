@@ -244,7 +244,7 @@ label nightime_grope(the_person, masturbating = False):
         if random_variant == 0:
             "You stroke your cock, thinking about what you want to do with [the_person.possessive_title]."
         elif random_variant == 1:
-            "You play with your cock and oggle [the_person.possessive_title]'s sleeping body."
+            "You play with your cock and ogle [the_person.possessive_title]'s sleeping body."
         elif random_variant == 2:
             "You jerk yourself off next to [the_person.title] while you think about what else to do."
         else:

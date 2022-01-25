@@ -208,7 +208,7 @@ label normal_start:
     "[stephanie.title] said she would meet you at your new office for a tour."
     #TODO: Have an on_enter event for Steph if you see her the first day. Minor interaction stuff.
 
-    #Add Stepyhanie to our business and flag her with a special role.
+    #Add Stephanie to our business and flag her with a special role.
     $ initialize_stephanie_in_our_business()
 
     #TODO: movement overlay tutorial thing.

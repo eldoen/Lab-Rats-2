@@ -323,7 +323,7 @@ init -2 python:
 
             temp_what = ""
             for word in new_what.split(): #Per word modifications
-                flattened_word = remove_punctuation(word).lower() #Stripped and lower case for easy comparison, we use the full raw word (including punctaiton) for replacement.
+                flattened_word = remove_punctuation(word).lower() #Stripped and lower case for easy comparison, we use the full raw word (including punctuation) for replacement.
                 modified_word = False
                 effect_strength = str(int(6*(self.arousal/self.max_arousal)) + 2) #If an effect triggers this scales the effect with arousal.
                 if word[0] == "{" and word [-1] == "}":
@@ -1179,7 +1179,7 @@ init -2 python:
             if isinstance(the_taboos, basestring):
                 the_taboos = [the_taboos]
 
-            for a_taboo in the_taboos: #We also handle lists, if we what to check if someone has _any_ of several taboos at once
+            for a_taboo in the_taboos: #We also handle lists, if we want to check if someone has _any_ of several taboos at once
                 if a_taboo not in self.broken_taboos:
                     return True
             return False

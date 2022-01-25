@@ -234,7 +234,7 @@ label broken_AC_crisis_label():
     menu:
         "Take a break":
             "You tell everyone in the production lab to take a break for a few hours while the air conditioning is repaired."
-            "The unexpected break raises moral and makes the production staff feel more independent."
+            "The unexpected break raises morale and makes the production staff feel more independent."
             $ broken_AC_crisis_update_stats(5, -2)
             "The repair man shows up early and it turns out to be an easy fix. The lab is soon back up and running."
 
