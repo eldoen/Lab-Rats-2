@@ -256,7 +256,7 @@ init -3 python:
             menu_tooltip = "Have her strip down until she's only in her underwear.")
         demand_strip_naked_action = Action("Get naked", demand_strip_naked_requirement, "demand_strip_naked_label", args = the_person, requirement_args = the_person,
             menu_tooltip = "Have her strip until she is completely naked.")
-        return ["Strip Command", demand_strip_tits_action, demand_strip_underwear_action, demand_strip_naked_action, ["Never mind", "Return"]]
+        return [["Strip Command", demand_strip_tits_action, demand_strip_underwear_action, demand_strip_naked_action], ["Never mind", "Return"]]
 
     def top_strip_description(person, strip_list):
         for item_to_strip in strip_list:
@@ -316,9 +316,9 @@ init -3 python:
 
 label demand_strip_label(the_person):
     if "action_mod_list" in globals():
-        call screen enhanced_main_choice_display(build_menu_items([build_demand_strip_menu(the_person)]))
+        call screen enhanced_main_choice_display(build_menu_items(build_demand_strip_menu(the_person)))
     else:
-        call screen main_choice_display([build_demand_strip_menu(the_person)])
+        call screen main_choice_display(build_demand_strip_menu(the_person))
     if _return != "Return": #Just return, we either don't want to select any of these options, or we _can't_
         $ _return.call_action()
 

@@ -1322,9 +1322,9 @@ label mom_office_person_request():
     the_person "Hello, can I help you? Do you have an appointment?"
 
     if "action_mod_list" in globals():
-        call screen enhanced_main_choice_display(build_menu_items(get_mom_office_actions(), draw_person_previews = False, draw_hearts_for_people = False))
+        call screen enhanced_main_choice_display(build_menu_items(get_mom_office_actions(), draw_person_previews=False, draw_hearts_for_people=False))
     else:
-        call screen main_choice_display(get_mom_office_actions(), draw_person_previews = False, draw_hearts_for_people = False)
+        call screen main_choice_display(get_mom_office_actions(), draw_person_previews=False, draw_hearts_for_people=False)
 
     if _return == "Leave":
         mc.name "Sorry to bother you."
@@ -1367,7 +1367,7 @@ label mom_found_serums(): #TODO: Triggers a couple of days after the start of th
     $ blue_serum.add_trait(primitive_serum_prod)
     $ blue_serum.add_trait(high_capacity_design)
     $ blue_serum.add_trait(high_con_drugs)
-    $ blue_serum.add_trait(simple_aphrodesiac)
+    $ blue_serum.add_trait(simple_aphrodisiac)
 
     $ red_serum = SerumDesign()
     $ red_serum.name = "Red Serum"

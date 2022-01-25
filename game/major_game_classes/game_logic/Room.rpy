@@ -9,7 +9,7 @@ init -2 python:
                 self.name = name
 
             if formal_name is None:
-                self.formal_name = name
+                self.formal_name = self.name
             else:
                 self.formal_name = formal_name
 

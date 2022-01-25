@@ -1814,6 +1814,8 @@ init -2 python:
                 mc.listener_system.fire_event("girl_climax", the_person=self)
             if renpy.random.randint(0,100) < self.suggestibility + trance_chance_modifier or force_trance:
                 self.increase_trance(show_dialogue=show_dialogue, add_to_log=add_to_log)
+            if reset_arousal:
+                self.reset_arousal() #TODO: Decide if resetting should only halve it, like making a girl cum yoruself.
 
         def increase_trance(self, show_dialogue=True, add_to_log=True):
             if not self.has_role(trance_role):
@@ -1838,9 +1840,6 @@ init -2 python:
                     mc.log_event(self.display_name + " sinks deeper into a trance!", "float_text_red")
                 if show_dialogue:
                     renpy.say(None, self.possessive_title + " eyes glaze over, and she sinks completely into a cum addled trance.")
-
-            if reset_arousal:
-                self.reset_arousal() #TODO: Decide if resetting should only halve it, like making a girl cum yoruself.
 
         def get_trance_multiplier(self):
             if self.has_exact_role(trance_role):

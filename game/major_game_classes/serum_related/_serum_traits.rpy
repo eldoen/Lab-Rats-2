@@ -220,7 +220,7 @@ init -1:
         def birth_control_suppression_on_remove(the_person, the_serum, add_to_log):
             the_person.bc_penalty -= 40
 
-        def simple_aphrodesiac_on_apply(the_person, the_serum, add_to_log):
+        def simple_aphrodisiac_on_apply(the_person, the_serum, add_to_log):
             change_amount = 30 - the_person.effective_sluttiness()
             if change_amount > 10:
                 change_amount = 10
@@ -228,12 +228,12 @@ init -1:
                 change_amount = 0
 
             the_person.change_slut(change_amount, add_to_log=add_to_log)
-            the_serum.effects_dict["simple_aphrodesiac_amount"] = change_amount
+            the_serum.effects_dict["simple_aphrodisiac_amount"] = change_amount
 
             the_person.change_max_energy(-20, add_to_log=add_to_log)
 
-        def simple_aphrodesiac_on_remove(the_person, the_serum, add_to_log):
-            change_amount = the_serum.effects_dict.get("simple_aphrodesiac_amount", 10)
+        def simple_aphrodisiac_on_remove(the_person, the_serum, add_to_log):
+            change_amount = the_serum.effects_dict.get("simple_aphrodisiac_amount", 10)
             the_person.change_slut(-change_amount, add_to_log=add_to_log)
 
             the_person.change_max_energy(20, add_to_log=add_to_log)
@@ -548,7 +548,7 @@ init -1:
         # Tier 0 traits produce almost no effect on the person taking them, or produce an effect with a significant downside. They are available for research from the start of the game.
 
         primitive_serum_prod = SerumTrait(name = "Primitive Serum Production",
-            desc = "The fundamental serum creation technique. The special carrier molecule can deliver one other serum trait with pinpoint accuracy.",
+            desc = "The fundamental serum creation technique. The special carrier molecule can deliver one other serum trait with pinpoint accuracy",
             positive_slug = "1 Trait Slot, 3 Turn Duration",
             negative_slug = "40 Production/Batch",
             research_added = 50,
@@ -564,7 +564,7 @@ init -1:
             mental_aspect = 0, physical_aspect = 0, sexual_aspect = 0, medical_aspect = 1, flaws_aspect = 0, attention = 0)
 
         high_capacity_design = SerumTrait(name = "High Capacity Design",
-            desc = "Removing the standard stabilizing agents allow an additional serum trait to be added to the design. This change shortens the duration of the serum and is almost certain to introduce unpleasant side effects.",
+            desc = "Removing the standard stabilizing agents allow an additional serum trait to be added to the design. This change shortens the duration of the serum and is almost certain to introduce unpleasant side effects",
             positive_slug = "+1 Trait Slot",
             negative_slug = "-1 Turn Duration",
             research_added = 75,
@@ -577,7 +577,7 @@ init -1:
             mental_aspect = 0, physical_aspect = 0, sexual_aspect = 0, medical_aspect = 1, flaws_aspect = 0, attention = 0)
 
         basic_med_app = SerumTrait(name = "Basic Medical Application",
-            desc = "A spread of minor medical benefits ensures this will always have value for off label treatments. The required research may suggest other effects that can be included in a serum.",
+            desc = "A spread of minor medical benefits ensures this will always have value for off label treatments. The required research may suggest other effects that can be included in a serum",
             positive_slug = "",
             negative_slug = "",
             research_added = 50,
@@ -587,7 +587,7 @@ init -1:
             mental_aspect = 0, physical_aspect = 0, sexual_aspect = 0, medical_aspect = 2, flaws_aspect = 0, attention = 0)
 
         suggestion_drugs_trait = SerumTrait(name = "Suggestion Drugs",
-            desc = "Carefully selected mind altering agents amplify the preexisting effects of the serum, making the recipient more vulnerable to behavioral changes.",
+            desc = "Carefully selected mind altering agents amplify the preexisting effects of the serum, making the recipient more vulnerable to behavioral changes",
             positive_slug = "+10 Suggestibility",
             negative_slug = "",
             research_added = 50,
@@ -600,7 +600,7 @@ init -1:
             mental_aspect = 2, physical_aspect = 0, sexual_aspect = 0, medical_aspect = 1, flaws_aspect = 0, attention = 1)
 
         high_con_drugs = SerumTrait(name = "High Concentration Drugs",
-            desc = "By increasing the dose of mind altering agents a larger change to suggestibility can be achieved. The increased dosage has a tendency to leave the recipient depressed.",
+            desc = "By increasing the dose of mind altering agents a larger change to suggestibility can be achieved. The increased dosage has a tendency to leave the recipient depressed",
             positive_slug = "+25 Suggestibility",
             negative_slug = "-2 Happiness/Turn",
             research_added = 50,
@@ -615,7 +615,7 @@ init -1:
             mental_aspect = 3, physical_aspect = 0, sexual_aspect = 0, medical_aspect = 1, flaws_aspect = 0, attention = 2)
 
         sedatives_trait = SerumTrait(name = "Low Concentration Sedatives",
-            desc = "A low dose of slow release sedatives makes the recipient more obedient, but have a negative effect on productivity.",
+            desc = "A low dose of slow release sedatives makes the recipient more obedient, but have a negative effect on productivity",
             positive_slug = "+10 Obedience",
             negative_slug = "-1 To All Stats",
             research_added = 50,
@@ -628,7 +628,7 @@ init -1:
             mental_aspect = 2, physical_aspect = 1, sexual_aspect = 0, medical_aspect = 0, flaws_aspect = 0, attention = 1)
 
         caffeine_trait = SerumTrait(name = "Caffeine Infusion",
-            desc = "Adding simple, well understood caffeine to the serum increase the energy levels of the recipient. Unfortunately, the stimulating effect tends to reduce obedience for the duration.",
+            desc = "Adding simple, well understood caffeine to the serum increase the energy levels of the recipient. Unfortunately, the stimulating effect tends to reduce obedience for the duration",
             positive_slug = "+20 Max Energy",
             negative_slug = "-15 Obedience",
             research_added = 50,
@@ -641,7 +641,7 @@ init -1:
             mental_aspect = 1, physical_aspect = 1, sexual_aspect = 0, medical_aspect = 0, flaws_aspect = 0, attention = 0)
 
         birth_control_suppression = SerumTrait(name = "Birth Control Suppression",
-            desc = "Designed to interfere with the most common forms of oral birth control, reducing their effectiveness.",
+            desc = "Designed to interfere with the most common forms of oral birth control, reducing their effectiveness",
             positive_slug = "-40% BC Effectiveness",
             negative_slug = "",
             research_added = 50,
@@ -652,20 +652,20 @@ init -1:
             clarity_cost = 30,
             mental_aspect = 0, physical_aspect = 0, sexual_aspect = 2, medical_aspect = 1, flaws_aspect = 0, attention = 1)
 
-        simple_aphrodesiac = SerumTrait(name = "Inhibition Suppression",
-            desc = "Direct delivery of alcoholic molecules to the subject's brain produces notably reduced inhibitions. Side effects are common, but always include drowsiness.",
+        simple_aphrodisiac = SerumTrait(name = "Inhibition Suppression",
+            desc = "Direct delivery of alcoholic molecules to the subject's brain produces notably reduced inhibitions. Side effects are common, but always include drowsiness",
             positive_slug = "+10 Sluttiness (Max 30)",
             negative_slug = "-20 Energy",
             research_added = 50,
             base_side_effect_chance = 50,
-            on_apply = simple_aphrodesiac_on_apply,
-            on_remove = simple_aphrodesiac_on_remove,
+            on_apply = simple_aphrodisiac_on_apply,
+            on_remove = simple_aphrodisiac_on_remove,
             research_needed = 75,
             clarity_cost = 25,
             mental_aspect = 1, physical_aspect = 0, sexual_aspect = 2, medical_aspect = 0, flaws_aspect = 0, attention = 1)
 
         foreplay_enhancer = SerumTrait(name = "Tactile Stimulator",
-            desc = "Tunes the subject's nerves, especially those in the extremities, to higher levels of precision. Increases a girls Foreplay skill for the duration.",
+            desc = "Tunes the subject's nerves, especially those in the extremities, to higher levels of precision. Increases a girls Foreplay skill for the duration",
             positive_slug = "+2 Foreplay Skill",
             negative_slug = "",
             research_added = 50,
@@ -679,8 +679,8 @@ init -1:
             mental_aspect = 0, physical_aspect = 1, sexual_aspect = 2, medical_aspect = 0, flaws_aspect = 0, attention = 1)
 
         hair_lighten_dye = SerumTrait(name = "Synthetic Hair Bleach",
-            desc = "Slow release chemicals lighten the hair colour of the subject's hair. Application over several hours or days is needed for the best results.",
-            positive_slug = "Lightens the Subject's Hair Colour.",
+            desc = "Slow release chemicals lighten the hair colour of the subject's hair. Application over several hours or days is needed for the best results",
+            positive_slug = "Lightens the Subject's Hair Colour",
             negative_slug = "",
             research_added = 40,
             base_side_effect_chance = 40,
@@ -692,8 +692,8 @@ init -1:
             mental_aspect = 0, physical_aspect = 2, sexual_aspect = 0, medical_aspect = 0, flaws_aspect = 0, attention = 0)
 
         hair_darken_dye = SerumTrait(name = "Synthetic Hair Darkening Agent",
-            desc = "Slow release chemicals darken the hair colour of the subject. Application over several hours or days is needed for the best results.",
-            positive_slug = "Darkens the Subject's Hair Colour.",
+            desc = "Slow release chemicals darken the hair colour of the subject. Application over several hours or days is needed for the best results",
+            positive_slug = "Darkens the Subject's Hair Colour",
             negative_slug = "",
             research_added = 40,
             base_side_effect_chance = 40,
@@ -711,7 +711,7 @@ init -1:
         # Tier 1 traits produce minor effects, often at the cost of unpleasant mandatory side effects (lower happiness, obedience, stats)
 
         improved_serum_prod = SerumTrait(name = "Improved Serum Production",
-            desc = "General improvements to the basic serum creation formula. Allows for two serum traits to be delivered, but requires slightly more production to produce.",
+            desc = "General improvements to the basic serum creation formula. Allows for two serum traits to be delivered, but requires slightly more production to produce",
             positive_slug = "2 Trait Slots, 3 Turn Duration",
             negative_slug = "70 Production/Batch",
             research_added = 50,
@@ -728,7 +728,7 @@ init -1:
             mental_aspect = 0, physical_aspect = 0, sexual_aspect = 0, medical_aspect = 2, flaws_aspect = 0, attention = 0)
 
         obedience_enhancer = SerumTrait(name = "Obedience Enhancer",
-            desc = "A blend of off the shelf pharmaceuticals will make the recipient more receptive to direct orders.",
+            desc = "A blend of off the shelf pharmaceuticals will make the recipient more receptive to direct orders",
             positive_slug = "+10 Obedience",
             negative_slug = "",
             research_added = 75,
@@ -742,7 +742,7 @@ init -1:
             mental_aspect = 3, physical_aspect = 0, sexual_aspect = 2, medical_aspect = 0, flaws_aspect = 0, attention = 1)
 
         large_obedience_enhancer = SerumTrait(name = "Experimental Obedience Treatment",
-            desc = "The combination of several only recently released compounds should produce a larger increase in obedience. Unfortunately the effect leaves the recipient rather stuck up and stuffy.",
+            desc = "The combination of several only recently released compounds should produce a larger increase in obedience. Unfortunately the effect leaves the recipient rather stuck up and stuffy",
             positive_slug = "+20 Obedience",
             negative_slug = "-1 Sluttiness/Turn",
             research_added = 75,
@@ -757,7 +757,7 @@ init -1:
             mental_aspect = 5, physical_aspect = 0, sexual_aspect = 0, medical_aspect = 1, flaws_aspect = 0, attention = 2)
 
         improved_duration_trait = SerumTrait(name = "Improved Reagent Purification",
-            desc = "By carefully purifying the starting materials the length of time a serum remains active.",
+            desc = "By carefully purifying the starting materials the length of time a serum remains active",
             positive_slug = "+2 Turn Duration",
             negative_slug = "",
             research_added = 75,
@@ -770,7 +770,7 @@ init -1:
             mental_aspect = 0, physical_aspect = 0, sexual_aspect = 0, medical_aspect = 4, flaws_aspect = 0, attention = 0)
 
         aphrodisiac = SerumTrait(name = "Distilled Aphrodisiac",
-            desc = "Careful distillation can concentrate the active ingredient from common aphrodisiacs, producing a sudden spike in sluttiness when consumed. The sexual frustration linked to this effect tends to make the recipient less obedient over time as well.",
+            desc = "Careful distillation can concentrate the active ingredient from common aphrodisiacs, producing a sudden spike in sluttiness when consumed. The sexual frustration linked to this effect tends to make the recipient less obedient over time as well",
             positive_slug = "+15 Sluttiness",
             negative_slug = "-1 Obedience/Day",
             research_added = 60,
@@ -785,7 +785,7 @@ init -1:
             mental_aspect = 2, physical_aspect = 0, sexual_aspect = 4, medical_aspect = 0, flaws_aspect = 0, attention = 2)
 
         love_potion = SerumTrait(name = "Love Potion",
-            desc = "A carefully balanced combination of chemicals can replicate the brains response to loved ones. Produces an immediate but temporary feeling of love. This trait is particularly prone to introducing side effects.",
+            desc = "A carefully balanced combination of chemicals can replicate the brains response to loved ones. Produces an immediate but temporary feeling of love. This trait is particularly prone to introducing side effects",
             positive_slug = "+20 Love",
             negative_slug = "",
             research_added = 75,
@@ -799,7 +799,7 @@ init -1:
             mental_aspect = 3, physical_aspect = 0, sexual_aspect = 2, medical_aspect = 0, flaws_aspect = 0, attention = 1)
 
         off_label_drugs = SerumTrait(name = "Off Label Pharmaceuticals",
-            desc = "Several existing drugs can be repurposed to increase the mental pliability of the recipient.",
+            desc = "Several existing drugs can be repurposed to increase the mental pliability of the recipient",
             positive_slug = "+30 Suggestibility",
             negative_slug = "",
             research_added = 80,
@@ -814,7 +814,7 @@ init -1:
             mental_aspect = 4, physical_aspect = 0, sexual_aspect = 1, medical_aspect = 1, flaws_aspect = 0, attention = 2)
 
         clinical_testing = SerumTrait(name = "Clinical Testing Procedures",
-            desc = "A set of careful tests rather than any single ingredient or process. Serums may be put through formal clinical testing, significantly boosting their value to the general public. This also significantly raises the research cost of each serum design.",
+            desc = "A set of careful tests rather than any single ingredient or process. Serums may be put through formal clinical testing, significantly boosting their value to the general public. This also significantly raises the research cost of each serum design",
             positive_slug = "",
             negative_slug = "",
             research_added = 300,
@@ -826,7 +826,7 @@ init -1:
             mental_aspect = 0, physical_aspect = 0, sexual_aspect = 0, medical_aspect = 4, flaws_aspect = 0, attention = 0)
 
         mood_enhancer = SerumTrait(name = "Mood Enhancer",
-            desc = "Standard antidepressants provide a general improvement in mood. The most common side effect is a lack of respect for authority figures, brought on by the chemical endorphin rush.",
+            desc = "Standard antidepressants provide a general improvement in mood. The most common side effect is a lack of respect for authority figures, brought on by the chemical endorphin rush",
             positive_slug = "+10 Happiness/Turn",
             negative_slug = "-1 Obedience/Turn",
             research_added = 75,
@@ -839,7 +839,7 @@ init -1:
             mental_aspect = 2, physical_aspect = 0, sexual_aspect = 0, medical_aspect = 2, flaws_aspect = 0, attention = 0)
 
         refined_caffeine_trait = SerumTrait(name = "Refined Stimulants",
-            desc = "A more carefully refined stimulant produces the same boost to baseline energy levels as ordinary caffeine, but with none of the unpleasant side effects.",
+            desc = "A more carefully refined stimulant produces the same boost to baseline energy levels as ordinary caffeine, but with none of the unpleasant side effects",
             positive_slug = "+20 Max Energy",
             negative_slug = "",
             research_added = 50,
@@ -854,7 +854,7 @@ init -1:
             mental_aspect = 0, physical_aspect = 3, sexual_aspect = 0, medical_aspect = 1, flaws_aspect = 0, attention = 0)
 
         fertility_enhancement_trait = SerumTrait(name = "Fertility Enhancement",
-            desc = "Targets and enhances a womans natural reproductive cycle, increasing the chance that she may become pregnant. Birth control will still prevent most pregnancies.",
+            desc = "Targets and enhances a womans natural reproductive cycle, increasing the chance that she may become pregnant. Birth control will still prevent most pregnancies",
             positive_slug = "+20% Fertility",
             negative_slug = "",
             research_added = 100,
@@ -868,7 +868,7 @@ init -1:
             mental_aspect = 0, physical_aspect = 1, sexual_aspect = 1, medical_aspect = 3, flaws_aspect = 0, attention = 1)
 
         fertility_suppression_trait = SerumTrait(name = "Fertility Suppression",
-            desc = "Targets and dampens a womans natural reproductive cycle, decreasing the chance that she may become pregnant.",
+            desc = "Targets and dampens a womans natural reproductive cycle, decreasing the chance that she may become pregnant",
             positive_slug = "-20% Fertility",
             negative_slug = "",
             research_added = 100,
@@ -896,7 +896,7 @@ init -1:
             mental_aspect = 0, physical_aspect = 4, sexual_aspect = 1, medical_aspect = 1, flaws_aspect = 0, attention = 2)
 
         oral_enhancer = SerumTrait(name = "Gag Suppressant",
-            desc = "Targets and suppresses the natural gag reflex of the subject. This has little practical benefit, other than making it significantly easier for the subject to perform oral sex.",
+            desc = "Targets and suppresses the natural gag reflex of the subject. This has little practical benefit, other than making it significantly easier for the subject to perform oral sex",
             positive_slug = "+2 Oral Skill",
             negative_slug = "",
             research_added = 150,
@@ -910,7 +910,7 @@ init -1:
             mental_aspect = 0, physical_aspect = 1, sexual_aspect = 3, medical_aspect = 1, flaws_aspect = 0, attention = 1)
 
         climax_limiter = SerumTrait(name = "Pleasure Center Depressant",
-            desc = "Makes it much harder for a subject to orgasm, while still allowing them to feel the full effects of being highly aroused. Some subjects may take drastic steps to achieve orgasm.",
+            desc = "Makes it much harder for a subject to orgasm, while still allowing them to feel the full effects of being highly aroused. Some subjects may take drastic steps to achieve orgasm",
             positive_slug = "+40 Max Arousal",
             negative_slug = "",
             research_added = 100,
@@ -924,7 +924,7 @@ init -1:
             mental_aspect = 0, physical_aspect = 1, sexual_aspect = 4, medical_aspect = 0, flaws_aspect = 0, attention = 1)
 
         weight_gain = SerumTrait(name = "Weight Gain Promoter",
-            desc = "Triggers a natural response inside of the body, encouraging it to store as much excess energy as possible. Has a small chance of changing the subject's body type each turn, at the cost of lowering the amount of energy they have available.",
+            desc = "Triggers a natural response inside of the body, encouraging it to store as much excess energy as possible. Has a small chance of changing the subject's body type each turn, at the cost of lowering the amount of energy they have available",
             positive_slug = "15% Chance/Turn to Change Body Type",
             negative_slug = "-20 Max Energy",
             research_added = 80,
@@ -940,7 +940,7 @@ init -1:
             mental_aspect = 0, physical_aspect = 4, sexual_aspect = 0, medical_aspect = 1, flaws_aspect = 0, attention = 1)
 
         weight_loss = SerumTrait(name = "Weight Loss Promoter",
-            desc = "Dampens the appetite of the subject, resulting in mostly-natural weight loss. Has a small chance of changing the subject's body type each turn, at the cost of lowering the amount of energy they have available.",
+            desc = "Dampens the appetite of the subject, resulting in mostly-natural weight loss. Has a small chance of changing the subject's body type each turn, at the cost of lowering the amount of energy they have available",
             positive_slug = "15% Chance/Turn to Change Body Type",
             negative_slug = "-20 Max Energy",
             research_added = 160,
@@ -961,7 +961,7 @@ init -1:
         # Tier 2 traits can produce moderate effects at a cost or minor effects without side effects.
 
         advanced_serum_prod = SerumTrait(name = "Advanced Serum Production",
-            desc = "Advanced improvements to the basic serum design. Adds four serum trait slots, but requires even more production points.",
+            desc = "Advanced improvements to the basic serum design. Adds four serum trait slots, but requires even more production points",
             positive_slug = "4 Trait Slots, 3 Turn Duration",
             negative_slug = "80 Production/Batch",
             research_added = 200,
@@ -978,7 +978,7 @@ init -1:
             mental_aspect = 0, physical_aspect = 0, sexual_aspect = 0, medical_aspect = 3, flaws_aspect = 0, attention = 1)
 
         blood_brain_pen = SerumTrait(name = "Blood Brain Penetration",
-            desc = "A carefully designed delivery unit can bypass the blood-brain barrier. This will provide a large increase to the Suggestibility of the recipient.",
+            desc = "A carefully designed delivery unit can bypass the blood-brain barrier. This will provide a large increase to the Suggestibility of the recipient",
             positive_slug = "+50 Suggestibility",
             negative_slug = "",
             research_added = 25,
@@ -993,7 +993,7 @@ init -1:
             mental_aspect = 6, physical_aspect = 0, sexual_aspect = 2, medical_aspect = 1, flaws_aspect = 0, attention = 3)
 
         low_volatility_reagents = SerumTrait(name = "Low Volatility Reagents",
-            desc = "Carefully sourced and stored reagents will greatly prolong the effects of a serum.",
+            desc = "Carefully sourced and stored reagents will greatly prolong the effects of a serum",
             positive_slug = "+5 Turn Duration",
             negative_slug = "",
             research_added = 150,
@@ -1006,7 +1006,7 @@ init -1:
             mental_aspect = 0, physical_aspect = 0, sexual_aspect = 0, medical_aspect = 7, flaws_aspect = 0, attention = 1)
 
         breast_enhancement = SerumTrait(name = "Breast Enhancement",
-            desc = "Grows breasts overnight. Has a 25% chance of increasing a girls breast size by one step with each time unit.",
+            desc = "Grows breasts overnight. Has a 25% chance of increasing a girls breast size by one step with each time unit",
             positive_slug = "25% Chance/Turn Breast Growth",
             negative_slug = "",
             research_added = 125,
@@ -1019,7 +1019,7 @@ init -1:
             mental_aspect = 0, physical_aspect = 6, sexual_aspect = 2, medical_aspect = 1, flaws_aspect = 0, attention = 3)
 
         breast_reduction = SerumTrait(name = "Breast Reduction",
-            desc = "Shrinks breasts overnight. Has a 25% chance of decreasing a girls breast size by one step with each time unit.",
+            desc = "Shrinks breasts overnight. Has a 25% chance of decreasing a girls breast size by one step with each time unit",
             positive_slug = "25% Chance/Turn Breast Reduction",
             negative_slug = "",
             research_added = 125,
@@ -1032,7 +1032,7 @@ init -1:
             mental_aspect = 0, physical_aspect = 6, sexual_aspect = 2, medical_aspect = 0, flaws_aspect = 0, attention = 2)
 
         focus_enhancement = SerumTrait(name = "Medical Amphetamines",
-            desc = "The inclusion of low doses of amphetamines help the user focus intently for long periods of time.",
+            desc = "The inclusion of low doses of amphetamines help the user focus intently for long periods of time",
             positive_slug = "+2 Focus",
             negative_slug = "",
             research_added = 150,
@@ -1046,7 +1046,7 @@ init -1:
             mental_aspect = 4, physical_aspect = 1, sexual_aspect = 0, medical_aspect = 3, flaws_aspect = 0, attention = 2)
 
         int_enhancement = SerumTrait(name = "Quick Release Nootropics",
-            desc = "Nootropics enhance cognition and learning. These fast acting nootropics produce results almost instantly, but for a limited period of time.",
+            desc = "Nootropics enhance cognition and learning. These fast acting nootropics produce results almost instantly, but for a limited period of time",
             positive_slug = "+2 Intelligence",
             negative_slug = "",
             research_added = 150,
@@ -1087,7 +1087,7 @@ init -1:
             mental_aspect = 6, physical_aspect = 0, sexual_aspect = 0, medical_aspect = 2, flaws_aspect = 0, attention = 2)
 
         slutty_caffeine_trait = SerumTrait(name = "Libido Stimulants",
-            desc = "Careful engineering allows for the traditional side effects of stimulants to be redirected to the parasympathetic nervous system, causing an immediate spike in arousal as well as general energy levels.",
+            desc = "Careful engineering allows for the traditional side effects of stimulants to be redirected to the parasympathetic nervous system, causing an immediate spike in arousal as well as general energy levels",
             positive_slug = " +20 Max Energy, +15 Sluttiness",
             negative_slug = "",
             research_added = 150,
@@ -1102,7 +1102,7 @@ init -1:
             mental_aspect = 0, physical_aspect = 3, sexual_aspect = 5, medical_aspect = 0, flaws_aspect = 0, attention = 2)
 
         pregnancy_accelerator_trait = SerumTrait(name = "Pregnancy Acceleration Hormones",
-            desc = "Encourages and supports the ongoing development of a fetus, increasing the effective speed at which a pregnancy develops.",
+            desc = "Encourages and supports the ongoing development of a fetus, increasing the effective speed at which a pregnancy develops",
             positive_slug = "+1 Pregnancy Progress/Day",
             negative_slug = "",
             research_added = 250,
@@ -1116,7 +1116,7 @@ init -1:
             mental_aspect = 0, physical_aspect = 3, sexual_aspect = 0, medical_aspect = 6, flaws_aspect = 0, attention = 3)
 
         pregnancy_decelerator_trait = SerumTrait(name = "Pregnancy Deceleration Hormones",
-            desc = "Slows the ongoing development of a fetus, increasing the total amount of time needed to bring a pregnancy to term. If properly applied a pregnancy could be maintained indefinitely.",
+            desc = "Slows the ongoing development of a fetus, increasing the total amount of time needed to bring a pregnancy to term. If properly applied a pregnancy could be maintained indefinitely",
             positive_slug = "-1 Pregnancy Progress/Day",
             negative_slug = "",
             research_added = 250,
@@ -1130,7 +1130,7 @@ init -1:
             mental_aspect = 0, physical_aspect = 3, sexual_aspect = 0, medical_aspect = 6, flaws_aspect = 0, attention = 3)
 
         vaginal_enhancer = SerumTrait(name = "Natural Lubrication Stimulation",
-            desc = "Kicks the subject's natural lubrication production into overdrive. Improved lubrication allows for more vigorous activities without discomfort.",
+            desc = "Kicks the subject's natural lubrication production into overdrive. Improved lubrication allows for more vigorous activities without discomfort",
             positive_slug = "+2 Vaginal Skill",
             negative_slug = "",
             research_added = 300,
@@ -1144,7 +1144,7 @@ init -1:
             mental_aspect = 0, physical_aspect = 2, sexual_aspect = 6, medical_aspect = 0, flaws_aspect = 0, attention = 2)
 
         anal_enhancer = SerumTrait(name = "Sphincter Elasticity Promoter",
-            desc = "Triggers a release of chemicals in the subject that increase muscle elasticity dramatically.",
+            desc = "Triggers a release of chemicals in the subject that increase muscle elasticity dramatically",
             positive_slug = "+2 Anal Skill",
             negative_slug = "",
             research_added = 300,
@@ -1158,7 +1158,7 @@ init -1:
             mental_aspect = 0, physical_aspect = 2, sexual_aspect = 6, medical_aspect = 0, flaws_aspect = 0, attention = 2)
 
         climax_enhancer = SerumTrait(name = "Pleasure Center Stimulator",
-            desc = "Changes the baseline of pleasure chemicals in the subject's brain. This has the effect of making it much easier for physical stimulation to trigger an orgasm in the subject. Comes with a large risk of side effects, and disturbs the subject's natural sense of enjoyment.",
+            desc = "Changes the baseline of pleasure chemicals in the subject's brain. This has the effect of making it much easier for physical stimulation to trigger an orgasm in the subject. Comes with a large risk of side effects, and disturbs the subject's natural sense of enjoyment",
             positive_slug = "-20 Max Arousal (Min 20)",
             negative_slug = "-5 Happiness/Turn",
             research_added = 350,
@@ -1173,7 +1173,7 @@ init -1:
             mental_aspect = 2, physical_aspect = 0, sexual_aspect = 6, medical_aspect = 0, flaws_aspect = 0, attention = 2)
 
         rolling_orgasm = SerumTrait(name = "Climax Cycler",
-            desc = "Linking the pleasure center of the brain to the subject's natural circadian rhythm causes periodic, low grade orgasms spaced several hours apart. In addition to being pleasant and slightly tiring, this can trigger other orgasm related effects if they exist.",
+            desc = "Linking the pleasure center of the brain to the subject's natural circadian rhythm causes periodic, low grade orgasms spaced several hours apart. In addition to being pleasant and slightly tiring, this can trigger other orgasm related effects if they exist",
             positive_slug = "+5 Happiness/Turn, 1 Forced Orgasm/Turn",
             negative_slug = "-10 Max Energy",
             research_added = 400,
@@ -1188,7 +1188,7 @@ init -1:
             mental_aspect = 0, physical_aspect = 2, sexual_aspect = 7, medical_aspect = 0, flaws_aspect = 0, attention = 3)
 
         height_increase = SerumTrait(name = "Human Growth Rebooter",
-            desc = "Provides the required hormonal signals to promote growth that would otherwise stop after puberty, allowing the subject to grow taller. Causes a height increase of roughly 1 inch per day. There is a minor chance that the subject's breasts will grow along with her frame.",
+            desc = "Provides the required hormonal signals to promote growth that would otherwise stop after puberty, allowing the subject to grow taller. Causes a height increase of roughly 1 inch per day. There is a minor chance that the subject's breasts will grow along with her frame",
             positive_slug = "+1\" Height/Day",
             negative_slug = "10% Chance/Day Breast Enhancement",
             research_added = 200,
@@ -1221,7 +1221,7 @@ init -1:
         # Tier 3 traits produce large effects at a cost or moderate ones for free.
 
         futuristic_serum_prod = SerumTrait(name = "Futuristic Serum Production",
-            desc = "Space age technology makes the serum incredibly versatile. Adds seven serum trait slots at an increased production cost.",
+            desc = "Space age technology makes the serum incredibly versatile. Adds seven serum trait slots at an increased production cost",
             positive_slug = "7 Trait Slots, 3 Turn Duration",
             negative_slug = "135 Production/Batch",
             research_added = 500,
@@ -1238,7 +1238,7 @@ init -1:
             mental_aspect = 0, physical_aspect = 0, sexual_aspect = 0, medical_aspect = 5, flaws_aspect = 0, attention = 2)
 
         mind_control_agent = SerumTrait(name = "Mind Control Agent",
-            desc = "This low grade mind control agent will massively increase the suggestibility of the recipient, resulting in rapid changes in personality based on external stimuli.",
+            desc = "This low grade mind control agent will massively increase the suggestibility of the recipient, resulting in rapid changes in personality based on external stimuli",
             positive_slug = "+70 Suggestibility",
             negative_slug = "",
             research_added = 200,
@@ -1253,7 +1253,7 @@ init -1:
             mental_aspect = 7, physical_aspect = 0, sexual_aspect = 0, medical_aspect = 5, flaws_aspect = 0, attention = 4)
 
         permanent_bimbo = SerumTrait(name = "Permanent Bimbofication",
-            desc = "This delicate chemical cocktail was reverse engineered from an experimental serum sampled in the lab and will turn the recipient into a complete bimbo. Intelligence and obedience will suffer, but she will be happy and slutty. This change is permanent. It does not end when the serum expires and cannot be reversed with other serums.",
+            desc = "This delicate chemical cocktail was reverse engineered from an experimental serum sampled in the lab and will turn the recipient into a complete bimbo. Intelligence and obedience will suffer, but she will be happy and slutty. This change is permanent. It does not end when the serum expires and cannot be reversed with other serums",
             positive_slug = "New Personality: Bimbo, +$40 Value, +10 Permanent Sluttiness, +10 Permanent Obedience",
             negative_slug = "Int Lowered to 1 Permanently",
             research_added = 400,
@@ -1267,7 +1267,7 @@ init -1:
             mental_aspect = 8, physical_aspect = 0, sexual_aspect = 5, medical_aspect = 0, flaws_aspect = 0, attention = 5)
 
         massive_pregnancy_accelerator = SerumTrait(name = "Extreme Pregnancy Hormones",
-            desc = "Overloads the body with natural pregnancy hormones alongside nutrient supplements. Massively increases the pace at which a pregnancy will progress.",
+            desc = "Overloads the body with natural pregnancy hormones alongside nutrient supplements. Massively increases the pace at which a pregnancy will progress",
             positive_slug = "+1 Pregnancy Progress/Turn",
             negative_slug = "",
             research_added = 300,
@@ -1281,7 +1281,7 @@ init -1:
             mental_aspect = 0, physical_aspect = 9, sexual_aspect = 0, medical_aspect = 3, flaws_aspect = 0, attention = 4)
 
         self_generating_serum = SerumTrait(name = "Self Replicating Serum",
-            desc = "Inserts instructions for the creation of this serum into the subject's cells, allowing them to create it entirely independently. The effects of this serum will last practically forever.",
+            desc = "Inserts instructions for the creation of this serum into the subject's cells, allowing them to create it entirely independently. The effects of this serum will last practically forever",
             positive_slug = "Near-infinite Duration",
             negative_slug = "Near-infinite Duration",
             research_added = 800,
@@ -1298,7 +1298,7 @@ init -1:
 
         ### Nora research traits ###
         nora_suggest_up = SerumTrait(name = "Nora's Research Trait XRC",
-            desc = "The manufacturing details for a serum trait developed by Nora. Raises suggestibility significantly, but is guaranteed to generate a side effect and negatively effects value.",
+            desc = "The manufacturing details for a serum trait developed by Nora. Raises suggestibility significantly, but is guaranteed to generate a side effect and negatively effects value",
             positive_slug = "+40 Suggestibility",
             negative_slug = "",
             research_added = 75,
@@ -1313,7 +1313,7 @@ init -1:
             mental_aspect = 8, physical_aspect = 0, sexual_aspect = 0, medical_aspect = 0, flaws_aspect = 2, attention = 2)
 
         nora_nightmares = SerumTrait(name = "Nora's Research Trait CBX",
-            desc = "The manufacturing details for a serum trait developed by Nora. Negatively affects the recipient's sleep, as well as generating a side effect and negatively effecting value.",
+            desc = "The manufacturing details for a serum trait developed by Nora. Negatively affects the recipient's sleep, as well as generating a side effect and negatively effecting value",
             negative_slug = "-15 Happiness/Night",
             research_added = 75,
             base_side_effect_chance = 1000000,
@@ -1324,7 +1324,7 @@ init -1:
             mental_aspect = 4, physical_aspect = 4, sexual_aspect = 0, medical_aspect = 0, flaws_aspect = 2, attention = 2)
 
         nora_obedience_swing = SerumTrait(name = "Nora's Research Trait XBR",
-            desc = "The manufacturing details for a serum trait developed by Nora. Causes wild fluctuations in the recipient's willingness to follow orders, as well as generating a side effect and negatively effecting value.",
+            desc = "The manufacturing details for a serum trait developed by Nora. Causes wild fluctuations in the recipient's willingness to follow orders, as well as generating a side effect and negatively effecting value",
             negative_slug = "Random Obedience Changes",
             research_added = 75,
             base_side_effect_chance = 1000000,
@@ -1335,7 +1335,7 @@ init -1:
             mental_aspect = 4, physical_aspect = 0, sexual_aspect = 0, medical_aspect = 4, flaws_aspect = 2, attention = 2)
 
         nora_sluttiness_boost = SerumTrait(name = "Nora's Research Trait RXC",
-            desc = "The manufacturing details for a serum trait developed by Nora. Causes a sudden spike in the recipient's sluttiness, as well as generating a side effect and negatively effecting value.",
+            desc = "The manufacturing details for a serum trait developed by Nora. Causes a sudden spike in the recipient's sluttiness, as well as generating a side effect and negatively effecting value",
             positive_slug = "+20 Sluttiness",
             negative_slug = "",
             research_added = 75,
@@ -1352,7 +1352,7 @@ init -1:
         ### Nora boss unlock traits ###
 
         nora_reward_mother_trait = SerumTrait(name = "Motherly Devotion",
-            desc = "A special serum trait developed by Nora after studying your mother. Permanently increases the recipient's Love by 1 per turn for every 10 points that their Sluttiness is higher than Love.",
+            desc = "A special serum trait developed by Nora after studying your mother. Permanently increases the recipient's Love by 1 per turn for every 10 points that their Sluttiness is higher than Love",
             positive_slug = "+1 Love/Turn per 10 Sluttiness greater than Love",
             negative_slug = "",
             research_added = 300,
@@ -1365,7 +1365,7 @@ init -1:
             mental_aspect = 6, physical_aspect = 0, sexual_aspect = 3, medical_aspect = 0, flaws_aspect = 0, attention = 1)
 
         nora_reward_sister_trait = SerumTrait(name = "Sisterly Obedience",
-            desc = "A special serum trait developed by Nora after studying your sister. Permanently increases the recipient's Sluttiness by 1 per day for every 10 points that their Obedience is above 100.",
+            desc = "A special serum trait developed by Nora after studying your sister. Permanently increases the recipient's Sluttiness by 1 per day for every 10 points that their Obedience is above 100",
             positive_slug = "+1 Core Sluttiness/Day per 10 Obedience over 100",
             negative_slug = "",
             research_added = 300,
@@ -1378,7 +1378,7 @@ init -1:
             mental_aspect = 3, physical_aspect = 0, sexual_aspect = 7, medical_aspect = 0, flaws_aspect = 0, attention = 2)
 
         nora_reward_cousin_trait = SerumTrait(name = "Cousinly Hate",
-            desc = "A special serum trait developed by Nora after studying your cousin. Permanently increases the recipient's Sluttiness by 1 per day for every 5 Love that they are below 0.",
+            desc = "A special serum trait developed by Nora after studying your cousin. Permanently increases the recipient's Sluttiness by 1 per day for every 5 Love that they are below 0",
             positive_slug = "+1 Core Sluttiness/Day per 5 Love below 0",
             negative_slug = "",
             research_added = 300,
@@ -1391,7 +1391,7 @@ init -1:
             mental_aspect = 4, physical_aspect = 0, sexual_aspect = 7, medical_aspect = 0, flaws_aspect = 0, attention = 3)
 
         nora_reward_aunt_trait = SerumTrait(name = "Auntly Potential",
-            desc = "A special serum trait developed by Nora after studying your aunt. Increases the number of traits a serum design may contain by 2.",
+            desc = "A special serum trait developed by Nora after studying your aunt. Increases the number of traits a serum design may contain by 2",
             positive_slug = "+2 Extra Trait Slots",
             negative_slug = "",
             research_added = 300,
@@ -1404,7 +1404,7 @@ init -1:
             mental_aspect = 0, physical_aspect = 0, sexual_aspect = 0, medical_aspect = 4, flaws_aspect = 0, attention = 1)
 
         nora_reward_nora_trait = SerumTrait(name = "Meritocratic Attraction",
-            desc = "A special serum trait developed by Nora after studying herself. Increases the recipient's Obedience and Sluttiness for the duration by 5 for every point of Intelligence you have.",
+            desc = "A special serum trait developed by Nora after studying herself. Increases the recipient's Obedience and Sluttiness for the duration by 5 for every point of Intelligence you have",
             positive_slug = "+5 Obedience and Sluttiness per Intelligence",
             negative_slug = "",
             research_added = 300,
@@ -1418,7 +1418,7 @@ init -1:
             mental_aspect = 4, physical_aspect = 0, sexual_aspect = 6, medical_aspect = 0, flaws_aspect = 0, attention = 2)
 
         nora_reward_high_love_trait = SerumTrait(name = "Lovers Attraction",
-            desc = "A special serum trait developed by Nora after studying someone who adores you. Each turn permanently converts one point of Sluttiness into Love until they are equal.",
+            desc = "A special serum trait developed by Nora after studying someone who adores you. Each turn permanently converts one point of Sluttiness into Love until they are equal",
             positive_slug = "Converts 1 Sluttiness to Love per turn until equal",
             negative_slug = "",
             research_added = 300,
@@ -1431,7 +1431,7 @@ init -1:
             mental_aspect = 6, physical_aspect = 0, sexual_aspect = 5, medical_aspect = 0, flaws_aspect = 0, attention = 2)
 
         nora_reward_low_love_trait = SerumTrait(name = "Distilled Disgust",
-            desc = "A special serum trait developed by Nora after studying someone who absolutely hates you. Gives a massive penalty to love for the duration of the serum.",
+            desc = "A special serum trait developed by Nora after studying someone who absolutely hates you. Gives a massive penalty to love for the duration of the serum",
             positive_slug = "",
             negative_slug = "-50 Love",
             research_added = 300,
@@ -1445,7 +1445,7 @@ init -1:
             mental_aspect = 9, physical_aspect = 0, sexual_aspect = 0, medical_aspect = 0, flaws_aspect = 0, attention = 1)
 
         nora_reward_high_obedience_trait = SerumTrait(name = "Pleasurable Obedience",
-            desc = "A special serum trait developed by Nora after studying someone who was completely subservient to you. Increases happiness by 1 for every 5 points of Obedience over 100 per turn.",
+            desc = "A special serum trait developed by Nora after studying someone who was completely subservient to you. Increases happiness by 1 for every 5 points of Obedience over 100 per turn",
             positive_slug = "+1 Happiness/Turn per 5 Obedience over 100",
             negative_slug = "",
             research_added = 300,
@@ -1458,7 +1458,7 @@ init -1:
             mental_aspect = 7, physical_aspect = 0, sexual_aspect = 0, medical_aspect = 2, flaws_aspect = 0, attention = 1)
 
         nora_reward_high_slut_trait = SerumTrait(name = "Rapid Corruption",
-            desc = "A special serum trait developed by Nora after studying someone who was a complete slut. Instantly and permanently increases their Sluttiness by 5.",
+            desc = "A special serum trait developed by Nora after studying someone who was a complete slut. Instantly and permanently increases their Sluttiness by 5",
             positive_slug = "+5 Permanent Sluttiness",
             negative_slug = "",
             research_added = 300,
@@ -1471,7 +1471,7 @@ init -1:
             mental_aspect = 4, physical_aspect = 0, sexual_aspect = 7, medical_aspect = 0, flaws_aspect = 0, attention = 3)
 
         nora_reward_genius_trait = SerumTrait(name = "Natural Talent",
-            desc = "A special serum trait developed by Nora after studying someone who was a genius. Instantly and permanetly sets the recipients Intelligence, Charisma, and Focus to 7.",
+            desc = "A special serum trait developed by Nora after studying someone who was a genius. Instantly and permanetly sets the recipients Intelligence, Charisma, and Focus to 7",
             positive_slug = "Sets Charisma, Intelligence, Focus to 7",
             negative_slug = "",
             research_added = 1000,
@@ -1484,7 +1484,7 @@ init -1:
             mental_aspect = 8, physical_aspect = 0, sexual_aspect = 0, medical_aspect = 3, flaws_aspect = 0, attention = 3)
 
         nora_reward_hucow_trait = SerumTrait(name = "Human Breeding Hormones",
-            desc = "A special serum trait developed by Nora after studying someone who was in the later stages of pregnancy. Massively decreases birth control effectiveness, increases fertility, and triggers breast swelling and lactation.",
+            desc = "A special serum trait developed by Nora after studying someone who was in the later stages of pregnancy. Massively decreases birth control effectiveness, increases fertility, and triggers breast swelling and lactation",
             positive_slug = "+70% Fertility, -75% BC Effectiveness, Increased Breast Size, Massive Lactation",
             negative_slug = "",
             research_added = 300,
@@ -1498,7 +1498,7 @@ init -1:
             mental_aspect = 0, physical_aspect = 8, sexual_aspect = 3, medical_aspect = 0, flaws_aspect = 0, attention = 3)
 
         nora_reward_instant_trance = SerumTrait(name = "Trance Inducer",
-            desc = "A special serum trait developed by Nora after studying someone who was deep in a trance at the time. Instantly puts the subject in a Trance if they are not already in one. Does not deepen existing Trances.",
+            desc = "A special serum trait developed by Nora after studying someone who was deep in a trance at the time. Instantly puts the subject in a Trance if they are not already in one. Does not deepen existing Trances",
             positive_slug = "Induces Trance State",
             negative_slug = "",
             research_added = 300,
@@ -1521,7 +1521,7 @@ label instantiate_serum_traits(): #Creates all of the default LR2 serum trait ob
         list_of_traits.append(high_con_drugs)
         list_of_traits.append(sedatives_trait)
         list_of_traits.append(caffeine_trait)
-        list_of_traits.append(simple_aphrodesiac)
+        list_of_traits.append(simple_aphrodisiac)
         list_of_traits.append(foreplay_enhancer)
         list_of_traits.append(hair_lighten_dye)
         list_of_traits.append(hair_darken_dye)

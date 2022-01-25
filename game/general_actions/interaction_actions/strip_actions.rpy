@@ -192,7 +192,7 @@ label pay_strip_scene(the_person):
             if renpy.random.randint(0,1) == 0:
                 $ tease_item = the_person.outfit.remove_random_any(top_layer_first = True, exclude_feet = True, do_not_remove = True) #The clothing item she's considering taking off
                 $ free_spirit_threshold = 40 + (100 - the_person.obedience)
-                if renpy.random.randint(0,100) < free_spirit_threshold: #She's independant enough to strip, change pose, etc. on her own.
+                if renpy.random.randint(0,100) < free_spirit_threshold: #She's independent enough to strip, change pose, etc. on her own.
                     if tease_item is not None and new_willingness >= (the_person.obedience-100): #A more obedient person is less willing to strip without being told to. A less obedient person will strip further on their own.
                         $ test_outfit = the_person.outfit.get_copy()
                         $ test_outfit.remove_clothing(tease_item)

@@ -80,10 +80,6 @@ init -2 python:
             self.max_offered_contracts = 2
             self.offered_contracts = []
 
-
-            self.policy_list = [] #This is a list of Policy objects.
-            self.active_policy_list = [] #This is a list of currently active policies (vs just owned ones)
-
             self.message_list = [] #This list of strings is shown at the end of each day on the business update screen. Cleared each day.
             self.counted_message_list = {} #This is a dict holding the count of each message stored in it. Used when you want to have a message that is counted and the total shown at the end of the day.
             self.production_potential = 0 #How many production points the team was capable of
@@ -292,7 +288,7 @@ init -2 python:
 
             #Compute efficiency drop
             for person in [x for x in self.supply_team + self.research_team + self.production_team + self.market_team if x in self.s_div.people + self.r_div.people + self.p_div.people + self.m_div.people]:
-                self.team_effectiveness -= 1 #TODO: Make this dependant on charisma (High charisma have a lower impact on effectiveness) and happiness.
+                self.team_effectiveness -= 1 #TODO: Make this dependent on charisma (High charisma have a lower impact on effectiveness) and happiness.
 
             #Compute efficiency rise from HR
             for person in [x for x in self.hr_team if x in self.h_div.people]:

@@ -298,7 +298,7 @@ label scene_deepthroat_3(the_girl, the_location, the_object):
                 "Hold her in place" if the_girl.obedience >= 110:
                     mc.name "Not yet, you can do better than that."
                     "You pull [the_girl.title]'s head against your crotch. She doesn't resist."
-                    "After a few more seconds [the_girl.title] tries to pull off again, forcing you put on light but constant pressure."
+                    "After a few more seconds [the_girl.title] tries to pull off again, forcing you to put on light but constant pressure."
                     menu:
                         "Hold her in place" if the_girl.obedience >= 120:
                             "A little more force and [the_girl.title] stays where she is. Her eyes are closed tight as she struggles to stay in control."

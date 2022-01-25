@@ -2,12 +2,12 @@ init -2 python:
     class Clothing_Images(renpy.store.object): # Stores a set of images for a single piece of clothing in a single position. The position is stored when it is put into the clothing object dict.
         breast_sizes = ["AA","A","B","C","D","DD","DDD","E","F","FF"]
 
-        def __init__(self,clothing_name,position_name,is_top, body_dependant = True):
+        def __init__(self,clothing_name,position_name,is_top, body_dependent = True):
             self.images = {}
             self.clothing_name = clothing_name #Used for some debugging, not needed for the actual game logic.
             self.position_name = position_name #Used so we can access the correct .zip file
 
-            for body in ["standard_body","thin_body","curvy_body","standard_preg_body"] if body_dependant else ["standard_body"]:
+            for body in ["standard_body","thin_body","curvy_body","standard_preg_body"] if body_dependent else ["standard_body"]:
                 for breast in self.breast_sizes if is_top else ["AA"]:
                     if clothing_name:
                         image_name = clothing_name+"_"+position_name+"_"+body+"_"+breast+".png"
