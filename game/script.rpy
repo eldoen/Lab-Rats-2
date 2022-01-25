@@ -417,7 +417,7 @@ label change_location(the_place):
     return
 
 init 0 python:
-    def build_chat_action_list(the_person):
+    def build_chat_action_list(the_person, keep_talking):
         small_talk_action = Action("Make small talk   {color=#FFFF00}-15{/color} {image=gui/extra_images/energy_token.png}", requirement = small_talk_requirement, effect = "small_talk_person", args=the_person, requirement_args=the_person,
             menu_tooltip = "A pleasant chat about your likes and dislikes. A good way to get to know someone and the first step to building a lasting relationship. Provides a chance to study the effects of active serum traits and raise their mastery level.")
         compliment_action = Action("Compliment her   {color=#FFFF00}-15{/color} {image=gui/extra_images/energy_token.png}", requirement = compliment_requirement, effect = "compliment_person", args=the_person, requirement_args=the_person,
@@ -430,19 +430,19 @@ init 0 python:
             menu_tooltip = "Ask her to start an official, steady relationship and be your girlfriend.", priority = 10)
         bc_talk_action = Action("Talk about her birth control", requirement = bc_talk_requirement, effect = "bc_talk_label", args = the_person, requirement_args = the_person,
             menu_tooltip = "Talk to her about her use of birth control. Ask her to start or stop taking it, or just check what she's currently doing.")
-        chat_list = [small_talk_action, compliment_action, flirt_action, date_action, make_girlfriend_action, bc_talk_action]
+        chat_list = [act for act in [small_talk_action, compliment_action, flirt_action, date_action, make_girlfriend_action, bc_talk_action] if (keep_talking or act.is_fast)]
         chat_list.sort(key = sort_display_list, reverse = True)
         chat_list.insert(0,"Chat with her")
         return chat_list
 
-    def build_specific_action_list(the_person):
+    def build_specific_action_list(the_person, keep_talking):
         grope_action = Action("Grope her   {color=#FFFF00}-5{/color} {image=gui/extra_images/energy_token.png}", requirement = grope_requirement, effect = "grope_person", args = the_person, requirement_args = the_person,
             menu_tooltip = "Be \"friendly\" and see how far she is willing to let you take things. May make her more comfortable with physical contact, but at the cost of her opinion of you.")
 
         command_action = Action("Give her a command", requirement = command_requirement, effect = "command_person", args = the_person, requirement_args = the_person,
             menu_tooltip = "Leverage her obedience and command her to do something.")
 
-        specific_action_list = ["Say goodbye", grope_action, command_action]
+        specific_action_list = ["Say goodbye"] + [act for act in [grope_action, command_action] if (keep_talking or act.is_fast)]
         specific_action_list.sort(key = sort_display_list, reverse = True)
         specific_action_list.insert(0,"Do something specific")
         return specific_action_list
@@ -454,7 +454,7 @@ init 0 python:
                 role_actions.append(act)
         return role_actions
 
-    def build_special_role_actions_list(the_person):
+    def build_special_role_actions_list(the_person, keep_talking):
         special_role_actions = []
         for act in get_special_role_actions(the_person):
             special_role_actions.append([act,the_person]) #They're a list of actions and their extra arg so that gets passed through properly.
@@ -462,12 +462,13 @@ init 0 python:
         for act in mc.main_character_actions: #The main character has a "role" that lets us add special actions as well.
             special_role_actions.append([act,the_person])
 
+        special_role_actions = [act for act in special_role_actions if (keep_talking or act.is_fast)]
         special_role_actions.sort(key = sort_display_list, reverse = True)
         special_role_actions.insert(0,"Special Actions")
         return special_role_actions
 
 
-label talk_person(the_person):
+label talk_person(the_person, keep_talking=True):
     $ mc.having_text_conversation = None #Just in case some event hasn't properly reset this.
     if the_person.title is None:
         $ the_person.draw_person()
@@ -476,10 +477,11 @@ label talk_person(the_person):
 label .continue_talk:
     $ renpy.restart_interaction()
     $ the_person.draw_person()
+    $ explicit_exit = True
     if "action_mod_list" in globals():
-        call screen enhanced_main_choice_display(build_menu_items([build_chat_action_list(the_person), build_specific_action_list(the_person), build_special_role_actions_list(the_person)]))
+        call screen enhanced_main_choice_display(build_menu_items([build_chat_action_list(the_person, keep_talking), build_specific_action_list(the_person, keep_talking), build_special_role_actions_list(the_person, keep_talking)]))
     else:
-        call screen main_choice_display([build_chat_action_list(the_person), build_specific_action_list(the_person), build_special_role_actions_list(the_person)])
+        call screen main_choice_display([build_chat_action_list(the_person, keep_talking), build_specific_action_list(the_person, keep_talking), build_special_role_actions_list(the_person, keep_talking)])
 
     if isinstance(_return, Action):
         $ starting_time_of_day = time_of_day
