@@ -657,10 +657,10 @@ init -2 python:
                 return (self.mental_aspect_price*1.0)/(1+((self.mental_aspect_sold*1.0)/(self.market_reach*1.0)))
 
             elif the_aspect == "physical":
-                return (self.physical_aspect_price*1.0)/(1+((self.physical_aspect_price*1.0)/(self.market_reach*1.0)))
+                return (self.physical_aspect_price*1.0)/(1+((self.physical_aspect_sold*1.0)/(self.market_reach*1.0)))
 
             elif the_aspect == "sexual":
-                return (self.sexual_aspect_price*1.0)/(1+((self.sexual_aspect_price*1.0)/(self.market_reach*1.0)))
+                return (self.sexual_aspect_price*1.0)/(1+((self.sexual_aspect_sold*1.0)/(self.market_reach*1.0)))
 
             elif the_aspect == "medical":
                 return (self.medical_aspect_price*1.0)/(1+((self.medical_aspect_sold*1.0)/(self.market_reach*1.0)))
