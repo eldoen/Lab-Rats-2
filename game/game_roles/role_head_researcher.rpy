@@ -325,7 +325,7 @@ label advanced_serum_stage_1_label(the_person):
         the_person "Getting her help could save us a lot of money, and it would be nice to see her again."
     menu:
         "Try and secure a prototype serum\n{color=#ff0000}{size=18}Costs: $2000{/size}{/color}" if mc.business.has_funds(2000):
-            $ mc.business.funds += -2000
+            $ mc.business.channge_funds(-2000)
             mc.name "That sounds like a good lead. I'll make sure the funds are allocated, let me know when you have something to show me."
             the_person "Absolutely sir, you'll know as soon as I know something."
 

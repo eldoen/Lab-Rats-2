@@ -21,7 +21,7 @@ init -2 python:
         return True
 
     def create_add_space_and_expire_action():
-        mc.business.funds += -300
+        mc.business.change_funds(-300)
         mc.business.add_sales_multiplier("Ad Campaign", ad_multiplier)
         ad_expire_trigger = Action("Ad Expire", ad_expire_requirement, "ad_expire", args = ad_multiplier, requirement_args = day+7)
         mc.business.mandatory_crises_list.append(ad_expire_trigger) #It'll expire in 7 days.

@@ -1471,7 +1471,7 @@ label strip_cum_question_loop(the_person, girl_state, girl_direction, girl_aware
                     $ the_person.change_obedience(-(1 + the_person.get_opinion_score("being submissive"))) #She loses obedience, more if she likes being submissive (you're betgging her!)
                     "You struggle to hold back your orgasm while [the_person.title] gets onto her knees."
 
-                "Pay her\n{color=#ff0000}{size=18}Requires: $[cum_cost]{/size}{/color} (disabled)" if mc.business.funds > cum_cost and for_pay:
+                "Pay her\n{color=#ff0000}{size=18}Requires: $[cum_cost]{/size}{/color} (disabled)" if not mc.business.has_funds(cum_cost):
                     pass
 
                 "Order her" if the_person.obedience >= obedience_requirement:
@@ -1565,7 +1565,7 @@ label strip_cum_question_loop(the_person, girl_state, girl_direction, girl_aware
                     $ the_person.change_obedience(-(1 + the_person.get_opinion_score("being submissive")))
                     "You struggle to hold back your orgasm while [the_person.title] gets onto her knees."
 
-                "Pay her\n{color=#ff0000}{size=18}Requires: $[cum_cost]{/size}{/color} (disabled)" if mc.business.funds > cum_cost and for_pay:
+                "Pay her\n{color=#ff0000}{size=18}Requires: $[cum_cost]{/size}{/color} (disabled)" if not mc.business.has_funds(cum_cost):
                     pass
 
                 "Order her" if the_person.obedience >= obedience_requirement:
@@ -1646,7 +1646,7 @@ label strip_cum_question_loop(the_person, girl_state, girl_direction, girl_aware
                     $ the_person.change_obedience(-(1 + the_person.get_opinion_score("being submissive")))
                     "You struggle to hold back your orgasm while [the_person.title] gets onto her knees."
 
-                "Pay her\n{color=#ff0000}{size=18}Requires: $[cum_cost]{/size}{/color} (disabled)" if mc.business.funds > cum_cost and for_pay:
+                "Pay her\n{color=#ff0000}{size=18}Requires: $[cum_cost]{/size}{/color} (disabled)" if not mc.business.has_funds(cum_cost):
                     pass
 
                 "Order her" if the_person.obedience >= obedience_requirement:

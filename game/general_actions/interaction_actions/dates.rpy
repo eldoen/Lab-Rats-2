@@ -434,13 +434,13 @@ label dinner_date_label(the_person):
             the_person "It sounds cozy. Let's go, I'm starving!"
 
         "A moderately priced restaurant\n{color=#ff0000}{size=18}Costs: $100{/size}{/color}" if mc.business.has_funds(100):
-            $ mc.business.funds += -100
+            $ mc.business.change_funds(-100)
             $ the_person.change_love(5)
             $ the_person.change_happiness(5)
             the_person "It sounds nice. Come on, I'm starving and could use a drink."
 
         "An expensive restaurant\n{color=#ff0000}{size=18}Costs: $300{/size}{/color}" if mc.business.has_funds(300):
-            $ mc.business.funds += -300
+            $ mc.business.change_funds(-300)
             $ the_person.change_love(10)
             $ the_person.change_happiness(5)
             the_person "Oh, it sounds fancy! Well, I'm flattered [the_person.mc_title]."
@@ -1506,7 +1506,7 @@ label shopping_date_hair(the_person):
     the_person "There are just so many options! What do you think I should do?"
     $ did_haircut = False
     menu:
-        "Pick a hair style.":
+        "Pick a hair style":
             mc.name "Definitely a haircut of some style. Let's see..."
             $ hair_list = []
             python:
@@ -1526,7 +1526,7 @@ label shopping_date_hair(the_person):
                 $ did_haircut = True
 
 
-        "Dye her hair.":
+        "Dye her hair":
             mc.name "I think it's time for a new hair colour."
             the_person "Do you really think so? Well... okay. I trust you [the_person.mc_title]."
             call screen colour_selector(True, "Pick a dye colour")
@@ -1550,28 +1550,28 @@ label shopping_date_hair(the_person):
         the_person "Well, what do you think?"
         "She gives a little turn so you can get a good look."
         menu:
-            "It's cute.":
+            "It's cute":
                 mc.name "It's a cute look."
                 $ the_person.change_love(1)
 
-            "It's sexy.":
+            "It's sexy":
                 mc.name "You look pretty hot."
                 $ the_person.change_slut(1, 30)
 
-            "It's what I wanted.":
+            "It's what I wanted":
                 mc.name "It's just what I wanted."
                 $ the_person.change_obedience(1)
 
         "The receptionist interrupts, sliding a receipt towards you."
         menu:
-            "Pay. -$200" if mc.business.has_funds(200):
+            "Pay\n{color=#ff0000}{size=18}Cost: $200{/size}{/color}" if mc.business.has_funds(200):
                 "You charge it to the business card."
-                $ mc.business.funds += -200
+                $ mc.business.change_funds(-200)
 
-            "Pay. -$200 (disabled)" if not mc.business.has_funds(200):
+            "Pay\n{color=#ff0000}{size=18}Requires: $200{/size}{/color} (disabled)" if not mc.business.has_funds(200):
                 pass
 
-            "Tell her to pay.":
+            "Tell her to pay":
                 mc.name "[the_person.title], can you take care of that please."
                 if the_person.has_role(affair_role):
                     $ so_title = SO_relationship_to_title(the_person.relationship)

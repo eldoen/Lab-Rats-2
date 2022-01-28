@@ -130,7 +130,7 @@ label mom_outfit_help_crisis_label():
             mc.name "I don't think it's very appropriate for work Mom. Maybe you should try something a little less... revealing."
             $ the_person.change_slut(-2)
             the_person "Maybe you're right. Okay, I'll try something a little more conservative for this next outfit."
-            $ second_outfit = the_person.wardrobe.decide_on_outfit(the_person.sluttiness-10, 0) #Note that if we have impossible values for this function it'll keep exanding the threshold until it's possible
+            $ second_outfit = the_person.wardrobe.decide_on_outfit(the_person.sluttiness-10, 0) #Note that if we have impossible values for this function it'll keep expanding the threshold until it's possible
 
         "Say she looks beautiful in it":
             mc.name "You look beautiful Mom, I think it would be perfect."
@@ -814,7 +814,7 @@ label mom_morning_surprise_label():
                                 the_person "You're welcome. Now hurry up and get dressed. I don't want you to be late after all of that!"
 
 
-                        "Order her to get on her knees\n{color=#ff0000}{size=18}Requires: 130 Obedience{/color}{/size} (disabled)" if the_person.obedience < 130:
+                        "Order her to get on her knees\n{color=#ff0000}{size=18}Requires: 130 Obedience{/size}{/color} (disabled)" if the_person.obedience < 130:
                             pass
 
                         "Climax":
@@ -944,7 +944,7 @@ label mom_morning_surprise_label():
                 "[the_person.possessive_title] takes a second gulp to make sure it's all gone, then opens her mouth and takes a deep breath."
 
 
-            "Order her to swallow\n{color=#ff0000}{size=18}Requires: 130 Obedience{/color}{/size} (disabled)" if the_person.obedience < 130:
+            "Order her to swallow\n{color=#ff0000}{size=18}Requires: 130 Obedience{/size}{/color} (disabled)" if the_person.obedience < 130:
                 pass
 
             "Let her spit it out":
@@ -1753,7 +1753,7 @@ label cousin_tease_crisis_label():
 
         the_person "I need some cash. Do you have a hundred bucks?"
         menu:
-            "Send [the_person.title] some money\n{color=#ff0000}{size=18}Costs: $100{/color}{/size}" if mc.business.funds >= 100:
+            "Send [the_person.title] some money\n{color=#ff0000}{size=18}Costs: $100{/size}{/color}" if mc.business.has_funds (100):
                 $ mc.business.change_funds(-100)
                 "You pull up your banking app and send [the_person.possessive_title] some money, then text back."
                 mc.name "There you go, sent."
@@ -1765,7 +1765,7 @@ label cousin_tease_crisis_label():
                 the_person "Sure thing, nerd."
 
 
-            "Send [the_person.title] some money\n{color=#ff0000}{size=18}Costs: $100{/color}{/size} (disabled)" if mc.business.has_funds(100):
+            "Send [the_person.title] some money\n{color=#ff0000}{size=18}Costs: $100{/size}{/color} (disabled)" if mc.business.has_funds(100):
                 pass
 
             "Ask why she needs it":
@@ -1785,7 +1785,7 @@ label cousin_tease_crisis_label():
                     "She sends you a picture from her phone, obviously trying to tease you a little."
                     $ mc.change_locked_clarity(5)
                     menu:
-                        "Send [the_person.title] some money\n{color=#ff0000}{size=18}Costs: $100{/color}{/size}" if mc.business.funds >= 100:
+                        "Send [the_person.title] some money\n{color=#ff0000}{size=18}Costs: $100{/size}{/color}" if mc.business.has_funds (100):
                             $ mc.business.change_funds(-100)
                             "You send her the money from your phone."
                             mc.name "Alright, there's your cash. Whip those girls out for me."
@@ -1823,7 +1823,7 @@ label cousin_tease_crisis_label():
                                     $ the_person.break_taboo("bare_tits")
 
 
-                        "Send [the_person.title] some money\n{color=#ff0000}{size=18}Costs: $100{/color}{/size} (disabled)" if mc.business.has_funds(100):
+                        "Send [the_person.title] some money\n{color=#ff0000}{size=18}Costs: $100{/size}{/color} (disabled)" if mc.business.has_funds(100):
                             pass
 
                         "Blackmail her for some nudes" if the_person.event_triggers_dict.get("blackmail_level",-1) > 0 and the_person.event_triggers_dict.get("last_blackmailed", -5) + 5 <= day:
