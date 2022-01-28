@@ -78,7 +78,7 @@ label city_rep_negotiate(the_person):
                 "[the_person.title] seems unhappy with being ordered around, but she nods obediently anyways."
                 the_person "Fine, I'll sort out the paperwork for you."
 
-            "Order her.\n{color=#ff0000}{size=18}Requires: [obedience_requirement] Obedience{/size}{/color} " if the_person.obedience < obedience_requirement:
+            "Order her\n{color=#ff0000}{size=18}Requires: [obedience_requirement] Obedience{/size}{/color} " if the_person.obedience < obedience_requirement:
                 pass
 
             "Never mind":
