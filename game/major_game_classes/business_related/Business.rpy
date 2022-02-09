@@ -897,8 +897,10 @@ init -2 python:
 
             if recruitment_old_policy.is_active():
                 candidate_dict["age_floor"] = 40
+                candidate_dict["age_ceiling"] = 60
             elif recruitment_teen_policy.is_active():
                 candidate_dict["age_ceiling"] = 19
+                candidate_dict["age_floor"] = 18
 
             if candidate_dict.get("age_ceiling", 50) > 60: #TODO: Introduce postmenapause women.
                 candidate_dict["age_ceiling"] = 60
