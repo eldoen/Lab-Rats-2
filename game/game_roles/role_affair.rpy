@@ -137,7 +137,7 @@ label fuck_date_label(the_person):
     else:
         call fuck_date_event(the_person)
 
-    $ the_person.clear_situational_slut("Date", 20, "There's no reason to hold back, he's here to fuck me!")
+    $ the_person.clear_situational_slut("Date")
     return "Advance Time"
 
 label fuck_date_event(the_person): #A breakout function so we can call the fuck_date stuff any time you go back to a girls place.
