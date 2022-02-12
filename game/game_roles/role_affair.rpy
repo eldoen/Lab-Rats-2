@@ -551,7 +551,7 @@ label fuck_date_event(the_person): #A breakout function so we can call the fuck_
     if not had_to_run:
         call check_date_trance(the_person)
 
-    $ the_person.clear_situational_slut("Date")
+    #$ the_person.clear_situational_slut("Date")
     $ clear_scene()
     return "Advance Time"
 
