@@ -1,0 +1,142 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<Wardrobe name="Exported_Wardrobe">
+    <FullSets>
+        <Outfit name="City_Rep_Accessories">
+            <UpperBody />
+            <LowerBody />
+            <Feet />
+            <Accessories>
+                <Item alpha="1" blue="0.25" green="0.25" name="Modern_Glasses" red="0.25" />
+                <Item alpha="0.25" blue="0.35" green="0.35" name="Blush" red="0.8" />
+                <Item alpha="0.5" blue="0.25" green="0.25" name="Upper_Eye_Shadow" red="0.25" />
+                <Item alpha="1" blue="1" green="1" name="Gold_Earings" red="1" />
+                <Item alpha="1" blue="1" green="1.0" name="Diamond_Ring" red="1" />
+            </Accessories>
+        </Outfit>
+    </FullSets>
+    <UnderwearSets>
+        <Outfit name="City_Rep_Underwear_1">
+            <UpperBody>
+                <Item alpha="1" blue="0.9" green="0.9" name="Sports_Bra" red="1.0" />
+            </UpperBody>
+            <LowerBody>
+                <Item alpha="1" blue="0.9" green="0.9" name="Cotton_Panties" red="1.0" />
+            </LowerBody>
+            <Feet />
+            <Accessories />
+        </Outfit>
+        <Outfit name="City_Rep_Underwear_2">
+            <UpperBody>
+                <Item alpha="1" blue="0.9" green="0.9" name="Bralette" red="1.0" />
+            </UpperBody>
+            <LowerBody>
+                <Item alpha="1" blue="0.9" green="0.9" name="Boy_Shorts" red="1.0" />
+            </LowerBody>
+            <Feet />
+            <Accessories />
+        </Outfit>
+        <Outfit name="City_Rep_Underwear_3">
+            <UpperBody>
+                <Item alpha="1" blue="0.22" green="0.22" name="Lace_Bra" red="0.66" />
+            </UpperBody>
+            <LowerBody>
+                <Item alpha="1" blue="0.22" green="0.22" name="Cute_Lace_Panties" red="0.66" />
+            </LowerBody>
+            <Feet>
+                <Item alpha="1" blue="0.9" green="0.9" name="Thigh_Highs" red="1.0" />
+            </Feet>
+            <Accessories />
+        </Outfit>
+        <Outfit name="City_Rep_Underwear_6">
+            <UpperBody>
+                <Item alpha="1" blue="0.22" green="0.22" name="Heart_Pasties" red="0.66" />
+            </UpperBody>
+            <LowerBody>
+                <Item alpha="1" blue="0.22" green="0.22" name="String_Panties" red="0.66" />
+            </LowerBody>
+            <Feet>
+                <Item alpha="1" blue="0.22" green="0.22" name="Garter_and_Fishnets" palpha="1" pattern="Pattern_1" pblue="0.25" pgreen="0.25" pred="0.25" red="0.66" />
+            </Feet>
+            <Accessories />
+        </Outfit>
+        <Outfit name="City_Rep_Underwear_4">
+            <UpperBody>
+                <Item alpha="1" blue="0.22" green="0.22" name="Quarter_Cup_Bra" palpha="1" pattern="Pattern_1" pblue="0.25" pgreen="0.25" pred="0.25" red="0.66" />
+            </UpperBody>
+            <LowerBody>
+                <Item alpha="1" blue="0.22" green="0.22" name="Thong" palpha="1" pattern="Pattern_1" pblue="0.25" pgreen="0.25" pred="0.25" red="0.66" />
+            </LowerBody>
+            <Feet>
+                <Item alpha="1" blue="0.22" green="0.22" name="Garter_and_Fishnets" palpha="1" pattern="Pattern_1" pblue="0.25" pgreen="0.25" pred="0.25" red="0.66" />
+            </Feet>
+            <Accessories />
+        </Outfit>
+    </UnderwearSets>
+    <OverwearSets>
+        <Outfit name="City_Overwear_1">
+            <UpperBody>
+                <Item alpha="1" blue="0.25" green="0.25" name="Suit_Jacket" red="0.25" />
+                <Item alpha="1" blue="0.9" green="0.9" name="Sleveless_Top" red="1.0" />
+            </UpperBody>
+            <LowerBody>
+                <Item alpha="1" blue="0.25" green="0.25" name="Pencil_Skirt" red="0.25" />
+            </LowerBody>
+            <Feet>
+                <Item alpha="1" blue="0.25" green="0.25" name="Slips" red="0.25" />
+            </Feet>
+            <Accessories />
+        </Outfit>
+        <Outfit name="City_Overwear_2">
+            <UpperBody>
+                <Item alpha="1" blue="0.9" green="0.9" name="Sleveless_Top" red="1.0" />
+            </UpperBody>
+            <LowerBody>
+                <Item alpha="1" blue="0.25" green="0.25" name="Pencil_Skirt" red="0.25" />
+            </LowerBody>
+            <Feet>
+                <Item alpha="1" blue="0.25" green="0.25" name="Slips" red="0.25" />
+            </Feet>
+            <Accessories />
+        </Outfit>
+        <Outfit name="City_Overwear_4">
+            <UpperBody>
+                <Item alpha="1" blue="0.9" green="0.9" name="Tight_Vest" red="1.0" />
+            </UpperBody>
+            <LowerBody>
+                <Item alpha="1" blue="0.25" green="0.25" name="Belted_Skirt" palpha="1" pattern="Pattern_1" pblue="0.33" pgreen="0.35" pred="0.49" red="0.25" />
+            </LowerBody>
+            <Feet>
+                <Item alpha="1" blue="0.25" green="0.25" name="Heels" red="0.25" />
+            </Feet>
+            <Accessories />
+        </Outfit>
+        <Outfit name="City_Overwear_5">
+            <UpperBody>
+                <Item alpha="1" blue="0.9" green="0.9" name="Tube_Top" red="1.0" />
+            </UpperBody>
+            <LowerBody>
+                <Item alpha="1" blue="0.25" green="0.25" name="Mini_Skirt" red="0.25" />
+            </LowerBody>
+            <Feet>
+                <Item alpha="1" blue="0.25" green="0.25" name="Heels" red="0.25" />
+            </Feet>
+            <Accessories>
+                <Item alpha="1" blue="0.25" green="0.25" name="Wide_Choker" red="0.25" />
+            </Accessories>
+        </Outfit>
+        <Outfit name="City_Overwear_6">
+            <UpperBody>
+                <Item alpha="1" blue="0.9" green="0.9" name="Tube_Top" red="1.0" />
+            </UpperBody>
+            <LowerBody>
+                <Item alpha="1" blue="0.25" green="0.25" name="Micro_Skirt" red="0.25" />
+            </LowerBody>
+            <Feet>
+                <Item alpha="1" blue="0.25" green="0.25" name="High_Heels" red="0.25" />
+            </Feet>
+            <Accessories>
+                <Item alpha="1" blue="0.25" green="0.25" name="Wide_Choker" red="0.25" />
+            </Accessories>
+        </Outfit>
+    </OverwearSets>
+</Wardrobe>

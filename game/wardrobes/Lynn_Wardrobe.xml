@@ -1,0 +1,28 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<Wardrobe name="Lynn_Wardrobe">
+    <FullSets>
+		<Outfit name="Lynn Borch Catholic Uniform">
+            <UpperBody>
+                <Item alpha="0.9" blue="1.0" green="1.0" name="Tie_Sweater" palpha="1" pattern="Pattern_1" pblue="0.24" pgreen="0.65" pred="0.54" red="1.0" />
+                <Item alpha="1" blue="0.0" green="0.15" name="Suit_Jacket" red="0.0" />
+            </UpperBody>
+            <LowerBody>
+                <Item alpha="1.0" blue="1.0" green="1.0" name="Panties" palpha="1" pattern="Pattern_1" pblue="0.53" pgreen="0.0" pred="1" red="1.0" />
+                <Item alpha="1" blue="0.0" green="0.0" name="Belted_Skirt" palpha="1" pattern="Pattern_1" pblue="0.36" pgreen="0.36" pred="0.5" red="0.0" />
+            </LowerBody>
+            <Feet>
+                <Item alpha="1" blue="1.0" green="1.0" name="Short_Socks" red="1.0" />
+                <Item alpha="1" blue="0.0" green="0.28" name="Shoes" red="0.45" />
+            </Feet>
+            <Accessories>
+                <Item alpha="1" blue="0.62" green="0.16" name="Lipstick" red="1.0" />
+                <Item alpha="1" blue="0.62" green="0.16" name="Bead_Bracelet" red="1.0" />
+                <Item alpha="1" blue="0.62" green="0.8" name="Gold_Chain_Necklace" red="1.0" />
+            </Accessories>
+        </Outfit>
+    </FullSets>
+    <UnderwearSets>
+    </UnderwearSets>
+    <OverwearSets>
+    </OverwearSets>
+</Wardrobe>

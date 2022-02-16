@@ -47,25 +47,25 @@ label view_onlyfans(the_person):
         the_person "There's new content every day, so you'll always have something to enjoy."
         "She blows a kiss to the camera, then a subscription information box pops up."
         menu:
-            "Subscribe for a day\n{color=#ff0000}{size=18}Costs: $5{/size}{/color}" if mc.business.funds >= 5:
+            "Subscribe for a day\n{color=#ff0000}{size=18}Costs: $5{/size}{/color}" if mc.business.has_funds(5):
                 $ the_person.event_triggers_dict["onlyfans_subscription_valid_until"] = day
-                $ mc.business.funds -= 5
+                $ mc.business.change_funds(-5)
 
-            "Subscribe for a day\n{color=#ff0000}{size=18}Costs: $5{/size}{/color} (disabled)" if mc.business.funds < 5:
+            "Subscribe for a day\n{color=#ff0000}{size=18}Costs: $5{/size}{/color} (disabled)" if not mc.business.has_funds(5):
                 pass
 
-            "Subscribe for a week\n{color=#ff0000}{size=18}Costs: $20{/size}{/color}" if mc.business.funds >= 20:
+            "Subscribe for a week\n{color=#ff0000}{size=18}Costs: $20{/size}{/color}" if mc.business.has_funds(20):
                 $ the_person.event_triggers_dict["onlyfans_subscription_valid_until"] = day + 7
-                $ mc.business.funds -= 20
+                $ mc.business.change_funds(-20)
 
-            "Subscribe for a week\n{color=#ff0000}{size=18}Costs: $20{/size}{/color} (disabled)" if mc.business.funds < 20:
+            "Subscribe for a week\n{color=#ff0000}{size=18}Costs: $20{/size}{/color} (disabled)" if not mc.business.has_funds(20):
                 pass
 
-            "Subscribe for a month\n{color=#ff0000}{size=18}Costs: $50{/size}{/color}" if mc.business.funds >= 50:
+            "Subscribe for a month\n{color=#ff0000}{size=18}Costs: $60{/size}{/color}" if mc.business.has_funds(60):
                 $ the_person.event_triggers_dict["onlyfans_subscription_valid_until"] = day + 30
-                $ mc.business.funds -= 30
+                $ mc.business.change_funds(-30)
 
-            "Subscribe for a month\n{color=#ff0000}{size=18}Costs: $50{/size}{/color} (disabled)" if mc.business.funds < 50:
+            "Subscribe for a month\n{color=#ff0000}{size=18}Costs: $60{/size}{/color} (disabled)" if not mc.business.has_funds(60):
                 pass
 
             "Back":

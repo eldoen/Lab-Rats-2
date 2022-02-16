@@ -13,13 +13,9 @@ init -2 python:
             return True
         return False
 
-    def alexia_intro_phase_two_requirement(the_person): #BUG: Alexia's title appears correctly in the action name but incorrectly in the disabled slug. May be due to some argument list references that are by reference instead of value.
-        if mc.business.is_weekend():
-            return "[alexia.title] only works on week days"
-        elif time_of_day == 0:
-            return "It's too early to visit [alexia.title]"
-        elif time_of_day >= 4:
-            return "It's too late to visit [alexia.title]"
+    def alexia_intro_phase_two_requirement(the_person):
+        if not the_person.job.job_location.has_person(the_person):
+            return False
         else:
             return True
 
@@ -65,7 +61,7 @@ init -2 python:
             return False
         elif mc.business.get_employee_workstation(the_person) is None:
             return False
-        elif mc.business.funds < 500:
+        elif not mc.business.has_funds(500):
             return "Requires: $500"
         else:
             return True
@@ -94,10 +90,8 @@ init -2 python:
         return False
 
     def add_alexia_phase_two_action(the_person):
-        alexia_intro_phase_two_action = Action("Visit " + the_person.title + " at work", alexia_intro_phase_two_requirement, "alexia_intro_phase_two_label", args = the_person, requirement_args = the_person)
-        downtown.actions.append(alexia_intro_phase_two_action)
-        downtown.move_person(the_person, the_person.home) #Change her schedule again so you don't see her anymore unless you visit her explicitly.
-        alexia.set_schedule(alexia.home, times = [1,2,3])
+        alexia_intro_phase_two_action = Action("Have coffee together", alexia_intro_phase_two_requirement, "alexia_intro_phase_two_label")
+        alexia_role.actions.append(alexia_intro_phase_two_action)
         return
 
     def remove_item_from_list(search, action_list):
@@ -111,16 +105,17 @@ init -2 python:
         return
 
     def add_alexia_hire_action(the_person):
-        remove_item_from_list(lambda x: x.effect == "alexia_intro_phase_two_label", downtown.actions)
-        alexia.set_schedule(downtown, days = [0, 1, 2, 3, 4], times = [1,2,3]) #She spends her time downtown "working".
+        alexia.get_role_reference(alexia_role).remove_action("alexia_intro_phase_two_label") #Clear the action from her actions list.
+        alexia.set_schedule(downtown, the_days = [0, 1, 2, 3, 4], the_times = [1,2,3]) #She spends her time downtown "working".
 
         alexia_hire_action = Action("Hire " + alexia.title + " to work in sales", alexia_hire_requirement, "alexia_hire_label")
-        the_person.get_role_reference_by_name("Alexia").actions.append(alexia_hire_action)
+        the_person.get_role_reference(alexia_role).add_action(alexia_hire_action) #NOTE: I think we can actually just modify the Role here, but we'll be double-sure.
         return
 
     def hire_alexia_and_add_to_company(the_person):
         mc.business.add_employee_marketing(the_person)
-        remove_item_from_list(lambda x: x.effect == "alexia_hire_label", the_person.get_role_reference_by_name("Alexia").actions)
+
+        the_person.get_role_reference(alexia_role).remove_action("alexia_hire_label") #Remove the hire action because this story event has played itself out.
 
         ad_suggest_event = Action("Ad Suggestion", alexia_ad_suggest_requirement, "alexia_ad_suggest_label", args = the_person, requirement_args = [the_person, day + renpy.random.randint(7,12)])
         mc.business.mandatory_crises_list.append(ad_suggest_event)
@@ -135,8 +130,7 @@ init -2 python:
 
 
 label alexia_phase_zero_label():
-    #Sets Alexia's schedule so she is downtown during time periods 1,2,3.
-    $alexia.set_schedule(downtown, times = [1,2,3])
+    $ alexia.set_override_schedule(None) #Let her wander so she can go to work and show up Downtown.
     return
 
 label alexia_intro_phase_one_label(the_person):
@@ -186,11 +180,7 @@ label alexia_intro_phase_two_label(the_person):
     # Have a coffee together. She talk about what she's been doing, introduce her boyfriend.
 
     #TODO: Add a new background for the coffee shop (and other events that take place here?)
-    "You find the coffee shop [the_person.title] works at. It's a small corner unit, with a patio outside full of patrons."
-    #TODO: Add a waitress outfit for her
-    $ the_person.draw_person()
-    "You step inside and see [the_person.possessive_title] behind the front counter. She smiles when she sees you and waves you over."
-    the_person "Hey, I'm glad you were able to make it! I'm just finishing up my shift. Grab a seat and I'll be over in a minute."
+    the_person "I'm glad you were able to make it! I'm just finishing up my shift. Grab a seat and I'll be over in a minute."
     $ clear_scene()
     "She heads into the back room of the shop. You sit down at a small table for two by a window and wait."
     "A couple of minutes later [the_person.title] comes over with a paper cup in each hand. She puts one on the table and sits down opposite you."
@@ -333,14 +323,14 @@ label alexia_ad_suggest_label(the_person):
     mc.name "Good to hear. What will you need to get this going?"
     the_person "We should probably get a proper camera instead of my phone, and we'll need to pay to have the cards printed professionally."
     menu:
-        "Pay for equipment\n{color=#ff0000}{size=18}Costs: $500{/size}{/color}" if mc.business.funds >= 500:
+        "Pay for equipment\n{color=#ff0000}{size=18}Costs: $500{/size}{/color}" if mc.business.has_funds(500):
             mc.name "That sounds reasonable. Buy whatever you think is reasonable and I will cover the expense."
-            $ mc.business.funds += -500
+            $ mc.business.change_funds(-500)
             the_person "You got it! I'll order it A.S.A.P and let you know when it arrives."
             mc.name "Great work [the_person.title], you're a credit to the team."
             $ add_camera_arrive_action(the_person)
 
-        "Pay for equipment\n{color=#ff0000}{size=18}Requires $500{/size}{/color} (disabled)" if mc.business.funds < 500:
+        "Pay for equipment\n{color=#ff0000}{size=18}Requires $500{/size}{/color} (disabled)" if not mc.business.has_funds(500):
             pass
 
         "Talk to her later":
@@ -357,7 +347,7 @@ label alexia_ad_suggest_reintro_label(the_person):
     mc.name "[the_person.title], I want you to order whatever camera equipment you think is best for your ad photoshoot."
     the_person "Okay. I'll get right on that and order it ASAP!"
     mc.name "Send me any receipts and I'll cover the cost."
-    $ mc.business.funds += -500
+    $ mc.business.change_funds(-500)
     $ add_camera_arrive_action(the_person)
     return
 

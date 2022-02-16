@@ -76,7 +76,7 @@ init -1 python:
     def mom_anal_quest_complete_requirement(the_person):
         if not the_person.event_triggers_dict.get("mom_anal_quest_active", False):
             return False
-        elif mc.business.funds < 5000:
+        elif not mc.business.has_funds(5000):
             return "Insufficient funds"
         return True
 
@@ -92,7 +92,9 @@ init -1 python:
     def mom_vaginal_quest_3_requirement(the_person, trigger_day):
         if day < trigger_day:
             return False
-        elif not mom_bedroom.has_person(the_person):
+        elif time_of_day == 4: #Prevents the event from triggering in the morning instead of the evening.
+            return False
+        elif mom.get_next_destination() == mom_bedroom: #Check that she will be moving into the bedroom on her _next_ Move phase (ie after this crisis check is made).
             return False
         return True
 

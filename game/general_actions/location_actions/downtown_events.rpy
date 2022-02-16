@@ -2,8 +2,7 @@ init -1 python:
     def downtown_search_requirement():
         if time_of_day >= 4:
             return "Too late to explore"
-        else:
-            return True
+        return True
 
     def find_nothing_requirement():
         return True
@@ -11,6 +10,7 @@ init -1 python:
     def lady_of_the_night_requirement():
         if time_of_day == 3:
             return True
+        return False
 
     def meet_person_requirement():
         return True
@@ -32,7 +32,6 @@ init -1 python:
     list_of_downtown_events.append([find_nothing_action,10])
     list_of_downtown_events.append([lady_of_the_night_action,3])
     list_of_downtown_events.append([meet_person_action,6]) #Now is combined with the find cash event.
-
 
 
 label downtown_search_label(advance_time = True):
@@ -108,7 +107,8 @@ label lady_of_the_night_label():
     # You run into a lady who propositions you for money.
     $ the_person = create_random_person(start_sluttiness = renpy.random.randint(25, 40))
     $ the_person.set_mc_title("Sir")
-    $ the_person.add_role(prostitute_role)
+    $ the_person.add_job(prostitute_job)
+    #$ the_person.add_role(prostitute_role)
     "You're lost in thought when a female voice calls out to you."
     the_person "Excuse me, [the_person.mc_title]."
     $ the_person.draw_person()
@@ -123,7 +123,7 @@ label lady_of_the_night_label():
             $ the_person.set_title(get_random_title(the_person))
             $ the_person.set_possessive_title(get_random_possessive_title(the_person))
             the_person "You can call me [the_person.title]. For two hundred dollars I'll be your best friend for the next hour."
-            $ mc.business.funds += -200
+            $ mc.business.change_funds(-200)
             $ the_person.change_obedience(1)
             "The streets are quiet this time of night. You pull your wallet out and hand over the cash."
             "She takes it with a smile and tucks it away, then wraps herself around your arm."
@@ -191,17 +191,57 @@ label meet_person_label():
             "You shake her hand. You and [the_person.title] chat while she waits for the next bus to come by."
             $ the_person.change_happiness(10)
             $ the_person.change_love(8)
-            "When it does she gives you a quick hug."
-            the_person "Thank you again, you've saved my whole day. Maybe we'll see each other again."
-            mc.name "I'd like that. "
-            "She smiles and steps onto the bus, waving briefly from one of the windows."
+
+            menu:
+                "Ask for her number":
+                    mc.name "I hope this isn't too forward, but could I have your number?"
+                    if the_person.relationship == "Single" or the_person.get_opinion_score("cheating on men") > 0:
+                        "She smiles and nods, holding her hand out for your phone."
+                        the_person "Maybe we can go out for drinks. I owe you something for saving my butt today."
+                        "[the_person.title] types in her number and hands back the device."
+                        $ mc.phone.register_number(the_person)
+                        mc.name "I'm going to hold you to that."
+                        "A moment later her bus pulls up and she steps on."
+                        the_person "Don't be a stranger."
+                        "She waves from her seat as the bus pulls away."
+                        $ clear_scene()
+                    else:
+                        $ so_title = SO_relationship_to_title(the_person.relationship)
+                        the_person "I don't know... I've got a [so_title], I don't want him getting the wrong idea."
+                        menu:
+                            "Convince her" if mc.charisma >= 3:
+                                "You smile and pour on the charm."
+                                mc.name "You're allowed to have men as friends, right? He can't seriously be that jelous."
+                                the_person "Well... You're right. Here..."
+                                $ mc.phone.register_number(the_person)
+                                "She reaches out for your phone. You hand it over and wait for her to type in her number."
+                                the_person "There. Now don't be a stranger, I owe you a drink after everything you've done for me."
+                                mc.name "I'm going to hold you to that."
+                                "A moment later her bus pulls up and she steps on."
+                                the_person "Don't be a stranger."
+                                "She waves from her seat as the bus pulls away."
+                                $ clear_scene()
+
+                            "Convince her\n{color=#00ff00}{size=18}Requires: 3 Charisma{/size}{/color} (disabled)" if mc.charisma < 3:
+                                pass
+
+                            "Let it go":
+                                mc.name "Ah, I understand."
+                                the_person "Yeah, you know how it is..."
+                                "A minute later the bus arrives. She steps onboard and waves goodbye from the window as she pulls away."
+                                $ clear_scene()
+
+                "Say goodbye":
+                    mc.name "I should really get going. Glad I could help you out."
+                    the_person "Thank you again, you've saved my whole day. Maybe we'll see each other again."
+                    "She waves goodbye as you walk away, leaving her waiting at the bus stop alone."
+                    $ clear_scene()
 
 
         "Keep the cash\n{color=#00ff00}{size=18}Income: $200{/size}{/color}":
-            $ mc.business.funds += 200
+            $ mc.business.change_funds(200)
             "You slip the cash out of the womans wallet and watch as she rushes to catch her bus."
             $ clear_scene()
             "She gets on and the bus pulls away. When you pass a mailbox you slide the wallet inside - at least she'll get it back."
-
 
     return

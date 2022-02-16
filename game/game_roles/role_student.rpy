@@ -347,7 +347,7 @@ label student_study_university(the_person):
         $ mc.log_event((the_person.title or "She") + " stayed focused while studying and learned more than usual.", "float_text_grey")
 
     "[the_person.possessive_title] packs up her books and hands over your pay for the study session."
-    $ mc.business.funds += 200
+    $ mc.business.change_funds(200)
 
     if not the_person.event_triggers_dict.get("home_tutor_enabled", False):
         menu:
@@ -413,13 +413,13 @@ label student_study_home(the_person):
             the_person "Okay, what did you have in mind?"
             menu:
                 "Masturbate first" if the_person.effective_sluttiness() >= 15:
-                    call student_masturbate_label(the_person) from _call_student_masturbate_label
+                    call student_masturbate_label(the_person)
 
                 "Masturbate first\n{color=#ff0000}{size=18}Requires: 15 Sluttiness{/size}{/color} (disabled)" if the_person.effective_sluttiness() < 15:
                     pass
 
                 "Punish her for wrong answers" if the_person.obedience >= 100:
-                    call student_punish_hub_label(the_person) from _call_student_punish_hub_label
+                    call student_punish_hub_label(the_person)
 
                 "Punish her for wrong answers\n{color=#ff0000}{size=18}Requires: 100 Obedience{/size}{/color} (disabled)" if the_person.obedience < 100:
                     pass
@@ -452,11 +452,11 @@ label student_study_home(the_person):
     # make sure she dresses up, before we go down (and maybe meet the mom)
     $ the_person.review_outfit()
 
-    if time_of_day == 3 and christina in christina.home.people:
+    if time_of_day == 3 and christina.home.has_person(christina):
         call study_check_up(the_person, christina) from _call_study_check_up
 
     python:
-        mc.business.funds += 200
+        mc.business.change_funds(200)
         the_person.event_triggers_dict["times_studied_home"] = the_person.event_triggers_dict.get("times_studied_home", 0) + 1
         if the_person.event_triggers_dict.get("current_marks",0) > 100:
             the_person.event_triggers_dict["current_marks"] = 100
@@ -668,6 +668,7 @@ label student_masturbate_label(the_person):
         #TODO: Chance her mom walks by and asks what's going on.
         $ mc.change_locked_clarity(10)
         "You listen at the door, and hear [the_person.title]'s chair creaking as she moves. After a few minutes you hear a faint gasp."
+        $ the_person.run_orgasm()
         $ the_person.draw_person()
         "The bedroom door opens. Her face is beet red."
         mc.name "Did you have a good time?"
@@ -707,9 +708,10 @@ label student_masturbate_label(the_person):
                 $ mc.change_locked_clarity(10)
                 "She grips at the side of her chair and takes a deep breath. She starts to hammer her fingers in and out of herself."
                 the_person "Oh fuck, there it is! Oh... Oh!"
-                $ the_person.change_slut(1, 50)
+                $ the_person.run_orgasm(sluttiness_increase_limit = 50)
                 $ the_person.change_obedience(1)
                 $ mc.change_locked_clarity(10)
+
                 "[the_person.title] keeps her fingers moving for a few more seconds, then slows down and stops. She takes a deep sigh and slides them out of her wet cunt."
                 the_person "You know, I {i}do{/i} feel very relaxed now."
                 "She opens her eyes, then blushes and looks away, as if suddenly shy."
@@ -1102,7 +1104,7 @@ label student_punish_question(the_person, wants_to_fail = False):
 label student_punish_pay_her(the_person, was_failure, wants_to_fail, successes = 0, failures = 0):
     # You pay your student a cash reward for her answer
     the_person "So, what about my reward?"
-    $ mc.business.funds += -50
+    $ mc.business.change_funds(-50)
     "You put $50 onto the table. [the_person.possessive_title] grabs it and holds it up triumphantly."
     $ the_person.change_happiness(5)
     if successes + failures < 4:
@@ -1114,7 +1116,7 @@ label student_punish_pay_her(the_person, was_failure, wants_to_fail, successes =
 label student_punish_pay_you(the_person, was_failure, wants_to_fail, successes = 0, failures = 0): # Your student pays you in cash for her answer.
     mc.name "Alright, hand over the cash."
     "[the_person.possessive_title] pouts and finds her purse. She hands over $50."
-    $ mc.business.funds += 50
+    $ mc.business.change_funds(50)
     if successes + failures < 4:
         the_person "Whatever, just give me another one."
     else:
@@ -1635,7 +1637,7 @@ label student_test(the_person): #TODO: Hook this up
             "She rolls her eyes."
             the_person "I should have known. Okay, here..."
             "She reaches into her purse and gives you a wad of cash."
-            $ mc.business.funds += 500
+            $ mc.business.change_funds(500)
             the_person "My Mom wanted to give you a bonus, I was just waiting a little to tell you."
 
         "Seeing you happy is reward enough":
@@ -1694,7 +1696,6 @@ label student_test(the_person): #TODO: Hook this up
                     call hire_someone(the_person) from _call_hire_someone_student_test
                     mc.name "It's a deal then, I'll see you at the office."
                     the_person "Sounds good to me!"
-
                 else:
                     mc.name "I'm going to have to take some time to consider this. I'll be in touch, okay?"
                     the_person "Right, sure."
@@ -1710,7 +1711,6 @@ label student_test(the_person): #TODO: Hook this up
                 the_person "That sounds good to me."
                 $ the_person.event_triggers_dict["student_offer_job_enabled"] = True
 
-        $ the_person.remove_role(student_role)
         #TODO: Increase her work skill in production/research to mark the end of her education.
 
 

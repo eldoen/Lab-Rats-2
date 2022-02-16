@@ -40,7 +40,7 @@ init -2 python:
     def stripclub_show_requirement():
         if time_of_day in [0,1,2]:
             return "Too early for performances"
-        elif mc.business.funds < 20:
+        elif not mc.business.has_funds(20):
             return "Not enough cash"
         else:
             return True
@@ -124,7 +124,7 @@ init -2 python:
         return True
 
     def add_cousin_blackmail_hint_action(the_person):
-        the_person.set_schedule(hall, days = [0, 1, 2, 3, 4], times = [2])
+        the_person.set_schedule(hall, the_days = [0, 1, 2, 3, 4], the_times = [2])
         the_person.event_triggers_dict["blackmail_level"] = 1
 
         blackmail_2_event = Action("Blackmail hint", blackmail_hint_requirement, "aunt_cousin_hint_label", args = [aunt, the_person], requirement_args = [the_person, day + renpy.random.randint(2,4)])
@@ -159,7 +159,7 @@ init -2 python:
         #Changes her schedule to be at your house
         found = next((x for x in the_person.on_room_enter_event_list if x.effect == "cousin_house_phase_two_label"), None)
         if not found:
-            the_person.set_schedule(hall, days = [0, 1, 2, 3, 4], times = [2])
+            the_person.set_schedule(hall, the_days = [0, 1, 2, 3, 4], the_times = [2])
             cousin_at_house_phase_two_action = Action("Cousin visits house", cousin_house_phase_two_requirement, "cousin_house_phase_two_label")
             the_person.on_room_enter_event_list.append(cousin_at_house_phase_two_action) #When you see her next in your house this event triggers and she explains why she's there.
         return
@@ -172,14 +172,14 @@ init -2 python:
     def add_cousin_blackmail_intro_action(the_person):
         found = next((x for x in the_person.on_room_enter_event_list if x.effect == "cousin_blackmail_intro_label"), None)
         if not found:
-            the_person.set_schedule(lily_bedroom, days = [0, 1, 2, 3, 4], times = [2])
+            the_person.set_schedule(lily_bedroom, the_days = [0, 1, 2, 3, 4], the_times = [2])
             cousin_blackmail_intro_action = Action("Cousin caught stealing", cousin_blackmail_intro_requirement, "cousin_blackmail_intro_label")
             the_person.on_room_enter_event_list.append(cousin_blackmail_intro_action)
         return
 
     def add_cousin_stripping_and_setup_search_room_action(the_aunt, the_cousin):
         stripclub_strippers.append(the_cousin)
-        the_cousin.set_schedule(strip_club, times = [3, 4])
+        the_cousin.set_schedule(strip_club, the_times = [3, 4])
 
         the_cousin.event_triggers_dict["stripping"] = True #Used to flag the blackmail event.
         cousin_room_search_action = Action("Search her room {image=gui/heart/Time_Advance.png}", cousin_room_search_requirement, "cousin_search_room_label",requirement_args = [the_cousin], args = [the_cousin, the_aunt])
@@ -361,7 +361,7 @@ label cousin_blackmail_list(the_person):
                     "[the_person.title] pulls out a small wad of bills."
                 the_person "Fine."
                 "She pulls out a $100 bill and hands it over to you. You take the money and slip it into your wallet."
-            $ mc.business.funds += 100
+            $ mc.business.change_funds(100)
             $ the_person.change_love(-1)
             $ the_person.change_obedience(3)
             $ the_person.event_triggers_dict["last_blackmailed"] = day
@@ -611,6 +611,56 @@ label cousin_blackmail_list(the_person):
                 the_person "Ha! Dream on you fucking perv. I'm a stripper not a whore."
                 call cousin_blackmail_list(the_person) from _call_cousin_blackmail_list_5
 
+        "Work for me" if the_person.event_triggers_dict.get("blackmail_level", -1) >= 2 and not the_person.has_role(employee_role) and mc.business.get_employee_count() < mc.business.max_employee_count:
+            mc.name "I want you to come at my company."
+            the_person "What? I already have a job, I don't need to work at your stupid fucking company."
+            mc.name "You don't have a job, you have a hobby."
+            the_person "I make more money each night than you could pay me in a week."
+            mc.name "I wouldn't be so sure about that, but we can talk about your salary later."
+            "She scoffs and rolls her eyes."
+            the_person "Why would you want me to work for you anyways?"
+            mc.name "Because I need people I can trust."
+            the_person "You trust me? You're dumber than you look."
+            the_person "... And you look like a fucking idiot, by the way."
+            "You ignore her and continue."
+            mc.name "I trust you because I have leverage on you."
+            mc.name "If you fucked me over I'll tell your Mom what you've been doing for cash."
+            the_person "And if I quit to work for you? What will you tell her then?"
+            mc.name "The same thing. Do you think she's going to be proud because you {i}use{/i} to be a stripper?"
+            mc.name "No, she'd rip you appart if she ever heard about this. I'm sure I could find plenty of evidence..."
+            "[the_person.possessive_title] sighs and shakes her head, admitting defeat."
+            the_person "Shut up, I'll do it. But I'm not going to be cheap, alright?"
+            the_person "I'm not one of those cheap skanks you keep around."
+            $ the_person.salary_modifier = 2.0
+            call stranger_hire_result(the_person)
+            if _return:
+                mc.name "Congratulations, you have a real job now."
+                the_person "Pfh, whatever."
+                menu:
+                    "Keep stripping on the weekend":
+                        mc.name "I feel bad though. Getting naked was about the only skill you were kind of good at."
+                        the_person "Ugh, what are you talking about now?"
+                        mc.name "You've got the weekends off, so if you wanted to keep working at the club..."
+                        the_person "I don't need your permission! I was going to keep working there anyways."
+                        $ the_person.set_schedule(strip_club, the_days = [5,6], the_times = [3,4])
+                        $ the_person.add_role(stripper_role) #Add the role back specifically for her so when she's in the club she can give dances
+                        $ stripclub_strippers.append(the_person)
+                        "You shrug, content that either way she'll have her tits on display during the weekend."
+
+                    "Demand she stop stripping":
+                        mc.name "Now that I'm your boss I don't want to see you at that filthy strip club again, alright?"
+                        the_person "You can't tell me what to do!"
+                        mc.name "As long as you want to keep your stint there secret you will."
+                        mc.name "If you really want to show your tits to men you can come to me."
+                        the_person "Ugh... Whatever."
+
+            else:
+                mc.name "Man, I thought you might have been useful for something, but this is just dreadful."
+                the_person "Fuck you, you came to me!"
+                mc.name "Yeah, that was a mistake. Nevermind, stripping is probably the best you can do with your life."
+                "She scowls angrily at you."
+                call cousin_blackmail_list(the_person)
+
         "Nothing":
             mc.name "Nothing right now, but I'll come up with something."
             the_person "Ugh."
@@ -786,7 +836,7 @@ label cousin_search_room_label(the_cousin, the_aunt):
     call advance_time from _call_advance_time_25
     return
 
-label cousin_blackmail_level_2_confront_label(the_person):
+label cousin_blackmail_level_2_confront_label(the_person, in_club = False):
     # A talk action added once you have seen her stripping that results in higher blackmailing levels.
     $ club_name = strip_club.name
     mc.name "So I was at [club_name] and I saw something really interesting."
@@ -808,6 +858,7 @@ label cousin_blackmail_level_2_confront_label(the_person):
     $ mc.change_locked_clarity(5)
     the_person "God, you fucking perv. Fine, if you can keep quiet I might also let you... touch me. Deal?"
     mc.name "I think that might be enough."
+    $ the_person.add_job(stripper_job) #She's a stripper now, offically.
     $ the_person.event_triggers_dict["blackmail_level"] = 2
     call begin_boobjob_story(the_person) from _call_begin_boobjob_story_2
     return
@@ -857,7 +908,7 @@ label cousin_boobjob_ask_label(the_person):
             if breast_enhancement in serum_design.traits:
                 has_boob_enhancement_serum = True #The player has a serum in their inventory that can grow her breasts, so you can do that instead of getting her surgery.
     menu:
-        "Pay for it\n{color=#ff0000}{size=18}Costs: $5000{/size}{/color}" if mc.business.funds >= 5000:
+        "Pay for it\n{color=#ff0000}{size=18}Costs: $5000{/size}{/color}" if mc.business.has_funds(5000):
             mc.name "Fine. Send me over the bill and I'll pay it."
             the_person "Really? Just like that?"
             if the_person.love < 10:
@@ -870,9 +921,9 @@ label cousin_boobjob_ask_label(the_person):
 
             $ the_person.change_obedience(5)
             $ the_person.change_slut(2, 60)
-            $ mc.business.funds += -5000
+            $ mc.business.change_funds(-5000)
 
-        "Pay for it\n{color=#ff0000}{size=18}Requires: $5000{/size}{/color} (disabled)" if mc.business.funds < 5000:
+        "Pay for it\n{color=#ff0000}{size=18}Requires: $5000{/size}{/color} (disabled)" if not mc.business.has_funds(5000):
             pass
 
         "Offer breast enhancing serum instead" if has_boob_enhancement_serum:
@@ -909,7 +960,7 @@ label cousin_boobjob_ask_label(the_person):
         "Refuse to pay":
             mc.name "Five thousand dollars? That's ridiculous. I can't pay that just to get you a set of bigger tits."
             the_person "Come on, please? What can I do to convince you?"
-            if mc.business.funds < 5000:
+            if not mc.business.has_funds(5000):
                 mc.name "Nothing, because I don't have that kind of money."
                 $ the_person.change_happiness(-5)
                 the_person "Really? Ugh, you're useless."
@@ -963,7 +1014,7 @@ label cousin_talk_boobjob_again_label(the_person):
                 has_boob_enhancement_serum = True #The player has a serum in their inventory that can grow her breasts, so you can do that instead of getting her surgery.
 
     menu:
-        "Pay for it\n{color=#ff0000}{size=18}Costs: $5000{/size}{/color}" if mc.business.funds >= 5000:
+        "Pay for it\n{color=#ff0000}{size=18}Costs: $5000{/size}{/color}" if mc.business.has_funds(5000):
             mc.name "Fine. Send me the bill and I'll pay it."
             the_person "Really? Just like that?"
             if the_person.love < 10:
@@ -977,11 +1028,11 @@ label cousin_talk_boobjob_again_label(the_person):
             python:
                 the_person.change_obedience(5)
                 the_person.change_slut(2, 50)
-                mc.business.funds += -5000
+                mc.business.change_funds(-5000)
                 add_cousin_boobjob_get_action(the_person)
                 remove_cousin_talk_boobjob_again_action()
 
-        "Pay for it\n{color=#ff0000}{size=18}Requires: $5000{/size}{/color} (disabled)" if mc.business.funds < 5000:
+        "Pay for it\n{color=#ff0000}{size=18}Requires: $5000{/size}{/color} (disabled)" if not mc.business.has_funds(5000):
             pass
 
         "Offer breast enhancing serum instead" if has_boob_enhancement_serum:
@@ -1116,7 +1167,7 @@ label cousin_new_boobs_brag_label(the_person):
 
 label cousin_tits_payback_label(the_person, amount_remaining):
     "You receive a notification on your phone from your bank."
-    $ mc.business.funds += 1000
+    $ mc.business.change_funds(1000)
     if amount_remaining > 1000:
         "[the_person.title] has transferred you $1000 with a note saying \"You know why\"."
         $ add_cousin_tits_payback_action(the_person, amount_remaining - 1000)
@@ -1182,7 +1233,7 @@ label stripclub_dance():
     #-> Lap dance scene may just turn into sex.
 
     "You decide to stay a while and enjoy a show. You stop by the bar to satisfy the drink minimum, then find a seat near the edge of the stage."
-    $ mc.business.funds += -20
+    $ mc.business.change_funds(-20)
     "You nurse your beer while you wait for the next performer."
 
     $ the_person = get_random_from_list(list(set(stripclub_strippers) & set(mc.location.people))) #Create a list of strippers who are present, then pick a random person.
@@ -1268,8 +1319,8 @@ label stripclub_dance():
 
 label stripshow_strip(the_person):
     menu:
-        "Throw some cash\n{color=#ff0000}{size=18}Costs: $20{/size}{/color}" if mc.business.funds >= 20:
-            $ mc.business.funds += -20
+        "Throw some cash\n{color=#ff0000}{size=18}Costs: $20{/size}{/color}" if mc.business.has_funds(20):
+            $ mc.business.change_funds(-20)
             "You reach into your wallet and pull out a $20 bill. You wait until the dancer is looking in your direction, then throw it onto the stage."
 
             $ the_clothing = the_person.outfit.remove_random_any(top_layer_first = True, exclude_lower = True,  exclude_feet = True, do_not_remove = True) #Try and get a bra/top first if you can
@@ -1285,7 +1336,7 @@ label stripshow_strip(the_person):
                 "She smiles and wiggles her hips for you."
             $ del the_clothing
 
-        "Throw some cash\n{color=#ff0000}{size=18}Requires: $20{/size}{/color} (disabled)" if mc.business.funds < 20:
+        "Throw some cash\n{color=#ff0000}{size=18}Requires: $20{/size}{/color} (disabled)" if not mc.business.has_funds(20):
             pass
 
         "Just enjoy the show":

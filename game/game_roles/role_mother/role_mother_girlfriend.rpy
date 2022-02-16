@@ -48,12 +48,12 @@ label mom_girlfriend_intro(the_person):
                 the_person "I suppose there is one thing that I certainly don't have the money for right now... but it's expensive!"
                 the_person "The car has been giving me trouble every morning. I took it to a shop to have it looked at and repairs are going to cost five thousand dollars!"
                 menu:
-                    "Pay for the repairs\n{color=#ff0000}{size=18}Costs: $5000{/size}{/color} " if mc.business.funds >= 5000:
+                    "Pay for the repairs\n{color=#ff0000}{size=18}Costs: $5000{/size}{/color} " if mc.business.has_funds(5000):
                         "You pull out your phone and open up your banking app."
                         mc.name "No problem at all. Just one moment..."
                         the_person "[the_person.mc_title], you really don't have to do this! I'm sure I could have taken care of it eventually..."
                         mc.name "You shouldn't have to take care of it all by yourself. I want to be your partner in all of this!"
-                        $ mc.business.funds += -5000
+                        $ mc.business.change_funds(-5000)
                         "You send [the_person.possessive_title] the money she needs and put your phone away again."
                         mc.name "There. The money should be in your account next time you check."
                         "She smiles and her eyes soften. She seems almost on the verge of tears."
@@ -64,7 +64,7 @@ label mom_girlfriend_intro(the_person):
                         $ convinced = True
                         $ the_person.event_triggers_dict["mom_girlfriend_provided_cash"] = True
 
-                    "Pay for the repairs\n{color=#ff0000}{size=18}Requires: $5000{/size}{/color} (disabled)" if mc.business.funds < 5000:
+                    "Pay for the repairs\n{color=#ff0000}{size=18}Requires: $5000{/size}{/color} (disabled)" if not mc.business.has_funds(5000):
                         pass
 
                     "Start saving up":
@@ -271,18 +271,18 @@ label mom_girlfriend_sister_blessing(the_person):
             mc.name "Come on [the_person.title], it's not like she's hooking up with some stranger! It's me!"
             the_person "That's what makes it so weird! Fine, if you give me... ten thousand dollars I'll let you do it."
             menu:
-                "Pay her\n{color=#ff0000}{size=18}Costs: $10,000{/size}{/color}" if mc.business.funds >= 10000:
+                "Pay her\n{color=#ff0000}{size=18}Costs: $10,000{/size}{/color}" if mc.business.has_funds(10000):
                     $ convinced = True
                     mc.name "Fine."
                     the_person "Wait, really? You're crazy [the_person.mc_title]!"
                     "You pull out your phone and start to send the cash over."
                     mc.name "I told you I was serious about this. Now I expect you not to cause any trouble for us."
-                    $ mc.business.funds += -10000
+                    $ mc.business.change_funds(-10000)
                     "Her phone buzzes as you finish the transaction. She pulls it out and looks at the notification in disbelief."
                     the_person "Wow, you really did it... Whatever, just don't make things too weird, okay?"
                     mc.name "Sure. I'm going to go give [mom.title] the good news."
 
-                "Pay her\n{color=#ff0000}{size=18}Requires: $10,000{/size}{/color}" if mc.business.funds < 10000:
+                "Pay her\n{color=#ff0000}{size=18}Requires: $10,000{/size}{/color}" if not mc.business.has_funds(10000):
                     pass
 
                 "Negotiate":
@@ -292,19 +292,19 @@ label mom_girlfriend_sister_blessing(the_person):
                     $ the_person.change_love(-1)
                     the_person "Fine. Five thousand, and that's as low as I'll go."
                     menu:
-                        "Pay her\n{color=#ff0000}{size=18}Costs: $5000{/size}{/color}" if mc.business.funds >= 5000:
+                        "Pay her\n{color=#ff0000}{size=18}Costs: $5000{/size}{/color}" if mc.business.has_funds(5000):
                             $ convinced = True
                             mc.name "Fine, if that's what it cost."
                             "You pull out your phone and start to send the cash over."
                             the_person "I can't believe you're doing this, it's crazy!"
                             mc.name "I told you I was being serious. Now..."
-                            $ mc.business.funds += -5000
+                            $ mc.business.change_funds(-5000)
                             "Her phone buzzes as you finish the transaction. She pulls it out and looks at the notification in disbelief."
                             mc.name "...I don't want you to cause any trouble for the two of us."
                             the_person "Wow, you really did it... Whatever, just don't make things too weird, okay?"
                             mc.name "Sure. I'm going to go give [mom.title] the good news."
 
-                        "Pay her\n{color=#ff0000}{size=18}Requires: $5000{/size}{/color} (disabled)" if mc.business.funds < 5000:
+                        "Pay her\n{color=#ff0000}{size=18}Requires: $5000{/size}{/color} (disabled)" if not mc.business.has_funds(5000):
                             pass
 
                         "Refuse":

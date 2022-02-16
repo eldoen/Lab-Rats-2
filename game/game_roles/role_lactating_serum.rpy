@@ -121,16 +121,16 @@ label milk_for_serum_label(the_person): #Note that thee serum types have already
             "Just bring your tits over here!\n{color=#ff0000}{size=18}Requires: 130 Obedience{/size}{/color} (disabled)" if the_person.obedience < 130:
                 pass
 
-            "I can pay you\n{color=#ff0000}{size=18}Costs: $200{/size}{/color}" if mc.business.funds >= 200:
+            "I can pay you\n{color=#ff0000}{size=18}Costs: $200{/size}{/color}" if mc.business.has_funds(200):
                 mc.name "I can pay you, even if you can't get me any. I just need you to try for me."
                 "You pull out your wallet while you're talking, leafing through bills inside teasingly."
                 "She thinks for a moment, then nods."
                 the_person "Okay, we can try it."
-                $ mc.business.funds += -200
+                $ mc.business.change_funds(-200)
                 "You hand over some cash before she can reconsider."
                 $ milking_allowed = True
 
-            "I can pay you\n{color=#ff0000}{size=18}Requires: $200{/size}{/color} (disabled)" if mc.business.funds < 200:
+            "I can pay you\n{color=#ff0000}{size=18}Requires: $200{/size}{/color} (disabled)" if not mc.business.has_funds(200):
                 pass
 
 

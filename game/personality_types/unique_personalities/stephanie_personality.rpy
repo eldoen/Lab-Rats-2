@@ -19,6 +19,7 @@ init 1300:
                 valid_titles.append("Teacher's pet")
             return valid_titles
 
+
         stephanie_personality = Personality("stephanie", default_prefix = "wild",
         common_likes = ["pants", "research work", "Fridays", "makeup", "the colour red"],
         common_sexy_likes = ["giving blowjobs", "drinking cum","cheating on men"],

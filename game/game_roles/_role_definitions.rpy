@@ -1,5 +1,7 @@
 # This file holds the initialization information and general storyline info for all of the roles in the game. Individual roles and individual files.
 init -1 python:
+    def always_true(the_person):
+        return True
 
     def get_employee_role_actions():
         #EMPLOYEE ACTIONS#
@@ -95,6 +97,11 @@ init -1 python:
 
         return [sister_reintro_action, sister_serum_test_action, sister_strip_reintro_action, sister_strip_action, sister_boobjob_give_serum_action, sister_boobjob_ask_action, sister_mom_girlfriend_blessing_action, sister_girlfriend_return_action]
 
+    def get_sister_student_role_actions():
+        sister_hire_offer_action = Action("Offer to hire her", sister_offer_to_hire_requirement, "sister_offer_to_hire",
+            menu_tooltip = "Offer her a job at your company. You'll have to convince her to drop out of school first...")
+
+        return [sister_hire_offer_action]
 
     def get_mother_role_actions():
         #MOTHER ACTIONS#
@@ -115,6 +122,10 @@ init -1 python:
 
         return [mother_offer_make_dinner, mom_work_promotion_two_prep_action, mom_work_bigger_tits_reintro, mom_sister_girlfriend_blessing_action, mom_girlfriend_return_action]
 
+    def get_mother_associate_actions():
+        mom_convince_quit_action = Action("Convince her to quit her job", mom_convince_quit_requirement, "mom_convince_quit_label", priority = -5)
+
+        return [mom_convince_quit_action]
 
     def get_aunt_role_actions():
 
@@ -125,9 +136,12 @@ init -1 python:
         aunt_share_drinks_action = Action("Share a glass of wine {image=gui/heart/Time_Advance.png}", aunt_share_drinks_requirement, "aunt_share_drinks_label",
             menu_tooltip = "Sit down with your aunt and share a glass or two of wine. Maybe a little bit of alcohol will loosen her up a bit.", priority = 10)
 
-        return [aunt_help_move,aunt_share_drinks_action]
+        aunt_offer_hire_action = Action("Offer to hire her.", aunt_offer_hire_requirement, "aunt_offer_hire", priority = -5)
+
+        return [aunt_help_move,aunt_share_drinks_action, aunt_offer_hire_action]
 
     def get_cousin_role_actions():
+
         #COUSIN ACTIONS#
         cousin_blackmail_action = Action("Blackmail her", cousin_blackmail_requirement, "cousin_blackmail_label",
             menu_tooltip = "Threaten to tell her mother about what she's been doing and see what you can get out of her.", priority = 10)
@@ -142,26 +156,41 @@ init -1 python:
         return [ask_break_up_action, ask_get_boobjob_action, girlfriend_ask_trim_pubes_action]
 
     def get_girlfriend_role_dates():
+        plan_fuck_date_action = Action("Plan a fuck date at her place", fuck_date_requirement, "plan_fuck_date_label", menu_tooltip = "Pick a night to go over there and spend nothing but \"quality time\" with each other.")
         girlfriend_shopping_date = Action("Go shopping together {image=gui/heart/Time_Advance.png}", shopping_date_requirement, "shopping_date_intro", menu_tooltip = "Take her to the mall and do some shopping together.")
-        return [girlfriend_shopping_date]
+        return [plan_fuck_date_action, girlfriend_shopping_date]
 
     def get_paramour_role_actions():
         ask_get_boobjob_action = Action("Ask her to get a boob job\n{color=#ff0000}{size=18}Costs: $7000{/size}{/color}", ask_get_boobjob_requirement, "ask_get_boobjob_label", menu_tooltip = "A little silicone goes a long way. Ask her to get breast enhancement surgery for you.")
         girlfriend_ask_trim_pubes_action = Action("Ask her to trim her pubes", girlfriend_ask_trim_pubes_requirement, "girlfriend_ask_trim_pubes_label", menu_tooltip = "Ask her to do a little personal landscaping. Tell her to wax it off, grow it out, or shape it into anything in between.")
-        girlfriend_shopping_date = Action("Go shopping together {image=gui/heart/Time_Advance.png}", shopping_date_requirement, "shopping_date_intro", menu_tooltip = "Take her to the mall and do some shopping together.")
         ask_leave_SO_action = Action("Ask her to leave her significant other for you", ask_leave_SO_requirement, "ask_leave_SO_label", menu_tooltip = "This affair has been secret long enough! Ask her to leave her significant other and make your relationship official.")
 
-        return [ask_get_boobjob_action, girlfriend_ask_trim_pubes_action, girlfriend_shopping_date, ask_leave_SO_action]
+        return [ask_get_boobjob_action, girlfriend_ask_trim_pubes_action, ask_leave_SO_action]
 
     def get_paramour_role_dates():
         plan_fuck_date_action = Action("Plan a fuck date at her place", fuck_date_requirement, "plan_fuck_date_label", menu_tooltip = "Pick a night to go over there and spend nothing but \"quality time\" with each other.")
         return [plan_fuck_date_action]
 
+    def get_unemployed_role_actions():
+        unemployed_hire_action = Action("Offer to hire her", offer_to_hire_requirement, "unemployed_offer_hire")
+        return [unemployed_hire_action]
+
+    def get_unimportant_job_role_actions():
+        unimportant_hire_action = Action("Offer to hire her", offer_to_hire_requirement, "unimportant_job_offer_hire")
+        return [unimportant_hire_action]
+
+    def get_stripper_role_actions():
+        stripper_dance_action = Action("Ask for a private dance\n{color=#ff0000}{size=18}Costs: $100{/size}{/color}", stripper_private_dance_requirement, "stripper_private_dance_label",
+            menu_tooltip = "Ask her to a back room for a private dance.")
+        stripper_hire_action = Action("Offer to hire her", offer_to_hire_requirement, "stripper_offer_hire")
+
+        return [stripper_dance_action, stripper_hire_action]
+
     def get_prostitute_role_actions():
         prostitute_action = Action("Pay her for sex\n{color=#ff0000}{size=18}Costs: $200{/size}{/color}", prostitute_requirement, "prostitute_label",
             menu_tooltip = "You know she's a prostitute, pay her to have sex with you.")
-
-        return [prostitute_action]
+        prostitute_hire_action = Action("Offer to hire her", offer_to_hire_requirement, "prostitute_hire_offer")
+        return [prostitute_action, prostitute_hire_action]
 
     def get_student_role_actions():
         #STUDENT ACTIONS#
@@ -169,7 +198,7 @@ init -1 python:
         student_reintro_action = Action("Ask about tutoring her", student_reintro_requirement, "student_reintro")
         student_study_propose_action = Action("Tutor her {image=gui/heart/Time_Advance.png}", student_study_propose_requirement, "student_study_propose")
         student_test_intro_action = Action("Tell her she can rewrite her exam", student_test_intro_requirement, "student_test_intro")
-        student_test_action = Action("Time to rewrite her exam. {image=gui/heart/Time_Advance.png}", student_test_requirement, "student_test")
+        student_test_action = Action("Time to rewrite her exam {image=gui/heart/Time_Advance.png}", student_test_requirement, "student_test")
         student_offer_job_reintro_action = Action("Offer her a job", student_offer_job_requirement, "student_offer_job_reintro")
         return [student_reintro_action, student_study_propose_action, student_test_intro_action, student_test_action, student_offer_job_reintro_action]
 
@@ -197,6 +226,16 @@ init -1 python:
         milk_for_serum_action = Action("Milk her for serum\n{color=#ff0000}{size=18}Costs: 15 {image=gui/extra_images/energy_token.png}{/size}{/color}", milk_for_serum_requirement, "milk_for_serum_label", menu_tooltip = "Those tits contain company property!")
         return [milk_for_serum_action]
 
+    def get_city_rep_role_actions():
+        city_rep_hire_action = Action("Offer to hire her", offer_to_hire_requirement, "city_rep_offer_hire")
+        return [city_rep_hire_action]
+
+    def get_city_rep_role_trainables():
+        city_rep_dressup_training = Trainable("City_Rep_Dressup", "city_rep_dressup_training", "Slutty Work Uniform.", unlocked_function = city_rep_dressup_training_requirement, doubling_amount = 4)
+        city_rep_penalty_reduction_training = Trainable("City_Rep_Pen_Reduct", "city_rep_penalty_reduction_training", "Reduce Penalty Severity", 200, city_rep_penalty_reduction_training_requirement)
+        city_rep_internal_sabotage_training = Trainable("City_Rep_Sabot", "city_rep_internal_sabotage_training", "Sabotage Investigations", 400, city_rep_internal_sabotage_training_requirement)
+        return [city_rep_dressup_training, city_rep_penalty_reduction_training, city_rep_internal_sabotage_training]
+
     def get_hypno_orgasm_role_orgasm_actions():
         hypno_trigger_orgasm_action = Action("Trigger an orgasm", hypno_trigger_orgasm_requirement, "hypno_trigger_orgasm", menu_tooltip = "You've implanted a trigger word. You can make her cum whenever you want.")
         return [hypno_trigger_orgasm_action]
@@ -210,7 +249,7 @@ label instantiate_roles(): #This section instantiates all of the key roles in th
     python:
 
         employee_role = Role("Employee", get_employee_role_actions(),
-            on_turn = employee_on_turn, on_day = employee_on_day)
+            on_turn = employee_on_turn, on_day = employee_on_day, hidden = True)
 
         #EMPLOYEE BUSYWORK ACTIONS#
         employee_busywork_role = Role("Office Busywork", [], hidden = True) #TODO: Add some other actions to this role
@@ -229,7 +268,6 @@ label instantiate_roles(): #This section instantiates all of the key roles in th
 
         steph_role = Role("Stephanie", [], hidden = True) #Used to hold any Stephanie specific actions not tied to another role, and to guarantee this is Steph even if she undergoes a personality change.
 
-        student_role = Role("Student", get_student_role_actions())
         #NORA ROLE#
         # Note: Nora's role actions are assigned through Stephanie's events.
         nora_role = Role("Nora", get_nora_role_actions(), hidden = True)
@@ -237,17 +275,20 @@ label instantiate_roles(): #This section instantiates all of the key roles in th
         alexia_role = Role("Alexia", get_alexia_role_actions(), hidden = True) #Hide her role because we don't want to display it.
 
         sister_role = Role("Sister", get_sister_role_actions(), on_day = sister_on_day)
+        sister_student_role = Role("Student", get_sister_student_role_actions(), hidden = True)
 
         mother_role = Role("Mother", get_mother_role_actions(), on_day = mom_on_day)
+        mom_associate_role = Role("Business Associate", get_mother_associate_actions(), hidden = True) #Used for the different jobs she holds in various events
+        mom_secretary_role = Role("Personal Associate", get_mother_associate_actions(), hidden = True) #TODO: Have the ability to link random events to roles.
 
         aunt_role = Role("Aunt", get_aunt_role_actions())
 
         cousin_role = Role("Cousin", get_cousin_role_actions())
 
-        student_role = Role("Student", get_student_role_actions())
+        #GENERIC STUDENT
+        generic_student_role = Role("Student", [], hidden = True)
 
-        #COUSIN After start actions# - Actions that are meant to be added to her action list after the game has begun.
-        #cousin_role.actions.append(cousin_talk_boobjob_again_action)
+        student_role = Role("Student", get_student_role_actions())
 
         ################
         #INTERNET ROLES#
@@ -311,8 +352,14 @@ label instantiate_roles(): #This section instantiates all of the key roles in th
         ###################
         ### OTHER ROLES ###
         ###################
+        unemployed_role = Role("Unemployed", get_unemployed_role_actions(), hidden = True)
+        unimportant_job_role = Role("Unimportant Job", get_unimportant_job_role_actions(), hidden = True) # Used for roles where it is relatively simple to get the character to quit their job.
+        critical_job_role = Role("Critical Job", [], hidden = True) # Used for role where it is impossible to get the character to quit their job, but they don't have anything else going on.
+        stripper_role = Role("Stripper", get_stripper_role_actions(), hidden = True)
 
         prostitute_role = Role("Prostitute", get_prostitute_role_actions())
         pregnant_role = Role("Pregnant", [], hidden = True)
         lactating_serum_role = Role("Lactating Serum", get_lactating_serum_role_actions(), hidden = True, on_turn = lactating_serum_on_turn, on_day = lactating_serum_on_day)
+
+        city_rep_role = Role("City Representative", get_city_rep_role_actions(), role_trainables = get_city_rep_role_trainables())
     return

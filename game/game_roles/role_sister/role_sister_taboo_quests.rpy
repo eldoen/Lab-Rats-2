@@ -31,7 +31,7 @@ init -1 python:
             return False
         elif not the_person.event_triggers_dict.get("sister_oral_quest_progress", 0) == 1:
             return False
-        elif mc.business.funds < 1200:
+        elif not mc.business.has_funds(1200):
             return "Insufficient funds"
         return True
 
@@ -307,8 +307,9 @@ label sister_oral_taboo_break_revisit_quest_2(the_person):
                 if not iris.home: # save compatible (no home, not added to game)
                     iris.generate_home()
                     iris.home.add_person(iris)
-                iris.set_schedule(None, times = [1, 2, 3])
-                iris.set_schedule(university, times = [1,2], days = [0, 1, 2, 3, 4])
+                iris.add_role(dikdok_role)
+                iris.add_role(instapic_role) #Make sure she has both an instapic and dikdok account.
+                iris.add_job(influencer_job)               
                 iris.location.move_person(iris, electronics_store)
                 lead_girl = iris
 
@@ -379,7 +380,7 @@ label sister_oral_taboo_break_revisit_quest_2(the_person):
             "The line finally pulls up to the front of the store."
             "Without much fanfare you're ushered in. The staff look stressed, hurrying to serve the swarms of people."
             "You get your phone, pay for it, and are directed towards the exit without any issues."
-            $ mc.business.funds += -1200
+            $ mc.business.change_funds(-1200)
             $ the_person.event_triggers_dict["sister_oral_quest_progress"] = 2
             $ electronics_store.remove_action("sister_oral_taboo_break_revisit_quest_2")
             $ lead_girl = None
@@ -390,7 +391,7 @@ label sister_oral_taboo_break_revisit_quest_2(the_person):
         "Keep waiting {image=gui/heart/Time_Advance.png}\n{color=#ff0000}{size=18}Not enough time{/size}{/color} (disabled)" if time_of_day == 4:
             pass
 
-        "Buy one from a scalper\n{color=#ff0000}{size=18}Costs: $2400{/size}{/color}" if mc.business.funds >= 2400:
+        "Buy one from a scalper\n{color=#ff0000}{size=18}Costs: $2400{/size}{/color}" if mc.business.has_funds(2400):
             "You don't feel like waiting in line for hours just to get this phone, so you start looking for someone who has one to sell you theirs."
             "You wait at the exit from the store, asking people as they go past."
             mc.name "Hey man, want to make some quick money? I'll pay double."
@@ -400,11 +401,11 @@ label sister_oral_taboo_break_revisit_quest_2(the_person):
             "Stranger" "Aaaah, fuck it. Fine, do you have actual cash?"
             "You have to find an ATM to get the man his cash, but after a few minutes you have a new {size=+12}{font=fonts/Crimson-Bold.ttf}\u03C0{/font}{/size}phone in your hands."
             "A hell of a lot better than waiting in line for hours, you think to yourself."
-            $ mc.business.funds += -2400
+            $ mc.business.change_funds(-2400)
             $ the_person.event_triggers_dict["sister_oral_quest_progress"] = 2
             $ electronics_store.remove_action("sister_oral_taboo_break_revisit_quest_2")
 
-        "Buy one from a scalper\n{color=#ff0000}{size=18}Requires: $2400{/size}{/color} (disabled)" if mc.business.funds < 2400:
+        "Buy one from a scalper\n{color=#ff0000}{size=18}Requires: $2400{/size}{/color} (disabled)" if not mc.business.has_funds(2400):
             pass
 
         "Give up for now":
@@ -597,6 +598,8 @@ label sister_anal_taboo_break_revisit(the_person):
     return
 
 label sister_anal_taboo_break_revisit_complete(the_person):
+    $ the_person.event_triggers_dict["sister_anal_quest_active"] = False
+    $ the_person.event_triggers_dict["anal_revisit_complete"] = True
     mc.name "So, I got you those pictures with [mom.title]."
     the_person "I know, I can't believe she actually did that!"
     the_person "My fans {i}love{/i} them! They're such perverts!"
@@ -691,7 +694,7 @@ label sister_vaginal_taboo_break_revisit(the_person):
             mc.name "Yeah, I guess that'll have to be enough."
             "[the_person.possessive_title] smiles and breathes a sigh of relief."
             the_person "I was worried you were going to make a big deal out of it."
-            the_person "Thanks for being a cool brother [the_person.title]."
+            the_person "Thanks for being a cool brother [the_person.mc_title]."
             $ the_person.change_slut(-10)
             $ mc.log_event(the_person.title + "'s taboos restored!", "float_text_red")
     $ clear_scene()

@@ -15,14 +15,14 @@ init -2 python:
             self.bankrupt_days = 0 #How many days you've been bankrupt. If it hits the max value you lose.
             self.max_bankrupt_days = 3 #How many days you can be negative without loosing the game. Can be increased through research.
 
-            self.m_div = m_div #The phsyical locations of all of the teams, so you can move to different offices in the future.
+            self.m_div = m_div #The physical locations of all of the teams, so you can move to different offices in the future.
             self.p_div = p_div
             self.r_div = r_div
             self.s_div = s_div
             self.h_div = h_div
 
             # These wardrobes handle the department specific uniform stuff. A list of UniformOutfits is used to populate the uniform manager screen.
-            #self.all_uniform = Wardrobe(self.name + " All Wardrobe")
+            # self.all_uniform = Wardrobe(self.name + " All Wardrobe")
             self.m_uniform = Wardrobe(self.name + " Marketing Wardrobe")
             self.p_uniform = Wardrobe(self.name + " Production Wardrobe")
             self.r_uniform = Wardrobe(self.name + " Research Wardrobe")
@@ -45,7 +45,7 @@ init -2 python:
             # self.hr_team = [] # Manages everyone else and improves effectiveness. Needed as company grows.
 
             self.head_researcher = None #A reference to the head researcher is stored here, for use in important events.
-            self.company_model = None #A reference to the currnet company model. May be used for some events.
+            self.company_model = None #A reference to the current company model. May be used for some events.
 
             self.max_employee_count = 5
 
@@ -53,11 +53,11 @@ init -2 python:
             self.supply_goal = 250
             self.auto_sell_threshold = None
             self.marketability = 0
-            #self.production_points = 0 Use to be used to store partial progress on serum. is now stored in the assembly line array
             self.team_effectiveness = 100 #Ranges from 50 (Chaotic, everyone functions at 50% speed) to 200 (masterfully organized). Normal levels are 100, special traits needed to raise it higher.
             self.effectiveness_cap = 100 #Max cap, can be raised.
 
             self.research_tier = 0 #The tier of research the main character has unlocked with storyline events. 0 is starting, 3 is max.
+            self.max_serum_tier = 0 #The tier of serum you can produce in your lab. Mirrors research tiers.
 
             self.blueprinted_traits = [] #List of traits that we have built from trait blueprints.
 
@@ -65,12 +65,20 @@ init -2 python:
             self.active_research_design = None #The current research (serum design or serum trait) the business is working on
 
             self.batch_size = 5 #How many serums are produced in each production batch
-            self.production_lines = 2 #How many different production lines the player has access to.
-            self.serum_production_array = {} #This dict will hold tuples of int(line number):[SerumDesign, int(weight), int(production points), int(autosell)]
 
+            self.recruitment_cost = 50
 
             self.inventory = SerumInventory()
-            self.sale_inventory = SerumInventory()
+            # Production lines now have their own class.
+            self.production_lines = [] #Holds instances of Production Line. Default is 2, buying more production lines let's you produce serum designs in parallel (but no more than your default amount).
+            self.production_lines.append(ProductionLine(self.inventory))
+            self.production_lines.append(ProductionLine(self.inventory))
+
+            self.max_active_contracts = 2
+            self.active_contracts = []
+
+            self.max_offered_contracts = 2
+            self.offered_contracts = []
 
             # self.policy_list = [] #This is a list of Policy objects.
             # self.active_policy_list = [] #This is a list of currently active policies (vs just owned ones)
@@ -101,7 +109,32 @@ init -2 python:
             self.event_triggers_dict["outfit_tutorial"] = 1 #We have an outfit design tutorial.
             self.event_triggers_dict["hiring_tutorial"] = 1 #We have an outfit design tutorial.
 
+            self.market_reach = 100 #"market_reach" can be thought of as your total customer base.
+            self.mental_aspect_sold = 0 #Customers only have so much need for serum, so as you sell aspects the price per aspect goes down. You need to increase your market reach to get that price back up.
+            self.physical_aspect_sold = 0
+            self.sexual_aspect_sold = 0
+            self.medical_aspect_sold = 0
+
+            self.default_aspect_price = 10 # THis is the starting price that most aspects are "worth".
+            self.aspect_price_max_variance = 8 # This is the total amount each aspect can be worth (ie no aspect is ever worth base more than 18 or less than 2).
+            self.aspect_price_daily_variance = 2 #This is the +- amount the price of each aspect can fluctuate.
+
+            self.mental_aspect_price = self.default_aspect_price #These are the actual current values of each aspect, which will vary from day to day
+            self.physical_aspect_price = self.default_aspect_price
+            self.sexual_aspect_price = self.default_aspect_price
+            self.medical_aspect_price = self.default_aspect_price
+
+            self.flaws_aspect_cost = -10 #NOTE: Flaws are a flat -10 each, _not_ reduced by amount sold.
+
+            self.attention = 0 #Current attention.
+            self.max_attention = 100 #If you end the day over this much attention you trigger a high attention event.
+            self.attention_bleed = 10 #How much attention is burned each day,
+
+            self.operating_costs = 0 #How much money is spent every work day just owning your lab.
+
             self.listener_system = ListenerManagementSystem()
+
+            self.renew_contracts()
 
         @property
         def active_policy_list(self):
@@ -230,10 +263,6 @@ init -2 python:
             if time_of_day == 1 and daily_serum_dosage_policy.is_active() and self.is_work_day(): #Not done on run_day because we want it to apply at the _start_ of the day.
                 self.give_daily_serum()
 
-
-
-
-
             #Compute other department effects
             for person in [x for x in self.supply_team if x in self.s_div.people]:
                 self.supply_purchase(person.focus,person.charisma,person.supply_skill)
@@ -247,8 +276,6 @@ init -2 python:
                 self.production_progress(person.focus,person.int,person.production_skill)
                 person.change_happiness(person.get_opinion_score("working")+person.get_opinion_score("production work"), add_to_log = False)
 
-            self.mark_autosale() #Mark extra serums to be sold by marketing.
-
             for person in [x for x in self.market_team if x in self.m_div.people]:
                 if person.should_wear_uniform():
                     self.sale_progress(person.charisma,person.focus, person.market_skill, slut_modifier = person.outfit.slut_requirement) #If there is a uniform pass it's sluttiness along.
@@ -256,39 +283,59 @@ init -2 python:
                     self.sale_progress(person.charisma, person.focus, person.market_skill) #Otherwise their standard outfit provides no bonuses.
                 person.change_happiness(person.get_opinion_score("working")+person.get_opinion_score("marketing work"), add_to_log = False)
 
+            self.do_autosale() #Mark extra serums to be sold by marketing.
+
             for policy in self.active_policy_list:
                 policy.on_turn()
 
             #Compute efficiency drop
             for person in [x for x in self.supply_team + self.research_team + self.production_team + self.market_team if x in self.s_div.people + self.r_div.people + self.p_div.people + self.m_div.people]:
-                self.team_effectiveness -= 1 #TODO: Make this dependant on charisma (High charisma have a lower impact on effectiveness) and happiness.
+                self.change_team_effectiveness(-1)
 
             #Compute efficiency rise from HR
             for person in [x for x in self.hr_team if x in self.h_div.people]:
                 self.hr_progress(person.charisma,person.int,person.hr_skill)
                 person.change_happiness(person.get_opinion_score("working")+person.get_opinion_score("HR work"), add_to_log = False)
 
-            if self.team_effectiveness < 50:
-                self.team_effectiveness = 50
-
-            if self.team_effectiveness > self.effectiveness_cap:
-                self.team_effectiveness = self.effectiveness_cap
-
 
         def run_move(self):
             for policy in self.active_policy_list:
                 policy.on_move()
 
-
-
         def run_day(self): #Run at the end of the day.
+            self.attention += -self.attention_bleed
+            if self.attention < 0:
+                self.attention = 0
+
             #Pay everyone for the day
             if self.is_work_day():
-                cost = self.calculate_salary_cost()
-                self.funds += -cost
+                cost = self.calculate_salary_cost() + self.operating_costs
+                self.change_funds(-cost)
+
+                if self.attention >= self.max_attention and not self.event_triggers_dict.get("attention_event_pending", False):
+                    self.event_triggers_dict["attention_event_pending"] = True
+                    self.mandatory_crises_list.append(Action("attention_event", attention_event_requirement, "attention_event"))
 
                 for policy in self.active_policy_list:
                     policy.on_day()
+
+                remove_list = []
+                for contract in self.active_contracts:
+                    remove_list = []
+                    if contract.run_day():
+                        remove_list.append(contract)
+                        if contract.can_finish_contract():
+                            contract.finish_contract()
+                            self.add_normal_message("Contract " + contract.name + " was going to expire with product in inventory, completed automatically.")
+                        else:
+                            contract.abandon_contract()
+                            self.add_normal_message("Contract " + contract.name + " has expired unfilled.")
+
+                for removal in remove_list:
+                    self.active_contracts.remove(removal)
+
+            if day%7 == 6: #ie is Monday
+                self.renew_contracts()
             return
 
         def is_open_for_business(self): #Checks to see if employees are currently working
@@ -320,8 +367,8 @@ init -2 python:
 
             return None
 
-        def get_uniform_wardrobe_for_person(self, the_person):
-            return self.get_uniform_wardrobe(self.get_employee_title(the_person))
+        def get_uniform_wardrobe_for_person(self, person):
+            return self.get_uniform_wardrobe(self.get_employee_title(person))
 
         def get_uniform_limits(self): #Returns three values: the max sluttiness of a full outfit, max sluttiness of an underwear set, and if only overwear sets are allowed or notself.
             slut_limit = 0
@@ -362,7 +409,7 @@ init -2 python:
             return slut_limit, underwear_limit, limited_to_top
 
         def update_uniform_wardrobes(self): #Rebuilds all uniforms in the wardrobe based on current uniform settings.
-            #NOTE: This is inefficent, because we will often be adding then clearing the same uniform every time we change the list.
+            #NOTE: This is inefficient, because we will often be adding then clearing the same uniform every time we change the list.
             # But it's only done once on exit from the screen, and is likely fast enough. Optimize by only manipulating changes if it's a problem.
             self.m_uniform.clear_wardrobe()
             self.p_uniform.clear_wardrobe()
@@ -399,7 +446,7 @@ init -2 python:
             self.production_used = 0
             self.research_produced = 0
             self.sales_made = 0
-            self.serums_sold =0
+            self.serums_sold = 0
 
         def add_counted_message(self,message,new_count = 1):
             if message in self.counted_message_list:
@@ -425,13 +472,9 @@ init -2 python:
             if the_serum is self.active_research_design:
                 self.active_research_design = None
 
-            delete_list = []
-            for line in self.serum_production_array:
-                if the_serum is self.serum_production_array[line][0]:
-                    delete_list.append(line) #Store a list of all the keys we need to delete to avoid modifying while interacting. Needed in case two lines are making the same serum.
-
-            for key in delete_list: #Now delete the production lines.
-                del self.serum_production_array[key]
+            for line in self.production_lines:
+                if line.selected_design == the_serum:
+                    line.set_product(None)
 
         def remove_trait(self, the_trait):
             self.blueprinted_traits.remove(the_trait)
@@ -519,172 +562,181 @@ init -2 python:
                 if max_supply <= 0:
                     return 0
 
-            self.funds += -max_supply
+            self.change_funds(-max_supply)
             self.supply_count += max_supply
             self.supplies_purchased += max_supply #Used for end of day reporting
+            max_supply = int(max_supply)
             return max_supply
+
+        def accept_contract(self, the_contract):
+            self.active_contracts.append(the_contract)
+            if the_contract in self.offered_contracts:
+                self.offered_contracts.remove(the_contract)
+
+            the_contract.start_contract()
+
+        def abandon_contract(self, the_contract):
+            if the_contract in self.active_contracts:
+                self.active_contracts.remove(the_contract)
+
+            the_contract.abandon_contract()
+
+        def complete_contract(self, the_contract):
+            if the_contract in self.active_contracts:
+                self.active_contracts.remove(the_contract)
+
+            the_contract.finish_contract()
+
+        def renew_contracts(self):
+            self.offered_contracts = []
+            for x in range(0, self.max_offered_contracts):
+                self.offered_contracts.append(generate_contract(self.max_serum_tier))
 
         def player_market(self):
             amount_sold = self.sale_progress(mc.charisma,mc.focus,mc.market_skill)
-            self.listener_system.fire_event("player_serums_sold_count", amount = amount_sold)
+            #  #TODO: Replace the old goal here with the new one.
             self.listener_system.fire_event("general_work")
             renpy.say(None, "You spend time making phone calls to clients and shipping out orders. You sell " + str(amount_sold) + " doses of serum.")
             return amount_sold
 
-        def sale_progress(self,cha,focus,skill, slut_modifier = 0):
+        def sale_progress(self,cha,focus,skill, slut_modifier = 0): #TODO: Decide what effects should directly affect price, and which ones should increase market reach gain.
+            amount_increased = __builtin__.int((3*cha) + (focus) + (2*skill)) * ((self.team_effectiveness*0.01)) * (1.0+(slut_modifier)) * 5.0
+            self.market_reach += amount_increased
+            return amount_increased
 
-            serum_value_multiplier = 1.00 #For use with value boosting policies. Multipliers are multiplicative.
-            if male_focused_marketing_policy.is_active(): #Increase value by the character's outfit sluttiness if you own that policy.
-                sluttiness_multiplier = (slut_modifier/100.0) + 1
-                serum_value_multiplier = serum_value_multiplier * (sluttiness_multiplier)
+        def sell_serum(self, the_serum, serum_count = 1, slut_modifier = 0, fixed_price = -1, external_serum_source = False): #TODO: Set this up. Takes each serum, check's it's value on todays' market, and sells it.
+            #NOTE: Each serum immediately decreases the value of the one sold after it. (ie selling one serum at a time is no more or less efficient than bulk selling to the open market.
+            sales_value = 0
 
-            multipliers_used = {} #Generate a dict with only the current max multipliers of each catagory.
-            for multiplier_source in self.sales_multipliers:
-                if not multiplier_source[0] in multipliers_used:
-                    multipliers_used[multiplier_source[0]] = multiplier_source[1]
-                elif multiplier_source[1] > multipliers_used.get(multiplier_source[0]):
-                    multipliers_used[multiplier_source[0]] = multiplier_source[1]
+            if self.inventory.get_serum_count(the_serum) < serum_count and not external_serum_source:
+                serum_count = self.inventory.get_serum_count(the_serum)
 
-            for maxed_multiplier in multipliers_used:
-                value_change = multipliers_used.get(maxed_multiplier)
-                serum_value_multiplier = serum_value_multiplier * value_change
-                if value_change > 1:
-                    self.add_normal_message("+" + str((value_change-1)*100) + "% serum value due to " + maxed_multiplier + ".")
-                elif value_change < 1: #No message shown for exactly 1.
-                    self.add_normal_message(str((value_change-1)*100) + "% serum value due to " + maxed_multiplier + ".") #Duplicate normal messages are not shown twice, so this should only exist once per turn, per multiplier.
+            for x in range(0, serum_count):
+                if fixed_price >= 0:
+                    serum_base_value = fixed_price
+                else:
+                    serum_base_value = self.get_serum_base_value(the_serum)
+                sales_value += serum_base_value
 
-            serum_sale_count = __builtin__.int(((3*cha) + focus + (2*skill) + 5) * (self.team_effectiveness / 100.0)) #Total number of doses of serum that can be sold by this person.
-            sorted_by_value = sorted(self.sale_inventory.serums_held, key = lambda serum: serum[0].value) #List of tuples [SerumDesign, count], sorted by the value of each design. Used so most valuable serums are sold first.
-            if self.sale_inventory.get_any_serum_count() < serum_sale_count:
-                serum_sale_count = self.sale_inventory.get_any_serum_count()
+                self.mental_aspect_sold += the_serum.mental_aspect
+                self.physical_aspect_sold += the_serum.physical_aspect
+                self.sexual_aspect_sold += the_serum.sexual_aspect
+                self.medical_aspect_sold += the_serum.medical_aspect
 
-            this_batch_serums_sold = 0
-            if serum_sale_count > 0: #ie. we have serum in our inventory to sell, and the capability to sell them.
-                for serum in sorted_by_value:
-                    if serum_sale_count <= serum[1]:
-                        #There are enough to satisfy order. Remove, add value to wallet, and break
-                        value_sold = serum_sale_count * serum[0].value * serum_value_multiplier
-                        if value_sold < 0:
-                            value_sold = 0
-                        self.funds += value_sold
-                        self.sales_made += value_sold
-                        self.listener_system.fire_event("serums_sold_value", amount = value_sold)
-                        self.serums_sold += serum_sale_count
-                        this_batch_serums_sold += serum_sale_count
-                        self.sale_inventory.change_serum(serum[0],-serum_sale_count)
-                        serum_sale_count = 0
-                        break
-                    else:
-                        #There are not enough in this single order, remove _all_ of them, add value, go onto next thing.
-                        serum_sale_count += -serum[1] #We were able to sell this number of serum.
-                        value_sold = serum[1] * serum[0].value * serum_value_multiplier
-                        if value_sold < 0:
-                            value_sold = 0
-                        self.funds += value_sold
-                        self.sales_made += value_sold
-                        self.listener_system.fire_event("serums_sold_value", amount = value_sold)
-                        self.serums_sold += serum_sale_count
-                        this_batch_serums_sold += serum_sale_count
-                        self.sale_inventory.change_serum(serum[0],-serum[1]) #Should set serum count to 0.
-                        #Don't break, we haven't used up all of the serum count
-            return this_batch_serums_sold
+                attention_gain = the_serum.attention
+                if attention_floor_increase_1_policy.is_active():
+                    attention_gain -= 1
+                if attention_floor_increase_2_policy.is_active():
+                    attention_gain -= 1
+                if attention_gain < 0:
+                    attention_gain = 0
+                self.attention += attention_gain
 
+            sales_value = __builtin__.int(sales_value)
 
+            if not external_serum_source:
+                self.inventory.change_serum(the_serum, -serum_count)
+            self.change_funds(sales_value)
+            self.sales_made += sales_value
+            self.listener_system.fire_event("player_serums_sold_count", amount = serum_count)
+            self.listener_system.fire_event("serums_sold_value", amount = sales_value)
+
+        def get_serum_base_value(self, the_serum, round_value = False):
+            serum_value = 0
+            serum_value += the_serum.mental_aspect * self.get_aspect_price("mental")
+            serum_value += the_serum.physical_aspect * self.get_aspect_price("physical")
+            serum_value += the_serum.sexual_aspect * self.get_aspect_price("sexual")
+            serum_value += the_serum.medical_aspect * self.get_aspect_price("medical")
+
+            if round_value:
+                serum_value = __builtin__.int(serum_value)
+
+            return serum_value
+
+        def get_aspect_price(self, the_aspect): #If we want to be really proper we could have this check _per aspect_, but I think that's excessive.
+            the_aspect = the_aspect.lower()
+            if the_aspect == "mental":
+                return self.mental_aspect_price * self.get_aspect_percent("mental")
+
+            elif the_aspect == "physical":
+                return self.physical_aspect_price * self.get_aspect_percent("physical")
+
+            elif the_aspect == "sexual":
+                return self.sexual_aspect_price * self.get_aspect_percent("sexual")
+
+            elif the_aspect == "medical":
+                return self.medical_aspect_price * self.get_aspect_percent("medical")
+
+            elif the_aspect == "flaw":
+                return self.flaws_aspect_cost * self.get_aspect_percent("flaw")
+
+        def get_aspect_percent(self, the_aspect):
+            the_aspect = the_aspect.lower()
+            if the_aspect == "mental":
+                return 1.0/(1+((self.mental_aspect_sold*1.0)/(self.market_reach*1.0)))
+
+            elif the_aspect == "physical":
+                return 1.0/(1+((self.physical_aspect_sold*1.0)/(self.market_reach*1.0)))
+
+            elif the_aspect == "sexual":
+                return 1.0/(1+((self.sexual_aspect_sold*1.0)/(self.market_reach*1.0)))
+
+            elif the_aspect == "medical":
+                return 1.0/(1+((self.medical_aspect_sold*1.0)/(self.market_reach*1.0)))
+
+            elif the_aspect == "flaw":
+                return 1.0
+
+        def has_funds(self, money_amount):
+            return self.funds >= money_amount
+
+        def change_funds(self, change_amount):
+            self.funds += __builtin__.int(change_amount)
 
         def production_progress(self,focus,int,skill):
             #First, figure out how many production points we can produce total. Subtract that much supply and mark that much production down for the end of day report.
             production_amount = __builtin__.int(((3*focus) + int + (2*skill) + 10) * (self.team_effectiveness / 100.0))
             self.production_potential += production_amount
 
-            if self.serum_production_array is None or self.supply_count <= 0:
-                return #If we don't have anything in production just tally how much we could have produced and move on.
-
             if production_amount > self.supply_count:
                 production_amount = self.supply_count #Figure out our total available production, before we split it up between tasks (which might not have 100% usage!)
 
-            #Now go through each production line we have marked.
-            for production_line in self.serum_production_array:
-                # A production line is a tuple of [SerumDesign, production weight (int), production point progress (int)].
-                serum_weight = self.serum_production_array[production_line][1]
-                the_serum = self.serum_production_array[production_line][0]
-
-                proportional_production = __builtin__.int((serum_weight/100.0) * production_amount) #Get the closest integer value for the weighted production we put into the serum
-                self.production_used += proportional_production #Update our usage stats and subtract supply needed.
-                self.supply_count += -proportional_production
-
-                self.serum_production_array[production_line][2] += proportional_production
-                serum_prod_cost = the_serum.production_cost
-                if serum_prod_cost <= 0:
-                    serum_prod_cost = 1
-                serum_count = self.serum_production_array[production_line][2]//serum_prod_cost #Calculates the number of batches we have made (previously for individual serums, now for entire batches)
-                if serum_count > 0:
-                    self.add_counted_message("Produced " + self.serum_production_array[production_line][0].name,serum_count*self.batch_size) #Give a note to the player on the end of day screen for how many we made.
-                    self.serum_production_array[production_line][2] -= serum_count * self.serum_production_array[production_line][0].production_cost
-                    self.inventory.change_serum(self.serum_production_array[production_line][0],serum_count*self.batch_size) #Add the number serums we made to our inventory.
+            for line in self.production_lines:
+                supply_used = line.add_production(production_amount) #NOTE: this is modified by the weighted use of the Line in particular. This allows for greater than 100% efficency.
+                self.supply_count += - supply_used
+                self.production_used += supply_used
 
             return production_amount
 
-        def clear_production(self): #Clears all current produciton lines.
-            for production_line in self.serum_production_array:
-                self.serum_production_array[production_line][0] = None
-                self.serum_production_array[production_line][1] = 0
-                self.serum_production_array[production_line][2] = 0 #Set production points stored to 0 for the new serum
-                self.serum_production_array[production_line][3] = -1 #Set autosell to -1, ie. don't auto sell.
-
-        def change_production(self,new_serum,production_line):
-            if production_line in self.serum_production_array: #If it already exists, change the serum type and production points stored, but keep the weight for that line (it can be changed later)
-                self.serum_production_array[production_line][0] = new_serum
-                self.serum_production_array[production_line][1] = __builtin__.int(100 - self.get_used_line_weight() + self.serum_production_array[production_line][1]) #Set the production weight to everything we have remaining
-                self.serum_production_array[production_line][2] = 0 #Set production points stored to 0 for the new serum
-                self.serum_production_array[production_line][3] = -1 #Set autosell to -1, ie. don't auto sell.
-            else: #If the production line didn't exist before, add a key for that line.
-                self.serum_production_array[production_line] = [new_serum, __builtin__.int(100 - self.get_used_line_weight()), 0, -1]
+        # Use to be def clear_production(self)
+        def clear_all_production(self): #Clears all current production lines.
+            for line in self.production_lines:
+                line.set_product(None)
 
         def get_used_line_weight(self):
             used_production = 0
-            for existing_lines in self.serum_production_array:
-                used_production += self.serum_production_array[existing_lines][1] #Tally how much weight we are using so far.
+            for line in self.production_lines:
+                used_production += line.production_weight #Tally how much weight we are using so far.
             return used_production
 
-        def change_line_weight(self,line,weight_change):
-            if line in self.serum_production_array:
-                used_production = self.get_used_line_weight()
-                if weight_change > 0 and weight_change + used_production > 100:
-                    weight_change = 100 - used_production #If the full weight change would put us above our 100% max cap it at as much as can be assigned.
+        def do_autosale(self):
+            for line in self.production_lines:
+                if line.autosell and line.selected_design:
+                    extra_doses = self.inventory.get_serum_count(line.selected_design) - line.autosell_amount
+                    if extra_doses > 0:
+                        self.sell_serum(line.selected_design, extra_doses)
 
-                self.serum_production_array[line][1] += weight_change
-                if self.serum_production_array[line][1] < 0:
-                    self.serum_production_array[line][1] = 0 #We cannot have a value less than 0%
-
-        def change_line_autosell(self, line, threshold_change):
-            if line in self.serum_production_array:
-                if threshold_change > 0 and self.serum_production_array[line][3] < 0: #We use negative values as a marker for no threshold. If it's negative always treat it as -1 when we start adding again.
-                    self.serum_production_array[line][3] = -1
-                self.serum_production_array[line][3] += threshold_change
-
-        def mark_autosale(self):
-            for line in self.serum_production_array:
-                if self.serum_production_array[line][3] >= 0: #There is an auto sell threshold set.
-                    if self.inventory.get_serum_count(self.serum_production_array[line][0]) > self.serum_production_array[line][3]:
-                        difference = __builtin__.int(self.inventory.get_serum_count(self.serum_production_array[line][0]) - self.serum_production_array[line][3]) #Check how many serums we need to sell to bring us to the threshold.
-                        self.inventory.change_serum(self.serum_production_array[line][0], -difference) #Remove them from the production inventory.
-                        self.sale_inventory.change_serum(self.serum_production_array[line][0], difference) #Add them to the sales inventory.
-
-        def get_random_weighed_production_serum(self): #Return the serum design of one of our activly produced serums, relative probability by weight.
-            used_production = 0
-            for key in self.serum_production_array:
-                used_production += self.serum_production_array[key][1] #Sum how much production we are using, usually 100%
-            if used_production == 0:
-                return None #If we are not _actually_ producing anything, return None.
-
+        def get_random_weighed_production_serum(self): #Return the serum design of one of our actively produced serums, relative probability by weight.
+            used_production = self.get_used_line_weight()
             random_serum_number = renpy.random.randint(0,used_production)
-            for key in self.serum_production_array:
-                if random_serum_number <= self.serum_production_array[key][1]:
-                    return self.serum_production_array[key][0]
+
+            for line in self.production_lines:
+                if random_serum_number < line.production_weight and line.selected_design:
+                    return line.selected_design
                 else:
-                    random_serum_number -= self.serum_production_array[key][1] #Subtract the probability of this one from our number to make progress in our search.
+                    random_serum_number -= line.production_weight #Subtract the probability of this one from our number to make progress in our search.
 
-
+            return None
 
 
         def player_production(self):
@@ -703,7 +755,7 @@ init -2 python:
 
         def hr_progress(self,cha,int,skill): #Don't compute efficiency cap here so that player HR effort will be applied against any efficiency drop even though it's run before the rest of the end of the turn.
             restore_amount = (3*cha) + (int) + (2*skill) + 5
-            self.team_effectiveness += restore_amount
+            self.change_team_effectiveness(restore_amount)
             return restore_amount
 
         def change_team_effectiveness(self, the_amount):
@@ -713,68 +765,66 @@ init -2 python:
             elif self.team_effectiveness < 50:
                 self.team_effectiveness = 50
 
-        def update_employee_status(self, person):
-            if person.event_triggers_dict.get("employed_since", -1) == -1:
-                person.event_triggers_dict["employed_since"] = day
-                self.listener_system.fire_event("new_hire", the_person = person)
-
-            for other_employee in self.get_employee_list():
-                town_relationships.begin_relationship(person, other_employee) #They are introduced to everyone at work, with a starting value of "Acquaintance"
-
-        def add_employee_research(self, person):
-            if not person in self.research_team:
-                self.research_team.append(person)
-            person.add_role(employee_role)
-            person.job = self.get_employee_title(person)
-            person.set_work(self.r_div)
-            self.update_employee_status(person)
-
-        def add_employee_production(self, person):
-            if not person in self.production_team:
-                self.production_team.append(person)
-            person.add_role(employee_role)
-            person.job = self.get_employee_title(person)
-            person.set_work(self.p_div)
-            self.update_employee_status(person)
-
-        def add_employee_supply(self, person):
-            if not person in self.supply_team:
-                self.supply_team.append(person)
-            person.add_role(employee_role)
-            person.job = self.get_employee_title(person)
-            person.set_work(self.s_div)
-            self.update_employee_status(person)
-
-        def add_employee_marketing(self, person):
-            if not person in self.market_team:
-                self.market_team.append(person)
-            person.add_role(employee_role)
-            person.job = self.get_employee_title(person)
-            person.set_work(self.m_div)
-            self.update_employee_status(person)
-
-        def add_employee_hr(self, person):
-            if not person in self.hr_team:
-                self.hr_team.append(person)
-            person.add_role(employee_role)
-            person.job = self.get_employee_title(person)
-            person.set_work(self.h_div)
-            self.update_employee_status(person)
-
-        def remove_employee(self, person, remove_linked = False):
+        def undesignate_person(self, person): #Removes person from all of the work lists so they can be moved around without them working in two departments.
             if person in self.research_team:
                 self.research_team.remove(person)
-            elif person in self.production_team:
+            if person in self.production_team:
                 self.production_team.remove(person)
-            elif person in self.supply_team:
+            if person in self.supply_team:
                 self.supply_team.remove(person)
-            elif person in self.market_team:
+            if person in self.market_team:
                 self.market_team.remove(person)
-            elif person in self.hr_team:
+            if person in self.hr_team:
                 self.hr_team.remove(person)
 
-            person.set_work(None)
-            person.remove_role(employee_role, remove_linked = remove_linked) #Some events only shuffle employees around, leaving employee related roles in place. For those, set remove_linked to True
+        def evict_person(self, person): #Removes a person from a location in the building and moves them to their home.
+            self.move_person(person, person.home)
+
+        def move_person(self, person, the_destination):
+            if rd_division.has_person(person):
+                rd_division.move_person(person, the_destination)
+            if p_division.has_person(person):
+                p_division.move_person(person, the_destination)
+            if office.has_person(person):
+                office.move_person(person, the_destination)
+            if m_division.has_person(person):
+                m_division.move_person(person, the_destination)
+
+        def add_employee_research(self, new_person):
+            self.undesignate_person(new_person)
+            self.research_team.append(new_person)
+            new_person.add_job(rd_job, job_known = True)
+            setup_employee_stats(new_person)
+
+        def add_employee_production(self, new_person):
+            self.undesignate_person(new_person)
+            self.production_team.append(new_person)
+            new_person.add_job(production_job, job_known = True)
+            setup_employee_stats(new_person)
+
+        def add_employee_supply(self, new_person):
+            self.undesignate_person(new_person)
+            self.supply_team.append(new_person)
+            new_person.add_job(supply_job, job_known = True)
+            setup_employee_stats(new_person)
+
+        def add_employee_marketing(self, new_person):
+            self.undesignate_person(new_person)
+            self.market_team.append(new_person)
+            new_person.add_job(market_job, job_known = True)
+            setup_employee_stats(new_person)
+
+        def add_employee_hr(self, new_person):
+            self.undesignate_person(new_person)
+            self.hr_team.append(new_person)
+            new_person.add_job(hr_job, job_known = True)
+            setup_employee_stats(new_person)
+
+        def remove_employee(self, person): #As of v0.49 this should be used exclusively for firing people. When changing jobs you can just assign them a new one, they should keep the correct roles.
+            self.undesignate_person(person)
+            self.evict_person(person)
+
+            person.add_job(unemployed_job, job_known = True)
 
             #Roles can have an on_remove function, but these have special events that we want to make sure are triggered properly.
             if person == self.head_researcher:
@@ -796,38 +846,38 @@ init -2 python:
                     max = person.sluttiness
             return max
 
-        def get_employee_title(self, the_person):
-            if the_person in self.research_team:
+        def get_employee_title(self, person):
+            if person in self.research_team:
                 return "Researcher"
 
-            elif the_person in self.market_team:
+            elif person in self.market_team:
                 return "Marketing"
 
-            elif the_person in self.supply_team:
+            elif person in self.supply_team:
                 return "Supply"
 
-            elif the_person in self.production_team:
+            elif person in self.production_team:
                 return "Production"
 
-            elif the_person in self.hr_team:
+            elif person in self.hr_team:
                 return "Human Resources"
 
             return "None"
 
-        def get_employee_workstation(self, the_person): #Returns the location a girl should be working at, or "None" if the girl does not work for you
-            if the_person in self.research_team:
+        def get_employee_workstation(self, person): #Returns the location a girl should be working at, or "None" if the girl does not work for you
+            if person in self.research_team:
                 return self.r_div
 
-            elif the_person in self.market_team:
+            elif person in self.market_team:
                 return self.m_div
 
-            elif the_person in self.supply_team:
+            elif person in self.supply_team:
                 return self.s_div
 
-            elif the_person in self.production_team:
+            elif person in self.production_team:
                 return self.p_div
 
-            elif the_person in self.hr_team:
+            elif person in self.hr_team:
                 return self.h_div
 
             return None
@@ -846,22 +896,22 @@ init -2 python:
             for person in self.get_employee_list():
                 self.give_department_serum(person)
 
-        def give_department_serum(self, the_person):
+        def give_department_serum(self, person):
             the_serum = None
-            if the_person in self.research_team:
+            if person in self.research_team:
                 the_serum = self.r_serum
-            elif the_person in self.market_team:
+            elif person in self.market_team:
                 the_serum = self.m_serum
-            elif the_person in self.production_team:
+            elif person in self.production_team:
                 the_serum = self.p_serum
-            elif the_person in self.supply_team:
+            elif person in self.supply_team:
                 the_serum = self.s_serum
-            elif the_person in self.hr_team:
+            elif person in self.hr_team:
                 the_serum = self.h_serum
 
             if the_serum is not None:
                 should_give_serum = True
-                for active_serum in the_person.serum_effects:
+                for active_serum in person.serum_effects:
                     if the_serum.is_same_design(active_serum):
                         if active_serum.duration - active_serum.duration_counter >= 3:
                             should_give_serum = False #Don't double-dose girls if they have the serum running and it will last the work day already
@@ -870,7 +920,7 @@ init -2 python:
                 if should_give_serum:
                     if self.inventory.get_serum_count(the_serum) > 0:
                         self.inventory.change_serum(the_serum,-1)
-                        the_person.give_serum(copy.copy(the_serum), add_to_log = False)
+                        person.give_serum(copy.copy(the_serum), add_to_log = False)
                     else:
                         the_message = "Stockpile out of " + the_serum.name + " to give to staff."
                         self.add_counted_message(the_message)
@@ -889,6 +939,76 @@ init -2 python:
             if [multiplier_class, multiplier] in self.sales_multipliers:
                 mc.log_event("No longer receiving " + str((multiplier - 1) * 100) + "% serum value increase from " + multiplier_class + ".", "float_text_grey")
                 self.sales_multipliers.remove([multiplier_class, multiplier])
+
+        def generate_candidate_requirements(self): #Checks current business policies and generates a dict of keywords for create_random_person to set the correct values to company requirements.
+            # In cases where a range is allowed it generates a random value in that range, so call this one per person being created.
+            candidate_dict = {} # This will hold keywords and arguments for create_random_person to create a person with specific modifies
+
+            if recruitment_skill_improvement_policy.is_active():
+                skill_cap = 7
+                candidate_dict["age_ceiling"] = candidate_dict.get("age_ceiling", 50) + 5
+                candidate_dict["skill_array"] = [renpy.random.randint(1,skill_cap),renpy.random.randint(1,skill_cap),renpy.random.randint(1,skill_cap),renpy.random.randint(1,skill_cap),renpy.random.randint(1,skill_cap)]
+
+            if recruitment_stat_improvement_policy.is_active():
+                stat_cap = 7
+                candidate_dict["age_floor"] = candidate_dict.get("age_floor", 18) + 5
+                candidate_dict["stat_array"] = [renpy.random.randint(1,stat_cap),renpy.random.randint(1,stat_cap),renpy.random.randint(1,stat_cap)]
+
+            if recruitment_sex_improvement_policy.is_active():
+                stat_cap = 7
+                candidate_dict["sex_array"] = [renpy.random.randint(1,stat_cap), renpy.random.randint(1,stat_cap), renpy.random.randint(1,stat_cap), renpy.random.randint(1,stat_cap)]
+
+            if recruitment_suggest_improvement_policy.is_active():
+                candidate_dict["age_ceiling"] = candidate_dict.get("age_ceiling", 50) - 5
+                candidate_dict["bonus_suggest"] = 2
+
+            if recruitment_obedience_improvement_policy.is_active():
+                candidate_dict["bonus_obedience"] = 10
+
+            if recruitment_slut_improvement_policy.is_active():
+                candidate_dict["bonus_sluttiness"] = 20
+
+            if recruitment_mothers_policy.is_active():
+                candidate_dict["age_ceiling"] = candidate_dict.get("age_ceiling", 50) + 5
+                candidate_dict["bonus_kids"] = candidate_dict.get("bonus_kids", 0) + 1
+            elif recruitment_childless_policy.is_active():
+                candidate_dict["kids"] = 0
+
+            if recruitment_big_tits_policy.is_active():
+                candidate_dict["tits"] = get_random_big_tit()
+            elif recruitment_huge_tits_policy.is_active():
+                candidate_dict["tits"] = get_random_huge_tit()
+            elif recruitment_small_tits_policy.is_active():
+                candidate_dict["tits"] = get_random_small_tit()
+            elif recruitment_tiny_tits_policy.is_active():
+                candidate_dict["tits"] = "AA"
+
+            if recruitment_short_policy.is_active():
+                candidate_dict["height"] = 0.85 + (renpy.random.random()/25)
+            elif recruitment_tall_policy.is_active():
+                candidate_dict["height"] = 0.92 + (renpy.random.random()/25)
+
+            if recruitment_single_policy.is_active():
+                candidate_dict["age_ceiling"] = candidate_dict.get("age_ceiling", 50) - 5
+                candidate_dict["relationship"] = "Single"
+            elif recruitment_married_policy.is_active():
+                candidate_dict["age_ceiling"] = candidate_dict.get("age_ceiling", 50) + 5
+                candidate_dict["relationship"] = "Married"
+
+            if recruitment_old_policy.is_active():
+                candidate_dict["age_floor"] = 40
+            elif recruitment_teen_policy.is_active():
+                candidate_dict["age_ceiling"] = 19
+
+            if candidate_dict.get("age_ceiling", 50) > 60: #TODO: Introduce post-menopause women.
+                candidate_dict["age_ceiling"] = 60
+            if candidate_dict.get("age_floor", 18) < 18: #No FBI needed here!
+                candidate_dict["age_floor"] = 18
+
+            if candidate_dict.get("age_ceiling", 50) < candidate_dict.get("age_floor", 18):
+                candidate_dict["age_ceiling"] = candidate_dict.get("age_floor",18) + 1
+
+            return candidate_dict
 
         def hire_company_model(self, person):
             if self.company_model:

@@ -141,8 +141,8 @@ init -2 python:
                 menu_tooltip = "Visit your old lab and talk to Nora about serum research.")
             university.actions.append(nora_research_visit) #Prepare this so if we visit the university again under the proper conditions we can start studying traits for her for money.
 
-            nora.set_schedule(university, days=[0, 1, 2, 3, 4], times =[1,2,3])
-            nora.set_schedule(university, days=[5], times =[1,2])
+            nora.set_schedule(university, the_days=[0, 1, 2, 3, 4], the_times =[1,2,3])
+            nora.set_schedule(university, the_days=[5], the_times =[1,2])
             university.visible = True
         return
 
@@ -225,7 +225,7 @@ label nora_intro_label(the_person):
     return
 
 label nora_research_up_label(the_person):
-
+    $ the_person.set_override_schedule(None)
     "You knock on the door to [the_person.title]'s lab and wait until the door is opened."
     $ the_person.draw_person()
     the_person "[the_person.mc_title], it's good to see you again."
@@ -268,6 +268,7 @@ label nora_research_up_label(the_person):
 
 label nora_research_cash_intro(the_person, did_research = False):
     # Nora calls you and enables the rest of the quest line. Doesn't give you the first trait yet, for that you need to visit her.
+    $ the_person.set_override_schedule(None) #Let her out into the wild
     if did_research:
         "You get a call from [the_person.title]."
         mc.name "[the_person.title], good to hear from you. How can I help you."
@@ -401,7 +402,7 @@ label nora_research_cash(the_person):
         "You say goodbye to [the_person.possessive_title] and split up. She sends your final payment and her research questionnaire soon after."
 
         $ add_study_person_for_nora_actions(the_person)
-    $ mc.business.funds += 2000
+    $ mc.business.change_funds(2000)
     $ clear_scene()
     return
 

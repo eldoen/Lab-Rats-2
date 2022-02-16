@@ -324,14 +324,14 @@ label advanced_serum_stage_1_label(the_person):
         the_person "When I left the university was cracking down on her research and trying to keep it private. I know she hated that."
         the_person "Getting her help could save us a lot of money, and it would be nice to see her again."
     menu:
-        "Try and secure a prototype serum\n{color=#ff0000}{size=18}Costs: $2000{/size}{/color}" if mc.business.funds >= 2000:
-            $ mc.business.funds += -2000
+        "Try and secure a prototype serum\n{color=#ff0000}{size=18}Costs: $2000{/size}{/color}" if mc.business.has_funds(2000):
+            $ mc.business.change_funds(-2000)
             mc.name "That sounds like a good lead. I'll make sure the funds are allocated, let me know when you have something to show me."
             the_person "Absolutely sir, you'll know as soon as I know something."
 
             $ add_advance_serum_unlock_stage_two(the_person)
 
-        "Try and secure a prototype serum\n{color=#ff0000}{size=18}Costs: $2000{/size}{/color} (disabled)" if mc.business.funds < 2000:
+        "Try and secure a prototype serum\n{color=#ff0000}{size=18}Costs: $2000{/size}{/color} (disabled)" if not mc.business.has_funds(2000):
             pass
 
         "Contact Nora" if the_person.has_role(steph_role) and not mc.business.event_triggers_dict.get("intro_nora", False) and mc.business.event_triggers_dict.get("nora_trait_researched",None) is None:
@@ -522,17 +522,17 @@ label futuristic_serum_stage_1_label(the_person):
     the_person "What I need right now are test subjects. Girls who have taken a few doses of serum and been affected by it. If we can do that I can build up some data and maybe discover something new."
     mc.name "It's probably best these girls come from inside the company. How many test subjects do you need?"
     the_person "Not including me: three. I'll need them to be obedient and open to... intimate testing procedures."
-    "[the_person.title] requires three employees who satisfy the following requirements: Sluttiness 50+ and Obedience 130+."
+    "[the_person.title] requires three employees who satisfy the following requirements: Sluttiness 40+ and Obedience 120+."
     mc.name "Alright [the_person.title], I'll do what I can. I'll come back when I've got some girls who fit your requirements."
     $ mc.business.event_triggers_dict["futuristic_serum_stage_1"] = True
     return
 
 label futuristic_serum_stage_2_label(the_person):
-    if __builtin__.len(mc.business.get_requirement_employee_list(slut_required = 50, obedience_required = 130)) <= 3: # If you don't have enough people who meet the requirements just get an update.
+    if __builtin__.len(mc.business.get_requirement_employee_list(slut_required = 40, obedience_required = 120)) <= 3: # If you don't have enough people who meet the requirements just get an update.
         mc.name "I'm still working on getting your test subjects ready. Could you remind me what you need?"
         the_person "To learn anything useful I need at least three girls who have been seriously affected by our serums. I need them to be obedient and open to some intimate testing procedures."
-        "[the_person.title] requires three employees who satisfy the following requirements: Sluttiness 50+ and Obedience 130+"
-        $ satisfying_list = mc.business.get_requirement_employee_list(slut_required = 50, obedience_required = 130, exclude_list = [the_person])
+        "[the_person.title] requires three employees who satisfy the following requirements: Sluttiness 40+ and Obedience 120+"
+        $ satisfying_list = mc.business.get_requirement_employee_list(slut_required = 40, obedience_required = 120, exclude_list = [the_person])
         $ my_string = "The following people currently satisfy the requirements: "
         python:
             if satisfying_list:
@@ -547,7 +547,7 @@ label futuristic_serum_stage_2_label(the_person):
 
     mc.name "[the_person.title], I have your group of test subjects ready."
     the_person "Excellent, let me know who to call down and I'll begin as soon as possible."
-    $ possible_picks = mc.business.get_requirement_employee_list(slut_required = 50, obedience_required = 130, exclude_list = [the_person])
+    $ possible_picks = mc.business.get_requirement_employee_list(slut_required = 40, obedience_required = 120, exclude_list = [the_person])
     call screen employee_overview(white_list = possible_picks, person_select = True)
     $ pick_1 = _return
     call screen employee_overview(white_list = possible_picks, black_list = [pick_1], person_select = True)
@@ -555,7 +555,7 @@ label futuristic_serum_stage_2_label(the_person):
     call screen employee_overview(white_list = possible_picks, black_list = [pick_1,pick_2], person_select = True)
     $ pick_3 = _return
     "[the_person.title] looks over the files of the employees you suggested and nods approvingly."
-    the_person "I think they will do. You're sure you want me to bring in [pick_1.name], [pick_2.name], and [pick_3.name] for testing?"
+    the_person "I think they will do. You're sure you want me to bring in [pick_1.title], [pick_2.title], and [pick_3.title] for testing?"
     menu:
         "Begin the testing":
             pass

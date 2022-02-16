@@ -416,7 +416,6 @@ init 1 python:
 
 label mom_selfie_label():
     #TODO: have a way of saving and reviewing selfies in the future.
-    #TODO: Have a proper weekday/weekend schedule for people and use that to determine when Mom is at home, at work, or out on the town.
     $ the_person = mom
     $ mc.start_text_convo(the_person)
     $ lowest_stat = mom.sluttiness
@@ -428,7 +427,7 @@ label mom_selfie_label():
         #Both love and sluttiness are very high, she sends you super slutty selfies and says she can't wait till you come home, fuck her, and make her your woman.
         $ ran_num = renpy.random.randint(0,2) #Used to determine which variant we use to avoid spamming the player with the exact same texts.
         if ran_num == 0:
-            if mom_offices.has_person(the_person):
+            if mom.job.job_location.has_person(the_person):
                 the_person "It's so hard not to talk about you at work. The other women are gossiping and I just want to tell them how good it feels when you try and breed me..."
                 the_person "My pussy full of your warm cum, knowing that I can take care of you the way only a mother could."
                 the_person "I think I'm going to go touch myself in the bathroom. I hope you are having a great day too [the_person.mc_title]!"
@@ -462,7 +461,7 @@ label mom_selfie_label():
         #Both are high. Sends you slutty selfies and talks about how she wants to fuck you. Sends them from work, etc.
         $ ran_num = renpy.random.randint(0,1) #Used to determine which variant we use to avoid spamming the player with the exact same texts.
         if ran_num == 0:
-            if mom_offices.has_person(the_person):
+            if mom.job.job_location.has_person(the_person):
                 the_person "I'm stuck here at work and all I can think about is you. Wish you were here..."
                 python:
                     for i in range(3):
@@ -484,7 +483,7 @@ label mom_selfie_label():
             $ the_person.update_outfit_taboos()
 
         elif ran_num == 1:
-            if mom_offices.has_person(the_person):
+            if mom.job.job_location.has_person(the_person):
                 the_person "I'm at work and stuck at my desk but I can't get you out of my head. I'm so wet, I wonder if anyone would notice if I touched myself..."
             else:
                 the_person "I know it shouldn't, but thinking about you gets me so wet. You've made me a new woman [the_person.mc_title]."
@@ -495,7 +494,7 @@ label mom_selfie_label():
         #Sends you nudes and talks about how she'll help you blow off steam later.
         $ ran_num = renpy.random.randint(0,3) #Used to determine which variant we use to avoid spamming the player with the exact same texts.
         if ran_num == 0:
-            if mom_offices.has_person(the_person):
+            if mom.job.job_location.has_person(the_person):
                 the_person "I thought you might be stressed so I snuck away from work to take this for you."
                 python:
                     for i in range(3):
@@ -542,7 +541,7 @@ label mom_selfie_label():
                 while not the_person.outfit.tits_visible():
                     the_person.outfit.remove_random_upper(top_layer_first = True)
 
-            if mom_offices.has_person(the_person):
+            if mom.job.job_location.has_person(the_person):
                 the_person "I think I'd be much more popular here at work if I was allowed to dress like this..."
                 $ the_person.draw_person(emotion = "happy")
                 "She sends you a selfie from her office bathroom with her top off."
@@ -571,7 +570,7 @@ label mom_selfie_label():
             $ the_person.update_outfit_taboos()
 
         elif ran_num == 1:
-            if mom_offices.has_person(the_person):
+            if mom.job.job_location.has_person(the_person):
                 the_person "I'm busy here at work but I really wish I could be spending time with you instead. Do you think I'm pretty enough to spend time with ;)"
                 $ the_person.outfit.remove_random_upper(top_layer_first = True)
                 $ the_person.draw_person(emotion = "happy")
@@ -624,7 +623,7 @@ label mom_selfie_label():
         elif ran_num == 2:
             the_person "I hope you aren't busy, I was thinking about you and just wanted to say hi!"
             $ the_person.draw_person(emotion = "happy")
-            if mom_offices.has_person(the_person):
+            if mom.job.job_location.has_person(the_person):
                 "[the_person.possessive_title] sends you a selfie she took from her office at work."
             else:
                 "[the_person.possessive_title] sends you a selfie she took in the living room of your house."
@@ -632,7 +631,7 @@ label mom_selfie_label():
         elif ran_num == 3:
             the_person "Kids these days are always sending selfies to each other, right? I hope I'm doing this right!"
             $ the_person.draw_person(emotion = "happy")
-            if mom_offices.has_person(the_person):
+            if mom.job.job_location.has_person(the_person):
                 "[the_person.possessive_title] sends you a selfie she took from her office at work."
             else:
                 "[the_person.possessive_title] sends you a selfie she took in the living room of your house."
@@ -1753,8 +1752,8 @@ label cousin_tease_crisis_label():
 
         the_person "I need some cash. Do you have a hundred bucks?"
         menu:
-            "Send [the_person.title] some money\n{color=#ff0000}{size=18}Costs: $100{/color}{/size}" if mc.business.funds >= 100:
-                $ mc.business.funds += -100
+            "Send [the_person.title] some money\n{color=#ff0000}{size=18}Costs: $100{/color}{/size}" if mc.business.has_funds(100):
+                $ mc.business.change_funds(-100)
                 "You pull up your banking app and send [the_person.possessive_title] some money, then text back."
                 mc.name "There you go, sent."
                 the_person "Just like that? Well, thanks I guess."
@@ -1765,7 +1764,7 @@ label cousin_tease_crisis_label():
                 the_person "Sure thing, nerd."
 
 
-            "Send [the_person.title] some money\n{color=#ff0000}{size=18}Costs: $100{/color}{/size} (disabled)" if mc.business.funds < 100:
+            "Send [the_person.title] some money\n{color=#ff0000}{size=18}Costs: $100{/color}{/size} (disabled)" if not mc.business.has_funds(100):
                 pass
 
             "Ask why she needs it":
@@ -1785,8 +1784,8 @@ label cousin_tease_crisis_label():
                     "She sends you a picture from her phone, obviously trying to tease you a little."
                     $ mc.change_locked_clarity(5)
                     menu:
-                        "Send [the_person.title] some money\n{color=#ff0000}{size=18}Costs: $100{/color}{/size}" if mc.business.funds >= 100:
-                            $ mc.business.funds += -100
+                        "Send [the_person.title] some money\n{color=#ff0000}{size=18}Costs: $100{/color}{/size}" if mc.business.has_funds(100):
+                            $ mc.business.change_funds(-100)
                             "You send her the money from your phone."
                             mc.name "Alright, there's your cash. Whip those girls out for me."
                             the_person "Ugh, I didn't think you'd actually do it."
@@ -1807,7 +1806,7 @@ label cousin_tease_crisis_label():
 
                             menu:
                                 "Reverse the payment anyways":
-                                    $ mc.business.funds += 100
+                                    $ mc.business.change_funds(100)
                                     "You don't respond to her, but you do open up your banking app again."
                                     "You flag the recent transfer as \"accidental\" and in a few minutes the money is back in your account."
                                     "It doesn't take long before you get a string of angry texts from [the_person.possessive_title]."
@@ -1823,7 +1822,7 @@ label cousin_tease_crisis_label():
                                     $ the_person.break_taboo("bare_tits")
 
 
-                        "Send [the_person.title] some money\n{color=#ff0000}{size=18}Costs: $100{/color}{/size} (disabled)" if mc.business.funds < 100:
+                        "Send [the_person.title] some money\n{color=#ff0000}{size=18}Costs: $100{/color}{/size} (disabled)" if not mc.business.has_funds(100):
                             pass
 
                         "Blackmail her for some nudes" if the_person.event_triggers_dict.get("blackmail_level",-1) > 0 and the_person.event_triggers_dict.get("last_blackmailed", -5) + 5 <= day:

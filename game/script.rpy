@@ -9,6 +9,7 @@ init -10 python: #Init -10 is used for all project wide imports of external reso
     import hashlib
     import io
     from collections import defaultdict
+    from collections import OrderedDict
     import unittest
     import unicodedata
     import sys
@@ -50,9 +51,10 @@ init -2: # Establish some platform specific stuff.
     default persistent.text_effects = True
 
 init -2 python:
+    list_of_instantiation_labels = [] #Strings added to this list will be called at the start of the game. Use to initialize things which need their game state saved.
     list_of_positions = [] # These are sex positions that the PC can make happen while having sex.
     list_of_girl_positions = [] # These are sex positions that the girl can make happen while having sex.
-    list_of_strip_positions = [] # These are positiosn a girl can take while putting on a stirp tease for you.
+    list_of_strip_positions = [] # These are positions a girl can take while putting on a stirp tease for you.
 
     day_names = ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"] #Arrays that hold the names of the days of the week and times of day. Arrays start at 0.
     time_names = ["Early Morning","Morning","Afternoon","Evening","Night"]
@@ -206,7 +208,8 @@ label normal_start:
     "[stephanie.title] said she would meet you at your new office for a tour."
     #TODO: Have an on_enter event for Steph if you see her the first day. Minor interaction stuff.
 
-    #Add Stepyhanie to our business and flag her with a special role.
+    #Add Stephanie to our business and flag her with a special role.
+
     $ initialize_stephanie_in_our_business()
 
     #TODO: movement overlay tutorial thing.
@@ -419,57 +422,42 @@ label change_location(the_place):
     return
 
 init 0 python:
-    def build_chat_action_list(the_person):
-        small_talk_action = Action("Make small talk   {color=#FFFF00}-15{/color} {image=gui/extra_images/energy_token.png}", requirement = small_talk_requirement, effect = "small_talk_person", args=the_person, requirement_args=the_person,
-            menu_tooltip = "A pleasant chat about your likes and dislikes. A good way to get to know someone and the first step to building a lasting relationship. Provides a chance to study the effects of active serum traits and raise their mastery level.")
-        compliment_action = Action("Compliment her   {color=#FFFF00}-15{/color} {image=gui/extra_images/energy_token.png}", requirement = compliment_requirement, effect = "compliment_person", args=the_person, requirement_args=the_person,
-            menu_tooltip = "Lay the charm on thick and heavy. A great way to build a relationship, and every girl is happy to receive a compliment! Provides a chance to study the effects of active serum traits and raise their mastery level.")
-        flirt_action = Action("Flirt with her   {color=#FFFF00}-15{/color} {image=gui/extra_images/energy_token.png}", requirement = flirt_requirement, effect = "flirt_person", args=the_person, requirement_args=the_person,
-            menu_tooltip = "A conversation filled with innuendo and double entendre. Both improves your relationship with a girl and helps make her a little bit sluttier. Provides a chance to study the effects of active serum traits and raise their mastery level.")
-        date_action = Action("Ask her on a date", requirement = date_option_requirement, effect = "date_person", args=the_person, requirement_args=the_person,
-            menu_tooltip = "Ask her out on a date. The more you impress her the closer you'll grow. If you play your cards right you might end up back at her place.")
-        make_girlfriend_action = Action("Ask her to be your girlfriend", requirement = ask_girlfriend_requirement, effect = "ask_be_girlfriend_label", args = the_person, requirement_args = the_person,
-            menu_tooltip = "Ask her to start an official, steady relationship and be your girlfriend.", priority = 10)
-        bc_talk_action = Action("Talk about her birth control", requirement = bc_talk_requirement, effect = "bc_talk_label", args = the_person, requirement_args = the_person,
-            menu_tooltip = "Talk to her about her use of birth control. Ask her to start or stop taking it, or just check what she's currently doing.")
-        chat_list = [small_talk_action, compliment_action, flirt_action, date_action, make_girlfriend_action, bc_talk_action]
+    def build_chat_action_list(the_person, keep_talking = True):
+        chat_list = []
+        for act in chat_actions:
+            if keep_talking or act.is_fast:
+                chat_list.append([act, the_person])
+
         chat_list.sort(key = sort_display_list, reverse = True)
         chat_list.insert(0,"Chat with her")
         return chat_list
 
-    def build_specific_action_list(the_person):
-        grope_action = Action("Grope her   {color=#FFFF00}-5{/color} {image=gui/extra_images/energy_token.png}", requirement = grope_requirement, effect = "grope_person", args = the_person, requirement_args = the_person,
-            menu_tooltip = "Be \"friendly\" and see how far she is willing to let you take things. May make her more comfortable with physical contact, but at the cost of her opinion of you.")
+    def build_specific_action_list(the_person, keep_talking = True):
+        specific_actions_list = ["Say goodbye"]
+        for act in specific_actions:
+            if keep_talking or act.is_fast:
+                specific_actions_list.append([act, the_person])
 
-        command_action = Action("Give her a command", requirement = command_requirement, effect = "command_person", args = the_person, requirement_args = the_person,
-            menu_tooltip = "Leverage her obedience and command her to do something.")
+        specific_actions_list.sort(key = sort_display_list, reverse = True)
+        specific_actions_list.insert(0,"Do something specific")
+        return specific_actions_list
 
-        specific_action_list = ["Say goodbye", grope_action, command_action]
-        specific_action_list.sort(key = sort_display_list, reverse = True)
-        specific_action_list.insert(0,"Do something specific")
-        return specific_action_list
-
-    def get_special_role_actions(the_person):
-        role_actions = []
+    def build_special_role_actions_list(the_person, keep_talking = True):
+        special_role_actions = []
         for role in the_person.special_role:
             for act in role.actions:
-                role_actions.append(act)
-        return role_actions
-
-    def build_special_role_actions_list(the_person):
-        special_role_actions = []
-        for act in get_special_role_actions(the_person):
-            special_role_actions.append([act,the_person]) #They're a list of actions and their extra arg so that gets passed through properly.
+                if keep_talking or act.is_fast:
+                    special_role_actions.append([act,the_person])
 
         for act in mc.main_character_actions: #The main character has a "role" that lets us add special actions as well.
-            special_role_actions.append([act,the_person])
+            if keep_talking or act.is_fast:
+                special_role_actions.append([act,the_person])
 
         special_role_actions.sort(key = sort_display_list, reverse = True)
         special_role_actions.insert(0,"Special Actions")
         return special_role_actions
 
-
-label talk_person(the_person):
+label talk_person(the_person, keep_talking = True):
     $ mc.having_text_conversation = None #Just in case some event hasn't properly reset this.
     if the_person.title is None:
         $ the_person.draw_person()
@@ -479,22 +467,21 @@ label .continue_talk:
     $ renpy.restart_interaction()
     $ the_person.draw_person()
     if "action_mod_list" in globals():
-        call screen enhanced_main_choice_display(build_menu_items([build_chat_action_list(the_person), build_specific_action_list(the_person), build_special_role_actions_list(the_person)]))
+        call screen enhanced_main_choice_display(build_menu_items([build_chat_action_list(the_person, keep_talking), build_specific_action_list(the_person, keep_talking), build_special_role_actions_list(the_person, keep_talking)]))
     else:
-        call screen main_choice_display([build_chat_action_list(the_person), build_specific_action_list(the_person), build_special_role_actions_list(the_person)])
+        call screen main_choice_display([build_chat_action_list(the_person, keep_talking), build_specific_action_list(the_person, keep_talking), build_special_role_actions_list(the_person, keep_talking)])
 
+    $ explicit_exit = True # Use to check if the player selected an explicit "stop talking" option
     if isinstance(_return, Action):
         $ starting_time_of_day = time_of_day
-        if _return in get_special_role_actions(the_person) + mc.main_character_actions:
-            $ _return.call_action(the_person)
-        else:
-            $ _return.call_action()
+        $ _return.call_action(the_person)
 
-        if the_person in mc.location.people and time_of_day == starting_time_of_day:
+        if the_person in mc.location.people and time_of_day == starting_time_of_day and keep_talking:
             jump talk_person.continue_talk #If we're in the same place and time hasn't advanced keep talking to them until we stop talking on purpose.
 
+        $ explicit_exit = False
     $ clear_scene()
-    return
+    return explicit_exit
 
 label advance_time:
     # 1) Turns are processed _before_ the time is advanced.
@@ -502,8 +489,6 @@ label advance_time:
     # 2) Time is advanced, day is advanced if required.
     # 3) People go to their next intended location.
     # Then: Add research crisis when serum is finished, requiring additional input from the player and giving the chance to test a serum on the R&D staff.
-
-    #$mc.can_skip_time = False #Ensure the player cannot skip time during crises.
 
     $ mandatory_advance_time = False #If a crisis returns an "Advance Time" value once this turn is finished processing it will process ANOTHER turn, so a crisis can require a turn to pass.
 
@@ -628,7 +613,7 @@ label advance_time:
         $ time_of_day += 1 ##Otherwise, just run the end of day code.
 
     python:
-        for (people,place) in people_to_process: #Now move everyone to where the should be in the next time chunk. That may be home, work, etc.
+        for (people,place) in people_to_process: #Now move everyone to where the should be in the next turn. That may be home, work, etc.
             people.run_move(place)
 
             if people.title is not None: #We don't assign events to people we haven't met.
@@ -662,7 +647,7 @@ label advance_time:
     return
 
 init 0 python:
-    ##Actions## moved to python to prevent them from being stored in save game
+    ##Work Actions##
     hr_work_action = Action("Organize your business {image=gui/heart/Time_Advance.png}",hr_work_action_requirement,"hr_work_action_description",
         menu_tooltip = "Raise business efficiency, which drops over time based on how many employees the business has.")
     research_work_action = Action("Research in the lab {image=gui/heart/Time_Advance.png}",research_work_action_requirement,"research_work_action_description",
@@ -674,6 +659,14 @@ init 0 python:
     production_work_action = Action("Produce serum {image=gui/heart/Time_Advance.png}",production_work_action_requirement,"production_work_action_description",
         menu_tooltip = "Produce serum from raw materials. Each production point of serum requires one unit of supply, which can be purchased from your office.")
 
+    ##Breakthrough Actions##
+    mc_breakthrough_1 = Action("Have a Breakthrough {image=gui/heart/Time_Advance.png}\n{color=#ff0000}{size=18}Requires: 500 Clarity{/size}{/color}", mc_breakthrough_requirement, "mc_research_breakthrough", args = [1, 500], requirement_args = [1, 500],
+        menu_tooltip = "Put your intellect to work and unlock a new tier of research! There may be other was to achieve this breakthrough as well", priority = 100)
+    mc_breakthrough_2 = Action("Have a Breakthrough {image=gui/heart/Time_Advance.png}\n{color=#ff0000}{size=18}Requires: 5000 Clarity{/size}{/color}", mc_breakthrough_requirement, "mc_research_breakthrough", args = [2, 5000], requirement_args = [2, 5000],
+        menu_tooltip = "Put your intellect to work and unlock a new tier of research! There may be other was to achieve this breakthrough as well", priority = 100)
+    mc_breakthrough_3 = Action("Have a Breakthrough {image=gui/heart/Time_Advance.png}\n{color=#ff0000}{size=18}Requires: 25000 Clarity{/size}{/color}", mc_breakthrough_requirement, "mc_research_breakthrough", args = [3, 25000], requirement_args = [3, 25000],
+        menu_tooltip = "Put your intellect to work and unlock a new tier of research! There may be other was to achieve this breakthrough as well", priority = 100)
+
     ##Complex Work Actions##
     interview_action = Action("Hire someone new {image=gui/heart/Time_Advance.png}", interview_action_requirement,"interview_action_description",
         menu_tooltip = "Look through the resumes of several candidates. More information about a candidate can be revealed by purchasing new business policies.")
@@ -683,9 +676,9 @@ init 0 python:
         menu_tooltip = "Pick the next research topic for your R&D division. Serum designs must be researched before they can be put into production.")
     pick_production_action = Action("Set production settings", production_select_action_requirement,"production_select_action_description",
         menu_tooltip = "Decide what serum designs are being produced. Production is divided between multiple factory lines, and automatic sell thresholds can be set to automatically flag serum for sale.")
-    pick_supply_goal_action = Action("Set the amount of supply you would like to maintain.", pick_supply_goal_action_requirement,"pick_supply_goal_action_description",
+    pick_supply_goal_action = Action("Set the amount of supply you would like to maintain", pick_supply_goal_action_requirement,"pick_supply_goal_action_description",
         menu_tooltip = "Set a maximum amount of serum you and your staff will attempt to purchase.")
-    policy_purhase_action = Action("Manage business policies", policy_purchase_requirement,"policy_purchase_description",
+    policy_purchase_action = Action("Manage business policies", policy_purchase_requirement,"policy_purchase_description",
         menu_tooltip = "New business policies changes the way your company runs and expands your control over it. Once purchased business policies are always active.")
     set_head_researcher_action = Action("Select a Head Researcher", head_researcher_select_requirement, "head_researcher_select_description",
         menu_tooltip = "Pick a member of your R&D staff to be your head researcher. A head researcher with a high intelligence score will increase the amount of research produced by the entire division.")
@@ -736,31 +729,33 @@ init 0 python:
 
 
 init 0 python:
+    stripclub_wardrobe = wardrobe_from_xml("Stripper_Wardrobe")
+
     def add_stripclub_strippers():
         for i in __builtin__.range(0,4):
-            a_girl = create_random_person(start_sluttiness = renpy.random.randint(15,30))
+            a_girl = create_random_person(start_sluttiness = renpy.random.randint(15,30), job = stripper_job)
             a_girl.generate_home()
-            a_girl.set_schedule(strip_club, times = [3,4])
             a_girl.home.add_person(a_girl)
-            stripclub_strippers.append(a_girl)
         return
 
-    stripclub_wardrobe = wardrobe_from_xml("Stripper_Wardrobe")
 
 label initialize_game_state(character_name,business_name,last_name,stat_array,skill_array,_sex_array,max_num_of_random=5): #Gets all of the variables ready. TODO: Move some of this stuff to an init block?
 
-    $ list_of_traits = [] #List of serum traits that can be used. Established here so they play nice with rollback, saving, etc.
-    $ list_of_nora_traits = []
-    $ list_of_places = [] #By having this in an init block it may be set to null each time the game is reloaded, because the initialization stuff below is only called once.
-    $ list_of_side_effects = []
+    ##Global Variable Initialization##
+    python:
+        day = 0 ## Game starts on day 0.
+        time_of_day = 0 ## 0 = Early morning, 1 = Morning, 2 = Afternoon, 3 = Evening, 4 = Night
+
+        list_of_traits = [] #List of serum traits that can be used. Established here so they play nice with rollback, saving, etc.
+        list_of_nora_traits = []
+        list_of_places = [] #By having this in an init block it may be set to null each time the game is reloaded, because the initialization stuff below is only called once.
+        list_of_side_effects = []
 
     #NOTE: These need to be established in a separate label to ensure they are loaded/saved correctly
     call instantiate_serum_traits() from _call_instantiate_serum_traits #Creates all of the default LR2 serum traits. TODO: Create a mod loading list that has labels that can be externally added and called here.
     call instantiate_roles() from _call_instantiate_roles
     call instantiate_side_effect_traits() from _call_instantiate_side_effect_traits
-    # only rpyc file exists in original with empty label
-    # call instantiate_business_policies() from _call_instantiate_business_policies
-
+    call instantiate_business_policies() from _call_instantiate_business_policies
 
     python:
         ##PC's Home##
@@ -785,13 +780,13 @@ label initialize_game_state(character_name,business_name,last_name,stat_array,sk
         lobby = Room(business_name + " lobby",business_name + " Lobby", background_image = standard_office_backgrounds[:],
             map_pos = [11,3], tutorial_label = "lobby_tutorial_intro", lighting_conditions = standard_indoor_lighting)
         office = Room("main office","Main Office", background_image = standard_office_backgrounds[:],
-            actions = [policy_purhase_action,hr_work_action,supplies_work_action,interview_action,sell_serum_action,pick_supply_goal_action,set_uniform_action,set_serum_action],
+            actions = [policy_purchase_action,hr_work_action,supplies_work_action,interview_action,pick_supply_goal_action,set_uniform_action,set_serum_action],
             map_pos = [11,2], tutorial_label = "office_tutorial_intro", lighting_conditions = standard_indoor_lighting)
         m_division = Room("marketing division","Marketing Division", background_image = standard_office_backgrounds[:],
-            actions = [market_work_action,set_company_model_action],
+            actions = [sell_serum_action, market_work_action,set_company_model_action],
             map_pos = [12,3], tutorial_label = "marketing_tutorial_intro", lighting_conditions = standard_indoor_lighting)
         rd_division = Room("R&D division","R&D Division", background_image = lab_background,
-            actions = [research_work_action,design_serum_action,pick_research_action,review_designs_action,set_head_researcher_action],
+            actions = [research_work_action,design_serum_action,pick_research_action,review_designs_action,set_head_researcher_action, mc_breakthrough_1, mc_breakthrough_2, mc_breakthrough_3],
             map_pos = [12,4], tutorial_label = "research_tutorial_intro", lighting_conditions = standard_indoor_lighting)
         p_division = Room("Production division", "Production Division",background_image = standard_office_backgrounds[:],
             actions = [production_work_action,pick_production_action,trade_serum_action],
@@ -851,6 +846,9 @@ label initialize_game_state(character_name,business_name,last_name,stat_array,sk
         bar_location = Room("Bar", "Bar", background_image = standard_bar_backgrounds[:],
             map_pos = [10,10], visible = False, lighting_conditions = standard_indoor_lighting)
 
+        city_hall = Room("City Hall", "City Hall", background_image = standard_house_backgrounds[:],
+            map_pos = [20,20], visible = False, lighting_conditions = standard_indoor_lighting)
+
         ##PC starts in his bedroom##
         mc = MainCharacter(bedroom,character_name,last_name, Business(business_name, m_division, p_division, rd_division, office, office),stat_array,skill_array,_sex_array)
 
@@ -891,6 +889,8 @@ label initialize_game_state(character_name,business_name,last_name,stat_array,sk
 
         list_of_places.append(mom_office_lobby)
         list_of_places.append(mom_offices)
+
+        list_of_places.append(city_hall)
 
         for room in [bedroom, lily_bedroom, mom_bedroom, aunt_bedroom, cousin_bedroom]:
             room.add_object(make_wall())
@@ -994,6 +994,19 @@ label initialize_game_state(character_name,business_name,last_name,stat_array,sk
         strip_club.add_object(make_chair())
         strip_club.add_object(make_stage())
 
+        city_hall.add_object(make_wall())
+        city_hall.add_object(make_floor())
+        city_hall.add_object(make_chair())
+        city_hall.add_object(make_table())
+
+    call instantiate_jobs() #We need locations to exist before we can set up jobs, so we do that here.
+    $ c = 0
+    while c < len(list_of_instantiation_labels):
+        $ renpy.call(list_of_instantiation_labels[c])
+        $ c += 1
+    python:
+        generate_premade_list() # Creates the list with all the pre-made characters for the game in it. Without this we both break the policies call in create_random_person, and regenerate the pre-made list on each restart.
+
         for place in list_of_places:
             if place.public:
                 if not max_num_of_random == 0:
@@ -1003,15 +1016,9 @@ label initialize_game_state(character_name,business_name,last_name,stat_array,sk
                 for x in range(0,ran_num):
                     the_person = create_random_person()
                     the_person.generate_home()
-                    the_person.home.add_person(the_person) #We are using create_random_person instead of make_person because we want premade character bodies to be hirable instead of being eaten up by towns-folk.
-
-        generate_premade_list() # Creates the list with all the pre-made characters for the game in it. Without this we both break the policies call in create_random_person, and regenerate the premade list on each restart.
+                    the_person.home.add_person(the_person) #We are using create_random_person instead of make_person because we want pre-made character bodies to be hirable instead of being eaten up by towns-folk.
 
         stripclub_strippers = MappedList(Person, all_people_in_the_game)
         add_stripclub_strippers()
-
-        ##Global Variable Initialization##
-        day = 0 ## Game starts on day 0.
-        time_of_day = 0 ## 0 = Early morning, 1 = Morning, 2 = Afternoon, 3 = Evening, 4 = Night
 
     return

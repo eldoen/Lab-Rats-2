@@ -1,0 +1,29 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<Wardrobe name="Exported_Wardrobe">
+    <FullSets>
+        <Outfit name="Olga Casual">
+            <UpperBody>
+                <Item alpha="1.0" blue="1.0" green="1.0" name="Bra" red="0.87" />
+                <Item alpha="1.0" blue="0.34" green="0.43" name="Frilly_Dress" red="0.42" />
+            </UpperBody>
+            <LowerBody>
+                <Item alpha="1.0" blue="1.0" green="1.0" name="Cotton_Panties" palpha="1" pattern="Pattern_1" pblue="1" pgreen="1" pred="1" red="0.87" />
+            </LowerBody>
+            <Feet>
+                <Item alpha="1.0" blue="0.34" green="0.34" name="Thigh_Highs" red="0.2" />
+                <Item alpha="1.0" blue="0.87" green="0.51" name="Boot_Heels" red="0.53" />
+            </Feet>
+            <Accessories>
+                <Item alpha="1.0" blue="0.87" green="0.71" name="Lipstick" red="1.0" />
+                <Item alpha="1.0" blue="0.87" green="1.0" name="Modern_Glasses" red="1.0" />
+                <Item alpha="1.0" blue="0.87" green="1.0" name="Colourful_Bracelets" red="1.0" />
+                <Item alpha="1.0" blue="0.87" green="1.0" name="Copper_Bracelet" red="1.0" />
+                <Item alpha="1.0" blue="0.87" green="1.0" name="Necklace_Set" red="1.0" />
+            </Accessories>
+        </Outfit>
+    </FullSets>
+    <UnderwearSets>
+    </UnderwearSets>
+    <OverwearSets>
+    </OverwearSets>
+</Wardrobe>

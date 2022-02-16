@@ -330,6 +330,7 @@ label sister_walk_in_label(the_person):
 
             "Leave her alone":
                 $ clear_scene()
+                $ the_person.run_orgasm()
                 "You take a quick step back and, as quietly as you can manage and close her door."
 
 

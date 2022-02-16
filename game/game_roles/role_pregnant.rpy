@@ -53,6 +53,7 @@ init -1 python:
         preg_transform_action = Action("Pregnancy Transform", pregnant_transform_requirement, "pregnant_transform", args = person, requirement_args = person)
         mc.business.mandatory_morning_crises_list.append(preg_transform_action) #This event adds an announcement event the next time you enter the same room as the girl.
 
+        mc.listener_system.fire_event("girl_pregnant", the_person = person)
         person.add_role(pregnant_role)
         return
 
@@ -353,13 +354,7 @@ label pregnant_transform_announce(start_day, the_person):
 
 init 2 python:
     def pregnant_finish_announce_person(person):
-        if "preg_old_schedule" in person.event_triggers_dict:
-            renpy.say("Warning", "Something went wrong with setting the pregnancy for " + person.name + ", she is already giving birth.")
-            return # she is already giving birth
-
-        # copy schedule
-        person.event_triggers_dict["preg_old_schedule"] = copy.copy(person.schedule)
-        person.set_schedule(person.home, times = [0,1,2,3,4])
+        person.set_override_schedule(person.home) #Force her to stay home for the entire duration
 
         preg_finish_action = Action("Pregnancy Finish", preg_finish_requirement, "pregnant_finish", args = person, requirement_args = [person, day + renpy.random.randint(4,7)])
         mc.business.mandatory_morning_crises_list.append(preg_finish_action)
@@ -390,12 +385,12 @@ label pregnant_finish_announce(the_person): #TODO: have more variants for girlfr
 
 init 2 python:
     def pregnant_finish_person(person):
-        if not "preg_old_schedule" in person.event_triggers_dict or not "pre_preg_body" in person.event_triggers_dict:
+        if not "pre_preg_body" in person.event_triggers_dict:
             renpy.say("Warning", "Something went wrong with restoring the pregnancy of " + person.name)
             return False # she is not giving birth
 
         person.body_type = person.event_triggers_dict.pop("pre_preg_body")
-        person.schedule =  person.event_triggers_dict.pop("preg_old_schedule") # restore old schedule and clear from dict
+        person.set_override_schedule(None) #Clear the override so she can go back to her job/home schedule.
 
         person.event_triggers_dict["preg_knows"] = False #Otherwise she immediately knows the next time she's pregnant.
         person.kids += 1 #TODO: add a new role related to a girl being a mother of your kid?

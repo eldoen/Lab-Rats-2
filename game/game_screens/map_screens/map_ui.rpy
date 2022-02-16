@@ -22,7 +22,7 @@ screen map_manager():
                         anchor [0.5,0.5]
                         auto "gui/LR2_Hex_Button_%s.png"
                         focus_mask "gui/LR2_Hex_Button_idle.png"
-                        action Function(mc.change_location,place)
+                        action [Function(mc.change_location,place), Return(place)]
                         sensitive place.accessable #TODO: replace once we want limited travel again with: place in mc.location.connections
                     text place.formal_name + "\n(" + str(len(place.people)) + ")" anchor [0.5,0.5] style "map_text_style"
 
@@ -36,7 +36,7 @@ screen map_manager():
                         anchor [0.5,0.5]
                         idle "gui/LR2_Hex_Button_Alt_idle.png"
                         focus_mask "gui/LR2_Hex_Button_Alt_idle.png"
-                        action Function(mc.change_location,place)
+                        action [Function(mc.change_location,place), Return(place)]
                         sensitive False
                     text place.formal_name + "\n(" + str(len(place.people)) + ")" anchor [0.5,0.5] style "map_text_style"
 

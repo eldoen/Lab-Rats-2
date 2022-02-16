@@ -2,7 +2,9 @@
 
 init -2 python:
     def mom_work_promotion_one_requirement(the_person):
-        if the_person.love < 15:
+        if not the_person.has_job(mom_associate_job):
+            return False
+        elif the_person.love < 15:
             return False
         elif the_person.sluttiness < 15:
             return False
@@ -10,8 +12,8 @@ init -2 python:
             return False
         return True
 
-    def mom_work_promotion_one_before_requirement(start_day):
-        if day < start_day:
+    def mom_work_promotion_one_before_requirement(the_person, start_day):
+        if not the_person.has_job(mom_associate_job):
             return False
         elif mc.business.is_weekend(): #TODO: we really need to stop using the business to define what the weekend is.
             return False #No interview on the weekend
@@ -20,29 +22,36 @@ init -2 python:
         return True
 
     def mom_work_promotion_one_report_requirement(the_person, start_day):
-        if not the_person in kitchen.people + mom_bedroom.people: # only talk at home
+        if not the_person.has_job(mom_associate_job):
             return False
-        if day == start_day and time_of_day <= 2:   # same day too early for interview to have happened
+        elif not person_at_home(the_person): # only talk at home
+            return False
+        elif day == start_day and time_of_day <= 2:   # same day too early for interview to have happened
             return False
         return True
 
-    def mom_work_promotion_two_intro_requirement(start_day):
-        if day < start_day:
+    def mom_work_promotion_two_intro_requirement(the_person, start_day):
+        if not the_person.has_job(mom_associate_job):
+            return False
+        elif day < start_day:
             return False
         elif time_of_day != 4:
             return False
         return True
 
     def mom_work_promotion_two_prep_requirement(the_person):
-        if not the_person.event_triggers_dict.get("mom_work_promotion_two_prep_enabled", False):
+        if not the_person.has_job(mom_associate_job):
+            return False
+        elif not the_person.event_triggers_dict.get("mom_work_promotion_two_prep_enabled", False):
             return False #Not visible if not enabled
         elif time_of_day < 3:
             return "Too early to prepare"
-        else:
-            return True
+        return True
 
-    def mom_work_promotion_two_requirement(start_day):
-        if day < start_day:
+    def mom_work_promotion_two_requirement(the_person, start_day):
+        if not the_person.has_job(mom_associate_job):
+            return False
+        elif day < start_day:
             return False
         elif mc.business.is_weekend():
             return False
@@ -51,12 +60,16 @@ init -2 python:
         return True
 
     def mom_work_promotion_two_report_requirement(the_person):
-        if the_person in kitchen.people or the_person in mom_bedroom.people: #Only talk about this at home
-            return True
-        return False
+        if not the_person.has_job(mom_associate_job):
+            return False
+        elif not person_at_home(the_person): #Only talk about this at home
+            return False
+        return True
 
     def mom_work_secretary_replacement_intro_requirement(the_person, the_day):
-        if day < the_day:
+        if not the_person.has_job(mom_secretary_job):
+            return False
+        elif day < the_day:
             return False
         elif mc.location.get_person_count() > 1:
             return False
@@ -65,9 +78,11 @@ init -2 python:
         return True
 
     def mom_work_secretary_replacement_bigger_tits_reintro_requirement(the_person):
-        if not the_person.event_triggers_dict.get("mom_work_tit_options_reintro", False):
+        if not the_person.has_job(mom_secretary_job):
             return False
-        if the_person.event_triggers_dict.get("mom_office_slutty_level", 0) != 1:
+        elif not the_person.event_triggers_dict.get("mom_work_tit_options_reintro", False):
+            return False
+        elif the_person.event_triggers_dict.get("mom_office_slutty_level", 0) != 1:
             return False
         elif the_person.event_triggers_dict.get("mom_replacement_approach", "seduce") != "tits":
             return False
@@ -78,7 +93,9 @@ init -2 python:
         return True
 
     def mom_work_secretary_replacement_report_requirement(the_person, the_day):
-        if day < the_day:
+        if not the_person.has_job(mom_secretary_job):
+            return False
+        elif day < the_day:
             return False
         elif time_of_day < 2:
             return False
@@ -94,6 +111,13 @@ init -2 python:
         if day < start_day:
             return False
         return True
+
+    def mom_convince_quit_requirement(the_person):
+        if the_person.love < 10:
+            return False
+        elif the_person.love < 20:
+            return "Requires: 20 Love" # hide it until you're reasonably close, then show that you need at least 20 to get her to talk about it.
+        return True #Are there any requirements for starting this conversationwe need to throw in?
 
     def add_mom_work_promotion_one_before_crisis():
         mom_work_promotion_one_before_crisis = Action("mom work promotion one before", mom_work_promotion_one_before_requirement, "mom_work_promotion_one_before", args = the_person, requirement_args = renpy.random.randint(day+3, day+8))
@@ -596,7 +620,7 @@ init 2 python:
 label mom_work_promotion_two_report(the_person): #TODO: Hook this up as an on_room or maybe a mandatory event
     if the_person.event_triggers_dict.get("mom_work_secretary_promotion", False): #Promotion, setting her up to be turned into the office slut.
         $ the_person.change_happiness(20, add_to_log = False)
-
+        $ the_person.add_job(mom_secretary_job)
         $ the_person.draw_person(emotion = "happy")
         "[the_person.title] gives you a bright smile and hurries over to you as soon as she sees you."
         the_person "[the_person.mc_title], I have some good news!"
@@ -993,7 +1017,7 @@ init 2 python:
 
 label mom_work_secretary_replacement_bigger_tits_options(the_person):
     menu:
-        "I'll pay\n{color=#ff0000}{size=18}Costs: $7,000{/size}{/color}" if mc.business.funds >= 7000: #NOTE: Requirements not needed, you can come back and pay in a few days.
+        "I'll pay\n{color=#ff0000}{size=18}Costs: $7,000{/size}{/color}" if mc.business.has_funds(7000): #NOTE: Requirements not needed, you can come back and pay in a few days.
             mc.name "I'll pay for it [the_person.title]."
             the_person "I can't let you do that for me [the_person.mc_title]! It would be so expensive!"
             mc.name "Don't worry about the cost, business is good right now and i want to give back a little."
@@ -1002,11 +1026,11 @@ label mom_work_secretary_replacement_bigger_tits_options(the_person):
             the_person "Thank you [the_person.mc_title]. What would I do without you?"
             mc.name "Happy to help [the_person.title]."
             $ the_person.event_triggers_dict["mom_work_tit_options_reintro"] = False
-            $ mc.business.funds += -7000
+            $ mc.business.change_funds(-7000)
 
             $ add_mom_got_boobjob_action(the_person)
 
-        "I'll pay\n{color=#ff0000}{size=18}Requires: $7,000{/size}{/color} (disabled)" if mc.business.funds < 7000:
+        "I'll pay\n{color=#ff0000}{size=18}Requires: $7,000{/size}{/color} (disabled)" if not mc.business.has_funds(7000):
             pass
 
         "Give her some serum" if mc.inventory.get_any_serum_count() > 0: #Note: The seduce event has already been added and is watching her breast size, so if it goes up she'll trigger it right away
@@ -1062,6 +1086,7 @@ label mom_work_secretary_replacement_bigger_tits_options(the_person):
 label mom_work_secretary_replacement_report(the_person):
     $ the_solution = the_person.event_triggers_dict.get("mom_replacement_approach", "seduce")
     $ the_person.change_happiness(20, add_to_log = False)
+
     $ the_person.event_triggers_dict["mom_work_tit_options_reintro"] = False #No more reintro for this event
     "[the_person.possessive_title] is smiling happily when you step close to her."
     mc.name "You look happy [the_person.title]. Did you get some good news?"
@@ -1156,9 +1181,9 @@ label mom_promotion_boss_phase_one(the_secretary):
     $ the_wife.home.add_person(the_wife)
 
     $ the_daughter = the_wife.generate_daughter(force_live_at_home = True)
-
-    $ the_daughter.set_schedule(mom_office_lobby, days = [0, 1, 2, 3, 4], times = [3])
-    $ the_daughter.set_schedule(university, days = [0, 1, 2, 3, 4], times = [1,2])
+    $ the_daughter.add_job(student_job) #She's a student at the university, and spends her days there most of the time.
+    $ the_daughter.set_schedule(mom_office_lobby, the_days = [0,1,2,3,4], the_times = [3]) #She's there to visit her dad
+    $ the_daughter.set_schedule(university, the_days = [0, 1, 2, 3, 4], the_times = [1,2])
 
     $ mom.event_triggers_dict["mom_boss_wife"] = the_wife.identifier
     $ mom.event_triggers_dict["mom_boss_daughter"] = the_daughter.identifier
@@ -1355,4 +1380,139 @@ label mom_promotion_boss_phase_one(the_secretary):
 
 label mom_got_boobjob_label(the_person):
     call got_boobjob(the_person) from _call_got_boobjob_2
+    return
+
+label mom_convince_quit_label(the_person):
+    mc.name "Have you ever thought about quitting your job [the_person.title]?"
+    if the_person.get_opinion_score(["working", "HR work"]) < 0:
+        "She sighs and nods."
+        the_person "Every day, but I could never do it."
+        the_person "I'm not just taking care of myself, I need to take care of you and [lily.title] as well."
+
+    else:
+        "[the_person.possessive_title] waves her hand dismissively."
+        the_person "I could never do that, I have you and [lily.title] to take care of."
+        the_person "It might not be the most exciting work, but it puts food on the table."
+
+
+    menu:
+        "You hate working there!" if the_person.get_known_opinion_score("working") == -2 and the_person.get_known_opinion_score("HR work") == -2:
+            mc.name "But you hate it there! Every day you come home exhausted."
+            mc.name "I hate seeing you like that."
+            the_person "But what would we do for money? You might be fine, but someone needs to pay for your sister's tuition."
+            mc.name "We'll figure something out, but you need to think about yourself [the_person.title]! What is your happiness worth?"
+            "she sighs, thinking long and hard before responding."
+            the_person "I think you're right [the_person.mc_title]. This job is killing me a little bit at a time."
+            the_person "I can't take it any more! I'm going to quit!"
+            $ the_person.change_happiness(20)
+            $ the_person.add_job(unemployed_job)
+            "She smiles and takes a deep breath."
+            the_person "God that feels good to say!"
+            mc.name "You're making the right decision [the_person.title], and I'll be here to support you if you need me."
+            $ mc.change_locked_clarity(5)
+            "[the_person.possessive_title] wraps you up in a hug."
+            the_person "Thank you, you always know what's right for me. Now, I need to go call my boss and give him a part of my mind!"
+
+
+        "You hate working there!\n{color=#ff0000}{size=18}Requires: Hates working, Hates HR work{/size}{/color} (disabled)" if not (the_person.get_opinion_score("working") == -2 and the_person.get_opinion_score("HR work") == -2):
+            pass
+
+        "I'll take care of us" if the_person.has_role(girlfriend_role):
+            mc.name "I make enough to take care of me, you, and [lily.title]."
+            mc.name "So let me take care of the money, and you can focus on taking care of [lily.title] and the house."
+            the_person "Are you really sure you can handle that? It's not cheap to keep this house running."
+            mc.name "I can handle it."
+            the_person "Okay... I trust you [the_person.mc_title]."
+            $ the_person.add_job(unemployed_job)
+            the_person "I suppose I'll have to call my boss and tell him I'm not coming into work!"
+
+
+        "I'll take care of us\n{color=#ff0000}{size=18}Requires: Make her your girlfriend{/size}{/color} (disabled)" if not the_person.has_role(girlfriend_role):
+            pass
+
+        "You can work for me" if mc.business.get_employee_count() < mc.business.max_employee_count:
+            mc.name "You can come work for me. How about that?"
+            "She thinks long and hard about this."
+            the_person "I don't know... What if your business doesn't work out?"
+            menu:
+                "I want you by my side" if the_person.has_role(girlfriend_role):
+                    mc.name "We're not just a couple, we're a team [the_person.title]. We should work together like one."
+                    mc.name "I want you to trust me, and I want you by my side."
+                    "Another long pause as she thinks."
+                    the_person "Okay, I'll do it."
+                    call stranger_hire_result(the_person)
+                    if _return:
+                        mc.name "Welcome to the team [the_person.title]."
+                        menu:
+                            "Pay her nothing" if the_person.obedience >= 130:
+                                mc.name "If we're a couple, and I'm the owner of the business, it doesn't really make much sense for me to put you on the official payroll."
+                                mc.name "I think the accounting will be easier if you just come to me for anything you need, okay?"
+                                the_person "Of course, that sounds reasonable."
+
+                                $ the_person.salary_modifier = 0
+                                $ the_person.salary = calculate_base_salary()
+
+                            "Pay her nothing\n{color=#ff0000}{size=18}Requires: 130 Obedience{/size}{/color} (disabled)" if the_person.obedience < 130:
+                                pass
+
+                            "Pay her a normal salary":
+                                pass #
+
+                        the_person "Now I just need to tell my boss I won't be coming into work. I'm sure he won't be happy to hear that!"
+                    else:
+                        mc.name "I'm going to need some time to get everything ready, actually."
+                        mc.name "We can revisit this later, alright?"
+                        the_person "I understand. Whenever you're ready."
+
+
+                "I want you by my side\n{color=#ff0000}{size=18}Requires: Make her your girlfriend{/size}{/color} (disabled)" if not the_person.has_role(girlfriend_role):
+                    pass
+
+                "We'll see each other so much more often" if the_person.love >= 50:
+                    mc.name "Think about how much more time we'll be able to spend together."
+                    the_person "You do spend a lot of time at work..."
+                    mc.name "And so do you! If you worked for me we would see each other every day."
+                    "She smiles and sighs."
+                    the_person "That would be nice... Okay, I'll do it!"
+                    call stranger_hire_result(the_person)
+                    if _return:
+                        mc.name "Welcome to the team [the_person.title]."
+                        the_person "Thank you [the_person.mc_title], I'm sure this is going to be great!"
+                        the_person "Now I just need to call my boss and tell him I won't be coming into work. I'm sure he won't be happy to hear that!"
+                    else:
+                        mc.name "I'm going to need some time to get everything ready, actually."
+                        mc.name "We can revisit this later, alright?"
+                        the_person "I understand. Whenever you're ready."
+
+
+                "We'll see each other so much more often\n{color=#ff0000}{size=18}Requires: 50 Love{/size}{/color} (disabled)" if the_person.love < 50:
+                    pass
+
+
+                "I'll pay you more than they do":
+                    mc.name "I can pay you double what you're earning right now [the_person.title]."
+                    mc.name "I need people I can trust working for me, and I know I can trust you more than anyone."
+                    the_person "Really? Can you actually afford to do that?"
+                    "You nod, and she thinks for a moment longer."
+                    the_person "That would really help with all of the bills... Okay, you've convinced me!"
+                    $ the_person.salary_modifier = 2.0
+                    call stranger_hire_result(the_person)
+                    if _return:
+                        mc.name "Welcome to the team [the_person.title]."
+                        the_person "Thank you [the_person.mc_title], I'm sure this is going to be great!"
+                        the_person "Now I just need to call my boss and tell him I won't be coming into work. I'm sure he won't be happy to hear that!"
+                    else:
+                        mc.name "I'm going to need some time to get everything ready, actually."
+                        mc.name "We can revisit this later, alright?"
+                        the_person "I understand. Whenever you're ready."
+
+                "Never mind":
+                    mc.name "I suppose you're right."
+
+        "You can work for me\n{color=#ff0000}{size=18}Requires: Free employee slot{/size}{/color} (disabled)" if mc.business.get_employee_count() >= mc.business.max_employee_count:
+            pass
+
+        "Never mind":
+            mc.name "I suppose you're right."
+
     return
