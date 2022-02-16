@@ -1018,7 +1018,7 @@ label serum_give_label(the_person):
 
         "Pay her to take it\n{color=#ff0000}{size=18}Costs: $[pay_serum_cost]{/size}{/color}" if mandatory_paid_serum_testing_policy.is_active() and not mandatory_unpaid_serum_testing_policy.is_active() and not mc.business.get_employee_title(the_person) == "None": #This becomes redundent when they take it for free.
             #Pay cost and proceed
-            $ mc.business.funds += -pay_serum_cost
+            $ mc.business.change_funds(-pay_serum_cost)
             mc.name "[the_person.title], we're running field trials and you're one of the test subjects. I'm going to need you to take this, a bonus will be added onto your paycheck."
             call give_serum(the_person) from _call_give_serum_5
 
@@ -1094,7 +1094,7 @@ label grope_person(the_person):
                         the_person "We can continue what you started, but it would cost you two hundred dollars."
                         menu:
                             "Pay her\n{color=#ff0000}{size=18}Costs: $200{/size}{/color}" if mc.business.funds > 200:
-                                $ mc.business.funds += -200
+                                $ mc.business.change_funds (-200)
                                 $ the_person.change_obedience(1)
                                 call fuck_person(the_person, private = should_be_private, start_position = standing_grope, start_object = None, skip_intro = True) from _call_fuck_person_grope_person_prostitute_role
                                 $ the_person.call_dialogue("sex_review", the_report = _return)

@@ -982,7 +982,7 @@ label cousin_boobjob_ask_label(the_person):
                         call fuck_person(the_person) from _call_fuck_person_42
                         $ the_person.clear_situational_obedience("event")
                         $ the_person.change_slut(2, 80)
-                        $ mc.business.funds += -5000
+                        $ mc.business.change_funds(-5000)
 
                     "Refuse to pay":
                         mc.name "I don't need to pay you if I want to use you. Sorry, but you'll have to find a way to buy your own tits."

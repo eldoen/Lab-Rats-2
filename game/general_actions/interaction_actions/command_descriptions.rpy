@@ -205,7 +205,7 @@ label demand_touch_label(the_person):
         the_person "We can continue what you started, but it would cost you two hundred dollars."
         menu:
             "Pay her\n{color=#ff0000}{size=18}Costs: $200{/size}{/color}" if mc.business.funds > 200:
-                $ mc.business.funds += -200
+                $ mc.business.change_funds(-200)
                 $ the_person.change_obedience(1)
                 call fuck_person(the_person, private = should_be_private, start_position = standing_grope, start_object = None, skip_intro = True) from _call_fuck_person_demand_touch_prostitute
                 $ the_person.call_dialogue("sex_review", the_report = _return)

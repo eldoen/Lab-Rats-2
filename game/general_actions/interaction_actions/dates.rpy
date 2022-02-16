@@ -1566,7 +1566,7 @@ label shopping_date_hair(the_person):
         menu:
             "Pay. -$200" if mc.business.has_funds(200):
                 "You charge it to the business card."
-                $ mc.business.funds += -200
+                $ mc.business.funds(-200)
 
             "Pay. -$200 (disabled)" if not mc.business.has_funds(200):
                 pass
