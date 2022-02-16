@@ -151,7 +151,7 @@ label fuck_date_label(the_person):
     else:
         call fuck_date_event(the_person) from _call_fuck_date_event
 
-    $ the_person.clear_situational_slut("Date", 20, "There's no reason to hold back, he's here to fuck me!")
+    $ the_person.clear_situational_slut("Date")
     return "Advance Time"
 
 label fuck_date_event(the_person): #A breakout function so we can call the fuck_date stuff any time you go back to a girls place.
@@ -564,7 +564,7 @@ label fuck_date_event(the_person): #A breakout function so we can call the fuck_
         call check_date_trance(the_person) from _call_check_date_trance_fuck_date
 
     python:
-        the_person.clear_situational_slut("Date")
+        #the_person.clear_situational_slut("Date")
         mc.change_location(bedroom) # go home
         clear_scene()
         so_title = None
