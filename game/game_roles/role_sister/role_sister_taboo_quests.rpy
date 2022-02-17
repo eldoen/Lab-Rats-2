@@ -163,7 +163,7 @@ label sister_kissing_taboo_break_revisit(the_person):
             # add check-in action
             $ the_person.get_role_reference(sister_role).add_action(Action("Check back in...", sister_kissing_quest_complete_requirement, "sister_kissing_taboo_break_revisit_complete"))
 
-        "I understand.":
+        "I understand":
             "You want to complain or argue, but you know that will only make things worse."
             mc.name "You're right, I get it."
             "She lets out a relieved sigh and smiles."
@@ -309,7 +309,7 @@ label sister_oral_taboo_break_revisit_quest_2(the_person):
                     iris.home.add_person(iris)
                 iris.add_role(dikdok_role)
                 iris.add_role(instapic_role) #Make sure she has both an instapic and dikdok account.
-                iris.add_job(influencer_job)               
+                iris.add_job(influencer_job)
                 iris.location.move_person(iris, electronics_store)
                 lead_girl = iris
 

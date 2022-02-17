@@ -649,15 +649,15 @@ label advance_time:
 init 0 python:
     ##Work Actions##
     hr_work_action = Action("Organize your business {image=gui/heart/Time_Advance.png}",hr_work_action_requirement,"hr_work_action_description",
-        menu_tooltip = "Raise business efficiency, which drops over time based on how many employees the business has.")
+        menu_tooltip = "Raise business efficiency, which drops over time based on how many employees the business has.\n+3*Charisma + 2*Skill + 1*Intelligence + 5 Efficiency.")
     research_work_action = Action("Research in the lab {image=gui/heart/Time_Advance.png}",research_work_action_requirement,"research_work_action_description",
-        menu_tooltip = "Contribute research points towards the currently selected project.")
+        menu_tooltip = "Contribute research points towards the currently selected project.\n+3*Intelligence + 2*Skill + 1*Focus + 10 Research Points.")
     supplies_work_action = Action("Order Supplies {image=gui/heart/Time_Advance.png}",supplies_work_action_requirement,"supplies_work_action_description",
-        menu_tooltip = "Purchase serum supply at the cost of $1 per unit of supplies. When producing serum every production point requires one unit of serum.")
-    market_work_action = Action("Sell Prepared Serums {image=gui/heart/Time_Advance.png}",market_work_action_requirement,"market_work_action_description",
-        menu_tooltip = "Sell serums that have been marked for sale. Mark serum manually from your office or set an automatic sell threshold in production.")
+        menu_tooltip = "Purchase serum supply at the cost of $1 per unit of supplies. When producing serum every production point requires one unit of serum.\n+3*Focus + 2*Skill + 1*Charisma + 10 Serum Supply.")
+    market_work_action = Action("Find new clients {image=gui/heart/Time_Advance.png}",market_work_action_requirement,"market_work_action_description",
+        menu_tooltip = "Find new clients who may be interested in buying serum from you, increasing your Market reach. Important for maintaining good Aspect prices.\n+(3*Charisma + 2*Skill +1*Focus)*5 Market Reach.")
     production_work_action = Action("Produce serum {image=gui/heart/Time_Advance.png}",production_work_action_requirement,"production_work_action_description",
-        menu_tooltip = "Produce serum from raw materials. Each production point of serum requires one unit of supply, which can be purchased from your office.")
+        menu_tooltip = "Produce serum from raw materials. Each production point of serum requires one unit if supply, which can be purchased from your office.\n+3*Focus + 2*Skill + 1*Intelligence + 10 Production Points.")
 
     ##Breakthrough Actions##
     mc_breakthrough_1 = Action("Have a Breakthrough {image=gui/heart/Time_Advance.png}\n{color=#ff0000}{size=18}Requires: 500 Clarity{/size}{/color}", mc_breakthrough_requirement, "mc_research_breakthrough", args = [1, 500], requirement_args = [1, 500],
@@ -685,8 +685,8 @@ init 0 python:
 
     trade_serum_action = Action("Access production stockpile", trade_serum_action_requirement, "trade_serum_action_description",
         menu_tooltip = "Move serum to and from your personal inventory. You can only use serum you are carrying with you.")
-    sell_serum_action = Action("Mark serum to be sold", sell_serum_action_requirement, "sell_serum_action_description",
-        menu_tooltip = "Decide what serum should be available for sale. It can then be sold from the marketing division. Setting an automatic sell threshold in the production department can do this automatically.")
+    sell_serum_action = Action("Sell Serum", sell_serum_action_requirement, "sell_serum_action_description",
+        menu_tooltip = "Review your current stock of serum, accept and complete contracts, and check the current market prices.")
     review_designs_action = Action("Review serum designs", review_designs_action_requirement, "review_designs_action_description",
         menu_tooltip = "Shows all existing serum designs and allows you to delete any you no longer desire.")
 

@@ -26,7 +26,6 @@ label instantiate_jobs():
 
         influencer_job = Job("Influencer", critical_job_role)
 
-
         steph_lab_assistant = Job("Lab Assistant", critical_job_role, job_location = university) #Job for Steph to technically have at the start of the game so her job title is set correctly.
         nora_professor_job = Job("Professor", critical_job_role, job_location = university)
 
@@ -42,21 +41,23 @@ label instantiate_jobs():
         prostitute_job = Job("Prostitute", prostitute_role, job_location = downtown, work_days = [0,1,2,3,4,5,6], work_times = [3,4])
 
         # Random city roles, with no specific stuff related to them.
-        secretary_job = Job("Secretary", unimportant_job_role, job_location = mom_office_lobby)
+        secretary_job = Job("Secretary", unimportant_job_role, job_location = mom_office_lobby, work_days = [0,1,2,3,4], work_times = [1,2])
 
-        barista_job = Job("Barista", unimportant_job_role, job_location = mall)
+        barista_job = Job("Barista", unimportant_job_role, job_location = mall, work_days = [1,2,3,4,5], work_times = [1,2])
 
-        clothing_cashier_job = Job("Cashier", unimportant_job_role, job_location = clothing_store)
-        sex_cashier_job = Job("Cashier", unimportant_job_role, job_location = sex_store)
-        electronics_cashier_job = Job("Cashier", unimportant_job_role, job_location = electronics_store)
-        supply_cashier_job = Job("Cashier", unimportant_job_role, job_location = office_store)
-        home_improvement_cashier_job = Job("Cashier", unimportant_job_role, job_location = home_store)
+        clothing_cashier_job = Job("Cashier", unimportant_job_role, job_location = clothing_store, work_days = [0,1,2,3,4], work_times = [1,2])
+        sex_cashier_job = Job("Cashier", unimportant_job_role, job_location = sex_store, work_days = [0,1,2,3,4], work_times = [1,2])
+        electronics_cashier_job = Job("Cashier", unimportant_job_role, job_location = electronics_store, work_days = [0,1,2,3,4,5], work_times = [1,2])
+        supply_cashier_job = Job("Cashier", unimportant_job_role, job_location = office_store, work_days = [0,1,2,3,4,5], work_times = [1,2])
+        home_improvement_cashier_job = Job("Cashier", unimportant_job_role, job_location = home_store, work_days = [0,1,2,3,4,5], work_times = [1,2])
 
-        nurse_job = Job("Nurse", unimportant_job_role, job_location = downtown)
-        gym_instructor_job = Job("Gym Instructor", unimportant_job_role, job_location = gym)
-        office_worker_job = Job("Office Worker", unimportant_job_role, job_location = downtown)
+        nurse_job = Job("Nurse", unimportant_job_role, job_location = downtown, work_days = [0,1,2,3,4,5], work_times = [1,2])
+        night_nurse_job = Job("Night Nurse", unimportant_job_role, job_location = downtown, work_days = [1,2,3,4,5,6], work_times = [3,4])
+        gym_instructor_job = Job("Gym Instructor", unimportant_job_role, job_location = gym, work_days = [0,1,2,3,4], work_times = [1,2])
+        office_worker_job = Job("Office Worker", unimportant_job_role, job_location = downtown, work_days = [0,1,2,3,4], work_times = [1,2])
 
 
+        list_of_jobs.append(unemployed_job)
         list_of_jobs.append(barista_job)
 
         list_of_jobs.append(clothing_cashier_job)
@@ -66,6 +67,7 @@ label instantiate_jobs():
         list_of_jobs.append(home_improvement_cashier_job)
 
         list_of_jobs.append(nurse_job)
+        list_of_jobs.append(night_nurse_job)
         list_of_jobs.append(gym_instructor_job)
         list_of_jobs.append(office_worker_job)
 
