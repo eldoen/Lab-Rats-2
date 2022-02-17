@@ -26,7 +26,7 @@ label mom_room_search_description():
                             "She'll probably find it if she takes the time to look, and even if she doesn't, she could pick some more up at the pharmacy any time."
                             "It would be so irresponsible for her to be unprotected just because it's slightly inconvenient to get more pills..."
                             if renpy.random.randint(0,100) < 5 + 5*the_person.get_opinion_score("bareback sex"): #She doesn't bother getting more. Just asking for trouble!
-                                $ manage_bc(start = False, update_knowledge = False)
+                                $ manage_bc(the_person, start = False, update_knowledge = False)
 
                         "Leave them alone":
                             pass

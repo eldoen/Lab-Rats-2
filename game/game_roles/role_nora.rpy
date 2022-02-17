@@ -141,6 +141,7 @@ init -2 python:
                 menu_tooltip = "Visit your old lab and talk to Nora about serum research.")
             university.actions.append(nora_research_visit) #Prepare this so if we visit the university again under the proper conditions we can start studying traits for her for money.
 
+            nora.set_override_schedule(None)
             nora.set_schedule(university, the_days=[0, 1, 2, 3, 4], the_times =[1,2,3])
             nora.set_schedule(university, the_days=[5], the_times =[1,2])
             university.visible = True

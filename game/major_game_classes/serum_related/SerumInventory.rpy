@@ -28,8 +28,8 @@ init -2 python:
         def get_max_serum_count(self): #Returns the count of the highest group of serums you have available.
             highest_count = 0
             for design in self.get_serum_type_list():
-                if design[1] > highest_count:
-                    highest_count = design[1]
+                if self.get_serum_count(design) > highest_count:
+                    highest_count = self.get_serum_count(design)
 
             return highest_count
 

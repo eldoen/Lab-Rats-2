@@ -12,33 +12,6 @@ init -2 python:
             return False
         return True
 
-    def mom_work_promotion_one_before_requirement(the_person, start_day):
-        if not the_person.has_job(mom_associate_job):
-            return False
-        elif mc.business.is_weekend(): #TODO: we really need to stop using the business to define what the weekend is.
-            return False #No interview on the weekend
-        elif mom.has_limited_time_event("sleeping_walk_in_label"):
-            return False #she is sleeping in
-        return True
-
-    def mom_work_promotion_one_report_requirement(the_person, start_day):
-        if not the_person.has_job(mom_associate_job):
-            return False
-        elif not person_at_home(the_person): # only talk at home
-            return False
-        elif day == start_day and time_of_day <= 2:   # same day too early for interview to have happened
-            return False
-        return True
-
-    def mom_work_promotion_two_intro_requirement(the_person, start_day):
-        if not the_person.has_job(mom_associate_job):
-            return False
-        elif day < start_day:
-            return False
-        elif time_of_day != 4:
-            return False
-        return True
-
     def mom_work_promotion_two_prep_requirement(the_person):
         if not the_person.has_job(mom_associate_job):
             return False
@@ -46,35 +19,6 @@ init -2 python:
             return False #Not visible if not enabled
         elif time_of_day < 3:
             return "Too early to prepare"
-        return True
-
-    def mom_work_promotion_two_requirement(the_person, start_day):
-        if not the_person.has_job(mom_associate_job):
-            return False
-        elif day < start_day:
-            return False
-        elif mc.business.is_weekend():
-            return False
-        elif mom.has_limited_time_event("sleeping_walk_in_label"):
-            return False #she is sleeping in
-        return True
-
-    def mom_work_promotion_two_report_requirement(the_person):
-        if not the_person.has_job(mom_associate_job):
-            return False
-        elif not person_at_home(the_person): #Only talk about this at home
-            return False
-        return True
-
-    def mom_work_secretary_replacement_intro_requirement(the_person, the_day):
-        if not the_person.has_job(mom_secretary_job):
-            return False
-        elif day < the_day:
-            return False
-        elif mc.location.get_person_count() > 1:
-            return False
-        elif the_person.effective_sluttiness() < 30 or the_person.obedience < 100 or the_person.love < 10:
-            return False
         return True
 
     def mom_work_secretary_replacement_bigger_tits_reintro_requirement(the_person):
@@ -92,26 +36,6 @@ init -2 python:
             return "Not with other people around"
         return True
 
-    def mom_work_secretary_replacement_report_requirement(the_person, the_day):
-        if not the_person.has_job(mom_secretary_job):
-            return False
-        elif day < the_day:
-            return False
-        elif time_of_day < 2:
-            return False
-        elif (the_person.event_triggers_dict.get("mom_replacement_approach_waiting_for_tits", False) and rank_tits(the_person.tits) <= rank_tits(the_person.event_triggers_dict.get("mom_replacement_approach_waiting_for_tits", False))):
-            return False
-        elif not mc.business.is_open_for_business():
-            return False
-        elif mc.location.get_person_count() > 1:
-            return False # She doesn't want to talk about it
-        return True
-
-    def mom_got_boobjob_requirement(start_day):
-        if day < start_day:
-            return False
-        return True
-
     def mom_convince_quit_requirement(the_person):
         if the_person.love < 10:
             return False
@@ -119,8 +43,19 @@ init -2 python:
             return "Requires: 20 Love" # hide it until you're reasonably close, then show that you need at least 20 to get her to talk about it.
         return True #Are there any requirements for starting this conversationwe need to throw in?
 
-    def add_mom_work_promotion_one_before_crisis():
-        mom_work_promotion_one_before_crisis = Action("mom work promotion one before", mom_work_promotion_one_before_requirement, "mom_work_promotion_one_before", args = the_person, requirement_args = renpy.random.randint(day+3, day+8))
+    def mom_work_promotion_one_before_requirement(the_person, start_day):
+        if not the_person.has_job(mom_associate_job):
+            return False
+        if day < start_day:
+            return False
+        elif mc.business.is_weekend(): #TODO: we really need to stop using the business to define what the weekend is.
+            return False #No interview on the weekend
+        elif mom.has_limited_time_event("sleeping_walk_in_label"):
+            return False #she is sleeping in
+        return True
+
+    def add_mom_work_promotion_one_before_crisis(person):
+        mom_work_promotion_one_before_crisis = Action("mom work promotion one before", mom_work_promotion_one_before_requirement, "mom_work_promotion_one_before", args = person, requirement_args = [person, (day + renpy.random.randint(3, 8))])
         mc.business.mandatory_morning_crises_list.append(mom_work_promotion_one_before_crisis)
         return
 
@@ -174,7 +109,7 @@ label mom_work_promotion_one(the_person): #Mom is up for a promotion and asks yo
             mc.name "They won't have any choice but to give you the promotion."
             the_person "Thank you for your confidence [the_person.mc_title]. There are two interview stages, I'm just hoping to get through to the next round."
 
-    $ add_mom_work_promotion_one_before_crisis()
+    $ add_mom_work_promotion_one_before_crisis(the_person)
     $ the_person.apply_outfit() # If you've been trying out an outfit she changes back into it.
     # Leads to a line of events where she basically sleeps her way to a better job.
     # Could we have an alternative line where you find her boss and either A) Sleep with her or B) Fuck his wife?
@@ -293,6 +228,15 @@ init 2 python:
             person.apply_outfit(interview_outfit)
         return
 
+    def mom_work_promotion_one_report_requirement(the_person, start_day):
+        if not the_person.has_job(mom_associate_job):
+            return False
+        elif not person_at_home(the_person): # only talk at home
+            return False
+        elif day <= start_day and time_of_day <= 2:   # same day too early for interview to have happened
+            return False
+        return True
+
     def add_mom_work_promotion_one_report_crisis(person):
         mom_work_promotion_one_report_crisis = Action("mom work promotion one report", mom_work_promotion_one_report_requirement, "mom_work_promotion_one_report", requirement_args = day)
         person.on_room_enter_event_list.append(mom_work_promotion_one_report_crisis)
@@ -334,8 +278,17 @@ label mom_work_promotion_one_before(the_person): # She tells you in the morning 
     return
 
 init 2 python:
-    def add_mom_work_promotion_two_intro_crisis():
-        mom_work_promotion_two_intro_crisis = Action("mom work promotion two intro crisis", mom_work_promotion_two_intro_requirement, "mom_work_promotion_two_intro", args = the_person, requirement_args = renpy.random.randint(day+2, day+4))
+    def mom_work_promotion_two_intro_requirement(the_person, start_day):
+        if not the_person.has_job(mom_associate_job):
+            return False
+        elif day < start_day:
+            return False
+        elif time_of_day != 4:
+            return False
+        return True
+
+    def add_mom_work_promotion_two_intro_crisis(person):
+        mom_work_promotion_two_intro_crisis = Action("mom work promotion two intro crisis", mom_work_promotion_two_intro_requirement, "mom_work_promotion_two_intro", args = person, requirement_args = [person, (day + renpy.random.randint(2, 4))])
         mc.business.mandatory_crises_list.append(mom_work_promotion_two_intro_crisis)
         return
 
@@ -371,12 +324,23 @@ label mom_work_promotion_one_report(the_person): # She tells you how her intervi
         # She was using a conservative outfit, it went poorly
 
     $ clear_scene()
-    $ add_mom_work_promotion_two_intro_crisis()
+    $ add_mom_work_promotion_two_intro_crisis(the_person)
     return
 
 init 2 python:
-    def add_mom_work_promotion_two_crisis():
-        mom_work_promotion_two_crisis = Action("mom_work_promotion_two_crisis", mom_work_promotion_two_requirement, "mom_work_promotion_two", args = the_person, requirement_args = renpy.random.randint(day+6,day+9))
+    def mom_work_promotion_two_requirement(the_person, start_day):
+        if not the_person.has_job(mom_associate_job):
+            return False
+        elif day < start_day:
+            return False
+        elif mc.business.is_weekend():
+            return False
+        elif mom.has_limited_time_event("sleeping_walk_in_label"):
+            return False #she is sleeping in
+        return True
+
+    def add_mom_work_promotion_two_crisis(person):
+        mom_work_promotion_two_crisis = Action("mom_work_promotion_two_crisis", mom_work_promotion_two_requirement, "mom_work_promotion_two", args = person, requirement_args = [person, (day + renpy.random.randint(6,9))])
         mc.business.mandatory_morning_crises_list.append(mom_work_promotion_two_crisis)
         return
 
@@ -399,7 +363,7 @@ label mom_work_promotion_two_intro(the_person): # She asks you to help her prepa
     "She blows you a kiss and closes the door."
     $ clear_scene()
     $ the_person.event_triggers_dict["mom_work_promotion_two_prep_enabled"] = True
-    $ add_mom_work_promotion_two_crisis()
+    $ add_mom_work_promotion_two_crisis(the_person)
     return
 
 label mom_work_promotion_two_prep(the_person):
@@ -589,6 +553,13 @@ label mom_work_promotion_two_prep(the_person):
     return
 
 init 2 python:
+    def mom_work_promotion_two_report_requirement(the_person):
+        if not the_person.has_job(mom_associate_job):
+            return False
+        elif not person_at_home(the_person): #Only talk about this at home
+            return False
+        return True
+
     def add_mom_work_promotion_two_report_crisis(person):
         mom_work_promotion_two_report_crisis = Action("mom work promotion two report", mom_work_promotion_two_report_requirement, "mom_work_promotion_two_report")
         person.on_room_enter_event_list.append(mom_work_promotion_two_report_crisis)
@@ -608,6 +579,17 @@ label mom_work_promotion_two(the_person): # Based on what you tell her to do the
     return
 
 init 2 python:
+    def mom_work_secretary_replacement_intro_requirement(the_person, the_day):
+        if not the_person.has_job(mom_secretary_job):
+            return False
+        elif day < the_day:
+            return False
+        elif mc.location.get_person_count() > 1:
+            return False
+        elif the_person.effective_sluttiness() < 30 or the_person.obedience < 100 or the_person.love < 10:
+            return False
+        return True
+
     def add_mom_work_secretary_replacement_action(person):
         person.event_triggers_dict["mom_office_slutty_level"] = 1
         person.event_triggers_dict["mom_boss_name"] = get_random_male_name()
@@ -758,6 +740,19 @@ label mom_work_slutty_report(the_person):
     return
 
 init 2 python:
+    def mom_work_secretary_replacement_report_requirement(the_person, the_day):
+        if not the_person.has_job(mom_secretary_job):
+            return False
+        elif day < the_day or time_of_day < 2:
+            return False
+        elif (the_person.event_triggers_dict.get("mom_replacement_approach_waiting_for_tits", False) and rank_tits(the_person.tits) <= rank_tits(the_person.event_triggers_dict.get("mom_replacement_approach_waiting_for_tits", False))):
+            return False
+        elif not mc.business.is_open_for_business():
+            return False
+        elif mc.location.get_person_count() > 1:
+            return False # She doesn't want to talk about it
+        return True
+
     def add_mom_work_seduce_action(person):
         work_seduce = Action("mom_work_secretary_replacement_seduction_report", mom_work_secretary_replacement_report_requirement, "mom_work_secretary_replacement_report", requirement_args = [day+1])
         person.on_talk_event_list.append(work_seduce)
@@ -1009,6 +1004,11 @@ label mom_work_secretary_replacement_bigger_tits_reintro(the_person):
     return
 
 init 2 python:
+    def mom_got_boobjob_requirement(start_day):
+        if day < start_day:
+            return False
+        return True
+
     def add_mom_got_boobjob_action(person):
         person.event_triggers_dict["getting boobjob"] = True #Reset the flag so you can ask her to get _another_ boobjob.
         got_boobjob_action = Action("Mom Got Boobjob", mom_got_boobjob_requirement, "mom_got_boobjob_label", args = person, requirement_args = day + renpy.random.randint(3,6))
