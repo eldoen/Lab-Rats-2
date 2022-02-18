@@ -1114,7 +1114,7 @@ label lactation_description(the_person, the_position, the_object, report_log): #
         elif strength <= 7.5:
             "[the_person.title]'s milky tits have completely soaked her [the_clothing.display_name] now. Warm milk drips off away from the edges in a steady stream."
         else:
-            "[the_person.title]'s tits are squirting milk so hard that it's spraying right through her [the_clothing.display_name]. Little arcs of the warm liquid sail out amost two inches from her chest."
+            "[the_person.title]'s tits are squirting milk so hard that it's spraying right through her [the_clothing.display_name]. Little arcs of the warm liquid sail out almost two inches from her chest."
 
 
     else:

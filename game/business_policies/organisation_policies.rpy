@@ -121,7 +121,7 @@ init 0 python:
         return
 
     draconian_enforcement = Policy(name = "Draconian Enforcement",
-        desc = "Each policy infraction is to be punished to the utmost tolerable. All infraction severities are increased by one, but the restrictive office environment affects company morale, lowering all empolyee happiness by -5 per day.",
+        desc = "Each policy infraction is to be punished to the utmost tolerable. All infraction severities are increased by one, but the restrictive office environment affects company morale, lowering all employee happiness by -5 per day.",
         cost = 5000,
         toggleable = True,
         own_requirement = strict_enforcement,
@@ -177,7 +177,7 @@ init 0 python:
         return
 
     office_conduct_guidelines = Policy(name = "Office Conduct Guidelines",
-        desc = "Set and distribute guidelines for staff behaviour. Daily emails will remind them to be \"pleasant, open, and receptive to all things.\". Increases all staff Sluttiness by 1 per day, to a maximum of 20. Reduces business effiency by 1 per employee affected.",
+        desc = "Set and distribute guidelines for staff behaviour. Daily emails will remind them to be \"pleasant, open, and receptive to all things.\". Increases all staff Sluttiness by 1 per day, to a maximum of 20. Reduces business efficiency by 1 per employee affected.",
         cost = 700,
         toggleable = True,
         on_day_function = office_conduct_guidelines_on_day)

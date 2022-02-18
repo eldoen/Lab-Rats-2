@@ -61,7 +61,7 @@ init 0 python:
         mc.business.operating_costs += operating_cost_increase
 
     serum_production_1_policy = Policy(name = "Tier 1 Serum Production",
-        desc = "You will need more complex machinery to produce advanced serum designs, but those machines aren't cheap, and they add significant overhead to your business. Allows you to produce tier 1 serum designs, but costs an additional $50 per day in oprating costs.",
+        desc = "You will need more complex machinery to produce advanced serum designs, but those machines aren't cheap, and they add significant overhead to your business. Allows you to produce tier 1 serum designs, but costs an additional $50 per day in operating costs.",
         cost = 750,
         toggleable = False,
         on_buy_function = serum_production_improvement,
@@ -69,7 +69,7 @@ init 0 python:
     serum_policies_list.append(serum_production_1_policy)
 
     serum_production_2_policy = Policy(name = "Tier 2 Serum Production",
-        desc = "Equipping your production lines with state-of-the-art machinery is necessary to produce tier 2 serum designs. Maintenence and licensing fees will cost an additional $200 per work day.",
+        desc = "Equipping your production lines with state-of-the-art machinery is necessary to produce tier 2 serum designs. Maintenance and licensing fees will cost an additional $200 per work day.",
         cost = 5000,
         toggleable = False,
         own_requirement = serum_production_1_policy,
@@ -78,7 +78,7 @@ init 0 python:
     serum_policies_list.append(serum_production_2_policy)
 
     serum_production_3_policy = Policy(name = "Tier 3 Serum Production",
-        desc = "Installing protoype machinery in your production lines will allow you to produce tier 3 serum designs. Maintenence and licensing fees will cost an additional $500 per work day.",
+        desc = "Installing prototype machinery in your production lines will allow you to produce tier 3 serum designs. Maintenance and licensing fees will cost an additional $500 per work day.",
         cost = 10000,
         toggleable = False,
         own_requirement = serum_production_2_policy,

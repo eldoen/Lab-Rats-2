@@ -1742,7 +1742,7 @@ label strip_cum_question_loop(the_person, girl_state, girl_direction, girl_aware
                         $ the_person.draw_person(position = "kneeling1")
                         "[the_person.possessive_title] has to close her eyes and focus as you dump your load down her throat."
                         "She gulps loudly, trying not to choke on the sudden rush of cum. As soon as you're finished she pounds her fists on your thighs again."
-                        "You let go of her head and pull your hips back. She gasps for air as soon as your cock ic clear of her mouth."
+                        "You let go of her head and pull your hips back. She gasps for air as soon as your cock is clear of her mouth."
                         the_person "What the fuck was that? I could have bitten your dick off, you know!"
                         mc.name "I didn't think you were that kind of girl. Sorry, I thought you'd be into it..."
 

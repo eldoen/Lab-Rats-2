@@ -29,7 +29,7 @@ init 0 python:
     recruitment_policies_list.append(recruitment_batch_three_policy)
 
     recruitment_knowledge_one_policy = Policy(name = "Applicant Questionnaire",
-        desc = "A simple questionnaire required from each applicant reveals some of their likes and dislikes, helpying to determine if they would a good fit for your company culture. Reveals two opinions on an applicants resume.",
+        desc = "A simple questionnaire required from each applicant reveals some of their likes and dislikes, helping to determine if they would a good fit for your company culture. Reveals two opinions on an applicants resume.",
         cost = 400,
         toggleable = True)
     recruitment_policies_list.append(recruitment_knowledge_one_policy)
@@ -51,7 +51,7 @@ init 0 python:
     recruitment_policies_list.append(recruitment_knowledge_three_policy)
 
     recruitment_knowledge_four_policy = Policy(name = "Applicant Sexual History Survey",
-        desc = "A detailed questionnaire focused on sex, fetishes, and kinks produces even more information about an applicants sexaul preferences. It can also be used as a surprisingly accurate predictor of sexual experience. Reveals one more opinion, and sex skills are now displayed on an applicants resume.",
+        desc = "A detailed questionnaire focused on sex, fetishes, and kinks produces even more information about an applicants sexual preferences. It can also be used as a surprisingly accurate predictor of sexual experience. Reveals one more opinion, and sex skills are now displayed on an applicants resume.",
         cost = 2500,
         toggleable = True,
         own_requirement = recruitment_knowledge_three_policy,
@@ -62,12 +62,12 @@ init 0 python:
         return True
 
     recruitment_skill_improvement_policy = Policy(name = "Recruitment Skill Improvement",
-        desc = "Restricting your recruitment search to university and college graduates improves their skill across all disiplines. Raises all skill caps when hiring new employees by two, lowers average age.",
+        desc = "Restricting your recruitment search to university and college graduates improves their skill across all disciplines. Raises all skill caps when hiring new employees by two, lowers average age.",
         cost = 800,
         toggleable = True)
     recruitment_policies_list.append(recruitment_skill_improvement_policy)
 
-    recruitment_stat_improvement_policy = Policy(name = "Recruitment Stat Improvment",
+    recruitment_stat_improvement_policy = Policy(name = "Recruitment Stat Improvement",
         desc = "A wide range of networking connections can put you in touch with the best and brightest in the industry. Raises all statistic caps when hiring new employees by two, raises average age.",
         cost = 1500,
         toggleable = True,
@@ -89,7 +89,7 @@ init 0 python:
     recruitment_policies_list.append(recruitment_obedience_improvement_policy)
 
     recruitment_slut_improvement_policy = Policy(name = "High Sluttiness Recruits",
-        desc = "Narrowing your resume search parameters to include previous experience at strip clubs, bars, and modeling agencies produces a batch of potential employees with a much higher initial slutiness value. Increases starting sluttiness by 20, lowers average age.",
+        desc = "Narrowing your resume search parameters to include previous experience at strip clubs, bars, and modeling agencies produces a batch of potential employees with a much higher initial sluttiness value. Increases starting sluttiness by 20, lowers average age.",
         cost = 1200,
         toggleable = True,
         own_requirement = recruitment_obedience_improvement_policy)
@@ -131,7 +131,7 @@ init 0 python:
     recruitment_policies_list.append(recruitment_huge_tits_policy)
 
     recruitment_small_tits_policy = Policy(name = "Screening Criteria: Small Breasts",
-        desc = "Eliminates resumes from applicants with a D cup or larger, leaving only small-chested women in the application pool. Raises the cost of screening applicatns by $100 while active.",
+        desc = "Eliminates resumes from applicants with a D cup or larger, leaving only small-chested women in the application pool. Raises the cost of screening applicants by $100 while active.",
         cost = 2000,
         toggleable = True,
         own_requirement = recruitment_knowledge_two_policy,
@@ -219,7 +219,7 @@ init 0 python:
     recruitment_policies_list.append(recruitment_married_policy)
 
     recruitment_old_policy = Policy(name = "Screening Criteria: Old",
-        desc = "Only accept applications from women 40 or older. Raise the cost of applicant sceening by $100.",
+        desc = "Only accept applications from women 40 or older. Raise the cost of applicant screening by $100.",
         cost = 2000,
         toggleable = True,
         own_requirement = recruitment_knowledge_one_policy,
@@ -230,7 +230,7 @@ init 0 python:
     recruitment_policies_list.append(recruitment_old_policy)
 
     recruitment_teen_policy = Policy(name = "Screening Criteria: Teenager",
-        desc = "Only accept applications from women ages 18 or 19. Raise the cost of applicant sceening by $400.",
+        desc = "Only accept applications from women ages 18 or 19. Raise the cost of applicant screening by $400.",
         cost = 5000,
         toggleable = True,
         own_requirement = recruitment_knowledge_one_policy,

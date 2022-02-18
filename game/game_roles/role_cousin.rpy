@@ -627,7 +627,7 @@ label cousin_blackmail_list(the_person):
             mc.name "If you fucked me over I'll tell your Mom what you've been doing for cash."
             the_person "And if I quit to work for you? What will you tell her then?"
             mc.name "The same thing. Do you think she's going to be proud because you {i}use{/i} to be a stripper?"
-            mc.name "No, she'd rip you appart if she ever heard about this. I'm sure I could find plenty of evidence..."
+            mc.name "No, she'd rip you apart if she ever heard about this. I'm sure I could find plenty of evidence..."
             "[the_person.possessive_title] sighs and shakes her head, admitting defeat."
             the_person "Shut up, I'll do it. But I'm not going to be cheap, alright?"
             the_person "I'm not one of those cheap skanks you keep around."

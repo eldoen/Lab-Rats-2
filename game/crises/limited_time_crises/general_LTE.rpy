@@ -553,15 +553,15 @@ label new_onlyfans_account(the_person):
 
 label work_spank_opportunity(the_person):
     $ the_person.draw_person(position = "standing_doggy")
-    "When you walk in you see [the_person.possessive_title], leaning over a desk and staring at paperworking."
+    "When you walk in you see [the_person.possessive_title], leaning over a desk and staring at paperwork."
     if the_person.outfit.vagina_visible():
         $ mc.change_locked_clarity(20)
-        "She swings her hips idley, unintentionally shaking her bare ass at you."
+        "She swings her hips idly, unintentionally shaking her bare ass at you."
     elif not the_person.outfit.panties_covered():
         $ mc.change_locked_clarity(10)
-        "She swings her hips idley, shaking her barely-covered ass right at you."
+        "She swings her hips idly, shaking her barely-covered ass right at you."
     else:
-        "She swings her hips idley, shaking her ass in your direction."
+        "She swings her hips idly, shaking her ass in your direction."
 
     menu:
         "Slap her ass":

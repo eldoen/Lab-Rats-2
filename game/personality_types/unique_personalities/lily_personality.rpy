@@ -1195,7 +1195,7 @@ label lily_sucking_cock_taboo_break(the_person):
                 "She sighs and shakes her head in disbelief."
                 mc.name "It means even less than kissing. We're just experimenting."
 
-            the_person "Normal familes don't experiment with each other! Do you know anyone else who has their sister suck their dick?"
+            the_person "Normal families don't experiment with each other! Do you know anyone else who has their sister suck their dick?"
             mc.name "No, but I don't know anyone who loves their little sister as much as I do either."
             mc.name "We aren't a normal family [the_person.title], we have something special. You love me, right?"
             the_person "Yeah, I love you [the_person.mc_title]."

@@ -47,7 +47,7 @@ label city_rep_negotiate(the_person):
         the_person "You? Oh, you don't. You would need someone to vouch for the importance of this business. Someone like me."
         the_person "And frankly, I don't think you deserve one. You're a nice enough man [the_person.mc_title], but I take my work very seriously."
         mc.name "So if I change your mind you could get me one of those licenses?"
-        "She shrugs non-committally."
+        "She shrugs non-committedly."
     else:
         the_person "Assuming you want to stay in business? What you really need is a restricted goods business license."
         mc.name "And how would I get one of those?"
@@ -148,7 +148,7 @@ label city_rep_seduce(the_person): #TODO: Figure out if we can have something li
                 mc.name "I'm not going to stand around and let you rob me without getting something else in return."
                 "You push on her back and have her start walking towards your office."
                 the_person "You make it sound like I'm sort of prostitute."
-                "After a few steps shes realises that this is happening one way or another and falls into line."
+                "After a few steps she realises that this is happening one way or another and falls into line."
                 mc.name "Maybe I can convince you to let me keep my stuff."
                 mc.name "Then you'll just be a slut. Better?"
                 the_person "Hardly."
@@ -279,7 +279,7 @@ label city_rep_dressup_training(the_person):
             the_person "They'll be able to see my tits. I'll be showing my tits to everyone."
             "She doesn't sound very worried about it, but that might just be the trance taking hold."
             the_person "What if I get in trouble?"
-            mc.name "I doubt anyone will complain much. Everyone likes to oggle a good set of tits."
+            mc.name "I doubt anyone will complain much. Everyone likes to ogle a good set of tits."
             $ the_person.discover_opinion("showing her tits")
             $ the_person.change_slut(the_person.get_opinion_score("showing her tits"))
             "She bites her lips and nods obediently."

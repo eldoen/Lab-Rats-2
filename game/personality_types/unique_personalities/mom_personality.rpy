@@ -1387,7 +1387,7 @@ label mom_anal_sex_taboo_break(the_person):
                     the_person "Okay, for your happiness I'll give it a try."
 
                 else:
-                    mc.name "If I'm fucking your pussy I might get you pregnant, but with anal that can't hapen."
+                    mc.name "If I'm fucking your pussy I might get you pregnant, but with anal that can't happen."
                     the_person "Or you could put on a condom."
                     mc.name "Those feel like crap though [the_person.title]. I want to feel you wrapped around my cock."
                     the_person "Well... Okay, if it would make you happy we can give it a try."
@@ -1420,7 +1420,7 @@ label mom_anal_sex_taboo_break(the_person):
             "She shakes her head."
             the_person "No. I've thought about it, but I've never been brave enough to try it."
             mc.name "I'll be as gentle as possible then, so you have time to adjust."
-            the_person "It feels so naughty to give my anal vaginity to my own son. It's kind of turning me on."
+            the_person "It feels so naughty to give my anal virginity to my own son. It's kind of turning me on."
 
     else:
         the_person "We shouldn't... not again."
