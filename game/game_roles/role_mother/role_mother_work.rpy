@@ -10,6 +10,8 @@ init -2 python:
             return False
         elif the_person.obedience < 100:
             return False
+        elif the_person.location != mom_bedroom:
+            return False  # only trigger talk event in her bedroom (we can change clothes)
         return True
 
     def mom_work_promotion_two_prep_requirement(the_person):
