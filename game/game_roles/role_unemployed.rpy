@@ -14,7 +14,7 @@ label unemployed_offer_hire(the_person):
             the_person "Something is better than nothing! I'm sure I'll be first in line for a promotion, right?"
             mc.name "Sure, yeah... Let's see if we have a position that you might fit into..."
             $ the_person.salary_modifier = 0.5
-            call unemployed_offer_accept(the_person)
+            call unemployed_offer_accept(the_person) from _call_unemployed_offer_accept_unemployed_hire_offer
     return
 
 label unimportant_job_offer_hire(the_person):
@@ -22,7 +22,7 @@ label unimportant_job_offer_hire(the_person):
     mc.name "My company is hiring, and I think you might be a fantastic fit."
     "She thinks about it for a moment."
     the_person "Well... Sure, I'll consider it!"
-    call stranger_hire_result(the_person)
+    call stranger_hire_result(the_person) from _call_stranger_hire_result_unimportant_job_offer_hire
     if _return:
         mc.name "Well then we have a deal. Glad to have you aboard [the_person.title]!"
         the_person "Thank you [the_person.mc_title]! I'll have to let my boss know, I guess."
@@ -33,7 +33,7 @@ label unimportant_job_offer_hire(the_person):
     return
 
 label unemployed_offer_accept(the_person):
-    call stranger_hire_result(the_person)
+    call stranger_hire_result(the_person) from _call_stranger_hire_result_unemployed_offer_accept
     if _return:
         mc.name "Well then we have a deal. Glad to have you aboard [the_person.title]!"
         the_person "Thank you so much [the_person.mc_title], I won't let you down!"

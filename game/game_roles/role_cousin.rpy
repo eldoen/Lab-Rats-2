@@ -632,7 +632,7 @@ label cousin_blackmail_list(the_person):
             the_person "Shut up, I'll do it. But I'm not going to be cheap, alright?"
             the_person "I'm not one of those cheap skanks you keep around."
             $ the_person.salary_modifier = 2.0
-            call stranger_hire_result(the_person)
+            call stranger_hire_result(the_person) from _call_stranger_hire_result_cousin_blackmail_list
             if _return:
                 mc.name "Congratulations, you have a real job now."
                 the_person "Pfh, whatever."
@@ -657,9 +657,9 @@ label cousin_blackmail_list(the_person):
             else:
                 mc.name "Man, I thought you might have been useful for something, but this is just dreadful."
                 the_person "Fuck you, you came to me!"
-                mc.name "Yeah, that was a mistake. Nevermind, stripping is probably the best you can do with your life."
+                mc.name "Yeah, that was a mistake. Never mind, stripping is probably the best you can do with your life."
                 "She scowls angrily at you."
-                call cousin_blackmail_list(the_person)
+                call cousin_blackmail_list(the_person) from _call_cousin_blackmail_list_6
 
         "Nothing":
             mc.name "Nothing right now, but I'll come up with something."
@@ -833,7 +833,7 @@ label cousin_search_room_label(the_cousin, the_aunt):
     "If you can catch [the_cousin.title] while she's working there she won't be able to make any excuses and you'll have her in the palm of your hand."
 
     $ the_cousin.event_triggers_dict["found_stripping_clue"] = True
-    call advance_time from _call_advance_time_25
+    call advance_time() from _call_advance_time_25
     return
 
 label cousin_blackmail_level_2_confront_label(the_person, in_club = False):

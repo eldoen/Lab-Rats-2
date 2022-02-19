@@ -132,7 +132,7 @@ label city_rep_seduce(the_person): #TODO: Figure out if we can have something li
     mc.name "It seems like we have some time to spare [the_person.title]."
     "You step close to her and put your hand on the small of her back."
     mc.name "How about we head to my office and get to know each other better while your thugs are searching the place."
-    call apply_sex_slut_modifier(the_person)
+    call apply_sex_slut_modifier(the_person) from _call_apply_sex_slut_modifiers_city_rep_seduce
     $ should_fuck = False
     if the_person.effective_sluttiness() < 20: #Offended
         $ the_person.change_love(-1)
@@ -148,7 +148,7 @@ label city_rep_seduce(the_person): #TODO: Figure out if we can have something li
                 mc.name "I'm not going to stand around and let you rob me without getting something else in return."
                 "You push on her back and have her start walking towards your office."
                 the_person "You make it sound like I'm sort of prostitute."
-                "After a few steps she realises that this is happening one way or another and falls into line."
+                "After a few steps she realizes that this is happening one way or another and falls into line."
                 mc.name "Maybe I can convince you to let me keep my stuff."
                 mc.name "Then you'll just be a slut. Better?"
                 the_person "Hardly."
@@ -170,7 +170,7 @@ label city_rep_seduce(the_person): #TODO: Figure out if we can have something li
         $ should_fuck = True
 
     if should_fuck:
-        call fuck_person(the_person, private = True)
+        call fuck_person(the_person, private = True) from _call_fuck_person_city_rep_seduce
         $ the_report = _return
         if the_report.get("girl orgasms", 0) > 0:
             $ the_person.event_triggers_dict["bribe_successful"] = "orgasm"
@@ -185,7 +185,7 @@ label city_rep_seduce(the_person): #TODO: Figure out if we can have something li
             $ the_person.call_dialogue("sex_review", the_report = the_report)
         $ the_person.apply_outfit()
 
-    call clear_sex_slut_modifiers(the_person)
+    call clear_sex_slut_modifiers(the_person) from _call_clear_sex_slut_modifiers_city_rep_seduce
     return
 
 label city_rep_order(the_person):
@@ -256,7 +256,7 @@ label city_rep_dressup_training(the_person):
     the_person "... Sometimes I want to wear something more fun..."
     mc.name "Of course you do. Let's talk about that and give you something a lot more fun to wear next time..."
     "You describe your ideal uniform for her."
-    call outfit_master_manager(slut_limit = the_person.sluttiness + 30, show_overwear = False, show_underwear = False)
+    call outfit_master_manager(slut_limit = the_person.sluttiness + 30, show_overwear = False, show_underwear = False) from _call_outfit_master_manager_city_rep_dressup_training
     if _return:
         $ the_uniform = _return
         $ the_person.event_triggers_dict["city_rep_forced_uniform"] = the_uniform

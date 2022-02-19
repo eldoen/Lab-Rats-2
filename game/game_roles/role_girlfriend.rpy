@@ -322,7 +322,7 @@ label ask_get_boobjob_label(the_person):
     return
 
 label girlfriend_got_boobjob_label(the_person):
-    call got_boobjob(the_person)
+    call got_boobjob(the_person) from _call_got_boobjob_girlfriend_got_boobjob
     $ add_girlfriend_brag_boobjob_action(the_person)
     return
 
@@ -339,7 +339,7 @@ label girlfriend_boob_brag_label(the_person): #TODO: Decide if we need a little 
         the_person "I hope you like them, maybe we can have some fun with them later."
         $ the_person.change_slut(2, 60)
 
-    call talk_person(the_person)
+    call talk_person(the_person) from _call_talk_person_girlfriend_boob_brag_label
     return
 
 label plan_date_night(the_person):
@@ -427,7 +427,7 @@ label girlfriend_fuck_date_event(the_person):
         the_person "Hello, I'm ready for you [the_person.mc_title]..."
         "She licks her lips and watches you from her knees."
         the_person "Don't waste any time, I want you in my mouth."
-        call fuck_person(the_person, private = True, start_position = blowjob, start_object = make_floor())
+        call fuck_person(the_person, private = True, start_position = blowjob, start_object = make_floor()) from _call_fuck_person_girlfriend_fuck_date_event_1
 
     else:
         #She's standing and ready to make out as soon as you come in."
@@ -436,7 +436,7 @@ label girlfriend_fuck_date_event(the_person):
         the_person "Hello [the_person.mc_title]... I've been thinking about this all day."
         "You step inside. She reaches past you and closes the bedroom door." #Note that you never end up with submissive people down this branch
         "She wastes no time wrapping her arms around you and kissing you."
-        call fuck_person(the_person, private = True, start_position = kissing, start_object = make_floor())
+        call fuck_person(the_person, private = True, start_position = kissing, start_object = make_floor()) from _call_fuck_person_girlfriend_fuck_date_event_2
 
     $ the_report = _return
 
@@ -487,7 +487,7 @@ label girlfriend_fuck_date_event(the_person):
                     mc.name "Come here you little slut."
                     # $ random_num = renpy.random.randint(0,100)
                     #TODO: Chance her adult daughter comes home and finds out what you're doing. (ie. same as the affair fuck date).
-                    call fuck_person(the_person)
+                    call fuck_person(the_person) from _call_fuck_person_girlfriend_fuck_date_event_3
                     $ the_report = _return
 
                 "Call it a night":
@@ -509,7 +509,7 @@ label girlfriend_fuck_date_event(the_person):
     #As soon as done is True we finish looping. This means each path should narrate it's own end of encounter stuff.
     #Generic stuff to make sure we don't keep showing anyone.
     if not had_to_run:
-        call check_date_trance(the_person)
+        call check_date_trance(the_person) from _call_check_date_trance_girlfriend_fuck_date
 
     $ the_person.clear_situational_slut("Date")
     $ clear_scene()

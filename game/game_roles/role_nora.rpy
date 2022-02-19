@@ -544,7 +544,7 @@ label nora_profile_person(the_person):
 
     $ mc.business.event_triggers_dict["nora_research_subject"] = the_person.identifier
     $ clear_scene()
-    call advance_time from _call_advance_time_24
+    call advance_time() from _call_advance_time_24
     return
 
 label nora_student_exam_rewrite_request(the_person):

@@ -413,13 +413,13 @@ label student_study_home(the_person):
             the_person "Okay, what did you have in mind?"
             menu:
                 "Masturbate first" if the_person.effective_sluttiness() >= 15:
-                    call student_masturbate_label(the_person)
+                    call student_masturbate_label(the_person) from _call_student_masturbate_student_study_home
 
                 "Masturbate first\n{color=#ff0000}{size=18}Requires: 15 Sluttiness{/size}{/color} (disabled)" if the_person.effective_sluttiness() < 15:
                     pass
 
                 "Punish her for wrong answers" if the_person.obedience >= 100:
-                    call student_punish_hub_label(the_person)
+                    call student_punish_hub_label(the_person) from _call_student_punish_hub_study_home
 
                 "Punish her for wrong answers\n{color=#ff0000}{size=18}Requires: 100 Obedience{/size}{/color} (disabled)" if the_person.obedience < 100:
                     pass

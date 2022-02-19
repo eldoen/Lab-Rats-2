@@ -116,36 +116,36 @@ init 0 python:
 
 label sleep_action_description:
     "You go to bed after a hard days work."
-    call advance_time from _call_advance_time
+    call advance_time() from _call_advance_time
     return
 
 label faq_action_description:
-    call faq_loop from _call_faq_loop_1
+    call faq_loop() from _call_faq_loop_1
     return
 
 label hr_work_action_description:
     $ mc.business.player_hr()
-    call advance_time from _call_advance_time_1
+    call advance_time() from _call_advance_time_1
     return
 
 label research_work_action_description:
     $ mc.business.player_research()
-    call advance_time from _call_advance_time_2
+    call advance_time() from _call_advance_time_2
     return
 
 label supplies_work_action_description:
     $ mc.business.player_buy_supplies()
-    call advance_time from _call_advance_time_3
+    call advance_time() from _call_advance_time_3
     return
 
 label market_work_action_description:
     $ mc.business.player_market()
-    call advance_time from _call_advance_time_4
+    call advance_time() from _call_advance_time_4
     return
 
 label production_work_action_description:
     $ mc.business.player_production()
-    call advance_time from _call_advance_time_5
+    call advance_time() from _call_advance_time_5
     return
 
 label interview_action_description:
@@ -200,7 +200,7 @@ label interview_action_description:
                 $ del new_person
             else:
                 "You decide against hiring anyone new for now."
-            call advance_time from _call_advance_time_6
+            call advance_time() from _call_advance_time_6
         "Never mind":
             pass
     return
@@ -270,7 +270,7 @@ label serum_design_action_description:
         $ mc.business.add_serum_design(the_serum)
         $ mc.business.listener_system.fire_event("new_serum", the_serum = the_serum)
         $ the_serum = None
-        call advance_time from _call_advance_time_7
+        call advance_time() from _call_advance_time_7
     else:
         "You decide not to spend any time designing a new serum type."
     return

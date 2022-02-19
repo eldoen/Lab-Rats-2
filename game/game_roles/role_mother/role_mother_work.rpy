@@ -1442,7 +1442,7 @@ label mom_convince_quit_label(the_person):
                     mc.name "I want you to trust me, and I want you by my side."
                     "Another long pause as she thinks."
                     the_person "Okay, I'll do it."
-                    call stranger_hire_result(the_person)
+                    call stranger_hire_result(the_person) from _call_stranger_hire_result_mom_convince_quit
                     if _return:
                         mc.name "Welcome to the team [the_person.title]."
                         menu:
@@ -1476,7 +1476,7 @@ label mom_convince_quit_label(the_person):
                     mc.name "And so do you! If you worked for me we would see each other every day."
                     "She smiles and sighs."
                     the_person "That would be nice... Okay, I'll do it!"
-                    call stranger_hire_result(the_person)
+                    call stranger_hire_result(the_person) from _call_stranger_hire_result_mom_convince_quit_2
                     if _return:
                         mc.name "Welcome to the team [the_person.title]."
                         the_person "Thank you [the_person.mc_title], I'm sure this is going to be great!"
@@ -1498,7 +1498,7 @@ label mom_convince_quit_label(the_person):
                     "You nod, and she thinks for a moment longer."
                     the_person "That would really help with all of the bills... Okay, you've convinced me!"
                     $ the_person.salary_modifier = 2.0
-                    call stranger_hire_result(the_person)
+                    call stranger_hire_result(the_person) from _call_stranger_hire_result_mom_convince_quit_3
                     if _return:
                         mc.name "Welcome to the team [the_person.title]."
                         the_person "Thank you [the_person.mc_title], I'm sure this is going to be great!"

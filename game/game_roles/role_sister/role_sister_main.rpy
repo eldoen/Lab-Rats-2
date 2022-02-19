@@ -298,7 +298,7 @@ label strip_explanation(the_person):
             mc.name "I don't see why not."
             $ mc.business.change_funds(-100)
             "You pull a hundred dollars out of your wallet and hand it over to [the_person.possessive_title]. She tucks it away and gets ready."
-            call strip_tease(the_person, for_pay = True)
+            call strip_tease(the_person, for_pay = True) from _call_strip_tease_strip_explanation
 
             $ the_person.review_outfit()    # make sure she puts on outfit after stripping
 
@@ -322,13 +322,13 @@ label sister_strip_label(the_person):
     $ the_person.change_obedience(1)
     "You nod and sit down on [the_person.possessive_title]'s bed. She holds her hand out and you hand over her money."
     "She tucks the money away and gets ready in front of you."
-    call strip_tease(the_person, for_pay = True)
+    call strip_tease(the_person, for_pay = True) from _call_strip_tease_sister_strip
     return
 
 label sister_offer_to_hire(the_person):
     #TODO: If you've talked to Mom about this already a different event is added.
     if the_person.event_triggers_dict.get("dropout_convince_progress", 0) == 2:
-        call sister_offer_to_hire_2(the_person)
+        call sister_offer_to_hire_2(the_person) from _call_sister_offer_to_hire
     else:
         mc.name "So, have you ever thought of getting a job?"
         the_person "I don't have the time for one! Between school and posting to InstaPic I'm way too busy!"
@@ -363,14 +363,14 @@ label sister_offer_to_hire_2(the_person):
     "[the_person.possessive_title] thinks for a long moment, clearly unsure."
     the_person "I don't know..."
     menu:
-        "You hate school." if the_person.get_known_opinion_score("research work") <= -2:
+        "You hate school" if the_person.get_known_opinion_score("research work") > -2:
             mc.name "Why do you want to stay there? You hate it at school."
             mc.name "You complain about it every time you come home."
             the_person "Yeah... It does suck pretty hard."
             "That seems to help her make up her mind."
             the_person "Screw it, I'll do it!"
             mc.name "That's the brave little sister I know! Now, let's see where you might fit in..."
-            call stranger_hire_result(the_person)
+            call stranger_hire_result(the_person) from _call_stranger_hire_result_sister_offer_to_hire_1
             if _return:
                 mc.name "There we go. All settled."
                 the_person "Wow, I'm actually really excited!"
@@ -383,7 +383,7 @@ label sister_offer_to_hire_2(the_person):
                 the_person "Fiiiiine."
 
 
-        "You hate school.\nRequires: Hates research work (disabled)" if the_person.get_known_opinion_score("research work") -2:
+        "You hate school\n{color=#ff0000}{size=18}Requires: Hates research work{/size}{/color} (disabled)" if the_person.get_known_opinion_score("research work") <= -2:
             pass
 
         "We'll get to work together!" if the_person.has_role(girlfriend_role):
@@ -395,7 +395,7 @@ label sister_offer_to_hire_2(the_person):
             "Her resolve hardens and she nods her head with determination."
             the_person "Okay, I'll do it!"
             mc.name "That's the brave little sister I know! Now, let's see where you might fit in..."
-            call stranger_hire_result(the_person)
+            call stranger_hire_result(the_person) from _call_stranger_hire_result_sister_offer_to_hire_2
             if _return:
                 mc.name "There we go. All settled."
                 the_person "Wow, I'm actually really excited!"
@@ -407,11 +407,11 @@ label sister_offer_to_hire_2(the_person):
                 "She pouts but nods."
                 the_person "Fiiiiine."
 
-        "We'll get to work together!\nRequires: Make her your girlfriend (disabled)" if not the_person.has_role(girlfriend_role):
+        "We'll get to work together!\n{color=#ff0000}{size=18}Requires: Make her your girlfriend{/size}{/color} (disabled)" if not the_person.has_role(girlfriend_role):
             pass
 
-        "I'll double your normal pay.":
-            mc.name "I'll pay you double what I would normaly pay someone with your experience. How about that?"
+        "I'll double your normal pay":
+            mc.name "I'll pay you double what I would normally pay someone with your experience. How about that?"
             the_person "It's not about the money... How much money would that be?"
             $ the_person.salary_modifier = 2.0
             $ predicted_amount = the_person.calculate_base_salary()
@@ -419,7 +419,7 @@ label sister_offer_to_hire_2(the_person):
             "That gets her full attention. She pretends to think for a moment before making her decision."
             the_person "Okay, I'll do it!"
             mc.name "That's the brave little sister I know! Now, let's see where you might fit in..."
-            call stranger_hire_result(the_person)
+            call stranger_hire_result(the_person) from _call_stranger_hire_result_sister_offer_to_hire_3
             if _return:
                 mc.name "There we go. All settled."
                 the_person "Wow, I'm actually really excited!"
@@ -431,7 +431,7 @@ label sister_offer_to_hire_2(the_person):
                 "She pouts but nods."
                 the_person "Fiiiiine."
 
-        "Nevermind.":
+        "Never mind":
             mc.name "If you don't want to, don't worry about it."
             mc.name "The offer is open if you change your mind."
             the_person "Thanks [the_person.mc_title]. I'll think about it."
@@ -440,7 +440,7 @@ label sister_offer_to_hire_2(the_person):
 
 label mother_sister_dropout_convince_label(the_person):
     mc.name "I need to talk to you about [lily.title]."
-    "She frowns, looking converned."
+    "She frowns, looking concerned."
     the_person "What do you mean? Is everything okay?"
     mc.name "It's fine, but [lily.title] wants to drop out of school."
     the_person "She... WHAT?"
@@ -460,10 +460,10 @@ label mother_sister_dropout_convince_label(the_person):
             $ lily.event_triggers_dict["dropout_convince_progress"] = 2
 
 
-        "We need the money!\nRequires: [the_person.title] is Unemployed (disabled)" if not mom.has_job(unemployed_job):
+        "We need the money!\n{color=#ff0000}{size=18}Requires: [the_person.title] is Unemployed{/size}{/color} (disabled)" if not mom.has_job(unemployed_job):
             pass
 
-        "We'll all be working together." if the_person.has_role(employee_role):
+        "We'll all be working together" if the_person.has_role(employee_role):
             mc.name "We'll all be working together if [lily.title] comes to work for me."
             mc.name "Wouldn't that be great? The whole family, working as a team?"
             the_person "It would be nice to see both of you all day..."
@@ -473,7 +473,7 @@ label mother_sister_dropout_convince_label(the_person):
             mc.name "Thank you for understanding [the_person.title], I'll let her know."
             $ lily.event_triggers_dict["dropout_convince_progress"] = 2
 
-        "We'll all be working together.\nRequires: Hire [the_person.title] (disabled)" if not the_person.has_role(employee_role):
+        "We'll all be working together\n{color=#ff0000}{size=18}Requires: Hire [the_person.title]{/size}{/color} (disabled)" if not the_person.has_role(employee_role):
             pass
 
         "She's never going to graduate..." if lily.int <= 1:
@@ -489,10 +489,10 @@ label mother_sister_dropout_convince_label(the_person):
             mc.name "Thank you for understanding [the_person.title], I'll let her know."
             $ lily.event_triggers_dict["dropout_convince_progress"] = 2
 
-        "She's never going to graduate...\nRequires: [lily.title] Int 1 (disabled)" if lily.int > 1:
+        "She's never going to graduate...\n{color=#ff0000}{size=18}Requires: [lily.title] Int 1{/size}{/color} (disabled)" if lily.int > 1:
             pass
 
-        "You need to let this happen." if the_person.obedience >= 150:
+        "You need to let this happen" if the_person.obedience >= 150:
             mc.name "I'm sorry, but what you care doesn't really matter here [the_person.title]."
             mc.name "I need [lily.title] to work for me, which means I need you to get out of the way and let it happen."
             the_person "But what about her education... Her future?"
@@ -502,10 +502,10 @@ label mother_sister_dropout_convince_label(the_person):
             mc.name "Good."
             $ lily.event_triggers_dict["dropout_convince_progress"] = 2
 
-        "You need to let this happen.\nRequires: 150 Obedience (disabled)" if the_person.obedience < 150:
+        "You need to let this happen\n{color=#ff0000}{size=18}Requires: 150 Obedience{/size}{/color} (disabled)" if the_person.obedience < 150:
             pass
 
-        "Nevermind.":
+        "Never mind":
             mc.name "You know, I think you're right... Her education is an important part of her life."
             the_person "Good. I'm glad you understand."
 

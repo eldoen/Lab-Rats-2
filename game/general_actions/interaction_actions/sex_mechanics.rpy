@@ -11,7 +11,7 @@ label fuck_person(the_person, private = True, start_position = None, start_objec
     $ repeat_strip_allowed = True #Set False when a girl is told not to strip something. She won't ask about stripping down any more for the rest of the encounter.
 
 
-    call apply_sex_slut_modifiers(the_person, in_private = private)
+    call apply_sex_slut_modifiers(the_person, in_private = private) from _call_apply_sex_slut_modifiers_fuck_person
     $ report_log["was_public"] = not private
 
 
@@ -314,7 +314,7 @@ label fuck_person(the_person, private = True, start_position = None, start_objec
 
         $ round_choice = None #Get rid of our round choice at the end of the round to prepare for the next one. By doing this at the end instead of the begining of the loop we can set a mandatory choice for the first one.
 
-    call clear_sex_slut_modifiers(the_person)
+    call clear_sex_slut_modifiers(the_person) from _call_clear_sex_slut_modifiers_fuck_person
 
     $ report_log["end arousal"] = the_person.arousal
 
@@ -565,7 +565,7 @@ label sex_description(the_person, the_position, the_object, private = True, repo
 
 
     if mc.arousal >= 80: #NOTE: use to be mc.max_arousal, this number is now the threshold for being forced to cum.
-        call climax_check()
+        call climax_check() from _call_climax_check_sex_description
         $ is_cumming = _return
 
         if is_cumming:
@@ -752,7 +752,7 @@ label condom_ask(the_person):
                         else:
                             $ the_person.update_birth_control_knowledge()
                             the_person "I'm not on birth control [the_person.mc_title], promise you won't cum inside me."
-                            call condomless_promise(the_person)
+                            call condomless_promise(the_person) from _call_condomless_promise_condom_ask_1
 
 
             "Fuck her raw anyways\n{color=#ff0000}{size=18}Requires: 150 Obedience{/size}{/color} (disabled)" if the_person.obedience < 150:
@@ -778,7 +778,7 @@ label condom_ask(the_person):
                         $ the_person.update_birth_control_knowledge()
                     else:
                         the_person "Fine, but you {i}really{/i} need to pull out this time. We shouldn't be taking risks like that."
-                        call condomless_promise(the_person)
+                        call condomless_promise(the_person) from _call_condomless_promise_condom_ask_2
 
     else: #Slutty enough that she doesn't even care about a condom.
         if the_person.get_opinion_score("bareback sex") > 0 or the_person.get_opinion_score("creampies") > 0 or the_person.has_role(breeder_role):

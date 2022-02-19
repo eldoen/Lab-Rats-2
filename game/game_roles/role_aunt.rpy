@@ -2133,9 +2133,9 @@ label aunt_offer_hire(the_person):
             "She thinks about it for a moment."
             the_person "Maybe it would be nice to get out of the house now and then."
             mc.name "Exactly what I was thinking! Now, let's talk about your skills..."
-            call stranger_hire_result(the_person)
+            call stranger_hire_result(the_person) from _call_stranger_hire_result_aunt_offer_hire
             if _return:
-                call aunt_hire_reaction_setup()
+                call aunt_hire_reaction_setup() from _call_aunt_hire_reaction_setup_aunt_offer_hire
                 mc.name "Then it's settled! Welcome to the team [the_person.title]!"
                 the_person "I'm almost in shock! I can't believe this is happening!"
             else:
@@ -2153,9 +2153,9 @@ label aunt_offer_hire(the_person):
             "[the_person.possessive_title] smiles happily and claps her hands together."
             the_person "Alright, I'll do it!"
             mc.name "Good! Now, let's talk about your skills..."
-            call stranger_hire_result(the_person)
+            call stranger_hire_result(the_person) from _call_stranger_hire_result_aunt_offer_hire_2
             if _return:
-                call aunt_hire_reaction_setup()
+                call aunt_hire_reaction_setup() from _call_aunt_hire_reaction_setup_aunt_offer_hire_2
                 mc.name "Then it's settled! Welcome to the team [the_person.title]!"
                 the_person "I'm almost in shock! I can't believe this is happening!"
             else:
@@ -2199,30 +2199,30 @@ label cousin_aunt_hire_reaction(the_person):
         the_person "It's weird, that's all. What possible reason do you want that useless bitch around for?"
 
     menu:
-        "She's a good worker.":
+        "She's a good worker":
             mc.name "She seemed like she'd be a good worker if someone gave her the chance."
             "[the_person.title] laughs and shakes her head."
             the_person "The only thing she was ever good at was sucking a dick."
             mc.name "Maybe that will come in handy too."
             the_person "Ew. You pervert."
 
-        "I'm going to fuck her.":
+        "I'm going to fuck her":
             mc.name "Isn't it obvious? I want her close so I can start fucking her around the clock."
             "[the_person.title] laughs and shakes her head."
             the_person "You fucking pervert. Fine, don't tell me why you're doing it."
 
-        "I wanted to piss you off." if the_person.has_role(employee_role):
+        "I wanted to piss you off" if the_person.has_role(employee_role):
             mc.name "I was thinking about what would make your life as miserable as possible, and this seemed like a good first step."
             the_person "Oh my god, you're the fuuuuucking worst."
             "[the_person.title] moans dramatically."
             the_person "She's going to want to talk to me all the time! God damn it [the_person.mc_title]!"
             the_person "I swear to god I'm going to quit one of these days!"
 
-        "I'm keeping her away from you." if not the_person.has_role(employee_role):
+        "I'm keeping her away from you" if not the_person.has_role(employee_role):
             mc.name "I thought you'd thank me. I'm getting her out of the house and away from you."
             "[the_person.title] laughs and shakes her head."
             the_person "Yeah, I'm sure you're doing this out the kindness of your heart."
             the_person "Whatever, I don't even care."
 
-    call talk_person(the_person)
+    call talk_person(the_person) from _call_talk_person_cousin_aunt_hire_reaction
     return

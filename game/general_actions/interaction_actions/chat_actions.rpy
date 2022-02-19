@@ -480,7 +480,7 @@ label person_new_mc_title(the_person):
     return
 
 label small_talk_person(the_person, apply_energy_cost = True, is_phone = False): #Tier 0. Useful for discovering a character's opinions and the first step to building up love.
-    # if is_phone then most narration or descritions are ignored or replaced. Assume it's on the phone. TODO: Phone conversations should probably be their own full thing.
+    # if is_phone then most narration or descriptions are ignored or replaced. Assume it's on the phone. TODO: Phone conversations should probably be their own full thing.
     if apply_energy_cost: # Useful if you want to reuse this event inside of other events.
         $ mc.change_energy(-15)
     mc.name "So [the_person.title], what's been on your mind recently?"

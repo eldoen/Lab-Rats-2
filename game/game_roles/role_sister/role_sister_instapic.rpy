@@ -179,7 +179,7 @@ label sister_instathot_intro_label(the_person):
 
     "You make a mental note to check out her profile on instapic at some point."
 
-    call setup_sister_insta(the_person)
+    call setup_sister_insta(the_person) from _call_setup_sister_insta_sister_instathot_intro
     $ clear_scene()
     return
 
@@ -983,7 +983,7 @@ label sister_instathot_label_mom(the_sister, the_mom):
                                 the_mom "Now you two aren't going to be doing any with these shots, right? They'll be deleted after?"
                                 $ the_group.draw_person(the_sister)
                                 the_sister "Yeah, of course [the_mom.title]. Of course..."
-                                call sister_instathot_label_mom_shirtless(the_sister, the_mom, the_group)
+                                call sister_instathot_label_mom_shirtless(the_sister, the_mom, the_group) from _call_sister_instathot_mom_shirtless_sister_1
 
                             "It's just for fun!\n{color=#00ff00}{size=18}Requires: [the_mom.title] likes showing her tits{/size}{/color} (disabled)" if the_mom.get_known_opinion_score("showing her tits") <= 0:
                                 pass
@@ -995,7 +995,7 @@ label sister_instathot_label_mom(the_sister, the_mom):
                                 $ the_group.draw_person(the_sister)
                                 "[the_sister.possessive_title] nods encouragingly."
                                 the_sister "Yeah, that's it. You'll do ti for me, right [the_mom.title]?"
-                                call sister_instathot_label_mom_shirtless(the_sister, the_mom, the_group)
+                                call sister_instathot_label_mom_shirtless(the_sister, the_mom, the_group) from _call_sister_instathot_mom_shirtless_sister_2
 
                             "We're just going to tease them\n{color=#00ff00}{size=18}Requires: [the_mom.title] [tease_token]{/size}{/color} (disabled)" if the_mom.effective_sluttiness() < tease_requirement:
                                 pass
@@ -1011,7 +1011,7 @@ label sister_instathot_label_mom(the_sister, the_mom):
                                 $ the_group.draw_person(the_sister)
                                 "[the_sister.title] glances at you, confused."
                                 the_sister "Right then..."
-                                call sister_instathot_label_mom_shirtless(the_sister, the_mom, the_group)
+                                call sister_instathot_label_mom_shirtless(the_sister, the_mom, the_group) from _call_sister_instathot_mom_shirtless_sister_3
 
                             "Just do it [the_mom.title]\n{color=#00ff00}{size=18}Requires: [the_mom.title] 140 Obedience{/size}{/color} (disabled)" if the_mom.obedience < 140:
                                 pass
@@ -1029,13 +1029,13 @@ label sister_instathot_label_mom(the_sister, the_mom):
                         the_sister "What do you say [the_mom.title]? Up for it?"
                         $ the_group.draw_person(the_mom)
                         the_mom "I'm not here to cramp your style. Let's do it!"
-                        call sister_instathot_label_mom_shirtless(the_sister, the_mom, the_group)
+                        call sister_instathot_label_mom_shirtless(the_sister, the_mom, the_group) from _call_sister_instathot_mom_shirtless_sister_4
 
                 "All done":
                     pass
 
         "Bring up [the_sister.title]'s boobs" if the_sister.event_triggers_dict.get("sister_boobjob_convince_mom_enabled", False):
-            call sister_convince_mom_boobjob(the_mom, the_sister)
+            call sister_convince_mom_boobjob(the_mom, the_sister) from _call_sister_convince_mom_boobjob_sister_instahot
 
         # TODO: Add some extra variations for this as sluttiness and Obedience rises.
         "All done":

@@ -44,7 +44,7 @@ label stripper_private_dance_label(the_person):
         "Then [the_person.possessive_title] flicks a switch, pumping the club music into the small booth."
         the_person "Now just stay still and let me get through my routine."
         "She starts to dance, swaying her hips and shaking her tits as you watch."
-        call strip_tease(the_person, for_pay = True, skip_intro = True, start_girl_state = strip_dancing)
+        call strip_tease(the_person, for_pay = True, skip_intro = True, start_girl_state = strip_dancing) from _call_strip_tease_stripper_private_dance_1
         the_person "Happy? Satisfied? Good."
         $ the_person.apply_outfit()
         "[the_person.possessive_title] gets dressed and pulls the curtain back, hurrying out into the main showroom without waiting for you."
@@ -81,7 +81,7 @@ label stripper_private_dance_label(the_person):
 
         the_person "Now you just sit back, relax, and let me take care of you..."
         "She flicks on a speaker, pumping the club music into the small booth, and starts to dance."
-        call strip_tease(the_person, for_pay = True, skip_intro = True, start_girl_state = strip_dancing)
+        call strip_tease(the_person, for_pay = True, skip_intro = True, start_girl_state = strip_dancing) from _call_strip_tease_stripper_private_dance_2
         $ the_person.apply_outfit()
         "[the_person.possessive_title] gets tidied up, then slides the curtain open and walks out into the main showroom again."
         "You take a minute to compose yourself, then stand up and walk out yourself."
@@ -106,7 +106,7 @@ label stripper_offer_hire(the_person):
             the_person "Really? God, I do hate working here... It feels so degrading, having men leer at me all day."
             "She thinks about it for a long moment."
             the_person "Fine, yeah. What would this job be?"
-            call stripper_hire_accept(the_person)
+            call stripper_hire_accept(the_person) from _call_stripper_hire_accept_stripper_offer_hire_1
         else: #Needs to be convinced, because stripping money is good.
             the_person "That's a kind offer [the_person.mc_title], but I make really good money dancing."
             if the_person.get_opinion_score(["showing her ass", "showing her tits"]) > 0:
@@ -123,7 +123,7 @@ label stripper_offer_hire(the_person):
                         the_person "Aww, are you feeling jealous? Well..."
                     "She bites her lip and thinks about it for a long moment."
                     the_person "Fine, I'll consider it. Where would I be working?"
-                    call stripper_hire_accept(the_person)
+                    call stripper_hire_accept(the_person) from _call_stripper_hire_accept_stripper_offer_hire_2
 
 
                 "Quit for me\n{color=#ff0000}{size=18}Requires: Girlfriend or Paramour{/size}{/color} (disabled)" if not (the_person.has_role(girlfriend_role) or the_person.has_role(affair_role)):
@@ -132,7 +132,7 @@ label stripper_offer_hire(the_person):
                 "Pay her double normal wages":
                     mc.name "You're a valuable woman, I understand that. Let's see if I can pay you what you deserve..."
                     $ the_person.salary_modifier = 2.0
-                    call stripper_hire_accept(the_person)
+                    call stripper_hire_accept(the_person) from _call_stripper_hire_accept_stripper_offer_hire_3
 
                 "Let it go":
                     mc.name "I understand. Let me know if you change your mind."
@@ -141,7 +141,7 @@ label stripper_offer_hire(the_person):
 
 
 label stripper_hire_accept(the_person):
-    call stranger_hire_result(the_person)
+    call stranger_hire_result(the_person) from _call_stranger_hire_result_stripper_hire_accept
     if _return:
         mc.name "It's settled then. I'll see you at work."
         the_person "And I'll go call my boss and let him know I'm finished."

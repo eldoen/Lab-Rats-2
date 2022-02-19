@@ -424,7 +424,7 @@ label strip_tease(the_person, in_private = True, for_pay = False, start_girl_dir
         $ girl_state = start_girl_state
 
 
-    call apply_sex_slut_modifiers(the_person, in_private = in_private)
+    call apply_sex_slut_modifiers(the_person, in_private = in_private) from _call_apply_sex_slut_modifiers_strip_tease
 
     if start_guy_state is None:
         $ guy_state = "watching" # Other posibilities include: Jerking off, Touching.
@@ -893,10 +893,10 @@ label strip_tease(the_person, in_private = True, for_pay = False, start_girl_dir
                 $ the_person.change_arousal(girl_arousal_change)
 
                 if mc.arousal >= 80:
-                    call climax_check() #Uses teh same check as the sex_mechanics
+                    call climax_check() from _call_climax_check_strip_tease #Uses the same check as the sex_mechanics
                     $ is_cumming = _return
                     if is_cumming:
-                        call strip_tease_guy_cum(the_person, girl_state, girl_direction, guy_state, for_pay = False)
+                        call strip_tease_guy_cum(the_person, girl_state, girl_direction, guy_state, for_pay = False) from _call_strip_tease_guy_cum
 
                 if the_person.arousal >= the_person.max_arousal:
                     $ the_choice = "orgasm"
@@ -920,7 +920,7 @@ label strip_tease(the_person, in_private = True, for_pay = False, start_girl_dir
             mc.name "That's enough for me, I need a break."
             $ should_continue = False
 
-    call clear_sex_slut_modifiers(the_person)
+    call clear_sex_slut_modifiers(the_person) from _call_clear_sex_slut_modifiers_strip_tease
 
     python:
         girl_state = None
@@ -1237,7 +1237,7 @@ label strip_tease_guy_cum(the_person, girl_state, girl_direction, guy_state, for
                     pass
 
         if not already_came:
-            call strip_cum_question_loop(the_person, girl_state, girl_direction, girl_aware, for_pay)
+            call strip_cum_question_loop(the_person, girl_state, girl_direction, girl_aware, for_pay) from _call_strip_cum_question_loop
 
 
     return

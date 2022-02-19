@@ -407,7 +407,7 @@ label game_loop(): ##THIS IS THE IMPORTANT SECTION WHERE YOU DECIDE WHAT ACTIONS
             $ mc.change_location(bedroom)
         else:
             $ mc.change_energy(10) #Extra 10 energy gain if you spend your time waiting around
-        call advance_time from _call_advance_time_15
+        call advance_time() from _call_advance_time_15
         $ mc.location.show_background() #Redraw the background in case it has changed due to the new time.
 
     jump game_loop
@@ -641,7 +641,7 @@ label advance_time:
         $ renpy.free_memory()
     $ mc.location.show_background()
     if mandatory_advance_time: #If a crisis has told us to advance time after it we do so.
-        call advance_time from _call_advance_time_28
+        call advance_time() from _call_advance_time_28
 
     $ people_to_process = [] #Clears the memory used here.
     return

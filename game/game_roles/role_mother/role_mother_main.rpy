@@ -268,7 +268,7 @@ label mom_high_sluttiness_weekly_pay(the_person): #TODO: Change all of these ove
                 $ the_person.change_obedience(1)
                 "You hand over the cash and sit back while [the_person.possessive_title] entertains you."
 
-            call strip_tease(the_person, for_pay = True)
+            call strip_tease(the_person, for_pay = True) from _call_strip_tease_mom_high_sluttiness_weekly_pay
 
 
         "Strip for me\n{color=#ff0000}{size=18}Requires: $100{/size}{/color} (disabled)" if not mc.business.has_funds(100):

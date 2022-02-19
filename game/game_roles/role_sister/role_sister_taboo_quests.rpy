@@ -149,7 +149,7 @@ label sister_kissing_taboo_break_revisit(the_person):
                 the_person "Well... Not very, yet, but I just started posting! I'm still figuring out what people want to see."
                 the_person "There are some shots that are really hard to get by myself, so I need your help."
                 the_person "Help me out for a while and..."
-                call setup_sister_insta(the_person)
+                call setup_sister_insta(the_person) from _call_setup_sister_insta_sister_kissing_taboo_break
 
             "[the_person.possessive_title] laughs nervously and shrugs."
             the_person "You know... see me naked and stuff. God you're so weird!"

@@ -2495,7 +2495,7 @@ label research_reminder_crisis_label():
                         menu:
                             "I need to cum":
                                 $ the_person.event_triggers_dict["head_researcher_cum_assistance"] = the_person.event_triggers_dict.get("head_researcher_cum_assistance", 0) + 1
-                                call apply_sex_slut_modifiers(the_person)
+                                call apply_sex_slut_modifiers(the_person) from _call_apply_sex_slut_modifiers_research_reminder_crisis
                                 if the_person.get_opinion_score("research work") > 0:
                                     $ the_person.add_situational_slut("science", 5*the_person.get_opinion_score("research work"), "I'll do whatever I need for the cause of science!")
                                 if the_person.event_triggers_dict.get("head_researcher_cum_assistance", 0) <= 1:

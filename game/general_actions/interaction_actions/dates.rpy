@@ -603,7 +603,7 @@ label date_take_home_her_place(the_person, date_type = None): #Your date went we
                     mc.name "I'm going to get going. Have a good night."
                     "[the_person.title] watches you leave, then sulks back inside of her house."
 
-        call check_date_trance(the_person)
+        call check_date_trance(the_person) from _call_check_date_trance_date_take_home_her_place_1
 
     elif (the_person.effective_sluttiness(["underwear_nudity", "bare_tits", "bare_pussy"]) + (5 * the_person.get_opinion_score("not wearing anything")) + (5 * the_person.get_opinion_score("lingerie")) > 45) or the_person.has_role(girlfriend_role):
         $ mc.change_location(the_person.home)
@@ -654,7 +654,7 @@ label date_take_home_her_place(the_person, date_type = None): #Your date went we
                 mc.name "Yeah, I think I'd like that."
                 "You say goodnight and leave, heading back to your place."
 
-        call check_date_trance(the_person)
+        call check_date_trance(the_person) from _call_check_date_trance_date_take_home_her_place_2
 
     else:
         $ mc.change_location(the_person.home)
@@ -697,7 +697,7 @@ label date_take_home_her_place(the_person, date_type = None): #Your date went we
                 mc.name "I think I'd like that."
                 "You finish your drink and say goodnight to [the_person.title]."
 
-        call check_date_trance(the_person)
+        call check_date_trance(the_person) from _call_check_date_trance_date_take_home_her_place_3
 
     return
 
@@ -764,8 +764,8 @@ label shopping_date_loop(the_person, previous_choice = None):
             call shopping_date_underwear(the_person) from _call_shopping_date_underwear
             return "Underwear"
 
-        "Get her hair done." if previous_choice != "Hair":
-            call shopping_date_hair(the_person)
+        "Get her hair done" if previous_choice != "Hair":
+            call shopping_date_hair(the_person) from _call_shopping_date_hair
             return "Hair"
         #
         # "Look at electronics." if previous_choice != "Electronics": #TODO: Write these other options when we have time
@@ -1506,7 +1506,7 @@ label shopping_date_hair(the_person):
     the_person "There are just so many options! What do you think I should do?"
     $ did_haircut = False
     menu:
-        "Pick a hair style.":
+        "Pick a hair style":
             mc.name "Definitely a haircut of some style. Let's see..."
             $ hair_list = []
             python:
@@ -1522,11 +1522,11 @@ label shopping_date_hair(the_person):
                 "You point to a picture on the page."
                 mc.name "This one looks nice."
                 the_person "Okay, I trust you."
-                call do_haircut(the_person, style_choice)
+                call do_haircut(the_person, style_choice) from _call_do_haircut_shopping_date_hair
                 $ did_haircut = True
 
 
-        "Dye her hair.":
+        "Dye her hair":
             mc.name "I think it's time for a new hair colour."
             the_person "Do you really think so? Well... okay. I trust you [the_person.mc_title]."
             call screen colour_selector(True, "Pick a dye colour")
@@ -1536,7 +1536,7 @@ label shopping_date_hair(the_person):
                 mc.name "Come on, let's go."
             else:
                 mc.name "This colour will look good."
-                call do_dye(the_person, colour_choice)
+                call do_dye(the_person, colour_choice) from _call_do_dye_shopping_date_hair
                 $ did_haircut = True
 
     #
@@ -1550,28 +1550,28 @@ label shopping_date_hair(the_person):
         the_person "Well, what do you think?"
         "She gives a little turn so you can get a good look."
         menu:
-            "It's cute.":
+            "It's cute":
                 mc.name "It's a cute look."
                 $ the_person.change_love(1)
 
-            "It's sexy.":
+            "It's sexy":
                 mc.name "You look pretty hot."
                 $ the_person.change_slut(1, 30)
 
-            "It's what I wanted.":
+            "It's what I wanted":
                 mc.name "It's just what I wanted."
                 $ the_person.change_obedience(1)
 
         "The receptionist interrupts, sliding a receipt towards you."
         menu:
-            "Pay. -$200" if mc.business.has_funds(200):
+            "Pay\n{color=#ff0000}{size=18}Costs: $200{/size}{/color}" if mc.business.has_funds(200):
                 "You charge it to the business card."
                 $ mc.business.change_funds(-200)
 
-            "Pay. -$200 (disabled)" if not mc.business.has_funds(200):
+            "Pay\n{color=#ff0000}{size=18}Requires: $200{/size}{/color} (disabled)" if not mc.business.has_funds(200):
                 pass
 
-            "Tell her to pay.":
+            "Tell her to pay":
                 mc.name "[the_person.title], can you take care of that please."
                 if the_person.has_role(affair_role):
                     $ so_title = SO_relationship_to_title(the_person.relationship)
@@ -1612,10 +1612,10 @@ label check_date_trance(the_person): #At the end of a date you have an opportuni
         "You pause. [the_person.possessive_title] seems to still be stunned by her serum-enhanced orgasms."
         "This might be your chance to put some new thoughts in her head."
         menu:
-            "Train her.":
-                call do_training(the_person)
+            "Train her":
+                call do_training(the_person) from _call_do_training_check_date_trance
 
-            "Leave her alone.":
+            "Leave her alone":
                 pass
     return
 

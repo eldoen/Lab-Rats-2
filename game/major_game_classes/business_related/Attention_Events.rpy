@@ -43,11 +43,11 @@ label attention_event():
         $ city_rep.apply_outfit(city_rep.wardrobe.build_appropriate_outfit(city_rep.sluttiness))
 
     if mc.is_at_work():
-        call attention_already_in(city_rep)
+        call attention_already_in(city_rep) from _call_attention_already_in_attention_event
     else:
-        call attention_call_to_work(city_rep)
+        call attention_call_to_work(city_rep) from _call_attention_call_to_work_attention_event
 
-    call attention_visit(city_rep)
+    call attention_visit(city_rep) from _call_attention_visit_attention_event
 
     #TODO: Have an option to have your girls "distract" the enforcers so they find nothing.
 
@@ -337,7 +337,7 @@ label attention_already_in(the_person):
         $ the_person.draw_person()
         "You step into the lobby and see [the_person.title], flanked by her usual enforcers."
         if the_person.event_triggers_dict.get("city_rep_forced_uniform", False):
-            call city_rep_outfit_comment(the_person)
+            call city_rep_outfit_comment(the_person) from _call_city_rep_outfit_comment_1
         "You know the routine. You unlock the door and let them in."
 
     return
@@ -400,7 +400,7 @@ label attention_call_to_work(the_person):
     "[the_person.title] is waiting at the front door, typing something on her phone."
     "She is flanked by two burly men in poorly fitting suits."
     if the_person.event_triggers_dict.get("city_rep_forced_uniform", False):
-        call city_rep_outfit_comment(the_person)
+        call city_rep_outfit_comment(the_person) from _call_city_rep_outfit_comment_2
 
     the_person "Ah, you're here. May we come in?"
     "It doesn't really sound like a question."
@@ -459,26 +459,26 @@ label attention_visit(the_person):
     "The two suited enforcers shoulder past you and start wandering around the lab."
     menu:
         "Chat with [the_person.title]":
-            call talk_person(the_person, keep_talking = False)
+            call talk_person(the_person, keep_talking = False) from _call_talk_person_31
             $ the_person.draw_person()
             "The two suited men show no signs of returning soon."
             if not _return: #IF you want to stop talking we stop right away.
-                call talk_person(the_person, keep_talking = False)
+                call talk_person(the_person, keep_talking = False) from _call_talk_person_32
                 $ the_person.draw_person()
                 "Her enforcers still haven't finished poking around your lab, so you have a little more time to chat."
                 if not _return:
                     $ the_person.draw_person()
-                    call talk_person(the_person, keep_talking = False)
+                    call talk_person(the_person, keep_talking = False) from _call_talk_person_33
 
         "Offer her a coffee":
-            call attention_coffee(the_person)
+            call attention_coffee(the_person) from _call_attention_coffee
             if not _return:
                 $ the_person.draw_person()
-                call talk_person(the_person, keep_talking = False)
+                call talk_person(the_person, keep_talking = False) from _call_talk_person_34
                 "Her enforcers still haven't finished poking around your lab, so you have a little more time to chat."
                 if not _return:
                         $ the_person.draw_person()
-                        call talk_person(the_person, keep_talking = False)
+                        call talk_person(the_person, keep_talking = False) from _call_talk_person_35
 
         "Wait in silence":
             "You stand in silence while [the_person.title]'s men search the lab."
@@ -516,7 +516,7 @@ label attention_coffee(the_person):
         "You head to the break room and make a coffee for yourself and [the_person.title]."
         menu:
             "Add a dose of serum to her coffee" if mc.inventory.get_any_serum_count() > 0:
-                call give_serum(the_person)
+                call give_serum(the_person) from _call_give_serum_35
                 if _return:
                     "You stir the serum into her coffee. The strong smell and taste should mask any hint of it easily."
                 else:

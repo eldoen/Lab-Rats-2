@@ -196,7 +196,7 @@ label research_tutorial_intro():
     "[stephanie.title] pulls out a notebook and flips it open, handing it over to you."
     stephanie "These are my first ideas, you should pick something for me to work on right now. If you change your mind you can always come back here and pick a new topic."
     $ clear_scene()
-    call research_select_action_description from _call_research_select_action_description
+    call research_select_action_description() from _call_research_select_action_description
     "You read through the options she's laid out. \"Suggestion Drugs\", \"Inhibition Suppression\", and vague hints of even more {i}questionable{/i} developments down the line."
     $ mc.change_locked_clarity(10)
     "You weren't planning for this to be a repeat of last year, but [stephanie.title] seems happy to hand you all the tools you would need."
@@ -235,7 +235,7 @@ label research_tutorial_intro():
             $ stephanie.draw_person()
             stephanie "Well, any ideas?"
             "This time when you look at her notes they all make perfect sense. You see what will need to be studied, and how to turn that knowledge into a useful discovery."
-            call research_select_action_description from _call_research_select_action_description_1
+            call research_select_action_description() from _call_research_select_action_description_1
             $ stephanie.draw_person(emotion = "happy")
             stephanie "That's a very clever thought [stephanie.mc_title], I'll start studying that right away."
 
@@ -289,5 +289,5 @@ label marketing_tutorial_intro():
         for place in list_of_places:
             place.accessable = True
     $ clear_scene()
-    call advance_time from _call_advance_time_11
+    call advance_time() from _call_advance_time_11
     return

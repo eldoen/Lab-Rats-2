@@ -254,7 +254,7 @@ label alexia_intro_phase_two_label(the_person):
     $ clear_scene()
     "[the_person.title] gets into the passenger side of her boyfriend's car. She says goodbye from inside and they drive off."
     $ add_alexia_hire_action(the_person)
-    call advance_time from _call_advance_time_18
+    call advance_time() from _call_advance_time_18
     return
 
 
@@ -411,5 +411,5 @@ label alexia_photography_intro_label(the_person):
     mc.name "I'll let you get back to work then. See you around [the_person.title]."
     $ mc.business.hire_company_model(the_person)
     $ purchase_policy(public_advertising_license_policy,ignore_cost = True)
-    call advance_time from _call_advance_time_19
+    call advance_time() from _call_advance_time_19
     return

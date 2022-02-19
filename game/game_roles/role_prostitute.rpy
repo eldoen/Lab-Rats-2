@@ -44,7 +44,7 @@ label prostitute_hire_offer(the_person):
 
     else:
         the_person "Really? Well... Okay, tell me about it."
-        call stranger_hire_result(the_person)
+        call stranger_hire_result(the_person) from _call_stranger_hire_result_prostitute_hire_offer
         if _return:
             mc.name "Then it's settled. I'll see you at work."
             the_person "I suppose I'm going to need a more professional wardrobe now."
