@@ -1566,7 +1566,7 @@ label shopping_date_hair(the_person):
         menu:
             "Pay\n{color=#ff0000}{size=18}Costs: $200{/size}{/color}" if mc.business.has_funds(200):
                 "You charge it to the business card."
-                $ mc.business.funds(-200)
+                $ mc.business.change_funds(-200)
 
             "Pay\n{color=#ff0000}{size=18}Requires: $200{/size}{/color} (disabled)" if not mc.business.has_funds(200):
                 pass
