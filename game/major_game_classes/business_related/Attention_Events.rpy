@@ -96,7 +96,7 @@ label attention_event():
     $ mc.business.attention = int(mc.business.attention/2)
 
     $ times_visited = mc.business.event_triggers_dict["attention_times_visited"] = mc.business.event_triggers_dict.get("attention_times_visited", 0) + 1
-    $ city_rep.event_triggers_dict["currently_interrogating"] = True #Set to False so we can use Role actions without them appearing when you meet her somewhere else.
+    $ city_rep.event_triggers_dict["currently_interrogating"] = False #Set to False so we can use Role actions without them appearing when you meet her somewhere else.
     $ city_rep.event_triggers_dict["bribe_attempts"] = [] #Reset our list so we won't accidentally trigger something outside of this event.
     $ clear_scene()
     "You're glad to finally left alone, but the encounter has eaten up most of the day."
@@ -276,6 +276,7 @@ label attention_illegal_serum(the_person):
         the_person "Oh no, disposal is your responsibility. As long as we don't see any on the open market there are no issues."
         "She gives you a cold smile and hands the vial over to you."
         the_person "But if we do I'll have to come down for another visit. I don't think either of us want that."
+    $ highest_attention_design.attention += highest_attention_design_change
     $ mc.log_event(highest_attention_design_name + " made illegal, +"+str(highest_attention_design_change)+" Attention!", "float_text_red")
     return
 
