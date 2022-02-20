@@ -948,12 +948,12 @@ init -2 python:
 
             if recruitment_skill_improvement_policy.is_active():
                 skill_cap = 7
-                candidate_dict["age_ceiling"] += 10
+                candidate_dict["age_ceiling"] += 5
                 candidate_dict["skill_array"] = [renpy.random.randint(1,skill_cap),renpy.random.randint(1,skill_cap),renpy.random.randint(1,skill_cap),renpy.random.randint(1,skill_cap),renpy.random.randint(1,skill_cap)]
 
             if recruitment_stat_improvement_policy.is_active():
                 stat_cap = 7
-                candidate_dict["age_floor"] += 10
+                candidate_dict["age_floor"] += 5
                 candidate_dict["stat_array"] = [renpy.random.randint(1,stat_cap),renpy.random.randint(1,stat_cap),renpy.random.randint(1,stat_cap)]
 
             if recruitment_sex_improvement_policy.is_active():
@@ -971,9 +971,10 @@ init -2 python:
                 candidate_dict["bonus_sluttiness"] = 20
 
             if recruitment_mothers_policy.is_active():
-                candidate_dict["age_ceiling"] += 10
+                candidate_dict["age_floor"] += 5
                 candidate_dict["bonus_kids"] = candidate_dict.get("bonus_kids", 0) + 1
             elif recruitment_childless_policy.is_active():
+                candidate_dict["age_floor"] -= 5
                 candidate_dict["kids"] = 0
 
             if recruitment_big_tits_policy.is_active():
@@ -986,7 +987,7 @@ init -2 python:
                 candidate_dict["tits"] = "AA"
 
             if recruitment_short_policy.is_active():
-                candidate_dict["height"] = 0.85 + (renpy.random.random()/25)
+                candidate_dict["height"] = 0.81 + (renpy.random.random()/25)
             elif recruitment_tall_policy.is_active():
                 candidate_dict["height"] = 0.92 + (renpy.random.random()/25)
 
@@ -997,18 +998,22 @@ init -2 python:
                 candidate_dict["age_ceiling"] += 10
                 candidate_dict["relationship"] = "Married"
 
-            if recruitment_old_policy.is_active():
-                candidate_dict["age_floor"] = 40
-            elif recruitment_teen_policy.is_active():
-                candidate_dict["age_ceiling"] = 19
-
             if candidate_dict.get("age_ceiling", 50) > 55: #TODO: Introduce post-menopause women.
                 candidate_dict["age_ceiling"] = 55
             if candidate_dict.get("age_floor", 18) < 18: #No FBI needed here!
                 candidate_dict["age_floor"] = 18
 
+            if recruitment_old_policy.is_active():
+                candidate_dict["age_floor"] = 40
+                if candidate_dict.get("age_floor", 18) >= candidate_dict.get("age_ceiling", 55):
+                    candidate_dict["age_ceiling"] = candidate_dict.get("age_floor",18) + 1
+            elif recruitment_teen_policy.is_active():
+                candidate_dict["age_ceiling"] = 19
+                if candidate_dict.get("age_floor", 18) >= candidate_dict.get("age_ceiling", 55):
+                    candidate_dict["age_floor"] = candidate_dict.get("age_ceiling",18) - 1
+
             if candidate_dict.get("age_ceiling", 55) <= candidate_dict.get("age_floor", 18):
-                candidate_dict["age_ceiling"] = candidate_dict.get("age_floor",18) + 1
+                candidate_dict["age_floor"] = candidate_dict.get("age_ceiling",18) - 1
 
             return candidate_dict
 
