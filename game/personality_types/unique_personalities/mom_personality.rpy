@@ -1227,7 +1227,7 @@ label mom_sucking_cock_taboo_break(the_person):
             mc.name "You've given a blowjob before, right?"
             "She nods meekly."
             the_person "When I was younger. It's been a long time..."
-            mc.name "Then you know what to do. Just kneel down, put slide your lips onto it, and it'll all come back to you."
+            mc.name "Then you know what to do. Just kneel down, slide your lips over it, and it'll all come back to you."
             "[the_person.possessive_title] grabs your head and kisses you passionately. You wrap your arms around her reciprocate."
             "She finally breaks the kiss, pulling back her head and staring into your eyes."
             the_person "I love you [the_person.mc_title]."
