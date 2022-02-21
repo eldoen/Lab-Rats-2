@@ -943,17 +943,15 @@ init -2 python:
         def generate_candidate_requirements(self): #Checks current business policies and generates a dict of keywords for create_random_person to set the correct values to company requirements.
             # In cases where a range is allowed it generates a random value in that range, so call this one per person being created.
             candidate_dict = {} # This will hold keywords and arguments for create_random_person to create a person with specific modifies
-            candidate_dict["age_ceiling"] = 50
-            candidate_dict["age_floor"] = 18
 
             if recruitment_skill_improvement_policy.is_active():
                 skill_cap = 7
-                candidate_dict["age_ceiling"] += 5
+                candidate_dict["age_ceiling"] = candidate_dict.get("age_ceiling", 50) + 5
                 candidate_dict["skill_array"] = [renpy.random.randint(1,skill_cap),renpy.random.randint(1,skill_cap),renpy.random.randint(1,skill_cap),renpy.random.randint(1,skill_cap),renpy.random.randint(1,skill_cap)]
 
             if recruitment_stat_improvement_policy.is_active():
                 stat_cap = 7
-                candidate_dict["age_floor"] += 5
+                candidate_dict["age_floor"] = candidate_dict.get("age_floor",18) + 5
                 candidate_dict["stat_array"] = [renpy.random.randint(1,stat_cap),renpy.random.randint(1,stat_cap),renpy.random.randint(1,stat_cap)]
 
             if recruitment_sex_improvement_policy.is_active():
@@ -961,7 +959,7 @@ init -2 python:
                 candidate_dict["sex_array"] = [renpy.random.randint(1,stat_cap), renpy.random.randint(1,stat_cap), renpy.random.randint(1,stat_cap), renpy.random.randint(1,stat_cap)]
 
             if recruitment_suggest_improvement_policy.is_active():
-                candidate_dict["age_ceiling"] -= 10
+                candidate_dict["age_ceiling"] = candidate_dict.get("age_ceiling", 50) - 10
                 candidate_dict["bonus_suggest"] = 2
 
             if recruitment_obedience_improvement_policy.is_active():
@@ -971,10 +969,10 @@ init -2 python:
                 candidate_dict["bonus_sluttiness"] = 20
 
             if recruitment_mothers_policy.is_active():
-                candidate_dict["age_floor"] += 5
+                candidate_dict["age_floor"] = candidate_dict.get("age_floor",18) + 5
                 candidate_dict["bonus_kids"] = candidate_dict.get("bonus_kids", 0) + 1
             elif recruitment_childless_policy.is_active():
-                candidate_dict["age_floor"] -= 5
+                candidate_dict["age_floor"] = candidate_dict.get("age_floor",18) - 5
                 candidate_dict["kids"] = 0
 
             if recruitment_big_tits_policy.is_active():
@@ -992,10 +990,10 @@ init -2 python:
                 candidate_dict["height"] = 0.92 + (renpy.random.random()/25)
 
             if recruitment_single_policy.is_active():
-                candidate_dict["age_ceiling"] -= 10
+                candidate_dict["age_ceiling"] = candidate_dict.get("age_ceiling", 50) - 10
                 candidate_dict["relationship"] = "Single"
             elif recruitment_married_policy.is_active():
-                candidate_dict["age_ceiling"] += 10
+                candidate_dict["age_ceiling"] = candidate_dict.get("age_ceiling", 50) + 10
                 candidate_dict["relationship"] = "Married"
 
             if candidate_dict.get("age_ceiling", 50) > 55: #TODO: Introduce post-menopause women.

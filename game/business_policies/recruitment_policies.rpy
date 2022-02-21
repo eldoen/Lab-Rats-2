@@ -175,7 +175,7 @@ init 0 python:
     recruitment_policies_list.append(recruitment_tall_policy)
 
     recruitment_mothers_policy = Policy(name = "Screening Criteria: Mother",
-        desc = "Only seek applications from women who are mothers. Raises the cost of applicant screening by $200.",
+        desc = "Only seek applications from women who are mothers. Raises the cost of applicant screening by $200, raises average age.",
         cost = 2000,
         toggleable = True,
         own_requirement = recruitment_knowledge_three_policy,
@@ -186,7 +186,7 @@ init 0 python:
     recruitment_policies_list.append(recruitment_mothers_policy)
 
     recruitment_childless_policy = Policy(name = "Screening Criteria: Childless",
-        desc = "Only seek applications from women who are not parents. Raise the cost of applicant screening by $50.",
+        desc = "Only seek applications from women who are not parents. Raise the cost of applicant screening by $50, lowers average age.",
         cost = 1000,
         toggleable = True,
         own_requirement = recruitment_knowledge_three_policy,
@@ -197,7 +197,7 @@ init 0 python:
     recruitment_policies_list.append(recruitment_childless_policy)
 
     recruitment_single_policy = Policy(name = "Screening Criteria: Single",
-        desc = "Take applications only from women who are currently single. Raise the cost of applicant screening by $200.",
+        desc = "Take applications only from women who are currently single. Raise the cost of applicant screening by $200, lowers average age.",
         cost = 2000,
         toggleable = True,
         own_requirement = recruitment_knowledge_two_policy,
@@ -208,7 +208,7 @@ init 0 python:
     recruitment_policies_list.append(recruitment_single_policy)
 
     recruitment_married_policy = Policy(name = "Screening Criteria: Married",
-        desc = "Take applications only from women who are married. Raise the cost of applicant screening by $200.",
+        desc = "Take applications only from women who are married. Raise the cost of applicant screening by $200, raises average age.",
         cost = 2000,
         toggleable = True,
         own_requirement = recruitment_knowledge_two_policy,
