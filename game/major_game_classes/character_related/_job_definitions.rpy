@@ -57,19 +57,19 @@ label instantiate_jobs():
         office_worker_job = Job("Office Worker", unimportant_job_role, job_location = downtown, work_days = [0,1,2,3,4], work_times = [1,2])
 
 
-        list_of_jobs.append(unemployed_job)
-        list_of_jobs.append(barista_job)
+        list_of_jobs.append([unemployed_job, 20])
+        list_of_jobs.append([barista_job, 3])
 
-        list_of_jobs.append(clothing_cashier_job)
-        list_of_jobs.append(sex_cashier_job)
-        list_of_jobs.append(electronics_cashier_job)
-        list_of_jobs.append(supply_cashier_job)
-        list_of_jobs.append(home_improvement_cashier_job)
+        list_of_jobs.append([clothing_cashier_job, 3])
+        list_of_jobs.append([sex_cashier_job, 3])
+        list_of_jobs.append([electronics_cashier_job, 3])
+        list_of_jobs.append([supply_cashier_job, 3])
+        list_of_jobs.append([home_improvement_cashier_job, 3])
 
-        list_of_jobs.append(nurse_job)
-        list_of_jobs.append(night_nurse_job)
-        list_of_jobs.append(gym_instructor_job)
-        list_of_jobs.append(office_worker_job)
+        list_of_jobs.append([nurse_job, 10])
+        list_of_jobs.append([night_nurse_job, 10])
+        list_of_jobs.append([gym_instructor_job, 3])
+        list_of_jobs.append([office_worker_job, 10])
 
 
     return

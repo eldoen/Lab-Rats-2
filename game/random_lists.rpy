@@ -598,7 +598,7 @@ init -2:
             return get_random_from_list(list_of_clothing_colours)
 
         def get_random_job(): #TODO: Replace this with a more directed fucntion that distributes jobs based on stats.
-            return get_random_from_list(list_of_jobs)
+            return get_random_from_weighted_list(list_of_jobs)
 
         list_of_body_types = []
         list_of_body_types.append("thin_body")
