@@ -89,7 +89,7 @@ label attention_event():
         $ picked_event.call_action(city_rep)
 
     city_rep "I think we're done here men. Thank you for your cooperation [city_rep.mc_title]."
-    "She leaves the building with her city tughs following behind her."
+    "She leaves the building with her city thugs following behind her."
 
 
     $ mc.business.event_triggers_dict["attention_event_pending"] = False
