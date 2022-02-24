@@ -25,14 +25,15 @@ init -1 python:
             the_person.add_role(lactating_serum_role)
             the_person.event_triggers_dict["serum_in_breasts"] = 0
 
-        if the_person.event_triggers_dict.get("lactating_serum_types", False):
+        if "lactating_serum_types" in the_person.event_triggers_dict.keys():
             the_person.event_triggers_dict["lactating_serum_types"].append(target_design)
         else:
             the_person.event_triggers_dict["lactating_serum_types"] = [target_design]
 
     def breast_milk_serum_production_on_remove(target_design, the_person, the_serum, add_to_log):
-        the_person.event_triggers_dict["lactating_serum_types"].remove(target_design) #We know this exists because we added it on_apply.
-        if not the_person.event_triggers_dict.get("lactating_serum_types"):
+        if target_design in the_person.event_triggers_dict.get("lactating_serum_types", []):
+            the_person.event_triggers_dict["lactating_serum_types"].remove(target_design)
+        if not the_person.event_triggers_dict.get("lactating_serum_types", []):
             the_person.remove_role(lactating_serum_role) #If there are no serums to lactate recorded we can safely remove the role - needed in case you double dose her with this production serum.
             the_person.event_triggers_dict["serum_in_breasts"] = 0
 

@@ -30,6 +30,10 @@ init -2 python:
 
 label milk_for_serum_label(the_person): #Note that thee serum types have already had the "Milk" component added to them and are unconnected copies of the origional.
     $ serum_produced = get_random_from_list(the_person.event_triggers_dict.get("lactating_serum_types", [])) #If there are multiple traits we only use a random one
+    if not serum_produced:
+        "It seems there are no serums to milk."
+        return
+
     $ milk_serum = copy.deepcopy(serum_produced)
     $ milk_serum.name = "Milky " + milk_serum.name
     $ milk_trait = the_person.get_milk_trait()
