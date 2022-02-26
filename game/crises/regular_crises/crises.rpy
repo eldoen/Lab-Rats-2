@@ -1214,7 +1214,7 @@ init 1 python:
     def home_fuck_crisis_get_person():
         meets_sluttiness_list = []
         for person in mc.business.get_employee_list():
-            if person.sluttiness >= 15 and not girlfriend_role in person.special_role and (person.relationship == "Single" or person.get_opinion_score("cheating on men") > 0):
+            if person.sluttiness >= 15 and not person.has_role(girlfriend_role) and (person.relationship == "Single" or person.get_opinion_score("cheating on men") > 0):
                 meets_sluttiness_list.append(person)
         return get_random_from_list(meets_sluttiness_list)
 

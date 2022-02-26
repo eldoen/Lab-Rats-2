@@ -32,7 +32,7 @@ init -1 python:
         return True
 
     def become_pregnant(person): # Called when a girl is knocked up. Establishes all of the necessary bits of info.
-        if not person or pregnant_role in person.special_role:
+        if not person or person.has_role(pregnant_role):
             return
 
         person.event_triggers_dict["immaculate_conception"] = person.has_taboo("vaginal_sex")

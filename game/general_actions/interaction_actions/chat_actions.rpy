@@ -45,24 +45,21 @@ init -2 python:
     def small_talk_requirement(the_person):
         if mc.energy < 15:
             return "Requires: 15{image=gui/extra_images/energy_token.png}"
-        else:
-            return True
+        return True
 
     def compliment_requirement(the_person):
         if the_person.love < 10:
             return "Requires: 10 Love"
         elif mc.energy < 15:
             return "Requires: 15{image=gui/extra_images/energy_token.png}"
-        else:
-            return True
+        return True
 
     def flirt_requirement(the_person):
         if the_person.love < 10:
             return "Requires: 10 Love"
         elif mc.energy < 15:
             return "Requires: 15{image=gui/extra_images/energy_token.png}"
-        else:
-            return True
+        return True
 
     def date_option_requirement(the_person):
         if the_person.love < 20:
@@ -78,8 +75,7 @@ init -2 python:
             return "Too late to go for lunch"
         elif the_person.love < love_requirement:
             return "Requires: " + str(love_requirement) + " Love"
-        else:
-            return True
+        return True
 
     def movie_date_requirement(the_person):
         love_requirement = 30
@@ -134,14 +130,12 @@ init -2 python:
         #the_person parameter passed to match other actions and for future proofing.
         if mc.inventory.get_any_serum_count() <= 0:
             return "Requires: Serum in inventory"
-        else:
-            return True
+        return True
 
     def seduce_requirement(the_person):
         if the_person.sluttiness < 15:
             return "Requires: {image=gui/heart/three_quarter_red_quarter_empty_heart.png}"
-        else:
-            return True
+        return True
 
     def grope_requirement(the_person):
         if the_person.sluttiness < 5:
@@ -150,22 +144,19 @@ init -2 python:
             return "Just groped her"
         elif mc.energy < 5:
             return "Not enough {image=gui/extra_images/energy_token.png}"
-        else:
-            return True
+        return True
 
     def command_requirement(the_person):
         if the_person.obedience < 105:
             return "Requires: 105 Obedience"
         elif mc.energy < 10:
             return "Not enough {image=gui/extra_images/energy_token.png}"
-        else:
-            return True
+        return True
 
     def change_titles_requirement(the_person):
         if the_person.obedience < 105:
             return "Requires: 105 Obedience"
-        else:
-            return True
+        return True
 
     def serum_demand_requirement(the_person):
         if the_person.has_role(employee_role):
@@ -174,46 +165,40 @@ init -2 python:
                 return "Requires: 110 Obedience"
             elif mc.inventory.get_any_serum_count() <= 0:
                 return "Requires: Serum in inventory"
-            else:
-                return True
+            return True
 
         else:
             if the_person.obedience < 120:
                 return "Requires: 120 Obedience"
             elif mc.inventory.get_any_serum_count() <= 0:
                 return "Requires: Serum in inventory"
-            else:
-                return True
+            return True
 
     def wardrobe_change_requirment(the_person):
         if the_person.obedience < 120:
             return "Requires: 120 Obedience"
-        else:
-            return True
+        return True
 
     def bc_talk_requirement(the_person):
         if persistent.pregnancy_pref == 0:
             return False
         elif the_person.effective_sluttiness() < 20 and the_person.love < 20:
             return False
-        elif pregnant_role in the_person.special_role: # don't talk about bc when she is pregnant
+        elif the_person.has_role(pregnant_role): # don't talk about bc when she is pregnant
             return False
-        else:
-            return True
+        return True
 
     def demand_touch_requirement(the_person):
         if the_person.obedience < 125: #TODO: Note: This isn't based on sluttiness directly, but we should have some dialogue reference to it.
             return "Requires: 125 Obedience"
-        else:
-            return True
+        return True
 
     def suck_demand_requirement(the_person):
         if the_person.has_taboo("sucking_cock"):
             return False #Doesn't appear until you've broken the taboo in the first place
         elif the_person.obedience < 150:
             return "Requires: 150 Obedience"
-        else:
-            return True
+        return True
 
 
     def demand_strip_requirement(the_person):

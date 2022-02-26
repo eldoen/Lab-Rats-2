@@ -602,7 +602,7 @@ label photo_sex(the_person):
     if the_person.effective_sluttiness("vaginal_sex") < 65 or the_person.has_taboo("vaginal_sex"):
         if the_person.relationship != "Single":
             $ so_title = SO_relationship_to_title(the_person.relationship)
-            if affair_role in the_person.special_role:
+            if the_person.has_role(affair_role):
                 the_person "That would be nice [the_person.mc_title], just make sure my [so_title] doesn't find out."
                 mc.name "Don't worry, just do what feels natural."
             else:

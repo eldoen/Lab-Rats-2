@@ -201,7 +201,7 @@ label demand_touch_label(the_person):
         $ the_person.break_taboo("touching_body")
 
 
-    if prostitute_role in the_person.special_role:
+    if the_person.has_role(prostitute_role):
         the_person "We can continue what you started, but it would cost you two hundred dollars."
         menu:
             "Pay her\n{color=#ff0000}{size=18}Costs: $200{/size}{/color}" if mc.business.funds > 200:

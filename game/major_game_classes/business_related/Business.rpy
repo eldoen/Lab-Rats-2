@@ -1023,7 +1023,7 @@ init -2 python:
 
         def fire_company_model(self):
             if self.company_model:
-                self.company_model.special_role.remove(company_model_role)
+                self.company_model.remove_role(company_model_role)
                 self.company_model = None
 
         def hire_head_researcher(self, person):
@@ -1034,5 +1034,5 @@ init -2 python:
 
         def fire_head_researcher(self):
             if self.head_researcher:
-                self.head_researcher.special_role.remove(head_researcher)
+                self.head_researcher.remove_role(head_researcher)
                 self.head_researcher = None

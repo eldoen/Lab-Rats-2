@@ -606,7 +606,7 @@ label caught_affair_cheating_label(the_other_girl, the_girlfriend):
     #TODO: She confronts you about being with another woman. You point out that she's ALSO with another guy. She asks you to tone it down a bit, she wants to be your main thing.
     # OR, if you lose enough Love, she ends the affair.
 
-    if affair_role not in the_girlfriend.special_role:
+    if not the_girlfriend.has_role(affair_role):
         return #Something's changed, so don't worry about getting caught any more.
 
     "[the_girlfriend.title] walks up to you."

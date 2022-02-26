@@ -127,7 +127,7 @@ label mom_weekly_pay_label(the_person):
         call mom_low_sluttiness_weekly_pay(the_person) from _call_mom_low_sluttiness_weekly_pay #The menu is separated out to make looping easier.
     else:
         if mc.business.event_triggers_dict.get("Mom_Payment_Level",0) >= 1: #We've been through this song and dance already.
-            if the_person.event_triggers_dict.get("Mom_forced_off_bc", False) and not pregnant_role in the_person.special_role:
+            if the_person.event_triggers_dict.get("Mom_forced_off_bc", False) and not the_person.has_role(pregnant_role):
                 if the_person.on_birth_control:
                     $ mc.change_locked_clarity(10)
                     the_person "The budget is still really tight [the_person.mc_title], so I was wondering if you wanted to buy some sort of favour from me?"
@@ -366,7 +366,7 @@ label mom_high_sluttiness_weekly_pay(the_person): #TODO: Change all of these ove
         "Suck me off\n{color=#ff0000}{size=18}Requires: $300{/size}{/color} (disabled)" if not mc.business.has_funds(300) or the_person.effective_sluttiness("sucking_cock") < 30 or the_person.get_opinion_score("giving blowjobs") <= -2:
             pass
 
-        "Stop your birth control\n{color=#ff0000}{size=18}Costs: $150{/size}{/color}" if mc.business.has_funds(150) and the_person.effective_sluttiness() >= 30 and persistent.pregnancy_pref > 0 and not the_person.event_triggers_dict.get("Mom_forced_off_bc", False) and not pregnant_role in the_person.special_role:
+        "Stop your birth control\n{color=#ff0000}{size=18}Costs: $150{/size}{/color}" if mc.business.has_funds(150) and the_person.effective_sluttiness() >= 30 and persistent.pregnancy_pref > 0 and not the_person.event_triggers_dict.get("Mom_forced_off_bc", False) and not the_person.has_role(pregnant_role):
             mc.name "I have something I'd like you to do. I want you to stop taking your birth control."
             if the_person.on_birth_control:
                 if the_person.has_taboo("vaginal_sex"):
@@ -399,7 +399,7 @@ label mom_high_sluttiness_weekly_pay(the_person): #TODO: Change all of these ove
                 call mom_high_sluttiness_weekly_pay(the_person) from _call_mom_high_sluttiness_weekly_pay_1
 
 
-        "Stop your birth control\n{color=#ff0000}{size=18}Costs: $150{/size}{/color} (disabled)" if not mc.business.has_funds(150) and the_person.effective_sluttiness() >= 30 and persistent.pregnancy_pref > 0  and not the_person.event_triggers_dict.get("Mom_forced_off_bc", False) and not pregnant_role in the_person.special_role:
+        "Stop your birth control\n{color=#ff0000}{size=18}Costs: $150{/size}{/color} (disabled)" if not mc.business.has_funds(150) and the_person.effective_sluttiness() >= 30 and persistent.pregnancy_pref > 0  and not the_person.event_triggers_dict.get("Mom_forced_off_bc", False) and not the_person.has_role(pregnant_role):
             pass
 
         #TODO: Enable this and tie it into Lily's new Instapic story chunk

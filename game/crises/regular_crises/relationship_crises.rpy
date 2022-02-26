@@ -185,8 +185,8 @@ init 1 python:
     def get_girlfriend_nudes_person():
         possible_people = []
         for place in list_of_places:
-            for a_person in place.people:
-                if girlfriend_role in a_person.special_role and a_person not in mc.location.people: #Someone is in an affair with you and wants a dic pic
+            for a_person in [x for x in place.people if x.has_role(girlfriend_role)]:
+                if a_person not in mc.location.people: #Someone is in an affair with you and wants a dic pic
                     possible_people.append(a_person)
         return get_random_from_list(possible_people)
 
@@ -706,7 +706,7 @@ label friends_help_friends_be_sluts_label():
                         "Let [person_two.title] give you a blowjob":
                             mc.name "I'm not about to say no to an offer like that."
                             $ the_group.draw_person(person_one)
-                            if girlfriend_role in person_one.special_role or affair_role in person_one.special_role:
+                            if person_one.has_role(girlfriend_role) or person_one.has_role(affair_role):
                                 person_one "I didn't think you would sweetheart."
                                 "[person_one.title] leans over your desk and gives you a kiss, then whispers in your ear."
                                 person_one "A little gift from me. You two have fun."

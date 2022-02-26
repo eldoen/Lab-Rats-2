@@ -207,7 +207,7 @@ label ask_be_girlfriend_label(the_person):
 label caught_cheating_label(the_other_girl, the_girlfriend): #Note: the_other_girl is stored as an argument in the event, while the_girlfriend is passed as an extra argument, so they are listed backwards.
     # This is an event added to the on_enter_room list for the girlfriend after she catches you cheating.
 
-    if girlfriend_role not in the_girlfriend.special_role:
+    if not the_girlfriend.has_role(girlfriend_role):
         return #She's lost the role somehow between now and when she caught you, so clear this out and move on.
 
     $ the_girlfriend.draw_person(emotion = "angry")
