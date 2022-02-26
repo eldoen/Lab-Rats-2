@@ -566,7 +566,7 @@ label mom_selfie_label():
             if mc.business.is_weekend():
                 "[the_person.possessive_title] sends you a selfie without her shirt on. The background looks like her bedroom."
             else:
-                "[the_person.possessive_title] sends you a sends you a selfie without her shirt on. It looks like it was taken in the bathroom of her office."
+                "[the_person.possessive_title] sends you a selfie without her shirt on. It looks like it was taken in the bathroom of her office."
             $ the_person.update_outfit_taboos()
 
         elif ran_num == 1:
