@@ -171,7 +171,7 @@ label scene_blowjob_2(the_girl, the_location, the_object):
     $ blowjob.current_modifier = None
     $ blowjob.redraw_scene(the_girl)
 
-    "[the_girl.title] pulls your cock out of her her mouth and leans in even closer. She runs her tongue along the bottom of your shaft, pausing at the top to kiss the tip a few times."
+    "[the_girl.title] pulls your cock out of her mouth and leans in even closer. She runs her tongue along the bottom of your shaft, pausing at the top to kiss the tip a few times."
     the_girl "Does that feel good?"
     menu:
         "Encourage her":

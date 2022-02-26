@@ -576,7 +576,7 @@ label sister_anal_taboo_break_revisit(the_person):
                 the_person "My InstaPic followers have been going absolutely crazy over [mom.title]."
                 the_person "I think everyone would go absolutely crazy if we got some boudoir pictures with both of us."
                 mc.name "You mean in your underwear."
-                the_person "Yeah and... maybe topless. But there's no way she would I could get her to agree to any of that."
+                the_person "Yeah and... maybe topless. But there's no way I could get her to agree to any of that."
                 the_person "If you can convince her, maybe I'll think about it."
                 mc.name "Alright, I'm sure I can figure out some way to convince her."
 

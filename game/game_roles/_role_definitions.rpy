@@ -357,7 +357,7 @@ label instantiate_roles(): #This section instantiates all of the key roles in th
         critical_job_role = Role("Critical Job", [], hidden = True) # Used for role where it is impossible to get the character to quit their job, but they don't have anything else going on.
         stripper_role = Role("Stripper", get_stripper_role_actions(), hidden = True)
 
-        prostitute_role = Role("Prostitute", get_prostitute_role_actions())
+        prostitute_role = Role("Prostitute", get_prostitute_role_actions(), hidden = True)
         pregnant_role = Role("Pregnant", [], hidden = True)
         lactating_serum_role = Role("Lactating Serum", get_lactating_serum_role_actions(), hidden = True, on_turn = lactating_serum_on_turn, on_day = lactating_serum_on_day)
 

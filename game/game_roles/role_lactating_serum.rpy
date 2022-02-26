@@ -222,7 +222,7 @@ label milk_for_serum_label(the_person): #Note that thee serum types have already
                         "[the_person.possessive_title]'s tits are dripping milk just being exposed, and they gush it into the bottle when she starts to massage them."
                         "You aren't sure how she avoid soaking through every single bra and shirt she puts on!"
                         if the_person.has_large_tits():
-                            "Soon you've milked her her big tits empty, but they never quite stop dripping as her body makes new milk at a tremendous rate."
+                            "Soon you've milked her big tits empty, but they never quite stop dripping as her body makes new milk at a tremendous rate."
                         else:
                             "Her tiny tits are emptied in seconds, but they still never quite stop dripping as her body keeps making new milk at a tremendous rate."
 

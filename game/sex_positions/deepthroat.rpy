@@ -171,7 +171,7 @@ label scene_deepthroat_2(the_girl, the_location, the_object):
 
             "Force her deeper":
                 mc.name "Come on, no slacking off..."
-                "You pull hard on the back of [the_girl.title]'s head, forcing her to bottom out on your cock. She puts her her hands on your thighs and tries to pull back but you hold her in place."
+                "You pull hard on the back of [the_girl.title]'s head, forcing her to bottom out on your cock. She puts her hands on your thighs and tries to pull back but you hold her in place."
                 if the_girl.get_opinion_score("being submissive") > 0:
                     $ the_girl.change_arousal(the_girl.get_opinion_score("being submissive" * 5))
                     $ the_girl.discover_opinion("being submissive")

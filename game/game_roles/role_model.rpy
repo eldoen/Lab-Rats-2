@@ -403,7 +403,7 @@ label photo_naked(the_person):
                     mc.name "No problem. Now smile for the camera and let me get a good look at your tits for this next shot."
 
         else:
-            the_person "She gives you a quick spin before turning back."
+            "She gives you a quick spin before turning back."
 
         if the_person.has_taboo(["bare_tits", "bare_pussy"]):
             "Despite her initial hesitation, [the_person.title] soon seems quite comfortable in front of the camera without her clothes on."

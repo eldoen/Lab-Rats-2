@@ -137,10 +137,10 @@ label breeder_fuck(the_person):
         menu:
             "Fuck her":
                 "You pull down your pants and get your hard cock out. You climb onto [the_person.title]'s [start_object.name] and fit your hips between her legs."
-                the_person "Get inside me [the_person.mc_title], come fuck your mother."
+                the_person "Get inside me [the_person.mc_title], come and fuck me hard."
                 "She reaches down and holds onto your shaft, rubbing the tip of your cock against her pussy lips. She strokes your cheek lovingly with her other hand."
                 "You push forward, sinking your dick inside of her. Her eyes flutter and she gasps softly."
-                the_person "Oh [the_person.title]..."
+                the_person "Oh [the_person.mc_title]..."
                 call fuck_person(the_person, private = should_be_private, start_position = missionary, start_object = start_object, skip_intro = True, skip_condom = True) from _call_fuck_person_129
                 $ sex_record = _return
 
