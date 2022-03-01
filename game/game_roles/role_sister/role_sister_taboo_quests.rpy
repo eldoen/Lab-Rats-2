@@ -303,15 +303,8 @@ label sister_oral_taboo_break_revisit_quest_2(the_person):
     "The line is moving at a crawl, it's clear that this is going to take some time."
     menu:
         "Keep waiting {image=gui/heart/Time_Advance.png}" if time_of_day < 4:
-            python:
-                if not iris.home: # save compatible (no home, not added to game)
-                    iris.generate_home()
-                    iris.home.add_person(iris)
-                iris.add_role(dikdok_role)
-                iris.add_role(instapic_role) #Make sure she has both an instapic and dikdok account.
-                iris.add_job(influencer_job)
-                iris.location.move_person(iris, electronics_store)
-                lead_girl = iris
+            $ iris.location.move_person(iris, electronics_store)
+            $ lead_girl = iris
 
             "You sigh and resign yourself to the long wait."
             $ other_girl_1 = create_random_person()

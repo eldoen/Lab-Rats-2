@@ -205,6 +205,12 @@ label attention_seize_supplies(the_person):
     return
 
 init 2 python:
+    def city_rep_set_titles(person):
+        person.set_title("Ms." + person.last_name)
+        person.set_mc_title("Mr. " + mc.last_name)
+        person.set_possessive_title("Your annoyance")
+        return
+
     def get_highest_attention_serum_design():
         highest_attention_design = None
         for design in [x for x in mc.business.serum_designs if x.researched]:
@@ -281,6 +287,7 @@ label attention_already_in(the_person):
     $ times_visited = mc.business.event_triggers_dict.get("attention_times_visited", 0)
 
     if times_visited == 0:
+        $ city_rep_set_titles(the_person)
         "There's a hard banging on the front door of the office."
         the_person "Hello? Is anyone in?"
         "You consider ignoring the noise, but another round of hard knocks demands attention."
@@ -295,8 +302,6 @@ label attention_already_in(the_person):
                 the_person "Hello. Are you [the_person.mc_title]?"
                 mc.name "I am, who are you?"
                 "The woman pulls a piece of ID out of her wallet and hands it over for you to look at."
-                $ the_person.set_title("Ms." + the_person.last_name)
-                $ the_person.set_possessive_title("Your annoyance")
                 the_person "I'm [the_person.title]. I've been sent by the city to have a little chat with you."
 
             "Yell through the door":
@@ -305,8 +310,6 @@ label attention_already_in(the_person):
                 the_person "Hello. Are you [the_person.mc_title]?"
                 mc.name "I am, who are you?"
                 "The woman pulls a piece of ID out of her wallet and presses it against the door for you to look at."
-                $ the_person.set_title("Ms." + the_person.last_name)
-                $ the_person.set_possessive_title("Your annoyance")
                 the_person "I'm [the_person.title]. I've been sent by the city to have a little chat with you."
                 the_person "It's best you open up the doors. I have permission to enter by any means necessary."
                 "The presence of the two enforcers makes a little more sense now."
@@ -343,6 +346,8 @@ label attention_already_in(the_person):
 label attention_call_to_work(the_person):
     $ times_visited = mc.business.event_triggers_dict.get("attention_times_visited", 0)
     if times_visited == 0:
+        $ city_rep_set_titles(the_person)
+
         "Your phone buzzes, a call from an unknown number."
         mc.name "Hello?"
         the_person "Hello, am I speaking to [the_person.mc_title]?"
@@ -353,9 +358,6 @@ label attention_call_to_work(the_person):
 
             "Who's asking?":
                 mc.name "That depends on who's asking."
-
-        $ the_person.set_title("Ms." + the_person.last_name)
-        $ the_person.set_possessive_title("Your annoyance")
 
         the_person "This is [the_person.title], speaking on behalf of the city."
         the_person "I'm standing outside of your business, would you be able to come and let us in?"

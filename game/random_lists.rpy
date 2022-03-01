@@ -1240,10 +1240,6 @@ init 1 python:
         city_rep.generate_home().add_person(city_rep)
         city_rep.set_schedule(city_rep.home)
 
-        city_rep.set_title("???")
-        city_rep.set_mc_title("Mr. " + mc.last_name)
-        city_rep.set_possessive_title("???")
-
         ### LILY ###
         global lily
         lily = create_random_person(name = "Lily", last_name = mc.last_name, age = 19, body_type = "thin_body", face_style = "Face_6", tits = "B", height = 0.90, hair_colour="blond", hair_style = ponytail, skin="white", \

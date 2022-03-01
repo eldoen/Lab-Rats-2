@@ -34,7 +34,7 @@ init 1 python:
 
 label so_relationship_improve_label():
     $ the_person = get_so_relationship_improve_person()
-    if the_person is None:
+    if the_person is None or not the_person.title or the_person.mc_title == "Stranger":
         return #Something's changed and there is no longer a valid person
 
     $ mc.start_text_convo(the_person)
@@ -82,7 +82,7 @@ label so_relationship_improve_label():
 
 label so_relationship_worsen_label():
     $ the_person = get_so_relationship_worsen_person()
-    if the_person is None:
+    if the_person is None or not the_person.title or the_person.mc_title == "Stranger":
         return #Something's changed and there is no longer a valid person
 
     $ so_title = SO_relationship_to_title(the_person.relationship)

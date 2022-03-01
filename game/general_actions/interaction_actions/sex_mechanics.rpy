@@ -713,7 +713,7 @@ label watcher_check(the_person, the_position, the_object, the_report): # Check t
 
 label describe_girl_climax(the_person, the_position, the_object, private, report_log):
     $ the_position.call_orgasm(the_person, mc.location, the_object)
-    $ the_person.change_arousal(-the_person.arousal/(report_log.get("girl orgasms", 0)+2)) # Repeated orgasms make it easier and easier to make a girl cum. It's possible to make her cum every single round!
+    $ the_person.change_arousal(-__builtin__.max(the_person.arousal/(report_log.get("girl orgasms", 0)+2), the_person.arousal - 99)) # Repeated orgasms make it easier and easier to make a girl cum. It's possible to make her cum every single round!
     $ trance_chance_modifier += report_log.get("girl orgasms", 0)
     if not trance_chance_modifier == 0:
         $ mc.log_event("Trance chance modified by " + str(trance_chance_modifier) + "% due to position opinion and previous orgasms.", "float_text_grey")

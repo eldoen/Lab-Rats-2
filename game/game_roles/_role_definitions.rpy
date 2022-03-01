@@ -136,7 +136,7 @@ init -1 python:
         aunt_share_drinks_action = Action("Share a glass of wine {image=gui/heart/Time_Advance.png}", aunt_share_drinks_requirement, "aunt_share_drinks_label",
             menu_tooltip = "Sit down with your aunt and share a glass or two of wine. Maybe a little bit of alcohol will loosen her up a bit.", priority = 10)
 
-        aunt_offer_hire_action = Action("Offer to hire her.", aunt_offer_hire_requirement, "aunt_offer_hire", priority = -5)
+        aunt_offer_hire_action = Action("Offer to hire her", aunt_offer_hire_requirement, "aunt_offer_hire", priority = -5)
 
         return [aunt_help_move,aunt_share_drinks_action, aunt_offer_hire_action]
 
