@@ -2573,7 +2573,7 @@ label research_reminder_crisis_label():
                                                 "She reaches down and wraps her slender fingers around your shaft, looking into your eyes at the same time."
                                             the_person "Now just relax. I'll take care of this for you..."
                                             $ the_start_object = mc.location.get_object_with_trait("Stand")
-                                            call fuck_person(the_person, private = True, start_position = handjob, start_object = the_start_object, girl_in_charge = True, skip_intro = True, position_locked = True)
+                                            call fuck_person(the_person, private = True, start_position = handjob, start_object = the_start_object, girl_in_charge = True, skip_intro = True, position_locked = True) from _call_fuck_person_132
                                             $ the_report = _return
                                             if the_report.get("guy orgasms", 0) > 0:
                                                 the_person "Well, did it work? Do you have any ideas for our research?"
@@ -2620,7 +2620,7 @@ label research_reminder_crisis_label():
                                                 "[the_person.possessive_title] wastes no time, sliding the tip of your dick past her lips and into her mouth."
                                             "She starts to bob her head, getting your shaft wet and sending warm tingles up your spine."
                                             $ the_start_object = mc.location.get_object_with_trait("Kneel")
-                                            call fuck_person(the_person, private = True, start_position = blowjob, start_object = the_start_object, girl_in_charge = True, skip_intro = True, position_locked = True)
+                                            call fuck_person(the_person, private = True, start_position = blowjob, start_object = the_start_object, girl_in_charge = True, skip_intro = True, position_locked = True) from _call_fuck_person_133
                                             $ the_report = _return
                                             if the_report.get("guy orgasms", 0) > 0:
                                                 the_person "Well, did it work? Do you have any ideas for our research?"
@@ -2647,7 +2647,7 @@ label research_reminder_crisis_label():
                                 #     #TODOO: She offers to let you skull fuck her
 
                                 $ the_person.clear_situational_slut("science")
-                                call clear_sex_slut_modifiers(the_person)
+                                call clear_sex_slut_modifiers(the_person) from _call_clear_sex_slut_modifiers
 
 
 

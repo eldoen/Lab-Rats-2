@@ -254,7 +254,7 @@ label nightime_grope(the_person, masturbating = False):
     #TODO: We may want to replace this with an Action based menu at some point to more conveniently format all of the options
     menu:
         "Give her some serum" if mc.inventory.get_any_serum_count() > 0:
-            call give_serum(the_person)
+            call give_serum(the_person) from _call_give_serum_23
             if _return:
                 "You uncork the serum and feed it into [the_person.title]'s mouth drop by drop."
                 "She instinctively drinks it up, licking it off of her lips."
@@ -288,7 +288,7 @@ label nightime_grope(the_person, masturbating = False):
                     "She murmers quietly in her sleep, but doesn't wake up."
 
 
-            call nightime_grope(the_person, masturbating)
+            call nightime_grope(the_person, masturbating) from _call_nightime_grope_6
             return _return
 
         "Grope her tits -5{image=gui/extra_images/energy_token.png}" if mc.energy >= 5 and the_person.effective_sluttiness() >= grope_tits_slut_requirement:

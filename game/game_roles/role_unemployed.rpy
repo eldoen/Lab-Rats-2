@@ -7,7 +7,7 @@ label unemployed_offer_hire(the_person):
     menu:
         "Offer her full pay":
             mc.name "I am. Let's see if we have a position you might fit..."
-            call unemployed_offer_accept(the_person)
+            call unemployed_offer_accept(the_person) from _call_unemployed_offer_accept
 
         "Offer her half pay":
             mc.name "I am. The position is more of an internship, so the pay isn't great..."

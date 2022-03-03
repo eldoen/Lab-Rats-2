@@ -1207,7 +1207,9 @@ init 1 python:
             start_sluttiness = 10, start_obedience = 5, start_happiness = 85, start_love = 0, start_home = emily.home, relationship = "Married", kids = 1, base_outfit = christina_base)
 
         christina.set_schedule(christina.home) #She's a stay-at-home Mom.
-        christina.add_job(unemployed_job)
+        christina_job = Job("Throphy Wife", critical_job_role, christina.home, work_days = [0,1,2,3,4,5,6])
+
+        christina.add_job(christina_job)
         christina.home.add_person(christina)
         #Note: She plays an important role to Emily's story, but she is just given the normal affair role during the game.
 

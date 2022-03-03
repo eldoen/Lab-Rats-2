@@ -3,11 +3,11 @@ init 1 python:
 
 label outfit_design_integration_test():
     "Running outfit design test. Design an outfit."
-    call outfit_master_manager(show_underwear = False, show_overwear = False)
+    call outfit_master_manager(show_underwear = False, show_overwear = False) from _call_outfit_master_manager_4
     "Now design an overwear set."
-    call outfit_master_manager(show_outfits = False, show_overwear = True, show_underwear = False)
+    call outfit_master_manager(show_outfits = False, show_overwear = True, show_underwear = False) from _call_outfit_master_manager_5
     "Now design an underwear set."
-    call outfit_master_manager(show_outfits = False, show_overwear = False, show_underwear = True)
+    call outfit_master_manager(show_outfits = False, show_overwear = False, show_underwear = True) from _call_outfit_master_manager_12
 
     menu:
         "All outfits designed successfully.":
@@ -18,7 +18,7 @@ label outfit_design_integration_test():
 
     "Now select an outfit."
     $ test_person = create_random_person()
-    call outfit_master_manager(show_make_new = False, show_export = False, show_modify = False, show_duplicate = False, show_delete = False)
+    call outfit_master_manager(show_make_new = False, show_export = False, show_modify = False, show_duplicate = False, show_delete = False) from _call_outfit_master_manager_13
     $ the_outfit = _return
     if the_outfit is None or not isinstance(the_outfit, Outfit):
         "Outfit incorrectly returned. Test failed."
@@ -36,7 +36,7 @@ label outfit_design_integration_test():
             return False
 
     "Now test deleting all of those outfits."
-    call outfit_master_manager(show_make_new = False, show_export = False, show_modify = False, show_duplicate = False)
+    call outfit_master_manager(show_make_new = False, show_export = False, show_modify = False, show_duplicate = False) from _call_outfit_master_manager_14
     "Redrawing test girl to ensure nothing has changed with her reference."
     $ test_person.draw_person()
     menu:

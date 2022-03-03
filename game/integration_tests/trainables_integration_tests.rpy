@@ -7,7 +7,7 @@ label run_basic_trainables_integration_tests():
     $ the_person.run_orgasm(force_trance = True)
     $ mc.add_clarity(8000)
     $ renpy.notify("Do nothing, end training early")
-    call trance_train_label(the_person)
+    call trance_train_label(the_person) from _call_trance_train_label
     menu:
         "Successfully ended without training.":
             pass
@@ -17,7 +17,7 @@ label run_basic_trainables_integration_tests():
 
     $ renpy.notify("Purchase stat increase.")
 
-    call trance_train_label(the_person)
+    call trance_train_label(the_person) from _call_trance_train_label_1
     menu:
         "Succesfully bought stat increase.":
             pass
@@ -26,7 +26,7 @@ label run_basic_trainables_integration_tests():
             return False
 
     $ renpy.notify("Add a new opinion.")
-    call trance_train_label(the_person)
+    call trance_train_label(the_person) from _call_trance_train_label_2
     menu:
         "Opinion added.":
             pass
@@ -35,7 +35,7 @@ label run_basic_trainables_integration_tests():
             return False
 
     $ renpy.notify("Strenthen opinion.")
-    call trance_train_label(the_person)
+    call trance_train_label(the_person) from _call_trance_train_label_3
     menu:
         "Opinion strengthened.":
             pass

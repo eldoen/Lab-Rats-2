@@ -8,7 +8,7 @@ label basic_business_tests(): #TODO:we can probably automate these tests (or bui
     "Testing basic business job functionality."
     $ mc.business.team_effectiveness = 75
     "Starting with HR. Effectiveness set to 75 and should rise."
-    call hr_work_action_description
+    call hr_work_action_description from _call_hr_work_action_description
     menu:
         "Team Efficiency rose.":
             pass
@@ -19,7 +19,7 @@ label basic_business_tests(): #TODO:we can probably automate these tests (or bui
     $ test_trait = SerumTrait("Test Trait", "This is a test trait")
     $ mc.business.set_serum_research(test_trait)
     "Now checking research work. Setting research to fake trait. Should either rise or finish being researched."
-    call research_work_action_description
+    call research_work_action_description from _call_research_work_action_description
     menu:
         "Research proceeded.":
             pass
@@ -29,7 +29,7 @@ label basic_business_tests(): #TODO:we can probably automate these tests (or bui
 
     $ mc.business.supply_count = 0
     "Testing supply procurement. Setting supplies to 0, should rise after purchase."
-    call supplies_work_action_description
+    call supplies_work_action_description from _call_supplies_work_action_description
     menu:
         "Supplies purchased, cash paid.":
             pass
@@ -44,7 +44,7 @@ label basic_business_tests(): #TODO:we can probably automate these tests (or bui
     $ test_serum.add_trait(basic_med_app)
     $ mc.business.inventory.change_serum(test_serum, 5)
     "Testing marketing work. Market reach should expand after work."
-    call market_work_action_description
+    call market_work_action_description from _call_market_work_action_description
     menu:
         "Market Reach expanded.":
             pass
@@ -57,7 +57,7 @@ label basic_business_tests(): #TODO:we can probably automate these tests (or bui
     $ mc.int += 100
     $ mc.business.supply_count += 1000
     "Testing production work. Should convert materials into serum production."
-    call production_work_action_description
+    call production_work_action_description from _call_production_work_action_description
     $ mc.int += -100
     menu:
         "Supplies spent, doses created.":
@@ -70,7 +70,7 @@ label basic_business_tests(): #TODO:we can probably automate these tests (or bui
 label hiring_integration_test():
     "Testing screen based business activities."
     "Starting by hiring employee. Hire new employee."
-    call interview_action_description
+    call interview_action_description from _call_interview_action_description
 
     menu:
         "Employee hired and placed correctly.":
@@ -80,7 +80,7 @@ label hiring_integration_test():
             return False
 
     "Reject all potential candidates."
-    call interview_action_description
+    call interview_action_description from _call_interview_action_description_1
 
     menu:
         "Successfully exited interview UI.":
@@ -93,7 +93,7 @@ label hiring_integration_test():
 label business_research_integration_tests():
     "Testing research selection. Select, unlock, and begin researching new topic."
     $ mc.add_clarity(500)
-    call research_select_action_description
+    call research_select_action_description from _call_research_select_action_description_2
 
     menu:
         "Research changed successfully.":
@@ -110,10 +110,10 @@ label business_research_integration_tests():
     $ simple_aphrodesiac.unlocked = True
     "Testing serum design. Design a new serum."
 
-    call serum_design_action_description
+    call serum_design_action_description from _call_serum_design_action_description
 
     "Now begin researching the serum design."
-    call research_select_action_description
+    call research_select_action_description from _call_research_select_action_description_3
 
     menu:
         "Serum begun research properly.":
@@ -134,7 +134,7 @@ label business_set_production_integration_test():
     $ test_serum.researched = True
     $ mc.business.serum_designs.append(test_serum)
     "Set production to new serum design."
-    call production_select_action_description
+    call production_select_action_description from _call_production_select_action_description
     menu:
         "Production set successfully.":
             pass
@@ -145,7 +145,7 @@ label business_set_production_integration_test():
     $ mc.int += 50
 
     "Now running production to produce serum."
-    call production_work_action_description
+    call production_work_action_description from _call_production_work_action_description_1
     menu:
         "Doses of serum design produced.":
             pass
@@ -154,9 +154,9 @@ label business_set_production_integration_test():
             return False
 
     "Now set an autosell threshold for the trait."
-    call production_select_action_description
+    call production_select_action_description from _call_production_select_action_description_1
     "Producing more serum..."
-    call production_work_action_description
+    call production_work_action_description from _call_production_work_action_description_2
     menu:
         "Doses of serum made, moved to sales.":
             pass
@@ -171,7 +171,7 @@ label business_set_uniforms_integration_test():
     $ strict_uniform_policy.buy_policy(ignore_cost = True)
     $ strict_uniform_policy.apply_policy()
     $ renpy.notify("Create overwear for full company")
-    call uniform_manager_loop()
+    call uniform_manager_loop() from _call_uniform_manager_loop
     $ test_person = create_random_person()
     $ mc.business.add_employee_research(test_person)
     $ test_person.wear_uniform()
@@ -185,7 +185,7 @@ label business_set_uniforms_integration_test():
 
     "Testing uniform removal."
     $ renpy.notify("Remove uniform")
-    call uniform_manager_loop()
+    call uniform_manager_loop() from _call_uniform_manager_loop_1
     $ test_person.planned_uniform = None #Clear planned uniform so she replans
     $ test_person.wear_uniform()
     $ test_person.draw_person()
@@ -206,7 +206,7 @@ label business_set_uniforms_integration_test():
     $ reduced_coverage_uniform_policy.buy_policy(ignore_cost = True)
     $ reduced_coverage_uniform_policy.apply_policy()
     $ renpy.notify("Create full outfit for full company")
-    call uniform_manager_loop()
+    call uniform_manager_loop() from _call_uniform_manager_loop_2
     $ test_person.wear_uniform()
     $ test_person.draw_person()
     menu:

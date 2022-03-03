@@ -104,7 +104,7 @@ label mom_room_search_description():
                 "COMPUTER" "WELCOME [the_person.title]!" (what_style = "text_message_style")
 
                 if the_person.event_triggers_dict.get("mom_vaginal_quest_active", False) and the_person.event_triggers_dict.get("mom_vaginal_quest_progress", 0) == 0:
-                    call mom_vaginal_taboo_break_revisit_quest_1(the_person)
+                    call mom_vaginal_taboo_break_revisit_quest_1(the_person) from _call_mom_vaginal_taboo_break_revisit_quest_1
                 elif the_person.sluttiness < 15: # Nothing interesting to find
                     "[the_person.possessive_title] doesn't keep much on her computer, but you spend a few minutes poking through files anyways."
                     "You don't find anything other than reports from work and the family budget for the month."

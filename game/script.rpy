@@ -999,7 +999,7 @@ label initialize_game_state(character_name,business_name,last_name,stat_array,sk
         city_hall.add_object(make_chair())
         city_hall.add_object(make_table())
 
-    call instantiate_jobs() #We need locations to exist before we can set up jobs, so we do that here.
+    call instantiate_jobs() from _call_instantiate_jobs_1 #We need locations to exist before we can set up jobs, so we do that here.
     $ c = 0
     while c < len(list_of_instantiation_labels):
         $ renpy.call(list_of_instantiation_labels[c])

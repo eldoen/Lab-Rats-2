@@ -12,7 +12,7 @@ label give_serum_integration_test():
     $ test_person = create_random_person()
     $ test_person.draw_person()
     "Give serum to girl. Sluttiness should increase."
-    call give_serum(test_person)
+    call give_serum(test_person) from _call_give_serum_6
 
     menu:
         "Serum given, effects added.":

@@ -56,7 +56,7 @@ label attention_event():
     if city_rep.event_triggers_dict.get("city_rep_forced_uniform", False):
         $ city_rep.apply_outfit(city_rep.event_triggers_dict.get("city_rep_forced_uniform", Outfit("Nude")))
     else:
-        $ city_rep.apply_outfit(city_rep.wardrobe.build_appropriate_outfit(city_rep.sluttiness))
+        $ city_rep.apply_outfit(city_rep.wardrobe.decide_on_outfit(city_rep.sluttiness))
 
     if mc.is_at_work():
         call attention_already_in(city_rep) from _call_attention_already_in_attention_event

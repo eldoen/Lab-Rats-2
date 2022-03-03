@@ -854,7 +854,7 @@ label friend_sends_text():
     the_person "I'm bored."
     menu:
         "Chat with [the_person.title]":
-            call small_talk_person(the_person, apply_energy_cost = False, is_phone = True)
+            call small_talk_person(the_person, apply_energy_cost = False, is_phone = True) from _call_small_talk_person_3
 
         "Ignore her":
             "You shrug and ignore her."
@@ -883,7 +883,7 @@ label friend_sends_text():
                 menu:
                     "Flirt with [the_person.title]":
                         "That's enough to convince you. You grab your phone and start to text back."
-                        call text_flirt_label(the_person, apply_energy_cost = False, skip_intro = True)
+                        call text_flirt_label(the_person, apply_energy_cost = False, skip_intro = True) from _call_text_flirt_label
 
                     "Keep ignoring her":
                         "You ignore your phone again. She doesn't text you again."

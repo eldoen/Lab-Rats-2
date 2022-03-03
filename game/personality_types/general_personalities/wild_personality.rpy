@@ -94,7 +94,7 @@ label wild_sex_responses_oral(the_person):
     if response_value < 20:
         if the_person.sluttiness > 50:
             "[the_person.possessive_title] giggles with excitement."
-            the_person "Go down on me [the_person.mc_title], you how I want it..."
+            the_person "Go down on me [the_person.mc_title], you know how I want it..."
         else:
             "[the_person.possessive_title] giggles with excitement."
             the_person "Oh fuck, you're really going to... Oh fuck yes..."

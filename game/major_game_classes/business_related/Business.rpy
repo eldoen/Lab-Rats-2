@@ -134,7 +134,7 @@ init -2 python:
 
             self.listener_system = ListenerManagementSystem()
 
-            self.renew_contracts()
+            # self.renew_contracts()
 
         @property
         def active_policy_list(self):

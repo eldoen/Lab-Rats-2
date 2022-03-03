@@ -451,7 +451,7 @@ label strip_tease(the_person, in_private = True, for_pay = False, start_girl_dir
 
         $ the_choice = _return
         if isinstance(the_choice, Clothing): #Strip if you've offered to pay her something.
-            call strip_tease_remove(the_person, the_choice, girl_state, girl_direction, guy_state, for_pay)
+            call strip_tease_remove(the_person, the_choice, girl_state, girl_direction, guy_state, for_pay) from _call_strip_tease_remove
             $ the_choice = "description"
 
         elif isinstance(the_choice, StripteasePosition):

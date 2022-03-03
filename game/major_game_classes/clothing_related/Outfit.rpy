@@ -133,7 +133,7 @@ init -2 python:
             # I don't believe position is needed for anything here. Actually body_type and tit_size aren't either any more. We'll clean that up at some point.
             items_to_draw = self.accessories + self.feet + self.lower_body + self.upper_body #Throw all of our items in a list.
             items_to_draw.sort(key= lambda x: x.layer + (0 if x.tucked else 0.5)) #First, sort by clothing layer.
-             #Next, modify things that are tucked into eachother.
+            #Next, modify things that are tucked into eachother.
             return items_to_draw
 
         def merge_outfit(self, other_outfit):
