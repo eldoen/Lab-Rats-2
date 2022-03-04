@@ -25,8 +25,8 @@ init 0:
         linear 1.0 alpha 0.0
 
     style textbutton_style: ##The generic style used for text button backgrounds. TODO: Replace this with a pretty background image instead of a flat colour.
-        padding [5,5]
-        margin [5,5]
+        padding (5,5)
+        margin (5,5)
         background "#000080"
         insensitive_background "#222222"
         hover_background "#aaaaaa"
