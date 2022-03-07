@@ -124,7 +124,7 @@ label text_message_style_test(the_person = None): #For now we need to both set t
         "Of course it can!":
             mc.name "Of course it can [mom.title]!"
 
-        "I have my doubts.":
+        "I have my doubts":
             mc.name "I doubt I even made it this far. Oh well."
     mom "I knew it would work. Good job!"
     mom "Me too, it's very good. Now let's end the conversation and see if that works properly."

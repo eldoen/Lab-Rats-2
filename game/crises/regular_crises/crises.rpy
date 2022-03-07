@@ -1866,9 +1866,6 @@ label work_chat_crisis_label:
                             $ the_person.cum_on_face()
                             $ the_person.draw_person(position="blowjob", special_modifier="blowjob")
                             "You stroke your cock faster and push yourself over the edge, firing your cum onto [the_person.title]'s waiting face. She stays still until you're completely finished."
-                            $ the_person.change_slut(2 + the_person.get_opinion_score("cum facials")+the_person.get_opinion_score("being covered in cum"), 70)
-                            $ the_person.discover_opinion("being covered in cum")
-                            $ the_person.discover_opinion("cum facials")
                             $ climax_controller.do_clarity_release(the_person)
                             the_person "Mmm, that feels nice..."
                             "She sits on her knees for a few seconds, then and goes back to her chair."

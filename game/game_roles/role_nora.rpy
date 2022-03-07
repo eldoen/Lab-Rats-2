@@ -497,7 +497,7 @@ label nora_special_research(the_person):
         "She hands you her research on the matter, unlocking a new serum trait for you to research."
         $ list_of_traits.append(nora_reward_high_obedience_trait)
 
-    elif the_subject.sluttiness > 100 and nora_reward_high_slut_trait not in list_of_traits:
+    elif the_subject.sluttiness > 95 and nora_reward_high_slut_trait not in list_of_traits:
         the_person "This was certainly an interesting case, and I have a development for you."
         the_person "Your subject was obviously very forthcoming with her sexual desires, but what I found interesting was how central to her personality they were."
         the_person "It may be possible to instill this same sexual confidence in others, if they have a budding tendency for it to start with."

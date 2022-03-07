@@ -298,8 +298,6 @@ label movie_date_label(the_person):
                                     $ the_person.cum_in_mouth()
                                     $ the_person.draw_person(position = "sitting")
                                     "She waits until you're finished, then pulls off your cock, wipes her lips on the back of her hand, and sits down next to you."
-                                    $ the_person.change_slut(1 + the_person.get_opinion_score("drinking cum"), 60)
-                                    $ the_person.discover_opinion("drinking cum")
                                     the_person "Mmm, thank you. That was fun."
                                     "She takes your hand and holds it. You lean back, thoroughly spent, and zone out for the rest of the movie."
                                 elif the_choice == "Cum down her throat":
@@ -310,9 +308,7 @@ label movie_date_label(the_person):
                                         "You cum, pumping your load out in big, hot pulses right into her stomach. In the dim theater light you can see her flutter with each new deposit."
                                         $ the_person.cum_in_mouth()
                                         "When you're entirely spent you let go of [the_person.possessive_title]'s head and sit back with a sigh."
-                                        $ the_person.change_slut(2 + the_person.get_opinion_score("being submissive") + the_person.get_opinion_score("drinking cum"), 80)
                                         $ the_person.discover_opinion("being submissive")
-                                        $ the_person.discover_opinion("drinking cum")
                                         "[the_person.title] doesn't move for another few long seconds. You feel her throat constrict a few times as she swallows the last of your cum first."
                                         $ the_person.draw_person(position = "sitting")
                                         "She finally slides off of your dick and sits back down in her seat. She takes your hand and holds it tight in hers."
@@ -326,7 +322,6 @@ label movie_date_label(the_person):
                                         $ the_person.draw_person(position = "kneeling1", emotion = "angry")
                                         "When you're entirely spent you let go of [the_person.possessive_title]'s head and sit back with a sigh."
                                         $ the_person.change_love(-2)
-                                        $ the_person.change_slut(1, 80)
                                         $ the_person.change_obedience(1)
                                         "She pulls off your dick and gasps for breath. When she's recovered she glares up at you."
                                         mc.name "Sorry, I got carried away."

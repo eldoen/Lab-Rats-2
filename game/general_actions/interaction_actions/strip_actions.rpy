@@ -1325,14 +1325,12 @@ label strip_cum_question_loop(the_person, girl_state, girl_direction, girl_aware
                 mc.name "Sorry, you just pushed me over the edge and I couldn't stop myself."
                 $ the_person.change_love(-2)
                 $ the_person.change_happiness(-10)
-                $ the_person.change_slut(1 + the_person.get_opinion_score("being covered in cum"), 40)
                 the_person "So this is my fault?"
                 "You shrug again. She scowls at you, but doesn't have much more she can say about it."
             elif the_person.effective_sluttiness() + 5 * the_person.get_opinion_score("being covered in cum") < 40:
                 "[the_person.title] turns around and looks at you, eyes flicking between your face and your still-hard cock."
                 the_person "Oh my god! Is that... Did you just cum on me?"
                 $ the_person.change_happiness(-5 + 5*the_person.get_opinion_score("being covered in cum"))
-                $ the_person.change_slut(1 + the_person.get_opinion_score("being covered in cum"), 40)
                 mc.name "Yeah, sorry about that. I just couldn't hold back any more."
                 the_person "Right..."
             else:
@@ -1340,7 +1338,6 @@ label strip_cum_question_loop(the_person, girl_state, girl_direction, girl_aware
                 the_person "Yeah, that's it... Oh, it's so warm."
                 $ the_person.change_happiness(5*the_person.get_opinion_score("being covered in cum"))
                 if the_person.get_opinion_score("being covered in cum") > 0:
-                    $ the_person.discover_opinion("being covered in cum")
                     the_person "Mmm, I love feeling cum sprayed all over me... It's intoxicating!"
                 mc.name "Thanks [the_person.title], you're a fun target."
                 the_person "My pleasure."
@@ -1352,7 +1349,6 @@ label strip_cum_question_loop(the_person, girl_state, girl_direction, girl_aware
                 the_person "What the hell! Did you just... Oh my god, you just came on me!"
                 $ the_person.change_love(-4)
                 $ the_person.change_happiness(-10)
-                $ the_person.change_slut(2 + the_person.get_opinion_score("being covered in cum"), 40)
                 "You take a few deep breaths to try and recover from your orgasm, then shrug."
                 mc.name "Yeah, sorry about that. It just sort of... happened."
                 "Her eyes keep darting between your dick and your face, as if she can't decide which deserves her focus right now."
@@ -1363,7 +1359,6 @@ label strip_cum_question_loop(the_person, girl_state, girl_direction, girl_aware
                 the_person "Oh my god! Is that... Did you just cum on me?"
                 $ the_person.change_happiness(-5 + 5*the_person.get_opinion_score("being covered in cum"))
                 $ the_person.change_obedience(-1)
-                $ the_person.change_slut(2 + the_person.get_opinion_score("being covered in cum"), 40)
                 mc.name "Yeah, sorry about that. I just couldn't hold back any more."
                 the_person "Right... Just give me some warning next time, alright?"
                 the_person "I really don't appreciate the surprise."
@@ -1372,7 +1367,6 @@ label strip_cum_question_loop(the_person, girl_state, girl_direction, girl_aware
                 the_person "Yeah, that's it, cum for me [the_person.mc_title]!"
                 $ the_person.change_happiness(5*the_person.get_opinion_score("being covered in cum"))
                 if the_person.get_opinion_score("being covered in cum") > 0:
-                    $ the_person.discover_opinion("being covered in cum")
                     the_person "Mmm, I love feeling your cum sprayed all over me... It's intoxicating!"
                 "You take a moment and catch your breath."
                 mc.name "Thanks [the_person.title], you're a fun target."
@@ -1748,7 +1742,6 @@ label strip_cum_question_loop(the_person, girl_state, girl_direction, girl_aware
 
                     $ the_person.change_love(-5 + 2*the_person.get_opinion_score(["drinking cum","being submissive"]))
                     $ the_person.change_obedience(-5 + 2*the_person.get_opinion_score(["drinking cum", "being submissive"]))
-                    $ the_person.change_slut(2*the_person.get_opinion_score(["drinking cum","being submissive"]))
                     "She shakes her head angrily."
                     the_person "No, I wasn't into it!"
 
@@ -1817,7 +1810,7 @@ label strip_cum_question_loop(the_person, girl_state, girl_direction, girl_aware
                         "Pay her\n{color=#ff0000}{size=18}Requires: $[bribe_cost]{/size}{/color} (disabled)" if not mc.business.has_funds(bribe_cost):
                             pass
 
-                        "Refuse.":
+                        "Refuse":
                             mc.name "I'm not paying you, I've already gotten what I paid for."
                             "[the_person.title] glares at you, but quickly realizes she doesn't have much leverage right now."
                             $ the_person.change_happiness(-10 + 2*the_person.get_opinion_score("being submissive"))

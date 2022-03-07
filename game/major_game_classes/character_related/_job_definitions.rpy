@@ -35,7 +35,7 @@ label instantiate_jobs():
         sister_student_job = Job("Student", sister_student_role, job_location = university, work_times = [1,2])
         student_job = Job("Student", generic_student_role, job_location = university, work_times = [1,2]) #Note that this is different from Emily's Student role, which is really a "tutee" role.
 
-        city_rep_job = Job("City Administrator", city_rep_role, job_location = city_hall, work_days = [0,1,2,3,4,5,6], work_times = [0,1,2,3,4]) #ie. hide her in the private City Hall location for most of the time.
+        city_rep_job = Job("City Administrator", city_rep_role, job_location = city_hall, work_days = [0,1,2,3,4,5], work_times = [1,2,3]) #ie. hide her in the private City Hall location for most of the time.
 
         stripper_job = Job("Stripper", stripper_role, job_location = strip_club, work_days = [0,1,2,3,4,5,6], work_times = [3,4], hire_function = stripper_hire, quit_function = stripper_replace)
         prostitute_job = Job("Prostitute", prostitute_role, job_location = downtown, work_days = [0,1,2,3,4,5,6], work_times = [3,4])

@@ -72,7 +72,7 @@ init -1 python:
         for a_style in pube_styles:
             if a_style.name != the_person.pubes_style.name:
                 valid_pubes_options.append([a_style.name, a_style])
-        valid_pubes_options.append(["Never mind","Never mind."])
+        valid_pubes_options.append(["Never mind","Never mind"])
         return valid_pubes_options
 
     def add_girlfriend_do_trim_pubes_action(the_person, pubes_choice, time_needed):
@@ -147,7 +147,7 @@ label ask_be_girlfriend_label(the_person):
                 the_person "But... Maybe he doesn't need to know about any of this. Do you think you could be discreet."
                 $ the_person.discover_opinion("cheating on men")
                 menu:
-                    "Have an affair with [the_person.title].":
+                    "Have an affair with [the_person.title]":
                         mc.name "I can be if that's what you need."
                         $ the_person.draw_person(emotion = "happy")
                         $ the_person.add_role(affair_role)
@@ -156,7 +156,7 @@ label ask_be_girlfriend_label(the_person):
                         "She leans forward and kisses you, putting an arm around your waist and pulling you close. When she breaks the kiss she looks deep into your eyes."
                         the_person "Well then, you know where to find me."
 
-                    "Refuse.":
+                    "Refuse":
                         mc.name "I can't do that. I need a relationship I can count on."
                         $ the_person.change_love(-3)
                         the_person "Right... Well, if you change your mind I'll be here."
@@ -385,7 +385,7 @@ label girlfriend_ask_trim_pubes_label(the_person):
 
     $ pubes_choice = renpy.display_menu(girlfriend_build_pubes_choice_menu(the_person),True,"Choice")
 
-    if pubes_choice == "Never mind.":
+    if pubes_choice == "Never mind":
         mc.name "On second thought, I think they're fine the way they are."
     else:
         "You describe the style you want to her as she listens intently.."

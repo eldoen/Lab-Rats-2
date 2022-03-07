@@ -1978,8 +1978,8 @@ init -2 python:
                 the_cumshot.layer = 0
                 self.outfit.add_accessory(the_cumshot)
 
-            self.change_slut(self.get_opinion_score("drinking cum"))
-            self.change_happiness(5*self.get_opinion_score("drinking cum"))
+            self.change_slut(self.get_opinion_score("drinking cum"), add_to_log = add_to_record)
+            self.change_happiness(5*self.get_opinion_score("drinking cum"), add_to_log = add_to_record)
             self.discover_opinion("drinking cum", add_to_log = add_to_record)
 
             if add_to_record:
@@ -1995,13 +1995,13 @@ init -2 python:
             slut_change_amount =  self.get_opinion_score("creampies")
 
             if self.wants_creampie():
-                self.change_happiness(5*self.get_opinion_score("creampies"))
+                self.change_happiness(5*self.get_opinion_score("creampies"), add_to_log = add_to_record)
             else:
-                self.change_happiness(-5 + (5*self.get_opinion_score("creampies")))
-                self.change_love(-2 + self.get_opinion_score("creampies"))
+                self.change_happiness(-5 + (5*self.get_opinion_score("creampies")), add_to_log = add_to_record)
+                self.change_love(-2 + self.get_opinion_score("creampies"), add_to_log = add_to_record)
                 slut_change_amount += self.get_opinion_score("being_submissive")
 
-            self.change_slut(slut_change_amount)
+            self.change_slut(slut_change_amount, add_to_log = add_to_record)
             self.discover_opinion("creampies", add_to_log = add_to_record)
 
             if add_to_record:
@@ -2040,10 +2040,10 @@ init -2 python:
                 self.outfit.add_accessory(the_cumshot)
 
             if not self.wants_creampie():
-                self.change_love(-2 + self.get_opinion_score("anal creampies"))
+                self.change_love(-2 + self.get_opinion_score("anal creampies"), add_to_log = add_to_record)
 
-            self.change_happiness(5 * self.get_opinion_score("anal creampies"))
-            self.change_slut_temp(self.get_opinion_score("anal creampies"))
+            self.change_happiness(5 * self.get_opinion_score("anal creampies"), add_to_log = add_to_record)
+            self.change_slut(self.get_opinion_score("anal creampies"), add_to_log = add_to_record)
             self.discover_opinion("anal creampies", add_to_log = add_to_record)
 
             if add_to_record:
@@ -2059,12 +2059,12 @@ init -2 python:
                 the_cumshot.layer = 0
                 self.outfit.add_accessory(the_cumshot)
 
-            self.change_slut(self.get_opinion_score("cum facials"))
-            self.change_happiness(5*self.get_opinion_score("cum facials"))
+            self.change_slut(self.get_opinion_score("cum facials"), add_to_log = add_to_record)
+            self.change_happiness(5*self.get_opinion_score("cum facials"), add_to_log = add_to_record)
             self.discover_opinion("cum facials", add_to_log = add_to_record)
 
-            self.change_slut(self.get_opinion_score("being covered in cum"))
-            self.change_happiness(5*self.get_opinion_score("being covered in cum"))
+            self.change_slut(self.get_opinion_score("being covered in cum"), add_to_log = add_to_record)
+            self.change_happiness(5*self.get_opinion_score("being covered in cum"), add_to_log = add_to_record)
             self.discover_opinion("being covered in cum", add_to_log = add_to_record)
 
             if add_to_record:
@@ -2080,8 +2080,8 @@ init -2 python:
                 the_cumshot.layer = top_layer+1 #The cumshot lives on a layer it hit, above the one it hit. Accessories are drawn first in the hirearchy, so they have to be on a level higehr than what they hit.
                 self.outfit.add_accessory(the_cumshot)
 
-            self.change_slut(self.get_opinion_score("being covered in cum"))
-            self.change_happiness(5*self.get_opinion_score("being covered in cum"))
+            self.change_slut(self.get_opinion_score("being covered in cum"), add_to_log = add_to_record)
+            self.change_happiness(5*self.get_opinion_score("being covered in cum"), add_to_log = add_to_record)
             self.discover_opinion("being covered in cum", add_to_log = add_to_record)
 
             if add_to_record:
@@ -2097,8 +2097,8 @@ init -2 python:
                 the_cumshot.layer = top_layer+1 #The cumshot lives on a layer it hit, above the one it hit. Accessories are drawn first in the hirearchy, so they have to be on a level higehr than what they hit.
                 self.outfit.add_accessory(the_cumshot)
 
-            self.change_slut(self.get_opinion_score("being covered in cum"))
-            self.change_happiness(5*self.get_opinion_score("being covered in cum"))
+            self.change_slut(self.get_opinion_score("being covered in cum"), add_to_log = add_to_record)
+            self.change_happiness(5*self.get_opinion_score("being covered in cum"), add_to_log = add_to_record)
             self.discover_opinion("being covered in cum", add_to_log = add_to_record)
 
             if add_to_record:
@@ -2114,8 +2114,8 @@ init -2 python:
                 the_cumshot.layer = top_layer+1 #The cumshot lives on a layer it hit, above the one it hit. Accessories are drawn first in the hirearchy, so they have to be on a level higehr than what they hit.
                 self.outfit.add_accessory(the_cumshot)
 
-            self.change_slut(self.get_opinion_score("being covered in cum"))
-            self.change_happiness(5*self.get_opinion_score("being covered in cum"))
+            self.change_slut(self.get_opinion_score("being covered in cum"), add_to_log = add_to_record)
+            self.change_happiness(5*self.get_opinion_score("being covered in cum"), add_to_log = add_to_record)
             self.discover_opinion("being covered in cum", add_to_log = add_to_record)
 
             if add_to_record:

@@ -207,7 +207,7 @@ label mom_outfit_help_crisis_label():
                     "[the_person.possessive_title] finishes stripping down and starts to get dressed in her new outfit. After a few moments she's all put together again."
                     the_person "Okay [the_person.mc_title], you can turn around now."
 
-            "Wait until she's done.":
+            "Wait until she's done":
                 "You twiddle your thumbs until [the_person.possessive_title] is finished changing."
                 the_person "Okay, all done. You can turn around now."
 
@@ -761,8 +761,6 @@ label mom_morning_surprise_label():
                                 the_person "I don't... That wasn't what we should do [the_person.mc_title]."
                                 mc.name "You were just being a loving mother and doing what I asked. That was amazing."
                                 $ the_person.change_obedience(5)
-                                $ the_person.change_slut(2 + the_person.get_opinion_score("drinking cum"), 50)
-                                $ the_person.discover_opinion("drinking cum")
                                 "I... I don't know. Just don't tell anyone, okay?"
                                 mc.name "Of course, I promise [the_person.title]."
                                 $ the_person.draw_person()
@@ -785,13 +783,11 @@ label mom_morning_surprise_label():
 
                                 "You grunt and climax, firing your load out and right onto [the_person.possessive_title]'s chest."
                                 $ the_person.cum_on_tits()
+                                $ the_person.draw_person(position = "kneeling1")
                                 $ climax_controller.do_clarity_release(the_person)
                                 the_person "I... Oh [the_person.mc_title], I don't think I should have let you do that."
-                                $ the_person.draw_person()
                                 mc.name "It's okay Mom, you were just being a loving mother and doing what I asked."
                                 $ the_person.change_obedience(3)
-                                $ the_person.change_slut(2 + the_person.get_opinion_score("being covered in cum"), 50)
-                                $ the_person.discover_opinion("being covered in cum")
                                 "She smiles, seemingly proud of the compliment."
                                 the_person "Maybe you're right... Now hurry up and get dressed before you're late!"
 
@@ -967,9 +963,11 @@ label mom_morning_surprise_label():
         "You're woken up by your bed shifting under you and a sudden weight around your waist."
         $ the_person.draw_person(position = "cowgirl", emotion = "happy")
         $ mc.change_locked_clarity(25)
+        $ mc.change_arousal(10)
         "[the_person.possessive_title] has pulled down your sheets and underwear and is straddling you. The tip of your morning wood is brushing against her pussy."
         the_person "Good morning [the_person.mc_title]. I didn't hear your alarm go off and when I came to check on you I noticed this..."
         $ mc.change_locked_clarity(5)
+        $ mc.change_arousal(10)
         "She grinds her hips back and forth, rubbing your shaft along the lips of her cunt."
         the_person "Would you like me to take care of this for you?"
         menu:
@@ -983,6 +981,7 @@ label mom_morning_surprise_label():
                     the_person "Just this once... Mommy is going to take care of you in a very special way."
                     $ the_person.break_taboo("vaginal_sex")
 
+                $ mc.change_arousal(10)
                 "You lie back relax as [the_person.possessive_title] lowers herself down onto your hard cock."
                 call fuck_person(the_person, start_position = cowgirl, start_object = bedroom.get_object_with_name("bed"), skip_intro = True, girl_in_charge = True,position_locked=True,self_strip=False) from _call_fuck_person_15
                 $ the_report = _return

@@ -1,11 +1,11 @@
 label tutorial_start:
     menu:
-        "I have played Lab Rats 1 Before.":
+        "I have played Lab Rats 1 Before":
             "It has been a year since the end of your summer job at the university lab."
 
 
 
-        "I am new to Lab Rats.":
+        "I am new to Lab Rats":
             "A year ago you were a chemical engineering student, getting ready to graduate soon and looking for something to do over the summer."
             "You ended up with a summer job on campus as a lab assistant working with a two person team."
             "Your lab director, Nora, and her long time lab assistant Stephanie were investigating the properties of a new lab created molecule."
@@ -209,7 +209,7 @@ label research_tutorial_intro():
     "You try and take another look through her notes, but you can't focus your mind."
     "Your dick seems to be using more than its fair share of brain power to run some imaginative scenarios."
     menu:
-        "Go jerk off.":
+        "Go jerk off":
             "You can only think of one immediate solution to the problem."
             mc.name "I'll need a moment to think about this. Just wait here, I'm going to stretch my legs and take a walk around."
             stephanie "Sure, I'll come with..."
@@ -239,7 +239,7 @@ label research_tutorial_intro():
             $ stephanie.draw_person(emotion = "happy")
             stephanie "That's a very clever thought [stephanie.mc_title], I'll start studying that right away."
 
-        "Pick your research later.":
+        "Pick your research later":
             mc.name "I'll need some time to look these options over. Make sure all of these machines are working at peak efficiency until then."
             "[stephanie.title] seems disappointed by the slow start."
             stephanie "Fine, I'll run them all through a diagnostic cycle. Don't keep me waiting though, I don't want to just sit around and waste time."

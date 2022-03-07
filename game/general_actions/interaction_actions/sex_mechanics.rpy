@@ -1,3 +1,17 @@
+init 2 python:
+    def get_position_trance_chance_modifier(person, position):
+        trance_chance_modifier = 0
+        for opinion_tag in position.opinion_tags:
+            trance_chance_modifier += 2 * person.get_opinion_score(opinion_tag)
+        return trance_chance_modifier
+
+    def get_position_opinion_score(person, position):
+        opinion_score = 0
+        for opinion_tag in position.opinion_tags:
+            opinion_score += person.get_opinion_score(opinion_tag) #Add a bonus or penalty if she likes or dislikes the position.
+            person.discover_opinion(opinion_tag)
+        return opinion_score
+
 label fuck_person(the_person, private = True, start_position = None, start_object = None, skip_intro = False, girl_in_charge = False, self_strip = True, hide_leave = False, position_locked = False, report_log = None, affair_ask_after = True, ignore_taboo = False, skip_condom = False):
     # When called fuck_person starts a sex scene with someone. Sets up the encounter, mainly with situational modifiers.
     show screen person_info_ui(the_person)
@@ -502,15 +516,8 @@ label sex_description(the_person, the_position, the_object, private = True, repo
         else:
             $ her_arousal_change += 2 * the_person.get_opinion_score("bareback sex")
 
-    $ opinion_score = 0
-    $ trance_chance_modifier = 0
-    if the_position.opinion_tags: #If she likes or dislikes this position in particular she will gain (or lose) a little bit of arousal.
-        python:
-            for opinion_tag in the_position.opinion_tags:
-                opinion_score += the_person.get_opinion_score(opinion_tag) #Add a bonus or penalty if she likes or dislikes the position.
-                trance_chance_modifier += 2*the_person.get_opinion_score(opinion_tag)
-                the_person.discover_opinion(opinion_tag)
-            her_arousal_change += opinion_score
+    $ opinion_score = get_position_opinion_score(the_person, the_position)
+    $ her_arousal_change += opinion_score
 
     if the_person.effective_sluttiness() > the_position.slut_cap: #She's sluttier than this position, it's only good to warm her up.
         if opinion_score < 1 and the_person.arousal > the_position.slut_cap: #Once her arousal is higher than the cap he's completely bored by it.
@@ -714,7 +721,7 @@ label watcher_check(the_person, the_position, the_object, the_report): # Check t
 label describe_girl_climax(the_person, the_position, the_object, private, report_log):
     $ the_position.call_orgasm(the_person, mc.location, the_object)
     $ the_person.change_arousal(-__builtin__.max(the_person.arousal/(report_log.get("girl orgasms", 0)+2), the_person.arousal - 99)) # Repeated orgasms make it easier and easier to make a girl cum. It's possible to make her cum every single round!
-    $ trance_chance_modifier += report_log.get("girl orgasms", 0)
+    $ trance_chance_modifier = get_position_trance_chance_modifier(the_person, the_position) + report_log.get("girl orgasms", 0)
     if not trance_chance_modifier == 0:
         $ mc.log_event("Trance chance modified by " + str(trance_chance_modifier) + "% due to position opinion and previous orgasms.", "float_text_grey")
     $ the_person.run_orgasm(trance_chance_modifier = trance_chance_modifier, sluttiness_increase_limit = the_position.slut_requirement, reset_arousal = False)

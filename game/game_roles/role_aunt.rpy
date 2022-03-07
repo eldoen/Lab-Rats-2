@@ -2128,7 +2128,7 @@ label aunt_offer_hire(the_person):
     mc.name "Well, you could come work for me."
     the_person "Oh, you don't want me hanging around. I'll only get in the way and slow everything down."
     menu:
-        "I promise you'll enjoy it." if the_person.get_known_opinion_score("working") >= 2:
+        "I promise you'll enjoy it" if the_person.get_known_opinion_score("working") >= 2:
             mc.name "I know you'll enjoy it. Don't you want to get out there and experience the world?"
             "She thinks about it for a moment."
             the_person "Maybe it would be nice to get out of the house now and then."
@@ -2142,7 +2142,7 @@ label aunt_offer_hire(the_person):
                 mc.name "I'm going to need some time to think this over. I'll get back to you, alright?"
                 the_person "Right, of course. Take your time."
 
-        "I promise you'll enjoy it.\nRequires: Loves working (disabled)" if the_person.get_known_opinion_score("working") < 2:
+        "I promise you'll enjoy it\nRequires: Loves working (disabled)" if the_person.get_known_opinion_score("working") < 2:
             pass
 
         "Don't you want to work with [cousin.title]?" if cousin.has_role(employee_role):
@@ -2165,7 +2165,7 @@ label aunt_offer_hire(the_person):
         "Don't you want to work with [cousin.title]?\nRequires: Hire [cousin.title] (disabled)" if not cousin.has_role(employee_role):
             pass
 
-        "I understand.":
+        "I understand":
             mc.name "I understand. If you change your mind come talk to me, alright?"
             the_person "Alright, I will."
 

@@ -1240,7 +1240,6 @@ init 1 python:
         city_rep.add_role(city_rep_role)
         city_rep.add_job(city_rep_job)
         city_rep.generate_home().add_person(city_rep)
-        city_rep.set_schedule(city_rep.home)
 
         ### LILY ###
         global lily

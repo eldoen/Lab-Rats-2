@@ -858,6 +858,7 @@ label cousin_blackmail_level_2_confront_label(the_person, in_club = False):
     $ mc.change_locked_clarity(5)
     the_person "God, you fucking perv. Fine, if you can keep quiet I might also let you... touch me. Deal?"
     mc.name "I think that might be enough."
+    $ the_person.set_schedule(None, the_times = [3, 4]) # clear old scheduled stripping
     $ the_person.add_job(stripper_job) #She's a stripper now, offically.
     $ the_person.event_triggers_dict["blackmail_level"] = 2
     call begin_boobjob_story(the_person) from _call_begin_boobjob_story_2

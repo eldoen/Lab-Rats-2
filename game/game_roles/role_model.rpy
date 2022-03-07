@@ -583,8 +583,6 @@ label photo_blowjob(the_person):
             "She looks up at you as you cum, blowing your hot load over her face. You struggle to keep the camera pointed in the right direction."
             $ the_person.cum_on_face()
             $ the_person.draw_person(position = "blowjob")
-            $ the_person.change_slut(1 + the_person.get_opinion_score("being covered in cum"), 60)
-            $ the_person.discover_opinion("being covered in cum")
             $ climax_controller.do_clarity_release(the_person)
             "It takes you a couple long seconds to recover from your orgasm."
             $ mc.change_locked_clarity(10)
@@ -697,14 +695,12 @@ label photo_sex(the_person):
                     "You ignore her and carefully slide the cum filled condom off of your dick into the palm of your hand."
                     mc.name "Smile for the camera."
                     "[the_person.possessive_title] gasps when you lean forward and dump the contents of the condom over her face."
-                    $ the_person.cum_on_face(add_to_record = False)
+                    $ the_person.cum_on_face()
                     $ the_person.draw_person(position = "missionary")
                     if the_person.get_opinion_score("being covered in cum") > 0:
                         the_person "Oh my god, ah..."
-                        $ the_person.change_slut(2 + the_person.get_opinion_score("being covered in cum"), 80)
-                        $ mc.discover_opinion("being covered in cum")
                     else:
-                        the_person "Oh my god, [the_person.mc_title]..."
+                        the_person "Oh fuck, [the_person.mc_title], not on my face..."
 
                     $ mc.change_locked_clarity(10)
                     "You make sure to get some close up shots of [the_person.title]'s face covered in your cum."
@@ -721,6 +717,7 @@ label photo_sex(the_person):
             $ climax_controller.do_clarity_release(the_person)
             "You stay tight against her while you pump your hot load deep inside of her pussy. She closes her eyes and moans."
             $ mc.change_locked_clarity(10)
+            $ the_person.draw_person(position = "missionary")
             "For a few seconds you're both quiet, panting for breath. You make sure to get some pictures as you pull out and your cum drips out of her cunt."
             $ the_person.call_dialogue("cum_vagina")
             $ came_inside_mod = 10

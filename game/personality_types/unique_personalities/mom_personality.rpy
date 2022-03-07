@@ -656,10 +656,10 @@ label mom_cum_pullout(the_person):
                 "She moans happily, excited just by the thought."
 
             menu: #TODO: Add a varient of this normally so you can stealth a girl (don't do that in real life, it's super fucked up).
-                "Take off the condom.":
+                "Take off the condom":
                     "You don't have much time to spare. You pull out, barely clearing her pussy, and pull the condom off as quickly as you can manage."
                     $ mc.condom = False
-                "Leave it on.":
+                "Leave it on":
                     "You ignore [the_person.possessive_title]'s cum-drunk offer and keep the condom in place."
         else:
             the_person "Go ahead [the_person.mc_title]!"
