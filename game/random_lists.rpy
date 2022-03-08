@@ -314,7 +314,6 @@ init -2:
         list_of_last_names.append("Llandry")
         list_of_last_names.append("Selkirk")
         list_of_last_names.append("James")
-        list_of_last_names.append("Laura")
         list_of_last_names.append("Belgazoo")
         list_of_last_names.append("Linden")
         list_of_last_names.append("Sov")
@@ -330,7 +329,6 @@ init -2:
         list_of_last_names.append("Holmes")
         list_of_last_names.append("Birch")
         list_of_last_names.append("Akira")
-        list_of_last_names.append("Holmes")
         list_of_last_names.append("Benson")
         list_of_last_names.append("Spitz")
         list_of_last_names.append("Rose")
@@ -350,7 +348,6 @@ init -2:
         list_of_last_names.append("Swann")
         list_of_last_names.append("Wildmoser")
         list_of_last_names.append("Sánchez")
-        list_of_last_names.append("Jones")
         list_of_last_names.append("Tanaka")
         list_of_last_names.append("DeVille")
         list_of_last_names.append("Onuki")
@@ -773,11 +770,11 @@ init -2:
                 if the_person.sex_record.get("Vaginal Creampies", 0) >= 20:
                     list_of_titles.append("Breeding Material")
 
-            if the_person.sluttiness > (70 - (the_person.get_opinion_score("drinking cum")*5 + the_person.get_opinion_score("creampies")*5 + the_person.get_opinion_score("cum facials")*5 + the_person.get_opinion_score("being covered in cum")*5)):
+            if the_person.sluttiness > (70 - (the_person.get_opinion_score(["drinking cum", "creampies", "cum facials","being covered in cum"])*5)):
                 if the_person.sex_record.get("Cum Facials", 0) > 5 or the_person.sex_record.get("Cum in Mouth", 0) > 5 or the_person.sex_record.get("Cum Covered", 0) > 5:
                     list_of_titles.append("Cumslut")
 
-            if the_person.sluttiness > (70 - (the_person.get_opinion_score("bareback sex")*5 + the_person.get_opinion_score("creampies")*5)):
+            if the_person.sluttiness > (70 - (the_person.get_opinion_score(["bareback sex", "creampies"])*5)):
                 if the_person.sex_record.get("Vaginal Creampies", 0) > 5 or the_person.sex_record.get("Anal Creampies", 0) > 5:
                     list_of_titles.append("Cumdump")
 

@@ -858,6 +858,7 @@ label mom_work_secretary_replacement_intro(the_person): #TODO: Set up as an on_t
 
                             $ generalised_strip_description(the_person, strip_list, half_off_instead = half_off_instead)
                             $ mc.change_locked_clarity(30)
+                            $ strip_list = None
                             the_person "Well, there you are..."
                             "[the_person.possessive_title] stands awkwardly in front of you, unsure of what else to do."
                             mc.name "You can't just stand there if you want to convince him, [the_person.title]."

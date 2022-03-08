@@ -373,7 +373,7 @@ label demand_strip_tits_label(the_person):
         $ top_strip_description(the_person, strip_list)
 
     $ del first_item
-    $ del strip_list
+    $ strip_list = None
 
     $ the_person.update_outfit_taboos()
 

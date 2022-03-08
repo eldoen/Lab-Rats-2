@@ -528,6 +528,7 @@ label friends_help_friends_be_sluts_label():
 
                                 else: #We need to strip something off completely.
                                     $ generalised_strip_description(person_one, person_one.outfit.get_tit_strip_list(), group_display = the_group)
+                                $ strip_list = None
 
                                 if person_two.outfit.tits_visible():
                                     $ person_one.break_taboo("bare_tits")
@@ -604,6 +605,7 @@ label friends_help_friends_be_sluts_label():
 
                                 $ person_one.break_taboo("bare_tits")
                                 person_two "Hey, go easy on them! Well then [person_two.mc_title], who's your pick? Me or [person_one.title]?"
+                                $ strip_list = None
 
                             $ mc.change_locked_clarity(10)
                             menu:
@@ -828,25 +830,16 @@ label work_relationship_change_label():
 
 init 1 python:
     def friend_sends_text_requirement():
-        for place in list_of_places:
-            for a_person in place.people:
-                if a_person.love > 10 and not a_person.title is None: #Only text with people with 10 Love or more
-                    if not (a_person.has_role(mother_role)):
-                        return True
-        return False
+        return any([x for x in all_people_in_the_game() if x.love > 10 and x.title and not x.has_role(mother_role)])
+
+    def get_friend_sends_text_person():
+        return get_random_from_list([x for x in all_people_in_the_game() if x.love > 10 and x.title and not x.has_role(mother_role)])
+
     friend_sends_text_crisis = Action("Friend Sends Text Crisis", friend_sends_text_requirement, "friend_sends_text")
     crisis_list.append([friend_sends_text_crisis, 12])
 
 label friend_sends_text():
-    $ potential_people = []
-    python:
-        for place in list_of_places:
-            for a_person in place.people:
-                if a_person.love > 10 and not a_person.title is None: #Only text with people with 10 Love or more. NOTE: Unless you've botched your relationship with everyone this overlaps with the employee trigger.
-                    if not (a_person.has_role(mother_role)):
-                        potential_people.append(a_person)
-
-    $ the_person = get_random_from_list(potential_people)
+    $ the_person = get_friend_sends_text_person()
 
     "Your phone buzzes. It's a text from [the_person.title]."
     $ mc.start_text_convo(the_person)

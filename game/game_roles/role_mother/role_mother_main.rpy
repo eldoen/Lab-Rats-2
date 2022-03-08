@@ -690,13 +690,12 @@ label mom_date_intercept(the_mom, the_date): #TODO: Add some relationship awaren
             else:
                 "[the_mom.possessive_title] spreads her legs, displaying her naked body for you."
 
-
             mc.name "[the_mom.title], what are you doing?"
             $ mc.change_locked_clarity(10)
             the_mom "Convincing you to stay home tonight."
             $ generalised_strip_description(the_mom, strip_list)
             $ mc.change_locked_clarity(20)
-            $ del strip_list
+            $ strip_list = None
 
         else:
             the_mom "You are? I... Don't go anywhere, okay? I'll be right back."

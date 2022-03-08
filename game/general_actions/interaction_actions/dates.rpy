@@ -1145,7 +1145,7 @@ label shopping_date_changing_room(the_person, new_outfit, changing_type):
                 $ the_person.draw_person()
                 "A little more waiting, then the curtain slides open again."
 
-            elif the_person.effective_sluttiness() > 60 - 10*(the_person.get_opinion_score("skimpy outfits") + the_person.get_opinion_score("public sex")) and not new_outfit.tits_visible() and not new_outfit.vagina_visible():
+            elif the_person.effective_sluttiness() > 60 - 10*(the_person.get_opinion_score(["skimpy outfits", "public sex"])) and not new_outfit.tits_visible() and not new_outfit.vagina_visible():
                 if new_outfit.get_underwear_slut_score() <= 5:
                     if the_person.has_role(sister_role):
                         the_person "This is disappointing. It looks like something our grandmother would wear!"
@@ -1381,10 +1381,10 @@ label shopping_date_inside_changing_room(the_person, new_outfit, changing_type, 
                 mc.name "I won't be long, I just need to take care of this."
 
 
-            $ blowjob_slut_requirement = 40 - 5* (the_person.get_opinion_score("public sex") + the_person.get_opinion_score("giving blowjobs"))
+            $ blowjob_slut_requirement = 40 - 5* (the_person.get_opinion_score(["public sex", "giving blowjobs"]))
             $ blowjob_slut_token = get_red_heart(blowjob_slut_requirement)
 
-            $ sex_slut_requirement = 60 - 5* (the_person.get_opinion_score("public sex") + the_person.get_opinion_score("vaginal sex"))
+            $ sex_slut_requirement = 60 - 5* (the_person.get_opinion_score(["public sex", "vaginal sex"]))
             $ sex_slut_token = get_red_heart(sex_slut_requirement)
 
             menu:

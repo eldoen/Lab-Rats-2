@@ -726,7 +726,7 @@ label student_masturbate_label(the_person):
                     "[the_person.possessive_title] hurries back into her clothing, then sits down."
 
                 $ the_person.draw_person(position = "sitting")
-                $ the_person.event_triggers_dict["current_marks"] = the_person.event_triggers_dict.get("current_marks",0) + 1 + the_person.get_opinion_score("masturbating") + the_person.get_opinion_score("public sex")
+                $ the_person.event_triggers_dict["current_marks"] = the_person.event_triggers_dict.get("current_marks",0) + 1 + the_person.get_opinion_score(["masturbating", "public sex"])
                 $ the_person.discover_opinion("masturbating")
                 $ the_person.discover_opinion("public sex")
                 $ mc.log_event((the_person.title or "She") + " seems much more focused.", "float_text_grey")

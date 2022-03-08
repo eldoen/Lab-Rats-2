@@ -607,7 +607,7 @@ label nightime_grope(the_person, masturbating = False):
                     "She gasps and pushes on your thighs, trying to move you off of her."
                     $ the_person.change_happiness(-10)
                     $ the_person.change_love(-5 + (2*the_person.get_opinion_score("being submissive")))
-                    $ the_person.change_slut(1 + the_person.get_opinion_score("being submissive") + the_person.get_opinion_score("giving tit fucks"), 40)
+                    $ the_person.change_slut(1 + the_person.get_opinion_score(["being submissive", "giving tit fucks"]), 40)
                     the_person "[the_person.mc_title]! Oh my god, what are you doing?"
                     "You shuffle backwards, then swing a leg over her and stand back up beside her bed. Her eyes are fixed on your rock hard dick."
                     the_person "You shouldn't... You can't do this [the_person.mc_title]!"
@@ -644,7 +644,7 @@ label nightime_grope(the_person, masturbating = False):
             $ mc.change_locked_clarity(20)
             if renpy.random.randint(0,100) < 70 - 5*the_person.get_opinion_score("giving blowjobs"):
                 "You're starting to think you actually get away with this when [the_person.possessive_title]'s eyes start to flutter."
-                if the_person.effective_sluttiness("sucking_cock") + 5*(the_person.get_opinion_score("being submissive") + the_person.get_opinion_score("giving blowjobs")) >= 50 and not the_person.has_taboo("sucking_cock"):
+                if the_person.effective_sluttiness("sucking_cock") + 5*(the_person.get_opinion_score(["being submissive", "giving blowjobs"])) >= 50 and not the_person.has_taboo("sucking_cock"):
                     "Before you can react her eyes drift open."
                     "[the_person.title] blinks twice, as if surprised to find your cock in her mouth, and then starts to bob her head and suck you off."
                     $ mc.change_locked_clarity(20)
@@ -680,7 +680,7 @@ label nightime_grope(the_person, masturbating = False):
                     mc.name "Oh, hey [the_person.title]. I, uh... Was just checking in on you."
                     $ the_person.change_happiness(-10)
                     $ the_person.change_love(-5 + (2*the_person.get_opinion_score("being submissive")))
-                    $ the_person.change_slut(1 + the_person.get_opinion_score("being submissive") + the_person.get_opinion_score("giving blowjobs"), 45)
+                    $ the_person.change_slut(1 + the_person.get_opinion_score(["being submissive", "giving blowjobs"]), 45)
                     the_person "You should... You should go, alright?"
                     "You stuff your wet dick back into your pants and back up towards her bedroom door."
                     mc.name "Hey, I..."
@@ -731,7 +731,7 @@ label nightime_grope(the_person, masturbating = False):
             if renpy.random.randint(0,100) < 50 - 5*the_person.get_opinion_score("vaginal sex"):
                 "You're so lost in the feeling of fucking [the_person.possessive_title] that you almost don't notice when her eyes flutter open."
                 the_person "... Hmm... Ah... [the_person.mc_title]?"
-                if the_person.effective_sluttiness("vaginal_sex") + 5*(the_person.get_opinion_score("being submissive") + the_person.get_opinion_score("vaginal sex")) >= 60 and not the_person.has_taboo("vaginal_sex"):
+                if the_person.effective_sluttiness("vaginal_sex") + 5*(the_person.get_opinion_score(["being submissive", "vaginal sex"])) >= 60 and not the_person.has_taboo("vaginal_sex"):
                     "She takes a moment to comprehend what's happening, then rests her head back on her pillow and moans."
                     the_person "Is this a dream? Ah... Mmmm..."
                     mc.name "Hey [the_person.title], I hope you don't mind. I just really needed to take..."
@@ -775,7 +775,7 @@ label nightime_grope(the_person, masturbating = False):
                     the_person "Oh my god, what are we... what are you doing! Pull out!"
                     $ the_person.change_happiness(-15)
                     $ the_person.change_love(-7 + (2*the_person.get_opinion_score("being submissive")))
-                    $ the_person.change_slut(2 + the_person.get_opinion_score("being submissive") + the_person.get_opinion_score("vaginal sex"), 50)
+                    $ the_person.change_slut(2 + the_person.get_opinion_score(["being submissive", "vaginal sex"]), 50)
                     $ the_person.draw_person(position = "missionary")
                     "[the_person.title] pushes on your hips. You pull out of her warm pussy reluctantly."
                     mc.name "Hey, I was just... Checking in on you."
@@ -951,7 +951,7 @@ label sleep_cum_face(the_person, climax_controller, straddle = False):
 
     if renpy.random.randint(0,100) < 60 - 5*the_person.get_opinion_score("being covered in cum"): #TODO: Adjust chance based on opinion
         "A moment later she opens one eye - the one not welded shut by your cum - and locks eyes with you."
-        if the_person.effective_sluttiness() + 5*(the_person.get_opinion_score("being submissive") + the_person.get_opinion_score("being covered in cum")) >= 60: #TODO: Cum based taboo stuff
+        if the_person.effective_sluttiness() + 5*(the_person.get_opinion_score(["being submissive", "being covered in cum"])) >= 60: #TODO: Cum based taboo stuff
             #She's surprised, but fine with it
             the_person "Oh my... [the_person.mc_title]? Ah..."
             mc.name "Sorry [the_person.title], I just needed some relief and you were..."
@@ -979,7 +979,7 @@ label sleep_cum_face(the_person, climax_controller, straddle = False):
             mc.name "I didn't mean to, it just sort of... happened."
             $ the_person.change_happiness(-10)
             $ the_person.change_love(-3 + the_person.get_opinion_score("being covered in cum"))
-            $ the_person.change_slut(2 + the_person.get_opinion_score("being submissive") + the_person.get_opinion_score("being covered in cum"), 50)
+            $ the_person.change_slut(2 + the_person.get_opinion_score(["being submissive", "being covered in cum"]), 50)
             the_person "I... You should go. This isn't right, you shouldn't be here..."
             if straddle:
                 "You think about what to say, but realise the first thing to do is probably to get your cock out of her face."
@@ -995,7 +995,7 @@ label sleep_cum_face(the_person, climax_controller, straddle = False):
         "She murmurs something, then rolls over. You breathe a sigh of relief and stuff your cock back in your pants."
         $ mc.change_locked_clarity(30)
         "You back out of the room slowly. You wonder how she'll react to waking up with a face full of mystery cum." #TODO: Add some events related to this. Maybe just an additional comment as an on-talk.
-        $ the_person.change_slut(2 + the_person.get_opinion_score("being submissive") + the_person.get_opinion_score("being covered in cum"), 30)
+        $ the_person.change_slut(2 + the_person.get_opinion_score(["being submissive", "being covered in cum"]), 30)
     return awake
 
 label sleep_cum_throat(the_person, climax_controller): #Always assumes you're standing up
@@ -1017,7 +1017,7 @@ label sleep_cum_throat(the_person, climax_controller): #Always assumes you're st
         $ awake = True
         "As your orgasm passes you relax, pulling your cock out of her mouth."
         "You think you've gotten away with it when her eyes flutter open."
-        if the_person.effective_sluttiness() + 5*(the_person.get_opinion_score("being submissive") + the_person.get_opinion_score("drinking cum")) >= 75 and not the_person.has_taboo("sucking_cock"): #Fine with it #TODO: Cum based taboo stuff
+        if the_person.effective_sluttiness() + 5*(the_person.get_opinion_score(["being submissive", "drinking cum"])) >= 75 and not the_person.has_taboo("sucking_cock"): #Fine with it #TODO: Cum based taboo stuff
             if the_person.get_opinion_score("drinking cum") > 0:
                 "[the_person.possessive_title] glances up at you, then swallows proudly. She rolls over and looks up at you from her back."
             else:
@@ -1045,7 +1045,7 @@ label sleep_cum_throat(the_person, climax_controller): #Always assumes you're st
                 the_person "Oh my god... Nobody can know about this, okay [the_person.mc_title]? I thought it was a dream!"
                 $ the_person.change_happiness(-15)
                 $ the_person.change_love(-4 + the_person.get_opinion_score("drinking cum"))
-                $ the_person.change_slut(2 + the_person.get_opinion_score("being submissive") + the_person.get_opinion_score("drinking cum"), 50)
+                $ the_person.change_slut(2 + the_person.get_opinion_score(["being submissive", "drinking cum"]), 50)
                 mc.name "I thought you were acting a little strange."
                 the_person "You... You should go. It was just a dream, okay? I wasn't... I didn't mean to do anything."
                 "You stuff your cock back into your pants."
@@ -1056,7 +1056,7 @@ label sleep_cum_throat(the_person, climax_controller): #Always assumes you're st
             else:
                 $ the_person.change_happiness(-15)
                 $ the_person.change_love(-4 + the_person.get_opinion_score("being covered in cum"))
-                $ the_person.change_slut(2 + the_person.get_opinion_score("being submissive") + the_person.get_opinion_score("being covered in cum"), 50)
+                $ the_person.change_slut(2 + the_person.get_opinion_score(["being submissive", "being covered in cum"]), 50)
                 the_person "Did you just... Can you put that thing away?"
                 "You stuff your cock back into your pants."
                 mc.name "Oh, right... Maybe I'll just go, okay?"
@@ -1065,7 +1065,7 @@ label sleep_cum_throat(the_person, climax_controller): #Always assumes you're st
 
     else:
         "As your orgasm passes you relax and pull your cock out of her mouth. It drags out a line of spit and cum as you pull back."
-        $ the_person.change_slut(2 + the_person.get_opinion_score("being submissive") + the_person.get_opinion_score("being covered in cum"), 30)
+        $ the_person.change_slut(2 + the_person.get_opinion_score(["being submissive", "being covered in cum"]), 30)
         if the_person.get_opinion_score("drinking cum") > 0:
             "She smiles happily and rolls over, swallowing down the last few drops of your sperm. It feels like she should be thanking you."
         else:
@@ -1097,7 +1097,7 @@ label sleep_cum_tits(the_person, climax_controller, straddle = False):
         "She reaches up, brushing her chest and running her fingers through your cum."
         the_person "Hmm?"
         "Her eyes flutter open, and she takes a moment to absorb the situation."
-        if the_person.effective_sluttiness() + 5*(the_person.get_opinion_score("being submissive") + the_person.get_opinion_score("being covered in cum")) >= 50:
+        if the_person.effective_sluttiness() + 5*(the_person.get_opinion_score(["being submissive", "being covered in cum"])) >= 50:
             the_person "Oh... Hello [the_person.mc_title]. What did I miss?"
             if the_person.get_opinion_score("drinking cum") > 0:
                 "She idly runs a finger between her cleavage, covering it in cum. She looks at you and licks it clean while you talk."
@@ -1165,7 +1165,7 @@ label sleep_cum_stomach(the_person, climax_controller): #Note: always assumes yo
     if renpy.random.randint(0,100) < 30 - 5*the_person.get_opinion_score("being covered in cum"):
         $ awake = True
         "She mumbles, and after a brief moment of suspense her eyes flutter open."
-        if the_person.effective_sluttiness() + 5*(the_person.get_opinion_score("being submissive") + the_person.get_opinion_score("being covered in cum")) >= 50:
+        if the_person.effective_sluttiness() + 5*(the_person.get_opinion_score(["being submissive", "being covered in cum"])) >= 50:
             "[the_person.possessive_title] glances at you, then at the pool of cum on her stomach."
             the_person "Oh... I see."
             mc.name "[the_person.title], I was just checking in on you and..."
@@ -1227,7 +1227,7 @@ label sleep_cum_vagina(the_person, climax_controller):
         "She shift in bed, then blinks and opens one eye sleepily."
         the_person "[the_person.mc_title]? What are you doing here? I..."
         "[the_person.possessive_title] lifts her head and looks down, realising you're inside of her."
-        if the_person.effective_sluttiness() + 5*(the_person.get_opinion_score("being submissive") + the_person.get_opinion_score("creampies")) > 70 and not the_person.has_taboo("vaginal_sex"):
+        if the_person.effective_sluttiness() + 5*(the_person.get_opinion_score(["being submissive", "creampies"])) > 70 and not the_person.has_taboo("vaginal_sex"):
             the_person "Oh... that's what I was dreaming about."
             "She puts her head back and sighs happily."
             the_person "Thank you [the_person.mc_title]. Mmm..."

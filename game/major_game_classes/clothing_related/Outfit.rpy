@@ -453,7 +453,7 @@ init -2 python:
             return True
 
         def tits_available(self):
-            for cloth in [x for x in self.upper_body if x.anchor_below]:
+            for cloth in [x for x in self.upper_body if x.anchor_below and not x in [vest, suit_jacket]]:
                 if not (cloth.half_off and cloth.half_off_gives_access):
                     return False
             return True

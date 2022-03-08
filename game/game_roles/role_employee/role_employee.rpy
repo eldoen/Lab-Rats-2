@@ -458,7 +458,7 @@ label employee_performance_review(the_person):
                                     the_person "So... I'm not being fired?"
                                     "You shake your head."
                                     mc.name "Not today, at least. I expect to see improvements, or we'll be back here and I won't be so understanding."
-                                    $ the_person.change_happiness(-5 + (the_person.get_opinion_score("showing her tits") + the_person.get_opinion_score("showing her ass")))
+                                    $ the_person.change_happiness(-5 + (the_person.get_opinion_score(["showing her tits", "showing her ass"])))
                                     $ the_person.change_obedience(3 + 3*the_person.get_opinion_score("being submissive"))
                                     $ the_person.change_slut(1, 40)
                                     the_person "Understood. I'll be doing next time, I promise!"

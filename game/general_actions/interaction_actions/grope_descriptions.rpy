@@ -75,7 +75,7 @@ label grope_waist(the_person):
                 "She spreads her legs, emphasizing the easy availability of her pussy."
                 the_person "Do you want to fuck me?"
 
-            $ strip_list = None #Clear the list to save memory
+            $ strip_list = None
 
         else:
             "She leans into you and grinds her crotch against your thigh."

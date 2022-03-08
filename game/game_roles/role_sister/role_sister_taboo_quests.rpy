@@ -304,6 +304,7 @@ label sister_oral_taboo_break_revisit_quest_2(the_person):
     menu:
         "Keep waiting {image=gui/heart/Time_Advance.png}" if time_of_day < 4:
             $ iris.location.move_person(iris, electronics_store)
+            $ iris.set_schedule(None, the_times = [1,2,3]) # make her free-roam
             $ lead_girl = iris
 
             "You sigh and resign yourself to the long wait."
@@ -783,7 +784,7 @@ label sister_vaginal_taboo_break_revisit_quest_1(the_person):
                     $ generalised_strip_description(the_person, strip_list)
                     $ the_person.draw_person(position = "doggy")
                     "[the_person.title] gets onto her bed on all fours, sticking her ass and pussy out towards you."
-
+                    $ strip_list = None
                 else:
                     $ the_person.draw_person(position = "doggy")
                     "[the_person.title] squeals happily and rolls over, getting onto all fours on top of her bed."

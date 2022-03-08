@@ -524,7 +524,7 @@ label sister_instathot_special_underwear(the_person): #She's been asked to do an
     if strip_list:
         "[the_person.title] starts to pull her clothes off."
         $ generalised_strip_description(the_person, strip_list)
-        $ del strip_list
+        $ strip_list = None
     $ mc.change_locked_clarity(10)
 
     if the_person.outfit.tits_visible() or the_person.outfit.vagina_visible():

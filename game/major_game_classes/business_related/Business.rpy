@@ -353,22 +353,18 @@ init -2 python:
         def is_weekend(self):                   #TODO: add support for expanding/changing the weekend
             return day%7 == 5 or day%7 == 6     #Checks to see if it is saturday or sunday. Note that days might eventually be both neither weekend or workday, or both weekend AND workday!
 
-        def get_uniform_wardrobe(self,title): #Takes a title and returns the correct uniform for that division, if one exists. If it is None, returns false. TODO: get this working.
-            if title == "Marketing":
-                return self.m_uniform
-            elif title == "Researcher":
-                return self.r_uniform
-            elif title == "Production":
-                return self.p_uniform
-            elif title == "Supply":
-                return self.s_uniform
-            elif title == "Human Resources":
-                return self.h_uniform
-
-            return None
-
         def get_uniform_wardrobe_for_person(self, person):
-            return self.get_uniform_wardrobe(self.get_employee_title(person))
+            if person.job and person.job.job_location == self.m_div:
+                return self.m_uniform
+            if person.job and person.job.job_location == self.r_div:
+                return self.r_uniform
+            if person.job and person.job.job_location == self.p_div:
+                return self.p_uniform
+            if person.job and person.job.job_location == self.s_div:
+                return self.s_uniform
+            if person.job and person.job.job_location == self.h_div:
+                return self.h_uniform
+            return None
 
         def get_uniform_limits(self): #Returns three values: the max sluttiness of a full outfit, max sluttiness of an underwear set, and if only overwear sets are allowed or notself.
             slut_limit = 0

@@ -165,7 +165,7 @@ label view_insta(the_person):
             the_person "Wearing something special today: a design sent in by a fan!" (what_style = "text_message_style")
             $ the_person.event_triggers_dict["insta_special_request_outfit"] = None
 
-        elif the_person.effective_sluttiness() + the_person.get_opinion_score("showing her ass")*5 + the_person.get_opinion_score("showing her tits")*5 > 20: #TODO: Decide what slut_requirement should be.
+        elif the_person.effective_sluttiness() + the_person.get_opinion_score(["showing her ass", "showing her tits"]) * 5 > 20: #TODO: Decide what slut_requirement should be.
             $ skimpy_outfit = insta_wardrobe.pick_random_outfit()
             $ the_person.apply_outfit(skimpy_outfit)
             $ ran_num = renpy.random.randint(0,3)
@@ -246,15 +246,15 @@ label comment_description(comment_type, the_person):
         $ the_person.change_happiness(-2, add_to_log = False)
     elif comment_type == "sexy":
         mc.name "Stunning! Wish I could see you naked!" (what_style = "text_message_style")
-        $ her_slut = the_person.effective_sluttiness() + 5*(the_person.get_opinion_score("showing her tits") + the_person.get_opinion_score("showing her ass"))
+        $ her_slut = the_person.effective_sluttiness() + 5 * the_person.get_opinion_score(["showing her tits", "showing her ass"])
         if her_slut < 20: #Dislikes it
-            $ the_person.change_happiness(-5 + the_person.get_opinion_score("showing her tits") + the_person.get_opinion_score("showing her ass"), add_to_log = False)
+            $ the_person.change_happiness(-5 + the_person.get_opinion_score(["showing her tits", "showing her ass"]), add_to_log = False)
         elif her_slut < 40: #Doesn't mind, is made slightly sluttier by it
-            $ the_person.change_happiness(-2 + the_person.get_opinion_score("showing her tits") + the_person.get_opinion_score("showing her ass"), add_to_log = False)
-            $ the_person.change_slut(1 + the_person.get_opinion_score("showing her tits") + the_person.get_opinion_score("showing her ass"), 40, add_to_log = False)
+            $ the_person.change_happiness(-2 + the_person.get_opinion_score(["showing her tits", "showing her ass"]), add_to_log = False)
+            $ the_person.change_slut(1 + the_person.get_opinion_score(["showing her tits", "showing her ass"]), 40, add_to_log = False)
         else: #Likes it, gets sluttier if her opinions line up with that
-            $ the_person.change_happiness(5 + the_person.get_opinion_score("showing her tits") + the_person.get_opinion_score("showing her ass"), add_to_log = False)
-            $ the_person.change_slut(1 + the_person.get_opinion_score("showing her tits") + the_person.get_opinion_score("showing her ass"), 40, add_to_log = False)
+            $ the_person.change_happiness(5 + the_person.get_opinion_score(["showing her tits", "showing her ass"]), add_to_log = False)
+            $ the_person.change_slut(1 + the_person.get_opinion_score(["showing her tits", "showing her ass"]), 40, add_to_log = False)
     call instapic_comment_loop(the_person, posted_today = False) from _call_instapic_comment_loop_1
     return
 

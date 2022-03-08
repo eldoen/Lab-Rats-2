@@ -81,7 +81,7 @@ label plan_fuck_date_label(the_person):
         if day & 7 == 3:
             the_person "Mmm... Why wait? Come over tonight."
         else:
-            the_person "Mmm... Think you can wait until Friday?"
+            the_person "Mmm... Think you can wait until Thursday?"
 
     menu:
         "Plan a date for Thursday night":
@@ -430,7 +430,7 @@ label fuck_date_event(the_person): #A breakout function so we can call the fuck_
                                 the_person "Goodnight, I love you. Talk to you soon!"
                                 $ the_person.change_obedience(1)
                                 $ the_person.change_slut(2 + the_person.get_opinion_score("cheating on men"), 60)
-                                $ the_person.change_arousal((mc.sex_skills["Foreplay"] + the_person.get_opinion_score("cheating on men") + the_person.get_opinion_score("being fingered")) * 5) #Arousal boost to start the encounter.
+                                $ the_person.change_arousal((mc.sex_skills["Foreplay"] + the_person.get_opinion_score(["cheating on men", "being fingered"])) * 5) #Arousal boost to start the encounter.
                                 "She hangs up quickly and moans in relief."
                                 the_person "Oh god, you're so bad!"
                                 "[the_person.title] laughs and sits back into your arms."

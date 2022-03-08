@@ -739,7 +739,7 @@ init 0 python:
         return
 
 
-label initialize_game_state(character_name,business_name,last_name,stat_array,skill_array,_sex_array,max_num_of_random=5): #Gets all of the variables ready. TODO: Move some of this stuff to an init block?
+label initialize_game_state(character_name,business_name,last_name,stat_array,skill_array,_sex_array,max_num_of_random=3): #Gets all of the variables ready. TODO: Move some of this stuff to an init block?
 
     ##Global Variable Initialization##
     python:

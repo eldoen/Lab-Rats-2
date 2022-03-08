@@ -1508,8 +1508,7 @@ label strip_cum_question_loop(the_person, girl_state, girl_direction, girl_aware
 
             else:
                 if the_person.outfit.can_half_off_to_tits():
-                    $ strip_list = the_person.outfit.get_half_off_to_tits_list()
-                    $ generalised_strip_description(the_person, strip_list, position = "kneeling1", half_off_instead = True)
+                    $ generalised_strip_description(the_person, the_person.outfit.get_half_off_to_tits_list(), position = "kneeling1", half_off_instead = True)
                     "Tits out, she leans back and presents her chest for you to cum on."
                 else:
                     "She leans back and presents her chest to you to cum on."
