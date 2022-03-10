@@ -354,15 +354,18 @@ init -2 python:
             return day%7 == 5 or day%7 == 6     #Checks to see if it is saturday or sunday. Note that days might eventually be both neither weekend or workday, or both weekend AND workday!
 
         def get_uniform_wardrobe_for_person(self, person):
-            if person.job and person.job.job_location == self.m_div:
+            if not person.job:
+                return None
+
+            if person.job == market_job:
                 return self.m_uniform
-            if person.job and person.job.job_location == self.r_div:
+            if person.job == rd_job:
                 return self.r_uniform
-            if person.job and person.job.job_location == self.p_div:
+            if person.job == production_job:
                 return self.p_uniform
-            if person.job and person.job.job_location == self.s_div:
+            if person.job == supply_job:
                 return self.s_uniform
-            if person.job and person.job.job_location == self.h_div:
+            if person.job == hr_job:
                 return self.h_uniform
             return None
 

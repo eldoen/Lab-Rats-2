@@ -1784,8 +1784,11 @@ init -2 python:
             if not mc.business.is_open_for_business():  # quick exit
                 return False
 
-            return mc.business.get_uniform_wardrobe_for_person(self).get_count() > 0 \
-                or self.event_triggers_dict.get("forced_uniform", False)
+            if self.event_triggers_dict.get("forced_uniform", False):
+                return True
+
+            wardrobe = mc.business.get_uniform_wardrobe_for_person(self)
+            return wardrobe and wardrobe.get_count() > 0
 
         def wear_uniform(self): #Puts the girl into her uniform, if it exists.
             if self.planned_uniform is None:
