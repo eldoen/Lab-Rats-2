@@ -1472,8 +1472,8 @@ label student_mom_intro(the_person):
         the_person "Yes, I believe she is in her room. You must be the tutor she has been going on about."
         "She steps to the side, letting you move into the front room of the luxurious house."
         $ her_hallway.show_background()
-        $ the_person.set_title("Mrs."+the_person.last_name)
-        $ the_person.set_possessive_title("Mrs."+the_person.last_name)
+        $ the_person.set_title("Mrs. "+the_person.last_name)
+        $ the_person.set_possessive_title("Mrs. "+the_person.last_name)
         the_person "I am [the_person.title], [emily.title]'s mother. I'm happy to finally have a chance to introduce myself."
         "You step inside and introduce yourself."
         call person_introduction(the_person, girl_introduction = False) from _call_person_introduction_3
@@ -1489,8 +1489,8 @@ label student_mom_intro(the_person):
 
     else:
         the_person "I'm sorry, she must have given you the wrong time. She's not at home right now."
-        $ the_person.set_title("Mrs."+the_person.last_name)
-        $ the_person.set_possessive_title("Mrs."+the_person.last_name)
+        $ the_person.set_title("Mrs. "+the_person.last_name)
+        $ the_person.set_possessive_title("Mrs. "+the_person.last_name)
         the_person "I would still like to introduce myself. I am [the_person.title], [emily.title]'s mother."
         the_person "And you must be the tutor she has been going on about. I'm sorry, I don't remember your name."
         call person_introduction(the_person, girl_introduction = False) from _call_person_introduction_4

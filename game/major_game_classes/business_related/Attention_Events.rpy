@@ -50,10 +50,14 @@ label attention_event():
     $ mc.business.event_triggers_dict["attention_event_pending"] = False
 
     $ city_rep.event_triggers_dict["currently_interrogating"] = True #Set to False so we can use Role actions without them appearing when you meet her somewhere else.
-    $ city_rep.event_triggers_dict["bribe_attempts"] = [] #Reset our list so we can avoid letting you repeatedly bribe her
+    $ clear_bribe_attempts() #Reset our list so we can avoid letting you repeatedly bribe her
     $ city_rep.event_triggers_dict["bribe_successful"] = None #Store the most recently used bribe option so we can have some specific dialogues
 
-    $ city_rep.planned_outfit = city_rep.event_triggers_dict.get("city_rep_forced_uniform", city_rep.wardrobe.decide_on_outfit(city_rep.sluttiness))
+    if mc.business.event_triggers_dict.get("attention_times_visited", 0) < 2:
+        $ city_rep.planned_outfit = city_rep.event_triggers_dict.get("city_rep_forced_uniform", city_rep.wardrobe.decide_on_outfit(20))
+    else:
+        $ city_rep.planned_outfit = city_rep.event_triggers_dict.get("city_rep_forced_uniform", city_rep.wardrobe.decide_on_outfit(city_rep.sluttiness))
+
     $ city_rep.apply_outfit()
 
     if mc.is_at_work():
@@ -93,7 +97,7 @@ label attention_event():
 
     $ mc.business.event_triggers_dict["attention_times_visited"] = mc.business.event_triggers_dict.get("attention_times_visited", 0) + 1
     $ city_rep.event_triggers_dict["currently_interrogating"] = False #Set to False so we can use Role actions without them appearing when you meet her somewhere else.
-    $ city_rep.event_triggers_dict["bribe_attempts"] = [] #Reset our list so we won't accidentally trigger something outside of this event.
+    $ clear_bribe_attempts() #Reset our list so we won't accidentally trigger something outside of this event.
     $ clear_scene()
     "You're glad to finally left alone, but the encounter has eaten up most of the day."
     return "Advance Time"
@@ -204,7 +208,7 @@ label attention_seize_supplies(the_person):
 
 init 2 python:
     def city_rep_set_titles(person):
-        person.set_title("Ms." + person.last_name)
+        person.set_title("Mrs." + person.last_name)
         person.set_mc_title("Mr. " + mc.last_name)
         person.set_possessive_title("Your annoyance")
         return

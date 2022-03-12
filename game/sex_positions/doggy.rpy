@@ -25,7 +25,7 @@ init 1:
 
 label intro_doggy(the_girl, the_location, the_object):
     mc.name "[the_girl.title], I want you to get on your hands and knees for me."
-    if the_girl.effective_sluttiness() > 100:
+    if the_girl.effective_sluttiness() > 95:
         the_girl "I want you inside of me so badly..."
     elif the_girl.effective_sluttiness() > 80:
         the_girl "Mmm, you know just what I like [the_girl.mc_title]."
@@ -281,7 +281,7 @@ label outro_doggy(the_girl, the_location, the_object):
         $ the_girl.cum_on_ass()
         $ doggy.redraw_scene(the_girl)
         $ climax_controller.do_clarity_release(the_girl)
-        if the_girl.effective_sluttiness() > 120:
+        if the_girl.effective_sluttiness() > 90:
             the_girl "What a waste, you should have put that inside of me."
             "She reaches back and runs a finger through the puddles of cum you've put on her, then licks her finger clean."
         else:
@@ -305,9 +305,9 @@ label transition_doggy_doggy_anal(the_girl, the_location, the_object):
     menu:
         "Ram it home!":
             "You get a firm grip on her hips, make sure you're lined up, and push yourself in with all your might."
-            if the_girl.get_opinion_score("being submissive") > 0 or the_girl.get_opinion_score("anal sex"):
+            if the_girl.get_opinion_score("being submissive") > 0 or the_girl.get_opinion_score("anal sex") > 0:
                 the_girl "Ah! Yes! Tear that ass up!"
-                $ the_girl.change_arousal(5*( the_girl.get_opinion_score("being submissive") + the_girl.get_opinion_score("anal sex") ))
+                $ the_girl.change_arousal(5* the_girl.get_opinion_score(["being submissive", "anal sex"]))
                 "Using her pussy juice as lube you lay into her tight ass, wasting no time in fucking her hard."
 
             else:

@@ -12,30 +12,38 @@ init -1 python:
     def city_rep_bribe_requirement(the_person):
         if not the_person.event_triggers_dict.get("currently_interrogating", False):
             return False
-        elif "cash_bribe" in the_person.event_triggers_dict.get("bribe_attempts", []):
-            return False
-        return True
+        return not has_bribe_attempt("cash_bribe")
 
     def city_rep_seduce_requirement(the_person):
         if not the_person.event_triggers_dict.get("currently_interrogating", False):
             return False
-        elif "seduction_attempted" in the_person.event_triggers_dict.get("bribe_attempts", []):
-            return False
-        return True
+        return not has_bribe_attempt("seduction_attempted")
 
     def city_rep_order_requirement(the_person):
         if not the_person.event_triggers_dict.get("currently_interrogating", False):
             return False
-        elif "order_attempted" in the_person.event_triggers_dict.get("bribe_attempts", []):
+        return not has_bribe_attempt("order_attempted")
+
+    def add_bribe_attempt(attempt):
+        if not "bribe_attempts" in city_rep.event_triggers_dict:
+            city_rep.event_triggers_dict["bribe_attempts"] = [attempt]
+        city_rep.event_triggers_dict["bribe_attempts"].append(attempt)
+
+    def has_bribe_attempt(attempt):
+        if not "bribe_attempts" in city_rep.event_triggers_dict:
             return False
-        return True
+        return attempt in city_rep.event_triggers_dict["bribe_attempts"]
+
+    def clear_bribe_attempts():
+        if not "bribe_attempts" in city_rep.event_triggers_dict:
+            return
+        del city_rep.event_triggers_dict["bribe_attempts"]
 
 
 label city_rep_negotiate(the_person):
     mc.name "This is a waste of everyone's time. I'm sure you have better things to be doing today."
     the_person "I go where the city sends me. That's all."
     mc.name "Couldn't we come to some sort of agreement so this isn't necessary? What does the city need to stay out of my hair."
-    $ obedience_requirement = 130 - 10*the_person.get_opinion_score("being submissive")
     if the_person.love < 0:
         the_person "They need you to stop peddling unregulated, unethical pharmaceuticals. Do you think you can do that for me?"
         mc.name "That's my whole business..."
@@ -56,6 +64,7 @@ label city_rep_negotiate(the_person):
         mc.name "Would you do that for me?"
         "She thinks for a moment."
         the_person "It would be a big risk for me. This isn't the most savoury business, and if one of my higher-ups reviews my work there could be trouble."
+        $ obedience_requirement = 130 - 10*the_person.get_opinion_score("being submissive")
         menu:
             "Pay her\n{color=#ff0000}{size=18}Costs: $2500{/size}{/color}" if mc.business.has_funds(2500):
                 mc.name "I can pay you for it. I'm sure there are application fees, extra taxes, and so on..."
@@ -87,7 +96,7 @@ label city_rep_negotiate(the_person):
     return
 
 label city_rep_bribe(the_person):
-    $ the_person.event_triggers_dict["bribe_attempts"] = the_person.event_triggers_dict.get("bribe_attempts",[]).append("cash_bribe")
+    $ add_bribe_attempt("cash_bribe")
     mc.name "This is a waste of everyone's time. Isn't there some sort of fee I can pay you and we can all get back to doing real work?"
     if the_person.love < 0:
         the_person "I hope you aren't trying to bribe me [the_person.mc_title]."
@@ -128,11 +137,11 @@ label city_rep_bribe(the_person):
     return
 
 label city_rep_seduce(the_person): #TODO: Figure out if we can have something like this trigger automatically if you seduce her by groping her or something
-    $ the_person.event_triggers_dict["bribe_attempts"] = the_person.event_triggers_dict.get("bribe_attempts",[]).append("seduction_attempted")
+    $ add_bribe_attempt("seduction_attempted")
     mc.name "It seems like we have some time to spare [the_person.title]."
     "You step close to her and put your hand on the small of her back."
     mc.name "How about we head to my office and get to know each other better while your thugs are searching the place."
-    call apply_sex_slut_modifier(the_person) from _call_apply_sex_slut_modifiers_city_rep_seduce
+    call apply_sex_slut_modifiers(the_person) from _call_apply_sex_slut_modifiers_city_rep_seduce
     $ should_fuck = False
     if the_person.effective_sluttiness() < 20: #Offended
         $ the_person.change_love(-1)
@@ -189,7 +198,7 @@ label city_rep_seduce(the_person): #TODO: Figure out if we can have something li
     return
 
 label city_rep_order(the_person):
-    $ the_person.event_triggers_dict["bribe_attempts"] = the_person.event_triggers_dict.get("bribe_attempts",[]).append("order_attempted")
+    $ add_bribe_attempt("order_attempted")
     if the_person.obedience < 110:
         mc.name "[the_person.title], you're going to stop with this stupid charade. There isn't going to be any punishment today."
         "She smirks and glares at you."

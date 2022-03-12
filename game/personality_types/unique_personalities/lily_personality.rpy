@@ -13,7 +13,7 @@ init 1300:
             if the_person.sluttiness > 60:
                 valid_titles.append("Your slut of a sister")
 
-            if the_person.sluttiness > 100:
+            if the_person.sluttiness > 90:
                 valid_titles.append("Your cock hungry sister")
                 valid_titles.append("The family cumdump")
             return valid_titles

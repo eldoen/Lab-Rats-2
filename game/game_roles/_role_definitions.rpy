@@ -227,8 +227,12 @@ init -1 python:
         return [milk_for_serum_action]
 
     def get_city_rep_role_actions():
+        city_rep_negotiate_action = Action("Negotiate Deal", city_rep_negotiate_requirement, "city_rep_negotiate")
+        city_rep_bribe_action = Action("Offer a Bribe", city_rep_bribe_requirement, "city_rep_bribe")
+        city_rep_order_action = Action("Order her to leave", city_rep_order_requirement, "city_rep_order")
+        city_rep_seduce_action = Action("Try to seduce her", city_rep_seduce_requirement, "city_rep_seduce")
         city_rep_hire_action = Action("Offer to hire her", offer_to_hire_requirement, "city_rep_offer_hire")
-        return [city_rep_hire_action]
+        return [city_rep_negotiate_action, city_rep_bribe_action, city_rep_order_action, city_rep_seduce_action, city_rep_hire_action]
 
     def get_city_rep_role_trainables():
         city_rep_dressup_training = Trainable("City_Rep_Dressup", "city_rep_dressup_training", "Slutty Work Uniform.", unlocked_function = city_rep_dressup_training_requirement, doubling_amount = 4)

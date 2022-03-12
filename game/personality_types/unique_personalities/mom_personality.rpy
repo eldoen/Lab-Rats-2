@@ -15,7 +15,7 @@ init 1300:
             if the_person.sluttiness > 60 and the_person.love > 60:
                 valid_titles.append("Your personal MILF")
 
-            if the_person.sluttiness > 100:
+            if the_person.sluttiness > 90:
                 valid_titles.append("Your cock hungry mom")
                 valid_titles.append("The family cumdump")
             return valid_titles

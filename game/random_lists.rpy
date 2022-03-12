@@ -1037,7 +1037,9 @@ init -1 python:
     cousin_wardrobe = wardrobe_from_xml("Cousin_Wardrobe")
     city_rep_wardrobe = wardrobe_from_xml("City_Rep_Wardrobe")
     lynn_wardrobe = wardrobe_from_xml("Lynn_Wardrobe")
+
     city_rep_base = city_rep_wardrobe.get_outfit_with_name("City_Rep_Accessories")
+    city_rep_wardrobe.remove_outfit(city_rep_base)
 
     # base outfits
     nora_base = Outfit("Nora's accessories")

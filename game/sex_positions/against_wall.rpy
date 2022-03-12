@@ -131,7 +131,7 @@ label scene_against_wall_2(the_girl, the_location, the_object):
     menu:
         "Fuck her harder":
             "You lift [the_girl.possessive_title]'s hands up and pin them against the [the_object.name]. You lay into her, fucking her as hard as you can manage."
-            if the_girl.get_opinion_score("being submissive"):
+            if the_girl.get_opinion_score("being submissive") > 0:
                 $ the_girl.discover_opinion("being submissive")
                 $ the_girl.change_arousal(the_girl.get_opinion_score("being submissive"))
                 the_girl "Yes! Oh my god, yes! Use me however you want, I'll be whatever you want me to be!"

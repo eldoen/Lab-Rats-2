@@ -519,7 +519,7 @@ label mom_work_promotion_two_prep(the_person):
             "[the_person.title] nods, and you both stand up."
             $ the_person.draw_person()
             the_person "Okay, let's see. Ah... Hello sir, good to see you again."
-            mc.name "Mrs.[the_person.last_name], it's good to see you too."
+            mc.name "Mrs. [the_person.last_name], it's good to see you too."
             $ mc.change_locked_clarity(5)
             "You hold out your hand to shake hers. She takes it, then steps forward and gives you a quick hug."
             "She follows it up with a quick peck on the cheek, then motions to the bed."

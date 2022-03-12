@@ -29,12 +29,12 @@ init 1:
 label intro_doggy_anal(the_girl, the_location, the_object):
     mc.name "Get down on all fours, I want to fuck your tight ass."
     if the_girl.sex_skills["Anal"] > 2 or the_girl.get_opinion_score("anal sex") > 0:
-        if the_girl.effective_sluttiness() > 100:
+        if the_girl.effective_sluttiness() > 90:
             the_girl "Get inside of me and fuck my ass raw!"
         else:
             the_girl "Okay, but take it slowly. I need some time to adjust..."
     else: #She's inexperienced and doesn't quite know what to do.
-        if the_girl.effective_sluttiness() > 100:
+        if the_girl.effective_sluttiness() > 90:
             the_girl "Oh fuck, I want you inside me but I need you to go slowly."
         else:
             "[the_girl.possessive_title] looks worried for a moment."
@@ -162,7 +162,7 @@ label outro_doggy_anal(the_girl, the_location, the_object):
         $ the_girl.cum_on_ass()
         $ doggy_anal.redraw_scene(the_girl)
         $ climax_controller.do_clarity_release(the_girl)
-        if the_girl.effective_sluttiness() > 120:
+        if the_girl.effective_sluttiness() > 90:
             the_girl "Aw, I feel so empty now. You should have filled my ass with your cum instead."
         else:
             the_girl "Mmm, it's so warm."
