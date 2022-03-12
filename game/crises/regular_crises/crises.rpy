@@ -2623,7 +2623,7 @@ label research_reminder_crisis_label():
                                                 mc.name "I'm going to need a minute to recover. I'll... I'll come talk to you if I think of something, okay?"
                                                 $ the_person.change_obedience(2)
                                                 "She nods and stands up, brushing off her knees."
-                                                the_person "You know where to fine me."
+                                                the_person "You know where to find me."
                                                 "[the_person.possessive_title] steps out of the room, leaving you alone as you get cleaned up."
 
                                             else:
