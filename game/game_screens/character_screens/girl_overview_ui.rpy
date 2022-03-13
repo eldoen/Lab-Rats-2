@@ -73,7 +73,7 @@ screen person_info_detailed(the_person):
                     #TODO: Decide how much of this information we want to give to the player directly and how much we want to have delivered in game.
                     if persistent.pregnancy_pref > 0:
                         if the_person.event_triggers_dict.get("preg_knows", False):
-                            text "Pregnant, " + str(the_person.event_triggers_dict["preg_start_date"] - day) + " Days" style "menu_text_style"
+                            text "Pregnant, " + str( day - the_person.event_triggers_dict["preg_start_date"] ) + " Days" style "menu_text_style"
                         else:
                             if persistent.pregnancy_pref == 1:
                                 text "Fertility: " + str(round(the_person.fertility_percent)) + "%" style "menu_text_style"
