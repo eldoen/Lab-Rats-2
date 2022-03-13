@@ -595,7 +595,7 @@ init -2 python:
             amount_sold = self.sale_progress(mc.charisma,mc.focus,mc.market_skill)
             #  #TODO: Replace the old goal here with the new one.
             self.listener_system.fire_event("general_work")
-            renpy.say(None, "You spend time making phone calls to clients and shipping out orders. You sell " + str(amount_sold) + " doses of serum.")
+            renpy.say(None, "You spend time making phone calls to aquire new potential clients and advertising your business. You expand your market reach by " + str(amount_sold) + " people.")
             return amount_sold
 
         def sale_progress(self,cha,focus,skill, slut_modifier = 0): #TODO: Decide what effects should directly affect price, and which ones should increase market reach gain.
