@@ -514,7 +514,8 @@ init -2 python:
                             self.add_normal_message("Serum trait mastery improved: " + the_research.name + ", Now " + str(the_research.mastery_level))
                         else:
                             self.add_normal_message("New serum trait researched: " + the_research.name)
-                            self.active_research_design = None #If it's a newly discovered trait clear it so we don't start mastering it without player input.
+                            # auto continue mastery research on completed trait
+                            # self.active_research_design = None
 
             else:
                 clarity_produced = 0

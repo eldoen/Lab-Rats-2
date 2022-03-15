@@ -180,7 +180,6 @@ label pregnant_announce(the_person):
             the_person "I love you too [the_person.mc_title]."
         else:
             mc.name "Okay, I appreciate you telling me [the_person.title]."
-            the_person "I still hate you, [the_person.mc_title]."
 
         "[the_person.possessive_title] gives you a tight hug."
 
