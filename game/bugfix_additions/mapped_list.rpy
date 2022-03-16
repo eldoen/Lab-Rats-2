@@ -4,10 +4,7 @@ init -3 python:
     ################################
 
     def all_people_in_the_game(excluded_people = [], excluded_locations = []): # Pass excluded_people as array of people [mc, lily, aunt, cousin, alexia]
-        all_people = []
-        for location in all_locations_in_the_game(excluded_locations):
-            all_people.extend([x for x in location.people if x not in excluded_people])
-        return all_people
+        return [y for x in list_of_places if x not in excluded_locations for y in x.people if y not in excluded_people]
 
     def all_locations_in_the_game(excluded_locations = []):
         return [x for x in list_of_places if x not in excluded_locations]

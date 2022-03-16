@@ -471,6 +471,8 @@ label small_talk_person(the_person, apply_energy_cost = True, is_phone = False):
     mc.name "So [the_person.title], what's been on your mind recently?"
     $ the_person.discover_opinion("small talk")
     $ ran_num = renpy.random.randint(0,100)
+    if not the_person.event_triggers_dict.get("job_known", True):
+        $ the_person.event_triggers_dict["job_known"] = True
     # TODO: Add a chance that she wants to talk about someone she knows.
     if ran_num < 60 + (the_person.get_opinion_score("small talk") * 20) + (mc.charisma * 5):
         if is_phone:

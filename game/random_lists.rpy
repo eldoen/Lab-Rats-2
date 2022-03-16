@@ -1141,7 +1141,7 @@ init 1 python:
             title = "Stephanie", possessive_title = "Your friend", mc_title = mc.name, relationship = "Single", kids = 0)
 
         stephanie.generate_home()
-        stephanie.add_job(steph_lab_assistant)
+        stephanie.add_job(steph_lab_assistant, job_known = True)
         stephanie.add_role(steph_role)
         #NOTE: Stepahnie is hired in an event at the start of the game.
         stephanie.set_opinion("research work", 2, True) #Steph always loves research work, which you know
@@ -1158,7 +1158,7 @@ init 1 python:
         nora.add_role(nora_role)
         #Note that we don't add the professor job until you actually meet her, so we don't have her wandering around campus unintentionally.
         nora.set_override_schedule(nora.home) #Sets her to stay at home so she doesn't wander around the city
-        nora.add_job(nora_professor_job)
+        nora.add_job(nora_professor_job, job_known = True)
         nora.home.add_person(nora)
         nora.set_opinion("research work", 2, True) #Always loves research work
 
@@ -1177,7 +1177,7 @@ init 1 python:
         add_alexia_introduction_actions()
 
         alexia.add_role(alexia_role)
-        alexia.add_job(alexia_barista_job)
+        alexia.add_job(alexia_barista_job, job_known = True)
 
         #Her Barista job is added by an event that triggers two weeks in, so you can't run into her by accident
         alexia.home.add_person(alexia)
@@ -1192,7 +1192,7 @@ init 1 python:
             start_sluttiness = 6, start_obedience = 0, start_happiness = 100, start_love = 0, relationship = "Single", kids = 0, base_outfit = emily_base)
 
         emily.generate_home().add_person(emily)
-        emily.add_job(emily_student_job)
+        emily.add_job(emily_student_job, job_known = True)
         emily.set_schedule(emily.home, the_times = [0,1,2,3,4])
         emily.add_role(student_role)
 
@@ -1208,7 +1208,7 @@ init 1 python:
         christina.set_schedule(christina.home) #She's a stay-at-home Mom.
         christina_job = Job("Throphy Wife", critical_job_role, christina.home, work_days = [0,1,2,3,4,5,6])
 
-        christina.add_job(christina_job)
+        christina.add_job(christina_job, job_known = True)
         christina.home.add_person(christina)
         #Note: She plays an important role to Emily's story, but she is just given the normal affair role during the game.
 
@@ -1223,7 +1223,7 @@ init 1 python:
 
         iris.add_role(instapic_role)
         iris.add_role(dikdok_role)
-        iris.add_job(influencer_job)
+        iris.add_job(influencer_job, job_known = True)
 
         iris.generate_home()
         iris.set_schedule(iris.home) #Hides her at home so she doesn't wander the city by accident.
@@ -1237,7 +1237,7 @@ init 1 python:
             start_sluttiness = 0, start_obedience = -20, start_happiness = 100, start_love = -20)
 
         city_rep.add_role(city_rep_role)
-        city_rep.add_job(city_rep_job)
+        city_rep.add_job(city_rep_job, job_known = True)
         city_rep.generate_home().add_person(city_rep)
 
         ### LILY ###
@@ -1250,7 +1250,7 @@ init 1 python:
         add_lily_introduction_actions()
 
         lily.add_role(sister_role)
-        lily.add_job(sister_student_job)
+        lily.add_job(sister_student_job, job_known = True)
         lily.set_schedule(lily.home, the_times = [0,3,4])
         lily.home.add_person(lily)
         mc.phone.register_number(lily)
@@ -1266,7 +1266,7 @@ init 1 python:
         add_mom_introduction_actions()
 
         mom.add_role(mother_role)
-        mom.add_job(mom_associate_job)
+        mom.add_job(mom_associate_job, job_known = True)
         mom.set_schedule(mom.home, the_times = [0,4])
         mom.set_schedule(kitchen, the_times = 3)
         mom.home.add_person(mom)
@@ -1282,7 +1282,7 @@ init 1 python:
         add_aunt_introduction_actions()
 
         aunt.add_role(aunt_role) #Note that her "Hire" event is actually held by her aunt role, which just checks if she has the aunt_unemployed_job Job. Avoids needing a new Role just for her non-job.
-        aunt.add_job(aunt_unemployed_job)
+        aunt.add_job(aunt_unemployed_job, job_known = True)
         aunt.set_schedule(aunt_bedroom) #Hide them in their bedroom off the map until they're ready.
         aunt.home.add_person(aunt)
 
@@ -1295,7 +1295,7 @@ init 1 python:
             title = "Gabrielle", possessive_title = "Your cousin", mc_title = mc.name, relationship = "Single", kids = 0)
 
         cousin.add_role(cousin_role)
-        cousin.add_job(unemployed_job)
+        cousin.add_job(unemployed_job, job_known = True)
         cousin.set_schedule(cousin_bedroom) #Hide them in their bedroom off the map until they're ready
         cousin.home.add_person(cousin)
 

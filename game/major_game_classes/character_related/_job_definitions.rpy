@@ -58,6 +58,7 @@ label instantiate_jobs():
 
 
         list_of_jobs.append([unemployed_job, 30])
+        list_of_jobs.append([secretary_job, 3])
         list_of_jobs.append([barista_job, 3])
 
         list_of_jobs.append([clothing_cashier_job, 3])

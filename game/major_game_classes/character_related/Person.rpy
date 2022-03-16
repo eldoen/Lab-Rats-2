@@ -2211,7 +2211,7 @@ init -2 python:
             return False
 
 
-        def add_job(self, new_job, job_known = True): #Start a new job, quitting your old one if nessesary #TODO: REname this to "change_job"?
+        def add_job(self, new_job, job_known = False): #Start a new job, quitting your old one if nessesary #TODO: REname this to "change_job"?
             if self.job and new_job == self.job: #Don't do anything if we already have this job.
                 return
 
