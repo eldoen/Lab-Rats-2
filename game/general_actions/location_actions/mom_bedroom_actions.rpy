@@ -1,7 +1,7 @@
 init -1 python:
     def mom_room_search_requirement():
         if mom_bedroom.has_person(mom):
-            return "Not with " + mom.title + " around."
+            return "Not with " + mom.title + " around"
         elif mc.energy < 15:
             return "Not enough {image=gui/extra_images/energy_token.png}"
         else:

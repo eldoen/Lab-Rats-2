@@ -86,23 +86,23 @@ init -2 python:
             return True
 
         def run_on_apply(self, the_person, the_serum, add_to_log = True):
-            if self.on_apply is not None:
+            if self.on_apply:
                 self.on_apply(the_person, the_serum, add_to_log)
 
         def run_on_remove(self, the_person, the_serum, add_to_log = False):
-            if self.on_remove is not None:
+            if self.on_remove:
                 self.on_remove(the_person, the_serum, add_to_log)
 
         def run_on_turn(self, the_person, the_serum, add_to_log = False):
-            if self.on_turn is not None:
+            if self.on_turn:
                 self.on_turn(the_person, the_serum, add_to_log)
 
         def run_on_move(self, the_person, the_serum, add_to_log = False):
-            if self.on_move is not None:
+            if self.on_move:
                 self.on_move(the_person, the_serum, add_to_log)
 
         def run_on_day(self, the_person, the_serum, add_to_log = False):
-            if self.on_day is not None:
+            if self.on_day:
                 self.on_day(the_person, the_serum, add_to_log)
 
         def add_research(self, amount):

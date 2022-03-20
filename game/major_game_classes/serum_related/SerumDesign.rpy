@@ -110,16 +110,10 @@ init -2 python:
                 self.update_attention()
 
         def update_tier(self):
-            for trait in self.traits + self.side_effects:
-                if trait.tier > self.tier:
-                    self.tier = trait.tier
+            self.tier = max([x.tier for x in self.traits + self.side_effects] or [0])
 
         def update_attention(self):
-            self.attention = 0
-            for trait in self.traits + self.side_effects:
-                if trait.attention > self.attention:
-                    self.attention = trait.attention
-
+            self.attention = max([x.attention for x in self.traits + self.side_effects] or [0])
 
         def duration_expired(self): #Returns true if the serum has expired (ie. duration counter equal to or over duration.).
             if self.duration_counter >= self.duration:
@@ -129,26 +123,26 @@ init -2 python:
 
         def run_on_turn(self, the_person, add_to_log = False): #Increases the counter, applies serum effect if there is still some duration left
             if self.duration_counter < self.duration:
-                for trait in self.traits + self.side_effects:
+                for trait in [x for x in self.traits + self.side_effects if x.on_turn]:
                     trait.run_on_turn(the_person, self, add_to_log)
             if self.expires:
                 self.duration_counter += 1
 
         def run_on_move(self, the_person, add_to_log = False):
-            for trait in self.traits + self.side_effects:
+            for trait in [x for x in self.traits + self.side_effects if x.on_move]:
                 trait.run_on_move(the_person, self, add_to_log)
 
         def run_on_apply(self, the_person, add_to_log = True):
             self.effects_dict = {} #Ensure this is clear and it isn't a reference to the main dict.
-            for trait in self.traits + self.side_effects:
+            for trait in [x for x in self.traits + self.side_effects if x.on_apply]:
                 trait.run_on_apply(the_person, self, add_to_log)
 
         def run_on_remove(self, the_person, add_to_log = False):
-            for trait in self.traits + self.side_effects:
+            for trait in [x for x in self.traits + self.side_effects if x.on_remove]:
                 trait.run_on_remove(the_person, self, add_to_log)
 
         def run_on_day(self, the_person, add_to_log = False):
-            for trait in self.traits + self.side_effects:
+            for trait in [x for x in self.traits + self.side_effects if x.on_day]:
                 trait.run_on_day(the_person, self, add_to_log)
 
         def add_research(self, amount): #Returns true if "amount" research completes the research
@@ -156,8 +150,7 @@ init -2 python:
             if self.current_research >= self.research_needed:
                 self.researched = True
                 return True
-            else:
-                return False
+            return False
 
         def unlock_design(self, pay_clarity = True):
             if pay_clarity:
@@ -182,42 +175,17 @@ init -2 python:
                     mc.log_event(self.name + " developed side effect " + the_side_effect.name + " due to " + trait.name, "float_text_blue")
 
         def build_positive_slug(self):
-            the_slug = ""
-            traits_with_slugs = []
-            for trait in self.traits + self.side_effects:
-                if trait.positive_slug is not None and trait.positive_slug != "":
-                    traits_with_slugs.append(trait)
-
-            for trait in traits_with_slugs:
-                the_slug += trait.positive_slug
-                if trait is not traits_with_slugs[-1]: #If it isn't the last element.
-                        the_slug += ", " #This gets us a nice formatted string in the form A, B, C, D.
+            return ", ".join([x.positive_slug for x in self.traits + self.side_effects if x.positive_slug])
 
         def build_negative_slug(self):
-            the_slug = ""
-            traits_with_slugs = []
-            for trait in self.traits + self.side_effects:
-                if trait.negative_slug is not None and trait.negative_slug != "":
-                    traits_with_slugs.append(trait)
-
-            for trait in traits_with_slugs:
-                the_slug += trait.negative_slug
-                if trait is not traits_with_slugs[-1]: #If it isn't the last element.
-                        the_slug += ", " #This gets us a nice formatted string in the form A, B, C, D.
+            return ", ".join([x.negative_slug for x in self.traits + self.side_effect if x.negative_slug])
 
         def has_production_trait(self):
-            for trait in self.traits:
-                if "Production" in trait.exclude_tags:
-                    return True
-            return False
+            return any(x for x in self.traits if "Production" in x.exclude_tags)
 
         def trait_add_allowed(self, the_trait):
             disallowed_tags = []
             for trait in self.traits:
                 disallowed_tags.extend(trait.exclude_tags)
 
-            for new_tag in the_trait.exclude_tags:
-                if new_tag in disallowed_tags:
-                    return False
-
-            return True
+            return not any(x for x in the_trait.exclude_tags if x in disallowed_tags)

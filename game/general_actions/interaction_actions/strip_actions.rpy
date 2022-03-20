@@ -616,7 +616,7 @@ label strip_tease(the_person, in_private = True, for_pay = False, start_girl_dir
                             $ guy_state = "watching"
                 else:
                     if the_person.has_taboo("touching_body"):
-                        $ the_person.call_taboo_break("touching_body")
+                        $ the_person.break_taboo("touching_body")
                     else:
                         "[the_person.title] gasps in surprise, but doesn't say anything and certainly doesn't tell you to stop."
 

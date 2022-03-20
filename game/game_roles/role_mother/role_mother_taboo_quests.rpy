@@ -85,6 +85,8 @@ init -1 python:
             return False
         elif the_person.event_triggers_dict.get("mom_vaginal_quest_progress", 0) != 1:
             return False
+        elif mom_bedroom.has_person(mom):
+            return "Not with " + mom.title + " around"
         elif time_of_day >= 4:
             return "Not enough time"
         return True
@@ -777,7 +779,7 @@ label mom_vaginal_taboo_break_revisit_quest_1(the_person):
             pass
 
     $ the_person.event_triggers_dict["mom_vaginal_quest_progress"] = 1
-    $ bedroom.actions.append(Action("Check " + the_person.title + "'s advice post", mom_vaginal_quest_2_requirement, "mom_vaginal_taboo_break_revisit_quest_2", args = the_person, requirement_args = the_person, priority = 20))
+    $ mom_bedroom.actions.append(Action("Check " + the_person.title + "'s advice post", mom_vaginal_quest_2_requirement, "mom_vaginal_taboo_break_revisit_quest_2", args = the_person, requirement_args = the_person, priority = 20))
 
     return
 

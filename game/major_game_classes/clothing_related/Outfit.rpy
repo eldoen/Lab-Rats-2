@@ -155,16 +155,9 @@ init -2 python:
             self.add_upper(new_clothing, re_colour = None, pattern = None, colour_pattern = None)
 
         def can_add_upper(self, new_clothing):
-            allowed = True
-            for cloth in self.upper_body:
-                if cloth.layer == new_clothing.layer:
-                    allowed = False
-
-            if new_clothing.has_extension: #It's a dress with a top and a bottom, make sure we can add them both!
-                for cloth in self.lower_body:
-                    if cloth.layer == new_clothing.has_extension.layer:
-                        allowed = False
-
+            allowed = any(x for x in self.upper_body if x.layer == new_clothing.layer)
+            if allowed and new_clothing.has_extension:
+                return not any(x for x in self.lower_body if x.layer == new_clothing.has_extension.layer)
             return allowed
 
         def add_upper(self, new_clothing, re_colour = None, pattern = None, colour_pattern = None):
@@ -184,11 +177,7 @@ init -2 python:
                     self.lower_body.append(new_clothing.has_extension)
 
         def can_add_lower(self,new_clothing):
-            allowed = True
-            for cloth in self.lower_body:
-                if cloth.layer == new_clothing.layer:
-                    allowed = False
-            return allowed
+            return not any(x for x in self.lower_body if x.layer == new_clothing.layer)
 
         def add_lower(self, new_clothing, re_colour = None, pattern = None, colour_pattern = None):
             if re_colour is not None:
@@ -204,11 +193,7 @@ init -2 python:
                 self.lower_body.append(new_clothing)
 
         def can_add_feet(self, new_clothing):
-            allowed = True
-            for cloth in self.feet:
-                if cloth.layer == new_clothing.layer:
-                    allowed = False
-            return allowed
+            return not any(x for x in self.feet if x.layer == new_clothing.layer)
 
         def add_feet(self, new_clothing, re_colour = None, pattern = None, colour_pattern = None):
             if re_colour is not None:
@@ -245,10 +230,7 @@ init -2 python:
                 self.accessories.append(new_clothing)
 
         def has_clothing(self, the_clothing): #Returns True if this outfit includes the given clothing item, false otherwise. Checks for exact parameter match (colour, name, ect), but not reference match.
-            for cloth in self.upper_body + self.lower_body + self.feet + self.accessories:
-                if cloth == the_clothing:
-                    return True
-            return False
+            return any(x for x in self.upper_body + self.lower_body + self.feet + self.accessories if x == the_clothing)
 
         def remove_clothing(self, old_clothing):
             #TODO: make sure this works with dresses when you remove the bottom (ie. extension) first.
@@ -275,7 +257,7 @@ init -2 python:
                     self.remove_clothing(item)
 
         def restore_all_clothing(self):
-            for cloth in self.upper_body + self.lower_body + self.feet + self.accessories:
+            for cloth in [x for x in self.upper_body + self.lower_body + self.feet + self.accessories if x.half_off]:
                 cloth.half_off = False
 
         def get_upper_ordered(self): #Returns a list of pieces from bottom to top, on the upper body. Other functions do similar things, but to lower and feet.
@@ -441,73 +423,57 @@ init -2 python:
 
 
         def vagina_available(self): ## Doubles for asshole for anal.
-            for cloth in [x for x in self.lower_body if x.anchor_below]:
-                if not (cloth.half_off and cloth.half_off_gives_access):
-                    return False
-            return True
+            return not any(x for x in self.lower_body if x.anchor_below and not (x.half_off and x.half_off_gives_access))
 
         def vagina_visible(self):
-            for cloth in [x for x in self.lower_body if x.hide_below]:
-                if not (cloth.half_off and cloth.half_off_reveals):
-                    return False
-            return True
+            return not any(x for x in self.lower_body if x.hide_below and not (x.half_off and x.half_off_gives_access))
 
         def tits_available(self):
-            for cloth in [x for x in self.upper_body if x.anchor_below and not x in [vest, suit_jacket]]:
-                if not (cloth.half_off and cloth.half_off_gives_access):
-                    return False
-            return True
+            return not any(x for x in self.upper_body if x.anchor_below and not x in [vest, suit_jacket] and not (x.half_off and x.half_off_gives_access))
 
         def tits_visible(self):
-            for cloth in [x for x in self.upper_body if x.hide_below]:
-                if not (cloth.half_off and cloth.half_off_reveals):
-                    return False
-            return True
+            return not any(x for x in self.upper_body if x.hide_below and not x in [vest, suit_jacket] and not (x.half_off and x.half_off_gives_access))
 
         def underwear_visible(self):
             return (self.wearing_bra() and not self.bra_covered()) or \
                     (self.wearing_panties() and not self.panties_covered())
 
         def wearing_bra(self):
-            if self.upper_body:
-                if self.get_upper_ordered()[0].underwear:
-                    return True
-            return False
+            return (self.upper_body and self.get_upper_ordered()[0].underwear) or False
 
         def get_bra(self): #returns our bra object if one exists, None otherwise
-            if self.upper_body:
-                if self.get_upper_ordered()[0].underwear:
-                    return self.get_upper_ordered()[0]
+            if self.upper_body and self.get_upper_ordered()[0].underwear:
+                return self.get_upper_ordered()[0]
             return None
 
         def wearing_panties(self):
-            if self.lower_body:
-                if self.get_lower_ordered()[0].underwear:
-                    return True
-            return False
+            return (self.lower_body and self.get_lower_ordered()[0].underwear) or False
 
         def get_panties(self):
-            if self.lower_body:
-                if self.get_lower_ordered()[0].underwear:
-                    return self.get_lower_ordered()[0]
+            if self.lower_body and self.get_lower_ordered()[0].underwear:
+                return self.get_lower_ordered()[0]
             return None
 
         def bra_covered(self):
-            if self.wearing_bra():
-                for cloth in self.get_upper_ordered()[::-1]: #Traverse list from outside in
-                    if cloth.underwear:
-                        return False
-                    elif cloth.hide_below and not (cloth.half_off and cloth.half_off_reveals):
-                        return True
+            if not self.wearing_bra():
+                return False
+
+            for cloth in self.get_upper_ordered()[::-1]: #Traverse list from outside in
+                if cloth.underwear:
+                    return False
+                elif cloth.hide_below and not (cloth.half_off and cloth.half_off_reveals):
+                    return True
             return False
 
         def panties_covered(self):
-            if self.wearing_panties():
-                for cloth in self.get_lower_ordered()[::-1]: #Traverse list from outside in
-                    if cloth.underwear:
-                        return False
-                    elif cloth.hide_below and not (cloth.half_off and cloth.half_off_reveals):
-                        return True
+            if not self.wearing_panties():
+                return False
+
+            for cloth in self.get_lower_ordered()[::-1]: #Traverse list from outside in
+                if cloth.underwear:
+                    return False
+                elif cloth.hide_below and not (cloth.half_off and cloth.half_off_reveals):
+                    return True
             return False
 
         def is_suitable_underwear_set(self): #Returns true if the outfit could qualify as an underwear set ie. Only layer 1 clothing.
