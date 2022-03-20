@@ -24,6 +24,8 @@ init -2 python:
             matches = True
             if not self.job_title == other.job_title:
                 matches = False
+            elif not self.job_location == other.job_location:
+                matches = False
             elif not self.job_role == other.job_role:
                 matches = False
             elif not self.hire_function == other.hire_function:

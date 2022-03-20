@@ -17,7 +17,7 @@ label stripper_private_dance_label(the_person):
         "You pull out your wallet and shake a collection of bills in front of her. Her eyes follow them hungrily."
         the_person "God damn it... Fine, come with me."
         $ the_person.draw_person(position = "walking_away")
-        "She snatches your wrist and half-drags you across the main room towards a series of curtain_obscured booths."
+        "She snatches your wrist and half-drags you across the main room towards a series of curtain obscured booths."
         "[the_person.possessive_title] shoves you towards the padded bench and snaps the curtain closed behind both of you."
         $ the_person.draw_person()
         the_person "Money. Now."

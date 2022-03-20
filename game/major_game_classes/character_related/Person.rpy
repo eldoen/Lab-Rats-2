@@ -1399,6 +1399,7 @@ init -2 python:
                 else:
                     log_string = ("+" if amount > 0 else "") + str(amount) + " Love"
                 mc.log_event(display_name + ": " + log_string, "float_text_pink")
+            return amount
 
         def change_slut(self, amount, max_modified_to = None, add_to_log = True):
             if max_modified_to and self.sluttiness + amount > max_modified_to:
@@ -1422,11 +1423,12 @@ init -2 python:
                 else: #It is exactly 0
                     log_string = ("+" if amount > 0 else "") + str(amount) + " Sluttiness"
                 mc.log_event(display_name + ": " + log_string, "float_text_pink")
+            return amount
 
         def change_slut_temp(self, amount, add_to_log = True):
-            self.change_slut(amount, add_to_log = add_to_log)
+            return self.change_slut(amount, add_to_log = add_to_log)
         def change_slut_core(self, amount, add_to_log = True, fire_event = True):
-            self.change_slut(amount, add_to_log = add_to_log)
+            return self.change_slut(amount, add_to_log = add_to_log)
 
         def add_situational_slut(self, source, amount, description = ""):
             self.situational_sluttiness[source] = (amount,description)
@@ -1460,6 +1462,7 @@ init -2 python:
 
                 log_string = display_name + ": " + ("+" if amount > 0 else "") + str(amount) + " Obedience"
                 mc.log_event(log_string,"float_text_grey")
+            return amount
 
         def change_cha(self, amount, add_to_log = True):
             self.charisma += self.charisma_debt #Set our charisma to be our net score

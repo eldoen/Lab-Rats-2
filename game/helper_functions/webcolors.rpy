@@ -186,6 +186,9 @@ values to normalized color names. These eight mappings are as follows:
 
 """
 init -2 python:
+    from math import floor
+    from math import ceil
+
     def _reversedict(d):
         """
         Internal helper for generating reverse mappings; given a
@@ -495,8 +498,7 @@ init -2 python:
 
         """
         if spec not in SUPPORTED_SPECIFICATIONS:
-            raise TypeError("'%s' is not a supported specification for color name lookups; supported specifications are: %s." % (spec,
-                                                                                                                                 ', '.join(SUPPORTED_SPECIFICATIONS)))
+            raise TypeError("'%s' is not a supported specification for color name lookups; supported specifications are: %s." % (spec, ', '.join(SUPPORTED_SPECIFICATIONS)))
         normalized = name.lower()
         try:
             hex_value = globals()['%s_names_to_hex' % spec][normalized]
@@ -601,8 +603,7 @@ init -2 python:
 
         """
         if spec not in SUPPORTED_SPECIFICATIONS:
-            raise TypeError("'%s' is not a supported specification for color name lookups; supported specifications are: %s." % (spec,
-                                                                                                                                 ', '.join(SUPPORTED_SPECIFICATIONS)))
+            raise TypeError("'%s' is not a supported specification for color name lookups; supported specifications are: %s." % (spec, ', '.join(SUPPORTED_SPECIFICATIONS)))
         normalized = normalize_hex(hex_value)
         try:
             name = globals()['%s_hex_to_names' % spec][normalized]
@@ -630,8 +631,7 @@ init -2 python:
 
         """
         hex_digits = normalize_hex(hex_value)
-        return tuple(map(lambda s: int(s, 16),
-                         (hex_digits[1:3], hex_digits[3:5], hex_digits[5:7])))
+        return tuple(map(lambda s: int(s, 16), (hex_digits[1:3], hex_digits[3:5], hex_digits[5:7])))
 
     def hex_to_rgb_percent(hex_value):
         """
@@ -727,10 +727,8 @@ init -2 python:
         # In order to maintain precision for common values,
         # 256 / 2**n is special-cased for values of n
         # from 0 through 4, as well as 0 itself.
-        specials = { 255: '100%', 128: '50%', 64: '25%',
-                     32: '12.5%', 16: '6.25%', 0: '0%' }
-        return tuple(map(lambda d: specials.get(d, '%.02f%%' % ((d / 255.0) * 100)),
-                         rgb_triplet))
+        specials = { 255: '100%', 128: '50%', 64: '25%', 32: '12.5%', 16: '6.25%', 0: '0%' }
+        return tuple(map(lambda d: specials.get(d, '%.02f%%' % ((d / 255.0) * 100)), rgb_triplet))
 
 
     ######################################################################
@@ -788,8 +786,8 @@ init -2 python:
 
         """
         num = float(percent.split('%')[0]) / 100.0 * 255
-        e = num - math.floor(num)
-        return e < 0.5 and int(math.floor(num)) or int(math.ceil(num))
+        e = num - floor(num)
+        return e < 0.5 and int(floor(num)) or int(ceil(num))
 
     def rgb_percent_to_rgb(rgb_percent_triplet):
         """
