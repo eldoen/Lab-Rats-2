@@ -145,7 +145,7 @@ label scene_piledriver_1(the_girl, the_location, the_object):
     #
     # the_girl "Oh... Fuck... Ah..."
     # mc.name "Does that feel good?"
-    # if the_girl.effective_sluttiness > 100:
+    # if the_girl.effective_sluttiness() > 90:
     #     "All [the_girl.title] can do is nod and moan loudly in response. You do your best to drive your cock all the way to it's base, fitting every last inch into [the_girl.title]'s cunt."
     # else:
     #     the_girl "It's certainly... Ah... Deep... Wow..."

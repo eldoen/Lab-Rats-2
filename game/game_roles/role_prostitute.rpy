@@ -35,7 +35,7 @@ label prostitute_hire_offer(the_person):
     "She laughs and shakes her head."
     the_person "I don't think you really mean that."
     mc.name "I do, and you wouldn't have to be walking the streets just to make ends meet."
-    if the_person.get_opinion_score(["vaginal sex", "anal sex", "public sex", "giving blowjobs", "skimpy outfits"]) > 1 and the_person.effective_sluttiness >= 40:
+    if the_person.get_opinion_score(["vaginal sex", "anal sex", "public sex", "giving blowjobs", "skimpy outfits"]) > 1 and the_person.effective_sluttiness() >= 40:
         # She enjoys fucking people too much to quit.
         the_person "That's sweet of you to say, but I don't just do it for the money."
         the_person "Truth is, I kind of like it. I get paid to get fucked, what's not to like?"

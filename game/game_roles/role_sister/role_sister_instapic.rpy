@@ -1201,7 +1201,7 @@ label sister_instathot_label_mom_shirtless(the_sister, the_mom, the_group): #Cal
                             #TODO: Here's where you can get them to start touching each other.
                             #TODO: Do that in the future.
 
-                        "Now show them to the camera\n{color=#00ff00}{size=18}Requires: both [red_heart_token] or likes incest{/size}{/color} (disabled)" if the_mom.effective_sluttiness < 55:
+                        "Now show them to the camera\n{color=#00ff00}{size=18}Requires: both [red_heart_token] or likes incest{/size}{/color} (disabled)" if the_mom.effective_sluttiness() < 55:
                             pass
 
                 else:
