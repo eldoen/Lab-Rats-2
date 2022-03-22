@@ -555,7 +555,7 @@ label sex_description(the_person, the_position, the_object, private = True, repo
         $ his_arousal_change += -2 # Condoms don't feel as good.
 
     $ mc.change_arousal(his_arousal_change)
-    $ mc.change_locked_clarity(the_position.guy_arousal * the_person.sex_skills[the_position.skill_tag]) #NOTE: This let's you end up with 0 clarity gain. Is that what we want?
+    $ mc.locked_clarity += (the_position.guy_arousal * the_person.sex_skills[the_position.skill_tag])
     if mc.recently_orgasmed and mc.arousal >= 10:
         $ mc.recently_orgasmed = False
         "Your cock stiffens again, coaxed back to life by [the_person.title]."

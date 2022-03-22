@@ -954,12 +954,12 @@ init -2 python:
                 candidate_dict["stat_array"] = [renpy.random.randint(1,stat_cap),renpy.random.randint(1,stat_cap),renpy.random.randint(1,stat_cap)]
 
             if recruitment_sex_improvement_policy.is_active():
-                stat_cap = 7
-                candidate_dict["sex_array"] = [renpy.random.randint(1,stat_cap), renpy.random.randint(1,stat_cap), renpy.random.randint(1,stat_cap), renpy.random.randint(1,stat_cap)]
+                sex_cap = 7
+                candidate_dict["sex_array"] = [renpy.random.randint(1,sex_cap), renpy.random.randint(1,sex_cap), renpy.random.randint(1,sex_cap), renpy.random.randint(1,sex_cap)]
 
             if recruitment_suggest_improvement_policy.is_active():
                 candidate_dict["age_ceiling"] = candidate_dict.get("age_ceiling", 50) - 10
-                candidate_dict["bonus_suggest"] = 2
+                candidate_dict["bonus_suggest"] = 10
 
             if recruitment_obedience_improvement_policy.is_active():
                 candidate_dict["bonus_obedience"] = 10
@@ -1007,10 +1007,10 @@ init -2 python:
             elif recruitment_teen_policy.is_active():
                 candidate_dict["age_ceiling"] = 19
                 if candidate_dict.get("age_floor", 18) >= candidate_dict.get("age_ceiling", 55):
-                    candidate_dict["age_floor"] = candidate_dict.get("age_ceiling",18) - 1
+                    candidate_dict["age_floor"] = candidate_dict.get("age_ceiling",19) - 1
 
             if candidate_dict.get("age_ceiling", 55) <= candidate_dict.get("age_floor", 18):
-                candidate_dict["age_floor"] = candidate_dict.get("age_ceiling",18) - 1
+                candidate_dict["age_floor"] = candidate_dict.get("age_ceiling",19) - 1
 
             return candidate_dict
 
