@@ -142,7 +142,7 @@ label scene_missionary_2(the_girl, the_location, the_object):
             "Fondle her tits":
                 if the_girl.has_large_tits() :
                     if the_girl.outfit.tits_available():
-                        "You plant a hand on [the_girl.possessive_title]'s nice, soft tits and squeeze it. You use your thumb to rub her already hard nipple."
+                        "You plant a hand on one of [the_girl.possessive_title]'s nice, soft tits and squeeze it. You use your thumb to rub her already hard nipple."
                         the_girl "Oh god, go easy on them. They're sensitive!"
                         "You enjoy the squishy weight of her breasts for a few moments, then shift your focus back to fucking her."
 

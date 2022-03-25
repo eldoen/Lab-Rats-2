@@ -636,7 +636,7 @@ label study_normally(the_person, public = True):
             $ the_person.event_triggers_dict["current_marks"] = the_person.event_triggers_dict.get("current_marks",0) + 3
             $ mc.log_event((the_person.title or "She") + " isn't happy, but she learns more without a break.", "float_text_grey")
 
-    mc.name "...And that's the last question. We're done."
+    mc.name "... And that's the last question. We're done."
     return
 
 label student_masturbate_label(the_person):
@@ -871,7 +871,7 @@ label student_pick_punishment(the_person):
                     mc.name "You know you're supposed to try and get the questions right, right?"
                     the_person "Uh, yeah, obviously. But if I have to strip down I might as well make it interesting."
                 else:
-                    the_person "Sure, whatever. I'm going to get all of the question right this time, so it doesn't even matter."
+                    the_person "Sure, whatever. I'm going to get all of the questions right this time, so it doesn't even matter."
                 $ the_person.event_triggers_dict["student_strip"] += 1
 
             return "student_punish_strip", wants_to_fail
@@ -1550,8 +1550,8 @@ label student_test(the_person): #TODO: Hook this up
     mc.name "Like [nora.title] said, you have three hours. Good luck."
     the_person "Right, here we go!"
     "She opens up the stack of papers and starts working on it."
-    #TODO: Add a varient if she's really slutty where she needs to get off first.
-    #TODO: Add a varient where she tries to "convince" you to give her the answers.
+    #TODO: Add a variant if she's really slutty where she needs to get off first.
+    #TODO: Add a variant where she tries to "convince" you to give her the answers.
     "You pass the time browsing the internet on your phone."
     $ the_person.draw_person()
     "Two hours in [the_person.possessive_title] stands up and walks towards you, test in hand."

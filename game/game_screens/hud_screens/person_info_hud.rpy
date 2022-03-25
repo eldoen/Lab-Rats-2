@@ -25,7 +25,8 @@ screen person_info_ui(the_person): #Used to display stats for a person while you
             elif the_person.situational_sluttiness[situation][0] < 0:
                 negative_effects += get_coloured_arrow(-1)+get_red_heart(-the_person.situational_sluttiness[situation][0])+" - " + the_person.situational_sluttiness[situation][1] + "\n"
         formatted_tooltip += positive_effects + negative_effects
-        formatted_tooltip += "The higher a girls sluttiness the more slutty actions she will consider acceptable and normal. Temporary sluttiness (" + get_red_heart(20) + ") is easier to raise but drops slowly over time. Core sluttiness (" + get_gold_heart(20) + ") is permanent, but only increases slowly unless a girl is suggestable."
+        formatted_tooltip += "The higher a girl's sluttiness, the more slutty actions she will consider acceptable and normal. Gold hearts (" + get_gold_heart(20) + ") represent her baseline sluttiness, and red hearts (" + get_red_heart(20) + ") represent temporary or situational bonuses to sluttiness."
+        #formatted_tooltip += "The higher a girls sluttiness the more slutty actions she will consider acceptable and normal. Temporary sluttiness (" + get_red_heart(20) + ") is easier to raise but drops slowly over time. Core sluttiness (" + get_gold_heart(20) + ") is permanent, but only increases slowly unless a girl is suggestable."
 
         positive_effects = ""
         negative_effects = ""

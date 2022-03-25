@@ -35,7 +35,7 @@ screen main_ui(): #The UI that shows most of the important information to the sc
             textbutton "Energy: " + str(disp_energy) + "/" + str(disp_max_energy) + " {image=gui/extra_images/energy_token.png}":
                 ysize 28
                 text_style "menu_text_style"
-                tooltip "Many actions require energy to perform, sex especially. Energy comes back slowly throughout the day, and most of it is recovered after a good nights sleep."
+                tooltip "Many actions require energy to perform, sex especially. Energy comes back slowly throughout the day, and most of it is recovered after a good night's sleep."
                 action NullAction()
                 sensitive True
 

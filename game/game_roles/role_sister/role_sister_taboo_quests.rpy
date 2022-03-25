@@ -74,7 +74,7 @@ label sister_kissing_taboo_break_revisit(the_person):
     if first_time:
         "She shuffles around nervously for a moment before speaking again."
         if noteable_taboo == "touching":
-            the_person "Well you know how we were touching each other? I don't know if it was right... " #TODO: Have a non-con varient where you ordered her.
+            the_person "Well you know how we were touching each other? I don't know if it was right..." #TODO: Have a non-con variant where you ordered her.
             mc.name "Why not? We both liked it, right?"
             "She shrugs noncommittally."
             the_person "Sure, but you're my brother. It's a little weird."
@@ -269,7 +269,7 @@ label sister_oral_taboo_break_revisit(the_person):
             the_person "Too bad it's really expensive..."
             mc.name "If I get you the new {size=+12}{font=fonts/Crimson-Bold.ttf}\u03C0{/font}{/size}phone, we're good?"
             the_person "That's really all it's going to take? Yeah, get me the phone and I'll think about... you know."
-            "She mimes a blowjob, poking out her tongue with her cheek. She giggles and winks."
+            "She mimes a blowjob, poking out her cheek with her tongue. She giggles and winks."
             the_person "Good luck though, I've heard the lines are massive. You'll probably be waiting there all day!"
             mc.name "I'm sure I can manage it."
 
@@ -310,7 +310,7 @@ label sister_oral_taboo_break_revisit_quest_2(the_person):
             "You sigh and resign yourself to the long wait."
             $ other_girl_1 = create_random_person()
             $ other_girl_2 = create_random_person()
-            "Shortly after you arrive a pack of girls swing into line behind you."
+            "Shortly after you arrive, a pack of girls swing into line behind you."
 
             $ the_group = GroupDisplayManager([other_girl_1, lead_girl, other_girl_2], primary_speaker = lead_girl)
             $ the_group.draw_group()
@@ -831,7 +831,7 @@ label sister_vaginal_taboo_break_revisit_quest_1(the_person):
     elif slutty_serum:
         the_person "I don't know if it's working [the_person.mc_title], I... Hmm..."
         "She shuffles her thighs together, unconsciously rubbing her thighs together."
-        the_person "...I don't know how I'm feeling."
+        the_person "... I don't know how I'm feeling."
         "Her breathing is getting a little faster, and it's clear the serum is having an effect."
         the_person "This doesn't seem like the kind of drug the girls were looking for."
         "[the_person.possessive_title] grinds her thighs together, harder this time."

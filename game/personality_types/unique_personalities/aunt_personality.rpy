@@ -71,7 +71,7 @@ label aunt_sex_review(the_person, the_report):
     # special condition - you fucked her brains out
     elif the_report.get("girl orgasms", 0) > 2:
         if used_obedience:
-            the_person "Wow, that was...so intense. I didn't think you could make me do that!"
+            the_person "Wow, that was... so intense. I didn't think you could make me do that!"
             "[the_person.possessive_title] seems a little embarrassed, but hides it well."
         else:
             the_person "Oh my... I never expected this to happen!"
@@ -83,7 +83,7 @@ label aunt_sex_review(the_person, the_report):
     elif the_report.get("girl orgasms", 0) == 0 and the_person.energy < 20:
         the_person "I'm sorry, [the_person.mc_title], but I'm no spring chicken anymore."
         mc.name "No problem, we had fun, right?"
-        the_person "Yes, and next time I will show a few tricks to rock a girls world."
+        the_person "Yes, and next time I will show a few tricks to rock a girl's world."
 
     #No special conditions, just respond based on how orgasmed and how slutty the position was.
     elif the_report.get("girl orgasms", 0) > 0 and the_report.get("guy orgasms", 0) > 0: #You both came
@@ -327,7 +327,7 @@ label aunt_cum_pullout(the_person):
                 "She moans desperately."
                 the_person "I don't even care if you get me pregnant, I just want to feel all of your cum inside of me!"
 
-            menu: #TODO: Add a varient of this normally so you can stealth a girl (don't do that in real life, it's super fucked up).
+            menu: #TODO: Add a variant of this normally so you can stealth a girl (don't do that in real life, it's super fucked up).
                 "Take off the condom":
                     "You don't have much time to spare. You pull out, barely clearing her pussy, and pull the condom off as quickly as you can manage."
                     $ mc.condom = False
@@ -534,7 +534,7 @@ label aunt_sucking_cock_taboo_break(the_person):
         the_person "Alright. I'll..."
 
     "[the_person.possessive_title] shakes her head and laughs self-consciously."
-    the_person "...This is so crazy! I'll give you a blowjob [the_person.mc_title]."
+    the_person "... This is so crazy! I'll give you a blowjob [the_person.mc_title]."
     return
 
 label aunt_licking_pussy_taboo_break(the_person):
@@ -606,7 +606,7 @@ label aunt_anal_sex_taboo_break(the_person):
         if the_person.has_taboo("vaginal_sex"):
             mc.name "Come on [the_person.title], I'm so turned on. Can I slid into your pussy instead?"
             "Just mentioning it makes her moan softly to herself."
-            the_person "Mphh...No, no we can't do that! That's going to far, we're still family!"
+            the_person "Mphh... No, no we can't do that! That's going too far, we're still family!"
             mc.name "Then let's try anal. It's not even really sex."
 
         else:
@@ -697,7 +697,7 @@ label aunt_creampie_taboo_break(the_person):
             $ the_person.update_birth_control_knowledge()
             the_person "I don't know what's happens to me, I just lose my mind and want even more!"
         mc.name "Trust your body, what is it telling you?"
-        the_person "...That I love you, and I love this."
+        the_person "... That I love you, and I love this."
         mc.name "Then that's all that matters. We'll worry about my mom later, alright."
         the_person "Okay, I trust you [the_person.mc_title]."
 

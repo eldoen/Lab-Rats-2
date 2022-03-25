@@ -3,7 +3,7 @@ init 1300:
     python:
         def reserved_titles(the_person):
             if the_person.love < 20:
-                return "Mrs." + the_person.last_name #If she doesn't like you she's much more formal.
+                return "Mrs. " + the_person.last_name #If she doesn't like you she's much more formal.
             else:
                 return the_person.name
         def reserved_possessive_titles(the_person):
@@ -738,7 +738,7 @@ label reserved_flirt_response_affair(the_person):
                     mc.name "Well that would just be cruel of me..."
                     $ mc.change_locked_clarity(10)
                     "You put your arm around [the_person.possessive_title] and rest your hand on her ass."
-                    mc.name "...If I got you all excited thinking about the next time I'm going to fuck you."
+                    mc.name "... If I got you all excited thinking about the next time I'm going to fuck you."
                     "She leans her body against yours for a moment and sighs happily. You give her butt a final slap and let go of her."
 
         else: #She's shy or nervous about being discovered
@@ -870,7 +870,7 @@ label reserved_cum_face(the_person):
         if the_person.sluttiness > 80:
             the_person "Oh [the_person.mc_title], what are you doing to me? I'm beginning to like looking like this!"
         else:
-            the_person "Oh god [the_person.mc_title], could you imagine if someone saw me like this? I really should go and get cleaned up."
+            the_person "Oh god, [the_person.mc_title], could you imagine if someone saw me like this? I really should go and get cleaned up."
     return
 
 label reserved_cum_mouth(the_person):
@@ -1316,10 +1316,10 @@ label reserved_sex_review(the_person, the_report):
             "[the_person.possessive_title] looks away, embarrassed by what she's done with you."
             the_person "Are we done now? It was nice, but a little too much for me..."
             mc.name "Really, so that multi-orgasmic train you were riding is your default setting?"
-            the_person "Well not that...perhaps we could give it another try, someday."
+            the_person "Well not that... perhaps we could give it another try, someday."
         else:
             "[the_person.possessive_title] looks away, embarrassed by her own actions."
-            the_person "Oh my...my apologies, it seems I lost control of myself."
+            the_person "Oh my... my apologies, it seems I lost control of myself."
             mc.name "Don't worry, I really enjoyed giving you the time of your life."
             the_person "Indeed, that was quite a feat, I didn't even know I could do that."
 
@@ -1478,7 +1478,7 @@ label reserved_touching_body_taboo_break(the_person):
         the_person "I want you to know I take this very seriously, [the_person.mc_title]."
         mc.name "Of course. So do I [the_person.title]."
         the_person "I normally wouldn't even think about letting someone like you touch me."
-        mc.name "What do you mean \"Someone like me\"?"
+        mc.name "What do you mean, \"Someone like me\"?"
         the_person "You're a trouble maker. I always get the feeling you're bad news for me, but..."
         the_person "But I just can't say no to you."
     else:
@@ -1633,7 +1633,7 @@ label reserved_condomless_sex_taboo_break(the_person):
             $ the_person.update_birth_control_knowledge()
 
     elif the_person.love > 60:
-        the_person "If you think you're ready for this commitment, I am to. I want to feel close to you."
+        the_person "If you think you're ready for this commitment, I am too. I want to feel close to you."
         if the_person.on_birth_control:
             the_person "I'm on birth control, so the chances of getting me pregnant are slim, but you should know they still exist."
             $ the_person.update_birth_control_knowledge()

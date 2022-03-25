@@ -197,7 +197,7 @@ init -2 python:
         return
 
     def add_cousin_talk_boobjob_again_action():
-        cousin_talk_boobjob_again_action = Action("Talk to her about getting a boobjob\nCosts: $5000", cousin_talk_boobjob_again_requirement, "cousin_talk_boobjob_again_label")
+        cousin_talk_boobjob_again_action = Action("Talk about getting a boobjob\nCosts: $5000", cousin_talk_boobjob_again_requirement, "cousin_talk_boobjob_again_label")
         cousin_role.actions.append(cousin_talk_boobjob_again_action)
         return
 

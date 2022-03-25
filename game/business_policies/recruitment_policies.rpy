@@ -29,13 +29,13 @@ init 0 python:
     recruitment_policies_list.append(recruitment_batch_three_policy)
 
     recruitment_knowledge_one_policy = Policy(name = "Applicant Questionnaire",
-        desc = "A simple questionnaire required from each applicant reveals some of their likes and dislikes, helping to determine if they would a good fit for your company culture. Reveals two opinions on an applicants resume.",
+        desc = "A simple questionnaire required from each applicant reveals some of their likes and dislikes, helping to determine if they would a good fit for your company culture. Reveals two opinions on an applicant's resume.",
         cost = 400,
         toggleable = True)
     recruitment_policies_list.append(recruitment_knowledge_one_policy)
 
     recruitment_knowledge_two_policy = Policy(name = "Applicant Background Checks",
-        desc = "An automated background check produces a detailed history for each applicant. This can reveal a great deal of information about a potential employee before they even step in the door. Reveals two more opinions on an applicants resume.",
+        desc = "An automated background check produces a detailed history for each applicant. This can reveal a great deal of information about a potential employee before they even step in the door. Reveals two more opinions on an applicant's resume.",
         cost = 800,
         toggleable = True,
         own_requirement = recruitment_knowledge_one_policy,
@@ -43,7 +43,7 @@ init 0 python:
     recruitment_policies_list.append(recruitment_knowledge_two_policy)
 
     recruitment_knowledge_three_policy = Policy(name = "Applicant History Deep Dive",
-        desc = "Scrapping the web for any and all information about an applicant can reveal a startling amount of information. Reveals one more opinion on an applicants resume, and revealed opinions may be about sex.",
+        desc = "Scrapping the web for any and all information about an applicant can reveal a startling amount of information. Reveals one more opinion on an applicant's resume, and revealed opinions may be about sex.",
         cost = 1500,
         toggleable = True,
         own_requirement = recruitment_knowledge_two_policy,
@@ -51,7 +51,7 @@ init 0 python:
     recruitment_policies_list.append(recruitment_knowledge_three_policy)
 
     recruitment_knowledge_four_policy = Policy(name = "Applicant Sexual History Survey",
-        desc = "A detailed questionnaire focused on sex, fetishes, and kinks produces even more information about an applicants sexual preferences. It can also be used as a surprisingly accurate predictor of sexual experience. Reveals one more opinion, and sex skills are now displayed on an applicants resume.",
+        desc = "A detailed questionnaire focused on sex, fetishes, and kinks produces even more information about an applicant's sexual preferences. It can also be used as a surprisingly accurate predictor of sexual experience. Reveals one more opinion, and sex skills are now displayed on an applicant's resume.",
         cost = 2500,
         toggleable = True,
         own_requirement = recruitment_knowledge_three_policy,

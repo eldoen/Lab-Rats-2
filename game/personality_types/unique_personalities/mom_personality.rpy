@@ -231,7 +231,7 @@ label mom_clothing_reject(the_person):
         if the_person.sluttiness > 60:
             the_person "I... [the_person.mc_title], you don't think a women of my... experience could get away wearing this, do you?"
             "[the_person.possessive_title] laughs and shakes her head."
-            the_person "No, risque stuff like this should be worn by people your sisters age!"
+            the_person "No, risque stuff like this should be worn by people your sister's age!"
         else:
             the_person "[the_person.mc_title]! I'm your mother, I can't go walking around in something like that!"
             "[the_person.possessive_title] shakes her head and scoffs at the idea."
@@ -349,7 +349,7 @@ label mom_seduction_response(the_person):
         if the_person.sluttiness > 50:
             the_person "Well, how about you let your mother help you get focused again?"
         elif the_person.sluttiness > 10:
-            the_person "What do you mean [the_person.mc_title]? Do you want to spend some time together?"
+            the_person "What do you mean, [the_person.mc_title]? Do you want to spend some time together?"
         else:
             the_person "I'm not sure I understand. I'm your mother, after all."
     return
@@ -655,7 +655,7 @@ label mom_cum_pullout(the_person):
                 $ the_person.update_birth_control_knowledge()
                 "She moans happily, excited just by the thought."
 
-            menu: #TODO: Add a varient of this normally so you can stealth a girl (don't do that in real life, it's super fucked up).
+            menu: #TODO: Add a variant of this normally so you can stealth a girl (don't do that in real life, it's super fucked up).
                 "Take off the condom":
                     "You don't have much time to spare. You pull out, barely clearing her pussy, and pull the condom off as quickly as you can manage."
                     $ mc.condom = False
@@ -1047,7 +1047,7 @@ label mom_sex_review(the_person, the_report):
 
     # Gave creampie while she is not on birth control (extra dialog when she could get pregnant)
     if the_report.get("creampies", 0) > 0 and not the_person.on_birth_control and not the_person.event_triggers_dict.get("preg_knows", False):
-        the_person "Well [the_person.mc_title], how can I explain to your sister how I got pregnant?"
+        the_person "Oh [the_person.mc_title], how am I going to explain it to your sister if you get me pregnant?"
 
     $ del comment_position
     return
@@ -1082,7 +1082,7 @@ label mom_kissing_taboo_break(the_person):
 label mom_touching_body_taboo_break(the_person):
     "[the_person.mc_title], what are you doing? You shouldn't be touching me like this!"
     if the_person.event_triggers_dict.get("kissing_revisit_count", 0) == 0:
-        if the_person.love > 20: # Love varient
+        if the_person.love > 20: # Love variant
             mc.name "Why not? You love me, don't you?"
             the_person "Of course I love you, but I'm still your mother!"
             mc.name "Please [the_person.title]? I feel so lonely sometimes, and I feel loved when I'm close to you."
@@ -1095,7 +1095,7 @@ label mom_touching_body_taboo_break(the_person):
             "She seems to be trying to convince herself more than you."
 
 
-        else: # High slut varient
+        else: # High slut variant
             mc.name "Why not? Don't you like it?"
             the_person "That's... That's not the point! I'm your mother! I'm twice your age!"
             mc.name "So? I think older women are hot."
@@ -1181,7 +1181,7 @@ label mom_touching_vagina_taboo_break(the_person):
                 mc.name "It might not be \"normal\", but who cares about being normal. I just want to be with you."
 
             else:
-                mc.name "But a good mother touches her sons cock?"
+                mc.name "But a good mother touches her son's cock?"
                 the_person "That was different! It is my responsibility to make sure you are taken care of."
                 mc.name "Well that felt good for me, and you wanted to do it. This is just the golden rule in action:"
                 mc.name "\"Do unto others as you would have them do unto you.\", Right?"
@@ -1515,7 +1515,7 @@ label mom_creampie_taboo_break(the_person):
     if the_person.wants_creampie():
         "[the_person.possessive_title] sighs happily, then is quiet for a moment."
         the_person "Did we just... Oh no [the_person.mc_title], I think I've made a mistake."
-        mc.name "What do you mean [the_person.title]?"
+        mc.name "What do you mean, [the_person.title]?"
         the_person "I don't know what came over me, I wasn't thinking straight. I should have told you to pull out."
         mc.name "I don't think it's that big of a deal."
         if the_person.event_triggers_dict.get("preg_knows", False):
@@ -1557,7 +1557,7 @@ label mom_creampie_taboo_break(the_person):
             the_person "I'm sorry [the_person.mc_title], this is my fault. I knew I should have made you wear a condom."
             the_person "Or maybe I should have made you use my mouth instead. I know it's not the same, but you would have still had a good time, right?"
             mc.name "It's okay [the_person.title], it's no big deal."
-            the_person "Of course it is! I might get pregnant with my own sons baby! I should have found other ways to satisfy you, so I didn't put you in this position."
+            the_person "Of course it is! I might get pregnant with my own son's baby! I should have found other ways to satisfy you, so I didn't put you in this position."
             mc.name "Take a deep breath, you need to relax. The chances of you getting pregnant the very first time are pretty slim."
             the_person "But... But what if we're unlucky?"
             mc.name "We'll cross that bridge if we ever get to it. For now let's just enjoy our time together. Didn't it feel good?"

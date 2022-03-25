@@ -1240,7 +1240,7 @@ label bc_talk_label(the_person):
             "Start taking birth control" if not the_person.on_birth_control:
                 mc.name "You should probably start taking it, before something happens and you get pregnant."
                 if the_person.love >= needed_start or the_person.effective_sluttiness() >= needed_start:
-                    the_person "That's probably a good idea. I'll talk talk to my doctor as soon as possible about it."
+                    the_person "That's probably a good idea. I'll talk to my doctor as soon as possible about it."
                     $ manage_bc(the_person, start = True)
                 else:
                     if the_person.get_opinion_score("creampies") > 0 and the_person.get_opinion_score("bareback sex") > 0:

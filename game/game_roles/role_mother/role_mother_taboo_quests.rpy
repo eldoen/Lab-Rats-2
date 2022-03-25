@@ -387,7 +387,7 @@ label mom_oral_taboo_break_revisit(the_person):
 label mom_oral_taboo_break_revisit_complete(the_person):
     mc.name "So, I've been spending some time with [aunt.title] lately."
     the_person "I've heard! Every time I call her she's telling me that you came to visit and that you've been spending time with her!"
-    the_person "It really makes me happy to hear that you're going out of your way to take look after the family."
+    the_person "It really makes me happy to hear that you're going out of your way to look after the family."
     mc.name "It was no problem, really. I was happy to help her out."
     the_person "Mmhm? Are you sure you weren't doing it for some other reason?"
     "She gives you a knowing look and a mischievous smile."
@@ -510,7 +510,7 @@ label mom_anal_taboo_break_revisit(the_person):
             the_person "No, I... I've never... It's just a fantasy, and that's all it can ever be!"
             mc.name "But it doesn't have to be. I'm right here, and I want the same as you."
             the_person "You shouldn't... we shouldn't..."
-            "Her works are softer. Her defenses are breaking down."
+            "Her words are softer. Her defenses are breaking down."
             mc.name "You can keep your pussy off limits, but there are other ways for us to have fun."
             "She looks into your eyes, cheeks flush with arousal."
             the_person "You mean more anal? It isn't really like we're having sex..."

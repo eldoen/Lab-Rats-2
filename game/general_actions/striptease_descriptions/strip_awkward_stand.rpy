@@ -111,7 +111,7 @@ label strip_awkward_stand_outro(the_person, guy_state, for_pay = False): #TODO: 
         $ the_choice = climax_controller.show_climax_menu()
         "You grunt and fire your load off, pulsing it out in an arc as she watches."
         $ climax_controller.do_clarity_release(the_person)
-        the_person "...Cum..."
+        the_person "... Cum..."
     return
 #
 # label strip_awkward_stand_strip(the_person, the_clothing, guy_state, for_pay = False): #TODO: Maybe this should be generalized

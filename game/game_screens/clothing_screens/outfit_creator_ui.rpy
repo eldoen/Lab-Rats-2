@@ -63,7 +63,7 @@ screen outfit_creator(starting_outfit, outfit_type = "full", slut_limit = None):
     add "Paper_Background.png"
     modal True
     zorder 100
-    default catagory_selected = "Panties"
+    default category_selected = "Panties"
 
     default demo_outfit = starting_outfit.get_copy()
 
@@ -74,10 +74,10 @@ screen outfit_creator(starting_outfit, outfit_type = "full", slut_limit = None):
     else:
         $ valid_layers = [0,1,2,3]
 
-    $ valid_catagories = ["Panties", "Bras", "Pants", "Skirts", "Dresses", "Shirts", "Socks", "Shoes", "Facial", "Rings", "Bracelets", "Neckwear"] #Holds the valid list of catagories strings to be shown at the top.
+    $ valid_categories = ["Panties", "Bras", "Pants", "Skirts", "Dresses", "Shirts", "Socks", "Shoes", "Facial", "Rings", "Bracelets", "Neckwear"] #Holds the valid list of categories strings to be shown at the top.
 
-    $ catagories_mapping = {
-        "Panties": [panties_list, Outfit.can_add_lower, Outfit.add_lower],  #Maps each catagory to the function it should use to determine if it is valid and how it should be added to the outfit.
+    $ categories_mapping = {
+        "Panties": [panties_list, Outfit.can_add_lower, Outfit.add_lower],  #Maps each category to the function it should use to determine if it is valid and how it should be added to the outfit.
         "Bras": [bra_list, Outfit.can_add_upper, Outfit.add_upper],
         "Pants": [pants_list, Outfit.can_add_lower, Outfit.add_lower],
         "Skirts": [skirts_list, Outfit.can_add_lower, Outfit.add_lower],
@@ -105,7 +105,7 @@ screen outfit_creator(starting_outfit, outfit_type = "full", slut_limit = None):
     default selected_clothing = None
     # $ current_colour = [1.0,1.0,1.0,1.0] #This is the colour we will apply to all of the clothing
 
-    #Each catagory below has a click to enable button. If it's false, we don't show anything for it.
+    #Each category below has a click to enable button. If it's false, we don't show anything for it.
     #TODO: refactor this outfit creator to remove as much duplication as possible.
 
     hbox: #The main divider between the new item adder and the current outfit view.
@@ -119,13 +119,13 @@ screen outfit_creator(starting_outfit, outfit_type = "full", slut_limit = None):
             xysize (880, 1015)
             hbox:
                 spacing 15
-                vbox: #Catagories select on far left
+                vbox: #Categories select on far left
                     spacing 15
-                    for catagory in valid_catagories:
-                        textbutton catagory:
+                    for category in valid_categories:
+                        textbutton category:
                             style "textbutton_style"
                             text_style "textbutton_text_style"
-                            if catagory == catagory_selected:
+                            if category == category_selected:
                                 background "#4f7ad6"
                                 hover_background "#4f7ad6"
                             else:
@@ -134,7 +134,7 @@ screen outfit_creator(starting_outfit, outfit_type = "full", slut_limit = None):
                             text_align(0.5,0.5)
                             text_anchor(0.5,0.5)
                             xysize (220, 60)
-                            action [SetScreenVariable("catagory_selected",catagory), SetScreenVariable("selected_clothing", None), SetScreenVariable("selected_colour", "colour")] #Set the clothing to None when you change catagories to avoid breaking the clothing add function assignments
+                            action [SetScreenVariable("category_selected",category), SetScreenVariable("selected_clothing", None), SetScreenVariable("selected_colour", "colour")] #Set the clothing to None when you change categories to avoid breaking the clothing add function assignments
                 vbox:
                     spacing 15
                     viewport:
@@ -148,11 +148,11 @@ screen outfit_creator(starting_outfit, outfit_type = "full", slut_limit = None):
                             background "#888888"
                             vbox:
                                 #THIS IS WHERE ITEM CHOICES ARE SHOWN
-                                if catagory_selected in catagories_mapping:
-                                    $ valid_check = catagories_mapping[catagory_selected][1]
-                                    $ apply_method = catagories_mapping[catagory_selected][2]
-                                    $ cloth_list_length = len(catagories_mapping[catagory_selected][0])
-                                    $ sorted_list = sorted(catagories_mapping[catagory_selected][0], key = lambda x: x.layer)
+                                if category_selected in categories_mapping:
+                                    $ valid_check = categories_mapping[category_selected][1]
+                                    $ apply_method = categories_mapping[category_selected][2]
+                                    $ cloth_list_length = len(categories_mapping[category_selected][0])
+                                    $ sorted_list = sorted(categories_mapping[category_selected][0], key = lambda x: x.layer)
                                     $ sorted_list.sort(key = lambda x: x.slut_value)
                                     for cloth in sorted_list:
                                         $ is_sensitive = valid_check(starting_outfit, cloth) and cloth.layer in valid_layers

@@ -97,7 +97,7 @@ label debug_label():
 label text_message_style_test(the_person = None): #For now we need to both set the text_conversation person as well as the text font. We need to figure out a way to apply it dynamically.
     mom "This is the normal person style!"
     $ mc.start_text_convo(the_person)
-    mom "...And this is the text message style!"
+    mom "... And this is the text message style!"
     mom "Here's a much longer conversation!"
     mom "... It just keeps going!"
     mom "Oh my god [mom.mc_title], your message log is so large!"

@@ -66,7 +66,7 @@ screen serum_sell_ui():
                     hbox:
                         textbutton "Attention:":
                             action VrenNullAction style "textbutton_style" text_style "textbutton_text_style"
-                            tooltip "How much attention your business has drawn. If this gets too high they will act, outlawing a serum design, leveling a fine, or seizing your inventory."
+                            tooltip "How much attention your business has drawn. If this gets too high the authorities will act, outlawing a serum design, leveling a fine, or seizing your inventory."
 
 
                         text str(mc.business.attention) + "/" + str(mc.business.max_attention) + " (-" + str(mc.business.attention_bleed) + "/Day)" style "textbutton_text_style" yanchor -0.5

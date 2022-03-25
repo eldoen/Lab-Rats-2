@@ -57,11 +57,11 @@ init -1 python:
     def toxic_on_remove(the_person, the_serum, add_to_log):
         the_person.serum_tolerance += 1
 
-    ## stimmulation suppressant ##
-    def stimmulation_suppressant_on_apply(the_person, the_serum, add_to_log):
+    ## stimulation suppressant ##
+    def stimulation_suppressant_on_apply(the_person, the_serum, add_to_log):
         the_person.change_max_arousal(40, add_to_log = add_to_log)
 
-    def stimmulation_suppressant_on_remove(the_person, the_serum, add_to_log):
+    def stimulation_suppressant_on_remove(the_person, the_serum, add_to_log):
         the_person.change_max_arousal(-40, add_to_log = add_to_log)
 
     ## hair colour changes ##
@@ -176,12 +176,12 @@ init -1 python:
         is_side_effect = True,
         mental_aspect = 0, physical_aspect = 0, sexual_aspect = 0, medical_aspect = 0, flaws_aspect = 1, attention = 1)
 
-    stimmulation_suppressant_effect = SerumTrait(name = "Stimulation Suppressant",
+    stimulation_suppressant_effect = SerumTrait(name = "Stimulation Suppressant",
         desc = "Interactions with the body's nervous system makes it very difficult for the subject to orgasm. A common side effect for many medications.",
         positive_slug = "",
         negative_slug = "+40 Max Arousal",
-        on_apply = stimmulation_suppressant_on_apply,
-        on_remove = stimmulation_suppressant_on_remove,
+        on_apply = stimulation_suppressant_on_apply,
+        on_remove = stimulation_suppressant_on_remove,
         is_side_effect = True,
         mental_aspect = 0, physical_aspect = 0, sexual_aspect = 0, medical_aspect = 0, flaws_aspect = 1, attention = 1)
 
@@ -218,7 +218,7 @@ label instantiate_side_effect_traits(): #Creates all of the default LR2 serum tr
         list_of_side_effects.append(sedative)
         list_of_side_effects.append(slow_release_sedative)
         list_of_side_effects.append(toxic_side_effect)
-        list_of_side_effects.append(stimmulation_suppressant_effect)
+        list_of_side_effects.append(stimulation_suppressant_effect)
         list_of_side_effects.append(hair_colour_wild_effect)
         list_of_side_effects.append(hair_colour_dull_effect)
 

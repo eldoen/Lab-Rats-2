@@ -888,7 +888,7 @@ label wild_cum_pullout(the_person):
                 "She moans desperately."
                 the_person "Fuck it! Take the condom off and cum inside of me [the_person.mc_title]!"
                 the_person "I want you to get me pregnant and fuck my life up!"
-            menu: #TODO: Add a varient of this normally so you can stealth a girl (don't do that in real life, it's super fucked up).
+            menu: #TODO: Add a variant of this normally so you can stealth a girl (don't do that in real life, it's super fucked up).
                 "Take off the condom":
                     "You don't have much time to spare. You pull out, barely clearing her pussy, and pull the condom off as quickly as you can manage."
                     $ mc.condom = False
@@ -974,7 +974,7 @@ label wild_cum_vagina(the_person):
                 $ so_title = SO_relationship_to_title(the_person.relationship)
                 the_person "Oh fuck. [the_person.mc_title], why didn't you pull out? My [so_title] would kill me if he found out I got pregnant."
                 if the_person.kids > 0:
-                    the_person "...Again."
+                    the_person "... Again."
             else:
                 the_person "Oh fuck, I said to pull out! I'm not on the pill [the_person.mc_title], what happens if I get pregnant?"
                 $ the_person.update_birth_control_knowledge()

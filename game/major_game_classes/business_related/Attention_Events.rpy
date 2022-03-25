@@ -85,7 +85,7 @@ label attention_event():
         "[city_rep.title]'s enforcers come back. Before they can report anything she orders them outside."
         city_rep "I've had a long talk with [city_rep.mc_title], and we've come to a..."
         "Her eyes dart down to your crotch for a moment, then she gets herself under control."
-        city_rep "...satisfying agreement."
+        city_rep "... satisfying agreement."
 
     else:
         $ attention_pick_current_event().call_action(city_rep)
@@ -194,7 +194,7 @@ label attention_seize_supplies(the_person):
     if the_person.event_triggers_dict.get("city_rep_reduced_penalties_trained", False):
         the_person "We'll be taking all of this..."
         "She glances at you, and the trance-planted obedience takes hold."
-        the_person "...Half of it. We'll be taking half of it with us."
+        the_person "... Half of it. We'll be taking half of it with us."
         "Enforcer" "Are you sure Ma'am?"
         the_person "Yes I'm sure! Now hurry up, I don't want to be here all day."
     else:
@@ -208,7 +208,7 @@ label attention_seize_supplies(the_person):
 
 init 2 python:
     def city_rep_set_titles(person):
-        person.set_title("Mrs." + person.last_name)
+        person.set_title("Mrs. " + person.last_name)
         person.set_mc_title("Mr. " + mc.last_name)
         person.set_possessive_title("Your annoyance")
         return

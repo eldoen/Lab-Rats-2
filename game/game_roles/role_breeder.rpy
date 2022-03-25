@@ -29,7 +29,7 @@ label breeder_fuck(the_person):
             the_person "It's the right time of the month too, so keep me filled up and I'll be pregnant in no time!"
 
         else: #Not likely to work, but she'll give it a try anyways because it's fun. I mean, because it's necessary...
-            the_person "She pauses to think for a moment, then shrugs and nods."
+            "She pauses to think for a moment, then shrugs and nods."
             the_person "It's not the right time of the month, but there's no harm in trying!"
             $ mc.change_locked_clarity(10)
             the_person "It's a fun time either way, and if I get knocked up then even better!"

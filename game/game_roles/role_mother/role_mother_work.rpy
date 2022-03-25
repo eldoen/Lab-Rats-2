@@ -444,7 +444,7 @@ label mom_work_promotion_two_prep(the_person):
     menu:
         "Be slutty": #She gets promoted to be her bosses "secretary"
             mc.name "You need to grab his attention, and you can rely on men to think with their dicks."
-            the_person "Uh, what do you mean [the_person.mc_title]."
+            the_person "Uh, what do you mean, [the_person.mc_title]?"
             mc.name "You need to get him excited, [the_person.title]. He's way more likely to enjoy your time together if he's turned on."
             "She nods, but seems unsure."
             the_person "I don't need to actually... do anything with him, right?"
@@ -1046,7 +1046,7 @@ label mom_work_secretary_replacement_bigger_tits_options(the_person):
                 "Give her a dose of serum":
                     call give_serum(the_person) from _call_give_serum_34
                     if _return:
-                        "You just have to drink this."
+                        mc.name "You just have to drink this."
                         "She drinks down the vial of serum quickly, then looks down at her chest."
                         mc.name "It's going to take some time, but you should see results soon."
                     else:
@@ -1164,14 +1164,14 @@ label mom_promotion_boss_phase_one(the_secretary):
     menu:
         "Reference your business":
             $ business_name = mc.business.name
-            mc.name "Mr.[mc.last_name]. I'm here representing [business_name]. I have work I need to discuss with him."
+            mc.name "Mr. [mc.last_name]. I'm here representing [business_name]. I have work I need to discuss with him."
 
         "Reference [mom.title]":
             $ mom_last_name = mom.create_formatted_title(mom.last_name)
-            mc.name "Mr.[mc.last_name]. I'm the son of [mom_last_name], there's a family matter I need to discuss with him."
+            mc.name "Mr. [mc.last_name]. I'm the son of [mom_last_name], there's a family matter I need to discuss with him."
 
         "Pretend you're here for a job":
-            mc.name "Mr.[mc.last_name]. I'm a recent graduate and I've heard he's hiring."
+            mc.name "Mr. [mc.last_name]. I'm a recent graduate and I've heard he's hiring."
             mc.name "Just tell him I'm here for the position he's been advertising."
 
     "She types on her computer again."
@@ -1205,7 +1205,7 @@ label mom_promotion_boss_phase_one(the_secretary):
     mc.name "No, it's fine. I'll let him know, if I'm able to see him."
     "She thanks you and sits back down. A few moments later the secretary at the front desk calls you over."
     $ the_secretary.draw_person(position = "sitting")
-    the_secretary "Mr.[mc.last_name]? [mom_boss_quick_name] has five minutes to meet with you. Sixth floor, on your right."
+    the_secretary "Mr. [mc.last_name]? [mom_boss_quick_name] has five minutes to meet with you. Sixth floor, on your right."
     mc.name "Thank you."
     "You stand up and turn to the young woman in the waiting room."
     $ the_daughter.draw_person(position = "sitting")
@@ -1262,7 +1262,7 @@ label mom_promotion_boss_phase_one(the_secretary):
 
             mc.name "I..."
             "He shakes his head and walks towards the door of the office, motioning for you to leave."
-            mom_boss_quick_name "I thought Miss.[mc.last_name] was just a stuffy house wife, but now you've got me interested."
+            mom_boss_quick_name "I thought Miss [mc.last_name] was just a stuffy housewife, but now you've got me interested."
             mom_boss_quick_name "I'm going to keep her around, and see if I can get that ass bouncing on my dick."
             mom_boss_quick_name "You obviously think it might happen, or you wouldn't be here."
             mc.name "Listen, I can..."
@@ -1328,7 +1328,7 @@ label mom_promotion_boss_phase_one(the_secretary):
             $ the_daughter.draw_person()
             "After a quick search on your phone and a brief walk the two of you are sitting in a small hole in the wall bar."
             $ the_daughter.change_happiness(10)
-            "You order drinks and sit down. Soon enough you have [the_daughter.title] talking and smiling,clearly happier than she was before."
+            "You order drinks and sit down. Soon enough you have [the_daughter.title] talking and smiling, clearly happier than she was before."
             call date_conversation(the_daughter) from _call_date_conversation
             the_daughter "Hey, so uh... Thanks for doing this for me. I was a mess back there."
             mc.name "I just took a pretty girl out for drinks, I'm not exactly a super hero."

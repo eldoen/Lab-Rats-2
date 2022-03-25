@@ -329,7 +329,7 @@ label photo_flash(the_person):
         $ the_person.draw_person(position = "stand4")
 
     if the_person.break_taboo("underwear_nudity"):
-        the_person "She seems to relax after her initial hesitation and becomes more comfortable in her underwear as the shoot goes on."
+        "She seems to relax after her initial hesitation and becomes more comfortable in her underwear as the shoot goes on."
     $ the_person.update_outfit_taboos()
 
 
@@ -439,7 +439,7 @@ label photo_touch(the_person):
         $ mc.change_locked_clarity(10)
         "[the_person.title] doesn't hesitate at all. She takes a step back and leans against the wall, spreading her legs slightly."
     else:
-        the_person "Touch myself? What do you... what do you mean [the_person.mc_title]? I couldn't... do that in front of you."
+        the_person "Touch myself? What do you... what do you mean, [the_person.mc_title]? I couldn't... do that in front of you."
         "[the_person.title] looks nervous. She seems suddenly self conscious, turning side-on to the camera to limit how much it can see."
         mc.name "Just relax. It's not like you haven't done it before, right?"
         the_person "Well obviously not, but..."

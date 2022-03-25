@@ -21,7 +21,7 @@ label mom_outfit_help_crisis_label():
                 mc.name "Sure thing, I'll be right there."
                 $ mom_bedroom.show_background()
                 $ the_person.draw_person()
-                "You step into [the_person.possessive_title]. She's standing at the foot of her bed and laying out a few sets of clothing."
+                "You step into [the_person.possessive_title]'s room. She's standing at the foot of her bed and laying out a few sets of clothing."
                 mc.name "Hey Mom, what's up?"
 
             "Say you're busy":
@@ -394,7 +394,7 @@ label mom_lingerie_surprise_label():
             $ the_person.clear_situational_obedience("crisis_stuff")
 
         "Not tonight":
-            mc.name "That's very sweet of you Mom, and you look very nice, but I really just need a good nights sleep."
+            mc.name "That's very sweet of you Mom, and you look very nice, but I really just need a good night's sleep."
             "You see a split second of disappointment on [the_person.possessive_title]'s face, then it's gone and she blushes and turns away."
             the_person "Of course, I'm so sorry to have bothered you. I mean, it would be strange if we did anything like that, right?"
             $ the_person.draw_person(position = "walking_away")
@@ -447,7 +447,7 @@ label mom_selfie_label():
             $ the_person.draw_person(emotion = "happy")
             $ the_person.update_outfit_taboos()
             "You get a selfie from [the_person.possessive_title] naked in front of her bedroom mirror."
-            the_person "...that your Mom wants to feel you inside her tonight. Don't stay out too late!"
+            the_person "... that your Mom wants to feel you inside her tonight. Don't stay out too late!"
 
         elif ran_num == 2:
             #Blowjob pose, she tells you to face fuck her, as is her duty
@@ -853,7 +853,7 @@ label mom_morning_surprise_label():
             "She speeds up her strokes."
         the_person "I thought that this would be a much nicer way to wake up, and I can't let you leave the house in this condition."
         mc.name "Right, of course. Thanks Mom."
-        "You lie back, relax, and enjoy the feeling of your mothers hand caressing your hard shaft."
+        "You lie back, relax, and enjoy the feeling of your mother's hand caressing your hard shaft."
         the_person "Anything for you [the_person.mc_title], I just want to make sure you're happy and successful."
         "After a few minutes you can feel your orgasm starting to build. [the_person.title] rubs your precum over your shaft and keeps stroking."
         $ climax_options = []
@@ -1430,7 +1430,7 @@ label family_morning_breakfast_label():
                     "[the_sister.title] looks at the two of you like you're crazy then sighs dramatically."
                     the_sister "Fine, but this is really weird, okay?"
                     $ the_mom.draw_person(position = "sitting")
-                    "[the_mom.possessive_title] dishes out three portions and sits down at the table with you. [the_sister.title] eventually gets used to her mothers outfit and joins in on your conversation."
+                    "[the_mom.possessive_title] dishes out three portions and sits down at the table with you. [the_sister.title] eventually gets used to her mother's outfit and joins in on your conversation."
                     $ the_sister.change_slut(2, 30)
                     $ the_mom.change_happiness(10)
 
@@ -1461,7 +1461,7 @@ label family_morning_breakfast_label():
             $ the_sister.change_slut(1, 30)
             $ the_mom.change_happiness(10)
             $ the_mom.draw_person(position = "sitting")
-            "[the_mom.possessive_title] gives everyone a plate and sits down. [the_sister.title] eventually gets used to her mothers outfit and joins in on your conversation."
+            "[the_mom.possessive_title] gives everyone a plate and sits down. [the_sister.title] eventually gets used to her mother's outfit and joins in on your conversation."
             "When you're done you help Mom put the dirty dishes away and get on with your day."
 
 

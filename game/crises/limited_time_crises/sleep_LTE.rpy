@@ -270,7 +270,7 @@ label nightime_grope(the_person, masturbating = False):
                     "[the_person.possessive_title] seems slightly confused as you back quickly out of the room."
                     return True
                 else:
-                    "She murmers quietly in her sleep, but doesn't wake up."
+                    "She murmurs quietly in her sleep, but doesn't wake up."
             else:
                 "You stuff your unused vials of serum back into your pocket, trying to move as quietly as you can."
                 if renpy.random.randint(0,100) < 10:
@@ -285,7 +285,7 @@ label nightime_grope(the_person, masturbating = False):
                     "[the_person.possessive_title] seems slightly confused as you back quickly out of the room."
                     return True
                 else:
-                    "She murmers quietly in her sleep, but doesn't wake up."
+                    "She murmurs quietly in her sleep, but doesn't wake up."
 
 
             call nightime_grope(the_person, masturbating) from _call_nightime_grope_6
@@ -321,7 +321,7 @@ label nightime_grope(the_person, masturbating = False):
 
             if the_person.arousal > the_person.max_arousal:
                 "[the_person.title] pants softly and rolls her head from side to side in her sleep."
-                the_person "Mmm... So close... Ah...Noo...Yessss..."
+                the_person "Mmm... So close... Ah... Noo... Yessss..."
                 "Her legs squeeze together suddenly, accompanied by a sharp moan of pleasure."
                 "[the_person.possessive_title] arches her back, thrusting her hips into the air as she is wracked by a night time orgasm."
                 $ the_person.run_orgasm(show_dialogue = False, trance_chance_modifier = 2*the_person.get_opinion_score("being fingered"), reset_arousal = False)
@@ -418,7 +418,7 @@ label nightime_grope(the_person, masturbating = False):
 
             if the_person.arousal > the_person.max_arousal:
                 "[the_person.title] pants softly and rolls her head from side to side in her sleep."
-                the_person "Mmm... So close... Ah...Noo...Yessss..."
+                the_person "Mmm... So close... Ah... Noo... Yessss..."
                 "Suddenly, she gasps and bucks her hips up into your hand. Her thighs quiver as she is wracked by a night time orgasm."
                 $ the_person.run_orgasm(show_dialogue = False, trance_chance_modifier = 2*the_person.get_opinion_score("being fingered"), reset_arousal = False)
                 $ the_person.arousal = 50
@@ -460,7 +460,7 @@ label nightime_grope(the_person, masturbating = False):
                             mc.name "Yeah, it's me [the_person.title]. I thought you had said something, but you must have just been talking in your sleep."
                             if the_person.judge_outfit(the_person.outfit):
                                 the_person "Mmm... I was having a dream. What did I say?"
-                                mc.name "I'm not sure, I just thought I should check on you. It looks like you're though."
+                                mc.name "I'm not sure, I just thought I should check on you. It looks like you're fine, though."
                                 "You back out of her room, leaving her confused but unaware of what you had been up to."
                             else:
                                 the_person "Mmm... I was having a dream and..."
@@ -837,7 +837,7 @@ label sex_report_helper(the_person, the_report): #TODO: We use this in enough pl
         the_person "Wow, you weren't the only one who needed that, apparently."
         "You both take a moment, panting softly as you recover from your orgasms."
         mc.name "Well I'm feeling much better now [the_person.title]."
-        the_person "Me too. Come by again if you need some more help, okay"
+        the_person "Me too. Come by again if you need some more help, okay?"
         mc.name "I'm not going to say no to that."
     elif the_report.get("guy orgasms", 0) > 0:
         the_person "There, all taken care of. Hope that helps [the_person.mc_title]."
@@ -1022,7 +1022,7 @@ label sleep_cum_throat(the_person, climax_controller): #Always assumes you're st
                 "[the_person.possessive_title] glances up at you, then swallows proudly. She rolls over and looks up at you from her back."
             else:
                 "[the_person.possessive_title] glances up at you. She wipes her lips, clears her throat, then rolls over and looks up at you from her back."
-            the_person "Whew... I'm feeling a little light headed... I do need to breath, you know."
+            the_person "Whew... I'm feeling a little light headed... I do need to breathe, you know."
             mc.name "You seemed to manage just fine. Sorry for waking you up, I came into check on you and..."
             "She waves her hand."
             the_person "It's fine, I know... Are you all better now?"
@@ -1276,7 +1276,7 @@ label sleep_cum_vagina(the_person, climax_controller):
             mc.name "Yeah, I think that was just what I needed."
             "You get up from [the_person.title]'s bed, stuffing your cock back into your pants."
             the_person "Good, that's what I like to hear. Talk to you later, okay?"
-            "You back up towards the door, taking one last peak into the room before you close the door."
+            "You back up towards the door, taking one last peek into the room before you close the door."
             if the_person.get_opinion_score("bareback sex") > 0 and the_person.get_opinion_score("creampies") > 0 and not mc.condom:
                 "[the_person.possessive_title] lifts her knees up to her chest and holds them close, keeping all of your cum inside of her pussy."
                 $ mc.change_locked_clarity(20)

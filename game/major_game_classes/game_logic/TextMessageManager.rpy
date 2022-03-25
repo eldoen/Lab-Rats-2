@@ -5,7 +5,7 @@ init -2 python:
             self.current_message = None # Set to a tuple of [who, what] when someone texts you, allowing for it to be displayed immediately (instead of after the statement is passed into history). Should be
             #TODO: Then figure out how we are gong to store pictures, videos, allow custom avatar pics, ect. We could either store them as .pngs, or store all the required parameters (including outfit).
 
-        def register_number(self, person): #Now just used to keep track of who's number we know
+        def register_number(self, person): #Now just used to keep track of whose number we know
             if not self.has_number(person):
                 self.message_history[person.identifier] = []
                 self.add_system_message(person, "Added " + person.name + " " + person.last_name + " to contacts.")

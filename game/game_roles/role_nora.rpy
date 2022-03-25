@@ -272,7 +272,7 @@ label nora_research_cash_intro(the_person, did_research = False):
     $ the_person.set_override_schedule(None) #Let her out into the wild
     if did_research:
         "You get a call from [the_person.title]."
-        mc.name "[the_person.title], good to hear from you. How can I help you."
+        mc.name "[the_person.title], good to hear from you. How can I help you?"
         the_person "Hello [the_person.mc_title], I have some good news for you."
         the_person "I presented the research findings from your field tests to my section head."
         the_person "They were very impressed with my findings and have given my lab a grant to accelerate our work."

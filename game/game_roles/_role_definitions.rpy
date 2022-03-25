@@ -86,10 +86,10 @@ init -1 python:
         sister_boobjob_give_serum_action = Action("Give her some breast enhancement serum", sister_boobjob_give_serum_requirement, "sister_give_boobjob_serum_label",
             menu_tooltip = "Give your sister some serum, which she thinks will grow her boobs.", priority = 10)
 
-        sister_boobjob_ask_action = Action("Talk to her about getting implants", sister_get_boobjob_talk_requirment, "sister_get_boobjob",
+        sister_boobjob_ask_action = Action("Talk about getting implants", sister_get_boobjob_talk_requirment, "sister_get_boobjob",
             menu_tooltip = "Talk to your sister about the implants she wants to get.", priority = 10)
 
-        sister_mom_girlfriend_blessing_action = Action("Talk to her about Mom", mom_girlfriend_ask_blessing_requirement, "mom_girlfriend_sister_blessing",
+        sister_mom_girlfriend_blessing_action = Action("Talk about Mom", mom_girlfriend_ask_blessing_requirement, "mom_girlfriend_sister_blessing",
             menu_tooltip = "Try and convince her to give you and Mom her blessing.", priority = 100)
 
         sister_girlfriend_return_action = Action("Give her the news", sister_girlfriend_return_requirement, "sister_girlfriend_return",
@@ -111,10 +111,10 @@ init -1 python:
         mom_work_promotion_two_prep_action = Action("Prepare for her interview", mom_work_promotion_two_prep_requirement, "mom_work_promotion_two_prep",
             menu_tooltip = "Help your mom prepare for her one-on-one interview.", priority = 10)
 
-        mom_work_bigger_tits_reintro = Action("Talk to her about getting bigger tits", mom_work_secretary_replacement_bigger_tits_reintro_requirement, "mom_work_secretary_replacement_bigger_tits_reintro",
+        mom_work_bigger_tits_reintro = Action("Talk about getting bigger tits", mom_work_secretary_replacement_bigger_tits_reintro_requirement, "mom_work_secretary_replacement_bigger_tits_reintro",
             menu_tooltip = "Talk to her about improving her natural assets, either with implants or by using some of your serum.", priority = 10)
 
-        mom_sister_girlfriend_blessing_action = Action("Talk to her about Lily", sister_girlfriend_ask_blessing_requirement, "sister_girlfriend_mom_blessing",
+        mom_sister_girlfriend_blessing_action = Action("Talk about Lily", sister_girlfriend_ask_blessing_requirement, "sister_girlfriend_mom_blessing",
             menu_tooltip = "Try and convince her to give you and Lily her blessing.", priority = 100)
 
         mom_girlfriend_return_action = Action("Give her the news", mom_girlfriend_return_requirement, "mom_girlfriend_return",

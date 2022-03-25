@@ -65,7 +65,7 @@ init -2 python:
             self.free_work_points = 0
             self.free_sex_points = 0
 
-            #The maximum score you can have in each of the major skill catagories
+            #The maximum score you can have in each of the major skill categories
             self.max_stats = 8
             self.max_work_skills = 8
             self.max_sex_skills = 8

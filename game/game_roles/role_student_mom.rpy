@@ -192,7 +192,7 @@ label student_dinner(the_student, the_mom, first_time):
     "After waiting for a few minutes [the_mom.possessive_title] steps into the kitchen, carrying a tray of roasted chicken and a bottle of wine under her arm."
     "She places the tray down, places the bottle of wine down, and sit down across from you and her daughter."
     $ the_group.draw_person(the_mom, position = "sitting")
-    the_mom "Mr.[the_mom.last_name] should be home any minute now, he's probably just held up at the office."
+    the_mom "Mr. [the_mom.last_name] should be home any minute now, he's probably just held up at the office."
     mc.name "No problem, we can wait a little..."
     $ the_group.draw_person(the_student, position = "sitting")
     $ the_group.draw_person(the_mom, make_primary = False, position = "walking_away")
@@ -265,7 +265,7 @@ label student_dinner(the_student, the_mom, first_time):
     the_mom "It seems like my husband is always at work. It's nice to have some company."
     menu:
         "Talk about [the_student.title]":
-            mc.name "It's no trouble. It also gives us a perfect opportunity to talk about your daughters education."
+            mc.name "It's no trouble. It also gives us a perfect opportunity to talk about your daughter's education."
             if the_mom.event_triggers_dict.get("student_mom_extra_obedience", False):
                 the_mom "Yes, give me an update on how things are going."
                 "You give [the_mom.title] a recap of your work educating [the_student.title], leaving out anything too explicit."

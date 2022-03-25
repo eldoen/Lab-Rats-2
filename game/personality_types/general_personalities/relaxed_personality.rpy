@@ -3,7 +3,7 @@ init 1300:
     python:
         def relaxed_titles(the_person):
             if the_person.love < 20:
-                return "Mrs." + the_person.last_name #If she doesn't like you she's much more formal.
+                return "Mrs. " + the_person.last_name #If she doesn't like you she's much more formal.
             else:
                 return the_person.name
         def relaxed_possessive_titles(the_person):
@@ -217,7 +217,7 @@ label relaxed_sex_responses_anal(the_person):
         else:
             the_person "I can't..."
             "She struggles to catch her breath."
-            the_person "...I can't believe you might make me cum!"
+            the_person "... I can't believe you might make me cum!"
     return
 
 
@@ -334,7 +334,7 @@ label relaxed_sex_accept(the_person):
 
 label relaxed_sex_obedience_accept(the_person):
     if the_person.sluttiness > 70:
-        the_person "Oh god [the_person.mc_title], I should really say no... But you always make me feel so good, I can't say no to you."
+        the_person "Oh god, [the_person.mc_title], I should really say no... But you always make me feel so good, I can't say no to you."
     else:
         if the_person.obedience > 130:
             the_person "Yes [the_person.mc_title], if that's what you want to do I'll give it a try."
@@ -439,7 +439,7 @@ label relaxed_flirt_response(the_person):
             "She seems more worried about being caught than flirting with you."
     else:
         if the_person.sluttiness > 50:
-            the_person "Mmm, if that's what you want I'm sure I could find a chance to give you a quick peak."
+            the_person "Mmm, if that's what you want I'm sure I could find a chance to give you a quick peek."
             "[the_person.title] smiles at you and spins around, giving you a full look at her body."
         else:
             the_person "Hey, maybe if you buy me dinner first."
@@ -896,7 +896,7 @@ label relaxed_cum_pullout(the_person):
             elif the_person.on_birth_control:
                 the_person "You are? Do..."
                 "She moans, almost desperately."
-                the_person "...Do you want to cum inside me? Just take the condom off, I don't care any more!"
+                the_person "... Do you want to cum inside me? Just take the condom off, I don't care any more!"
                 the_person "I just want your cum!"
             else:
                 the_person "Oh god... I can't resist it!"
@@ -904,7 +904,7 @@ label relaxed_cum_pullout(the_person):
                 "She seems almost desperate as she moans."
                 the_person "I don't care if you knock me up! I'm just your... breeding slut!"
 
-            menu: #TODO: Add a varient of this normally so you can stealth a girl (don't do that in real life, it's super fucked up).
+            menu: #TODO: Add a variant of this normally so you can stealth a girl (don't do that in real life, it's super fucked up).
                 "Take off the condom":
                     "You don't have much time to spare. You pull out, barely clearing her pussy, and pull the condom off as quickly as you can manage."
                     $ mc.condom = False
@@ -1070,7 +1070,7 @@ label relaxed_sex_watch(the_person, the_sex_person, the_position):
 
     elif the_person.sluttiness >= the_position.slut_requirement and the_person.sluttiness < the_position.slut_cap:
         $ the_person.draw_person()
-        the_person "Oh my god that's... Wow that looks...Hot."
+        the_person "Oh my god that's... Wow that looks... Hot."
         $ the_person.change_slut(1, 50)
         "[title] watches you and [the_sex_person.name] [the_position.verb]."
 
@@ -1314,13 +1314,13 @@ label relaxed_sex_review(the_person, the_report):
     # special condition - you fucked her brains out
     elif the_report.get("girl orgasms", 0) > 2:
         if used_obedience:
-            the_person "Oh wow...I just can't believe...I got so...nasty..."
+            the_person "Oh wow... I just can't believe... I got so... nasty..."
             mc.name "A minute ago you were begging me to make you cum again."
             "[the_person.possessive_title] looks away, embarrassed by what she's done with you."
         else:
-            the_person "I have never...fucked like that...It was just amazing..."
+            the_person "I have never... fucked like that... It was just amazing..."
             "She seems dazed by her orgasm as she struggles to put full sentences together."
-            the_person "Something took over...and I did....just gimme a second."
+            the_person "Something took over... and I did... just gimme a second."
 
     # special condition abort due to lack of girl energy without orgasm
     elif the_report.get("girl orgasms", 0) == 0 and the_person.energy < 20:
@@ -1411,7 +1411,7 @@ label relaxed_sex_review(the_person, the_report):
 
     # Gave creampie while she is not on birth control (extra dialog when she could get pregnant)
     if the_report.get("creampies", 0) > 0 and not the_person.on_birth_control and not the_person.event_triggers_dict.get("preg_knows", False):
-        the_person "Oh my...you know that you could get me pregnant, right?"
+        the_person "Oh my... you know that you could get me pregnant, right?"
 
     $ del comment_position
     return
@@ -1529,7 +1529,7 @@ label relaxed_sucking_cock_taboo_break(the_person):
         mc.name "Who's going to know, and why do you care what people think?"
         mc.name "Just suck on it a little, and if you don't like doing it you can stop."
         "She shakes her head again, but you can see her resolve breaking the more she thinks about it."
-        the_person "...Fine. I'll do it."
+        the_person "... Fine. I'll do it."
         mc.name "Do what?"
         "She smiles and laughs."
         the_person "You're the worst. I'll suck on your cock, [the_person.mc_title]. Happy?"

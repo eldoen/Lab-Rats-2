@@ -94,14 +94,14 @@ label cousin_sex_review(the_person, the_report):
     # special condition - you fucked her brains out
     elif the_report.get("girl orgasms", 0) > 2:
         if used_obedience:
-            the_person "Jezus, you fucking creep...I should never..."
+            the_person "Jezus, you fucking creep... I should never..."
             "She's trying to fight her feelings, still breathing heavily from her multiple orgasms."
             mc.name "Still don't want to admit what you are?"
             the_person "Shut up, it's just a natural reaction."
             mc.name "Yeah, you're a natural nymphomaniac."
             "[the_person.possessive_title] tries to look upset, but fails miserably, betrayed by her little tremors."
         else:
-            the_person "Fuck, how...did you even...do that, that's just not possible..."
+            the_person "Fuck, how... did you even... do that, that's just not possible..."
             mc.name "Having a good time, are we?"
             the_person "Ah, fuck you, this won't happen again!"
             "[the_person.possessive_title] tries to look angry, but she isn't very convincing."
@@ -331,7 +331,7 @@ label cousin_cum_pullout(the_person):
                 the_person "I... Oh fuck, I can't think straight! Take that condom off before you cum [the_person.mc_title]!"
                 the_person "Don't waste your load, put it into my fertile little pussy! Try and get me fucking pregnant!"
 
-            menu: #TODO: Add a varient of this normally so you can stealth a girl (don't do that in real life, it's super fucked up).
+            menu: #TODO: Add a variant of this normally so you can stealth a girl (don't do that in real life, it's super fucked up).
                 "Take off the condom":
                     "You don't have much time to spare. You pull out, barely clearing her pussy, and pull the condom off as quickly as you can manage."
                     $ mc.condom = False
@@ -386,7 +386,7 @@ label cousin_cum_vagina(the_person):
 
     else:
         if the_person.on_birth_control:
-            the_person "...And you didn't pull out. Great."
+            the_person "... And you didn't pull out. Great."
             the_person "I swear I'm going to make you wear a condom if you can't even manage that. Then neither of us will be happy."
         else:
             "She groans loudly."
@@ -511,7 +511,7 @@ label cousin_licking_pussy_taboo_break(the_person):
             "She leans her head back and sighs."
             the_person "Fine! You convince me to do the stupidest things."
             mc.name "You always have a good time though, don't you?"
-            the_person "...Yeah."
+            the_person "... Yeah."
         else:
             "[the_person.possessive_title] hesitates."
             mc.name "You've sucked my cock already, I want to do the same for you."
@@ -537,7 +537,7 @@ label cousin_vaginal_sex_taboo_break(the_person):
         "She bites her lip and shakes her head."
         the_person "What are you waiting for then, an invitation?"
         mc.name "It wouldn't hurt."
-        "She gives a melodramatic sigh>"
+        "She gives a melodramatic sigh."
         the_person "Just hurry up before someone walks in on us and I have to flee the country from embarrassment."
 
     else:
@@ -691,7 +691,7 @@ label cousin_creampie_taboo_break(the_person):
         the_person "Oh fuck, you actually did it. I thought you were going to chicken out."
         mc.name "Why would I chicken out? This is the one thing your pussy is good for."
         if the_person.on_birth_control:
-            the_person "Ugh, whatever. Congratulations, you managed to cum in a girls pussy. You aren't a complete failure of the human race."
+            the_person "Ugh, whatever. Congratulations, you managed to cum in a girl's pussy. You aren't a complete failure of the human race."
 
         else:
             the_person "Because I'm not on the pill, you idiot. I thought you were supposed to be the smart one in the family."
@@ -700,7 +700,7 @@ label cousin_creampie_taboo_break(the_person):
 
     else:
         if the_person.on_birth_control:
-            the_person "...And of course you didn't pull out."
+            the_person "... And of course you didn't pull out."
             mc.name "Yeah, sorry. I got a little carried away."
             the_person "Obviously. Well I'm going to give you a little tip about girls: When they tell you to pull out, fucking do it!"
 

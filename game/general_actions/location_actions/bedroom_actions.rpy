@@ -39,16 +39,16 @@ label faq_loop:
 
                 "Corrupting People":
                     "Vren" "You may be wondering what you can do with all this serum you produce. The main use of serum is to increase the Suggestibility statistic of another character."
-                    "Vren" "While a character has a Suggestibility value of 0 nothing you do will have a long lasting effect on their personality. Suggestibility above 0 will allow you to slowly corrupt them."
-                    "Vren" "Each girl has a Core Sluttiness value. This is the level of sluttiness they think is appropriate without any external influence. Core sluttiness looks like this: {image=gui/heart/gold_heart.png}"
+                    "Vren" "While a character has a Suggestibility value of 0, nothing you do will have a long lasting effect on their personality. Suggestibility above 0 will allow you to slowly corrupt them."
+                    "Vren" "Each girl has a Sluttiness value. This is the level of sluttiness they think is appropriate without any external influence. Sluttiness looks like this: {image=gui/heart/gold_heart.png}"
                     "Vren" "They also have a Temporary Sluttiness value, which fluctuates up and down based on recent events. Temporary sluttiness looks like this: {image=gui/heart/red_heart.png}"
-                    "Vren" "A girls Temporary Sluttiness will decrease if it is higher than her Core Sluttiness. If Suggestibility is higher than 0 there is a chance for the Temporary sluttiness to turn into Core sluttiness."
-                    "Vren" "Suggestibility has another use. It will increase the cap for Temporary sluttiness. Temporary sluttiness looks like this: {image=gui/heart/grey_heart.png}"
+                    #"Vren" "A girls Temporary Sluttiness will decrease if it is higher than her Core Sluttiness. If Suggestibility is higher than 0 there is a chance for the Temporary sluttiness to turn into Core sluttiness."
+                    #"Vren" "Suggestibility has another use. It will increase the cap for Temporary sluttiness. Temporary sluttiness looks like this: {image=gui/heart/grey_heart.png}"
                     "Vren" "Interacting with a girl is the most direct way to change their Obedience or Sluttiness. There may also be random events that change their scores."
-                    "Vren" "Most actions have a minimum Temporary sluttiness requirement before they can be attempted and a maximum Temporary sluttiness they will have an effect on."
+                    "Vren" "Most actions have a minimum Sluttiness requirement before they can be attempted and a maximum Sluttiness they will have an effect on."
                     "Vren" "Having sex with a girl is necessary to increase her sluttiness to the highest levels. Higher arousal will make a girl more willing to strip down or have sex."
-                    "Vren" "If you are able to make a girl cum she will immediately start to turn Temporary sluttiness into core sluttiness."
-                    "Vren" "As a girls Sluttiness increases she will be more willing to wear revealing clothing or have sex with you."
+                    #"Vren" "If you are able to make a girl cum she will immediately start to turn Temporary sluttiness into core sluttiness."
+                    "Vren" "As a girl's Sluttiness increases she will be more willing to wear revealing clothing or have sex with you."
                     "Vren" "As her Obedience increases she will be more deferential. She may be willing to have sex simply because you ask, even if she is not normally slutty enough."
 
                 "Leveling Up":

@@ -675,7 +675,7 @@ init -1:
             mental_aspect = 1, physical_aspect = 0, sexual_aspect = 2, medical_aspect = 0, flaws_aspect = 0, attention = 1)
 
         foreplay_enhancer = SerumTrait(name = "Tactile Stimulator",
-            desc = "Tunes the subject's nerves, especially those in the extremities, to higher levels of precision. Increases a girls Foreplay skill for the duration.",
+            desc = "Tunes the subject's nerves, especially those in the extremities, to higher levels of precision. Increases a girl's Foreplay skill for the duration.",
             positive_slug = "+2 Foreplay Skill",
             negative_slug = "",
             research_added = 50,
@@ -1016,7 +1016,7 @@ init -1:
             mental_aspect = 0, physical_aspect = 0, sexual_aspect = 0, medical_aspect = 7, flaws_aspect = 0, attention = 1)
 
         breast_enhancement = SerumTrait(name = "Breast Enhancement",
-            desc = "Grows breasts overnight. Has a 25% chance of increasing a girls breast size by one step with each time unit.",
+            desc = "Grows breasts overnight. Has a 25% chance of increasing a girl's breast size by one step with each time unit.",
             positive_slug = "25% Chance/Turn Breast Growth",
             negative_slug = "",
             research_added = 125,
@@ -1029,7 +1029,7 @@ init -1:
             mental_aspect = 0, physical_aspect = 6, sexual_aspect = 2, medical_aspect = 1, flaws_aspect = 0, attention = 3)
 
         breast_reduction = SerumTrait(name = "Breast Reduction",
-            desc = "Shrinks breasts overnight. Has a 25% chance of decreasing a girls breast size by one step with each time unit.",
+            desc = "Shrinks breasts overnight. Has a 25% chance of decreasing a girl's breast size by one step with each time unit.",
             positive_slug = "25% Chance/Turn Breast Reduction",
             negative_slug = "",
             research_added = 125,
@@ -1481,8 +1481,8 @@ init -1:
             mental_aspect = 4, physical_aspect = 0, sexual_aspect = 7, medical_aspect = 0, flaws_aspect = 0, attention = 3)
 
         nora_reward_genius_trait = SerumTrait(name = "Natural Talent",
-            desc = "A special serum trait developed by Nora after studying someone who was a genius. Instantly and permanetly sets the recipients Intelligence, Charisma, and Focus to 5.",
-            positive_slug = "Sets Charisma, Intelligence, Focus to 5",
+            desc = "A special serum trait developed by Nora after studying someone who was a genius. Instantly and permanently raises the recipient's Intelligence, Charisma, and Focus to 7 if lower.",
+            positive_slug = "Raises Charisma, Intelligence, Focus to 7",
             negative_slug = "",
             research_added = 1000,
             base_side_effect_chance = 300,

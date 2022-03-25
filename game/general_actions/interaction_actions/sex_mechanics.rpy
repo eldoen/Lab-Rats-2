@@ -136,7 +136,7 @@ label fuck_person(the_person, private = True, start_position = None, start_objec
             # Note: There can be no chance based decisions in this section, because it loops on menu interactions, not on actual rounds of sex. Those go after the "change or continue" loop
 
         if round_choice is None: #If there is no set round_choice
-            #TODO: Add a varient of this list when the girl is in control to ask if you want to resist or ask/beg for something.
+            #TODO: Add a variant of this list when the girl is in control to ask if you want to resist or ask/beg for something.
             $ option_list = []
             python:
                 if position_choice is not None:
@@ -223,7 +223,7 @@ label fuck_person(the_person, private = True, start_position = None, start_objec
                     $ mc_softened = False
                     $ girl_considers_hard = True
                 if position_choice.requires_hard and mc.recently_orgasmed:
-                    "Your post orgasm cock softens, stopping you from [position_choice.verbing] [the_person.possessive_title] for now."
+                    "Your post-orgasm cock softens, stopping you from [position_choice.verbing] [the_person.possessive_title] for now."
                     $ position_choice = None
                 elif girl_in_charge and not position_choice.requires_hard and girl_considers_hard and not position_locked:
                     "[the_person.possessive_title] considers your stiffened cock."
@@ -812,7 +812,7 @@ label condom_ask(the_person):
                             "You pull out a condom from your wallet, tear open the package, and start to unroll it down your dick."
                             mc.name "So you have a choice. You can have my cock inside you like this, or you can have no cock at all."
                             "She whimpers like a sad puppy, but you know there's only once choice she would ever make."
-                            the_person "...Fine, just put it inside me already!"
+                            the_person "... Fine, just put it inside me already!"
 
                 "Fuck her raw":
                     "You ignore any thoughts about putting on a condom and get ready to take [the_person.possessive_title] raw."

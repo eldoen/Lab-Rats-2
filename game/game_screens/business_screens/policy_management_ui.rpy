@@ -26,8 +26,8 @@ screen policy_selection_screen():
     modal True
     zorder 100
     $ tooltip = GetTooltip()
-    $ catagories = [["Uniform Policies",uniform_policies_list], ["Recruitment Policies",recruitment_policies_list], ["Serum Policies",serum_policies_list], ["Organisation Policies",organisation_policies_list]]
-    default selected_catagory = catagories[0] #Default to the first in our catagories list
+    $ categories = [["Uniform Policies",uniform_policies_list], ["Recruitment Policies",recruitment_policies_list], ["Serum Policies",serum_policies_list], ["Organisation Policies",organisation_policies_list]]
+    default selected_category = categories[0] #Default to the first in our categories list
     default selected_policy = None #If not None this will have it's info displayed on the right section of the bottom pane
     #TODO: Side bar showing current and max Complience, once the Complience system is added.
 
@@ -37,7 +37,7 @@ screen policy_selection_screen():
         yanchor 0.0
         yalign 0.05
         spacing 20
-        frame: #Top frame holding the policy catagories that we have.
+        frame: #Top frame holding the policy categories that we have.
             xsize 1320
             ysize 140
             background "#aaaaaa"
@@ -48,19 +48,19 @@ screen policy_selection_screen():
                 style "textbutton_text_style"
                 size 18
             vbox:
-                text "Policy Catagories" style "menu_text_style" size 26 yalign 0.5 yanchor 0.5 xalign 0.5 xanchor 0.5
+                text "Policy Categories" style "menu_text_style" size 26 yalign 0.5 yanchor 0.5 xalign 0.5 xanchor 0.5
                 xalign 0.5
                 xanchor 0.5
                 hbox:
                     spacing 25
                     xalign 0.5
                     xanchor 0.5
-                    for catagory in catagories:
-                        textbutton catagory[0]:
+                    for category in categories:
+                        textbutton category[0]:
                             xsize 300
                             ysize 80
-                            action SetScreenVariable("selected_catagory", catagory)
-                            sensitive selected_catagory != catagory
+                            action SetScreenVariable("selected_category", category)
+                            sensitive selected_category != category
                             style "textbutton_style"
                             text_style "textbutton_text_style"
                             background "#000080"
@@ -90,7 +90,7 @@ screen policy_selection_screen():
                         scrollbars "vertical"
                         vbox: # Contains list for policy select
                             spacing 0
-                            for policy in selected_catagory[1]:
+                            for policy in selected_category[1]:
                                 $ policy_name = policy.name + " - "
                                 if policy.is_active(): #Display owned and active policies
                                     $ policy_name += "Active"

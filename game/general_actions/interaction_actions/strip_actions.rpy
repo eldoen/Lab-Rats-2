@@ -364,7 +364,7 @@ init 1 python:
             action_options.append(["Keep feeling her up", "continue"])
 
         if girl_state.allows_jerking and not guy_state == "jerking" and mc.arousal > 20:
-            action_options.append(["Pull out your cock out", "start_jerking"])
+            action_options.append(["Pull your cock out", "start_jerking"])
 
         if girl_state.allows_touching and not guy_state == "touching":
             action_options.append(["Start feeling her up", "start_touching"])
@@ -482,9 +482,9 @@ label strip_tease(the_person, in_private = True, for_pay = False, start_girl_dir
                     the_person "I... Oh my god, what are you doing?"
                 mc.name "I think it's pretty self-explanatory."
                 "You stroke your shaft a few times to drive the idea home."
-                the_person "Put that away! That's... "
+                the_person "Put that away! That's..."
                 "She stares at your hard cock and stumbles over her words as she tries to think of anything other than \"impressive\"."
-                the_person "...Disgusting! That's what it is!"
+                the_person "... Disgusting! That's what it is!"
                 menu:
                     "Pay her\n{color=#ff0000}{size=18}Costs: $200{/size}{/color}" if mc.business.has_funds(200) and for_pay:
                         "You sigh dramatically and pull out your wallet, cock still standing at attention."
@@ -1479,7 +1479,7 @@ label strip_cum_question_loop(the_person, girl_state, girl_direction, girl_aware
                     pass
 
                 "Ignore her":
-                    "No time, here I cum!"
+                    mc.name "No time, here I cum!"
                     "[the_person.possessive_title] takes a step back, clearing the splash zone."
                     $ cum_on_floor_instead = True
 
@@ -1572,7 +1572,7 @@ label strip_cum_question_loop(the_person, girl_state, girl_direction, girl_aware
                     pass
 
                 "Ignore her":
-                    "No time, here I cum!"
+                    mc.name "No time, here I cum!"
                     "[the_person.possessive_title] takes a step back, clearing the splash zone."
                     $ cum_on_floor_instead = True
         else:
@@ -1653,7 +1653,7 @@ label strip_cum_question_loop(the_person, girl_state, girl_direction, girl_aware
                     pass
 
                 "Ignore her":
-                    "No time, here I cum!"
+                    mc.name "No time, here I cum!"
                     "[the_person.possessive_title] takes a step back, clearing the splash zone."
                     $ cum_on_floor_instead = True
         else:

@@ -63,7 +63,7 @@ label view_onlyfans(the_person):
 
             "Subscribe for a month\n{color=#ff0000}{size=18}Costs: $60{/size}{/color}" if mc.business.has_funds(60):
                 $ the_person.event_triggers_dict["onlyfans_subscription_valid_until"] = day + 30
-                $ mc.business.change_funds(-30)
+                $ mc.business.change_funds(-60)
 
             "Subscribe for a month\n{color=#ff0000}{size=18}Costs: $60{/size}{/color} (disabled)" if not mc.business.has_funds(60):
                 pass

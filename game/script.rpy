@@ -661,11 +661,11 @@ init 0 python:
 
     ##Breakthrough Actions##
     mc_breakthrough_1 = Action("Have a Breakthrough {image=gui/heart/Time_Advance.png}\n{color=#ff0000}{size=18}Requires: 500 Clarity{/size}{/color}", mc_breakthrough_requirement, "mc_research_breakthrough", args = [1, 500], requirement_args = [1, 500],
-        menu_tooltip = "Put your intellect to work and unlock a new tier of research! There may be other was to achieve this breakthrough as well", priority = 100)
+        menu_tooltip = "Put your intellect to work and unlock a new tier of research! There may be other ways to achieve this breakthrough as well", priority = 100)
     mc_breakthrough_2 = Action("Have a Breakthrough {image=gui/heart/Time_Advance.png}\n{color=#ff0000}{size=18}Requires: 5000 Clarity{/size}{/color}", mc_breakthrough_requirement, "mc_research_breakthrough", args = [2, 5000], requirement_args = [2, 5000],
-        menu_tooltip = "Put your intellect to work and unlock a new tier of research! There may be other was to achieve this breakthrough as well", priority = 100)
+        menu_tooltip = "Put your intellect to work and unlock a new tier of research! There may be other ways to achieve this breakthrough as well", priority = 100)
     mc_breakthrough_3 = Action("Have a Breakthrough {image=gui/heart/Time_Advance.png}\n{color=#ff0000}{size=18}Requires: 25000 Clarity{/size}{/color}", mc_breakthrough_requirement, "mc_research_breakthrough", args = [3, 25000], requirement_args = [3, 25000],
-        menu_tooltip = "Put your intellect to work and unlock a new tier of research! There may be other was to achieve this breakthrough as well", priority = 100)
+        menu_tooltip = "Put your intellect to work and unlock a new tier of research! There may be other ways to achieve this breakthrough as well", priority = 100)
 
     ##Complex Work Actions##
     interview_action = Action("Hire someone new {image=gui/heart/Time_Advance.png}", interview_action_requirement,"interview_action_description",

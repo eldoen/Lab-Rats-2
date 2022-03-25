@@ -1671,7 +1671,7 @@ label work_chat_crisis_label:
                 mc.name "So, any interesting office stories that I might not have heard?"
                 the_person "Well, nothing about anyone I work with now, but at my last job..."
                 "[the_person.possessive_title] dives into a long story. You listen and nod, keeping most of your attention on your own work until she finishes."
-                the_person "...Of course, I'd never dream of doing something like that here."
+                the_person "... Of course, I'd never dream of doing something like that here."
                 $ the_person.change_obedience(5)
                 mc.name "Glad to hear it."
 
@@ -1681,18 +1681,18 @@ label work_chat_crisis_label:
                     the_person "Well, there's a big football game coming in a couple days that I'm excited for. The tournament so far has been..."
                     $ the_person.discover_opinion("sports")
                     "[the_person.possessive_title] gives a passionate story about her favorite teams recent success. You listen and nod, keeping most of your attention on your own work."
-                    the_person "...But we'll see if all of that pays off."
+                    the_person "... But we'll see if all of that pays off."
 
                 elif the_person.get_opinion_score("hiking") > 0:
                     the_person "Well, I'm planning a big hiking trip for next summer. I've got my route all planned out..."
                     $ the_person.discover_opinion("hiking")
                     "[the_person.possessive_title] gives an interesting story about her last hiking trip. You listen and nod, keeping most of your attention on your own work."
-                    the_person "...So we'll have to see if the tent holds up this time."
+                    the_person "... So we'll have to see if the tent holds up this time."
 
                 else:
                     the_person "Soon? Let me think... I'm going to go see a movie with a friend in a few days. She's been off..."
                     "[the_person.possessive_title] talks about some of her plans for the weekend. You listen and nod, keeping most of your attention on your own work until she's finished."
-                    the_person "...Other than that, I think I'm just going to be taking it easy."
+                    the_person "... Other than that, I think I'm just going to be taking it easy."
                 $ the_person.change_happiness(5)
                 the_person "Anyways, I'll stop talking your ear off and let you get back to work. Thanks for chatting!"
 
@@ -2160,7 +2160,7 @@ label cat_fight_crisis_label():
                 mc.name "I said enough. Clearly you need help sorting this out."
                 "You stand up and take [person_one.title]'s hand in your right hand, then take [person_two.title]'s hand in your left."
                 mc.name "The two of you are part of a larger team. I need you to work together."
-                "You bring the girls hands together and wrap yours around both of theirs."
+                "You bring the girls' hands together and wrap yours around both of theirs."
                 person_one "Sorry sir, you're right."
                 $ the_group.draw_person(person_two, emotion = "angry")
                 person_two "You're right, I'm sorry sir. And I'm sorry [person_one.title]."
@@ -2198,7 +2198,7 @@ label cat_fight_crisis_label():
 
 
         "Stay silent and let them fight it out":
-            "Both of the girls look at you, waiting to see who's side you take."
+            "Both of the girls look at you, waiting to see whose side you take."
             mc.name "This fight isn't my problem. You two are going to have to sort this out yourselves."
             $ town_relationships.worsen_relationship(person_one, person_two)
             if renpy.random.randint(0,1) == 0: #Establish a winner and loser for the fight, random here so that the earlier section of the event doesn't suggest which one it is.
@@ -2534,7 +2534,7 @@ label research_reminder_crisis_label():
                                         the_person "Oh that again? That sounds really frustrating."
 
                                     else:
-                                        "[the_person.title] eyes soften and she nods her understanding."
+                                        "[the_person.title]'s eyes soften and she nods her understanding."
 
                                 if the_person.effective_sluttiness("touching_penis") + 5*the_person.get_opinion_score("giving handjobs") < 15:
                                     the_person "I don't really know what I could do about that [the_person.mc_title]..."
@@ -3250,7 +3250,7 @@ label horny_at_work_crisis_label():
                         $ mc.change_locked_clarity(30)
                         $ del licker
                     else:
-                        "You pull your pants up and get back to work, basking in your post orgasm clarity."
+                        "You pull your pants up and get back to work, basking in your post-orgasm clarity."
 
                 else:
                     "You stand up, pants around your ankles, and motion for [active_person.title] to come over to you."
@@ -3302,7 +3302,7 @@ label horny_at_work_crisis_label():
                         "It doesn't take much more for you to cum, blasting your load efficiently into some tissue."
                         $ climax_controller.do_clarity_release()
                         "With that finally taken care of, you get yourself cleaned up and get back to work."
-                        "Thanks to your post orgasm clarity you're able to focus perfectly."
+                        "Thanks to your post-orgasm clarity you're able to focus perfectly."
                     else:
                         "You sit back down in your office chair, feeling satisfied."
                         "After getting yourself cleaned up you're able to focus perfectly again and you get back to work."
@@ -3621,9 +3621,9 @@ label horny_at_work_crisis_label():
                                         "You grunt and blow your load efficiently into some tissue."
                                         $ climax_controller.do_clarity_release()
                                         "With that finally taken care of, you get yourself cleaned up and get back to work."
-                                        "Thanks to your post orgasm clarity you're able to focus perfectly."
+                                        "Thanks to your post-orgasm clarity you're able to focus perfectly."
                                     else:
-                                        "You get yourself cleaned up and get back to work. You're able to focus perfectly now thanks to your post orgasm clarity."
+                                        "You get yourself cleaned up and get back to work. You're able to focus perfectly now thanks to your post-orgasm clarity."
 
                             else: #We've been thwarted somehow and can't get to her pussy.
                                 "Thwarted by her clothing and unable to dress her down any further, you give up and let her go. The shame of your defeat has killed any chance you have of orgasming or focusing."

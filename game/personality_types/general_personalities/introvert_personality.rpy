@@ -1244,12 +1244,12 @@ label introvert_sex_review(the_person, the_report):
     # special condition - you fucked her brains out
     elif the_report.get("girl orgasms", 0) > 2:
         if used_obedience:
-            the_person "My god...I can't stop shaking...I never thought I would do that..."
+            the_person "My god... I can't stop shaking... I never thought I would do that..."
             "She seems quite astonished by her own actions."
             mc.name "The girl next door act doesn't work when you just keep on begging me to make you cum."
             "[the_person.possessive_title] scowls and looks away, but she can't exactly argue with you."
         else:
-            the_person "Fuck me...I just got a little carried away, I guess..."
+            the_person "Fuck me... I just got a little carried away, I guess..."
             "She still in a brain stupor from the bliss you just gave her."
 
     # special condition abort due to lack of girl energy without orgasm
@@ -1306,7 +1306,7 @@ label introvert_sex_review(the_person, the_report):
             mc.name "Yeah, of course."
 
         elif used_obedience: #She only did it because she was commanded
-            the_person "...Are we done?"
+            the_person "... Are we done?"
             mc.name "Yeah, we're done for now."
 
         else:  # She's surprised she even tried that.
@@ -1334,7 +1334,7 @@ label introvert_sex_review(the_person, the_report):
 
     # Gave creampie while she is not on birth control (extra dialog when she could get pregnant)
     if the_report.get("creampies", 0) > 0 and not the_person.on_birth_control and not the_person.event_triggers_dict.get("preg_knows", False):
-        the_person "Dammit...why did you cum inside me? I could get pregnant, you know."
+        the_person "Dammit... why did you cum inside me? I could get pregnant, you know."
 
     $ del comment_position
     return

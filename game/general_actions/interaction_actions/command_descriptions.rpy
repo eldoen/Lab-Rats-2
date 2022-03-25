@@ -78,13 +78,13 @@ label wardrobe_change_label(the_person):
 
 label change_titles_person(the_person):
     menu:
-        "Change what you call her (tooltip)Change the title you have for her. This may just be her name, an honorific such as \"Miss.\", or a complete nickname such as \"Cocksleeve\". Different combinations of stats, roles, and personalities unlock different titles.":
+        "Change what you call her (tooltip)Change the title you have for her. This may just be her name, an honorific such as \"Miss\", or a complete nickname such as \"Cocksleeve\". Different combinations of stats, roles, and personalities unlock different titles.":
             $ title_choice = new_title_menu(the_person)
             if not (title_choice == "Back" or the_person.title == the_person.create_formatted_title(title_choice)):
                 "You tell [the_person.name] [the_person.last_name] that you are going to call her [title_choice] instead of [the_person.title]."
                 $ the_person.set_title(title_choice)
 
-        "Change what she calls you (tooltip)Change the title she has for you. This may just be your name, an honorific such as \"Mr.Games\", or a complete nickname such as \"Master\". Different combinations of stats, roles, and personalities unlock different titles.":
+        "Change what she calls you (tooltip)Change the title she has for you. This may just be your name, an honorific such as \"Mr. Games\", or a complete nickname such as \"Master\". Different combinations of stats, roles, and personalities unlock different titles.":
             $ title_choice = new_mc_title_menu(the_person)
             if not (title_choice == "Back" or the_person.mc_title == title_choice):
                 "You tell [the_person.title] to stop calling you [the_person.mc_title] and to refer to you as [title_choice] instead."
@@ -483,7 +483,7 @@ init -2 python:
 
             #TODO: Decide if we want to also comment on her stripping to her underwear.
             else:
-                rand = renpy.random.randint(0,3) #Add some random varients so it's not always the same.
+                rand = renpy.random.randint(0,3) #Add some random variants so it's not always the same.
                 if rand == 0:
                     if half_off_instead:
                         renpy.say(None, the_person.title + " slides her " + item.display_name + " away.")

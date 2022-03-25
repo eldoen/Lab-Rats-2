@@ -659,12 +659,12 @@ label aunt_intro_phase_final_label():
 
 label aunt_share_drink_intro_label(the_person):
     # On talk trigger after she has moved out and you visit her
-    # She invites you over to share some drinks. You can come by in the afternoon and share a drink with her.
+    # She invites you over to share some drinks. You can come by in the evening and share a drink with her.
     the_person "[the_person.mc_title], I'm so happy to see you! Come here, give me a hug."
     "[the_person.possessive_title] gives you a tight hug."
     mc.name "It's good to see you too [the_person.title]."
     the_person "We really should get together more often. I miss seeing my cute little nephew!"
-    the_person "Come by in the afternoon some time, you can join me for a glass of wine and we can chat."
+    the_person "Come by in the evening some time, you can join me for a glass of wine and we can chat."
     $ mc.change_locked_clarity(5)
     "She gives you a kiss on the cheek and smiles at you."
     $ the_person.change_happiness(1)
@@ -1458,7 +1458,7 @@ label family_games_night_drinks(the_mom, the_aunt): #Breakout function for the d
     # Get Lily and bring her back, gather around the kitchen table to play.
     return
 
-label family_games_night_cards(the_mom, the_aunt, the_sister): #Breakout function for the card game to keep things organized (and support adding new varients later)
+label family_games_night_cards(the_mom, the_aunt, the_sister): #Breakout function for the card game to keep things organized (and support adding new variants later)
 
     $ the_group = GroupDisplayManager([the_mom, the_aunt, the_sister], the_mom)
     $ the_group.draw_group()

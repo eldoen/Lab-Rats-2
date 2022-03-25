@@ -185,7 +185,7 @@ init -2 python:
 
             ##Personality Stats##
             #Things like suggestibility, that change over the course of the game when the player interacts with the girl
-            self.suggestibility = 0 + suggest #How quickly/efficiently bleeding temporary sluttiness is turned into core sluttiness.
+            self.suggestibility = 0 + suggest #How likely a girl is to enter or deepen a trance when orgasming
             self.suggest_bag = [] #This will store a list of integers which are the different suggestion values fighting for control. Only the highest is used, maintained when serums are added and removed.
 
             self.happiness = happiness #Higher happiness makes a girl less likely to quit and more willing to put up with you pushing her using obedience.
@@ -1964,7 +1964,7 @@ init -2 python:
                 if add_to_log:
                     mc.log_event(display_name + " sinks deeper into a trance!", "float_text_red")
                 if show_dialogue:
-                    renpy.say(None, self.possessive_title + " eyes glaze over, and she sinks completely into a cum addled trance.")
+                    renpy.say(None, self.possessive_title + "'s eyes glaze over, and she sinks completely into a cum addled trance.")
 
             if reset_arousal:
                 self.reset_arousal() #TODO: Decide if resetting should only halve it, like making a girl cum yoruself.

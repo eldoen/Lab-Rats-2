@@ -460,7 +460,7 @@ label dinner_date_label(the_person):
 
     if renpy.random.randint(0,100) < 40: #Chance to give her some serum.
         "After dinner you decide to order dessert. [the_person.title] asks for a piece of cheese cake, then stands up from the table."
-        the_person "I'm going to go find the little girls room. I'll be back in a moment."
+        the_person "I'm going to go find the little girls' room. I'll be back in a moment."
         $ clear_scene()
         "She heads off, leaving you alone at the table with her half finished glass of wine."
         menu:
@@ -555,7 +555,7 @@ label date_take_home_her_place(the_person, date_type = None): #Your date went we
 
         call fuck_date_event(the_person) from _call_fuck_date_event_1 #You're having an affair, leads to all of the normal affair stuff like being caught. #TODO: Make sure the date seduction dialogue leads into this properly.
         $ the_person.draw_person(position = "missionary") # drop on the bed to rest
-        "When you and [the_person.possessive_title] are finished you give her a goodbye kiss and head home yourself.."
+        "When you and [the_person.possessive_title] are finished, you give her a goodbye kiss and head home yourself."
 
     elif the_person.effective_sluttiness(["vaginal_sex", "sucking_cock"]) + (0 if the_person.relationship == "Single" else 10 * the_person.get_opinion_score("cheating on men")) >= 70:
         "You're barely in the door before [the_person.title] has her hands all over you."

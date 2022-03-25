@@ -376,10 +376,10 @@ label dm_option_underwear_response(the_person):
         "There's a short pause, then she sends an image."
         $ mc.change_locked_clarity(10)
         $ the_person.draw_person(position = "back_peek", the_animation = None)
-        "...Then another."
+        "... Then another."
         $ mc.change_locked_clarity(10)
         $ the_person.draw_person(position = "kneeling1", the_animation = None)
-        "...And another."
+        "... And another."
         $ mc.change_locked_clarity(10)
         if the_person.get_opinion_score("showing her tits") > 0 and not the_person.outfit.tits_visible():
             if the_person.outfit.can_half_off_to_tits():
@@ -388,7 +388,7 @@ label dm_option_underwear_response(the_person):
                 $ the_person.outfit.remove_clothing_list(the_person.outfit.strip_to_tits())
             $ the_person.draw_person(position = "blowjob", the_animation = None)
             $ mc.change_locked_clarity(15)
-            "...And one more. This time, with her tits out!"
+            "... And one more. This time, with her tits out!"
             the_person "I got a little carried away, I'm sure you don't mind!" (what_style = "text_message_style")
             the_person "Have fun with those, and let me know if there's anything else I can do for you!" (what_style = "text_message_style")
         else:

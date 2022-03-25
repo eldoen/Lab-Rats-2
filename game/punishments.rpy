@@ -342,7 +342,7 @@ label punishment_spank(the_person, the_infraction):
             "Pull up her [top_clothing.display_name] first":
                 if the_person.obedience + 10*the_person.get_opinion_score("being submissive") < 120 and the_person.effective_sluttiness("underwear_nudity") < 30:
                     "You grab the hem of [the_person.title]'s [top_clothing.display_name]."
-                    the_person "Hey! what are you doing?"
+                    the_person "Hey! What are you doing?"
                     mc.name "Making sure your [top_clothing.display_name] doesn't get in the way of your punishment."
                     the_person "Are... Are you allowed to do that?"
                     if reduced_coverage_uniform_policy.is_active():
@@ -868,7 +868,7 @@ label punishment_orgasm_denial(the_person, the_infraction):
     "You step close to [the_person.possessive_title] and cup one of her breasts, squeezing it softly."
     mc.name "You've really disappointed me [the_person.title], so in return..."
     "You place your other hand on her hip."
-    mc.name "...I'm going to disappoint you. I'm going to bring you right to the edge of cumming and leave you there."
+    mc.name "... I'm going to disappoint you. I'm going to bring you right to the edge of cumming and leave you there."
     if the_person.effective_sluttiness() < 40:
         the_person "You can't... You aren't allowed to do that, are you?"
         $ mc.change_locked_clarity(10)

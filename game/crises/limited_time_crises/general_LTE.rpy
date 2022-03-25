@@ -176,11 +176,11 @@ label work_walk_in_label(the_person): #Walk into the room and find someone mastu
                         "You hold up your hand and correct her."
                         mc.name "\"For fingering your pussy.\""
                         $ mc.change_locked_clarity(5)
-                        the_person "...For fingering my pussy at work."
+                        the_person "... For fingering my pussy at work."
                         mc.name "What were you acting like?"
                         "She clearly wants to look away, look anywhere but into your eyes, but her obedience holds her in place."
                         $ mc.change_locked_clarity(5)
-                        the_person "...A horny highschool slut, [the_person.mc_title]."
+                        the_person "... A horny highschool slut, [the_person.mc_title]."
                         mc.name "I expect you to shape up, or I'm going to have to start treating you like one."
                         $ the_person.change_obedience(2)
                         $ the_person.change_slut(1 + the_person.get_opinion_score("being submissive"), 35)

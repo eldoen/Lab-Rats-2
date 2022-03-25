@@ -112,7 +112,7 @@ label strip_close_dancing_towards_2(the_person, guy_state, for_pay = False):
 label strip_close_dancing_away_1(the_person, guy_state, for_pay = False):
     "[the_person.title] holds her arms in front of you and bends forward, giving you a close look at her ass."
     if the_person.outfit.vagina_visible():
-        "She shakes her hips and jiggles that butt for your enjoyment.."
+        "She shakes her hips and jiggles her butt for your enjoyment."
     else:
         $ the_item = the_person.outfit.get_lower_top_layer()
         "She shakes her hips and jiggles her ass. You wonder what it would look like without her [the_item.display_name] in the way."

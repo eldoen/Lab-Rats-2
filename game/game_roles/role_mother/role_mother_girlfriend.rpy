@@ -23,7 +23,7 @@ label mom_girlfriend_intro(the_person):
         $ the_person.event_triggers_dict["mom_girlfriend_asked_before"] = True
         mc.name "You've always been the most important woman in my life..."
         the_person "Aww..."
-        mc.name "...and I feel like our relationship has evolved. I feel like you're more than just my mother now, and I want to be more than just your son."
+        mc.name "... and I feel like our relationship has evolved. I feel like you're more than just my mother now, and I want to be more than just your son."
         mc.name "I want to be your boyfriend."
         "[the_person.possessive_title] doesn't say anything for a long moment. At long last she sighs and smiles weakly."
         $ the_person.draw_person(emotion = "happy")
@@ -184,7 +184,7 @@ label mom_girlfriend_intro(the_person):
             "Vren" "The harem variant of this relationship is still under construction. It will be added in a future update!"
             "Vren" "Until then enjoy having both girls as your girlfriend!"
             the_person "Well, I suppose if she's willing to date you she won't have any problems with me doing it too."
-            the_person "I'm not worried, there's no replacement for a mothers love."
+            the_person "I'm not worried, there's no replacement for a mother's love."
 
         "Don't worry, I'm dating her too\n{color=#ff0000}{size=18}Requires: Dating [lily.title]{/size}{/color} (disabled)" if not lily.has_role(sister_girlfriend_role):
             pass
@@ -194,7 +194,7 @@ label mom_girlfriend_intro(the_person):
             mc.name "I don't think we'll have any issues with her. [lily.title]'s... well, she's not terribly hard to trick."
             mc.name "As long as she doesn't catch us fucking I doubt she'll notice anything has changed."
             the_person "[the_person.mc_title], do you really have to be so crude?"
-            the_person "...But you do have a point. Just a little discretion on our part and we won't have to bother her at all."
+            the_person "... But you do have a point. Just a little discretion on our part and we won't have to bother her at all."
 
         "She's too dumb to notice\n{color=#ff0000}{size=18}Requires: [lily.title] 1 Int{/size}{/color} (disabled)" if lily.int >= 2:
             pass
@@ -300,7 +300,7 @@ label mom_girlfriend_sister_blessing(the_person):
                             mc.name "I told you I was being serious. Now..."
                             $ mc.business.change_funds(-5000)
                             "Her phone buzzes as you finish the transaction. She pulls it out and looks at the notification in disbelief."
-                            mc.name "...I don't want you to cause any trouble for the two of us."
+                            mc.name "... I don't want you to cause any trouble for the two of us."
                             the_person "Wow, you really did it... Whatever, just don't make things too weird, okay?"
                             mc.name "Sure. I'm going to go give [mom.title] the good news."
 

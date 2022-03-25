@@ -462,7 +462,7 @@ label lily_sex_accept(the_person):
 
 label lily_sex_obedience_accept(the_person):
     if the_person.sluttiness > 70:
-        the_person "Oh god [the_person.mc_title], I know I shouldn't... We shouldn't be doing any of this together."
+        the_person "Oh god, [the_person.mc_title], I know I shouldn't... We shouldn't be doing any of this together."
         the_person "But I just can't say no to you."
     else:
         if the_person.obedience > 130:
@@ -499,9 +499,9 @@ label lily_seduction_response(the_person):
         if the_person.sluttiness > 50:
             the_person "Do you have something in mind for your innocent little sister?"
         elif the_person.sluttiness > 10:
-            the_person "What do you mean [the_person.mc_title]? Do you want to do something together?"
+            the_person "What do you mean, [the_person.mc_title]? Do you want to do something together?"
         else:
-            the_person "I... what do you mean [the_person.mc_title]?"
+            the_person "I... what do you mean, [the_person.mc_title]?"
     return
 
 label lily_seduction_accept_crowded(the_person):
@@ -793,7 +793,7 @@ label lily_cum_pullout(the_person):
                 "She pants happily."
                 the_person "It's my fault if I get pregnant, okay? You don't need to worry, I know it would be my fault!"
 
-            menu: #TODO: Add a varient of this normally so you can stealth a girl (don't do that in real life, it's super fucked up).
+            menu: #TODO: Add a variant of this normally so you can stealth a girl (don't do that in real life, it's super fucked up).
                 "Take off the condom":
                     "You don't have much time to spare. You pull out, barely clearing her pussy, and pull the condom off as quickly as you can manage."
                     $ mc.condom = False
@@ -1419,7 +1419,7 @@ label lily_bare_tits_taboo_break(the_person, the_clothing):
     the_person "Hey, why are you playing with my [the_clothing.display_name]?"
     mc.name "I want to take it off."
     "[the_person.possessive_title] seems equal parts embarrassed and excited."
-    the_person "Oh my god, you want to look at your sisters boobs? Do you... think they're cute?"
+    the_person "Oh my god, you want to look at your sister's boobs? Do you... think they're cute?"
     if not the_person.has_large_tits():
         the_person "I hoped they would be big like [mom.title]'s, but I don't think that's going to happen."
     mc.name "They look great, let's take a closer look..."
@@ -1427,7 +1427,7 @@ label lily_bare_tits_taboo_break(the_person, the_clothing):
     return
 
 label lily_bare_pussy_taboo_break(the_person, the_clothing):
-    the_person "Hey, what are you doing? If you take off my [the_clothing.display_name] you'll be able to see my...pussy."
+    the_person "Hey, what are you doing? If you take off my [the_clothing.display_name] you'll be able to see my... pussy."
     "[the_person.possessive_title] seems excited rather than scared of the idea, but needs a little more convincing."
     if the_person.has_taboo("touching_vagina"):
         mc.name "Come on [the_person.title], I saw it when we were kids and it wasn't a big deal."
@@ -1481,7 +1481,7 @@ label lily_creampie_taboo_break(the_person):
         if the_person.on_birth_control:
             the_person "You just... came inside me. I've got my brothers cum inside of my pussy..."
             mc.name "Yeah, and it felt really good too. Did it feel good for you?"
-            the_person "...It did."
+            the_person "... It did."
             mc.name "Then what's the problem? You're on the pill, right?"
             "She nods."
             the_person "Yeah, I am. I guess you're right, it's not such a big deal as long as you don't do it too often."
@@ -1490,7 +1490,7 @@ label lily_creampie_taboo_break(the_person):
         else:
             the_person "You just... came inside of me. I've got a pussy full of my brothers cum, and I'm not on birth control."
             mc.name "Yeah, and it felt really good to put it there. Did it feel good for you too?"
-            the_person "...It did, but what if you get me pregnant?"
+            the_person "... It did, but what if you get me pregnant?"
             mc.name "The chances of that happening the very first time are so low, we don't need to worry about it."
             the_person "Really?"
             mc.name "Yeah, they're super low. Don't you trust me [the_person.title]?"

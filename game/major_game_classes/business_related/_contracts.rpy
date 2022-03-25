@@ -74,7 +74,7 @@ init -2 python:
 
             elif secondary_aspect == "sexual":
                 contract_name = "Iris Cosmetics Makeup Additive"
-                contract_description = "Having a beautiful mind is just as important as clear skin or perfect makeup. Iris cosmetics is looking for something to promote that feeling in their customers, and a little sex appeal always helps sell products."
+                contract_description = "Having a beautiful mind is just as important as clear skin or perfect makeup. Iris Cosmetics is looking for something to promote that feeling in their customers, and a little sex appeal always helps sell products."
 
             elif secondary_aspect == "medical":
                 contract_name = "Tresmon Pharmaceuticals Neurotropics"

@@ -1117,7 +1117,7 @@ label mom_date_intercept(the_mom, the_date): #TODO: Add some relationship awaren
         mc.name "I suppose so, why?"
         $ the_mom.draw_person(position = "sitting")
         "[the_mom.possessive_title] sits down on your bed and pats the spot beside her. You sit down with her to talk."
-        the_mom "Well, for young men like yourself it's easy to get distracted by a girls looks."
+        the_mom "Well, for young men like yourself it's easy to get distracted by a girl's looks."
         the_mom "It's not your fault, your hormones just take over and suddenly all you can look at are her butt and breasts!"
         mc.name "[the_mom.title], I think I'll be fine."
         "She places her hand on your upper thigh and gives it a gentle squeeze."

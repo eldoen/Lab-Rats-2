@@ -94,7 +94,7 @@ label train_charisma_label(the_person):
     return True
 
 label train_intelligence_label(the_person):
-    mc.name "You need to try and smarten up [the_person.title]. Go back to school, take lessons on line, whatever."
+    mc.name "You need to try and smarten up [the_person.title]. Go back to school, take lessons online, whatever."
     "She listens and nods passively."
     the_person "Do you think so? I don't even know where to start."
     mc.name "Well, I've got some ideas. Let me tell you..."

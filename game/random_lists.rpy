@@ -910,7 +910,7 @@ init -2:
                     else:
                         return_string += "and " + a_person.title
 
-            #TODO: Add a varient of this that lets you set a max number of people. A kind of "blah, blah, blah, and 7 more people..." response.
+            #TODO: Add a variant of this that lets you set a max number of people. A kind of "blah, blah, blah, and 7 more people..." response.
             return return_string
 
         def format_list_of_clothing(the_list): # Takes a list of strings and formats them to the form "ThingA, thingB, and ThingC"
@@ -1206,7 +1206,7 @@ init 1 python:
             start_sluttiness = 10, start_obedience = 5, start_happiness = 85, start_love = 0, start_home = emily.home, relationship = "Married", kids = 1, base_outfit = christina_base)
 
         christina.set_schedule(christina.home) #She's a stay-at-home Mom.
-        christina_job = Job("Throphy Wife", critical_job_role, christina.home, work_days = [0,1,2,3,4,5,6])
+        christina_job = Job("Trophy Wife", critical_job_role, christina.home, work_days = [0,1,2,3,4,5,6])
 
         christina.add_job(christina_job, job_known = True)
         christina.home.add_person(christina)

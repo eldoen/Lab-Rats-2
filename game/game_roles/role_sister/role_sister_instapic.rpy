@@ -616,7 +616,7 @@ label sister_instathot_special_pictures(the_person, is_topless_shoot = True):
                 $ mc.change_locked_clarity(10)
                 the_person "Your big cock is making me cum! I'm such a dirty little slut, cumming on your huge dick!"
                 "[the_person.possessive_title] is panting loudly now as she continues to give a very convincing performance."
-                "...At least you're pretty sure it's a performance."
+                "... At least you're pretty sure it's a performance."
                 "You try to ignore the throbbing erection you have now and get a few more shots of [the_person.title]."
                 the_person "Cuuuumming! Aaaah! Ah... Ah...."
                 $ mc.change_locked_clarity(10)
@@ -635,7 +635,7 @@ label sister_instathot_special_pictures(the_person, is_topless_shoot = True):
             the_person "Oh, nothing. Sometimes I just wish my boobs were a little larger."
             the_person "Look at [mom.title], she's got huge boobs! These are..."
             "She grabs her chest and squeezes her tits in her hands."
-            the_person "...A little small. All the really popular girls on InstaPic have big boobs."
+            the_person "... A little small. All the really popular girls on InstaPic have big boobs."
             menu:
                 "Get bigger boobs" if rank_tits(the_person.tits) < 8:
                     mc.name "Then you should do something about it. You know you can just get fake boobs, right?"
@@ -734,7 +734,7 @@ label sister_instathot_mom_discover(the_person): # TODO: Hook this up as a night
     "You're getting ready for bed when your door is opened suddenly."
     $ the_person.draw_person(emotion = "angry")
     $ the_person.change_love(-2)
-    "[the_person.title] hurries in and slams the door behind her. She seems angry"
+    "[the_person.title] hurries in and slams the door behind her. She seems angry."
     the_person "Did you really tell [mom.title] about my InstaPic profile?"
     mc.name "Yeah, I did. She seems proud of you."
     the_person "I... You didn't tell her about the private pictures I've been sending, did you?"
@@ -754,7 +754,7 @@ label sister_instathot_mom_discover(the_person): # TODO: Hook this up as a night
             "[the_person.possessive_title] laughs and shakes her head."
             the_person "Oh my god, could you imagine? There's no way she would do it."
             mc.name "She wants a reason to spend time with you, I think she'd give it a try."
-            the_person "You really think so? But she's still my mom, isn't that a little weird."
+            the_person "You really think so? But she's still my mom, isn't that a little weird?"
             mc.name "It's just to keep your followers hooked. I bet that a bunch of them would be into an older woman."
             the_person "Eww, gross. Still..."
             $ the_person.change_slut(2, 60)
@@ -945,7 +945,7 @@ label sister_instathot_label_mom(the_sister, the_mom):
                 "Take your tits out": #TODO: Figure out what our requirements for this should be (mainly for Lily). Maybe a new event for Lily where she tells you people want shirtless shots.
 
                     mc.name "This is really good stuff, but I want just a little bit more."
-                    mc.name "How about you take your shirts off now girls."
+                    mc.name "How about you take your shirts off now, girls."
                     if the_mom.has_taboo("bare_tits"):#TODO: She's not okay with it until you've broken her taboo.
                         $ the_mom.change_obedience(-1)
                         $ the_group.draw_person(the_mom)
@@ -1176,7 +1176,7 @@ label sister_instathot_label_mom_shirtless(the_sister, the_mom, the_group): #Cal
                                 $ the_group.draw_person(the_sister)
                                 the_sister "Well I don't care. How do I look [the_sister.mc_title]?"
                                 if the_sister.has_large_tits():
-                                    "[the_sister.possessive_title] shakes her shoulders, jiggling her big for the camera."
+                                    "[the_sister.possessive_title] shakes her shoulders, jiggling her big tits for the camera."
                                 else:
                                     "[the_sister.possessive_title] shakes her shoulders, jiggling her little tits for the camera."
                                 the_sister "Come on [the_mom.title], just show them off a little!"
@@ -1260,7 +1260,7 @@ label sister_convince_mom_boobjob(the_mom, the_sister):
         $ the_group.draw_person(the_sister, position = "kneeling1")
         "[the_sister.possessive_title] shrugs."
         the_sister "No, he's right about that. All of the top influencers have big boobs. Bigger than me, at least."
-        mc.name "It can be real hard for flat chested girls like [the_sister.title] to make an impact."
+        mc.name "It can be real hard for flat-chested girls like [the_sister.title] to make an impact."
         $ the_group.draw_person(the_mom, position = "kneeling1")
         the_mom "[the_sister.title] isn't flat chested, they're just a bit little smaller than mine. I think they're the perfect size sweetheart."
         mc.name "I like them too, but that little bit makes all the difference to the InstaPic algorithm."

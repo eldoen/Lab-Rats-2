@@ -27,7 +27,7 @@ label bimbo_introduction(the_person):
     $ title_choice = get_random_title(the_person)
     $ formatted_title = the_person.create_formatted_title(title_choice)
     if the_person.has_large_tits():
-        the_person "And you liked my titss? Yeah, I get that a lot. I'm [formatted_title], it's nice to meet you!"
+        the_person "And you liked my tits? Yeah, I get that a lot. I'm [formatted_title], it's nice to meet you!"
     else:
         the_person "And you liked my ass? Yeah, I get that a lot. I'm [formatted_title], it's nice to meet you!"
     #the_person "Well then, I suppose I shouldn't disappoint you. You can call me [formatted_title]."
@@ -843,7 +843,7 @@ label bimbo_cum_pullout(the_person):
                 the_person "[the_person.mc_title], I want you to knock me up! Take off the condom and cum inside of me, okay?"
                 the_person "I want you to make me your personal breeding slut! It would make me so happy if you knocked me up!"
 
-            menu: #TODO: Add a varient of this normally so you can stealth a girl (don't do that in real life, it's super fucked up).
+            menu: #TODO: Add a variant of this normally so you can stealth a girl (don't do that in real life, it's super fucked up).
                 "Take off the condom":
                     "You don't have much time to spare. You pull out, barely clearing her pussy, and pull the condom off as quickly as you can manage."
                     $ mc.condom = False

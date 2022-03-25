@@ -70,14 +70,18 @@ init -1 python:
 
         if pubes_style is None:
             pubes_style = get_random_from_list(pube_styles).get_copy()
+        else:
+            pubes_style = pubes_style.get_copy()
 
-        pubes_colour = get_darkened_colour(hair_colour[1])
+        if pubes_colour is None:
+            pubes_colour = get_darkened_colour(hair_colour[1])
+
         pubes_style.colour = pubes_colour
 
         if eyes is None:
             eyes = generate_eye_colour()
         elif isinstance(eyes, basestring):
-            eyes = generate_eye_colour(eyes) #If it's a string assume we want a variation within that eye catagory
+            eyes = generate_eye_colour(eyes) #If it's a string assume we want a variation within that eye category
         # else: we assume at this point what was passed is a correct [description, colour] list.
 
         if skin is None:
