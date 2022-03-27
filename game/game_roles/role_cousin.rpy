@@ -3,29 +3,20 @@ init -2 python:
     cousin_strip_pose_list = ["walking_away","back_peek","standing_doggy","stand2","stand3","stand4","stand5"] #A list to let us randomly get some poses so each dance is a little different.
 
     def cousin_intro_phase_one_requirement(day_trigger):
-        if day >= day_trigger and time_of_day == 4:
-            return True
-        return False
+        return day >= day_trigger and time_of_day == 4
 
     def cousin_house_phase_one_requirement(day_trigger):
-        if day >= day_trigger:
-            return True
-        return False
+        return day >= day_trigger
 
     def cousin_house_phase_two_requirement(the_person):
-        if the_person in hall.people: #Note: this breaks if we eventually let you move people around. By bringing her to your place you could leave and come back early.
-            return True
-        return False
+        return hall.has_person(the_person)
 
     def cousin_house_phase_three_requirement(day_trigger):
-        if day>= day_trigger:
-            return True
-        return False
+        return day>= day_trigger
 
     def cousin_blackmail_intro_requirement(the_person):
-        if the_person in lily_bedroom.people and __builtin__.len(lily_bedroom.people) == 1 and the_person.event_triggers_dict.get("blackmail_level", -1) < 0: #Only triggers when she's in there alone (and after the event has been added to the trigger list)
-            return True
-        return False
+        #Only triggers when she's in there alone (and after the event has been added to the trigger list)
+        return lily_bedroom.has_person(the_person) and lily_bedroom.get_person_count() == 1 and the_person.event_triggers_dict.get("blackmail_level", -1) < 0
 
     def cousin_blackmail_requirement(the_person):
         if the_person.event_triggers_dict.get("blackmail_level", -1) < 1:
@@ -34,28 +25,23 @@ init -2 python:
             return "Blackmailed too recently"
         elif mc.location.get_person_count() > 1:
             return "Must be in private"
-        else:
-            return True
+        return True
 
     def stripclub_show_requirement():
         if time_of_day in [0,1,2]:
             return "Too early for performances"
         elif not mc.business.has_funds(20):
             return "Not enough cash"
-        else:
-            return True
+        return True
 
     def blackmail_hint_requirement(the_person, min_day):
-        if day < min_day:
-            return False
-        elif time_of_day != 4:
+        if day < min_day or time_of_day != 4:
             return False
         elif the_person.sluttiness < 25:
             return False
         elif the_person.event_triggers_dict.get("blackmail_level",-1) != 1:
             return False
-        else:
-            return True
+        return True
 
     def cousin_room_search_requirement(the_person):
         if the_person.event_triggers_dict.get("blackmail_level",-1) != 1:
@@ -64,10 +50,9 @@ init -2 python:
             return False
         elif time_of_day == 4:
             return "Too late to search room"
-        elif the_person in mc.location.people:
+        elif mc.location.has_person(the_person):
             return the_person.title + " is in the room."
-        else:
-            return True
+        return True
 
     def blackmail_2_confront_requirement(the_person):
         if the_person.event_triggers_dict.get("blackmail_level", -1) != 1:
@@ -77,51 +62,37 @@ init -2 python:
         return True
 
     def cousin_boobjob_ask_requirement(the_person, start_day):
-        if day < start_day:
+        if day < start_day or the_person.sluttiness < 40:
             return False
         elif the_person.event_triggers_dict.get("getting boobjob", False):
             return False
         elif rank_tits(the_person.tits) >= 8:
             return False #She already has F sized tits, which she thinks is good enough.
-        elif the_person.sluttiness < 40:
+        elif mc.location.has_person(aunt):
             return False
-        elif aunt in mc.location.people:
-            return False
-        else:
-            return True
+        return True
 
     def cousin_talk_boobjob_again_requirement(the_person):
         if the_person.sluttiness < 40:
             return False
         elif the_person.event_triggers_dict.get("getting boobjob", False):
             return False
-        elif aunt in mc.location.people:
+        elif mc.location.has_person(aunt):
             return "Not while [aunt.title] is around"
         else:
             return True
 
     def cousin_new_boobs_brag_requirement(the_person):
-        if aunt in mc.location.people:
-            return False
-        else:
-            return True
+        return not mc.location.has_person(aunt)
 
     def cousin_boobjob_get_requirement(the_person, start_day):
-        if day < start_day:
-            return False
-        else:
-            return True
+        return day >= start_day
 
     def cousin_tits_payback_requirement(the_day):
-        if day < the_day:
-            return False
-        else:
-            return True
+        return day >= the_day
 
     def cousin_serum_boobjob_check_requirement(the_person, the_tits, the_day):
-        if day < the_day:
-            return False
-        return True
+        return day >= the_day
 
     def add_cousin_blackmail_hint_action(the_person):
         the_person.set_schedule(hall, the_days = [0, 1, 2, 3, 4], the_times = [2])
@@ -203,10 +174,7 @@ init -2 python:
 
     def remove_cousin_talk_boobjob_again_action():
         for role in cousin.special_role:
-            for act in role.actions:
-                if act.effect == "cousin_talk_boobjob_again_label": #Find and remove this action.
-                    role.actions.remove(act)
-                    break
+            role.remove_action("cousin_talk_boobjob_again_label")
         return
 
 ###COUSIN ACTION LABELS###
@@ -903,11 +871,7 @@ label cousin_boobjob_ask_label(the_person):
     mc.name "How much would you need?"
     the_person "I've got some money, but I'd need another five grand from you."
     the_person "Please [the_person.mc_title], it's a rock solid investment."
-    $ has_boob_enhancement_serum = False
-    python:
-        for serum_design in mc.inventory.get_serum_type_list():
-            if breast_enhancement in serum_design.traits:
-                has_boob_enhancement_serum = True #The player has a serum in their inventory that can grow her breasts, so you can do that instead of getting her surgery.
+    $ has_boob_enhancement_serum = len(mc.inventory.get_serums_with_trait(breast_enhancement)) != 0
     menu:
         "Pay for it\n{color=#ff0000}{size=18}Costs: $5000{/size}{/color}" if mc.business.has_funds(5000):
             mc.name "Fine. Send me over the bill and I'll pay it."
@@ -1008,11 +972,7 @@ label cousin_talk_boobjob_again_label(the_person):
     else:
         the_person "Yeah, obviously."
 
-    $ has_boob_enhancement_serum = False
-    python:
-        for serum_design in mc.inventory.get_serum_type_list():
-            if breast_enhancement in serum_design.traits:
-                has_boob_enhancement_serum = True #The player has a serum in their inventory that can grow her breasts, so you can do that instead of getting her surgery.
+    $ has_boob_enhancement_serum = len(mc.inventory.get_serums_with_trait(breast_enhancement)) != 0
 
     menu:
         "Pay for it\n{color=#ff0000}{size=18}Costs: $5000{/size}{/color}" if mc.business.has_funds(5000):

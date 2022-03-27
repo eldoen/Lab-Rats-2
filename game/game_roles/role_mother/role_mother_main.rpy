@@ -70,14 +70,10 @@ init -2 python:
 init -2 python:
     #MOM ACTION REQUIREMENTS
     def mom_weekly_pay_requirement(the_person):
-        if day%7 == 5: #It is the end of the day on friday
-            return True
-        return False
+        return day%7 == 5 #It is the end of the day on friday
 
     def mom_offer_make_dinner_requirement(the_person):
-        if time_of_day == 3:
-            return True
-        return False
+        return time_of_day == 3 and kitchen.has_person(the_person)
 
     def mom_date_intercept_requirement(the_person, the_date):
         if the_person is the_date:

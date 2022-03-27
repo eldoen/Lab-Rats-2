@@ -62,3 +62,14 @@ init -2 python:
                     largest_amount = self.get_serum_count(design)
 
             return return_value
+
+        def get_serums_with_trait(self, trait):
+            result = []
+            for serum_design in self.get_serum_type_list():
+                if isinstance(trait, basestring):
+                    if any(x for x in serum_design.traits if x.name == trait):
+                        result.append(serum_design)
+                elif isinstance(trait, SerumTrait):
+                    if any(x for x in serum_design.traits if x == trait):
+                        result.append(serum_design)
+            return result
