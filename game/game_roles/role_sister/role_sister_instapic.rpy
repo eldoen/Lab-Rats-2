@@ -8,15 +8,14 @@ init -2 python:
             return False
         elif the_person.event_triggers_dict.get("insta_intro_finished", False):
             return False
-        elif the_person not in lily_bedroom.people:
+        elif not lily_bedroom.has_person(lily):
             return False
         elif __builtin__.len(lily_bedroom.people) > 1:
             return False
-        else:
-            return True
+        return True
 
     def instathot_requirement(the_person):
-        if lily not in lily_bedroom.people:
+        if not lily_bedroom.has_person(lily):
             return False
         elif __builtin__.len(lily_bedroom.people) > 1:
             return False
@@ -24,11 +23,10 @@ init -2 python:
             return "Too late to take pictures"
         elif time_of_day == 1:
             return "Too early to take pictures"
-        else:
-            return True
+        return True
 
     def sister_instapic_discover_requirement(the_person):
-        if lily not in lily_bedroom.people:
+        if not lily_bedroom.has_person(lily):
             return False #She's not at home, probably because of some other event
         elif not mc_at_home():
             return False #We're not at home, same deal.
@@ -38,8 +36,7 @@ init -2 python:
             return False #There's someone in our room, so she'll wait for another day
         elif the_person.event_triggers_dict.get("sister_instathot_mom_enabled", False):
             return False #She already knows, maybe this event got added twice somehow
-        else:
-            return True
+        return True
 
     def sister_instathot_mom_report_requirement(the_person, start_day):
         if day <= start_day:
@@ -48,8 +45,7 @@ init -2 python:
             return False #Don't talk to her in front of her face.
         elif not mc_at_home():
             return False #Don't talk about it outside of the house.
-        else:
-            return True
+        return True
 
     def sister_boobjob_give_serum_requirement(the_person):
         if not the_person.event_triggers_dict.get("sister_boobjob_serum_enabled", False):
@@ -58,26 +54,20 @@ init -2 python:
             return False
         elif the_person.event_triggers_dict.get("sister_boobjob_serum_last_day", -1) >= day:
             return "Already taken a dose today."
-        else:
-            return True
+        return True
 
     def sister_serum_new_boobs_check_requirement(the_person, starting_tits, end_day):
         if rank_tits(the_person.tits) - rank_tits(starting_tits) >= 2:
             return True #Her boobs grew, she'll trigger her brag event
         elif day >= end_day:
             return True #It's been too long, she'll trigger the fail/timeout event.
-        else:
-            return False #Don't trigger until one of those conditions is met.
+        return False #Don't trigger until one of those conditions is met.
 
     def sister_got_boobjob_requirement(start_day):
-        if day < start_day:
-            return False
-        return True
+        return day >= start_day
 
     def sister_get_boobjob_talk_requirment(the_person):
-        if the_person.event_triggers_dict.get("sister_boobjob_ask_enabled", False):
-            return True
-        return False
+        return the_person.event_triggers_dict.get("sister_boobjob_ask_enabled", False)
 
     def sister_boobjob_brag_requirement(the_person):
         return True
@@ -87,7 +77,7 @@ init -2 python:
 
     def add_sister_instahot_action():
         sister_instahot_action = Action("Help her take Insta-pics {image=gui/heart/Time_Advance.png}",instathot_requirement, "sister_instathot_label", menu_tooltip = "Help your sister grow her Insta-pic account by taking some pictures of her.")
-        sister_role.actions.append(sister_instahot_action)
+        sister_role.add_action(sister_instahot_action)
         return
 
     def add_sister_instathot_mom_report_action(person):

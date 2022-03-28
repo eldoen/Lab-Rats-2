@@ -1,18 +1,14 @@
 ### All of the event stuff specific to getting Lily to be your girlfriend.
 init -2 python:
     def sister_girlfriend_ask_blessing_requirement(the_person): #This is an action that Mom has
-        if the_person.event_triggers_dict.get("sister_girlfriend_ask_blessing", False):
-            return True
-        else:
-            return False
+        return the_person.event_triggers_dict.get("sister_girlfriend_ask_blessing", False)
 
     def sister_girlfriend_return_requirement(the_person): #This is an action Lily has, enabled when you've talked to Mom
         if the_person.event_triggers_dict.get("sister_girlfriend_mom_blessing_given", None) is None:
             return False
         elif the_person.event_triggers_dict.get("sister_girlfriend_waiting_for_blessing", False) and the_person.event_triggers_dict.get("sister_girlfriend_ask_blessing", False):
             return "Talk to [mom.title] first."
-        else:
-            return True
+        return True
 
 label sister_girlfriend_intro(the_person):
     mc.name "[the_person.title], I want to ask you something important."

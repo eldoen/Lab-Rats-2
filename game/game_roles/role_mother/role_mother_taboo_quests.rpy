@@ -779,7 +779,7 @@ label mom_vaginal_taboo_break_revisit_quest_1(the_person):
             pass
 
     $ the_person.event_triggers_dict["mom_vaginal_quest_progress"] = 1
-    $ mom_bedroom.actions.append(Action("Check " + the_person.title + "'s advice post", mom_vaginal_quest_2_requirement, "mom_vaginal_taboo_break_revisit_quest_2", args = the_person, requirement_args = the_person, priority = 20))
+    $ mom_bedroom.add_action(Action("Check " + the_person.title + "'s advice post", mom_vaginal_quest_2_requirement, "mom_vaginal_taboo_break_revisit_quest_2", args = the_person, requirement_args = the_person, priority = 20))
 
     return
 

@@ -648,7 +648,7 @@ label sister_vaginal_taboo_break_revisit(the_person):
             $ the_person.event_triggers_dict["sister_vaginal_quest_active"] = True
 
 
-            $ the_person.get_role_reference(sister_role).actions.append(Action("Hand over the serum", sister_vaginal_quest_revisit_requirement, "sister_vaginal_taboo_break_revisit_quest_1"))
+            $ the_person.get_role_reference(sister_role).add_action(Action("Hand over the serum", sister_vaginal_quest_revisit_requirement, "sister_vaginal_taboo_break_revisit_quest_1"))
 
         "Let me change your mind\n{color=#ff0000}{size=18}Requires: Likes Incest{/size}{/color} (disabled)" if the_person.get_known_opinion_score("incest") <= 0:
             pass

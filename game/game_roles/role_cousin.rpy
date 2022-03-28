@@ -122,7 +122,7 @@ init -2 python:
     def add_cousin_blackmail_2_confront_action():
         blackmail_2_confront_action = Action("Confront her about her stripping", blackmail_2_confront_requirement, "cousin_blackmail_level_2_confront_label",
             menu_tooltip = "Tell her that you know about her job as a stripper and use it as further leverage.")
-        cousin_role.actions.append(blackmail_2_confront_action)
+        cousin_role.add_action(blackmail_2_confront_action)
         cousin.event_triggers_dict["seen_cousin_stripping"] = True
         return
 
@@ -154,7 +154,7 @@ init -2 python:
 
         the_cousin.event_triggers_dict["stripping"] = True #Used to flag the blackmail event.
         cousin_room_search_action = Action("Search her room {image=gui/heart/Time_Advance.png}", cousin_room_search_requirement, "cousin_search_room_label",requirement_args = [the_cousin], args = [the_cousin, the_aunt])
-        cousin_bedroom.actions.append(cousin_room_search_action) #Lets you search her room for a clue about where to go to find her.
+        cousin_bedroom.add_action(cousin_room_search_action) #Lets you search her room for a clue about where to go to find her.
         return
 
     def add_cousin_boobjob_ask_action(the_person):
@@ -169,7 +169,7 @@ init -2 python:
 
     def add_cousin_talk_boobjob_again_action():
         cousin_talk_boobjob_again_action = Action("Talk about getting a boobjob\nCosts: $5000", cousin_talk_boobjob_again_requirement, "cousin_talk_boobjob_again_label")
-        cousin_role.actions.append(cousin_talk_boobjob_again_action)
+        cousin_role.add_action(cousin_talk_boobjob_again_action)
         return
 
     def remove_cousin_talk_boobjob_again_action():

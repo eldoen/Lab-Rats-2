@@ -80,17 +80,14 @@ init -2 python:
         return False
 
     def sister_reintro_action_requirement(the_person):
-        if mc.business.event_triggers_dict.get("sister_needs_reintro"):
-            return True
-        return False
+        return mc.business.event_triggers_dict.get("sister_needs_reintro", False)
 
     def sister_serum_test_requirement(the_person):
         if not mc.business.event_triggers_dict.get("sister_serum_test", False):
             return False
         elif not mc.business.has_funds(50):
             return "Requires: $50"
-        else:
-            return True
+        return True
 
     def sister_strip_intro_requirement(the_person): #Note that this only ever triggers once, so we don't need to worry if it will retrigger at any point.
         if time_of_day == 4 and mc.location == bedroom:
@@ -99,7 +96,7 @@ init -2 python:
         return False
 
     def sister_strip_reintro_requirement(the_person):
-        if not mc.business.event_triggers_dict.get("sister_strip_reintro",False):
+        if not mc.business.event_triggers_dict.get("sister_strip_reintro", False):
             return False
         elif mc.location != lily_bedroom:
             return False
@@ -107,8 +104,7 @@ init -2 python:
             return False
         elif the_person.sluttiness < 30:
             return "Requires: " + get_red_heart(30)
-        else:
-            return True
+        return True
 
     def sister_strip_requirement(the_person): #She'll only strip if you're in her bedroom and alone.
         if not mc.business.event_triggers_dict.get("sister_strip",False):
@@ -119,8 +115,7 @@ init -2 python:
             return False
         elif the_person.sluttiness < 30 or not mc.business.has_funds(100):
             return "Requires: $100, " + get_red_heart(30)
-        else:
-            return True
+        return True
 
     def sister_offer_to_hire_requirement(the_person): #NOTE: This is attached to the sister student role.
         if the_person.event_triggers_dict.get("dropout_convince_progress", 0) > 2:
@@ -131,15 +126,17 @@ init -2 python:
             return "Requires: 20 Love"
         elif mc.business.get_employee_count() >= mc.business.max_employee_count:
             return "At employee limit"
-        else:
-            return True
+        return True
 
     def mother_sister_dropout_convince_requirement(the_person):
-        if lily.event_triggers_dict.get("dropout_convince_progress", 0) != 1:
-            return False
-        else:
-            return True
+        return lily.event_triggers_dict.get("dropout_convince_progress", 0) == 1
 
+    def add_sister_dropout_convince_action(the_person):
+        dropout_convince_action = Action("Let " + the_person.title + " drop out", mother_sister_dropout_convince_requirement, "mother_sister_dropout_convince_label",
+            menu_tooltip = "Convince " + mom.title + " to let her daughter drop out of school and come work for you.")
+        mom.get_role_reference(mother_role).add_action(dropout_convince_action)
+        the_person.event_triggers_dict["dropout_convince_progress"] = 1
+        return
 
 #SISTER ACTION LABELS#
 
@@ -344,11 +341,7 @@ label sister_offer_to_hire(the_person):
         the_person "I don't know... Maybe. It doesn't matter, you'll never convince [mom.title]."
         mc.name "You leave that to me. I can be very convincing."
         if the_person.event_triggers_dict.get("dropout_convince_progress", 0) == 0:
-            python:
-                dropout_convince_action = Action("Let " + the_person.title + " drop out.", mother_sister_dropout_convince_requirement, "mother_sister_dropout_convince_label",
-                    menu_tooltip = "Convince " + mom.title + " to let her daughter drop out of school and come work for you.")
-                mom.get_role_reference(mother_role).actions.append(dropout_convince_action)
-                the_person.event_triggers_dict["dropout_convince_progress"] = 1
+            $ add_sister_dropout_convince_action(the_person)
     return
 
 label sister_offer_to_hire_2(the_person):
@@ -369,19 +362,7 @@ label sister_offer_to_hire_2(the_person):
             the_person "Yeah... It does suck pretty hard."
             "That seems to help her make up her mind."
             the_person "Screw it, I'll do it!"
-            mc.name "That's the brave little sister I know! Now, let's see where you might fit in..."
-            call stranger_hire_result(the_person) from _call_stranger_hire_result_sister_offer_to_hire_1
-            if _return:
-                mc.name "There we go. All settled."
-                the_person "Wow, I'm actually really excited!"
-                mc.name "Good to hear, I want to see all that enthusiasm in the office."
-                $ the_person.event_triggers_dict["dropout_convince_progress"] = 3
-            else:
-                mc.name "I'm going to need to get things ready before we can take on anyone else, actually."
-                mc.name "So uh... don't drop out just yet, alright?"
-                "She pouts but nods."
-                the_person "Fiiiiine."
-
+            call hire_sister_assign_department(the_person) from _call_hire_sister_assign_department_1
 
         "You hate school\n{color=#ff0000}{size=18}Requires: Hates research work{/size}{/color} (disabled)" if the_person.get_known_opinion_score("research work") <= -2:
             pass
@@ -394,18 +375,7 @@ label sister_offer_to_hire_2(the_person):
             mc.name "You'll be perfect for the job [the_person.title]. I know it."
             "Her resolve hardens and she nods her head with determination."
             the_person "Okay, I'll do it!"
-            mc.name "That's the brave little sister I know! Now, let's see where you might fit in..."
-            call stranger_hire_result(the_person) from _call_stranger_hire_result_sister_offer_to_hire_2
-            if _return:
-                mc.name "There we go. All settled."
-                the_person "Wow, I'm actually really excited!"
-                mc.name "Good to hear, I want to see all that enthusiasm in the office."
-                $ the_person.event_triggers_dict["dropout_convince_progress"] = 3
-            else:
-                mc.name "I'm going to need to get things ready before we can take on anyone else, actually."
-                mc.name "So uh... don't drop out just yet, alright?"
-                "She pouts but nods."
-                the_person "Fiiiiine."
+            call hire_sister_assign_department(the_person) from _call_hire_sister_assign_department_2
 
         "We'll get to work together!\n{color=#ff0000}{size=18}Requires: Make her your girlfriend{/size}{/color} (disabled)" if not the_person.has_role(girlfriend_role):
             pass
@@ -418,18 +388,7 @@ label sister_offer_to_hire_2(the_person):
             mc.name "$[predicted_amount]. Per day."
             "That gets her full attention. She pretends to think for a moment before making her decision."
             the_person "Okay, I'll do it!"
-            mc.name "That's the brave little sister I know! Now, let's see where you might fit in..."
-            call stranger_hire_result(the_person) from _call_stranger_hire_result_sister_offer_to_hire_3
-            if _return:
-                mc.name "There we go. All settled."
-                the_person "Wow, I'm actually really excited!"
-                mc.name "Good to hear, I want to see all that enthusiasm in the office."
-                $ the_person.event_triggers_dict["dropout_convince_progress"] = 3
-            else:
-                mc.name "I'm going to need to get things ready before we can take on anyone else, actually."
-                mc.name "So uh... don't drop out just yet, alright?"
-                "She pouts but nods."
-                the_person "Fiiiiine."
+            call hire_sister_assign_department(the_person) from _call_hire_sister_assign_department_3
 
         "Never mind":
             mc.name "If you don't want to, don't worry about it."
@@ -438,11 +397,27 @@ label sister_offer_to_hire_2(the_person):
 
     return
 
+label hire_sister_assign_department(the_person):
+    mc.name "That's the brave little sister I know! Now, let's see where you might fit in..."
+    call stranger_hire_result(the_person) from _call_stranger_hire_result_sister_offer_to_hire_assign_department
+    if _return:
+        mc.name "There we go. All settled."
+        the_person "Wow, I'm actually really excited!"
+        mc.name "Good to hear, I want to see all that enthusiasm in the office."
+        $ the_person.event_triggers_dict["dropout_convince_progress"] = 3
+        $ mom.get_role_reference(mother_role).remove_action("mother_sister_dropout_convince_label")
+    else:
+        mc.name "I'm going to need to get things ready before we can take on anyone else, actually."
+        mc.name "So uh... don't drop out just yet, alright?"
+        "She pouts but nods."
+        the_person "Fiiiiine."
+    return
+
 label mother_sister_dropout_convince_label(the_person):
-    mc.name "I need to talk to you about [lily.title]."
+    mc.name "I need to talk to you about [lily.name]."
     "She frowns, looking concerned."
     the_person "What do you mean? Is everything okay?"
-    mc.name "It's fine, but [lily.title] wants to drop out of school."
+    mc.name "It's fine, but [lily.name] wants to drop out of school."
     the_person "She... WHAT?"
     "[the_person.possessive_title] shakes her head in immediate refusal."
     the_person "Nonsense! Her education is so important, she can't abandon that just because it's difficult!"
@@ -464,10 +439,10 @@ label mother_sister_dropout_convince_label(the_person):
             pass
 
         "We'll all be working together" if the_person.has_role(employee_role):
-            mc.name "We'll all be working together if [lily.title] comes to work for me."
+            mc.name "We'll all be working together if [lily.name] comes to work for me."
             mc.name "Wouldn't that be great? The whole family, working as a team?"
             the_person "It would be nice to see both of you all day..."
-            mc.name "she can go back to school in a few years. I just really need the help right now."
+            mc.name "She can go back to school in a few years. I just really need the help right now."
             "[the_person.possessive_title] looks conflicted, but finally she nods."
             the_person "Okay, okay. Only if this is what she really wants to do though!"
             mc.name "Thank you for understanding [the_person.title], I'll let her know."
@@ -494,7 +469,7 @@ label mother_sister_dropout_convince_label(the_person):
 
         "You need to let this happen" if the_person.obedience >= 150:
             mc.name "I'm sorry, but what you care doesn't really matter here [the_person.title]."
-            mc.name "I need [lily.title] to work for me, which means I need you to get out of the way and let it happen."
+            mc.name "I need [lily.name] to work for me, which means I need you to get out of the way and let it happen."
             the_person "But what about her education... Her future?"
             mc.name "She can go back to school in a few years. The experience will look great on her resume."
             mc.name "Now I'm going to go tell her you're okay with this, and you aren't going to argue. Understood?"

@@ -91,7 +91,7 @@ init -2 python:
 
     def add_alexia_phase_two_action(the_person):
         alexia_intro_phase_two_action = Action("Have coffee together", alexia_intro_phase_two_requirement, "alexia_intro_phase_two_label")
-        alexia_role.actions.append(alexia_intro_phase_two_action)
+        alexia_role.add_action(alexia_intro_phase_two_action)
         return
 
     def remove_item_from_list(search, action_list):

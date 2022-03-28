@@ -1786,7 +1786,7 @@ init -2 python:
             return False
 
         def should_wear_uniform(self):
-            if not mc.business.is_open_for_business():  # quick exit
+            if not self.job or self.job.schedule.get_destination() is None:  # quick exit
                 return False
 
             if self.event_triggers_dict.get("forced_uniform", False):
