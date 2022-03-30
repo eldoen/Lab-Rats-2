@@ -984,34 +984,35 @@ label introvert_sex_strip(the_person):
     return
 
 label introvert_sex_watch(the_person, the_sex_person, the_position):
+    $ title = the_person.title if the_person.title else "The stranger"
     if the_person.sluttiness < the_position.slut_requirement - 20:
         $ the_person.draw_person(emotion = "angry")
         the_person "What the fuck..."
         $ the_person.change_obedience(-2)
         $ the_person.change_happiness(-3)
-        "[the_person.title] shakes her head while you and [the_sex_person.name] [the_position.verb]."
+        "[title] shakes her head while you and [the_sex_person.name] [the_position.verb]."
 
     elif the_person.sluttiness < the_position.slut_requirement - 10:
         $ the_person.draw_person()
         the_person "Right here? Really?"
         $ the_person.change_happiness(-1)
-        "[the_person.title] rolls her eyes and tries to avert her gaze as you and [the_sex_person.name] [the_position.verb]."
+        "[title] rolls her eyes and tries to avert her gaze as you and [the_sex_person.name] [the_position.verb]."
 
     elif the_person.sluttiness < the_position.slut_requirement:
         $ the_person.draw_person()
         the_person "Right in front of me? Really?"
         $ the_person.change_slut(1, 30)
-        "[the_person.title] watches for a moment, then turns away while you and [the_sex_person.name] keep [the_position.verbing]."
+        "[title] watches for a moment, then turns away while you and [the_sex_person.name] keep [the_position.verbing]."
 
     elif the_person.sluttiness >= the_position.slut_requirement and the_person.sluttiness < the_position.slut_cap:
         $ the_person.draw_person()
         $ the_person.change_slut(1, 50)
-        "[the_person.title] blushes, watching you and [the_sex_person.name] [the_position.verb]."
+        "[title] blushes, watching you and [the_sex_person.name] [the_position.verb]."
 
     else:
         $ the_person.draw_person(emotion = "happy")
         # the_person "Come on [the_person.mc_title], [the_sex_person.name] is going to fall asleep at this rate! You're going to have to give her a little more than that."
-        "[the_person.title] watches excitedly while you and [the_sex_person.name] [the_position.verb]. She whispers under her breath, almost to herself."
+        "[title] watches excitedly while you and [the_sex_person.name] [the_position.verb]. She whispers under her breath, almost to herself."
         the_person "Come on, give it to her. Harder..."
     return
 

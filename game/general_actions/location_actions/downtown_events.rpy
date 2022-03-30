@@ -107,7 +107,7 @@ label lady_of_the_night_label():
     # You run into a lady who propositions you for money.
     $ the_person = create_random_person(start_sluttiness = renpy.random.randint(25, 40))
     $ the_person.set_mc_title("Sir")
-    $ the_person.add_job(prostitute_job)
+    $ the_person.add_job(prostitute_job, job_known = True)
     #$ the_person.add_role(prostitute_role)
     "You're lost in thought when a female voice calls out to you."
     the_person "Excuse me, [the_person.mc_title]."

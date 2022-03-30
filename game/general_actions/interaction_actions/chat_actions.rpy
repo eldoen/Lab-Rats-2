@@ -1055,7 +1055,7 @@ label grope_person(the_person):
                                     mc.name "Come on, we don't need to worry about them. Just relax."
                                     the_person "But they're going to be watching..."
                                     $ the_person.change_happiness(5*the_person.get_opinion_score("public sex"))
-                                    mc.name "You ignore her and keep going. Her anxiety is obvious, but she doesn't object any further."
+                                    "You ignore her and keep going. Her anxiety is obvious, but she doesn't object any further."
 
                                 "Stay where you are\n{color=#ff0000}{size=18}Requires: [obedience_required] Obedience{/size}{/color} (disabled)" if the_person.obedience < obedience_required:
                                     pass

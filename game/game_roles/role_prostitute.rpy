@@ -1,5 +1,7 @@
 init -1 python:
     def prostitute_requirement(the_person):
+        if not the_person.event_triggers_dict.get("job_known", False):
+            return False
         if not mc.business.has_funds(200):
             "Not enough cash"
         elif the_person.sexed_count >= 1:

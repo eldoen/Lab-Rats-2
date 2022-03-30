@@ -174,8 +174,7 @@ label sister_instathot_intro_label(the_person):
     return
 
 label setup_sister_insta(the_person):
-    if not the_person.has_role(instapic_role):
-        $ the_person.special_role.append(instapic_role)
+    $ the_person.add_role(instapic_role)
     $ the_person.event_triggers_dict["insta_known"] = True
     $ the_person.event_triggers_dict["insta_intro_finished"] = True # Other events may set this is you discover her instapic career some other way
     $ add_sister_instahot_action()
