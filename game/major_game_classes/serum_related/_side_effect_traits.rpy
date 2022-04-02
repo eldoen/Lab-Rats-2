@@ -10,10 +10,12 @@ init -1 python:
 
     ## libido_suppressant_functions ##
     def libido_suppressant_on_apply(the_person, the_serum, add_to_log):
-        the_person.change_slut(-20)
+        change_amount = the_person.change_slut(-20)
+        the_serum.effects_dict["libido_suppressant"] = change_amount
 
     def libido_suppressant_on_remove(the_person, the_serum, add_to_log):
-        the_person.change_slut(20)
+        change_amount = the_serum.effects_dict.get("libido_suppressant", -20)
+        the_person.change_slut(-(-20 if change_amount is None else change_amount), add_to_log = add_to_log)
 
     ## anxiety_provoking_functions ##
     def anxiety_provoking_on_turn(the_person, the_serum, add_to_log):

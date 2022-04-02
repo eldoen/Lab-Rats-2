@@ -445,6 +445,8 @@ init 0 python:
     def build_special_role_actions_list(the_person, keep_talking = True):
         special_role_actions = []
         for role in the_person.special_role:
+            if the_person.job and the_person.job.job_role == role and not the_person.event_triggers_dict.get("job_known", False):
+                continue    # we don't know the job, so don't add it's specific actions
             for act in role.actions:
                 if keep_talking or act.is_fast:
                     special_role_actions.append([act,the_person])

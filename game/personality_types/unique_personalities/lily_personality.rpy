@@ -342,7 +342,7 @@ label lily_sex_responses_anal(the_person):
             "She grunts in a mixture of pleasure and pain."
             the_person "Sometimes I wish you actually had a smaller cock!"
         else:
-            the_person "[the_person.possessive_title] whimpers to herself as you stretch out her ass."
+            "[the_person.possessive_title] whimpers to herself as you stretch out her ass."
 
     elif response_value < 40:
         if the_person.sluttiness > 50:

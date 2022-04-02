@@ -1617,6 +1617,7 @@ init -2 python:
 
                 log_string = display_name + ": " + ("+" if amount > 0 else "") + str(amount) + " Max Arousal"
                 mc.log_event(log_string, "float_text_red")
+            return amount
 
         def change_novelty(self, amount, add_to_log = True):
             amount = __builtin__.int(__builtin__.round(amount))
@@ -1653,9 +1654,10 @@ init -2 python:
 
         def change_max_energy(self, amount, add_to_log = True):
             amount = __builtin__.round(amount)
+            if amount + self.max_energy < 0:
+                amount = -self.max_energy
+
             self.max_energy += amount
-            if self.max_energy < 0:
-                self.max_energy = 0
 
             if self.energy > self.max_energy: #No having more energy than max
                 self.energy = self.max_energy
@@ -1666,7 +1668,7 @@ init -2 python:
                     display_name = self.title
                 log_string = display_name+ ": " + ("+" if amount > 0 else "") + str(amount) + " Max Energy"
                 mc.log_event(log_string, "float_text_yellow")
-            return
+            return amount
 
         def review_outfit(self, dialogue = True, draw_person = True):
             if self.should_wear_uniform() and not self.is_wearing_uniform():
