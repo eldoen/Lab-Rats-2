@@ -203,3 +203,6 @@ init -2 python:
             the_relationship = self.get_relationship(person_a, person_b)
             if the_relationship is None: #Only sets a relationship for these people if one does not exist, so as to not override friendships or familial relationships
                 self.update_relationship(person_a, person_b, get_random_from_weighted_list([[self.relationship_scale[1], 20], [self.relationship_scale[2], 60], [self.relationship_scale[3], 20]]))
+
+        def is_family(self, person_a, person_b):
+            return self.get_relationship_type(person_a, person_b) in ["Mother", "Daughter", "Sister", "Cousin", "Niece", "Aunt", "Grandmother", "Granddaughter"]

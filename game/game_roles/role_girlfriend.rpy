@@ -131,11 +131,31 @@ label ask_be_girlfriend_label(the_person):
             the_person "I... I don't know what to say [the_person.mc_title]. I love you like you were my own, but we could never have a real relationship together."
             the_person "Could you imagine what your mother would say about that, dating her sister? She would go crazy!"
             the_person "Come on, let's talk about something else."
+            if the_person.event_triggers_dict.get("preg_your_kids_known",0) > 0 and persistent.pregnancy_pref > 0:
+                "You turn to leave and she grabs you by the arm."
+                the_person "Umm, wait a sec, you know what we have is not normal, but who cares right?"
+                "She puts her arms around you and pulls you close."
+                $ mc.change_locked_clarity(10)
+                "She kisses you, and you kiss her back just as happily."
+                $ the_person.add_role(aunt_girlfriend_role)
+            else:
+                the_person "Now if I was pregnant with your kiddo, I might have to reconsider this."
 
         elif the_person.has_role(cousin_role):
             the_person "You and me being, like, boyfriend and girlfriend? Ha, you must be crazy! Have you been huffing fumes at work?"
             the_person "I mean sure, I've come around on you and think you're not a total loser now, but we're cousins. Our parents would kill us."
             the_person "So yeah, that's going to be a no from me."
+            if the_person.event_triggers_dict.get("preg_your_kids_known",0) > 0 and persistent.pregnancy_pref > 0:
+                "You turn to leave and she grabs you by the arm."
+                the_person "Umm, wait a sec, you know I'm a rebel."
+                "She puts her arms around you and pulls you close."
+                $ mc.change_locked_clarity(10)
+                "She kisses you, and you kiss her back just as happily."
+                $ the_person.add_role(cousin_girlfriend_role)
+                the_person "Wonder if I can tempt you to give me a cream filling?"
+                $ mc.change_locked_clarity(10)
+            else:
+                the_person "It is not like you knocked me up or anything, so its all fun and games from here."
 
         elif the_person.relationship != "Single":
             $ so_title = SO_relationship_to_title(the_person.relationship)
@@ -215,13 +235,20 @@ label caught_cheating_label(the_other_girl, the_girlfriend): #Note: the_other_gi
     the_girlfriend "What the fuck [the_girlfriend.mc_title]! How could you do that to me?"
     mc.name "Calm down, everything's okay."
     #TODO: Add some dialogue in case she's a particularly important person (ie. friend, mother)
-    the_girlfriend "Really? Everything's okay while you're with another woman?"
+    if town_relationships.is_family(the_girlfriend, the_other_girl):
+        $ the_item = town_relationships.get_relationship_type(the_girlfriend, the_other_girl).lower()
+        the_girlfriend "Really? Everything's okay while you're have sex with my [the_item]?"
+        $ the_girlfriend.change_love(-25 + (5 * the_girlfriend.get_opinion_score("incest")))
+    else:
+        the_girlfriend "Really? Everything's okay while you're have sex with another woman?"
+        $ the_girlfriend.change_love(-25)
+
     # Note: This only happens if she saw something happening that was too slutty for her, slutty girls think it's totally fine and normal.
     mc.name "Just let me explain..."
-    $ the_girlfriend.change_love(-25)
-    $ the_girlfriend.change_happiness(-20)
     if the_girlfriend.love < 60:
         the_girlfriend "I don't want to hear it. You're a lying scumbag who broke my heart..."
+        $ the_girlfriend.change_happiness(-20)
+        $ the_girlfriend.draw_person(emotion = "sad")
         $ the_girlfriend.remove_role(girlfriend_role)
         the_girlfriend "We're done! Through! Finished!"
         "She turns around and storms off."
@@ -238,8 +265,9 @@ label caught_cheating_label(the_other_girl, the_girlfriend): #Note: the_other_gi
         the_girlfriend "And I never want to see that bitch anywhere around you, okay?"
         mc.name "Of course."
 
-    $ town_relationships.worsen_relationship(the_girlfriend, the_other_girl)
-    $ town_relationships.worsen_relationship(the_girlfriend, the_other_girl)
+    if not town_relationships.is_family(the_girlfriend, the_other_girl):
+        $ town_relationships.worsen_relationship(the_girlfriend, the_other_girl)
+        $ town_relationships.worsen_relationship(the_girlfriend, the_other_girl)
     return
 
 label ask_get_boobjob_label(the_person):

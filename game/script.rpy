@@ -294,17 +294,17 @@ init 0 python:
     common_variable_list = ["talk_action", "new_location", "picked_option", "picked_event", "outfit", "insta_outfit", \
         "the_outfit", "new_outfit", "old_outfit", "the_uniform", "the_underwear", "person_one", "person_two", "the_person_one", \
         "the_person_two", "the_item", "the_clothing", "the_group", "the_report", "the_trait", "the_mom", "the_action", \
-        "the_aunt", "the_sister", "the_student", "the_place", "the_girl", "test_outfit", "object", "the_object", \
+        "the_aunt", "the_sister", "the_student", "the_place", "the_girl", "test_outfit", "object", "the_object", "the_start_object", \
         "the_location", "next_item", "file_path", "title_choice", "title_one", "title_two", "placeholder", \
         "formatted_title_one", "formatted_title_two", "new_title", "the_type", "the_person", "player_choice", \
         "strip_list", "first_item", "feet_ordered", "top_feet", "crisis", "the_morning_crisis", "people_to_process", \
         "report_log", "position_choice", "object_choice", "round_choice", "start_position", "the_group", \
-        "report", "the_relationship", "partner", "the_subject", "the_suggested_outfit", "stripper", \
+        "report", "the_relationship", "partner", "the_subject", "the_suggested_outfit", "stripper", "potential_people",\
         "not_stripper", "the_student", "strip_choice", "new_pose", "picked_object", "picked_position", "picked_pose", "picked_serum", "pose_choice", "new_person" \
         "clothing", "formatted_name", "formatted_title", "hair_style_check", "pubic_style_check", "the_cause", \
-        "text_one", "text_two", "the_goal", "the_serum", "title", "opinion_tag", "overhear_topic", "the_choice", \
+        "text_one", "text_two", "the_goal", "the_serum", "title", "opinion_tag", "overhear_topic", "the_choice", "the_position", \
         "opinion_string", "mc_opinion_string", "talk_opinion_text", "opinion_learned", "place", "the_place", "the_taboo",
-        "climax_controller", "the_watcher", "person_choice"]
+        "climax_controller", "the_watcher", "person_choice", "t", "x", "y", "z", "so_title", "a_person", "person_1", "person_2", "test_person"]
 
     def main_loop_cleanup():
         clear_scene()
@@ -380,13 +380,13 @@ label game_loop(): ##THIS IS THE IMPORTANT SECTION WHERE YOU DECIDE WHAT ACTIONS
         call change_location(new_location) from _call_change_location #_return is the location returned from the map manager.
 
         $ picked_room_event = main_loop_pick_location_event(new_location)
-
-        if new_location.people: #There are people in the room, let's see if there are any room events
+        if picked_room_event:   # the location enter event has higher priority
+            $ picked_room_event.call_action()
+            $ picked_room_event = None
+        elif new_location.people: #There are people in the room, let's see if there are any room events
             $ picked_event = main_loop_pick_room_event(new_location)
             if picked_event: #If there are room events to take care of run those right now.
                 $ picked_event[1].call_action(picked_event[0]) #Run the action with the person as an extra argument.
-            elif picked_room_event:
-                $ picked_room_event.call_action()
             elif renpy.random.randint(0,2) == 0 and new_location in [mc.business.m_div, mc.business.p_div, mc.business.r_div, mc.business.s_div, mc.business.h_div]: #There are no room events, so generate a quick room greeting from an employee if one is around.
                 $ the_greeter = main_loop_select_greeter(new_location)
                 if the_greeter:
@@ -395,9 +395,6 @@ label game_loop(): ##THIS IS THE IMPORTANT SECTION WHERE YOU DECIDE WHAT ACTIONS
                     $ clear_scene()
                     $ del the_greeter
             $ picked_event = None
-        elif picked_room_event:
-            $ picked_room_event.call_action()
-        $ picked_room_event = None
 
     elif picked_option == "Phone":
         call browse_internet() from _call_browse_internet

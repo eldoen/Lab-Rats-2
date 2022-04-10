@@ -4,6 +4,8 @@ init -2 python:
             return False
         elif the_person.has_role(employee_role):
             return False
+        elif the_person == cousin and not cousin in stripclub_strippers:
+            return False    # don't hire cousin until she goes stripping (schedule changes mess up logic)
         elif the_person.love < 20:
             return "Requires: 20 Love"
         elif mc.business.get_employee_count() >= mc.business.max_employee_count:

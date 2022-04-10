@@ -324,10 +324,23 @@ label instantiate_roles(): #This section instantiates all of the key roles in th
         girlfriend_role = Role("Girlfriend", get_girlfriend_role_actions(), role_dates = get_girlfriend_role_dates()) #Your girlfriend, and she's not in a relationship with anyone else
         #Getting married is some kind of victory for the game?
 
+        #Setting Harem Roles = Polyamory, Polyamorous relationship for more ideas refer to
+        #https://affirmativecouch.com/polyamorous-relationship-structures/ 
+        # Hierarchial Polyamory would be what everyone is familiar with as a Harem
+        # mc viewed as the Primary, then rest would fall under the following
+        # Dependant Polyamory - chooses to live with mc
+        # Solo Polyamory - chooses to live seperately
+        # Polycules formed by individuals... so they might want only one on one with mc, but eventually threesome with another
+        # - so you can make a relationship dependant on polycules = ie Emily will do threesome with mc and Sarah, but doesn't like others that way
+        # - could use the relationship structure to define polycules between persons in the harem?
+        # harem_role/cousin/aunt when they are girlfriend and added to the poly they get the generic girlfriend role, this is just to keep things tied up
+        harem_role = Role("Girlfriend in Polyamory", get_harem_role_actions(), role_dates = get_harem_role_dates(), looks_like = girlfriend_role) #Generic specific girlfriend role.
+        cousin_girlfriend_role = Role("Girlfriend", get_girlfriend_role_actions(), role_dates = get_girlfriend_role_dates(), looks_like = girlfriend_role) #Generic specific girlfriend role.
+        aunt_girlfriend_role = Role("Girlfriend", get_girlfriend_role_actions(), role_dates = get_girlfriend_role_dates(), looks_like = girlfriend_role) #Generic girlfriend role.
 
-        sister_girlfriend_role = Role("Girlfriend", get_girlfriend_role_actions(), role_dates = get_girlfriend_role_dates(), looks_like = girlfriend_role) #Sister specific girlfriend role.
 
-        mom_girlfriend_role = Role("Girlfriend", get_girlfriend_role_actions(), role_dates = get_girlfriend_role_dates(), looks_like = girlfriend_role) #Sister specific girlfriend role.
+        sister_girlfriend_role = Role("Girlfriend", get_girlfriend_role_actions(), role_dates = get_girlfriend_role_dates(), looks_like = girlfriend_role) #Generic specific girlfriend role.
+        mom_girlfriend_role = Role("Girlfriend", get_girlfriend_role_actions(), role_dates = get_girlfriend_role_dates(), looks_like = girlfriend_role) #Generic specific girlfriend role.
 
         #affair ACTIONS
         # Sneaky versions of all of the normal girlfriend stuff

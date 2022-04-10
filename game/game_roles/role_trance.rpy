@@ -21,8 +21,7 @@ init -2 python:
     def trance_train_requirement(the_person):
         if not the_person.event_triggers_dict.get("trance_training_available", True):
             return "Trained too recently."
-        else:
-            return True
+        return True
 
 label trance_train_label(the_person):
     if the_person.has_exact_role(trance_role):

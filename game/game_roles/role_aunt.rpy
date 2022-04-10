@@ -2157,8 +2157,7 @@ label aunt_offer_hire(the_person):
 
 label aunt_hire_reaction_setup():
     python:
-        reaction_action = Action("hire_reaction", cousin_aunt_hire_reaction_requirement, "cousin_aunt_hire_reaction")
-        cousin.on_talk_event_list.append(reaction_action)
+        cousin.on_talk_event_list.append(Action("hire_reaction", cousin_aunt_hire_reaction_requirement, "cousin_aunt_hire_reaction"))
     return
 
 label cousin_aunt_hire_reaction(the_person):

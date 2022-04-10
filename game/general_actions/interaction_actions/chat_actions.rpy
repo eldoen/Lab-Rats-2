@@ -13,7 +13,10 @@ init -1 python:
     flirt_action = Action("Flirt with her   {color=#FFFF00}-15{/color} {image=gui/extra_images/energy_token.png}", requirement = flirt_requirement, effect = "flirt_person",
         menu_tooltip = "A conversation filled with innuendo and double entendre. Both improves your relationship with a girl and helps make her a little bit sluttier. Provides a chance to study the effects of active serum traits and raise their mastery level.")
     chat_actions.append(flirt_action)
-
+    
+    make_harem_action = Action("Ask her to join your harem", requirement = ask_harem_requirement, effect = "ask_to_join_harem_label",
+        menu_tooltip = "Ask her to start an official, polyamorous relationship and be part of your Harem.", priority = 10)
+    chat_actions.append(make_harem_action)
 
     make_girlfriend_action = Action("Ask her to be your girlfriend", requirement = ask_girlfriend_requirement, effect = "ask_be_girlfriend_label",
         menu_tooltip = "Ask her to start an official, steady relationship and be your girlfriend.", priority = 10)

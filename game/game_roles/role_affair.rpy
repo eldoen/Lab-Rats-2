@@ -613,12 +613,19 @@ label caught_affair_cheating_label(the_other_girl, the_girlfriend):
     $ the_girlfriend.draw_person(emotion = "angry")
     the_girlfriend "Hey, what the hell was that earlier?"
     mc.name "What was what?"
-    the_girlfriend "I saw you with some other woman. Is there something going on between you two? Is it serious?"
+
+    if town_relationships.is_family(the_girlfriend, the_other_girl):
+        $ the_item = town_relationships.get_relationship_type(the_girlfriend, the_other_girl).lower()
+        the_girlfriend "Why where you fucking my [the_item], should I be worried? Is it serious?"
+        $ the_girlfriend.change_love(-10 + (5 * the_girlfriend.get_opinion_score("incest")))
+    else:
+        the_girlfriend "I saw you with some other woman. Is there something going on between you two? Is it serious?"
+        $ the_girlfriend.change_love(-10)
+
     mc.name "That? We were just having some fun. Come on, you of all people have to understand that."
-    $ the_girlfriend.change_love(-10)
     if the_girlfriend.love < 60:
         the_girlfriend "I thought we were a little more serious than that. Son of a bitch, I cared about you..."
-        $ the_girlfriend.change_happiness(-10)
+        $ the_girlfriend.change_happiness(-20)
         $ the_girlfriend.draw_person(emotion = "sad")
         mc.name "It's not important, okay? Just let it go."
         the_girlfriend "I don't think I can... I thought I could do this with you, but I obviously care more about you than you care about me."
@@ -626,7 +633,7 @@ label caught_affair_cheating_label(the_other_girl, the_girlfriend):
         the_girlfriend "Just... Let's just go back to being friends and pretend this never happened."
         "She shakes her head mournfully and walks away."
     else:
-        the_girlfriend "I guess, but I thought we had something special. Could you at least cut back a little with other women?"
+        the_girlfriend "I guess, but I thought we had something special. Could you at least cut back a little with her?"
         mc.name "Alright, I'll do that if it makes you happy."
         $ the_girlfriend.change_obedience(3)
         $ mc.change_locked_clarity(5)

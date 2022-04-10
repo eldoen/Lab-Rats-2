@@ -807,7 +807,7 @@ label shopping_date_food(the_person):
             mc.name "Okay, you go find us a place to sit and I'll be over soon."
             "[the_person.title] nods and heads off into the crowd to find a free table."
             $ clear_scene()
-            "You get in line and order food for yourself and [the_person.possessive_title]. It takes a few minutes until order number is called."
+            "You get in line and order food for yourself and [the_person.possessive_title]. It takes a few minutes until your order number is called."
             $ mc.business.change_funds(-40)
             "You collect your order and move over to the condiment station."
             menu:
@@ -1251,7 +1251,7 @@ label shopping_date_inside_changing_room(the_person, new_outfit, changing_type, 
             $ merged_outfit = new_outfit.get_copy() #By merging into the new outfit first it's shoes are taken with preference.
             $ merged_outfit.merge_outfit(the_person.outfit)
             $ the_person.apply_outfit(merged_outfit)
-            "She picks up the outfit and slides it one piece at a time."
+            "She picks up the outfit and slides it on one piece at a time."
             if new_outfit.get_overwear_slut_score() > the_person.sluttiness + 5*(the_person.get_opinion_score("skimpy outfits")):
                 $ her_opinion = "slutty"
 
@@ -1465,10 +1465,14 @@ label shopping_date_inside_changing_room(the_person, new_outfit, changing_type, 
         "Let her get dressed":
             pass
 
+    python:
+        sluttiness_token = None
+        sex_slut_token = None
+        blowjob_slut_token = None
+        mc.change_location(old_location)
+        the_person.apply_outfit()
+        the_person.draw_person()
 
-    $ mc.change_location(old_location)
-    $ the_person.apply_outfit()
-    $ the_person.draw_person()
     "[the_person.title] changes back into her original outfit and slides the curtain to the changing room open."
     the_person "Come on, let's get going."
     return wants_outfit

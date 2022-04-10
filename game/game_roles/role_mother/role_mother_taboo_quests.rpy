@@ -237,7 +237,7 @@ label mom_kissing_taboo_break_revisit_quest_1(the_person):
 
 label mom_kissing_taboo_break_revisit_quest_2(the_person):
     "You collect some cleaning supplies and get to work."
-    "After a little bit of scrubbing washing you have the bathroom tidied up to the point that [the_person.possessive_title] should be satisfied."
+    "After a little bit of scrubbing and washing you have the bathroom tidied up to the point that [the_person.possessive_title] should be satisfied."
     $ mc.change_energy(-20)
     $ the_person.event_triggers_dict["kissing_taboo_revisit_quest_progress"] = the_person.event_triggers_dict.get("kissing_taboo_revisit_quest_progress", 0) + 1
     $ the_person.event_triggers_dict["mom_kissing_quest_2_complete"] = True
