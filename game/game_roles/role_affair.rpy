@@ -55,7 +55,7 @@ label ask_leave_SO_label(the_person): #
     call transform_affair(the_person) from _call_transform_affair_3
     $ the_person.change_love(10)
     $ the_person.change_obedience(5)
-    $ the_person.draw_person(position = "kissing", emotion = "happy")
+    $ the_person.draw_person(position = "kissing", emotion = "happy", special_modifier = "kissing")
     "You put your arms around her waist and she kisses you immediately. When you break the kiss she's grinning ear to ear."
     $ the_person.draw_person(emotion = "happy")
     $ ex_title = so_title[:4] #Get's only the first 4 characters of any title for some hesitant-sounding speach.

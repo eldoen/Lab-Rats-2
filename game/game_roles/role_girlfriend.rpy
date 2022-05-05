@@ -137,7 +137,7 @@ label ask_be_girlfriend_label(the_person):
                 "She puts her arms around you and pulls you close."
                 $ mc.change_locked_clarity(10)
                 "She kisses you, and you kiss her back just as happily."
-                $ the_person.add_role(aunt_girlfriend_role)
+                $ the_person.add_role(girlfriend_role)
             else:
                 the_person "Now if I was pregnant with your kiddo, I might have to reconsider this."
 
@@ -151,7 +151,7 @@ label ask_be_girlfriend_label(the_person):
                 "She puts her arms around you and pulls you close."
                 $ mc.change_locked_clarity(10)
                 "She kisses you, and you kiss her back just as happily."
-                $ the_person.add_role(cousin_girlfriend_role)
+                $ the_person.add_role(girlfriend_role)
                 the_person "Wonder if I can tempt you to give me a cream filling?"
                 $ mc.change_locked_clarity(10)
             else:
