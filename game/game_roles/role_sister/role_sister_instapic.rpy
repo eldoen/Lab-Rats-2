@@ -577,7 +577,7 @@ label sister_instathot_special_pictures(the_person, is_topless_shoot = True):
         the_person "Wait, just a few more. Get a few where I roll my eyes up, like I'm cumming or something."
         $ the_person.draw_person(position = "kneeling1", emotion = "orgasm")
         $ mc.change_locked_clarity(10)
-        "[the_person.possessive_title] sticks her tongue out and crosses her eyes. She trusts her chest forward and pants for added effect."
+        "[the_person.possessive_title] sticks her tongue out and crosses her eyes. She thrusts her chest forward and pants for added effect."
         menu:
             "Take the pictures":
                 "You take a few more pictures, capturing her tits along with her fake-orgasm face."

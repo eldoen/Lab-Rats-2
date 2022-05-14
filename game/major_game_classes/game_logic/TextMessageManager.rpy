@@ -14,8 +14,8 @@ init -2 python:
             self.register_number(person)
             self.message_history[person.identifier].append(history_entry)
             # auto delete old messages
-            while len(self.message_history[person.identifier]) > 15:
-                del self.message_history[person.identifier][0]
+            if __builtin__.len(self.message_history[person.identifier]) > 15:
+                del self.message_history[person.identifier][:-15]
 
         def add_non_convo_message(self, person, the_message, as_mc = False): #Allows you to add an entry to the log without it having to appear as dialogue.
             new_entry = renpy.character.HistoryEntry() #TODO: Check if this results in double entries (it might be grabbed by the history callback immediately)

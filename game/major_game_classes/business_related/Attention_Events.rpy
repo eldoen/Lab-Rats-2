@@ -228,7 +228,7 @@ label attention_seize_research(the_person):
         return
 
     "[the_person.title]'s enforcers return. One is holding a box of files. They look like they're from your lab."
-    "Enforcer" "I think this is the right stuff, Ma'am. Not too sure, really"
+    "Enforcer" "I think this is the right stuff, Ma'am. Not too sure, really."
     the_person "Let me take a look..."
     "[the_person.possessive_title] snatches the top file and flips through it."
     the_person "\"Design and Manufacturing of [highest_attention_design.name]\". How very... descriptive."

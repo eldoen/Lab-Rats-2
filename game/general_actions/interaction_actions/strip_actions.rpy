@@ -940,7 +940,7 @@ label strip_tease_remove(the_person, the_clothing, girl_state, girl_direction, g
     elif rand_choice == 2:
         mc.name "You don't need your [the_choice.display_name], take it off for me."
     else:
-        mc.name "Want to take your [the_choice.display_name] for me?"
+        mc.name "Want to take your [the_choice.display_name] off for me?"
 
     $ test_outfit = the_person.outfit.get_copy()
     $ test_outfit.remove_clothing(the_clothing) #Build a copy so we can check the effects the removal will have.
