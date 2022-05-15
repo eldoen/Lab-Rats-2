@@ -494,7 +494,7 @@ label attention_coffee(the_person):
         the_person "No. Thank you."
 
     elif the_person.love < 15:
-        the_person "I'm not suppose to accept anything from the subject of an investigation, but..."
+        the_person "I'm not supposed to accept anything from the subject of an investigation, but..."
         "[the_person.possessive_title] considers it for a moment, then gives you a polite nod."
         the_person "I doubt anyone is going to complain about a cup of coffee. Thank you."
         mc.name "Right, I'll just go get that and..."

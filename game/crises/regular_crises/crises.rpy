@@ -245,7 +245,7 @@ label broken_AC_crisis_label():
 
         "Tell everyone to strip down and keep working" if casual_uniform_policy.is_active():
             if len(mc.business.production_team) > 1: #We have more than one person, do a group strip scene.
-                mc.name "I know it's uncomfortable in here right now, but we're just going to have to make due."
+                mc.name "I know it's uncomfortable in here right now, but we're just going to have to make do."
                 mc.name "If anyone feels the need to take something off to get comfortable, I'm lifting the dress code until the air conditioning is fixed."
 
                 if the_person.effective_sluttiness() < 20:
@@ -256,7 +256,7 @@ label broken_AC_crisis_label():
                     the_person "Let's do it girls! I can't be the only one who loves an excuse to flash her tits, right?"
 
             else: #There's just one person here, have them strip down.
-                mc.name "[the_person.title], I know it's uncomfortable in here right now, but we're going to have to make due."
+                mc.name "[the_person.title], I know it's uncomfortable in here right now, but we're going to have to make do."
                 mc.name "If you feel like it would help to take something off, I'm lifting the dress code until the air condition is fixed."
                 if the_person.effective_sluttiness() < 20:
                     the_person "Taking some of this off would be a lot more comfortable..."
@@ -965,7 +965,7 @@ label extra_mastery_crisis_label():
 
         "Do not purchase the equipment":
             "You hand the file back to [the_person.title]."
-            mc.name "We don't have the budget for this right now, you will have to make due with the current lab equipment."
+            mc.name "We don't have the budget for this right now, you will have to make do with the current lab equipment."
             "She takes the file back and nods."
             the_person "Understood, sorry to have bothered you."
 
