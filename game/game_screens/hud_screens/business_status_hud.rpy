@@ -43,7 +43,7 @@ screen business_ui(): #Shows some information about your business.
             textbutton "Company Efficiency: " + str(disp_effectiveness) + "%":
                 ysize 28
                 text_style "menu_text_style"
-                tooltip "The more employees you have the faster your company will become inefficent. Perform HR work at your office or hire someone to do it for you to raise your company efficiency. All productivity is modified by company efficiency."
+                tooltip "The more employees you have the faster your company will become inefficient. Perform HR work at your office or hire someone to do it for you to raise your company efficiency. All productivity is modified by company efficiency."
                 action NullAction()
                 sensitive True
 

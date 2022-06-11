@@ -811,7 +811,7 @@ label initialize_game_state(character_name,business_name,last_name,stat_array,sk
             map_pos = [8,3], lighting_conditions = standard_indoor_lighting)
         office_store = Room("office supply store","Office Supply Store", background_image = standard_mall_backgrounds[:], public = True,
             map_pos = [9,1], lighting_conditions = standard_indoor_lighting)
-        electronics_store = Room("electornics store", "Electronics Store", background_image = standard_mall_backgrounds[:], public = True,
+        electronics_store = Room("electronics store", "Electronics Store", background_image = standard_mall_backgrounds[:], public = True,
             map_pos = [7,2], lighting_conditions = standard_indoor_lighting)
 
         ## Mall supporting locations

@@ -112,7 +112,7 @@ screen character_create_screen():
                     textbutton "<" action [SetScreenVariable("h_skill",h_skill-1), SetScreenVariable("character_points", character_points+1)] sensitive h_skill>0 style "textbutton_style" text_style "textbutton_text_style"
                     text str(h_skill)+"/[work_skill_max]" style "textbutton_text_style"
                     textbutton ">" action [SetScreenVariable("h_skill",h_skill+1), SetScreenVariable("character_points", character_points-1)] sensitive character_points>0 and h_skill<work_skill_max style "textbutton_style" text_style "textbutton_text_style"
-                text "     Your skill at human resources. Crutial for maintaining an efficient business." style "menu_text_style"
+                text "     Your skill at human resources. Crucial for maintaining an efficient business." style "menu_text_style"
                 null height 30
                 hbox:
                     text "Marketing: " style "menu_text_style"
