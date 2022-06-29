@@ -94,9 +94,9 @@ init -1 python:
     def mom_vaginal_quest_3_requirement(the_person, trigger_day):
         if day < trigger_day:
             return False
-        elif time_of_day == 4: #Prevents the event from triggering in the morning instead of the evening.
+        elif not time_of_day == 3: #Prevents the event from triggering in the morning instead of the evening.
             return False
-        elif mom.get_next_destination() == mom_bedroom: #Check that she will be moving into the bedroom on her _next_ Move phase (ie after this crisis check is made).
+        elif not mom.get_next_destination() == mom_bedroom: #Check that she will be moving into the bedroom on her _next_ Move phase (ie after this crisis check is made).
             return False
         return True
 

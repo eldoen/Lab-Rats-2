@@ -66,6 +66,10 @@ init -1 python:
             for act in role.internet_actions:
                 text_actions.append([act, person])
 
+        for act in the_person.get_duty_internet_actions():
+            if keep_talking or act.is_fast:
+                text_actions_display_list.append([act, the_person])
+
         text_actions.sort(key = sort_display_list, reverse = True)
         text_actions.insert(0,"Text " + person.title)
 
@@ -103,6 +107,7 @@ label .continue_browsing:
         $ mc.start_text_convo(the_person)
 
         call screen main_choice_display(build_text_menu(the_person))
+
         if _return == "Back":
             pass
 

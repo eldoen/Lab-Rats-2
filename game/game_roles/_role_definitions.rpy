@@ -5,6 +5,8 @@ init -1 python:
 
     def get_employee_role_actions():
         #EMPLOYEE ACTIONS#
+        employee_duty_set_action = Action("Set her work duties", employee_set_duties_requirement, "employee_set_duties_label",
+            menu_tooltip = "Review and set her work duties.")
         move_employee_action = Action("Move her to a new division", move_employee_requirement, "move_employee_label",
             menu_tooltip = "Move her to a new division, where her skills might be put to better use.")
         employee_complement_action = Action("Compliment her work", employee_complement_requirement, "employee_complement_work",
@@ -15,16 +17,10 @@ init -1 python:
             menu_tooltip = "A bonus in cold hard cash is good for obedience and happiness. The larger the reward the greater the effect.")
         employee_performance_review = Action("Start a performance review {image=gui/heart/Time_Advance.png}", employee_performance_review_requirement , "employee_performance_review",
             menu_tooltip = "Bring her to your office for a performance review. Get her opinion about her job, reward, punish, or fire her as you see fit. Can only be done once every seven days.")
-        employee_paid_serum_test = Action("Test serum\n{color=#ff0000}{size=18}Costs: $100{/size}{/color}", employee_paid_serum_test_requirement, "employee_paid_serum_test_label",
-            menu_tooltip = "Pay her to willingly take a dose of serum, per company policy.")
-        employee_unpaid_serum_test = Action("Test serum", employee_unpaid_serum_test_requirement, "employee_unpaid_serum_test_label",
-            menu_tooltip = "Give her a dose of serum to test on herself, per company policy.")
         employee_punishment = Action("Punish her", employee_punishment_hub_requirement, "employee_punishment_hub",
             menu_tooltip = "Punish her for any violations of company policy.", priority = 5)
-        employee_generate_infraction = Action("Invent an infraction", employee_generate_infraction_requirement, "employee_generate_infraction_label",
-            menu_tooltip = "Company policy here is so complicated it's nearly impossible to go a day without violating some minor rule. If you were paranoid, you might think it was written that way on purpose...")
 
-        return [employee_paid_serum_test, employee_unpaid_serum_test, employee_complement_action, employee_insult_action, employee_pay_cash_action, employee_performance_review, move_employee_action, employee_punishment, employee_generate_infraction]
+        return [employee_duty_set_action, employee_complement_action, employee_insult_action, employee_pay_cash_action, employee_performance_review, move_employee_action, employee_punishment]
 
     def get_head_researcher_actions():
         #HEAD RESEARCHER ACTIONS#

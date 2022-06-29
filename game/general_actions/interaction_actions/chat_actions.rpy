@@ -217,7 +217,7 @@ init -2 python:
 
     def build_person_introduction_titles():
         title_tuple = []
-        for title in get_player_titles(the_person):
+        for title in the_person.get_player_titles():
             title_tuple.append([title,title])
         return title_tuple
 
@@ -253,7 +253,7 @@ init -2 python:
     def new_title_menu(the_person):
         title_tuple = []
         title_choice = None
-        for title in get_titles(the_person):
+        for title in the_person.get_titles():
             title_tuple.append([title,title])
         title_tuple.append(["Do not change her title","Back"])
         title_choice = renpy.display_menu(title_tuple,True,"Choice")
@@ -262,7 +262,7 @@ init -2 python:
     def new_mc_title_menu(the_person):
         title_tuple = []
         title_choice = None
-        for title in get_player_titles(the_person):
+        for title in the_person.get_player_titles():
             title_tuple.append([title,title])
         title_tuple.append(["Do not change your title","Back"])
         title_choice = renpy.display_menu(title_tuple,True,"Choice")
@@ -271,15 +271,17 @@ init -2 python:
     def new_possessive_title_menu(the_person):
         title_tuple = []
         title_choice = None
-        for title in get_possessive_titles(the_person):
+        for title in person.get_possessive_titles():
             title_tuple.append([title,title])
         title_tuple.append(["Do not change your title","Back"])
         title_choice = renpy.display_menu(title_tuple,True,"Choice")
         return title_choice
 
-    def get_two_titles_for_person(title_func, person):
-        title_one = get_random_from_list(title_func(person))
-        title_two = get_random_from_list(list( set(title_func(person)) - set([title_one]) ))
+    def get_two_titles_for_person(title_func):
+        title_one = get_random_from_list(title_func())
+        title_two = get_random_from_list(list( set(title_func()) - set([title_one]) ))
+        if title_two is None:
+            title_two = title_one
         return (title_one, title_two)
 
 label person_introduction(the_person, girl_introduction = True):
@@ -293,7 +295,7 @@ label person_introduction(the_person, girl_introduction = True):
     return
 
 label person_new_title(the_person): #She wants a new title or to give you a new title.
-    if __builtin__.len(get_titles(the_person)) <= 1: #There's only the one title available to them. Don't bother asking to change
+    if __builtin__.len(the_person.get_titles()) <= 1: #There's only the one title available to them. Don't bother asking to change
         return
     $ ran_num = the_person.obedience + renpy.random.randint(-20, 20) #Randomize their effective obedience a little so they sometimes ask, sometimes demand
 
@@ -315,7 +317,7 @@ label person_new_title(the_person): #She wants a new title or to give you a new 
                 the_person "If you think so [the_person.mc_title]."
 
     elif ran_num > 95: #She picks a couple of choices and asks you to decide.
-        $ (title_one, title_two) = get_two_titles_for_person(get_titles, the_person)
+        $ (title_one, title_two) = get_two_titles_for_person(the_person.get_titles)
         if the_person.title == the_person.create_formatted_title(title_one) or the_person.title == the_person.create_formatted_title(title_two):  #If we picked the one we're currently using we have a slightly different dialogue setup.
             if the_person.title == the_person.create_formatted_title(title_two):
                 $ placeholder = title_two #Swap them around so title_one is always the current title she has
@@ -360,10 +362,10 @@ label person_new_title(the_person): #She wants a new title or to give you a new 
         $ title_one = None
         $ title_two = None
     else: #She doesn't listen to you, so she just picks one and demands that you use it, or becomes unhappy.
-        $ new_title = get_random_from_list(get_titles(the_person))
+        $ new_title = get_random_from_list(the_person.get_titles())
         python:
             while the_person.create_formatted_title(new_title) == the_person.title:
-                new_title = get_random_from_list(get_titles(the_person))
+                new_title = get_random_from_list(the_person.get_titles())
 
         $ formatted_new_title = the_person.create_formatted_title(new_title)
         the_person "By the way [the_person.mc_title], I want you to start referring to me as [formatted_new_title] from now on. I think it suits me better."
@@ -383,7 +385,7 @@ label person_new_title(the_person): #She wants a new title or to give you a new 
     return
 
 label person_new_mc_title(the_person):
-    if __builtin__.len(get_player_titles(the_person)) <= 1: #There's only the one title available to them. Don't bother asking to change
+    if __builtin__.len(the_person.get_player_titles()) <= 1: #There's only the one title available to them. Don't bother asking to change
         return
     $ ran_num = the_person.obedience + renpy.random.randint(-20, 20)
     if ran_num > 120: #She just asks you for something "fresh". Her obedience is high enough that we already have control over this.
@@ -404,7 +406,7 @@ label person_new_mc_title(the_person):
                 the_person "Okay, if you say so!"
 
     elif ran_num > 95: #She picks a couple of choices and asks you to decide.
-        $ (title_one, title_two) = get_two_titles_for_person(get_player_titles, the_person)
+        $ (title_one, title_two) = get_two_titles_for_person(the_person.get_player_titles)
         if the_person.mc_title == title_one or the_person.mc_title == title_two:  #If we picked the one we're currently using we have a slightly different dialogue setup.
             if the_person.mc_title == title_two:
                 $ placeholder = title_two #Swap them around so title_one is always the current title she has
@@ -444,10 +446,10 @@ label person_new_mc_title(the_person):
         $ title_one = None
         $ title_two = None
     else: #She doesn't listen to you, so she just picks one and demands that you use it, or becomes unhappy.
-        $ new_title = get_random_from_list(get_player_titles(the_person))
+        $ new_title = get_random_from_list(the_person.get_player_titles())
         python:
             while new_title == the_person.mc_title:
-                new_title = get_random_from_list(get_player_titles(the_person))
+                new_title = get_random_from_list(the_person.get_player_titles())
 
         the_person "You know, I think [new_title] fits you better than [the_person.mc_title]. I'm going to start using that."
         menu:
@@ -649,7 +651,7 @@ label give_serum(the_person, add_to_log = True):
         if add_to_log:
             "You decide to give [the_person.title] a dose of [the_serum.name]."
         $ mc.inventory.change_serum(the_serum,-1)
-        $ the_person.give_serum(copy.copy(the_serum), add_to_log = add_to_log) #Use a copy rather than the main class, so we can modify and delete the effects without changing anything else.
+        $ the_person.give_serum(the_serum, add_to_log = add_to_log) #Use a copy rather than the main class, so we can modify and delete the effects without changing anything else.
         return the_serum
 
     if add_to_log:

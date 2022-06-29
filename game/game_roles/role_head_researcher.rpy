@@ -80,7 +80,7 @@ init -2 python:
             return True
 
     def fire_head_researcher_requirement(the_person): #Remove the person as your head researcher.
-        return True
+        return not mc.business.event_triggers_dict["Tutorial_Section"] #Block firing Steph during the Tutorial
 
     def visit_nora_intro_requirement(the_person):
         if not the_person.has_role(steph_role): #Only Stephanie gets to have this event trigger while she is head researcher.
@@ -141,7 +141,7 @@ label improved_serum_unlock_label(the_person): #TODO: Double check this has a ti
                 $ is_valid_design = False #Create a fake person to apply the serum to. If it raises Suggest we're good.
                 $ test_person = create_random_person()
                 $ start_suggest = the_person.suggestibility
-                $ test_person.give_serum(copy.copy(picked_serum), add_to_log = False)
+                $ test_person.give_serum(picked_serum, add_to_log = False)
                 if start_suggest >= test_person.suggestibility:
                     "You hand the vial of serum to [the_person.title]. She swirls it in front of her eye and frowns."
                     the_person "No, I don't think this design is going to work."
@@ -154,7 +154,7 @@ label improved_serum_unlock_label(the_person): #TODO: Double check this has a ti
                         "You step into a small office attached to the research lab."
                     "You prepare a notepad and a pen to take notes, and [the_person.possessive_title] uncorks the vial."
                     the_person "Here we go!"
-                    $ the_person.give_serum(copy.copy(picked_serum))
+                    $ the_person.give_serum(picked_serum)
                     $ mc.inventory.change_serum(picked_serum, -1)
                     "She drinks it down in one smooth motion."
                     mc.name "Okay, let's start with some initial questions..."

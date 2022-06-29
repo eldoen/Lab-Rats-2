@@ -63,7 +63,7 @@ init -2 python:
     emotion_images_dict = {}
     for skin in ["white", "tan", "black"]:
         emotion_images_dict[skin] = {}
-        for face in list_of_faces:
+        for face in Person._list_of_faces:
             emotion_images_dict[skin][face] = Expression(skin + "_" + face, skin, face)
 
 
@@ -442,15 +442,19 @@ init 0 python:
     def build_special_role_actions_list(the_person, keep_talking = True):
         special_role_actions = []
         for role in the_person.special_role:
-            if the_person.job and the_person.job.job_role == role and not the_person.event_triggers_dict.get("job_known", False):
+            if the_person.job and role in the_person.job.job_roles and not the_person.event_triggers_dict.get("job_known", False):
                 continue    # we don't know the job, so don't add it's specific actions
             for act in role.actions:
                 if keep_talking or act.is_fast:
                     special_role_actions.append([act,the_person])
 
+        for act in the_person.get_duty_actions():
+            if keep_talking or act.is_fast:
+                special_role_actions.append([act, the_person])
+
         for act in mc.main_character_actions: #The main character has a "role" that lets us add special actions as well.
             if keep_talking or act.is_fast:
-                special_role_actions.append([act,the_person])
+                special_role_actions.append([act, the_person])
 
         special_role_actions.sort(key = sort_display_list, reverse = True)
         special_role_actions.insert(0,"Special Actions")
@@ -731,10 +735,8 @@ init 0 python:
     stripclub_wardrobe = wardrobe_from_xml("Stripper_Wardrobe")
 
     def add_stripclub_strippers():
-        for i in __builtin__.range(0,4):
-            a_girl = create_random_person(start_sluttiness = renpy.random.randint(15,30), job = stripper_job)
-            a_girl.generate_home()
-            a_girl.home.add_person(a_girl)
+        for i in __builtin__.range(0, 4):
+            create_random_stripper()
         return
 
 
@@ -829,12 +831,13 @@ label initialize_game_state(character_name,business_name,last_name,stat_array,sk
         university = Room("university Campus", "University Campus", background_image = standard_campus_backgrounds[:],
             map_pos = [9,5], visible = False, lighting_conditions = standard_outdoor_lighting)
 
-        strip_club_owner = get_random_male_name()
+        strip_club_owner = Person.get_random_male_name()
+
         strip_club = Room(strip_club_owner + "'s Gentlemen's Club", strip_club_owner + "'s Gentlemen's Club", background_image = stripclub_background,
             actions = [strip_club_show_action],
             map_pos = [6,5], visible = False, lighting_conditions = standard_club_lighting)
 
-        mom_office_name = get_random_male_name() + " and " + get_random_male_name() + " Ltd."
+        mom_office_name = Person.get_random_last_name() + " and " + Person.get_random_last_name() + " Ltd."
         mom_office_lobby = Room(mom_office_name + " Lobby", mom_office_name + " Lobby", background_image = standard_office_backgrounds[:],
             actions = [mom_office_person_request_action],
             map_pos = [6,3], lighting_conditions = standard_indoor_lighting)
@@ -998,13 +1001,16 @@ label initialize_game_state(character_name,business_name,last_name,stat_array,sk
         city_hall.add_object(make_chair())
         city_hall.add_object(make_table())
 
-    call instantiate_jobs() from _call_instantiate_jobs_1 #We need locations to exist before we can set up jobs, so we do that here.
+    call instantiate_duties() #Duties need to be instantiated by jobs, so do that here.
+    call instantiate_jobs() #We need locations to exist before we can set up jobs, so we do that here.
     $ c = 0
     while c < len(list_of_instantiation_labels):
         $ renpy.call(list_of_instantiation_labels[c])
         $ c += 1
     python:
-        generate_premade_list() # Creates the list with all the pre-made characters for the game in it. Without this we both break the policies call in create_random_person, and regenerate the pre-made list on each restart.
+        generate_premade_list() # Creates the list with all the premade characters for the game in it. Without this we both break the policies call in create_random_person, and regenerate the premade list on each restart.
+        setup_storyline_characters()
+        generate_unique_characters_list()
 
         for place in list_of_places:
             if place.public:

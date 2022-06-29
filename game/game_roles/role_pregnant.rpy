@@ -255,7 +255,7 @@ label pregnant_announce(the_person):
 init 2 python:
     def pregnant_tits_start_person(person):
         person.event_triggers_dict["preg_knows"] = True
-        person.tits = get_larger_tits(person.tits) #Her tits start to swell.
+        person.tits = Person.get_larger_tit(person.tits) #Her tits start to swell.
         person.personal_region_modifiers["breasts"] = person.personal_region_modifiers["breasts"] + 0.1 #As her tits get larger they also become softer, unlike large fake tits. (Although even huge fake tits get softer)
 
         if not person.event_triggers_dict.get("immaculate_conception", False):
@@ -307,7 +307,7 @@ init 2 python:
 
         person.event_triggers_dict["pre_preg_body"] = person.body_type
         person.body_type = "standard_preg_body"
-        person.tits = get_larger_tits(person.tits) # Her tits get even larger
+        person.tits = Person.get_larger_tit(person.tits) # Her tits get even larger
         person.personal_region_modifiers["breasts"] = person.personal_region_modifiers["breasts"] + 0.1 #As her tits get larger they also become softer, unlike large fake tits. (Although even huge fake tits get softer)
         person.lactation_sources += 1
 
@@ -463,7 +463,7 @@ label tits_shrink(the_person, reduce_lactation, announcement_function):
     python:
         if the_person.lactation_sources > 0:
             the_person.lactation_sources -= 1
-        the_person.tits = get_smaller_tits(the_person.tits)
+        the_person.tits = Person.get_smaller_tit(the_person.tits)
         the_person.personal_region_modifiers["breasts"] = the_person.personal_region_modifiers["breasts"] - 0.1
         announcement_function(the_person)
     return

@@ -452,7 +452,7 @@ label get_drink_crisis_label():
     $ the_person.draw_person()
     the_person "Stretching your legs?"
     mc.name "Yeah, I was going to get some coffee. Do you want anything?"
-    $ coffee = get_random_coffee_style()
+    $ coffee = the_person.coffee_style
     the_person "Sure. [coffee], please."
     $ clear_scene()
     "You nod and head to the little break room in the office. It doesn't take you long to have both of your drinks made up."
@@ -823,7 +823,7 @@ label lab_accident_crisis_label():
     the_person "I was trying to [techno] and went to move the sample. It slipped out of my hand and when I tried to grab it..."
     "She turns her palm up to you. It's covered in the same coloured liquid, and there's a small cut."
     the_person "I'm not sure what the uptake is like with this new design. I think everything will be fine, but would you mind hanging around for a few minutes?"
-    $the_person.give_serum(copy.copy(the_serum))
+    $the_person.give_serum(the_serum)
     if office_punishment.is_active():
         menu:
             "Punish her for the mistake":
@@ -882,7 +882,7 @@ label production_accident_crisis_label():
     the_person "I was trying to [techno] like I normally do and went to move the batch. It slipped out of my hand and when I tried to grab it..."
     "She turns her palm up to you. It's covered in the same coloured liquid, and there's a small cut."
     the_person "I'm not sure what the uptake is like with this new design. I think everything will be fine, but would you mind hanging around for a few minutes?."
-    $the_person.give_serum(copy.copy(the_serum))
+    $the_person.give_serum(the_serum)
     if office_punishment.is_active():
         menu:
             "Punish her for the mistake":
@@ -1212,10 +1212,7 @@ init 1 python:
         return False
 
     def home_fuck_crisis_get_person():
-        meets_sluttiness_list = []
-        for person in mc.business.get_employee_list():
-            if person.sluttiness >= 15 and not person.has_role(girlfriend_role) and (person.relationship == "Single" or person.get_opinion_score("cheating on men") > 0):
-                meets_sluttiness_list.append(person)
+        meets_sluttiness_list = [x for x in mc.business.get_employee_list() if x.sluttiness > 15 and not x.is_family() and not x.has_role(girlfriend_role) and x.relationship == "Single" and x.get_opinion_score("cheating on men") > 0]
         return get_random_from_list(meets_sluttiness_list)
 
     home_fuck_crisis = Action("Home Fuck Crisis",home_fuck_crisis_requirement,"home_fuck_crisis_label")
@@ -1334,11 +1331,8 @@ label home_fuck_crisis_label():
     return
 
 init 1 python:
-    def quiting_crisis_requirement(): #We are only going to look at quitting actions if it is in the middle of the day when people are at work.
-        if time_of_day == 1 or time_of_day == 2 or time_of_day==3:
-            return True
-        else:
-            return False
+    def quiting_crisis_requirement(the_person): #We are only going to look at quitting actions if it is in the middle of the day when people are at work.
+        return mc.is_at_work() and the_person.job.job_location.has_person(the_person)
 
 label quitting_crisis_label(the_person): #The person tries to quit, you have a chance to keep her around for a hefty raise (Or by fucking her, if her sluttiness is high enough).
     if mc.business.get_employee_workstation(the_person) is None:
@@ -1347,11 +1341,15 @@ label quitting_crisis_label(the_person): #The person tries to quit, you have a c
     if the_person.get_job_happiness_score() >= 0:
         return #They've become happy with their job, so just clear this from the list and move on. They don't actually quit.
 
+    $ the_person.event_triggers_dict["last_quit_crisis_day"]
     "Your phone buzzes, grabbing your attention. It's an email from [the_person.title], marked \"Urgent, need to talk\"."
     "You open up the email and read through the body."
     the_person "[the_person.mc_title], there's something important I need to talk to you about. When can we have a meeting?"
     if mc.location == mc.business.h_div: #If you're already in your office just kick back and relax.
-        $ mc.business.h_div.show_background()
+        if ("ceo_office") in globals():
+            $ ceo_office.show_background()
+        else:
+            $ mc.business.h_div.show_background()
         "You type up a response."
         mc.name "I'm in my office right now, come over whenever you would like."
         "You organize the papers on your desk while you wait for [the_person.title]. After a few minutes she comes in and closes the door behind her."
@@ -1359,7 +1357,10 @@ label quitting_crisis_label(the_person): #The person tries to quit, you have a c
         "You type up a response."
         mc.name "I'm out of the office right now, but if it's important I can be back in a few minutes."
         the_person "It is. See you at your office."
-        $ mc.business.h_div.show_background()
+        if ("ceo_office") in globals():
+            $ ceo_office.show_background()
+        else:
+            $ mc.business.h_div.show_background()
         "You travel back to your office. You're just in the door when [the_person.title] comes in and closes the door behind her."
 
     $the_person.draw_person()
@@ -1463,7 +1464,7 @@ label invest_opportunity_crisis_label():
     #You receive a call asking for a tour of your facilities. Once there the investment agent can be "persuaded" to impress them.
     "Your phone rings while you're busy working. You lean back in your chair and answer it."
     mc.name "[mc.business.name] here, [mc.name] speaking."
-    $ rep_name = get_random_male_name()
+    $ rep_name = Person.get_random_male_name()
     rep_name "Ah, [mc.name], I'm glad I was able to get ahold of you. My name is [rep_name]."
     rep_name "I am the local representative of a rather large mutual fund. It is my responsibility to evaluate local businesses and see if they would be worthwhile investments."
     rep_name "My research turned up your company, and we might be interested in making an investment. I was hoping I could set up a tour with you to take a look around and ask you some questions."
@@ -1594,7 +1595,10 @@ label invest_rep_visit_label(rep_name):
             $ del flirt_requires_string
             $ del seduce_requires_string
             $ clear_scene()
-            $ office.show_background()
+            if ("ceo_office") in globals():
+                $ ceo_office.show_background()
+            else:
+                $ office.show_background()
             "Half an hour later there is a knock on your office door."
             mc.name "Come in."
             $ helper.draw_person()
@@ -2794,7 +2798,7 @@ label serum_creation_crisis_label(the_serum): # Called every time a new serum is
                             mc.name "Alright, you've got yourself a deal. I'll have the books updated by the end of the day."
                             $ the_person.salary += raise_amount
                             the_person "Good to hear it. Let's get right to it then."
-                            $ the_person.give_serum(copy.copy(the_serum))
+                            $ the_person.give_serum(the_serum)
 
                         "Refuse":
                             mc.name "I'm sorry but that just isn't in the budget right now."
@@ -2807,7 +2811,7 @@ label serum_creation_crisis_label(the_serum): # Called every time a new serum is
                 else:
                     "[the_person.title] pauses for a moment, then nods."
                     the_person "Okay sir, if you think it will help the business."
-                    $ the_person.give_serum(copy.copy(the_serum))
+                    $ the_person.give_serum(the_serum)
 
 
         "[the_person.title] drinks down the contents of the vial and places it to the side."
@@ -2837,7 +2841,7 @@ init 1 python:
 
     def daughter_work_crisis_get_mother():
         valid_people_list = []
-        for person in [x for x in mc.business.get_employee_list() if x.kids != 0 and x.age >= 34]:
+        for person in [x for x in mc.business.get_employee_list() if x.kids != 0 and x.age >= 34 and not x.is_family()]:
             if person.kids > town_relationships.get_existing_child_count(person): #They have undiscovered kids we can add in.
                 valid_people_list.append(person)
 
@@ -2858,6 +2862,8 @@ label daughter_work_crisis_label():
     $ the_person.draw_person()
     the_person "[the_person.mc_title], could I talk to you for a moment in your office?"
     mc.name "Of course. What's up?"
+    if ("ceo_office") in globals():
+        $ ceo_office.show_background()
     "You and [the_person.possessive_title] step into your office. You sit down at your desk while she closes the door."
     $ ran_num = renpy.random.randint(0,2)
     if ran_num == 0: #TODO: Make this based on her stats?
@@ -2962,9 +2968,9 @@ label daughter_work_crisis_label():
             the_person "Thank you so much!"
             call hire_someone(the_daughter) from _call_hire_someone_2
         # make sure to set titles for the daughter (prevent introduction dialogs)
-        $ the_daughter.set_mc_title(get_random_from_list(get_player_titles(the_daughter)))
-        $ the_daughter.set_title(get_random_title(the_daughter))
-        $ the_daughter.set_possessive_title(get_random_possessive_title(the_daughter))
+        $ the_daughter.set_mc_title(get_random_from_list(the_daughter.get_player_titles()))
+        $ the_daughter.set_title(the_daughter.get_random_title())
+        $ the_daughter.set_possessive_title(the_daughter.get_random_possessive_title())
     else: #is "None
         if promised_sex: #You promised to do it for sex but don't want to hire her, mom is disappointed.
             mc.name "I'm sorry but her credentials just aren't what they need to be. I could never justify hiring your daughter."

@@ -122,9 +122,9 @@ label train_weaken_opinion_label(the_person): #TODO; Only have this enabled if y
 init 0 python:
     def build_opinion_training_list(person, sexy_list):
         if sexy_list:
-            opinion_train_options = sexy_opinions_list[:]
+            opinion_train_options = the_person.get_sexy_opinions_list()
         else:
-            opinion_train_options = opinions_list[:]
+            opinion_train_options = the_person.get_normal_opinions_list()
 
         for known_opinion in person.get_opinion_topics_list(include_unknown = False):
             if known_opinion in opinion_train_options:

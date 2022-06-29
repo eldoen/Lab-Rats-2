@@ -113,7 +113,7 @@ init -2 python:
         return
 
     def add_study_person_for_nora_actions(the_person):
-        study_person_action = Action("Study her for Nora {image=gui/heart/Time_Advance.png}", study_person_requirement, "nora_profile_person",
+        study_person_action = Action("Study her for Nora {image=gui/heart/Time_Advance.png}", study_person_requirement, "nora_profile_person", is_fast = False,
             menu_tooltip = "Work through the research questionnaire provided to you by Nora. After you can give it to Nora to see if she notices any interesting properties.")
         mc.main_character_actions.append(study_person_action)
 

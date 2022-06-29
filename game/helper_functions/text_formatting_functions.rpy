@@ -70,11 +70,13 @@ init -1 python:
         else:
             return "ERROR - relationship incorrectly defined"
 
-    def height_to_string(the_height): #Height is a value between 0.8 and 1.0
-        total_inches = __builtin__.round(((the_height * 250) - 53) / 2.54)
-        feet = __builtin__.int(total_inches // 12)
-        inches = __builtin__.int(total_inches % 12)
-        return str(feet) + "' " + str(inches) + "\""
+    def height_to_string(the_height): #Height is a value normally between 0.9 and 1.05 which corisponds to 5' 0" and 5' 10" (1" = 0.015 height)
+        rounded_height = __builtin__.round(the_height,3) #Round height to 3 decimal points.
+        height_in_inches = __builtin__.round((rounded_height)*100/1.5)
+        feet = int(math.floor(height_in_inches/12))
+        inches = int(height_in_inches%12)
+        return "{}' {}\"".format(feet,inches)
+
 
     def remove_punctuation(the_text):
         #TODO: might need to cast unicode to string/aski

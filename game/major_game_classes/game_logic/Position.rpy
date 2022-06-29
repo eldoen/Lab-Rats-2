@@ -94,11 +94,11 @@ init -2 python:
                         transition_scene = position_tuple[1] ##If so, set it's label as the one we are going to change to.
             renpy.call(transition_scene, the_person, the_location, the_object)
 
-        def call_strip(self, the_clothing, the_person, the_location, the_object):
-            renpy.call(self.strip_description, the_clothing, the_person, the_location, the_object)
+        def call_strip(self, the_person, the_clothing, the_location, the_object):
+            renpy.call(self.strip_description, the_person, the_clothing, the_location, the_object)
 
-        def call_strip_ask(self, the_clothing, the_person, the_location, the_object):
-            renpy.call(self.strip_ask_description, the_clothing, the_person, the_location, the_object)
+        def call_strip_ask(self, the_person, the_clothing, the_location, the_object):
+            renpy.call(self.strip_ask_description, the_person, the_clothing, the_location, the_object)
 
         def call_orgasm(self, the_person, the_location, the_object):
             renpy.call(self.orgasm_description, the_person, the_location, the_object)
@@ -239,13 +239,21 @@ init -2 python:
             else:
                 return taboo_break_string + self.name + taboo_break_string  + "\n{size=22}" + willingness_string + "\n" + self.build_energy_arousal_line(the_person) + "{/size}" + tooltip_string
 
+        def calculate_energy_cost(self, the_person): # Calculates this positions's true energy cost based on the skill of the participants.
+            base_energy = 0
+            if isinstance(the_person, Person):
+                base_energy = self.girl_energy
+            else:
+                base_energy = self.guy_energy
+            return __builtin__.int(base_energy * (1 - (0.05*the_person.sex_skills[self.skill_tag])))
+
         def build_energy_string(self, the_person):
-            return "{color=#3C3CFF}" + str(self.guy_energy) + "{/color}/{color=#F0A8C0}" + str(self.girl_energy) + "{/color} {image=gui/extra_images/energy_token.png}"
+            return "{color=#A3A3FF}" + str(self.calculate_energy_cost(mc)) + "{/color}/{color=#FF6EC7}" + str(self.calculate_energy_cost(the_person)) + "{/color} {image=gui/extra_images/energy_token.png}"
 
         def build_arousal_string(self, the_person):
             girl_expected_arousal = str(int(self.girl_arousal * (1 + 0.1 * mc.sex_skills[self.skill_tag]))) #Estimate what they'll gain based on both of your skills to make the predictions as accurate as possible.
             guy_expected_arousal = str(int(self.guy_arousal * (1 + 0.1 * the_person.sex_skills[self.skill_tag])))
-            return "{color=#3C3CFF}" + guy_expected_arousal + "{/color}/{color=#F0A8C0}" + girl_expected_arousal + "{/color} {image=gui/extra_images/arousal_token.png}"
+            return "{color=#A3A3FF}" + guy_expected_arousal + "{/color}/{color=#FF6EC7}" + girl_expected_arousal + "{/color} {image=gui/extra_images/arousal_token.png}"
 
         def build_energy_arousal_line(self, the_person):
-            return "{size=22}" + self.build_energy_string(the_person) + " | " + self.build_arousal_string(the_person) + "{/size}"
+            return "{size=18}" + self.build_energy_string(the_person) + " | " + self.build_arousal_string(the_person) + "{/size}"

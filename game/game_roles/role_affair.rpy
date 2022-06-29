@@ -245,6 +245,7 @@ label fuck_date_event(the_person): #A breakout function so we can call the fuck_
                     $ count += 1
                     if ran_num < 15 and not so_called:
                         #Her SO Comes home (unless he's called, in which case we know where he is.)
+                        $ so_called = True
                         "She smiles and wraps her arms around you in return, pressing her body against yours."
                         the_person "Come and take me. I..."
                         "She freezes as shafts of light shine through the window curtains. You both listen as a car pulls in and turns its engine off."

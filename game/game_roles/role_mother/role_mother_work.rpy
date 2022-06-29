@@ -32,7 +32,9 @@ init -2 python:
             return False
         elif the_person.event_triggers_dict.get("mom_replacement_approach", "seduce") != "tits":
             return False
-        elif rank_tits(the_person.tits) >= 8:  # they are already big enough
+        elif (the_person.event_triggers_dict.get("mom_replacement_approach_waiting_for_tits", False) and the_person.rank_tits(the_person.tits) <= the_person.rank_tits(the_person.event_triggers_dict.get("mom_replacement_approach_waiting_for_tits", False))):
+            return False
+        elif Person.rank_tits(the_person.tits) >= 8:  # they are already big enough
             return False
         elif mc.location.get_person_count() > 1:
             return "Not with other people around"
@@ -594,8 +596,8 @@ init 2 python:
 
     def add_mom_work_secretary_replacement_action(person):
         person.event_triggers_dict["mom_office_slutty_level"] = 1
-        person.event_triggers_dict["mom_boss_name"] = get_random_male_name()
-        person.event_triggers_dict["mom_boss_last_name"] = get_random_last_name()
+        person.event_triggers_dict["mom_boss_name"] = Person.get_random_male_name()
+        person.event_triggers_dict["mom_boss_last_name"] = Person.get_random_last_name()
 
         mom_work_secretary_replacement = Action("Mom work secretary replacement", mom_work_secretary_replacement_intro_requirement, "mom_work_secretary_replacement_intro", requirement_args = [day + 7])
         person.on_talk_event_list.append(mom_work_secretary_replacement)
@@ -604,7 +606,7 @@ init 2 python:
 label mom_work_promotion_two_report(the_person): #TODO: Hook this up as an on_room or maybe a mandatory event
     if the_person.event_triggers_dict.get("mom_work_secretary_promotion", False): #Promotion, setting her up to be turned into the office slut.
         $ the_person.change_happiness(20, add_to_log = False)
-        $ the_person.add_job(mom_secretary_job)
+        $ the_person.change_job(mom_secretary_job)
         $ the_person.draw_person(emotion = "happy")
         "[the_person.title] gives you a bright smile and hurries over to you as soon as she sees you."
         the_person "[the_person.mc_title], I have some good news!"
@@ -629,6 +631,9 @@ label mom_work_promotion_two_report(the_person): #TODO: Hook this up as an on_ro
         the_person "Thank you so much for all of your help sweetheart. You're the best son in the whole world."
         $ the_person.draw_person()
         "You hug her back. When she steps away she's still smiling ear to ear."
+        $ the_person.event_triggers_dict["mom_office_slutty_level"] = 1
+        $ the_person.event_triggers_dict["mom_boss_name"] = Person.get_random_male_name()
+        $ the_person.event_triggers_dict["mom_boss_last_name"] = Person.get_random_last_name()
 
         $ add_mom_work_secretary_replacement_action(the_person)
 
@@ -747,7 +752,7 @@ init 2 python:
             return False
         elif day < the_day or time_of_day < 2:
             return False
-        elif (the_person.event_triggers_dict.get("mom_replacement_approach_waiting_for_tits", False) and rank_tits(the_person.tits) <= rank_tits(the_person.event_triggers_dict.get("mom_replacement_approach_waiting_for_tits", False))):
+        elif (the_person.event_triggers_dict.get("mom_replacement_approach_waiting_for_tits", False) and Person.rank_tits(the_person.tits) <= Person.rank_tits(the_person.event_triggers_dict.get("mom_replacement_approach_waiting_for_tits", False))):
             return False
         elif not mc.business.is_open_for_business():
             return False
@@ -911,7 +916,7 @@ label mom_work_secretary_replacement_intro(the_person): #TODO: Set up as an on_t
 
 
                             menu:
-                                "Get bigger tits" if rank_tits(the_person.tits) < 8:
+                                "Get bigger tits" if Person.rank_tits(the_person.tits) < 8:
                                     mc.name "Well, there's one more thing you could do..."
                                     the_person "What is it? What do you think I should do?"
                                     call mom_work_secretary_replacement_intro_bigger_tits(the_person) from _call_mom_work_secretary_replacement_intro_bigger_tits
@@ -932,7 +937,7 @@ label mom_work_secretary_replacement_intro(the_person): #TODO: Set up as an on_t
             $ add_mom_work_seduce_action(the_person)
 
 
-        "Get bigger tits" if rank_tits(the_person.tits) < 8 and not the_person.event_triggers_dict.get("getting boobjob", False):
+        "Get bigger tits" if the_person.tits != the_person.get_larger_tit(the_person.tits) and not the_person.event_triggers_dict.get("getting boobjob", False):
             mc.name "Well, I have an idea..."
             the_person "I knew you would! Tell me, what do you think I should do?"
             mc.name "Your boss hired you for this job because he likes how you look, so you should give him some more to look at."
@@ -1184,7 +1189,7 @@ label mom_promotion_boss_phase_one(the_secretary):
     $ the_wife.home.add_person(the_wife)
 
     $ the_daughter = the_wife.generate_daughter(force_live_at_home = True)
-    $ the_daughter.add_job(student_job) #She's a student at the university, and spends her days there most of the time.
+    $ the_daughter.change_job(student_job) #She's a student at the university, and spends her days there most of the time.
     $ the_daughter.set_schedule(mom_office_lobby, the_days = [0,1,2,3,4], the_times = [3]) #She's there to visit her dad
     $ the_daughter.set_schedule(university, the_days = [0, 1, 2, 3, 4], the_times = [1,2])
 
@@ -1312,11 +1317,11 @@ label mom_promotion_boss_phase_one(the_secretary):
             $ the_daughter.change_happiness(5)
             mc.name "I don't think I got your name, by the way."
             "She gives you a weak smile."
-            $ title_choice = get_random_title(the_daughter)
+            $ title_choice = the_daughter.get_random_title()
             $ formatted_title = the_daughter.create_formatted_title(title_choice)
             the_daughter "I'm [formatted_title]. Nice to meet you. Well, not that nice, but you know..."
             $ the_daughter.set_title(title_choice)
-            #$ the_daughter.set_possessive_title(get_random_possessive_title(the_daughter))
+            #$ the_daughter.set_possessive_title(the_daughter.get_random_possessive_title())
             $ the_daughter.set_possessive_title(mom_boss_quick_name + "'s daughter")
             "She looks at you expectantly, waiting for your name in return."
             call person_introduction(the_daughter, girl_introduction = False) from _call_person_introduction_5
@@ -1408,7 +1413,7 @@ label mom_convince_quit_label(the_person):
             the_person "I think you're right [the_person.mc_title]. This job is killing me a little bit at a time."
             the_person "I can't take it any more! I'm going to quit!"
             $ the_person.change_happiness(20)
-            $ the_person.add_job(unemployed_job)
+            $ the_person.change_job(unemployed_job)
             "She smiles and takes a deep breath."
             the_person "God that feels good to say!"
             mc.name "You're making the right decision [the_person.title], and I'll be here to support you if you need me."
@@ -1426,7 +1431,7 @@ label mom_convince_quit_label(the_person):
             the_person "Are you really sure you can handle that? It's not cheap to keep this house running."
             mc.name "I can handle it."
             the_person "Okay... I trust you [the_person.mc_title]."
-            $ the_person.add_job(unemployed_job)
+            $ the_person.change_job(unemployed_job)
             the_person "I suppose I'll have to call my boss and tell him I'm not coming into work!"
 
 

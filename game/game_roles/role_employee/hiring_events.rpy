@@ -20,15 +20,16 @@ init -2 python:
                 town_relationships.begin_relationship(the_person, other_employee) #They are introduced to everyone at work, with a starting value of "Acquaintance"
 
     def stripper_hire(the_person):
-        stripclub_strippers.append(the_person)
+        if the_person not in stripclub_strippers:
+            stripclub_strippers.append(the_person)
 
-    def stripper_replace(the_person): # on_quit function called for strippers to make sure there's always someone working at the club. Also removes them from the list of dancers
+    def stripper_replace(the_person): # on_quit function called for strippers to make sure there's always somewone working at the club. Also removes them from the list of dancers
+        #Note: Gabrielle is a special case and is manually added back into the list after she quits.
         if the_person in stripclub_strippers:
             stripclub_strippers.remove(the_person)
 
-        # add new stripper to replace the one that left
-        new_stripper = create_random_person(start_sluttiness = renpy.random.randint(15,30), job = stripper_job)
-        new_stripper.generate_home().add_person(new_stripper)
+        if len(stripclub_strippers) < 4:
+            create_random_stripper()
 
 
 label stranger_hire_result(the_person): #Check to see if you want to hire someone.

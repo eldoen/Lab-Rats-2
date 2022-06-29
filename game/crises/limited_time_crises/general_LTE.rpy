@@ -38,7 +38,7 @@ init -1 python:
         if the_person.obedience > 130: #If she has higher obedience she ONLY lets you change her title.
             return False
         # no available titles for event
-        if __builtin__.len(get_titles(the_person)) <= 1 and __builtin__.len(get_player_titles(the_person)) <= 1:
+        if __builtin__.len(the_person.get_titles()) <= 1 and __builtin__.len(the_person.get_player_titles()) <= 1:
             return False
         return True
 

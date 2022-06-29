@@ -1248,6 +1248,8 @@ label family_games_night_start(the_aunt, the_mom): # Triggered as an on enter ev
     # Girls ask if you want to have some drinks, and then play cards some cards.
 
     $ the_group = GroupDisplayManager([the_mom, the_aunt], the_mom)
+    $ the_mom.apply_outfit()
+    $ the_aunt.apply_outfit()
     $ the_group.draw_group(position = "sitting", emotion = "happy")
 
     # Ensure neither of them have shown up with outfits too slutty for the other to consider appropriate.
@@ -1390,6 +1392,7 @@ label family_games_night_drinks(the_mom, the_aunt): #Breakout function for the d
             $ clear_scene()
             if lily in lily_bedroom.people:
                 "You knock on [lily.possessive_title]'s bedroom door."
+                $ lily_bedroom.show_background()
                 lily "It's open!"
                 $ lily.draw_person()
                 lily "What's up [lily.mc_title]?"
@@ -1416,9 +1419,11 @@ label family_games_night_drinks(the_mom, the_aunt): #Breakout function for the d
 
             else:
                 "You knock on [lily.possessive_title]'s bedroom door. After you get no response you open it and peek inside."
-                $ kitchen.show_background()
                 $ the_group.draw_group(emotion = "happy")
-                "The room is empty. You head back to the kitchen, where [the_mom.possessive_title] and [the_aunt.possessive_title] are sorting a deck of cards."
+                $ lily_bedroom.show_background()
+                "The room is empty."
+                $ kitchen.show_background()
+                "You head back to the kitchen, where [the_mom.possessive_title] and [the_aunt.possessive_title] are sorting a deck of cards."
                 mc.name "Bad news. It looks like Lily is out for the night."
                 $ the_mom.draw_person()
                 the_mom "Oh, that's too bad."
@@ -1446,6 +1451,7 @@ label family_games_night_cards(the_mom, the_aunt, the_sister): #Breakout functio
 
     $ the_group = GroupDisplayManager([the_mom, the_aunt, the_sister], the_mom)
     $ the_group.draw_group()
+    $ kitchen.show_background()
     "You bring [lily.title] back to the kitchen, where you find [the_mom.possessive_title] and [the_aunt.possessive_title] sorting a deck of cards."
     the_mom "And now the gang's all together! Pull up a chair, we've got the deck sorted out."
     $ the_group.draw_group(position = "sitting")

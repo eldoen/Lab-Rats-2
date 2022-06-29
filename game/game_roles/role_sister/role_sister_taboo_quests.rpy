@@ -200,7 +200,7 @@ label sister_oral_taboo_break_revisit(the_person):
     $ first_time = the_person.event_triggers_dict.get("oral_revisit_count", 0) <= 1
     $ noteable_taboo = "cunn"
     if "sucking_cock" in the_person.event_triggers_dict.get("oral_revisit_restore_taboos", []):
-        $ noteable_taboo == "blowjob"
+        $ noteable_taboo = "blowjob"
 
     if first_time:
         if noteable_taboo == "blowjob":
@@ -303,10 +303,11 @@ label sister_oral_taboo_break_revisit_quest_2(the_person):
     "The line is moving at a crawl, it's clear that this is going to take some time."
     menu:
         "Keep waiting {image=gui/heart/Time_Advance.png}" if time_of_day < 4:
-            $ iris.location.move_person(iris, electronics_store)
             $ iris.set_schedule(None, the_times = [1,2,3]) # make her free-roam
             $ lead_girl = iris
-
+            $ iris.change_job(influencer_job)
+            $ iris.set_override_schedule(None)
+            $ iris.location.move_person(iris, electronics_store)
             "You sigh and resign yourself to the long wait."
             $ other_girl_1 = create_random_person()
             $ other_girl_2 = create_random_person()
@@ -738,7 +739,7 @@ label sister_vaginal_taboo_break_revisit_quest_1(the_person):
     the_person "Hang on, how do I even know if these work? I don't want to look like an idiot in front of my friends."
     the_person "I'm going to test one."
 
-    $ the_person.give_serum(copy.copy(the_serum))
+    $ the_person.give_serum(the_serum)
 
     "She pops the cork off of the vial and downs the content."
 

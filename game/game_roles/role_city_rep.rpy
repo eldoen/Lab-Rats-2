@@ -75,7 +75,7 @@ label city_rep_negotiate(the_person):
                 mc.name "And I'll be sending you your funds. thank you for your help [the_person.title]."
                 the_person "Don't make me regret this."
                 $ mc.business.change_funds(-2500)
-                $ attention_floor_increase_2_policy.buy_policy(ignore_cost = True)
+                $ purchase_policy(attention_floor_increase_2_policy,ignore_cost = True)
 
             "Pay her\n{color=#ff0000}{size=18}Requires: $2500{/size}{/color} (disabled)" if not mc.business.has_funds(-2500):
                 pass
@@ -83,7 +83,7 @@ label city_rep_negotiate(the_person):
             "Order her" if the_person.obedience >= obedience_requirement:
                 mc.name "That's a risk you're going to have to take. Get me that license."
                 $ the_person.change_love(-5 + 2*the_person.get_opinion_score("being submissive"))
-                $ attention_floor_increase_2_policy.buy_policy(ignore_cost = True)
+                $ purchase_policy(attention_floor_increase_2_policy,ignore_cost = True)
                 "[the_person.title] seems unhappy with being ordered around, but she nods obediently anyways."
                 the_person "Fine, I'll sort out the paperwork for you."
 
@@ -161,6 +161,8 @@ label city_rep_seduce(the_person): #TODO: Figure out if we can have something li
                 mc.name "Maybe I can convince you to let me keep my stuff."
                 mc.name "Then you'll just be a slut. Better?"
                 the_person "Hardly."
+                if ("ceo_office") in globals():
+                    $ ceo_office.show_background()
                 "You lead her into your office and close the door behind you."
                 $ should_fuck = True
 
@@ -175,6 +177,8 @@ label city_rep_seduce(the_person): #TODO: Figure out if we can have something li
     else: #Hell yeah (TODO: Have an option for her to proposition you when she shows up instead)
         "She leans into you, pressing her weight into your side."
         the_person "I thought you'd never ask. Your office is a good idea, I think we'd cause a bit of a scene if we stayed here..."
+        if ("ceo_office") in globals():
+            $ ceo_office.show_background()
         "You lead her to your office and close the door behind you."
         $ should_fuck = True
 
@@ -203,7 +207,7 @@ label city_rep_order(the_person):
         mc.name "[the_person.title], you're going to stop with this stupid charade. There isn't going to be any punishment today."
         "She smirks and glares at you."
         the_person "You really think that? You don't have any power here [the_person.mc_title]."
-        the_person "Now take a breath and get yourself under control before you say something that makes things worse for you."
+        the_person "Now take a breath and get yourself under control before you say something that makes this worse for yourself."
 
     elif the_person.obedience < 130:
         mc.name "[the_person.title], you need to make this go away for me."
@@ -327,7 +331,7 @@ label city_rep_internal_sabotage_training(the_person):
     "She resists a moment longer, but she can only hold out so long while in a trance."
     the_person "Okay, I'll get rid of anything I can..."
     mc.name "Good girl."
-    $ attention_bleed_increase_2_policy.buy_policy(ignore_cost = True)
+    $ purchase_policy(attention_bleed_increase_2_policy,ignore_cost = True)
     return
 
 label city_rep_offer_hire(the_person):
