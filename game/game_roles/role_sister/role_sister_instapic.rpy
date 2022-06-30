@@ -626,7 +626,7 @@ label sister_instathot_special_pictures(the_person, is_topless_shoot = True):
             "She grabs her chest and squeezes her tits in her hands."
             the_person "... A little small. All the really popular girls on InstaPic have big boobs."
             menu:
-                "Get bigger boobs" if rank_tits(the_person.tits) < 8:
+                "Get bigger boobs" if Person.rank_tits(the_person.tits) < 8:
                     mc.name "Then you should do something about it. You know you can just get fake boobs, right?"
                     the_person "Obviously. I've looked into it and it's super expensive."
                     if the_person.event_triggers_dict.get("sister_instathot_mom_enabled", False): #Mom already knows about her "hobby"
