@@ -370,6 +370,8 @@ label mom_onlyfans_help(the_person):
         the_person "Yes, if you have the time. Come with me."
         "You follow [the_person.possessive_title] to her bedroom."
         $ mc.location.move_person(the_person, mom_bedroom) # Make sure she's in her bedroom so we can have the proper sex props
+        $ mc.change_location(mom_bedroom)
+        $ mc.location.show_background()
     the_person "Close the door, please."
     "You shut her bedroom door while she pulls her phone out of her purse and hands it over to you."
     the_person "You get that camera ready while I get changed..."
