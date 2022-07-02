@@ -124,44 +124,6 @@ init -2:
                         return_string += an_item.display_name + ", "
             return return_string
 
-        def add_nora_introduction_actions():
-            reintro_event = Action("Nora cash reintro", nora_reintro_requirement, "nora_research_cash_intro", args = [nora, False])
-            mc.business.mandatory_crises_list.append(reintro_event) #Reintro her if you don't take the option to visit her. Provides access to her special traits eventually.
-            return
-
-        def add_alexia_introduction_actions():
-            alexia_intro_phase_zero_action = Action("Alexia Set Schedule", alexia_intro_phase_zero_requirement, "alexia_phase_zero_label", requirement_args = renpy.random.randint(14, 21))
-            mc.business.mandatory_crises_list.append(alexia_intro_phase_zero_action)
-            alexia_intro_phase_one_action = Action("Alexia Intro Phase One", alexia_intro_phase_one_requirement, "alexia_intro_phase_one_label")
-            alexia.on_room_enter_event_list.append(alexia_intro_phase_one_action)
-            return
-
-        def add_lily_introduction_actions():
-            sister_intro_crisis = Action("sister_intro_crisis", sister_intro_crisis_requirements, "sister_intro_crisis_label", args=lily, requirement_args = [lily, renpy.random.randint(7,14)]) #Def is in roles.rpy
-            sister_strip_intro_crisis = Action("sister_strip_intro_crisis", sister_strip_intro_requirement, "sister_strip_intro_label", args=lily, requirement_args = lily)
-
-            mc.business.mandatory_crises_list.append(sister_intro_crisis) #Introduces Lily one to two weeks into the game. She will test serum for cash.
-            mc.business.mandatory_crises_list.append(sister_strip_intro_crisis) #Lily comes asking for more money. She will strip (to varying degrees) for cash)
-
-            instathot_intro_action = Action("Instathot intro", instathot_intro_requirement, "sister_instathot_intro_label") #Event to introduce Lily taking pictures on the internet for money.
-            lily.on_room_enter_event_list.append(instathot_intro_action)
-            return
-
-        def add_mom_introduction_actions():
-            mom_promotion_one_crisis = Action("mom promotion one crisis", mom_work_promotion_one_requirement, "mom_work_promotion_one")
-            mom.on_talk_event_list.append(mom_promotion_one_crisis)
-
-            mom_find_serum_crisis = Action("mom find serum", mom_found_serums_requirement, "mom_found_serums", requirement_args = 3)
-            mc.business.mandatory_morning_crises_list.append(mom_find_serum_crisis)
-            return
-
-        def add_aunt_introduction_actions():
-            aunt_intro_action = Action("Aunt introduction", aunt_intro_requirement, "aunt_intro_label", requirement_args = renpy.random.randint(24,30))
-            mc.business.mandatory_crises_list.append(aunt_intro_action) #Aunt and cousin will be visiting tomorrow in the morning
-            family_games_night_intro_action = Action("Family games night intro", family_games_night_intro_requirement, "family_games_night_intro")
-            aunt.on_room_enter_event_list.append(family_games_night_intro_action)
-            return
-
 
 init 1 python:
     def character_meets_requirements(character,requirements_dict = None):

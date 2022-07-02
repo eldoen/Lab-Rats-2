@@ -2750,7 +2750,6 @@ init -2 python:
                 self.apply_outfit()
                 if draw_person:
                     self.draw_person()
-
                 if dialogue:
                     self.call_dialogue("clothing_review")
 
@@ -3281,6 +3280,7 @@ init -2 python:
             if work_return is not None:
                 return work_return
 
+            return self.schedule.get_next_destination()
 
         def person_meets_requirements(self, slut_required = 0, slut_max = 2000, obedience_required = 0, obedience_max = 2000, love_required = -200, love_max = 2000):
             if self.sluttiness >= slut_required and self.sluttiness <= slut_max and self.obedience >= obedience_required and self.obedience <= obedience_max and self.love >= love_required and self.love <= love_max:

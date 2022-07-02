@@ -362,11 +362,11 @@ init 0 python:
         potential_infractions.append(Infraction.careless_accident_factory())
         potential_infractions.append(Infraction.underperformance_factory())
         potential_infractions.append(Infraction.office_disturbance_factory())
-        if the_person.is_wearing_uniform():
+        if the_target.is_wearing_uniform():
             potential_infractions.append(Infraction.out_of_uniform_factory())
-        if the_person.obedience < 100:
+        if the_target.obedience < 100:
             potential_infractions.append(Infraction.disobedience_factory())
-        if the_person.effective_sluttiness() > 25:
+        if the_target.effective_sluttiness() > 25:
             potential_infractions.append(Infraction.inappropriate_behaviour_factory())
         return get_random_from_list(potential_infractions)
 

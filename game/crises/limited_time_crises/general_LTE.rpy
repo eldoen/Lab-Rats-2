@@ -660,7 +660,7 @@ label work_spank_opportunity(the_person):
                     "Keep fingering her":
                         mc.name "I think you have. Here let me help you..."
                         $ the_person.change_arousal(10+10*the_person.get_opinion_score("being fingered"))
-                        call fuck_person(the_person, start_position = standing_finger, skip_intro = True) from _call_fuck_person_131
+                        call fuck_person(the_person, start_position = standing_finger, private = False, skip_intro = True) from _call_fuck_person_131
                         $ the_report = _return
                         $ the_person.call_dialogue("sex_review", the_report = the_report)
 
