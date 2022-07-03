@@ -327,7 +327,7 @@ label game_loop(): ##THIS IS THE IMPORTANT SECTION WHERE YOU DECIDE WHAT ACTIONS
     $ renpy.block_rollback()
     $ renpy.checkpoint()
 
-    if "action_mod_list" in globals():
+    if mod_installed:
         call screen enhanced_main_choice_display(build_menu_items([build_people_list(), build_actions_list()]))
     else:
         call screen main_choice_display([build_people_list(), build_actions_list()])
@@ -469,7 +469,7 @@ label talk_person(the_person, keep_talking = True):
 label .continue_talk:
     $ renpy.restart_interaction()
     $ the_person.draw_person()
-    if "action_mod_list" in globals():
+    if mod_installed:
         call screen enhanced_main_choice_display(build_menu_items([build_chat_action_list(the_person, keep_talking), build_specific_action_list(the_person, keep_talking), build_special_role_actions_list(the_person, keep_talking)]))
     else:
         call screen main_choice_display([build_chat_action_list(the_person, keep_talking), build_specific_action_list(the_person, keep_talking), build_special_role_actions_list(the_person, keep_talking)])

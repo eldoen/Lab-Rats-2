@@ -161,7 +161,7 @@ label city_rep_seduce(the_person): #TODO: Figure out if we can have something li
                 mc.name "Maybe I can convince you to let me keep my stuff."
                 mc.name "Then you'll just be a slut. Better?"
                 the_person "Hardly."
-                if ("ceo_office") in globals():
+                if mod_installed:
                     $ ceo_office.show_background()
                 "You lead her into your office and close the door behind you."
                 $ should_fuck = True
@@ -177,7 +177,7 @@ label city_rep_seduce(the_person): #TODO: Figure out if we can have something li
     else: #Hell yeah (TODO: Have an option for her to proposition you when she shows up instead)
         "She leans into you, pressing her weight into your side."
         the_person "I thought you'd never ask. Your office is a good idea, I think we'd cause a bit of a scene if we stayed here..."
-        if ("ceo_office") in globals():
+        if mod_installed:
             $ ceo_office.show_background()
         "You lead her to your office and close the door behind you."
         $ should_fuck = True

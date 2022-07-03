@@ -1641,7 +1641,7 @@ init -2 python:
             destination = self.get_destination()
             if destination: #We have somewhere scheduled to be for this turn. Let's move over there.
                 location.move_person(self, destination) #Always go where you're scheduled to be.
-                if self.job and destination == self.job.job_location: #We're going to work.
+                if self.is_at_work(): #We're going to work.
                     if self.should_wear_uniform(): #Get a uniform if we should be wearing one.
                         self.wear_uniform()
                         self.change_happiness(self.get_opinion_score("work uniforms"),add_to_log = False)
@@ -2923,6 +2923,11 @@ init -2 python:
             if any(relationship in [sister_role,mother_role,aunt_role,cousin_role] for relationship in self.special_role):
                 return True
 
+        def is_at_work(self):
+            if not self.job:
+                return False
+            return self.job.job_location == self.location
+
         def has_tiny_tits(self): #Returns true if the girl has tiny breasts. "AA" cups.
             return self.tit_is_tiny(self.tits)
 
@@ -3391,7 +3396,7 @@ init -2 python:
         def get_duty_actions(self):
             return_list = []
             for duty in self.duties:
-                if self.job.job_location is None or self.job.job_location.has_person(self) or not duty.only_at_work:
+                if self.is_at_work() or not duty.only_at_work:
                     for act in duty.actions:
                         if act not in return_list: #Trim duplicates out of our duty list (NOTE: maybe we want to trim them out at the UI level?)
                             return_list.append(act)
@@ -3400,7 +3405,7 @@ init -2 python:
         def get_duty_internet_actions(self):
             return_list = []
             for duty in self.duties:
-                if self.job.job_location is None or self.job.job_location.has_person(self) or not duty.only_at_work:
+                if self.is_at_work() or not duty.only_at_work:
                     for act in duty.internet_actions:
                         if act not in return_list:
                             return_list.append(act)

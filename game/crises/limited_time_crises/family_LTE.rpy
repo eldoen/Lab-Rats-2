@@ -54,7 +54,7 @@ init -1 python:
     def work_walk_in_requirement(the_person): #AKA she has to work for you, be at work, and be turned on
         if not the_person.has_role(employee_role):
             return False
-        elif not person_at_work(the_person):
+        elif not the_person.is_at_work():
             return False
         elif the_person.energy < 40:
             return False

@@ -182,7 +182,7 @@ label pay_strip_scene(the_person):
             else:
                 "[the_person.title] wiggles her hips side to side and bites her bottom lip, as if imagining some greater pleasure yet to come."
 
-        if "action_mod_list" in globals():
+        if mod_installed:
             call screen enhanced_main_choice_display(build_menu_items(get_strip_menu_options(the_person)))
         else:
             call screen main_choice_display(get_strip_menu_options(the_person))
@@ -444,7 +444,7 @@ label strip_tease(the_person, in_private = True, for_pay = False, start_girl_dir
     while should_continue and not the_person is None:
         $ chosen_action = None
 
-        if "action_mod_list" in globals():
+        if mod_installed:
             call screen enhanced_main_choice_display(build_menu_items(get_strip_tease_menu_options(the_person, guy_state, girl_state)))
         else:
             call screen main_choice_display(get_strip_tease_menu_options(the_person, guy_state, girl_state))

@@ -203,7 +203,7 @@ init 0 python:
         if the_person.event_triggers_dict.get("daily_serum_distributed", False):
             return #Give it to them first thing in the morning, but only once
 
-        elif not the_person.job.job_location.has_person(the_person):
+        elif not the_person.is_at_work():
             return #Don't give it to them if they aren't at work.
 
         the_serum = None

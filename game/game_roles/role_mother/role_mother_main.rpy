@@ -1317,7 +1317,7 @@ label mom_office_person_request():
     "You walk up to the reception desk. The receptionist looks up at you."
     the_person "Hello, can I help you? Do you have an appointment?"
 
-    if "action_mod_list" in globals():
+    if mod_installed:
         call screen enhanced_main_choice_display(build_menu_items(get_mom_office_actions(), draw_person_previews = False, draw_hearts_for_people = False))
     else:
         call screen main_choice_display(get_mom_office_actions(), draw_person_previews = False, draw_hearts_for_people = False)

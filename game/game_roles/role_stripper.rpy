@@ -52,9 +52,14 @@ label stripper_private_dance_label(the_person):
     else:
         mc.name "Do you do private dances?"
         "[the_person.possessive_title] looks you up and down and smiles."
-        the_person "For you, handsome? I think one can be arranged."
-        the_person "But my boss won't be happy if I do it for free..."
-        mc.name "That won't be a problem."
+        if mod_installed and get_strip_club_foreclosed_stage() >= 5:
+            the_person "Sure, boss, I think that can be arranged."
+            the_person "I do get my normal fee, don't I?"
+            mc.name "That won't be a problem."
+        else:
+            the_person "For you, handsome? I think one can be arranged."
+            the_person "But my boss won't be happy if I do it for free..."
+            mc.name "That won't be a problem."
         the_person "Well then follow me."
         $ the_person.draw_person(position = "walking_away")
         "She brushes her fingers over your upper arm, then turns around and leads you towards a serious of curtain-obscured booths."

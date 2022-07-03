@@ -297,7 +297,7 @@ init -2 python:
             #         person.change_happiness(person.get_opinion_score("working")+person.get_opinion_score("marketing work"), add_to_log = False)
 
             for a_person in self.get_employee_list():
-                if a_person.job.job_location.has_person(a_person) and not a_person.has_duty(extra_paperwork_duty):
+                if a_person.is_at_work() and not a_person.has_duty(extra_paperwork_duty):
                     self.change_team_effectiveness(-self.standard_efficiency_drop) #Last thing we do is figur out what our effectivness drop should be before truncating our temp_value and applying it.
             self.update_team_effectiveness()
 

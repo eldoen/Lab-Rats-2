@@ -315,7 +315,7 @@ init -3 python:
         return
 
 label demand_strip_label(the_person):
-    if "action_mod_list" in globals():
+    if mod_installed:
         call screen enhanced_main_choice_display(build_menu_items([build_demand_strip_menu(the_person)]))
     else:
         call screen main_choice_display([build_demand_strip_menu(the_person)])

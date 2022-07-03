@@ -4,20 +4,13 @@
 
 init -2 python:
     def alexia_intro_phase_zero_requirement(day_trigger):
-        if day >= day_trigger:
-            return True
-        return False
+        return day >= day_trigger
 
     def alexia_intro_phase_one_requirement(the_person):
-        if alexia in downtown.people:
-            return True
-        return False
+        return alexia in downtown.people
 
     def alexia_intro_phase_two_requirement(the_person):
-        if not the_person.job.job_location.has_person(the_person):
-            return False
-        else:
-            return True
+        return not the_person.is_at_work()
 
     def alexia_hire_requirement(the_person):
         if not mc.business.get_employee_title(the_person) == "None":
@@ -30,9 +23,7 @@ init -2 python:
             return True
 
     def camera_arrive_requirement(the_day):
-        if day > the_day and mc.business.is_open_for_business():
-            return True
-        return False
+        return day > the_day and mc.business.is_open_for_business()
 
     def alexia_ad_suggest_requirement(the_person, the_day):
         if public_advertising_license_policy.is_owned():

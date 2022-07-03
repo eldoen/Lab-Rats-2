@@ -902,7 +902,7 @@ label strip_menu(the_person, the_position, is_private = True): #TODO: Add an aro
         the_position_tag = the_position.position_tag if isinstance(the_position, Position) else the_person.idle_pose
 
 
-    if "action_mod_list" in globals():
+    if mod_installed:
         call screen enhanced_main_choice_display(build_menu_items(build_sex_mechanic_strip_menu(the_person)))
     else:
         call screen main_choice_display(build_sex_mechanic_strip_menu(the_person))

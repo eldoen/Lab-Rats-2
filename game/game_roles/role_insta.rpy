@@ -46,7 +46,7 @@ init -2 python:
     def dm_response_requirement(the_person):
         if renpy.random.randint(0,100) < 60 and not the_person.event_triggers_dict.get("insta_special_request_asap", False): #Respond at a random time, not as soon as possible.
             return False
-        elif person_at_work(the_person) and the_person.obedience >= 110: #Obedient girls don't try and take pics at work.
+        elif the_person.is_at_work() and the_person.obedience >= 110: #Obedient girls don't try and take pics at work.
             return False
         elif mc.location.has_person(the_person) and mc.location.public:
             return False #If she's in the same location as us and we are in public she doesn't take the picture.

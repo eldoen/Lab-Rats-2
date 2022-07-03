@@ -29,10 +29,9 @@ init -1 python:
     def work_spank_opportunity_requirement(the_person):
         if not the_person.has_role(employee_role):
             return False
-        elif not person_at_work(the_person):
+        elif not the_person.is_at_work():
             return False
-        else:
-            return True
+        return True
 
     def ask_new_title_requirement(the_person):
         if the_person.obedience > 130: #If she has higher obedience she ONLY lets you change her title.

@@ -659,7 +659,7 @@ label give_serum(the_person, add_to_log = True):
     return None
 
 label date_person(the_person): #You invite them out on a proper date
-    if "action_mod_list" in globals():
+    if mod_installed:
         call screen enhanced_main_choice_display(build_menu_items([get_date_plan_actions(the_person)]))
     else:
         call screen main_choice_display([get_date_plan_actions(the_person)])
@@ -1128,7 +1128,7 @@ label command_person(the_person):
     mc.name "[the_person.title], I want you to do something for me."
     the_person "Yes [the_person.mc_title]?"
 
-    if "action_mod_list" in globals():
+    if mod_installed:
         call screen enhanced_main_choice_display(build_menu_items([build_command_person_actions_menu(the_person)]))
     else:
         call screen main_choice_display([build_command_person_actions_menu(the_person)])
