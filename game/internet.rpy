@@ -106,7 +106,10 @@ label .continue_browsing:
         $ return_to_phone = True
         $ mc.start_text_convo(the_person)
 
-        call screen main_choice_display(build_text_menu(the_person))
+        if mod_installed:
+            call screen enhanced_main_choice_display(build_menu_items(build_text_menu(the_person)))
+        else:
+            call screen main_choice_display(build_text_menu(the_person))
 
         if _return == "Back":
             pass

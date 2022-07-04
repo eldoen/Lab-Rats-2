@@ -1906,6 +1906,7 @@ label family_games_night_strip(the_mom, the_aunt, the_sister, partner):
                     "[partner.title] looks at you."
                     partner "Come on [partner.mc_title], you're keeping us in the game right now."
                 pass #TODO: Game ends, she's naked
+            $ partner_item = None
 
             if still_playing: # Shirt, pants, socks, underwear
                 if player_losses == 1: #Take off your shirt.

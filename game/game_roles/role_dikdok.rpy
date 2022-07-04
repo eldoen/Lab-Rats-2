@@ -28,7 +28,10 @@ init -2 python:
 
 label check_dikdok():
     # TODO: Check if anyone you know has posted pictures on InstaPic
-    call screen main_choice_display(build_dikdok_menu(), draw_hearts_for_people = False, draw_person_previews = False)
+    if mod_installed:
+        call screen enhanced_main_choice_display(build_menu_items(build_dikdok_menu(), draw_hearts_for_people = False, draw_person_previews = False))
+    else:
+        call screen main_choice_display(build_dikdok_menu(), draw_hearts_for_people = False, draw_person_previews = False)
     $ picked_option = _return
     if isinstance(picked_option, Person):
         call view_dikdok(picked_option) from _call_view_dikdok

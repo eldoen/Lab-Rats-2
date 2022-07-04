@@ -293,7 +293,7 @@ init 0 python:
 
     common_variable_list = ["talk_action", "new_location", "picked_option", "picked_event", "outfit", "insta_outfit", \
         "the_outfit", "new_outfit", "old_outfit", "the_uniform", "the_underwear", "person_one", "person_two", "the_person_one", \
-        "the_person_two", "the_item", "the_clothing", "the_group", "the_report", "the_trait", "the_mom", "the_action", \
+        "the_person_two", "the_item", "the_clothing", "clothing", "the_group", "the_report", "the_trait", "the_mom", "the_action", \
         "the_aunt", "the_sister", "the_student", "the_place", "the_girl", "test_outfit", "object", "the_object", "the_start_object", \
         "the_location", "next_item", "file_path", "title_choice", "title_one", "title_two", "placeholder", \
         "formatted_title_one", "formatted_title_two", "new_title", "the_type", "the_person", "player_choice", \
@@ -301,10 +301,13 @@ init 0 python:
         "report_log", "position_choice", "object_choice", "round_choice", "start_position", "the_group", \
         "report", "the_relationship", "partner", "the_subject", "the_suggested_outfit", "stripper", "potential_people",\
         "not_stripper", "the_student", "strip_choice", "new_pose", "picked_object", "picked_position", "picked_pose", "picked_serum", "pose_choice", "new_person" \
-        "clothing", "formatted_name", "formatted_title", "hair_style_check", "pubic_style_check", "the_cause", \
+        "clothing", "formatted_name", "formatted_title", "hair_style_check", "pubic_style_check", "the_cause", "a_duty", \
         "text_one", "text_two", "the_goal", "the_serum", "title", "opinion_tag", "overhear_topic", "the_choice", "the_position", \
         "opinion_string", "mc_opinion_string", "talk_opinion_text", "opinion_learned", "place", "the_place", "the_taboo",
-        "climax_controller", "the_watcher", "person_choice", "t", "x", "y", "z", "so_title", "a_person", "person_1", "person_2", "test_person"]
+        "climax_controller", "the_watcher", "person_choice", "t", "x", "y", "z", "so_title", "a_person", "person_1", "person_2", "test_person",
+        "grope_tits_slut_token", "grope_pussy_slut_token", "jerk_off_slut_token", "titfuck_slut_token", "facefuck_slut_token",
+        "cum_tits_slut_token", "cum_face_slut_token", "cum_throat_slut_token", "cum_inside_slut_token", "sluttines_token", "slut_token",
+        "jerk_token", "blowjob_token", "fuck_token", "tease_token", "red_heart_token", "blowjob_slut_token", "sex_slut_token", "anal_token"]
 
     def main_loop_cleanup():
         clear_scene()

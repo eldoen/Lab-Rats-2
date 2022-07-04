@@ -31,7 +31,10 @@ init -2 python:
         return [onlyfans_list, other_options_list]
 
 label check_onlyfans():
-    call screen main_choice_display(build_onlyfans_menu(), draw_hearts_for_people = False, draw_person_previews = False)
+    if mod_installed:
+        call screen enhanced_main_choice_display(build_menu_items(build_onlyfans_menu(), draw_hearts_for_people = False, draw_person_previews = False))
+    else:
+        call screen main_choice_display(build_onlyfans_menu(), draw_hearts_for_people = False, draw_person_previews = False)
     $ picked_option = _return
     if isinstance(picked_option, Person):
         call view_onlyfans(picked_option) from _call_view_onlyfans

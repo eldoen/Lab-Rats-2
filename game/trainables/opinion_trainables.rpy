@@ -78,7 +78,7 @@ label train_strengthen_opinion_label(the_person): #TODO: Only have this enabled 
     mc.name "I want to talk to you about something."
     the_person "Okay, what do you want to talk about?"
 
-    if "action_mod_list" in globals():
+    if mod_installed:
         call screen enhanced_main_choice_display(build_menu_items(build_opinion_change_menu(the_person, True)))
     else:
         call screen main_choice_display(build_opinion_change_menu(the_person, True))
@@ -100,7 +100,7 @@ label train_weaken_opinion_label(the_person): #TODO; Only have this enabled if y
     mc.name "I want to talk to you about something."
     the_person "Okay, what do you want to talk about?"
 
-    if "action_mod_list" in globals():
+    if mod_installed:
         call screen enhanced_main_choice_display(build_menu_items(build_opinion_change_menu(the_person, False)))
     else:
         call screen main_choice_display(build_opinion_change_menu(the_person, False))
@@ -147,7 +147,7 @@ label train_new_opinion_label(the_person, sexy_list = False):
     mc.name "I want to talk to you about something."
     the_person "Okay, what do you want to talk about?"
 
-    if "action_mod_list" in globals():
+    if mod_installed:
         call screen enhanced_main_choice_display(build_menu_items(build_opinion_training_menu(the_person, sexy_list)))
     else:
         call screen main_choice_display(build_opinion_training_menu(the_person, sexy_list))

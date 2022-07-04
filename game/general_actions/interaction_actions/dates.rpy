@@ -915,6 +915,7 @@ label shopping_date_overwear(the_person, skip_intro = False):
         "[the_person.possessive_title] drops the outfit into a return bin nearby, and the two of you leave the store."
 
     $ the_person.change_love(1)
+    $ new_overwear = None
     "[the_person.title] seems to have enjoyed your shopping trip together."
     return
 
@@ -1006,6 +1007,7 @@ label shopping_date_underwear(the_person):
     else:
         "[the_person.possessive_title] drops the underwear into a return bin nearby, and the two of you leave the store."
 
+    $ new_underwear = None
     $ the_person.change_happiness(10 + the_person.get_opinion_score("lingerie"))
     $ the_person.change_love(1)
     "[the_person.title] seems to have enjoyed shopping for lingerie with you."
@@ -1537,6 +1539,7 @@ label shopping_date_hair(the_person):
                 mc.name "This colour will look good."
                 call do_dye(the_person, colour_choice) from _call_do_dye_shopping_date_hair
                 $ did_haircut = True
+                $ colour_choice = None
 
     #
     # elif the_person.obedience + 10*the_person.get_opinion_score("being submissive") > 90:
