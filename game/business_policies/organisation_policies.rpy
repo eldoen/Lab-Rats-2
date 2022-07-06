@@ -245,7 +245,7 @@ init 0 python:
     organisation_policies_list.append(attention_bleed_increase_1_policy)
 
     attention_bleed_increase_2_policy = Policy(name = "City Hall Internal Sabotage",
-        desc = "Reports go missing, meetings are rescheduled, and evidence is misfiled. An inside agent down at city hall is making sure it's particularly hard to pin anything on your business. Lowers Attention by an additional 10 per day.",
+        desc = "Reports go missing, meetings are misscheduled, and evidence is misfiled. An inside agent down at city hall is making sure it's particularly hard to pin anything on your business. Lowers Attention by an additional 10 per day.",
         cost = 0,
         toggleable = False,
         on_buy_function = attention_bleed_increase) #Only accessible by corrupting the city rep.

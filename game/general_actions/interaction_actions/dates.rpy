@@ -1539,7 +1539,7 @@ label shopping_date_hair(the_person):
                 mc.name "This colour will look good."
                 call do_dye(the_person, colour_choice) from _call_do_dye_shopping_date_hair
                 $ did_haircut = True
-                $ colour_choice = None
+            $ colour_choice = None
 
     #
     # elif the_person.obedience + 10*the_person.get_opinion_score("being submissive") > 90:

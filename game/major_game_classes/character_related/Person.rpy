@@ -2855,7 +2855,7 @@ init -2 python:
             return False
 
         def should_wear_uniform(self):
-            if not self.job or self.job.schedule.get_destination() is None:  # quick exit
+            if not self.is_at_work():  # quick exit
                 return False
 
             if self.event_triggers_dict.get("forced_uniform", False):

@@ -305,7 +305,7 @@ init 0 python:
         "text_one", "text_two", "the_goal", "the_serum", "title", "opinion_tag", "overhear_topic", "the_choice", "the_position", \
         "opinion_string", "mc_opinion_string", "talk_opinion_text", "opinion_learned", "place", "the_place", "the_taboo",
         "climax_controller", "the_watcher", "person_choice", "t", "x", "y", "z", "so_title", "a_person", "person_1", "person_2", "test_person",
-        "grope_tits_slut_token", "grope_pussy_slut_token", "jerk_off_slut_token", "titfuck_slut_token", "facefuck_slut_token",
+        "grope_tits_slut_token", "grope_pussy_slut_token", "jerk_off_slut_token", "titfuck_slut_token", "facefuck_slut_token", "sex_token",
         "cum_tits_slut_token", "cum_face_slut_token", "cum_throat_slut_token", "cum_inside_slut_token", "sluttines_token", "slut_token",
         "jerk_token", "blowjob_token", "fuck_token", "tease_token", "red_heart_token", "blowjob_slut_token", "sex_slut_token", "anal_token"]
 

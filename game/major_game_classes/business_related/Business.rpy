@@ -378,7 +378,7 @@ init -2 python:
 
             if person.job == market_job:
                 return self.m_uniform
-            if person.job == rd_job:
+            if person.job == rd_job or person.job == head_researcher_job:
                 return self.r_uniform
             if person.job == production_job:
                 return self.p_uniform

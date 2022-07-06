@@ -249,7 +249,7 @@ label instantiate_roles(): #This section instantiates all of the key roles in th
     python:
 
         employee_role = Role("Employee", get_employee_role_actions(),
-            on_turn = employee_on_turn, on_day = employee_on_day, hidden = True)
+            on_turn = employee_on_turn, on_move = employee_on_move, on_day = employee_on_day, hidden = True)
 
         #EMPLOYEE BUSYWORK ACTIONS#
         employee_busywork_role = Role("Office Busywork", [], hidden = True) #TODO: Add some other actions to this role

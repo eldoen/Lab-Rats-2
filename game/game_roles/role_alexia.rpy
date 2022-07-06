@@ -10,7 +10,7 @@ init -2 python:
         return alexia in downtown.people
 
     def alexia_intro_phase_two_requirement(the_person):
-        return not the_person.is_at_work()
+        return the_person.is_at_work()
 
     def alexia_hire_requirement(the_person):
         if not mc.business.get_employee_title(the_person) == "None":
@@ -164,6 +164,11 @@ label alexia_intro_phase_one_label(the_person):
     "You wave goodbye to [the_person.possessive_title] as she walks away."
 
     $ add_alexia_phase_two_action(the_person)
+
+    if mod_installed:   # MOD change her job location to the coffee shop
+        $ alexia.job.job_location = coffee_shop
+        $ alexia.job.schedule.set_schedule(coffee_shop, the_days=[0,1,2,3,4], the_times = [1,2,3])
+
     $ clear_scene()
     return
 
@@ -219,6 +224,8 @@ label alexia_intro_phase_two_label(the_person):
     "[the_person.title] laughs and stands up."
     the_person "It's time for me to head home. My ride should be here soon. Oh, do you want to come out and meet him?"
     "You stand up and walk out with [the_person.possessive_title]."
+    $ mc.change_location(downtown)
+    $ mc.location.show_background()
     mc.name "Uh, sure. Who is he?"
     "When you get outside [the_person.title] looks around for a moment, then waves to a car as it pulls over."
     the_person "Right on time! [the_person.SO_name], we met while I was traveling and we've been dating ever since."
