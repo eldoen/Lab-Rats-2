@@ -308,6 +308,8 @@ label fuck_date_event(the_person): #A breakout function so we can call the fuck_
                                 else:
                                     "Within minutes you can hear him snoring loudly. [the_person.possessive_title] looks in your direction and nods her head at the door."
                                     "You crack the closet door open and step out as quietly as you can. You sneak out of the bedroom, then hurry to the front door."
+                                $ mc.change_location(downtown)
+                                $ mc.location.show_background()
                                 $ clear_scene()
                                 "As soon as you're outside you sprint to the sidewalk, then slow down and walk casually away."
 
