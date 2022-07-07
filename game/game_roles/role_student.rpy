@@ -1626,6 +1626,7 @@ label student_test(the_person): #TODO: Hook this up
             $ the_person.clear_situational_slut("tutor")
             $ the_person.review_outfit()
             $ mc.change_location(old_location)
+            $ old_location = None
             $ the_room = None #Clear memory
 
         "Fuck her\n{color=#ff0000}{size=18}Requires [slut_token]{/size}{/color} (disabled)" if the_person.effective_sluttiness() < 30:

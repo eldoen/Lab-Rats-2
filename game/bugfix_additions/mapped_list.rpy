@@ -10,7 +10,7 @@ init -3 python:
         return [x for x in list_of_places if x not in excluded_locations]
 
     def all_policies_in_the_game(excluded_policies = []):
-        return [x for x in uniform_policies_list + recruitment_policies_list + serum_policies_list + organisation_policies_list if x not in excluded_policies]
+        return [x for x in uniform_policies_list + recruitment_policies_list + serum_policies_list + organisation_policies_list + unmapped_policies_list if x not in excluded_policies]
 
     ##################################################################
     # MappedList - replace object property with function mapped item #

@@ -122,10 +122,7 @@ init 0 python:
         the_person.change_happiness(-2, add_to_log = False)
 
     def client_demonstration_duty_requirement(the_person):
-        if mandatory_unpaid_serum_testing_policy.is_active():
-            return True
-        else:
-            return False
+        return mandatory_unpaid_serum_testing_policy.is_active()
 
     def client_demonstration_duty_on_turn(the_person):
         mc.business.sale_progress(0, 0, the_person.sex_skills["Foreplay"], the_person.calculate_job_efficency())
@@ -173,10 +170,7 @@ init 0 python:
         the_person.change_happiness(1, add_to_log = False)
 
     def paid_serum_testing_duty_requirement(the_person):
-        if not mandatory_paid_serum_testing_policy.is_owned():
-            return False
-        else:
-            return True
+        return mandatory_paid_serum_testing_policy.is_owned()
 
     def employee_paid_serum_test_requirement(the_person):
         if not mc.business.has_funds(100):
@@ -185,19 +179,13 @@ init 0 python:
             return True
 
     def unpaid_serum_testing_duty_requirement(the_person):
-        if not mandatory_unpaid_serum_testing_policy.is_owned():
-            return False
-        else:
-            return True
+        return mandatory_unpaid_serum_testing_policy.is_owned()
 
     def employee_unpaid_serum_test_requirement(the_person):
         return True #TODO: maybve limit this to once/day?
 
     def daily_serum_dosage_duty_requirement(the_person):
-        if not daily_serum_dosage_policy.is_owned():
-            return False
-        else:
-            return True
+        return daily_serum_dosage_policy.is_owned()
 
     def daily_serum_dosage_duty_on_move(the_person):
         if the_person.event_triggers_dict.get("daily_serum_distributed", False):
@@ -239,9 +227,7 @@ init 0 python:
         the_person.event_triggers_dict["daily_serum_distributed"] = False
 
     def bureaucratic_nightmare_duty_requirement(the_person):
-        if bureaucratic_nightmare.is_active():
-            return True
-        return False
+        return bureaucratic_nightmare.is_active()
 
     def employee_generate_infraction_requirement(the_person):
         return True
@@ -249,8 +235,7 @@ init 0 python:
     def social_media_advertising_duty_requirement(the_person):
         if not (the_person.event_triggers_dict.get("insta_known", False) or the_person.event_triggers_dict.get("dikdok_known", False) or the_person.event_triggers_dict.get("onlyfans_known", False)):
             return "No Known Social Media Account"
-        else:
-            return True
+        return True
 
     def social_media_advertising_duty_on_turn(the_person):
         effect = 0
@@ -264,8 +249,6 @@ init 0 python:
         if the_person.event_triggers_dict.get("onlyfans_known", False):
             effect += 0.1
         mc.business.hr_progress(the_person.charisma, the_person.int, work_skill, the_person.calculate_job_efficency()*effect)
-
-
 
     def auto_milk_tits(the_person, max_doses, extra_doses = 0):
         if the_person.has_role(lactating_serum_role):
@@ -299,8 +282,7 @@ init 0 python:
             return False
         elif the_person.lactation_sources <= 0:
             return "Not lactating"
-        else:
-            return True
+        return True
 
     def breast_milking_space_on_turn(the_person):
         auto_milk_tits(the_person, 1)
@@ -310,8 +292,7 @@ init 0 python:
             return False
         elif the_person.lactation_sources <= 0:
             return "Not lactating"
-        else:
-            return True
+        return True
 
     def breast_pump_2_duty_on_turn(the_person):
         auto_milk_tits(the_person, 3)
@@ -332,29 +313,17 @@ init 0 python:
 
     ## R&D DUTY FUNCTIONS ##
     def theoretical_research_duty_requirement(the_person):
-        if not theoretical_research.is_active():
-            return False
-        else:
-            return True
+        return theoretical_research.is_active()
 
     def research_journal_subscription_duty_requirement(the_person):
-        if not research_journal_subscription.is_active():
-            return False
-        else:
-            return True
+        return research_journal_subscription.is_active()
 
     def practical_experimentation_duty_requirement(the_person):
-        if not practical_experimentation.is_active():
-            return False
-        else:
-            return True
+        return practical_experimentation.is_active()
 
     ## HR DUTY FUNCTIONS ##
     def find_infractions_duty_requirement(the_person):
-        if not office_punishment.is_active():
-            return False
-        else:
-            return True
+        return office_punishment.is_active()
 
     def random_infraction_generation(the_target):
         potential_infractions = []

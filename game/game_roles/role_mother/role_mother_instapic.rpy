@@ -667,8 +667,7 @@ label mom_onlyfans_help(the_person):
 
     if not the_person.event_triggers_dict.get("onlyfans_sister_jealous", False):
         $ the_person.event_triggers_dict["onlyfans_sister_jealous"] = True
-        $ sister_instapic_jealous_event = Action("Lily instapic jealous", sister_instapic_jealous_requirement, "sister_instapic_jealous", requirement_args = day + renpy.random.randint(3,5))
-        $ lily.on_talk_event_list.append(sister_instapic_jealous_event)
+        $ lily.on_talk_event_list.append(Action("Lily instapic jealous", sister_instapic_jealous_requirement, "sister_instapic_jealous", requirement_args = day + renpy.random.randint(3,5)))
 
     $ the_person.event_triggers_dict["onlyfans_help_count"] = the_person.event_triggers_dict.get("onlyfans_help_count", 0) + 1
 

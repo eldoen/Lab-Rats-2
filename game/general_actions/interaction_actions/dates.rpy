@@ -1100,9 +1100,7 @@ label shopping_date_changing_room(the_person, new_outfit, changing_type):
     if waiting_outside:
         "You find a seat and wait while [the_person.title] changes."
         if changing_type == "overwear":
-            $ merged_outfit = new_outfit.get_copy() #By merging into the new outfit first it's shoes are taken with preference.
-            $ merged_outfit.merge_outfit(the_person.outfit)
-            $ the_person.apply_outfit(merged_outfit)
+            $ the_person.apply_outfit(new_outfit.get_copy().merge_outfit(the_person.outfit))
             "Soon enough the changing room curtain is pulled open and [the_person.possessive_title] steps out."
             $ the_person.draw_person()
             the_person "Thanks for waiting. Well, what do you think?"
@@ -1250,9 +1248,7 @@ label shopping_date_inside_changing_room(the_person, new_outfit, changing_type, 
         the_person "Okay, let's see what this looks like..."
         $ her_opinion = "likes"
         if changing_type == "overwear":
-            $ merged_outfit = new_outfit.get_copy() #By merging into the new outfit first it's shoes are taken with preference.
-            $ merged_outfit.merge_outfit(the_person.outfit)
-            $ the_person.apply_outfit(merged_outfit)
+            $ the_person.apply_outfit(new_outfit.get_copy().merge_outfit(the_person.outfit))
             "She picks up the outfit and slides it on one piece at a time."
             if new_outfit.get_overwear_slut_score() > the_person.sluttiness + 5*(the_person.get_opinion_score("skimpy outfits")):
                 $ her_opinion = "slutty"
@@ -1472,6 +1468,7 @@ label shopping_date_inside_changing_room(the_person, new_outfit, changing_type, 
         sex_slut_token = None
         blowjob_slut_token = None
         mc.change_location(old_location)
+        old_location = None
         the_person.apply_outfit()
         the_person.draw_person()
 

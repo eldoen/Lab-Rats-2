@@ -20,13 +20,18 @@ init -2 python:
 
             the_policy.apply_policy()
 
+    def get_policy_categories():
+        org_pol = organisation_policies_list + [x for x in mc.business.policy_list if x not in uniform_policies_list + recruitment_policies_list + serum_policies_list + organisation_policies_list]
+
+        return [["Uniform Policies",uniform_policies_list], ["Recruitment Policies",recruitment_policies_list], ["Serum Policies",serum_policies_list], ["Organisation Policies", org_pol]]
+
 
 screen policy_selection_screen():
     add "Paper_Background.png"
     modal True
     zorder 100
     $ tooltip = GetTooltip()
-    $ categories = [["Uniform Policies",uniform_policies_list], ["Recruitment Policies",recruitment_policies_list], ["Serum Policies",serum_policies_list], ["Organisation Policies",organisation_policies_list]]
+    default categories = get_policy_categories()
     default selected_category = categories[0] #Default to the first in our categories list
     default selected_policy = None #If not None this will have it's info displayed on the right section of the bottom pane
     #TODO: Side bar showing current and max Complience, once the Complience system is added.
