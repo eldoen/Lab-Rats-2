@@ -3028,6 +3028,7 @@ init -2 python:
 
             if not self.has_role(trance_role):
                 self.add_role(trance_role)
+                mc.listener_system.fire_event("girl_trance", the_person = self)
                 if add_to_log:
                     mc.log_event(display_name + " sinks into a trance!", "float_text_red")
                 if show_dialogue:

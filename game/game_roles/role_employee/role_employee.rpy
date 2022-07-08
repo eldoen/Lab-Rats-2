@@ -1272,7 +1272,7 @@ label promotion_after_convince(the_person, for_sex = False):
         the_person "I'm so glad we could come to an agreement [the_person.mc_title]. Now, let's talk about my new salary..."
     else:
         the_person "Excellent! I knew you would agree! Now, about my salary..."
-    $ raise_amount = __builtin__.int(the_person.calculate_job_salary() - the_person.salary)
+    $ raise_amount = __builtin__.int(the_person.calculate_job_salary() * .1)
     menu:
         "Give her a raise\n{color=#ff0000}{size=18}+$[raise_amount]/day{/size}{/color}":
             $ the_person.change_salary(raise_amount)
