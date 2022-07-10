@@ -58,25 +58,25 @@ label basic_hair_dye_unlock_label(new_trait):
 
     $ new_trait.on_turn = partial(hair_colour_change_on_turn, chosen_colour)
     $ new_trait.desc += "\n{color=" + chosen_colour.hexcode + "}" + " This is the target colour." + "{/color}"
+    $ chosen_colour = None
     return
 
 label hair_colour_change_unlock_label(new_trait):
     call screen colour_selector(title = "Pick the target hair colour.")
-    $ return_colour = _return
-    $ return_colour = Color(rgb = return_colour.rgb) #Set the alpha value to 1.0, we don't want partially transparent hair.
-    $ new_trait.on_turn = partial(hair_colour_change_on_turn, return_colour) #Generates a partially filled function
-
-
-    $ new_trait.desc += "\n{color=" + return_colour.hexcode + "}" + " This is the target colour." + "{/color}"
+    python:
+        return_colour = Color(rgb = _return.rgb) #Set the alpha value to 1.0, we don't want partially transparent hair.
+        new_trait.on_turn = partial(hair_colour_change_on_turn, return_colour) #Generates a partially filled function
+        new_trait.desc += "\n{color=" + return_colour.hexcode + "}" + " This is the target colour." + "{/color}"
+        del return_colour
     return
 
 label eye_colour_change_unlock_label(new_trait):
     call screen colour_selector(title = "Pick the target eye colour.")
-    $ return_colour = _return
-    $ return_colour = Color(rgb = return_colour.rgb) #Set the alpha value to 1.0, we don't want partially transparent hair.
-    $ new_trait.on_turn = partial(eye_colour_change_on_turn, return_colour) #Generates a partially filled function
-
-    $ new_trait.desc += "\n{color=" + return_colour.hexcode + "}" + " This is the target colour." + "{/color}"
+    python:
+        return_colour = Color(rgb = _return.rgb) #Set the alpha value to 1.0, we don't want partially transparent hair.
+        new_trait.on_turn = partial(eye_colour_change_on_turn, return_colour) #Generates a partially filled function
+        new_trait.desc += "\n{color=" + return_colour.hexcode + "}" + " This is the target colour." + "{/color}"
+        del return_colour
     return
 
 label breast_milk_serum_production_unlock_label(new_trait):

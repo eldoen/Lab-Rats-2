@@ -187,14 +187,14 @@ label sister_girlfriend_intro(the_person):
         return
 
 
-    the_person "Okay, but what about [mom.title]? I don't know how long we could hide this from her."
+    the_person "Okay, but what about [mom.fname]? I don't know how long we could hide this from her."
     the_person "I don't think she would be very happy with us being together..."
 
     $ convinced = False
     menu:
         "I'll get [mom.title]'s blessing":
             $ convinced = False #Note that this _isn't_ a success, but opens up the path to a success later.
-            mc.name "I'll talk to [mom.title]. I'm sure I can convince her that love is more important than anything."
+            mc.name "I'll talk to [mom.fname]. I'm sure I can convince her that love is more important than anything."
             the_person "I hope you're right [the_person.mc_title]. Just try not to get us in trouble, okay?"
             "She gives you a hopeful smile."
             $ mom.event_triggers_dict["sister_girlfriend_ask_blessing"] = True #This flags an action for Mom to be enabled.
@@ -245,7 +245,7 @@ label sister_girlfriend_intro(the_person):
     return
 
 label sister_girlfriend_return(the_person):
-    mc.name "I talked to [mom.title]..."
+    mc.name "I talked to [mom.fname]..."
     the_person "And? What did she say? Was she angry?"
     if the_person.event_triggers_dict.get("sister_girlfriend_mom_blessing_given", False):
         mc.name "A little, at first, but I talked it out with her and she agrees with us."
@@ -267,9 +267,9 @@ label sister_girlfriend_return(the_person):
 label sister_girlfriend_mom_blessing(the_person):
     #Action available once you've convinced lily to be your girlfriend, but she wants Mom's blessing.
     $ convinced = False
-    "[the_person.title], I have something important to tell you about me and [lily.title]."
+    mc.name "[the_person.title], I have something important to tell you about me and [lily.fname]."
     the_person "Oh? What is it?"
-    mc.name "Me and [lily.title] are in love, and we are going to be spending more time together. As a couple."
+    mc.name "Me and [lily.fname] are in love, and we are going to be spending more time together. As a couple."
     if the_person.event_triggers_dict.get("sister_girlfriend_asked_blessing_before", False):
         mc.name "I'm not joking this time, I really mean it."
 
@@ -307,10 +307,10 @@ label sister_girlfriend_mom_blessing(the_person):
             "You step close to [the_person.title] and put your hand on the back of her head."
             "You hold her by the hair and turn her to look directly at you. She holds her breath in anticipation."
             mc.name "I never needed your permission, I just need you to not cause trouble."
-            mc.name "Me and [lily.title] are together now, and you need to accept that."
+            mc.name "Me and [lily.fname] are together now, and you need to accept that."
             "You feel [the_person.possessive_title] try and nod, but you don't let her head move. Her eyes are wide, still fixed on yours."
             the_person "Of course. You can do what ever you want."
-            mc.name "Thank you, I'm glad you understand. If [lily.title] asks how you feel, what are you going to tell her?"
+            mc.name "Thank you, I'm glad you understand. If [lily.fname] asks how you feel, what are you going to tell her?"
             the_person "... That your happiness is the most important thing in the world. If she makes you happy, that's all that matters."
             "You let go of her hair. She lets out a deep breath, but doesn't immediately relax."
             mc.name "I'm going to go tell her the good news then."
@@ -323,9 +323,9 @@ label sister_girlfriend_mom_blessing(the_person):
             mc.name "Hahah, oh man [the_person.title], you should have seen your face!"
             the_person "I... excuse me?"
             if the_person.event_triggers_dict.get("sister_girlfriend_asked_blessing_before", False):
-                mc.name "I'm joking again, obviously! Me and [lily.title] wondered if you'd fall for it twice!"
+                mc.name "I'm joking again, obviously! Me and [lily.fname] wondered if you'd fall for it twice!"
             else:
-                mc.name "I was just joking, obviously. Me and [lily.title] were curious how you would react."
+                mc.name "I was just joking, obviously. Me and [lily.fname] were curious how you would react."
             $ the_person.change_happiness(-10)
             $ the_person.change_love(-1)
             the_person "I don't think that's a very funny joke [the_person.mc_title]."

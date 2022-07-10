@@ -266,6 +266,9 @@ init 1:
                 sluttiness = 0, obedience = 80, happiness = 100, love = -20,
                 work_experience = 4,type="story")
 
+            # remove her base outfit (Accessories)
+            city_rep.wardrobe.remove_outfit(city_rep_base)
+
             city_rep.add_role(city_rep_role)
             city_rep.change_job(city_rep_job)
             city_rep.generate_home().add_person(city_rep)

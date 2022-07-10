@@ -49,7 +49,7 @@ init -2 python:
 
         def has_destination(self, the_place):
             for x in range(0,4):
-                if self.day_plan[x] == the_place:
+                if self.day_plan[x] == the_place.identifier:
                     return True
             return False
 

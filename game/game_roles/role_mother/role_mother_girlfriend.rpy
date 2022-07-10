@@ -42,7 +42,7 @@ label mom_girlfriend_intro(the_person):
         "I can provide for us!":
             if not the_person.event_triggers_dict.get("mom_girlfriend_provided_cash", False):
                 mc.name "Because we make an amazing team, and I want to contribute even more."
-                mc.name "You've worked your whole life to take care of me and [lily.title]. When we're together I can help take care of both of you."
+                mc.name "You've worked your whole life to take care of me and [lily.fname]. When we're together I can help take care of both of you."
                 "[the_person.possessive_title] seems unconvinced, but doesn't immediately turn you down."
                 mc.name "Come on [the_person.title], let me prove it. Are there any bills we need to pay?"
                 the_person "I suppose there is one thing that I certainly don't have the money for right now... but it's expensive!"
@@ -160,13 +160,13 @@ label mom_girlfriend_intro(the_person):
     if not convinced:
         return
 
-    the_person "I can't believe we might actually be doing this! What are we going to tell [lily.title]?"
+    the_person "I can't believe we might actually be doing this! What are we going to tell [lily.fname]?"
     the_person "I couldn't do this if she doesn't approve. I won't make her life difficult just for my own happiness."
     $ convinced = False
     menu:
         "I'll talk to her and explain everything":
             $ convinced = False #NOTE: this isn't a direct success, but it does enable other events
-            mc.name "I'll talk to [lily.title] and explain everything. I'm sure when she hears it all laid out she'll be happy for us."
+            mc.name "I'll talk to [lily.fname] and explain everything. I'm sure when she hears it all laid out she'll be happy for us."
             the_person "Well... if you think that will work, okay. I hope you're as convincing with her as you were with me."
             $ lily.event_triggers_dict["mom_girlfriend_ask_blessing"] = True
             $ the_person.event_triggers_dict["mom_girlfriend_waiting_for_blessing"] = True
@@ -179,10 +179,10 @@ label mom_girlfriend_intro(the_person):
                 the_person "I hadn't thought about that..."
             else:
                 $ the_person.event_triggers_dict["sister_girlfriend_mom_knows"] = True
-                the_person "You're dating [lily.title]? Oh my god, for how long?"
+                the_person "You're dating [lily.fname]? Oh my god, for how long?"
                 mc.name "A while, but that's not important now. She doesn't mean nearly as much to me as you do."
-            "Vren" "The harem variant of this relationship is still under construction. It will be added in a future update!"
-            "Vren" "Until then enjoy having both girls as your girlfriend!"
+            # "Vren" "The harem variant of this relationship is still under construction. It will be added in a future update!"
+            # "Vren" "Until then enjoy having both girls as your girlfriend!"
             the_person "Well, I suppose if she's willing to date you she won't have any problems with me doing it too."
             the_person "I'm not worried, there's no replacement for a mother's love."
 
@@ -191,7 +191,7 @@ label mom_girlfriend_intro(the_person):
 
         "She's too dumb to notice" if lily.int < 2:
             $ convinced = True
-            mc.name "I don't think we'll have any issues with her. [lily.title]'s... well, she's not terribly hard to trick."
+            mc.name "I don't think we'll have any issues with her. [lily.fname]'s... well, she's not terribly hard to trick."
             mc.name "As long as she doesn't catch us fucking I doubt she'll notice anything has changed."
             the_person "[the_person.mc_title], do you really have to be so crude?"
             the_person "... But you do have a point. Just a little discretion on our part and we won't have to bother her at all."
@@ -212,7 +212,7 @@ label mom_girlfriend_intro(the_person):
 
 label mom_girlfriend_return(the_person):
     $ convinced_lily = the_person.event_triggers_dict.get("mom_girlfriend_sister_blessing_given", False)
-    mc.name "I had a chat with [lily.title]..."
+    mc.name "I had a chat with [lily.fname]..."
     the_person "Oh? What did she say?"
     if convinced_lily:
         mc.name "She was a little confused at first, of course, but she's come around."

@@ -1487,6 +1487,10 @@ init -2 python:
                 self._home = None
 
         @property
+        def fname(self):
+            return self.create_formatted_title(self.name)
+
+        @property
         def work(self):
             if not hasattr(self, "_work"):
                 self._work = None

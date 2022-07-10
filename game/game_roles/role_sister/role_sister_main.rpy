@@ -336,9 +336,9 @@ label sister_offer_to_hire(the_person):
         mc.name "Why not? Do you really think your English degree is going to get you a better job?"
         "[the_person.possessive_title] pouts."
         the_person "Shut up. Mom would never let me drop out."
-        mc.name "Is that the only thing stopping you? If I convince [mom.title] you'll drop out and come work for me?"
+        mc.name "Is that the only thing stopping you? If I convince [mom.fname] you'll drop out and come work for me?"
         "She rolls her eyes dramatically, but takes a few moments to think."
-        the_person "I don't know... Maybe. It doesn't matter, you'll never convince [mom.title]."
+        the_person "I don't know... Maybe. It doesn't matter, you'll never convince [mom.fname]."
         mc.name "You leave that to me. I can be very convincing."
         if the_person.event_triggers_dict.get("dropout_convince_progress", 0) == 0:
             $ add_sister_dropout_convince_action(the_person)
@@ -414,10 +414,10 @@ label hire_sister_assign_department(the_person):
     return
 
 label mother_sister_dropout_convince_label(the_person):
-    mc.name "I need to talk to you about [lily.name]."
+    mc.name "I need to talk to you about [lily.fname]."
     "She frowns, looking concerned."
     the_person "What do you mean? Is everything okay?"
-    mc.name "It's fine, but [lily.name] wants to drop out of school."
+    mc.name "It's fine, but [lily.fname] wants to drop out of school."
     the_person "She... WHAT?"
     "[the_person.possessive_title] shakes her head in immediate refusal."
     the_person "Nonsense! Her education is so important, she can't abandon that just because it's difficult!"
@@ -439,7 +439,7 @@ label mother_sister_dropout_convince_label(the_person):
             pass
 
         "We'll all be working together" if the_person.has_role(employee_role):
-            mc.name "We'll all be working together if [lily.name] comes to work for me."
+            mc.name "We'll all be working together if [lily.fname] comes to work for me."
             mc.name "Wouldn't that be great? The whole family, working as a team?"
             the_person "It would be nice to see both of you all day..."
             mc.name "She can go back to school in a few years. I just really need the help right now."
@@ -469,7 +469,7 @@ label mother_sister_dropout_convince_label(the_person):
 
         "You need to let this happen" if the_person.obedience >= 150:
             mc.name "I'm sorry, but what you care doesn't really matter here [the_person.title]."
-            mc.name "I need [lily.name] to work for me, which means I need you to get out of the way and let it happen."
+            mc.name "I need [lily.fname] to work for me, which means I need you to get out of the way and let it happen."
             the_person "But what about her education... Her future?"
             mc.name "She can go back to school in a few years. The experience will look great on her resume."
             mc.name "Now I'm going to go tell her you're okay with this, and you aren't going to argue. Understood?"

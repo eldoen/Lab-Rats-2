@@ -67,7 +67,7 @@ label mom_instapic_setup_intro(the_person): # Tells you that the instapic thing 
     the_person "Oh, just the man I was hoping for! Can you help me?"
     "She doesn't wait for a response and hurries over, pressing her phone into your hands."
     mc.name "Sure [the_person.title], what's the problem?"
-    the_person "Well, I wanted to see some of those pictures that we took with [lily.title]."
+    the_person "Well, I wanted to see some of those pictures that we took with [lily.fname]."
     the_person "I went to that Insta-thing site, but it won't let me see them!"
     "You look at her phone and see the problem immediately; without an account she's stuck on [lily.possessive_title]'s public page."
     mc.name "It looks like you'll need to set up your own account before you can see them."
@@ -191,12 +191,12 @@ label mom_instapic_setup(the_person, intro_finished = False): # Sets up her Inst
                 #TODO: Have this trigger future events where people know who she is on sight.
                 "You open up her camera app and point the phone at her. She holds her hand in front of her face."
                 the_person "I don't know if I want people on the internet to know what I look like!"
-                mc.name "You've already been in [lily.title]'s pictures, what's there to hide?"
+                mc.name "You've already been in [lily.fname]'s pictures, what's there to hide?"
                 the_person "Well... Okay, just make sure I don't look silly."
                 "She lowers her hand and smiles meekly for the camera."
 
     "You take the shot and submit it. Her phone chimes happily as you complete the account creation."
-    mc.name "There we go, that's it! Now I'll subscribe you to [lily.title]'s account and you can see all of your pictures together."
+    mc.name "There we go, that's it! Now I'll subscribe you to [lily.fname]'s account and you can see all of your pictures together."
     mc.name "If you want you can event start posting your own pictures too."
     the_person "I don't know if I'm brave enough for that, but I'll think about it!"
     $ mc.change_locked_clarity(5)
@@ -220,7 +220,7 @@ label mom_instapic_alt_intro(the_person): #Triggers if she's ended up with an In
     $ the_person.draw_person()
     the_person "[the_person.mc_title], I was wondering if I could ask a little favour from you..."
     mc.name "Of course [the_person.title], what do you need?"
-    the_person "I had so much taking those pictures with you and [lily.title], I want to post some stuff like that to my own InstaPic page."
+    the_person "I had so much taking those pictures with you and [lily.fname], I want to post some stuff like that to my own InstaPic page."
     if the_person.event_triggers_dict.get("insta_known", False):
         pass
     else:
@@ -232,7 +232,7 @@ label mom_instapic_alt_intro(the_person): #Triggers if she's ended up with an In
         $ the_person.event_triggers_dict["insta_known"] = True
 
     the_person "I want to start taking better pictures; ones where I'm not doing it all in a mirror or holding my phone out."
-    the_person "Some people use tripods and other gizmos, but I since you're around and you have all this experience helping [lily.title]..."
+    the_person "Some people use tripods and other gizmos, but I since you're around and you have all this experience helping [lily.fname]..."
     "She trails off with a smile."
     mc.name "I get it. You need me to be your camera man."
     the_person "Only when you have the time, and it would mean a lot to me!"
@@ -682,7 +682,7 @@ label sister_instapic_jealous(the_person): #Triggers 3-5 days after you've helpe
     mc.name "Hey [the_person.title]."
     the_person "Hi..."
     "She barely glances up from her phone."
-    the_person "Have you looked at [mom.title]'s InstaPic account?"
+    the_person "Have you looked at [mom.fname]'s InstaPic account?"
     menu:
         "Yeah, I check it all the time":
             mc.name "Yeah, I check it all the time. Why?"

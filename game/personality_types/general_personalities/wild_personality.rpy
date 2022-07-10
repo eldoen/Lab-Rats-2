@@ -1041,30 +1041,30 @@ label wild_sex_watch(the_person, the_sex_person, the_position):
         the_person "Ugh, why don't you two get a room or something, nobody wants to see this."
         $ the_person.change_obedience(-2)
         $ the_person.change_happiness(-1)
-        "[title] looks away while you and [the_sex_person.name] [the_position.verb]."
+        "[title] looks away while you and [the_sex_person.fname] [the_position.verb]."
 
     elif the_person.sluttiness < the_position.slut_requirement - 10:
         $ the_person.draw_person()
         the_person "Could you two at least keep it down? This is fucking ridiculous."
         $ the_person.change_happiness(-1)
-        "[title] tries to avert her gaze and ignore you and [the_sex_person.name] [the_position.verb]."
+        "[title] tries to avert her gaze and ignore you and [the_sex_person.fname] [the_position.verb]."
 
     elif the_person.sluttiness < the_position.slut_requirement:
         $ the_person.draw_person()
-        the_person "You're certainly feeling bold today [the_sex_person.name]. At least it looks like you're having a good time..."
+        the_person "You're certainly feeling bold today [the_sex_person.fname]. At least it looks like you're having a good time..."
         $ the_person.change_slut(1, 30)
-        "[title] watches for a moment, then turns away while you and [the_sex_person.name] keep [the_position.verbing]."
+        "[title] watches for a moment, then turns away while you and [the_sex_person.fname] keep [the_position.verbing]."
 
     elif the_person.sluttiness >= the_position.slut_requirement and the_person.sluttiness < the_position.slut_cap:
         $ the_person.draw_person()
         the_person "Oh wow that's hot. You don't mind if I watch, do you?"
         $ the_person.change_slut(1, 50)
-        "[title] watches you and [the_sex_person.name] [the_position.verb]."
+        "[title] watches you and [the_sex_person.fname] [the_position.verb]."
 
     else:
         $ the_person.draw_person(emotion = "happy")
-        the_person "Come on [the_person.mc_title], [the_sex_person.name] is going to fall asleep at this rate! You're going to have to give her a little more than that."
-        "[title] watches eagerly while you and [the_sex_person.name] [the_position.verb]."
+        the_person "Come on [the_person.mc_title], [the_sex_person.fname] is going to fall asleep at this rate! You're going to have to give her a little more than that."
+        "[title] watches eagerly while you and [the_sex_person.fname] [the_position.verb]."
     return
 
 label wild_being_watched(the_person, the_watcher, the_position):
@@ -1072,7 +1072,7 @@ label wild_being_watched(the_person, the_watcher, the_position):
         #They agree you should give it to her harder
         the_person "Come on [the_person.mc_title], be rough with me. I can handle it!"
         $ the_person.change_arousal(1)
-        "[the_person.title] seems turned on by [the_watcher.name] watching you and her [the_position.verb]."
+        "[the_person.title] seems turned on by [the_watcher.fname] watching you and her [the_position.verb]."
 
     elif the_person.sluttiness >= the_position.slut_cap and the_watcher.sluttiness < the_position.slut_requirement:
         #She's super slutty and doesn't care what people think.
@@ -1080,29 +1080,29 @@ label wild_being_watched(the_person, the_watcher, the_position):
 
     elif the_person.sluttiness >= the_position.slut_cap and the_watcher.sluttiness < the_position.slut_cap:
         #She's super slutty and encourages the watcher to be slutty.
-        the_person "Oh god, you need to get a little of this yourself, [the_watcher.name]!"
+        the_person "Oh god, you need to get a little of this yourself, [the_watcher.fname]!"
         $ the_person.change_arousal(1)
-        "[the_person.title] seems turned on by [the_watcher.name] watching you and her [the_position.verb]."
+        "[the_person.title] seems turned on by [the_watcher.fname] watching you and her [the_position.verb]."
 
     elif the_person.sluttiness < the_position.slut_cap and the_watcher.sluttiness >= the_position.slut_cap:
         #She's into it and encouraged by the slut watching her.
-        the_person "[the_watcher.name], I'm giving him all I can right now. Any more and he's going to break me!"
+        the_person "[the_watcher.fname], I'm giving him all I can right now. Any more and he's going to break me!"
         $ the_person.change_arousal(1)
-        "[the_person.title] seems turned on by [the_watcher.name] watching you and her [the_position.verb]."
+        "[the_person.title] seems turned on by [the_watcher.fname] watching you and her [the_position.verb]."
 
     elif the_person.sluttiness < the_position.slut_cap and the_watcher.sluttiness < the_position.slut_requirement:
         #She's into it but shamed by the prude watching her.
         the_person "Fuck, maybe we should go somewhere a little quieter..."
         $ the_person.change_arousal(-1)
         $ the_person.change_slut(-1)
-        "[the_person.title] seems uncomfortable with [the_watcher.name] nearby."
+        "[the_person.title] seems uncomfortable with [the_watcher.fname] nearby."
 
     else: #the_person.sluttiness < the_position.slut_cap and the_watcher.sluttiness < the_position.slut_cap:
         #They're both into it but not fanatical about it.
-        the_person "Ah, now this is a party! Maybe when he's done you can tap in and take a turn [the_watcher.name]!"
+        the_person "Ah, now this is a party! Maybe when he's done you can tap in and take a turn [the_watcher.fname]!"
         $ the_person.change_arousal(1)
         $ the_person.change_slut(1, 60)
-        "[the_person.title] seems more comfortable [the_position.verbing] you with [the_watcher.name] around."
+        "[the_person.title] seems more comfortable [the_position.verbing] you with [the_watcher.fname] around."
 
     return
 
@@ -1570,7 +1570,7 @@ label wild_anal_sex_taboo_break(the_person):
             the_person "Oh fuck..."
         else:
             "She closes her eyes and talks quietly to herself."
-            the_person "Whew, deep breaths [the_person.name]. You can do this..."
+            the_person "Whew, deep breaths [the_person.fname]. You can do this..."
             mc.name "Are you okay?"
             the_person "Yeah, of course. I'm just... a little nervous. Fuck, I don't normally feel like this."
             "She laughs and shakes her head."

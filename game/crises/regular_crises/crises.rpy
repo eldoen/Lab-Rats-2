@@ -1750,7 +1750,7 @@ label work_chat_crisis_label:
                             "[the_person.possessive_title] wiggles her butt at you."
                             the_person "I guess everyone's already had a good look at my ass anyways..."
                             $the_person.draw_person()
-                            "[the_person.name] stands up suddenly and turns back towards you."
+                            "[the_person.possessive_title] stands up suddenly and turns back towards you."
                             the_person "I'm sorry, I don't know what came over me [the_person.mc_title]. I'll just... I'll just sit down again."
                         $ mc.change_locked_clarity(10)
                         $ top_clothing = None
@@ -2885,7 +2885,7 @@ label daughter_work_crisis_label():
         "[the_person.title] hands over a printed out resume and waits nervously for you to look it over."
 
     menu:
-        "Look at the resume for [the_person.name]'s daughter":
+        "Look at the resume for [the_person.fname]'s daughter":
             pass
 
         "Tell her you aren't hiring":
@@ -2897,7 +2897,7 @@ label daughter_work_crisis_label():
                 "She puts her arms behind her back and puffs out her chest in a clear attempt to show off her tits."
                 $ mc.change_locked_clarity(5)
                 menu:
-                    "Look at the resume for [the_person.name]'s daughter":
+                    "Look at the resume for [the_person.fname]'s daughter":
                         "Convinced, you start to read through the resume."
                         $ promised_sex = True
 

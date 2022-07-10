@@ -410,7 +410,7 @@ label aunt_kissing_taboo_break(the_person):
     "[the_person.possessive_title] sighs. You can see her resolve breaking down."
     the_person "I suppose it's better you experiment with someone who has experience and who you can trust."
     "She gives you a stern look."
-    the_person "But you can't tell my sister about this, understood? [cousin.title] either. This is just between you and me."
+    the_person "But you can't tell my sister about this, understood? [cousin.fname] either. This is just between you and me."
     mc.name "Of course [the_person.title]. It will be our little secret."
     the_person "Alright, come here and let's see what we're working with..."
     return

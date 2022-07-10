@@ -316,16 +316,16 @@ label friends_help_friends_be_sluts_label():
                 person_two "[person_two.mc_title], we were just... I was just... How much did you hear of that?"
                 person_two "Oh no, this is so embarrassing!"
                 $ the_group.draw_person(person_one)
-                person_one "[person_two.name], relax. Sorry [person_one.mc_title], we were just chatting about some girl stuff."
+                person_one "[person_two.fname], relax. Sorry [person_one.mc_title], we were just chatting about some girl stuff."
                 person_one "She doesn't have much experience, so I was just explaining..."
                 $ the_group.draw_person(person_two)
-                person_two "[person_one.name]! [person_two.mc_title] doesn't need to hear about this."
+                person_two "[person_one.fname]! [person_two.mc_title] doesn't need to hear about this."
                 mc.name "This isn't highschool, I'm not going to punish you for being bad girls and talking about sex."
                 $ the_group.draw_person(person_one)
                 person_one "Well maybe she wants to be punished a little. Maybe a quick spanking?"
                 "[person_one.possessive_title] slaps [person_two.title]'s butt."
                 $ the_group.draw_person(person_two)
-                person_two "Hey! That's... Come on [person_one.name], we should get back to work. Goodbye [person_one.mc_title]."
+                person_two "Hey! That's... Come on [person_one.fname], we should get back to work. Goodbye [person_one.mc_title]."
                 $ clear_scene()
                 $ person_one.draw_person()
                 "She hurries out of the room, blushing."
@@ -349,16 +349,16 @@ label friends_help_friends_be_sluts_label():
                     person_two "[person_two.mc_title]! I was... We were..."
                     $ the_group.draw_person(person_one)
                     "[person_one.title] rolls her eyes and speaks up."
-                    person_one "I was just showing [person_two.name] a video I found last night. I thought she might be into it."
+                    person_one "I was just showing [person_two.fname] a video I found last night. I thought she might be into it."
                     person_one "Do you want to see?"
                     $ the_group.draw_person(person_two)
-                    person_two "[person_one.name]! I'm sorry [person_two.mc_title], I know this isn't what we should be doing here."
+                    person_two "[person_one.fname]! I'm sorry [person_two.mc_title], I know this isn't what we should be doing here."
                     mc.name "Why would I care? You're taking a break and relaxing the way you want to."
                     $ mc.change_locked_clarity(5)
                     "The moans from the phone grow louder. You notice [person_one.possessive_title] has turned her attention back to the screen."
-                    mc.name "[person_one.name] seems to have the right idea."
+                    mc.name "[person_one.fname] seems to have the right idea."
                     $ the_group.draw_person(person_one)
-                    person_one "Yeah, just relax [person_two.name]. You said you had something you wanted to show me too, right?"
+                    person_one "Yeah, just relax [person_two.fname]. You said you had something you wanted to show me too, right?"
                     "She hands the phone to [person_two.title], who looks at you and takes it hesitantly."
                     $ the_group.draw_person(person_two)
                     person_two "You're sure?"
@@ -378,7 +378,7 @@ label friends_help_friends_be_sluts_label():
                     $ the_group.draw_person(person_two)
                     person_two "Hi [person_two.mc_title], we were just taking our break together."
                     "The moaning on the phone grows louder and [person_two.title] seems suddenly self conscious."
-                    person_two "I hope you don't mind that we're watching... [person_one.name] just wanted to show me something quickly."
+                    person_two "I hope you don't mind that we're watching... [person_one.fname] just wanted to show me something quickly."
                     mc.name "I certainly don't mind."
                     $ the_group.draw_person(person_two)
                     person_one "I told you it was fine. I found this last night and thought it was so hot. Do you want to take a look, [person_one.mc_title]?"
@@ -392,7 +392,7 @@ label friends_help_friends_be_sluts_label():
                     $ mc.change_locked_clarity(10)
                     "After a few minutes the video ends and you've discovered a few things about [person_one.title]'s sexual preferences."
                     $ the_group.draw_person(person_two)
-                    person_two "You're right [person_one.name], that was hot. Can you send that to me for later?"
+                    person_two "You're right [person_one.fname], that was hot. Can you send that to me for later?"
                     $ the_group.draw_person(person_one)
                     person_one "Sure thing. We should be getting to work before [person_one.mc_title] gets too distracted though."
                     $ mc.change_locked_clarity(5)
@@ -419,7 +419,7 @@ label friends_help_friends_be_sluts_label():
                     person_one "I can't wait to get home, I've been feeling so worked up all day I just want to get naked and have some me time."
                     person_one "I got a new vibrator and it's mind blowing. I want to be riding it all day long now."
                     $ the_group.draw_person(person_two)
-                    person_two "[person_one.name], you're such a slut!"
+                    person_two "[person_one.fname], you're such a slut!"
                     $ the_group.draw_person(person_one)
                     person_one "Oh come on, so are you. Wouldn't you like to be at home right now with a vibe pressed up against your clit?"
                     $ the_group.draw_person(person_two)
@@ -477,7 +477,7 @@ label friends_help_friends_be_sluts_label():
 
                     "[person_one.possessive_title] notices you at the door."
                     $ the_group.draw_person(person_two)
-                    person_two "Ah, hi... We were just getting back to work, right [person_one.name]?"
+                    person_two "Ah, hi... We were just getting back to work, right [person_one.fname]?"
                     $ the_group.draw_person(person_one)
                     person_one "Yeah, in a moment. [person_one.mc_title], you're just who we need right now to settle this for us."
                     mc.name "Settle what?"
@@ -486,12 +486,12 @@ label friends_help_friends_be_sluts_label():
                     $ mc.change_locked_clarity(10)
                     person_two "Oh god, what are you getting us into."
                     menu:
-                        "[person_one.name] has nicer tits": #She's already slutty, but gets a love boost
+                        "[person_one.fname] has nicer tits": #She's already slutty, but gets a love boost
                             "You take a moment to consider, then nod towards [person_one.title]."
                             if Person.rank_tits(person_one.tits) < Person.rank_tits(person_two.tits):
-                                mc.name "I've got to give it to [person_one.name]. I like them perky."
+                                mc.name "I've got to give it to [person_one.fname]. I like them perky."
                             else:
-                                mc.name "I've got to give it to [person_one.name]. I like them big."
+                                mc.name "I've got to give it to [person_one.fname]. I like them big."
                             $ person_one.change_happiness(5)
                             $ person_one.change_love(1 + person_one.get_opinion_score("showing her tits"))
                             $ the_group.draw_person(person_two)
@@ -499,13 +499,13 @@ label friends_help_friends_be_sluts_label():
                             $ the_group.draw_person(person_one)
                             person_one "I suppose. Thanks for the help [person_one.mc_title]."
 
-                        "[person_two.name] has nicer tits": # She gets a sluttiness boost along with a small love boost.
+                        "[person_two.fname] has nicer tits": # She gets a sluttiness boost along with a small love boost.
                             if Person.rank_tits(person_one.tits) > Person.rank_tits(person_two.tits):
-                                mc.name "I've got to give it to [person_two.name]. I like them perky."
+                                mc.name "I've got to give it to [person_two.fname]. I like them perky."
                             else:
-                                mc.name "I've got to give it to [person_two.name]. I like them big."
+                                mc.name "I've got to give it to [person_two.fname]. I like them big."
                             $ the_group.draw_person(person_one)
-                            person_one "Exactly! You're just going to have to accept that you're smoking hot [person_two.name]."
+                            person_one "Exactly! You're just going to have to accept that you're smoking hot [person_two.fname]."
                             $ the_group.draw_person(person_two)
                             $ person_two.change_slut(2 + person_one.get_opinion_score("showing her tits"), 50)
                             $ person_two.change_love(1 + person_one.get_opinion_score("showing her tits"))
@@ -520,7 +520,7 @@ label friends_help_friends_be_sluts_label():
                             if person_one.outfit.tits_visible():
                                 # If her tits are already out then it must be her friend who has a shirt on.
                                 "[person_one.title] thrusts her chest forward and displays her tits proudly."
-                                person_one "Well, here are mine. Come on [person_two.name], whip 'em out!"
+                                person_one "Well, here are mine. Come on [person_two.fname], whip 'em out!"
                             else:
                                 person_one "Of course."
                                 $ strip_list = person_one.outfit.get_half_off_to_tits_list()
@@ -581,7 +581,7 @@ label friends_help_friends_be_sluts_label():
                                         "She starts to strip down, starting with her [the_item.display_name]."
                                     $ person_two.change_obedience(1)
                                 else:
-                                    person_two "I can't do this, [person_one.name]! You're crazy!"
+                                    person_two "I can't do this, [person_one.fname]! You're crazy!"
                                     $ the_group.draw_person(person_one)
                                     "[person_one.title] jiggles her tits."
                                     person_one "Look at me, I'm doing it! Here, let me help you."
@@ -600,22 +600,22 @@ label friends_help_friends_be_sluts_label():
                                 else:
                                     "When she has her tits out she puts her hands on her hips and smiles at you, exposed and ready for your inspection."
                                     $ the_group.draw_person(person_one)
-                                    person_one "That's it, look at these puppies [person_one.name]..."
+                                    person_one "That's it, look at these puppies [person_one.fname]..."
                                     $ the_group.draw_person(person_two)
                                     "She gets behind her friend and cups her breasts, giving them a squeeze."
 
                                 $ person_one.break_taboo("bare_tits")
-                                person_two "Hey, go easy on them! Well then [person_two.mc_title], who's your pick? Me or [person_one.name]?"
+                                person_two "Hey, go easy on them! Well then [person_two.mc_title], who's your pick? Me or [person_one.fname]?"
                                 $ strip_list = None
 
                             $ mc.change_locked_clarity(10)
                             menu:
-                                "[person_one.name] has nicer tits": #She's already slutty, but gets a love boost
+                                "[person_one.fname] has nicer tits": #She's already slutty, but gets a love boost
                                     "You take a moment to consider both of their naked racks, then nod towards [person_one.title]."
                                     if Person.rank_tits(person_one.tits) < Person.rank_tits(person_two.tits):
-                                        mc.name "I've got to give it to [person_one.name]. I like them perky."
+                                        mc.name "I've got to give it to [person_one.fname]. I like them perky."
                                     else:
-                                        mc.name "I've got to give it to [person_one.name]. I like them big."
+                                        mc.name "I've got to give it to [person_one.fname]. I like them big."
                                     $ the_group.draw_person(person_one)
                                     $ person_one.change_happiness(5)
                                     $ person_one.change_love(1 + person_one.get_opinion_score("showing her tits"))
@@ -627,11 +627,11 @@ label friends_help_friends_be_sluts_label():
                                     $ the_group.draw_person(person_one)
                                     person_two "Uh huh. Come on, you've had your fun. We need to get back to work."
 
-                                "[person_two.name] has nicer tits": # She gets a sluttiness boost along with a small love boost.
+                                "[person_two.fname] has nicer tits": # She gets a sluttiness boost along with a small love boost.
                                     if Person.rank_tits(person_one.tits) > Person.rank_tits(person_two.tits):
-                                        mc.name "I've got to give it to [person_two.name]. I like them perky."
+                                        mc.name "I've got to give it to [person_two.fname]. I like them perky."
                                     else:
-                                        mc.name "I've got to give it to [person_two.name]. I like them big."
+                                        mc.name "I've got to give it to [person_two.fname]. I like them big."
                                     $ the_group.draw_person(person_two)
                                     person_two "Well, at least I didn't get naked just to lose."
                                     $ person_two.change_slut(2 + person_one.get_opinion_score("showing her tits"), 50)
@@ -647,16 +647,16 @@ label friends_help_friends_be_sluts_label():
                             $ person_two.review_outfit()
 
                         "Punish them for inappropriate behaviour" if office_punishment.is_active():
-                            mc.name "[person_one.name], [person_two.name], this is completely inappropriate, even if you're on your break."
+                            mc.name "[person_one.fname], [person_two.fname], this is completely inappropriate, even if you're on your break."
                             mc.name "I don't have any choice but to record this for disciplinary action later."
                             $ person_one.add_infraction(Infraction.inappropriate_behaviour_factory())
                             $ person_two.add_infraction(Infraction.inappropriate_behaviour_factory())
                             $ the_group.draw_person(person_one)
                             person_one "Really? I..."
                             $ the_group.draw_person(person_two)
-                            person_two "Don't get us in any more trouble [person_one.name]. Sorry [person_two.mc_title], we'll get back to work right away."
+                            person_two "Don't get us in any more trouble [person_one.fname]. Sorry [person_two.mc_title], we'll get back to work right away."
                             $ the_group.draw_person(person_one)
-                            person_one "Ugh, whatever. Come on [person_two.name], let's go."
+                            person_one "Ugh, whatever. Come on [person_two.fname], let's go."
                             "They turn and leave the room together."
 
 
@@ -665,12 +665,12 @@ label friends_help_friends_be_sluts_label():
                     "You're thinking about taking a break and stretching your legs when you see [person_one.title] and [person_two.title] through your office door."
                     "They're talking quietly with each other, occasionally glancing in your direction. When [person_two.title] sees you watching she looks away quickly."
                     "[person_one.title] stands up and grabs her friend's hand, pulling her out of her chair. They walk over to you together."
-                    person_one "[person_one.mc_title], could me and [person_two.name] talk to you privately for a moment?"
+                    person_one "[person_one.mc_title], could me and [person_two.fname] talk to you privately for a moment?"
                     if person_two.effective_sluttiness("sucking_cock") < 50: #She's embarrassed, but wants to do it
                         $ the_group.draw_person(person_two)
                         person_two "It's nothing important, it could probably wait until later. In fact, never mind at all."
                         $ the_group.draw_person(person_one)
-                        person_one "[person_two.name], I know you want to do this. Don't chicken out now."
+                        person_one "[person_two.fname], I know you want to do this. Don't chicken out now."
                         mc.name "I can spare a moment. Close the door."
                         "[person_one.title] closes the door, then stands behind [person_two.title]."
                         mc.name "So, what can I help you two with?"
@@ -679,14 +679,14 @@ label friends_help_friends_be_sluts_label():
                         $ the_group.draw_person(person_one)
                         person_one "She's very nervous, let me help her out."
                         if person_two.sex_record.get("Blowjobs", 0) == 0:
-                            person_one "[person_two.name] has always wanted to suck your cock, but was too scared to ask."
+                            person_one "[person_two.fname] has always wanted to suck your cock, but was too scared to ask."
                         else:
-                            person_two "[person_one.name] really liked sucking your cock and wants to do it again, but was too scared to ask."
+                            person_two "[person_one.fname] really liked sucking your cock and wants to do it again, but was too scared to ask."
                         $ the_group.draw_person(person_two)
                         $ mc.change_locked_clarity(20)
                         if person_two.get_opinion_score("giving blowjobs") < 0:
                             $ person_two.discover_opinion("giving blowjobs")
-                            person_two "I actually don't like giving blowjobs, but [person_one.name] says it's an important skill for a woman to have."
+                            person_two "I actually don't like giving blowjobs, but [person_one.fname] says it's an important skill for a woman to have."
                         else:
                             "[person_two.possessive_title] nods, blushing intensely."
                             person_two "I swear I don't normally do things like this..."
@@ -697,7 +697,7 @@ label friends_help_friends_be_sluts_label():
                         mc.name "I can spare a moment. Close the door."
                         "[person_one.title] closes the door, then stands behind [person_two.title]."
                         mc.name "So, what can I help you two with?"
-                        person_two "I was talking to [person_one.name] and we started talking about your cock..."
+                        person_two "I was talking to [person_one.fname] and we started talking about your cock..."
                         $ mc.change_locked_clarity(20)
                         if person_two.sex_record.get("Blowjobs", 0) > 0:
                             person_two "It brought back some good memories, so I was hoping you'd let me suck you off."
@@ -706,7 +706,7 @@ label friends_help_friends_be_sluts_label():
 
 
                     menu:
-                        "Let [person_two.name] give you a blowjob":
+                        "Let [person_two.fname] give you a blowjob":
                             mc.name "I'm not about to say no to an offer like that."
                             $ the_group.draw_person(person_one)
                             if person_one.has_role(girlfriend_role) or person_one.has_role(affair_role):
@@ -728,7 +728,7 @@ label friends_help_friends_be_sluts_label():
                                 "You sit down in your office chair, thoroughly drained. [person_two.title] smiles, seemingly proud of her work."
                                 mc.name "So, was that everything you wanted it to be?"
                                 $ person_two.draw_person()
-                                person_two "It was fun, I can't wait to tell [person_one.name] all about it."
+                                person_two "It was fun, I can't wait to tell [person_one.fname] all about it."
 
                             else:
                                 "You sit down in your office chair and sigh."
@@ -751,7 +751,7 @@ label friends_help_friends_be_sluts_label():
 
 
                         "Punish them for inappropriate behaviour" if office_punishment.is_active():
-                            mc.name "[person_one.name], [person_two.name], I expected better from both of you."
+                            mc.name "[person_one.fname], [person_two.fname], I expected better from both of you."
                             mc.name "This is completely inappropriate, I'm going to have to write both of you up for this."
                             $ person_one.add_infraction(Infraction.inappropriate_behaviour_factory())
                             $ person_two.add_infraction(Infraction.inappropriate_behaviour_factory())
@@ -762,7 +762,7 @@ label friends_help_friends_be_sluts_label():
                             $ person_one.draw_person()
                             person_one "Really? I bring you a cute girl to suck your dick and you decide you need to punish both of us? What more do you want?"
                             mc.name "I'm sorry, but rules are rules. You didn't leave me much of a choice."
-                            person_one "Whatever, I need to go make sure [person_two.name] is fine."
+                            person_one "Whatever, I need to go make sure [person_two.fname] is fine."
                             $ person_one.draw_person(position = "walking_away")
                             "She turns and leaves your office, following after her friend."
 

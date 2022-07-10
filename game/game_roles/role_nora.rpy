@@ -285,7 +285,7 @@ label nora_research_cash_intro(the_person, did_research = False):
         mc.name "Hello?"
         the_person "Hello [the_person.mc_title]. I wanted to call and give you my congratulations."
         mc.name "Pardon? I'm sorry [the_person.title], but we haven't talked in over a year."
-        the_person "I know, but I have kept in contact with [stephanie.name], and through her some of your work."
+        the_person "I know, but I have kept in contact with [stephanie.fname], and through her some of your work."
         "You're suddenly worried about how much she knows, but this still seems to be a friendly conversation."
         the_person "You've made very good progress. My team, which is much larger, was stuck on the same problem as you for a much longer time."
         the_person "I'm curious, what gave you your breakthrough?"

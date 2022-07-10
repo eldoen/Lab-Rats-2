@@ -1527,7 +1527,7 @@ label student_test(the_person): #TODO: Hook this up
     $ clear_scene()
     $ the_group = GroupDisplayManager([the_person, nora], nora)
     $ the_group.draw_group()
-    nora "Hello? Oh, [nora.mc_title], it's you. Hello [the_person.name]."
+    nora "Hello? Oh, [nora.mc_title], it's you. Hello [the_person.fname]."
     mc.name "Hey [nora.title]. We're here for [the_person.title]'s exam paper."
     $ the_group.draw_person(nora, position = "walking_away")
     "There's a loud bang inside of the lab and [nora.possessive_title] turns around."

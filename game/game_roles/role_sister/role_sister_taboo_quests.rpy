@@ -90,7 +90,7 @@ label sister_kissing_taboo_break_revisit(the_person):
         elif noteable_taboo == "nudity":
             the_person "You know how you were looking at me naked? I was just thinking about it and..."
             "She shrugs uncertainly."
-            the_person "I don't know, I think that might have been going too far. I don't think [mom.title] would have liked it."
+            the_person "I don't know, I think that might have been going too far. I don't think [mom.fname] would have liked it."
             the_person "It's not a big thing, I just don't think I should be getting naked in front of you again, alright?"
 
     else:
@@ -230,7 +230,7 @@ label sister_oral_taboo_break_revisit(the_person):
             the_person "Listen, I'm not going to say we {i}should{/i} do it..."
             mc.name "But you aren't going to say we shouldn't either, right?"
             "She smiles mischievously and winks."
-            the_person "Just don't let [mom.title] know."
+            the_person "Just don't let [mom.fname] know."
             mc.name "Same goes for you."
             python:
                 for a_taboo in the_person.event_triggers_dict.get("oral_revisit_restore_taboos", []):
@@ -338,7 +338,7 @@ label sister_oral_taboo_break_revisit_quest_2(the_person):
                     other_girl_2 "Uh, duh. Why else would we be here?"
                     $ the_group.set_primary(other_girl_1)
                     $ the_group.draw_group()
-                    other_girl_1 "You're such a bitch [other_girl_2.name]. The guy's just being nice."
+                    other_girl_1 "You're such a bitch [other_girl_2.fname]. The guy's just being nice."
                     $ other_girl_2.set_title(other_girl_2.name)
                     $ other_girl_2.set_possessive_title(other_girl_2.name)
                     $ the_group.set_primary(lead_girl)
@@ -554,7 +554,7 @@ label sister_anal_taboo_break_revisit(the_person):
 
         "Let me change your mind" if not the_person.event_triggers_dict.get("sister_anal_quest_active", False):
             mc.name "We're all weird, so what? Come on, let me change your mind."
-            the_person "What could you possibly do to change my mind? Like, if [mom.title] found out about this, she would kill us!"
+            the_person "What could you possibly do to change my mind? Like, if [mom.fname] found out about this, she would kill us!"
             if the_person.event_triggers_dict.get("sister_instathot_mom_shirtless_covered_count", 0) > 0:
                 mc.name "You mean the same woman who's taking topless pictures with her daughter for the internet?"
                 mc.name "This whole family is fucked up [the_person.title], at least fucking feels pretty good."
@@ -567,8 +567,8 @@ label sister_anal_taboo_break_revisit(the_person):
 
             else:
                 "It seems like she's about to dismiss the entire idea, but pauses for a second."
-                the_person "Speaking of [mom.title]... Alright, maybe there is one way you could convince me."
-                the_person "My InstaPic followers have been going absolutely crazy over [mom.title]."
+                the_person "Speaking of [mom.fname]... Alright, maybe there is one way you could convince me."
+                the_person "My InstaPic followers have been going absolutely crazy over [mom.fname]."
                 the_person "I think everyone would go absolutely crazy if we got some boudoir pictures with both of us."
                 mc.name "You mean in your underwear."
                 the_person "Yeah and... maybe topless. But there's no way I could get her to agree to any of that."
@@ -595,7 +595,7 @@ label sister_anal_taboo_break_revisit(the_person):
 label sister_anal_taboo_break_revisit_complete(the_person):
     $ the_person.event_triggers_dict["sister_anal_quest_active"] = False
     $ the_person.event_triggers_dict["anal_revisit_complete"] = True
-    mc.name "So, I got you those pictures with [mom.title]."
+    mc.name "So, I got you those pictures with [mom.fname]."
     the_person "I know, I can't believe she actually did that!"
     the_person "My fans {i}love{/i} them! They're such perverts!"
     "She laughs, missing the irony."

@@ -691,7 +691,7 @@ label lunch_date_plan_label(the_person):
         "She pauses and seems to consider something for a moment."
         the_person "Are you sure my husband won't find out?"
         if the_person == christina:
-            mc.name "You could always say you had to go over something, with [emily.name] her tutor."
+            mc.name "You could always say you had to go over something, with [emily.fname] her tutor."
             the_person "You are right, let's go!"
         else:
             mc.name "Can't you go and grab lunch with an acquaintance?"
@@ -839,7 +839,7 @@ label dinner_date_plan_label(the_person):
 
     elif the_person.has_role(aunt_role):
         mc.name "[the_person.title], would you like to go out on a dinner date with me? I think it would be a nice treat for you."
-        the_person "That sounds like it would be amazing. It's been tough, just me and [cousin.title]. I don't get out much any more."
+        the_person "That sounds like it would be amazing. It's been tough, just me and [cousin.fname]. I don't get out much any more."
         "She smiles and gives you a quick hug."
         if is_friday:
             the_person "How about tonight?"

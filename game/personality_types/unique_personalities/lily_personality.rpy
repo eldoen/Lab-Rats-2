@@ -68,8 +68,8 @@ label lily_sex_review(the_person, the_report):
 
         else:
             the_person "We really should have found somewhere private, I don't know what I was thinking..."
-            the_person "What if someone recognizes us? [mom.title] could find out!"
-            mc.name "Relax, [mom.title] isn't going to find out. Nobody here knows who you are, and nobody cares what we do together."
+            the_person "What if someone recognizes us? [mom.fname] could find out!"
+            mc.name "Relax, [mom.fname] isn't going to find out. Nobody here knows who you are, and nobody cares what we do together."
             "[the_person.possessive_title] seems unconvinced, but nods anyways."
 
     # special condition - you fucked her brains out
@@ -180,7 +180,7 @@ label lily_sex_review(the_person, the_report):
         else:  # She's surprised she even tried that.
             the_person "Oh my god, you're totally right. I don't know what I was thinking, agreeing to that..."
             "She laughs nervously, trying to hide her embarrassment."
-            the_person "Let's not tell [mom.title] about this, obviously."
+            the_person "Let's not tell [mom.fname] about this, obviously."
 
     # Gave creampie while she is not on birth control (extra dialog when she could get pregnant)
     if the_report.get("creampies", 0) > 0 and not the_person.on_birth_control and not the_person.event_triggers_dict.get("preg_knows", False):
@@ -214,7 +214,7 @@ label lily_sex_responses_foreplay(the_person):
     if response_value < 20:
         if the_person.sluttiness > 50:
             the_person "Jeez, where did you learn this stuff?"
-            the_person "[mom.title] would be so disappointed in you..."
+            the_person "[mom.fname] would be so disappointed in you..."
             "Her happy little moans make it clear she doesn't really care right now."
         else:
             the_person "I don't know [the_person.mc_title], maybe we shouldn't..."
@@ -560,10 +560,10 @@ label lily_flirt_response_low(the_person):
     "[the_person.possessive_title] gives you a quick spin, showing off her body at the same time as her outfit."
     $ the_person.draw_person()
     if mom.judge_outfit(the_person.outfit, 5, use_taboos = False): # Mom is sluttier or similar
-        the_person "[mom.title] helped me pick it out. You should come shopping with us some day!"
+        the_person "[mom.fname] helped me pick it out. You should come shopping with us some day!"
 
     else: #It's sluttier than Mom would like
-        the_person "[mom.title] really didn't like it when I bought this, but I just couldn't say no."
+        the_person "[mom.fname] really didn't like it when I bought this, but I just couldn't say no."
         the_person "Maybe you can come shopping with us one day and convince her to relax a little!"
     mc.name "Maybe I will."
     return
@@ -582,7 +582,7 @@ label lily_flirt_response_mid(the_person):
         $ the_person.draw_person(position = "back_peek")
         $ mc.change_locked_clarity(10)
         "[the_person.possessive_title] smiles and turns around, peeking over her shoulder to talk to you."
-        the_person "How do I look from behind? It's hard to get a good look in the mirror and [mom.title] is always judging what I'm wearing."
+        the_person "How do I look from behind? It's hard to get a good look in the mirror and [mom.fname] is always judging what I'm wearing."
         "You take a moment to check out [the_person.possessive_title]'s ass before responding."
         mc.name "You look fantastic. I could watch you all day long."
         $ the_person.draw_person()
@@ -623,7 +623,7 @@ label lily_flirt_response_high(the_person):
             "[the_person.possessive_title] laughs and blushes."
             the_person "[the_person.mc_title], I'm your sister! Don't be so weird."
             mc.name "I'm just joking around. You're looking good, that's all."
-            the_person "Thanks! I don't really mind, but I think [mom.title] would freak out if she heard you talking like that."
+            the_person "Thanks! I don't really mind, but I think [mom.fname] would freak out if she heard you talking like that."
 
 
     else: #She shushes you and rushes you off somewhere private.
@@ -665,7 +665,7 @@ label lily_flirt_response_high(the_person):
             "[the_person.possessive_title] blushes, then glances around nervously."
             the_person "Oh my god, you can't just say stuff like that when there are people around!"
             mc.name "So it's fine if I say things like that when we're alone?"
-            the_person "Well... I don't really mind, as long as we're just joking around. I just don't want [mom.title] to get upset with us."
+            the_person "Well... I don't really mind, as long as we're just joking around. I just don't want [mom.fname] to get upset with us."
             mc.name "Don't worry, I promise she won't find out."
             the_person "Okay, then it's fine. I actually kind of like hearing I look pretty."
     return
@@ -880,7 +880,7 @@ label lily_cum_vagina(the_person):
                 $ so_title = SO_relationship_to_title(the_person.relationship)
                 the_person "Fuck, fuck! You can't cum in me, I'm not on the pill!"
                 $ the_person.update_birth_control_knowledge()
-                the_person "What if you got me pregnant? What would [mom.title] say?"
+                the_person "What if you got me pregnant? What would [mom.fname] say?"
                 "She groans unhappily."
                 the_person "What would my [so_title] say? I don't know if I could lie to him."
             else:
@@ -953,31 +953,31 @@ label lily_sex_watch(the_person, the_sex_person, the_position):
         the_person "Oh my god, [the_person.mc_title]! How can you do that in front of your sister?"
         $ the_person.change_obedience(-2)
         $ the_person.change_happiness(-1)
-        "[title] looks away while you and [the_sex_person.name] [the_position.verb]."
+        "[title] looks away while you and [the_sex_person.fname] [the_position.verb]."
 
     elif the_person.sluttiness < the_position.slut_requirement - 10:
         $ the_person.draw_person()
         $ the_person.change_happiness(-1)
         the_person "I... oh my god I can't believe you're my brother..."
-        "[title] tries to avert her gaze while you and [the_sex_person.name] [the_position.verb]."
+        "[title] tries to avert her gaze while you and [the_sex_person.fname] [the_position.verb]."
 
     elif the_person.sluttiness < the_position.slut_requirement:
         $ the_person.draw_person()
         the_person "Oh my god, you two are just... Wow..."
         $ the_person.change_slut(1, 30)
-        "[title] averts her gaze, but she keeps stealing glances while you and [the_sex_person.name] [the_position.verb]."
+        "[title] averts her gaze, but she keeps stealing glances while you and [the_sex_person.fname] [the_position.verb]."
 
     elif the_person.sluttiness >= the_position.slut_requirement and the_person.sluttiness < the_position.slut_cap:
         $ the_person.draw_person()
         the_person "Oh my god, [the_person.mc_title], where did you learn to do that? I shouldn't be watching this, but..."
         $ the_person.change_slut(1, 50)
-        "[title] watches you and [the_sex_person.name] [the_position.verb]."
+        "[title] watches you and [the_sex_person.fname] [the_position.verb]."
 
     else:
         $ the_person.draw_person(emotion = "happy")
         the_person "Give it to her [the_person.mc_title], don't hold back just because I'm here."
         the_person "You're not nervous because your sister is watching, are you?"
-        "[the_person.title] watches eagerly while you and [the_sex_person.name] [the_position.verb]."
+        "[the_person.title] watches eagerly while you and [the_sex_person.fname] [the_position.verb]."
 
     return
 
@@ -986,38 +986,38 @@ label lily_being_watched(the_person, the_watcher, the_position):
         #They agree you should give it to her harder
         the_person "I can handle it [the_person.mc_title], you can play rough with your little sister."
         $ the_person.change_arousal(1)
-        "[the_person.title] seems turned on by [the_watcher.name] watching you and her [the_position.verb]."
+        "[the_person.title] seems turned on by [the_watcher.fname] watching you and her [the_position.verb]."
 
     elif the_person.sluttiness >= the_position.slut_cap and the_watcher.sluttiness < the_position.slut_requirement:
         #She's super slutty and doesn't care what people think.
-        the_person "Don't listen to [the_watcher.name], I'm having a great time. She's just jealous her brother doesn't treat her like this!"
+        the_person "Don't listen to [the_watcher.fname], I'm having a great time. She's just jealous her brother doesn't treat her like this!"
 
     elif the_person.sluttiness >= the_position.slut_cap and the_watcher.sluttiness < the_position.slut_cap:
         #She's super slutty and encourages the watcher to be slutty.
         $ the_person.change_arousal(1)
-        the_person "We just love each other so much [the_watcher.name]. You understand, right?"
-        "[the_person.title] seems turned on by [the_watcher.name] watching you and her [the_position.verb]."
+        the_person "We just love each other so much [the_watcher.fname]. You understand, right?"
+        "[the_person.title] seems turned on by [the_watcher.fname] watching you and her [the_position.verb]."
 
     elif the_person.sluttiness < the_position.slut_cap and the_watcher.sluttiness >= the_position.slut_cap:
         #She's into it and encouraged by the slut watching her.
         the_person "Oh [the_person.mc_title], I know it's wrong but being with you just feels so right!"
         $ the_person.change_arousal(1)
-        "Your little sister seems turned on by [the_watcher.name] watching you and her [the_position.verb]."
+        "Your little sister seems turned on by [the_watcher.fname] watching you and her [the_position.verb]."
 
     elif the_person.sluttiness < the_position.slut_cap and the_watcher.sluttiness < the_position.slut_requirement:
         #She's into it but shamed by the prude watching her.
         the_person "[the_person.mc_title], we shouldn't be doing this here. What if people talk?"
         $ the_person.change_arousal(-1)
         $ the_person.change_slut(-1)
-        "[the_person.title] seems uncomfortable with [the_watcher.name] nearby."
+        "[the_person.title] seems uncomfortable with [the_watcher.fname] nearby."
 
     else: #the_person.sluttiness < the_position.slut_cap and the_watcher.sluttiness < the_position.slut_cap:
         #They're both into it but not fanatical about it.
-        the_person "[the_watcher.name], I'm so glad you don't think this is too weird."
+        the_person "[the_watcher.fname], I'm so glad you don't think this is too weird."
         the_person "I know it's supposed to be wrong, but then why does it feel so good?"
         $ the_person.change_arousal(1)
         $ the_person.change_slut(1, 60)
-        "[the_person.title] seems more comfortable [the_position.verbing] you with [the_watcher.name] around."
+        "[the_person.title] seems more comfortable [the_position.verbing] you with [the_watcher.fname] around."
 
     return
 
@@ -1060,7 +1060,7 @@ label lily_kissing_taboo_break(the_person):
         mc.name "Why? We use to kiss when we were kids."
         the_person "Oh my god, I forgot about that. That was different, we were young and just practicing."
         mc.name "Let's practice some more. I'm sure we can both get better at it if we try."
-        the_person "You're serious? I... I don't know [the_person.mc_title], what if [mom.title] finds out?"
+        the_person "You're serious? I... I don't know [the_person.mc_title], what if [mom.fname] finds out?"
         mc.name "She doesn't need to know. Nobody does. It will be our little secret."
         mc.name "Plus it gives me a reason to spend time with my awesome little sister. Isn't that nice?"
         "She nods meekly and doesn't say anything."
@@ -1386,7 +1386,7 @@ label lily_anal_sex_taboo_break(the_person):
     return
 
 label lily_condomless_sex_taboo_break(the_person):
-    the_person "I don't like condoms either, but we need to be careful. What would we tell [mom.title] if you got me pregnant?"
+    the_person "I don't like condoms either, but we need to be careful. What would we tell [mom.fname] if you got me pregnant?"
     mc.name "Wait, are you on birth control?"
     if the_person.on_birth_control:
         the_person "I am, but what if it didn't work?"
@@ -1394,13 +1394,13 @@ label lily_condomless_sex_taboo_break(the_person):
         "She shakes her head meekly."
     $ the_person.update_birth_control_knowledge()
     if the_person.has_taboo("vaginal_sex"):
-        mc.name "We won't need to tell [mom.title] anything. I'm not going to get you pregnant the very first time we have sex."
+        mc.name "We won't need to tell [mom.fname] anything. I'm not going to get you pregnant the very first time we have sex."
         "[the_person.possessive_title] still seems uncertain."
         mc.name "Come on [the_person.title], don't you want our first time to be special? I promise I'll pull out."
         the_person "Since it's our first time... Okay, as long as you are really careful when you're going to cum."
 
     else:
-        mc.name "We won't need to tell [mom.title] anything. I'm not going to get you pregnant the very first time we fuck raw."
+        mc.name "We won't need to tell [mom.fname] anything. I'm not going to get you pregnant the very first time we fuck raw."
         "[the_person.possessive_title] still seems uncertain."
         mc.name "Come on [the_person.title], don't you trust me? It'll feel so much better without a condom."
         the_person "Okay, fine. But you need to be {i}really{/i} careful not to cum in me."
@@ -1421,7 +1421,7 @@ label lily_bare_tits_taboo_break(the_person, the_clothing):
     "[the_person.possessive_title] seems equal parts embarrassed and excited."
     the_person "Oh my god, you want to look at your sister's boobs? Do you... think they're cute?"
     if not the_person.has_large_tits():
-        the_person "I hoped they would be big like [mom.title]'s, but I don't think that's going to happen."
+        the_person "I hoped they would be big like [mom.fname]'s, but I don't think that's going to happen."
     mc.name "They look great, let's take a closer look..."
     "She stands passively as you take off her [the_clothing.display_name]."
     return
@@ -1471,7 +1471,7 @@ label lily_creampie_taboo_break(the_person):
         else:
             the_person "It does feel really good, but I'm not on my birth control. What if I, you know..."
             mc.name "Get pregnant?"
-            the_person "Yeah, that. Shouldn't we be trying to avoid that? I don't want to have to explain that to [mom.title]."
+            the_person "Yeah, that. Shouldn't we be trying to avoid that? I don't want to have to explain that to [mom.fname]."
             mc.name "The chances you're going to get pregnant after your first cumshot are really low. You really don't need to worry about it."
             the_person "I guess you're right, but we need to be careful, okay? We can't be doing this all the time, even if it feels awesome."
     else:

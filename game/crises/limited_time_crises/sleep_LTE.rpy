@@ -149,7 +149,7 @@ label sleeping_walk_in_label(the_person): #TODO: This event is currently for Mom
                         mc.name "I can't sleep, can I stay here for a bit?"
                         if the_person.love < 25:
                             the_person "We're too old for this, I really just want to get some sleep."
-                            the_person "Go bug [mom.title], maybe she'll let you stay with her."
+                            the_person "Go bug [mom.fname], maybe she'll let you stay with her."
                             mc.name "Fine, I'll leave you alone."
                             the_person "Thank... you..."
                             "You get out of bed, and [the_person.title] is asleep again by the time you make it to the door."

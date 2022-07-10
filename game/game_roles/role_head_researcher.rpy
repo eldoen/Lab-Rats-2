@@ -501,15 +501,15 @@ label advanced_serum_stage_3_label(the_person):
     the_person "Hmm? What is it about?"
     $ old_researcher = mc.business.event_triggers_dict["research_bimbo"] #Get the old researcher so we can call her name.
     if mc.business.get_employee_workstation(old_researcher):
-        mc.name "I'm sure you've seen [old_researcher.name] around the office? She used to be my head of research and insisted she try a prototype serum she had located."
+        mc.name "I'm sure you've seen [old_researcher.fname] around the office? She used to be my head of research and insisted she try a prototype serum she had located."
         the_person "She used to lead the R&D team?"
         mc.name "Just look at this, it will all make sense."
     else:
         mc.name "A previous head of research insisted she try a prototype serum she had located. These were the test results."
-    "You hand [the_person.title] a thumb drive containing the footage of your test session with [old_researcher.name]. She plugs the drive into her computer and opens up the footage."
+    "You hand [the_person.title] a thumb drive containing the footage of your test session with [old_researcher.fname]. She plugs the drive into her computer and opens up the footage."
     $ the_person.change_slut(5)
     the_person "Oh my god... it's like something flipped a switch inside of her."
-    "[the_person.title] watches as [old_researcher.name] steps close to you and reaches down to grab your crotch."
+    "[the_person.title] watches as [old_researcher.fname] steps close to you and reaches down to grab your crotch."
     mc.name "As far as I can tell the effects are permanent. It's unfortunate, but I know she wouldn't want us to let all of her research go to waste."
     the_person "I... I understand sir. I'll pull apart what I can and list out some preliminary theories."
     $ mc.business.research_tier = 2

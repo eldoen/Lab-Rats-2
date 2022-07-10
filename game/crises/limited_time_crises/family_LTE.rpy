@@ -192,7 +192,7 @@ label sister_walk_in_label(the_person):
                 "She still seems more interested than her words would suggest."
 
             "Threaten to tell [mom.possessive_title]":
-                mc.name "I can let [mom.title] know, maybe she can take it somewhere to get it fixed."
+                mc.name "I can let [mom.fname] know, maybe she can take it somewhere to get it fixed."
                 the_person "No! I mean, you can't tell Mom. Nothing's wrong with it, okay?"
                 mc.name "So you were..."
                 $ the_person.change_obedience(2)
@@ -463,7 +463,7 @@ label breeding_mom_intro_label(the_person):
     the_person "[the_person.mc_title], close the door, please. I have something I need to ask you."
     "You close the door to [the_person.possessive_title]'s bedroom and walk over to her bed."
     "She pats the bed beside her and you sit down."
-    the_person "I've been thinking a lot about this. You're all grown up and [lily.title] isn't far behind."
+    the_person "I've been thinking a lot about this. You're all grown up and [lily.fname] isn't far behind."
     the_person "Soon you'll both be leaving home, but I don't think I'm done being a mother yet."
     "She takes your hands in hers and looks passionately into your eyes."
     the_person "I want you to give me a child. Your child."
@@ -570,7 +570,7 @@ label aunt_home_lingerie_label(the_person):
             $ the_person.apply_outfit()
             "After a brief wait she steps back out."
             $ the_person.draw_person()
-            the_person "So sorry about that. [cousin.name] is out, so I was just lounging around."
+            the_person "So sorry about that. [cousin.fname] is out, so I was just lounging around."
             the_person "Anyways, I'm glad you stopped by!"
 
     elif the_person.effective_sluttiness() < 40:
@@ -580,7 +580,7 @@ label aunt_home_lingerie_label(the_person):
         $ the_person.draw_person()
         "She laughs and relaxes, turning back to face you."
         mc.name "Sorry [the_person.title], I didn't mean to scare you."
-        the_person "It's not your fault, I was scared I had left the door unlocked is all. [cousin.name] is out, so I'm not dressed for company."
+        the_person "It's not your fault, I was scared I had left the door unlocked is all. [cousin.fname] is out, so I'm not dressed for company."
         the_person "You don't mind, do you? I can go throw something on."
         menu:
             "Tell her to stay":
@@ -589,7 +589,7 @@ label aunt_home_lingerie_label(the_person):
                 the_person "Oh, stop. I'm just so glad you stopped by!"
 
             "Tell her to get dressed":
-                mc.name "Might be a good idea, in case [cousin.name] comes home."
+                mc.name "Might be a good idea, in case [cousin.fname] comes home."
                 the_person "Good point, that would be hard to explain..."
                 the_person "I'll be back in a second!"
                 $ clear_scene()
@@ -669,7 +669,7 @@ label sister_go_shopping_label(the_person): #TODO: Hook this up as an on_enter e
     if the_person.love < 10:
         the_person "Oh! Hey [the_person.mc_title], I was just heading out."
         "She pushes past you and closes the door to her room behind her."
-        the_person "Tell [mom.title] I'm at the mall if she needs me. See ya later!"
+        the_person "Tell [mom.fname] I'm at the mall if she needs me. See ya later!"
         "[the_person.possessive_title] hurries past you and out of the house."
     elif the_person.love < 30:
         the_person "Oh! Hey [the_person.mc_title], I was just heading to the mall."
@@ -685,7 +685,7 @@ label sister_go_shopping_label(the_person): #TODO: Hook this up as an on_enter e
 
             "Say goodbye":
                 mc.name "Alright, have fun out there."
-                "Tell [mom.title] where I am if she needs me, okay? See ya later!"
+                the_person "Tell [mom.fname] where I am if she needs me, okay? See ya later!"
                 "[the_person.possessive_title] hurries past you and out of the house."
 
     else:

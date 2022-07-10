@@ -1073,7 +1073,7 @@ label mom_work_secretary_replacement_bigger_tits_options(the_person):
         "Make her pay" if the_person.love >= 30 and the_person.obedience >= 130:
             mc.name "And we're going to have even more trouble if you lose your job!"
             mc.name "You're just going to have to find the cash somewhere. There must be something you can do, right?"
-            the_person "Well... I have some money set aside for [lily.title]'s university tuiton next year..."
+            the_person "Well... I have some money set aside for [lily.fname]'s university tuition next year..."
             mc.name "You'll be able to replace it soon enough, as long you don't get fired."
             "[the_person.possessive_title] scowls and thinks for a long moment. Finally she sighs and nods."
             the_person "Okay, I'll do it [the_person.mc_title]. You're right, it's important."
@@ -1395,11 +1395,11 @@ label mom_convince_quit_label(the_person):
     if the_person.get_opinion_score(["working", "HR work"]) < 0:
         "She sighs and nods."
         the_person "Every day, but I could never do it."
-        the_person "I'm not just taking care of myself, I need to take care of you and [lily.title] as well."
+        the_person "I'm not just taking care of myself, I need to take care of you and [lily.fname] as well."
 
     else:
         "[the_person.possessive_title] waves her hand dismissively."
-        the_person "I could never do that, I have you and [lily.title] to take care of."
+        the_person "I could never do that, I have you and [lily.fname] to take care of."
         the_person "It might not be the most exciting work, but it puts food on the table."
 
 
@@ -1426,8 +1426,8 @@ label mom_convince_quit_label(the_person):
             pass
 
         "I'll take care of us" if the_person.has_role(girlfriend_role):
-            mc.name "I make enough to take care of me, you, and [lily.title]."
-            mc.name "So let me take care of the money, and you can focus on taking care of [lily.title] and the house."
+            mc.name "I make enough to take care of me, you, and [lily.fname]."
+            mc.name "So let me take care of the money, and you can focus on taking care of [lily.fname] and the house."
             the_person "Are you really sure you can handle that? It's not cheap to keep this house running."
             mc.name "I can handle it."
             the_person "Okay... I trust you [the_person.mc_title]."
