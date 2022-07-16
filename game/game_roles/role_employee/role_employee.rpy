@@ -242,7 +242,7 @@ label employee_performance_review(the_person):
 
     if mod_installed:
         $ mc.change_location(ceo_office)
-        $ ceo_office.show_background()
+        $ mc.location.show_background()
     else:
         $ office.show_background()
         $ mc.location.move_person(the_person, office)
@@ -798,6 +798,9 @@ label employee_performance_review(the_person):
             the_person "Thank you, I'll do my best."
 
     "You stand up and open the door for [the_person.title] at the end of her performance review."
+    if mod_installed:
+        $ mc.change_location(lobby)
+        $ mc.location.show_background()
     $ clear_scene()
     call advance_time from _call_advance_time_14
     return
@@ -896,7 +899,8 @@ label request_promotion_crisis_label(the_person):
     $ the_person.draw_person()
     the_person "[the_person.mc_title], can we talk in your office for a second?"
     if mod_installed:
-        $ ceo_office.show_background()
+        $ mc.change_location(ceo_office)
+        $ mc.location.show_background()
     "You nod and take her into your office, closing the door behind you. You take a seat and motion for her to do the same."
     $ the_person.draw_person(position = "sitting")
     $ the_person.event_triggers_dict["last_promotion_request"] = day
@@ -1260,6 +1264,9 @@ label request_promotion_crisis_label(the_person):
             call clear_sex_slut_modifiers(the_person) from _call_clear_sex_slut_modifiers_request_promotion_crisis_label
             pass
 
+    if mod_installed:
+        $ mc.change_location(office)
+        $ mc.location.show_background()
     $ clear_scene()
     return
 

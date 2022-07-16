@@ -615,7 +615,13 @@ init -2 python:
                     serum_base_value = fixed_price
                 else:
                     serum_base_value = self.get_serum_base_value(the_serum)
-                sales_value += serum_base_value
+
+                # apply sales multipliers to serum base value
+                serum_value = serum_base_value
+                for modifier_tuple in self.sales_multipliers:
+                    serum_value = serum_value * modifier_tuple[1]
+
+                sales_value += serum_value
 
                 self.mental_aspect_sold += the_serum.mental_aspect
                 self.physical_aspect_sold += the_serum.physical_aspect
@@ -912,6 +918,12 @@ init -2 python:
         def add_sales_multiplier(self, multiplier_class, multiplier):
             mc.log_event("Serum sale value increased by " + str((multiplier - 1) * 100) + "% due to " + multiplier_class + ".", "float_text_grey")
             self.sales_multipliers.append([multiplier_class, multiplier])
+
+        def update_sales_multiplier(self, multiplier_class, multiplier):
+            found = next((x for x in self.sales_multipliers if x[0] == multiplier_class), None)
+            if found:
+                found[1] = multiplier
+                mc.log_event("Serum sale value increased by " + str((multiplier - 1) * 100) + "% due to " + multiplier_class + ".", "float_text_grey")
 
         def remove_sales_multiplier(self, multiplier_class, multiplier):
             if [multiplier_class, multiplier] in self.sales_multipliers:

@@ -197,7 +197,7 @@ label mom_instapic_setup(the_person, intro_finished = False): # Sets up her Inst
 
     "You take the shot and submit it. Her phone chimes happily as you complete the account creation."
     mc.name "There we go, that's it! Now I'll subscribe you to [lily.fname]'s account and you can see all of your pictures together."
-    mc.name "If you want you can event start posting your own pictures too."
+    mc.name "If you want you can even start posting your own pictures too."
     the_person "I don't know if I'm brave enough for that, but I'll think about it!"
     $ mc.change_locked_clarity(5)
     "You hand her phone back. She tucks it away and gives you a tight hug."
@@ -365,7 +365,7 @@ label mom_instapic_ban(the_person):
 label mom_onlyfans_help(the_person):
     $ the_person.event_triggers_dict["onlyfans_help_today"] = True
 
-    mc.name "Did you still want help with your OnlyFanatics [the_person.title]."
+    mc.name "Did you still want help with your OnlyFanatics [the_person.title]?"
     if not mom_bedroom.has_person(the_person):
         the_person "Yes, if you have the time. Come with me."
         "You follow [the_person.possessive_title] to her bedroom."
@@ -559,7 +559,7 @@ label mom_onlyfans_help(the_person):
 
                             "You hold onto her hips with one hand and her phone with the other."
                             "You capture in wonderful detail the way the head of your cock spreads open her ass as you push yourself into her."
-                            call fuck_person(the_person, private = True, start_position = doggy_anal, start_object = mc.location.get_object_with_name("bed"))
+                            call fuck_person(the_person, private = True, start_position = doggy_anal, start_object = mc.location.get_object_with_name("bed"), skip_intro = True)
 
                         "Anal her\n{color=#ff0000}{size=18}Requires: [anal_token]{/size}{/color} (disabled)" if the_person.effective_sluttiness() < anal_requirement:
                             pass

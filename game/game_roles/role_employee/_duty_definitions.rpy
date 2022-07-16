@@ -431,7 +431,7 @@ init 0 python:
         on_move_function = daily_serum_dosage_duty_on_move, #NOTE: A flag makes sure this is only triggered once per day.
         on_day_function = daily_serum_dosage_duty_on_day)
 
-    employee_generate_infraction = Action("Invent an infraction \n{color=#ff0000}{size=18}Costs: -5 Efficiency{/size}{/color}", employee_generate_infraction_requirement, "employee_generate_infraction_label",
+    employee_generate_infraction = Action("Invent an infraction\n{color=#ff0000}{size=18}Costs: -5 Efficiency{/size}{/color}", employee_generate_infraction_requirement, "employee_generate_infraction_label",
         menu_tooltip = "Company policy is so complicated it's nearly impossible to go a day without violating some minor rule. If you were paranoid, you might think it was written that way on purpose...")
     bureaucratic_nightmare_duty = Duty("Bureaucratic nightmare",
         "Forms, records, reports, and even more forms, all in triplicate. So many rules that it's impossible not to make a mistake somewhere! Management can generate an infraction at will, at the cost of 5% business efficency.",

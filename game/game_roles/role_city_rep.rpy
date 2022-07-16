@@ -162,7 +162,8 @@ label city_rep_seduce(the_person): #TODO: Figure out if we can have something li
                 mc.name "Then you'll just be a slut. Better?"
                 the_person "Hardly."
                 if mod_installed:
-                    $ ceo_office.show_background()
+                    $ mc.change_location(ceo_office)
+                    $ mc.location.show_background()
                 "You lead her into your office and close the door behind you."
                 $ should_fuck = True
 
@@ -178,7 +179,8 @@ label city_rep_seduce(the_person): #TODO: Figure out if we can have something li
         "She leans into you, pressing her weight into your side."
         the_person "I thought you'd never ask. Your office is a good idea, I think we'd cause a bit of a scene if we stayed here..."
         if mod_installed:
-            $ ceo_office.show_background()
+            $ mc.change_location(ceo_office)
+            $ mc.location.show_background()
         "You lead her to your office and close the door behind you."
         $ should_fuck = True
 
@@ -199,6 +201,9 @@ label city_rep_seduce(the_person): #TODO: Figure out if we can have something li
         $ the_person.apply_outfit()
 
     call clear_sex_slut_modifiers(the_person) from _call_clear_sex_slut_modifiers_city_rep_seduce
+    if mod_installed:
+        $ mc.change_location(lobby)
+        $ mc.location.show_background()
     return
 
 label city_rep_order(the_person):

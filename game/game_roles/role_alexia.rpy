@@ -322,7 +322,7 @@ label alexia_ad_suggest_label(the_person):
     the_person "We should probably get a proper camera instead of my phone, and we'll need to pay to have the cards printed professionally."
     menu:
         "Pay for equipment\n{color=#ff0000}{size=18}Costs: $500{/size}{/color}" if mc.business.has_funds(500):
-            mc.name "That sounds reasonable. Buy whatever you think is reasonable and I will cover the expense."
+            mc.name "That sounds fair. Buy whatever you think is reasonable and I will cover the expense."
             $ mc.business.change_funds(-500)
             the_person "You got it! I'll order it A.S.A.P and let you know when it arrives."
             mc.name "Great work [the_person.title], you're a credit to the team."
