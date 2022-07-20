@@ -150,8 +150,7 @@ label mom_girlfriend_intro(the_person):
 
         #"You can stay at home all day. #TODO: Add support for this in a future update
 
-        "You can stay at home all day\n{color=#ff0000}{size=18}Requires: [mom.title] isn't working{/size}{/color} (disabled)":
-            pass
+        #"You can stay at home all day\n{color=#ff0000}{size=18}Requires: [mom.title] isn't working{/size}{/color} (disabled)":
 
         "Let it go":
             mc.name "You're right, this could go really badly if we aren't prepared. We shouldn't rush things."

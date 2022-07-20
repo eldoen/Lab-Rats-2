@@ -87,7 +87,7 @@ init 1:
             lily_wardrobe = wardrobe_from_xml("Lily_Wardrobe")
             #height = 0.90
             global lily
-            lily = create_random_person(name = "Lily", last_name = mc.last_name, age = 19, body_type = "thin_body", face_style = "Face_6", tits = "B", height = 0.90, hair_colour="blond", hair_style = ponytail, skin="white", \
+            lily = create_random_person(name = "Lily", last_name = mc.last_name, age = 19, body_type = "thin_body", face_style = "Face_6", tits = "B", height = 0.94, hair_colour="blond", hair_style = ponytail, skin="white", \
                 eyes = "light blue", personality = lily_personality, name_color = "#FFB1F8", dial_color = "#FFB1F8", starting_wardrobe = lily_wardrobe, start_home = lily_bedroom, \
                 stat_array = [5,2,2], skill_array = [2,2,0,1,1], sex_skill_array = [2,1,0,0], sluttiness = 8, obedience = 74, happiness = 122, love = 8, \
                 title = "Lily", possessive_title = "Your sister", mc_title = mc.name, relationship = "Single", kids = 0,
@@ -117,7 +117,7 @@ init 1:
             global mom
             mom_base = Outfit("Jennifer's accessories")
             mom_base.add_accessory(diamond_ring.get_copy())
-            mom = create_random_person(name = "Jennifer", last_name = mc.last_name, age = 42, body_type = "standard_body", face_style = "Face_1", tits = "DD", height = 0.96, hair_colour = "black", hair_style = long_hair, skin="white", \
+            mom = create_random_person(name = "Jennifer", last_name = mc.last_name, age = 42, body_type = "standard_body", face_style = "Face_1", tits = "DD", height = 0.92, hair_colour = "black", hair_style = long_hair, skin="white", \
                 eyes = "brown", personality = mom_personality, name_color = "#8fff66", dial_color = "#8fff66", starting_wardrobe = mom_wardrobe, start_home = mom_bedroom, \
                 stat_array = [3,2,4], skill_array = [5,2,0,0,2], sex_skill_array = [2,1,3,0], sluttiness = 7, obedience = 112, happiness = 108, love = 8, \
                 title = "Mom", possessive_title = "Your mother", mc_title = "Sweetheart", relationship = "Single", kids = 2, base_outfit = mom_base,
@@ -146,7 +146,7 @@ init 1:
             aunt_wardrobe = wardrobe_from_xml("Aunt_Wardrobe")
             #original height = 0.92
             global aunt
-            aunt = create_random_person(name = "Rebecca", last_name = Person.get_random_last_name(), age = 39, body_type = "thin_body", face_style = "Face_1", tits = "DD", height = 0.93, hair_colour = "blond", hair_style = bobbed_hair, skin="white", \
+            aunt = create_random_person(name = "Rebecca", last_name = Person.get_random_last_name(), age = 39, body_type = "thin_body", face_style = "Face_1", tits = "DD", height = 0.935, hair_colour = "blond", hair_style = bobbed_hair, skin="white", \
                 eyes = "brown", personality = aunt_personality, name_color = "#66FF8A", dial_color = "#66FF8A", starting_wardrobe = aunt_wardrobe, start_home = aunt_bedroom, \
                 stat_array = [5,2,1], skill_array = [1,2,0,0,0], sex_skill_array = [3,5,3,2], sluttiness = 11, obedience = 100, happiness = 70, love = 5, \
                 title = "Rebecca", possessive_title = "Your aunt", mc_title = mc.name, relationship = "Single", kids = 1,
@@ -169,7 +169,7 @@ init 1:
             cousin_wardrobe = wardrobe_from_xml("Cousin_Wardrobe")
 
             global cousin
-            cousin = create_random_person(name = "Gabrielle", last_name = aunt.last_name, age = 18, body_type = "curvy_body", face_style = "Face_3", tits = "DDD", height = 0.90, hair_colour = "black", hair_style = messy_short_hair, skin="white",\
+            cousin = create_random_person(name = "Gabrielle", last_name = aunt.last_name, age = 18, body_type = "curvy_body", face_style = "Face_3", tits = "DDD", height = 0.98, hair_colour = "black", hair_style = messy_short_hair, skin="white",\
                 eyes = "brown", personality = cousin_personality, name_color = "#9c4dea", dial_color = "#9c4dea", starting_wardrobe = cousin_wardrobe, start_home = cousin_bedroom, \
                 stat_array = [0,4,2], skill_array = [0,0,2,1,0], sex_skill_array = [3,0,0,0], sluttiness = 8, obedience = 70, happiness = 70, love = -20, \
                 title = "Gabrielle", possessive_title = "Your cousin", mc_title = mc.name, relationship = "Single", kids = 0,type="story")
