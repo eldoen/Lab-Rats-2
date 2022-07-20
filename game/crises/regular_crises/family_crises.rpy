@@ -1256,7 +1256,7 @@ label lily_morning_encounter_label():
                     mc.name "I know, I'm just having a feel. You've got a great ass."
                     "You spank her butt and she moans again. You work your hand down between her legs from behind and run a finger along her slit."
                     the_person "Fuck, please don't get me too wet. I don't want to have to explain that to Mom if she finds us."
-                    "You flick your finger over [the_person.possessive_title]'s clit, then slide your hand back and kneed her ass some more."
+                    "You flick your finger over [the_person.possessive_title]'s clit, then slide your hand back and knead her ass some more."
 
                 $ mc.change_locked_clarity(20)
                 $ the_person.change_slut(2, 50)

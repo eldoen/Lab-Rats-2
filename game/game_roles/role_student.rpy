@@ -893,8 +893,8 @@ label student_pick_punishment(the_person):
                     mc.name "You know you aren't supposed to be enjoying this, right?"
                     the_person "But there's no harm in it if I do."
                 else:
-                    the_person "Isn't that a little old fashioned?"
-                    mc.name "I think an old fashion touch is just what you need."
+                    the_person "Isn't that a little old-fashioned?"
+                    mc.name "I think an old-fashioned touch is just what you need."
                     $ mc.change_locked_clarity(10)
                     the_person "Fine, as long as you don't hit me too hard. I feel pretty confident, so I don't think it'll even matter."
                 $ the_person.event_triggers_dict["student_spank"] = 1

@@ -310,7 +310,7 @@ label strip_ask_against_wall(the_girl, the_clothing, the_location, the_object):
             return False
 
 label orgasm_against_wall(the_girl, the_location, the_object):
-    "[the_girl.possessive_title] closes her eyes and gasps suddenly. Her hands wrap around you and claw at pull hard against your back."
+    "[the_girl.possessive_title] closes her eyes and gasps suddenly. Her hands wrap around you, pulling hard, with her nails clawing into your back."
     $ the_girl.call_dialogue("climax_responses_vaginal")
     "You push her up against the [the_object.name] and keep fucking her through her orgasm."
     "After a couple of seconds [the_girl.title] opens her eyes again and takes a couple of deep breaths. You slow down your pace and give her a chance to recover."

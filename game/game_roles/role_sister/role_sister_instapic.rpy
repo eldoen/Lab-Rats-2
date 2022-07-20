@@ -452,7 +452,7 @@ label sister_instathot_label_solo(the_person):
                         the_person "Right, sorry I even mentioned it. I'll just delete all those messages and won't bother you about it again."
                         $ the_person.event_triggers_dict["sister_insta_special_ignore"] = True #If you turn her down both times she stops asking. #TODO: Remember to keep this storyline non-critical since you can disable it.
             else:
-                the_person "Before you go, can we take a few special shots? I another special request from a fan."
+                the_person "Before you go, can we take a few special shots? I got another special request from a fan."
                 the_person "It'll just take a moment!"
                 menu:
                     "Take the picture":

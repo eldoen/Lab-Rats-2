@@ -86,7 +86,7 @@ label browse_internet(is_phone = True): #TODO: Maybe make this a generic functio
     #TODO: Provide a bunch of internet browsing options. Later on this leads to "OnlyFanatics" and "InstaPic", but it might start out with just some porn (or a comment about how "normal porn just seems boring now")
 label .continue_browsing:
     if mod_installed:
-        call screen enhanced_main_choice_display(build_menu_items(build_phone_menu(), draw_hearts_for_people = False, draw_person_previews = False))
+        call screen enhanced_main_choice_display(build_menu_items(build_phone_menu(), draw_hearts_for_people = False, show_location = mc.business.event_triggers_dict.get("gps_tracker_enabled", False), draw_person_previews = False))
     else:
         call screen main_choice_display(build_phone_menu(), draw_hearts_for_people = False, draw_person_previews = False)
 

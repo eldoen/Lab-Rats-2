@@ -131,7 +131,7 @@ init -2 python:
         _list_of_names.append("Misa")
         _list_of_names.append("Kerri")
         _list_of_names.append("Marianne")
-        _list_of_names.append("Marry-Ann")
+        _list_of_names.append("Mary-Ann")
         _list_of_names.append("Angela")
         _list_of_names.append("June")
         _list_of_names.append("Angie")
