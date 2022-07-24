@@ -1602,7 +1602,7 @@ label introvert_bare_tits_taboo_break(the_person, the_clothing):
         else:
             "She shakes her chest and gives her small tits a little jiggle."
 
-        mc.name "Of course I want to see them. Let's get that [the_clothing.display_name] off so I can finally see them."
+        mc.name "Of course I want to see them. Let's get that [the_clothing.display_name] off so I finally can see them."
 
     elif the_person.love > 25:
         the_person "So you want to see my... breasts?"

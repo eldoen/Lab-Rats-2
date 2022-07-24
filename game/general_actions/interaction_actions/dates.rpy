@@ -622,6 +622,8 @@ label date_take_home_her_place(the_person, date_type = None): #Your date went we
         "Her voice is coming from the other side of a partially opened door. You nudge it open and step inside."
         $ the_person.draw_person(position = "sitting")
         $ mc.change_locked_clarity(15)
+        if mod_installed:
+            $ the_person.change_to_bedroom()
         "It's the master bedroom, and [the_person.possessive_title] is sitting at the foot of the bed."
         the_person "I thought we might be more comfortable in here. I got changed for you, too."
         $ the_person.draw_person()
@@ -671,6 +673,10 @@ label date_take_home_her_place(the_person, date_type = None): #Your date went we
                     "You kiss her again, and this time all resistance falls away."
                 "After a long moment spent making out [the_person.title] pulls away."
                 the_person "I think we'd be more comfortable in the bedroom, don't you think?"
+                mc.name "I couldn't agree more."
+                if mod_installed:
+                    $ the_person.change_to_bedroom()
+                "[the_person.possessive_title] leads you to her bedroom."
                 call fuck_person(the_person, private = True, start_position = kissing) from _call_fuck_person_104
                 $ the_person.call_dialogue("sex_review", the_report = _return)
                 #TODO: add support for spending the night somewhere other than home.
