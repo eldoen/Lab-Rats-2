@@ -560,7 +560,7 @@ init -1:
 
         primitive_serum_prod = SerumTrait(name = "Primitive Serum Production",
             desc = "The fundamental serum creation technique. The special carrier molecule can deliver one other serum trait with pinpoint accuracy.",
-            positive_slug = "1 Trait Slot, 3 Turn Duration",
+            positive_slug = "1 Trait Slot\n3 Turn Duration",
             negative_slug = "40 Production/Batch",
             research_added = 50,
             slots_added = 1,
@@ -723,7 +723,7 @@ init -1:
 
         improved_serum_prod = SerumTrait(name = "Improved Serum Production",
             desc = "General improvements to the basic serum creation formula. Allows for two serum traits to be delivered, but requires slightly more production to produce.",
-            positive_slug = "2 Trait Slots, 3 Turn Duration",
+            positive_slug = "2 Trait Slots\n3 Turn Duration",
             negative_slug = "70 Production/Batch",
             research_added = 50,
             slots_added = 2,
@@ -973,7 +973,7 @@ init -1:
 
         advanced_serum_prod = SerumTrait(name = "Advanced Serum Production",
             desc = "Advanced improvements to the basic serum design. Adds four serum trait slots, but requires even more production points.",
-            positive_slug = "4 Trait Slots, 3 Turn Duration",
+            positive_slug = "4 Trait Slots\n3 Turn Duration",
             negative_slug = "80 Production/Batch",
             research_added = 200,
             slots_added = 4,
@@ -1099,7 +1099,7 @@ init -1:
 
         slutty_caffeine_trait = SerumTrait(name = "Libido Stimulants",
             desc = "Careful engineering allows for the traditional side effects of stimulants to be redirected to the parasympathetic nervous system, causing an immediate spike in arousal as well as general energy levels.",
-            positive_slug = " +20 Max Energy, +15 Sluttiness",
+            positive_slug = " +20 Max Energy\n+15 Sluttiness",
             negative_slug = "",
             research_added = 150,
             base_side_effect_chance = 60,
@@ -1185,7 +1185,7 @@ init -1:
 
         rolling_orgasm = SerumTrait(name = "Climax Cycler",
             desc = "Linking the pleasure center of the brain to the subject's natural circadian rhythm causes periodic, low grade orgasms spaced several hours apart. In addition to being pleasant and slightly tiring, this can trigger other orgasm related effects if they exist.",
-            positive_slug = "+5 Happiness/Turn, 1 Forced Orgasm/Turn",
+            positive_slug = "+5 Happiness/Turn\n1 Forced Orgasm/Turn",
             negative_slug = "-10 Max Energy",
             research_added = 400,
             base_side_effect_chance = 50,
@@ -1233,7 +1233,7 @@ init -1:
 
         futuristic_serum_prod = SerumTrait(name = "Futuristic Serum Production",
             desc = "Space age technology makes the serum incredibly versatile. Adds seven serum trait slots at an increased production cost.",
-            positive_slug = "7 Trait Slots, 3 Turn Duration",
+            positive_slug = "7 Trait Slots\n3 Turn Duration",
             negative_slug = "135 Production/Batch",
             research_added = 500,
             slots_added = 7,
@@ -1496,7 +1496,7 @@ init -1:
 
         nora_reward_hucow_trait = SerumTrait(name = "Human Breeding Hormones",
             desc = "A special serum trait developed by Nora after studying someone who was in the later stages of pregnancy. Massively decreases birth control effectiveness, increases fertility, and triggers breast swelling and lactation.",
-            positive_slug = "+70% Fertility, -75% BC Effectiveness, Increased Breast Size, Massive Lactation",
+            positive_slug = "+70% Fertility\n-75% BC Effectiveness\nIncreased Breast Size\nMassive Lactation",
             negative_slug = "",
             research_added = 300,
             base_side_effect_chance = 80,

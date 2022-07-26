@@ -202,10 +202,10 @@ init -2 python:
                     mc.log_event(self.name + " developed side effect " + the_side_effect.name + " due to " + trait.name, "float_text_blue")
 
         def build_positive_slug(self):
-            return ", ".join([x.positive_slug for x in self.traits + self.side_effects if x.positive_slug])
+            return "\n".join([x.positive_slug for x in self.traits + self.side_effects if x.positive_slug])
 
         def build_negative_slug(self):
-            return ", ".join([x.negative_slug for x in self.traits + self.side_effect if x.negative_slug])
+            return "\n".join([x.negative_slug for x in self.traits + self.side_effect if x.negative_slug])
 
         def has_production_trait(self):
             return any(x for x in self.traits if "Production" in x.exclude_tags)
