@@ -62,6 +62,7 @@ label scene_blowjob_1(the_girl, the_location, the_object):
     $ blowjob.redraw_scene(the_girl)
     if the_girl.sex_skills["Oral"] < 2: #Inexperienced.
         "You rest your hand on [the_girl.title]'s head as she bobs her head back and forth. She struggles to take you very deep, and focuses on licking and sucking your tip instead."
+        call blowjob_comment(the_girl, the_location, the_object) from call_blowjob_comment_scene_blowjob_1_1
         menu:
             "Encourage her to go deeper":
                 mc.name "Come on, you'll never get better if you don't try and take it deeper."
@@ -111,6 +112,7 @@ label scene_blowjob_1(the_girl, the_location, the_object):
 
     else: #competent at blowjobs.
         "[the_girl.title] keeps her mouth open wide and bobs her head back and forth to slide your cock in and out. The feeling of her soft, warm mouth sends shivers up your spine."
+        call blowjob_comment(the_girl, the_location, the_object) from call_blowjob_comment_scene_blowjob_1_2
         menu:
             "Talk dirty to her":
                 mc.name "That feels great [the_girl.title]. You look good on your knees, sucking my cock."
@@ -172,6 +174,7 @@ label scene_blowjob_2(the_girl, the_location, the_object):
     $ blowjob.redraw_scene(the_girl)
 
     "[the_girl.title] pulls your cock out of her mouth and leans in even closer. She runs her tongue along the bottom of your shaft, pausing at the top to kiss the tip a few times."
+    call blowjob_comment(the_girl, the_location, the_object) from call_blowjob_comment_scene_blowjob_2_1
     the_girl "Does that feel good?"
     menu:
         "Encourage her":
@@ -411,4 +414,36 @@ label orgasm_blowjob(the_girl, the_location, the_object):
             "She licks your shaft and looks up at you."
             the_girl.name "Should I get going again?"
             "She doesn't wait for an answer and starts sucking your cock again."
+    return
+
+label blowjob_comment(the_girl, the_location, the_object):
+    $ last_position = last_position_used()
+    if not last_position or not last_position.skill_tag in ["Anal", "Vaginal"]:
+        return
+
+    if the_girl.effective_sluttiness() > 70 or (the_girl.effective_sluttiness(50) and the_girl.get_opinion_score("being submissive") > 0):
+        if last_position.skill_tag == "Anal":
+            the_girl "I love the taste of my ass on your lovely cock."
+            $ the_girl.change_arousal(2)
+        elif last_position.skill_tag == "Vaginal":
+            the_girl "I love tasting my pussy juice on your amazing cock."
+            $ the_girl.change_arousal(2)
+    elif the_girl.effective_sluttiness() > 40:
+        if last_position.skill_tag == "Anal":
+            the_girl "I'm still getting used to tasting my ass on your cock."
+            $ the_girl.change_arousal(1)
+        elif last_position.skill_tag == "Vaginal":
+            the_girl "I'm still getting used to tasting my juices on your cock."
+            $ the_girl.change_arousal(1)
+    else:
+        if last_position.skill_tag == "Anal":
+            the_girl "I don't care for tasting my ass on your dick."
+            $ the_girl.change_happiness(-2)
+            $ the_girl.change_arousal(-2)
+        elif last_position.skill_tag == "Vaginal":
+            the_girl "I don't like tasting my juices on your dick."
+            $ the_girl.change_happiness(-2)
+            $ the_girl.change_arousal(-2)
+
+    $ last_position = None
     return

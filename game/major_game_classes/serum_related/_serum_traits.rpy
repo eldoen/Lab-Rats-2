@@ -383,8 +383,8 @@ init -1:
 
         def height_increase_on_day(the_person, the_serum, add_to_log):
             the_person.height += the_person.get_height_step() #TODO: Decide what the maximum should be. You should be able to make giants with this. Currently 7" for practical concerns (being able to see face)
-            if the_person.height > the_person.get_height_ceiling(initial=False): #1.375 original cap
-                the_person.height = the_person.get_height_ceiling(initial=False)
+            if the_person.height > Person.get_height_ceiling(initial=False): #1.375 original cap
+                the_person.height = Person.get_height_ceiling(initial=False)
             if renpy.random.randint(0,100) < 10:
                 new_tits = the_person.get_larger_tit(the_person.tits)
                 if new_tits != the_person.tits: #Double check we don't already have them to avoid increasing breast weight infinitely
@@ -393,8 +393,8 @@ init -1:
 
         def height_decrease_on_day(the_person, the_serum, add_to_log):
             the_person.height -= the_person.get_height_step() #TODO: Decide what the minimum should be. Should be smaller than normal
-            if the_person.height < the_person.get_height_floor(initial=False): #0.7 original cap / 0.6 adjusted (changed to 0.72 for 4' 0")
-                the_person.height = the_person.get_height_floor(initial=False)
+            if the_person.height < Person.get_height_floor(initial=False): #0.7 original cap / 0.6 adjusted (changed to 0.72 for 4' 0")
+                the_person.height = Person.get_height_floor(initial=False)
             if renpy.random.randint(0,100) < 10:
                 new_tits = the_person.get_smaller_tit(the_person.tits)
                 if new_tits != the_person.tits:

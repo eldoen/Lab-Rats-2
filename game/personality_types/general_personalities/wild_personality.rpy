@@ -1483,7 +1483,7 @@ label wild_touching_penis_taboo_break(the_person):
 
 label wild_touching_vagina_taboo_break(the_person):
     if the_person.effective_sluttiness() >= 35:
-        the_person "Don't chicken out now on me, you've got your chance to stroke my pussy now."
+        the_person "Don't chicken out on me now, you've got your chance to touch my pussy."
     elif the_person.love >= 20:
         the_person "Oh fuck, you've got my pussy tingling. I want you to touch it [the_person.mc_title]."
     else:

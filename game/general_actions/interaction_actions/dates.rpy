@@ -796,13 +796,14 @@ label shopping_date_loop(the_person, previous_choice = None):
     return
 
 label shopping_date_food(the_person):
+    $ name_string = time_food_names[time_of_day]
     mc.name "Let's head over to the food court, I could use a bite."
     the_person "Sounds like a plan."
     "You lead [the_person.possessive_title] to the crowded food court. She looks around and hums as she decides what to eat."
     #TODO: Have a list of random food places to arbitrarily chose from
     menu:
-        "Pay for her lunch\n{color=#ff0000}{size=18}Costs: $40{/size}{/color}" if mc.business.has_funds(40):
-            mc.name "Lunch is on me, what do you want me to get you?"
+        "Pay for her [name_string]\n{color=#ff0000}{size=18}Costs: $40{/size}{/color}" if mc.business.has_funds(40):
+            mc.name "[name_string] is on me, what do you want me to get you?"
             $ the_person.change_love(1)
             $ the_person.change_happiness(10)
             the_person "Aw, thanks [the_person.mc_title]..."
@@ -829,24 +830,24 @@ label shopping_date_food(the_person):
             "She waves you over to the table she's saved."
             the_person "Thank you [the_person.mc_title], this looks great!"
             $ the_person.change_love(1)
-            "You eat lunch together, chatting idly about nothing important."
+            "You eat [name_string] together, chatting idly about nothing important."
 
-        "Pay for her lunch\n{color=#ff0000}{size=18}Costs: $40{/size}{/color} (disabled)" if not mc.business.has_funds(40):
+        "Pay for her [name_string]\n{color=#ff0000}{size=18}Costs: $40{/size}{/color} (disabled)" if not mc.business.has_funds(40):
             pass
 
-        "Just buy your own lunch\n{color=#ff0000}{size=18}Costs: $20{/size}{/color}" if mc.business.has_funds(20):
+        "Just buy your own [name_string]\n{color=#ff0000}{size=18}Costs: $20{/size}{/color}" if mc.business.has_funds(20):
             mc.name "See anything you like?"
             the_person "Not right away... I'm going to wander around a bit, you go ahead and order something."
             $ clear_scene()
             "[the_person.possessive_title] moves off into the crowd. You pick a fast food place for yourself and order some food."
             $ mc.business.change_funds(-20)
-            "When you get your order you find a table, and a couple of minutes later [the_person.title] shows up with her own lunch."
+            "When you get your order you find a table, and a couple of minutes later [the_person.title] shows up with her own [name_string]."
             $ the_person.draw_person(position = "sitting", emotion = "happy")
             the_person "Hope you weren't waiting long, it just all looked so good!"
             $ the_person.change_love(1)
-            "You eat lunch together, chatting idly about nothing important."
+            "You eat [name_string] together, chatting idly about nothing important."
 
-        "Just buy your own lunch\n{color=#ff0000}{size=18}Costs: $20{/size}{/color} (disabled)" if not mc.business.has_funds(20):
+        "Just buy your own [name_string]\n{color=#ff0000}{size=18}Costs: $20{/size}{/color} (disabled)" if not mc.business.has_funds(20):
             pass
 
         "Don't buy anything":

@@ -72,7 +72,7 @@ label city_rep_negotiate(the_person):
                 mc.name "Of course not! But if you're taking a risk, you deserve to be compensated. Consider it insurance in case something does go wrong."
                 "A longer pause this time."
                 the_person "Okay, I'll arrange for the paperwork to be put through."
-                mc.name "And I'll be sending you your funds. thank you for your help [the_person.title]."
+                mc.name "And I'll be sending you your funds. Thank you for your help [the_person.title]."
                 the_person "Don't make me regret this."
                 $ mc.business.change_funds(-2500)
                 $ purchase_policy(attention_floor_increase_2_policy,ignore_cost = True)

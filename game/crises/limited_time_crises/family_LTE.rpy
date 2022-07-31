@@ -725,6 +725,7 @@ label mom_go_shopping_label(the_person):
     if the_person.love < 10:
         the_person "I might be back late, but there's dinner in the fridge. All you need to do is warm it up."
         the_person "Take care of your sister, and call me if you need me."
+        $ the_person.draw_person(position = "walking_away")
         "She smiles and waves goodbye as she heads for the front door."
 
     elif the_person.love < 30:
@@ -736,12 +737,13 @@ label mom_go_shopping_label(the_person):
                 $ the_person.change_love(1)
                 $ the_person.change_obedience(-1)
                 the_person "Oh, you're so sweet. Of course you can, if you don't mind being seen with your Mom out in public."
-                the_person "I'll try not to embarrass you too badly."
+                the_person "I'll try not to embarrass you if we run into someone you know."
                 $ trigger_date = True
 
             "Say goodbye":
                 mc.name "Okay, have fun [the_person.title]."
                 the_person "Take care of your sister, and call me if you need me."
+                $ the_person.draw_person(position = "walking_away")
                 "She smiles and waves goodbye as she heads for the front door."
 
     else:
@@ -749,7 +751,7 @@ label mom_go_shopping_label(the_person):
         the_person "If you aren't to embarrassed to be seen shopping with your mom, of course."
         menu:
             "Go shopping":
-                mc.name "I've got some shopping of my own to do too. Sure, I'll come along."
+                mc.name "I've got some shopping to do of my own. Sure, I'll come along."
                 "She smiles happily."
                 the_person "It's always nice when we get to spend time together, just the two of us."
                 $ trigger_date = True
@@ -758,6 +760,7 @@ label mom_go_shopping_label(the_person):
                 mc.name "Sorry [the_person.title], I've made plans for the afternoon already."
                 the_person "Of course, you're a busy boy! Well then, there's dinner in the fridge."
                 the_person "I'll be back later tonight. Take care of your sister."
+                $ the_person.draw_person(position = "walking_away")
                 "She smiles and waves goodbye, heading for the front door."
 
     if trigger_date:

@@ -26,3 +26,8 @@ init -1 python:
 
         else:
             return "{image=gui/heart/Grey_Steady.png}"
+
+    def last_position_used():
+        if "report_log" in globals():
+            return report_log.get("last_position", None)
+        return None

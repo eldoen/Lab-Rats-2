@@ -271,7 +271,7 @@ label strip_ask_kissing(the_girl, the_clothing, the_location, the_object):
         "Let her strip":
             mc.name "Take it off for me."
             $ the_girl.draw_animated_removal(the_clothing, position = kissing.position_tag)
-            "You watch while [the_girl.possessive_title] takes off her [the_clothing.name] and drops it to the side. She's done you pull her close and kiss her again."
+            "You watch while [the_girl.possessive_title] takes off her [the_clothing.name] and drops it to the side. When she's done you pull her close and kiss her again."
 
         "Leave it on":
             mc.name "No, I like how you look with it on."

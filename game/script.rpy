@@ -58,6 +58,7 @@ init -2 python:
 
     day_names = ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"] #Arrays that hold the names of the days of the week and times of day. Arrays start at 0.
     time_names = ["Early Morning","Morning","Afternoon","Evening","Night"]
+    time_food_names = ["Breakfast", "Breakfast", "Lunch", "Dinner", "Midnight Snack"]
 
     global emotion_images_dict
     emotion_images_dict = {}

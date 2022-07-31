@@ -217,6 +217,7 @@ label fuck_person(the_person, private = True, start_position = None, start_objec
             $ start_object = None
             if position_choice and object_choice: #If we have both an object and a position we're good to go, otherwise we loop and they have a chance to choose again.
                 call sex_description(the_person, position_choice, object_choice, private = private, report_log = report_log) from _call_sex_description
+                $ report_log["last_position"] = position_choice
                 $ first_round = False
                 $ initial_position = position_choice
                 if mc.recently_orgasmed and not mc_softened:
