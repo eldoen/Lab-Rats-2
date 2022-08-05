@@ -345,7 +345,7 @@ init -1:
             current_colour_raw = the_person.hair_colour[1] #NOTE: Hair colour also comes with a discriptor, but we need a way to override/replace that at some point in the future.
             current_colour = Color(rgb=(current_colour_raw[0], current_colour_raw[1], current_colour_raw[2]), alpha = current_colour_raw[3]) #Generate a proper Colour object
             new_colour = current_colour.tint(1.0 - change_per_turn) #Each turn it gets 30% closer to the goal (but never _quite_ gets there).
-            the_person.set_hair_colour(new_colour)
+            the_person.set_hair_colour(new_colour, change_pubes = False)
 
         def hair_darken_dye_on_turn(the_person, the_serum, add_to_log):
             change_per_turn = 0.3 #At 1 it changes in a single turn, at 0 it never changes at all. At 0.5 it gets 50% closer each turn.
@@ -353,7 +353,7 @@ init -1:
             current_colour_raw = the_person.hair_colour[1] #NOTE: Hair colour also comes with a discriptor, but we need a way to override/replace that at some point in the future.
             current_colour = Color(rgb=(current_colour_raw[0], current_colour_raw[1], current_colour_raw[2]), alpha = current_colour_raw[3]) #Generate a proper Colour object
             new_colour = current_colour.shade(1.0 - change_per_turn) #Each turn it gets 30% closer to the goal (but never _quite_ gets there).
-            the_person.set_hair_colour(new_colour)
+            the_person.set_hair_colour(new_colour, change_pubes = False)
 
         def weight_gain_on_apply(the_person, the_serum, add_to_log):
             the_person.change_max_energy(-20, add_to_log = add_to_log)

@@ -1,9 +1,5 @@
 #Holds all of the info for SerumTraitBlueprints, which generate new unique traits when unlocked (to allow a single trait to do variations of the same action.)
 init -1 python:
-    def update_hair_colour(the_person):
-        the_person.hair_style.colour = the_person.hair_colour[1]
-        the_person.pubes_colour = the_person.pubes_colour
-
     def hair_colour_change_on_turn(goal_colour, the_person, the_serum, add_to_log): #NOTE: This function must be partially filled and assigned when the blueprint is realised.
         change_per_turn = 0.3 #At 1 it changes in a single turn, at 0 it never changes at all. At 0.5 it gets 50% closer each turn.
 
@@ -11,7 +7,7 @@ init -1 python:
         current_colour_raw = the_person.hair_colour[1] #NOTE: Hair colour also comes with a discriptor, but we need a way to override/replace that at some point in the future.
         current_colour = Color(rgb=(current_colour_raw[0], current_colour_raw[1], current_colour_raw[2]), alpha = current_colour_raw[3]) #Generate a proper Colour object
         new_colour = current_colour.interpolate(goal_colour, change_per_turn) #Each turn it gets 30% closer to the goal (but never _quite_ gets there).
-        the_person.set_hair_colour(new_colour)
+        the_person.set_hair_colour(new_colour, change_pubes = False)
 
     def eye_colour_change_on_turn(goal_colour, the_person, the_serum, add_to_log):
         change_per_turn = 0.3

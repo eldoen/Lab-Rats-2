@@ -3508,8 +3508,8 @@ init -2 python:
 
             if change_pubes:
                 pubes_colour = new_colour.shade(1.0-darken_pubes_amount)
-                self.pubes_colour = [pubes_colour.rgb[0], pubes_colour.rgb[1], pubes_colour.rgb[2], 1.0]
-                self.pubes_colour = pubes_colour
+                self.pubes_style.colour = [pubes_colour.rgb[0], pubes_colour.rgb[1], pubes_colour.rgb[2], 1.0]
+                self.pubes_colour = self.pubes_style.colour
             self.hair_style.colour = hair_colour_list
 
         def get_milk_trait(self): # Generates a milk trait that can be used any time you harvest lactating milk. #TODO: Add ways to give this trait augments, like +duration or it suppresses side effects.
