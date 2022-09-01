@@ -3,7 +3,12 @@
 init -15 python:
     from datetime import datetime
     import traceback
-    
+
+    try:
+        import unittest
+    except:
+        pass
+
     debugMode = False
 
     def reveal_type():

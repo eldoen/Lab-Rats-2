@@ -411,7 +411,7 @@ label bimbo_flirt_response(the_person):
     return
 
 label bimbo_flirt_response_low(the_person):
-    if the_person.is_wearing_uniform():
+    if the_person.is_wearing_uniform() and the_person.has_role(employee_role):
         if the_person.judge_outfit(the_person.outfit):
             #She's in uniform and likes how it looks.
             the_person "Hehe, thanks! I love these outfits you make us wear, they're, like, so cute!"
@@ -473,7 +473,7 @@ label bimbo_flirt_response_low(the_person):
     return
 
 label bimbo_flirt_response_mid(the_person):
-    if the_person.is_wearing_uniform():
+    if the_person.is_wearing_uniform() and the_person.has_role(employee_role):
         if the_person.judge_outfit(the_person.outfit):
             $ mc.change_locked_clarity(15)
             if the_person.outfit.tits_visible():
@@ -909,7 +909,7 @@ label bimbo_cum_vagina(the_person):
             if the_person.relationship != "Single":
                 $ so_title = SO_relationship_to_title(the_person.relationship)
                 the_person "My [so_title] gets angry when I forget, but it's not like he fucks me much anyways."
-        elif pregnant_role in the_person.special_role:
+        elif the_person.has_role(pregnant_role) and self.event_triggers_dict.get("preg_knows", False):
             the_person "Mmm, wow you really pumped it into me. But since i've already got one in the oven, that's fine."
             if the_person.relationship != "Single":
                 $ so_title = SO_relationship_to_title(the_person.relationship)

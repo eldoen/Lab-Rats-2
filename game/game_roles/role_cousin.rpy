@@ -755,18 +755,18 @@ label cousin_search_room_label(the_cousin, the_aunt):
         "You start with the most obvious places, digging through the papers on her desk and checking her closet."
         "While you're searching, the bedroom door opens."
         $ the_aunt.draw_person()
-        if the_aunt.love < 10:
+        if the_aunt.love < 30:
             the_aunt "[the_aunt.mc_title], what the hell are you doing?"
             mc.name "Uh... I'm looking for information about your daughter."
-            $ the_person.draw_person(emotion = "angry")
-            $ the_person.change_love(-3)
+            $ the_cousin.draw_person(emotion = "angry")
+            $ the_cousin.change_love(-3)
             the_aunt "And you think you can just come in here and dig through her stuff? Get out! I'll be telling your mother about this!"
             "She glares at you and ushers you out of the apartment and out of the building."
-            $ mom.change_happiness(-5)
-            $ mom.change_love(-1)
+            $ the_aunt.change_happiness(-5)
+            $ the_aunt.change_love(-1)
             $ mc.change_location(downtown)
             $ mc.location.show_background()
-            "You'll need [the_aunt.possessive_title] out of the apartment if you want to search [the_cousin.title]'s room undisturbed."
+            "You'll need [the_aunt.possessive_title] to like you more if you want to search [the_cousin.title]'s room undisturbed."
             return
         else:
             the_aunt "[the_aunt.mc_title], are you looking for something?"

@@ -10,7 +10,6 @@ init -10 python: #Init -10 is used for all project wide imports of external reso
     import io
     from collections import defaultdict
     from collections import OrderedDict
-    import unittest
     import unicodedata
     import sys
     from functools import partial

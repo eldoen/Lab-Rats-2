@@ -446,7 +446,7 @@ label reserved_flirt_response(the_person):
     return
 
 label reserved_flirt_response_low(the_person):
-    if the_person.is_wearing_uniform():
+    if the_person.is_wearing_uniform() and the_person.has_role(employee_role):
         if the_person.judge_outfit(the_person.outfit):
             # She's in uniform and likes how it looks.
             the_person "Thank you [the_person.mc_title]. I think these are nice uniforms as well."
@@ -503,7 +503,7 @@ label reserved_flirt_response_low(the_person):
     return
 
 label reserved_flirt_response_mid(the_person):
-    if the_person.is_wearing_uniform():
+    if the_person.is_wearing_uniform() and the_person.has_role(employee_role):
         if the_person.judge_outfit(the_person.outfit):
             if the_person.outfit.tits_visible():
                 the_person "What it shows off most are my breasts. I'm not complaining though. Between you and me, I kind of like it."

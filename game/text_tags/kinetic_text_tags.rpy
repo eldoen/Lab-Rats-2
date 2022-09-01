@@ -45,7 +45,6 @@ default preferences.chaos_on = False  # You can change this to be gui.chaos_text
 
 init python:
     import random
-    import math
 
     # This will maintain what styles we want to apply and help us apply them
     class DispTextStyle():

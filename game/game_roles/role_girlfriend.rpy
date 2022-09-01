@@ -237,10 +237,10 @@ label caught_cheating_label(the_other_girl, the_girlfriend): #Note: the_other_gi
     #TODO: Add some dialogue in case she's a particularly important person (ie. friend, mother)
     if town_relationships.is_family(the_girlfriend, the_other_girl):
         $ the_item = town_relationships.get_relationship_type(the_girlfriend, the_other_girl).lower()
-        the_girlfriend "Really? Everything's okay while you're have sex with my [the_item]?"
+        the_girlfriend "Really? Everything's okay while you're having sex with my [the_item]?"
         $ the_girlfriend.change_love(-25 + (5 * the_girlfriend.get_opinion_score("incest")))
     else:
-        the_girlfriend "Really? Everything's okay while you're have sex with another woman?"
+        the_girlfriend "Really? Everything's okay while you're having sex with another woman?"
         $ the_girlfriend.change_love(-25)
 
     # Note: This only happens if she saw something happening that was too slutty for her, slutty girls think it's totally fine and normal.

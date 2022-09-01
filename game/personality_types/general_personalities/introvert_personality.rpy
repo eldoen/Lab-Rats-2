@@ -430,7 +430,7 @@ label introvert_flirt_response(the_person):
     return
 
 label introvert_flirt_response_low(the_person):
-    if the_person.is_wearing_uniform():
+    if the_person.is_wearing_uniform() and the_person.has_role(employee_role):
         if the_person.judge_outfit(the_person.outfit):
             # #She's in uniform and likes how it looks.
             "[the_person.possessive_title] blushes and looks away, suddenly shy."
@@ -484,7 +484,7 @@ label introvert_flirt_response_low(the_person):
     return
 
 label introvert_flirt_response_mid(the_person):
-    if the_person.is_wearing_uniform():
+    if the_person.is_wearing_uniform() and the_person.has_role(employee_role):
         if the_person.judge_outfit(the_person.outfit):
             the_person "Oh... Thanks."
             "[the_person.possessive_title] blushes and looks away."

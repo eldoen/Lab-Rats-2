@@ -445,7 +445,7 @@ label wild_flirt_response(the_person):
     return
 
 label wild_flirt_response_low(the_person):
-    if the_person.is_wearing_uniform():
+    if the_person.is_wearing_uniform() and the_person.has_role(employee_role):
         if the_person.judge_outfit(the_person.outfit):
             #She's in uniform and likes how it looks.
             the_person "Thanks! I think I look pretty cute in it too."
@@ -495,7 +495,7 @@ label wild_flirt_response_low(the_person):
     return
 
 label wild_flirt_response_mid(the_person):
-    if the_person.is_wearing_uniform():
+    if the_person.is_wearing_uniform() and the_person.has_role(employee_role):
         if the_person.judge_outfit(the_person.outfit):
             $ mc.change_locked_clarity(10)
             if the_person.outfit.tits_visible():
