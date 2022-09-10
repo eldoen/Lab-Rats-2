@@ -1458,7 +1458,7 @@ label mom_convince_quit_label(the_person):
                                 the_person "Of course, that sounds reasonable."
 
                                 $ the_person.salary_modifier = 0
-                                $ the_person.salary = calculate_base_salary()
+                                $ the_person.salary = the_person.calculate_base_salary()
 
                             "Pay her nothing\n{color=#ff0000}{size=18}Requires: 130 Obedience{/size}{/color} (disabled)" if the_person.obedience < 130:
                                 pass
