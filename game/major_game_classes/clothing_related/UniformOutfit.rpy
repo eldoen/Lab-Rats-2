@@ -75,7 +75,7 @@ init -2 python:
             elif limited_to_top:
                 return False
 
-            elif self.outfit.get_underwear_slut_score() > slut_limit:
+            elif self.outfit.get_underwear_slut_score() > underwear_limit:
                 return False
 
             elif not self.outfit.is_suitable_underwear_set():

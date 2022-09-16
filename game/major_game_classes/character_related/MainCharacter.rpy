@@ -228,7 +228,7 @@ init -2 python:
                 self.designed_wardrobe.add_outfit(the_outfit)
 
         def is_at_work(self): #Checks to see if the main character is at work, generally used in crisis checks.
-            return self.location in [self.business.m_div, self.business.p_div, self.business.r_div, self.business.s_div, self.business.h_div]
+            return self.location in [lobby, self.business.m_div, self.business.p_div, self.business.r_div, self.business.s_div, self.business.h_div]
 
         def run_turn(self):
             self.listener_system.fire_event("time_advance")
