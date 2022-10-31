@@ -247,7 +247,19 @@ init -2 python:
                 self.accessories.remove(old_clothing)
 
         def half_off_clothing(self, the_clothing):
-            the_clothing.half_off = True
+            # Make sure we remove from the Outfit, instead of the_clothing
+            for cloth in self.upper_body:
+                if cloth == the_clothing:
+                    cloth.half_off = True
+            for cloth in self.lower_body:
+                if cloth == the_clothing:
+                    cloth.half_off = True
+            for cloth in self.feet:
+                if cloth == the_clothing:
+                    cloth.half_off = True
+            for cloth in self.accessories:
+                if cloth == the_clothing:
+                    cloth.half_off = True
 
         def remove_clothing_list(self, the_list, half_off_instead = False):
             for item in the_list:

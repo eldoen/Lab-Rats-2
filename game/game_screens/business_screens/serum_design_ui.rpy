@@ -171,7 +171,7 @@ screen serum_design_ui(starting_serum,current_traits):
                         text "Serum Tier: " + str(starting_serum.tier) style "menu_text_style"
                     else:
                         text "Serum Tier: {color=#fb6868}" + str(starting_serum.tier) + "{/color}" style "menu_text_style"
-                    $ calculated_profit = round(mc.business.get_serum_base_value(starting_serum)-(starting_serum.production_cost/mc.business.batch_size))
+                    $ calculated_profit = __builtin__.round(mc.business.get_serum_base_value(starting_serum)-(starting_serum.production_cost/mc.business.batch_size))
                     if calculated_profit > 0:
                         text "Expected Profit:{color=#98fb98} $[calculated_profit]{/color}" style "menu_text_style"
                     else:

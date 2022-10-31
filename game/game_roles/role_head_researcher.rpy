@@ -138,11 +138,11 @@ label improved_serum_unlock_label(the_person): #TODO: Double check this has a ti
             if isinstance(picked_serum, SerumDesign):
                 mc.name "Yeah, I have it right here."
 
-                $ is_valid_design = False #Create a fake person to apply the serum to. If it raises Suggest we're good.
-                $ test_person = create_random_person()
-                $ start_suggest = the_person.suggestibility
-                $ test_person.give_serum(picked_serum, add_to_log = False)
-                if start_suggest >= test_person.suggestibility:
+                #$ is_valid_design = False #Create a fake person to apply the serum to. If it raises Suggest we're good.
+                #$ test_person = create_random_person()
+                #$ start_suggest = the_person.suggestibility
+                #$ test_person.give_serum(picked_serum, add_to_log = False)
+                if not picked_serum.has_tag("Suggest"): #start_suggest >= test_person.suggestibility:
                     "You hand the vial of serum to [the_person.title]. She swirls it in front of her eye and frowns."
                     the_person "No, I don't think this design is going to work."
                     "She hands the vial back to you."

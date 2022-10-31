@@ -103,7 +103,7 @@ label attention_event():
     return "Advance Time"
 
 label attention_pay_fine(the_person):
-    $ fine_amount = round(mc.business.calculate_salary_cost()*0.01)*1000 #ie. costs 10x a days staff cost, rounded to the nearest $100
+    $ fine_amount = __builtin__.round(mc.business.calculate_salary_cost()*0.01)*1000 #ie. costs 10x a days staff cost, rounded to the nearest $100
     if fine_amount < 100:
         $ fine_amount = 100
 
