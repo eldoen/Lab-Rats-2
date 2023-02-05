@@ -219,6 +219,9 @@ init -2 python:
         def get_layer(self,body_type,tit_size):
             return self.layer
 
+        def get_slut_value(self):
+            return self.slut_value
+
         def generate_stat_slug(self): #Generates a string of text/tokens representing what layer this clothing item is/covers
             cloth_info = ""
             if self.layer == 3:
@@ -236,7 +239,7 @@ init -2 python:
                 if self.has_extension.layer == 1:
                     cloth_info += "|{image=gui/extra_images/underwear_token.png}"
 
-            cloth_info += "+" +str(self.slut_value) + "{image=gui/heart/red_heart.png}"
+            cloth_info += "+" +str(self.get_slut_value()) + "{image=gui/heart/red_heart.png}"
             return cloth_info
 
         def generate_item_image_name(self, body_type, tit_size, position):

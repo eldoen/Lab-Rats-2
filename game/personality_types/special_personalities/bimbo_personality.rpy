@@ -909,7 +909,7 @@ label bimbo_cum_vagina(the_person):
             if the_person.relationship != "Single":
                 $ so_title = SO_relationship_to_title(the_person.relationship)
                 the_person "My [so_title] gets angry when I forget, but it's not like he fucks me much anyways."
-        elif the_person.has_role(pregnant_role) and self.event_triggers_dict.get("preg_knows", False):
+        elif the_person.has_role(pregnant_role) and the_person.event_triggers_dict.get("preg_knows", False):
             the_person "Mmm, wow you really pumped it into me. But since i've already got one in the oven, that's fine."
             if the_person.relationship != "Single":
                 $ so_title = SO_relationship_to_title(the_person.relationship)
