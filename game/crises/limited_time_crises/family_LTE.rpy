@@ -37,6 +37,8 @@ init -1 python:
             return False
         elif mom_bedroom.get_person_count() > 1:
             return False
+        elif the_person.has_taboo("vaginal_sex"):
+            return False
         elif the_person.effective_sluttiness() + the_person.fertility_percent < (80 - (10*the_person.get_opinion_score("creampies"))):
             return False
         elif the_person.love + the_person.fertility_percent < (75 - (10*the_person.get_opinion_score("creampies"))):
