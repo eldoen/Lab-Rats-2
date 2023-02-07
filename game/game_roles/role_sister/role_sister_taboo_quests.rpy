@@ -347,7 +347,7 @@ label sister_oral_taboo_break_revisit_quest_2(the_person):
                     lead_girl "Yeah, I am. What about you?"
                     mc.name "Your friend is right, I'm picking one up..."
                     "She laughs and shakes her head."
-                    lead_girl "Oh, they're not my friends. They're just following me around so she can be in the back of my Insta-posts."
+                    lead_girl "Oh, they're not my friends. They're just following me around so they can be in the background of my Insta-posts."
                     "The two girls scowl, but their leader doesn't seem to care."
                     mc.name "Right... Well I'm just picking one up for my sister. She's really into InstaPic."
                     $ the_group.set_primary(other_girl_1)

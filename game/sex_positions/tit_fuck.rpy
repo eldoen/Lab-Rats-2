@@ -74,7 +74,7 @@ label scene_tit_fuck_1(the_girl, the_location, the_object):
     return
 
 label scene_tit_fuck_2(the_girl, the_location, the_object):
-    "You reach down and grab [the_girl.title]'s tits yourself. You place your hands over hers and hold them in place."
+    "You reach down and grab [the_girl.title]'s tits yourself. She places her hands over yours and holds them in place."
     the_girl "Mmm, fuck my tits [the_girl.mc_title], they're all yours."
     "You squeeze down hard on her breasts and work your hips, fucking her soft cleavage. [the_girl.title] moans in response."
     "When you're satisfied you let go and let her take over again."
@@ -116,7 +116,7 @@ label outro_tit_fuck(the_girl, the_location, the_object):
         "As your orgasm builds to its peak you step back, sliding your cock out from her cleavage and take it up in your own hand."
         $ the_girl.draw_person(position = "kneeling1")
         if the_girl.effective_sluttiness() > 40 or the_girl.get_opinion_score("cum facials") > 0:
-            "[the_girl.title] understands immediately what is about to happens and tilts her head up, giving you a clear target."
+            "[the_girl.title] understands immediately what is about to happen and tilts her head up, giving you a clear target."
             $ climax_controller.do_clarity_release(the_girl)
             "You stroke yourself to completion and blast your load over her face, throwing thick ropes of cum her lips and nose and eyes."
         else:

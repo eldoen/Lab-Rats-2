@@ -1554,7 +1554,7 @@ label wild_vaginal_sex_taboo_break(the_person):
     return
 
 label wild_anal_sex_taboo_break(the_person):
-    if the_person.effective_sluttiness() >= 75:
+    if the_person.effective_sluttiness() >= 75 and the_person.sex_record.get("Anal Sex", 0) > 3:
         the_person "Oh god, it always surprises me how big your cock is! You're going to tear my ass in half with that monster!"
         "She seems more turned on by the idea than worried."
         mc.name "Don't worry, you'll be stretched out soon enough."
