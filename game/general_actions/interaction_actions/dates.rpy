@@ -1534,7 +1534,7 @@ label shopping_date_hair(the_person):
             the_person "Do you really think so? Well... okay. I trust you [the_person.mc_title]."
             call screen colour_selector(True, "Pick a dye colour")
             $ colour_choice = _return
-            if colour_choice == None:
+            if colour_choice is None:
                 mc.name "Now that I'm looking at them, none of these look better than your natural colour."
                 mc.name "Come on, let's go."
             else:

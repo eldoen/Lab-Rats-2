@@ -251,14 +251,14 @@ label fuck_person(the_person, private = True, start_position = None, start_objec
                         $ vagina_available = the_person.outfit.vagina_available()
                         $ girl_considers_tits = the_person.outfit.tits_available() != tits_available
                         $ tits_available = the_person.outfit.tits_available()
-                        if girl_in_charge and position_choice != None and not position_locked:
+                        if girl_in_charge and position_choice is not None and not position_locked:
                             if girl_considers_vagina:
                                 "[the_person.possessive_title]'s fingers brush over her pussy."
                                 $ position_choice = None
                             elif girl_considers_tits:
                                 "[the_person.possessive_title]'s hand caresses her tits."
                                 $ position_choice = None
-                    if position_choice != None and not position_locked:
+                    if position_choice is not None and not position_locked:
                         if the_person.effective_sluttiness() > position_choice.slut_cap: #She's sluttier than this position, it's only good to warm her up.
                             if the_person.arousal > position_choice.slut_cap: #Once her arousal is higher than the cap she's completely bored by it.
                                 "[the_person.title] wants to spice things up."

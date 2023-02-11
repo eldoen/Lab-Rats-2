@@ -22,7 +22,7 @@ init 0 python:
     def research_work_action_requirement():
         if time_of_day >= 4:
             return "Too late to work"
-        elif mc.business.active_research_design == None:
+        elif mc.business.active_research_design is None:
             return "No research project set"
         elif mc.business.event_triggers_dict["Tutorial_Section"]:
             return "Not enough time"

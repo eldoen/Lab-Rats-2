@@ -21,7 +21,7 @@ screen research_select_ui: #How you select serum and trait research
             background "#888888"
             xsize 1000
             ymaximum 55
-            if not mc.business.active_research_design == None:
+            if not mc.business.active_research_design is None:
                 text "Current Research: [mc.business.active_research_design.name] " + str(int(mc.business.active_research_design.current_research)) + "/[mc.business.active_research_design.research_needed]":
                     style "menu_text_style" size 25
                     xanchor 0.0 xalign 0.0

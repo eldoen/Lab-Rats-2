@@ -55,7 +55,7 @@ screen business_ui(): #Shows some information about your business.
                 action NullAction()
                 sensitive True
 
-            if not mc.business.active_research_design == None:
+            if not mc.business.active_research_design is None:
                 text "  Current Research: " style "menu_text_style"
                 $ disp_research_name = mc.business.active_research_design.name
                 $ disp_research_needed = mc.business.active_research_design.research_needed
