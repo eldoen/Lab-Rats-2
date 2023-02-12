@@ -39,6 +39,8 @@ init -1 python:
             return False
         elif the_person.has_taboo("vaginal_sex"):
             return False
+        elif time_of_day == 0 and mom.has_limited_time_event("sleeping_walk_in_label"):
+            return False
         elif the_person.effective_sluttiness() + the_person.fertility_percent < (80 - (10*the_person.get_opinion_score("creampies"))):
             return False
         elif the_person.love + the_person.fertility_percent < (75 - (10*the_person.get_opinion_score("creampies"))):

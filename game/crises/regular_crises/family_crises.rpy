@@ -3,6 +3,8 @@
 init 1 python:
     def mom_outfit_help_requirement():
         if time_of_day == 4 and (day%7 <= 3 or day%7==7) and mc_at_home(): #It has to be a day before a weekday, so she has work in the morning.
+            if mom.has_limited_time_event("sleeping_walk_in_label"):
+                return False
             return True
         return False
 
