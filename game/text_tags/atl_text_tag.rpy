@@ -272,7 +272,7 @@ init python:
                         txt_param_list[i] = txt_param_list[i].strip()
                         # If a #, then we'll have to do some special stuff later
                         if txt_param_list[i] == "#":
-                            if text == None: # If we weren't supplied a way to handle this, return
+                            if text is None: # If we weren't supplied a way to handle this, return
                                 return False
                             param_list.append(text)
                             continue
@@ -282,7 +282,7 @@ init python:
                         except ValueError:
                             param = None
                         # Attempt a displayable. Allow the exception so user knows they screwed up.
-                        if param == None:
+                        if param is None:
                             param = renpy.displayable(txt_param_list[i])
                         param_list.append(param)
                     return_list.append(globals()[arg](*param_list))

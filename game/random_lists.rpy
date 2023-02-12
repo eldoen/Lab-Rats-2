@@ -127,7 +127,7 @@ init -2:
 
 init 1 python:
     def character_meets_requirements(character,requirements_dict = None):
-        if requirements_dict == None:
+        if requirements_dict is None:
             return True
 
         age_range = requirements_dict.get("age_range")

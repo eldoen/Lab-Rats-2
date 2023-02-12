@@ -1378,7 +1378,7 @@ label family_games_night_drinks(the_mom, the_aunt): #Breakout function for the d
         the_aunt "Cards sound like a lot of fun. What do you think [the_aunt.mc_title]?"
 
     menu:
-        "Play cards\n{image=gui/heart/Time_Advance.png}":
+        "Play cards {image=gui/heart/Time_Advance.png}":
             if mc.business.event_triggers_dict.get("family_games_cards",0) == 0:
                 mc.name "Cards sound like like fun, but you'll have to teach me how to play."
                 the_aunt "First we'll need a fourth player, so we can split up into teams."
