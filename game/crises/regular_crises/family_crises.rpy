@@ -346,7 +346,6 @@ label mom_lingerie_surprise_label():
     #In which your Mom comes to your room at night in some sexy lingerie and fools around with you. Triggers at high sluttiness and love.
     $ the_person = mom
     $ mc.change_location(bedroom)
-    $ mc.location.show_background()
     "You are woken up in the middle of the night by the sound of your bedroom door closing."
     "You sit up and turn on the lamp beside your bed."
     $ the_person.apply_outfit(lingerie_wardrobe.pick_random_outfit(), update_taboo = True)
@@ -1048,7 +1047,6 @@ label lily_new_underwear_crisis_label():
         return #Lily doesn't have any skimpy underwear to show us :(
 
     $ mc.change_location(bedroom) #Make sure we're in our bedroom.
-    $ mc.location.show_background()
     if the_person.obedience >= 95:
         "There's a knock at your door."
         the_person "[the_person.mc_title], can I talk to you for a sec?"
@@ -1350,7 +1348,6 @@ label family_morning_breakfast_label():
 
     "You get up, get dressed, and head for the kitchen."
     $ mc.change_location(kitchen)
-    $ mc.location.show_background()
     $ the_mom.draw_person(position = "walking_away")
     if mom_slutty:
         if the_mom.outfit.wearing_panties():
@@ -1621,7 +1618,6 @@ label girl_shower_leave(the_person):
 
 label girl_shower_enter(the_person, surprised):
     $ mc.change_location(home_bathroom)
-    $ mc.location.show_background()
     $ the_person.apply_outfit(Outfit("Nude"))
     #$ the_person.outfit = Outfit("Nude") changed v0.24.1
     $ the_person.draw_person(position = "back_peek")
@@ -1731,7 +1727,6 @@ label girl_shower_enter(the_person, surprised):
 
         "Join her in the shower\n{color=#ff0000}{size=18}Requires: 120 Obedience{/size}{/color} (disabled)" if the_person.obedience < 120:
             pass
-
 
     $ mc.change_location(bedroom)
     return

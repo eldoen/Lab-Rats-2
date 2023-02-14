@@ -294,7 +294,6 @@ label attention_already_in(the_person):
         the_person "Hello? Is anyone in?"
         "You consider ignoring the noise, but another round of hard knocks demands attention."
         $ mc.change_location(lobby)
-        $ mc.location.show_background()
         $ the_person.draw_person()
         "When you enter the lobby you can see a formally dressed woman on the other side of the main glass doors."
         "She is flanked by two burly looking men wearing poorly fitting suits."
@@ -327,7 +326,6 @@ label attention_already_in(the_person):
         the_person "Hello? [the_person.mc_title], are you here?"
         "You roll your eyes and get up from your desk."
         $ mc.change_location(lobby)
-        $ mc.location.show_background()
         $ the_person.draw_person()
         "When you step into the lobby you see [the_person.title], flanked by two tough looking men in too-small suits."
         "You unlock the door and open it. [the_person.title] moves into the lobby right away."
@@ -342,7 +340,6 @@ label attention_already_in(the_person):
         "There's a loud, insistent knocking on the front door of the office."
         the_person "Hello [the_person.mc_title]. Can you let us in, please?"
         $ mc.change_location(lobby)
-        $ mc.location.show_background()
         $ the_person.draw_person()
         "You step into the lobby and see [the_person.title], flanked by her usual enforcers."
         if the_person.event_triggers_dict.get("city_rep_forced_uniform", False):
@@ -402,7 +399,6 @@ label attention_call_to_work(the_person):
         the_person "Good. I'll be waiting."
 
     $ mc.change_location(lobby)
-    $ mc.location.show_background()
     "A few minutes later you arrive at the office."
     $ the_person.draw_person()
     "[the_person.title] is waiting at the front door, typing something on her phone."

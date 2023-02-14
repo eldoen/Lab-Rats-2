@@ -77,8 +77,6 @@ label discover_stripclub_label():
             "You open the door and are immediately assaulted by pulsing, base heavy music."
 
             $ mc.change_location(strip_club)
-            $ mc.location.show_background()
-
 
         "Keep exploring":
             "You make a mental note of this location in case you want to come back later, but decide against visiting it."

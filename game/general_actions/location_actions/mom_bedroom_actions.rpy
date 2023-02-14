@@ -188,8 +188,6 @@ label mom_room_search_description():
 
                     #TODO: Chance based on number of items stolen that she'll notice something's missing and ask you about it.
                     $ mc.change_location(bedroom)
-                    $ mc.location.show_background()
-
 
 
                 "Steal a pair of panties":
@@ -205,7 +203,6 @@ label mom_room_search_description():
                     #TODO: Chance based on number of items stolen that she'll notice something's missing and ask you about it.
 
                     $ mc.change_location(bedroom)
-                    $ mc.location.show_background()
 
                 "Leave everything alone":
                     "You decide to leave all of [the_person.possessive_title]'s underwear where it is. It wouldn't be good if she noticed any of it missing."

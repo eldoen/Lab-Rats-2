@@ -429,7 +429,6 @@ label mom_oral_taboo_break_revisit_complete(the_person):
                     mc.name "Of course [the_person.title]."
                     the_person "Come on, let's go to your room."
                     $ mc.change_location(bedroom)
-                    $ bedroom.show_background()
                     "She takes your hand and leads you to your own bedroom. She pats the side of your bed and waits for you to sit."
                     $ the_person.draw_person(position = "blowjob")
                     "When you've sat she gets onto her knees in front of you and sweeps her hair back behind her shoulders."
@@ -648,7 +647,6 @@ label mom_anal_taboo_break_revisit_complete(the_person):
             $ the_person.break_taboo("anal_sex")
 
             $ mc.change_location(mom_bedroom)
-            $ mc.location.show_background()
             the_person "Come on, if we're doing this I want to be in my own bed."
             "She leads you to her bedroom. She pats the bed and has you sit down while she gets ready."
             $ generalised_strip_description(the_person, the_person.outfit.get_full_strip_list())
@@ -982,7 +980,6 @@ label mom_vaginal_taboo_break_revisit_complete(the_person):
                 the_person "I think I need some time to think actually. Maybe some other time."
                 "You climb off of her and leave her room to give her some time to think."
                 $ mc.change_location(hall)
-                $ hall.show_background()
 
         "Some other time":
             mc.name "I'm actually pretty busy right now, [the_person.mc_title]."

@@ -201,7 +201,6 @@ label sleeping_walk_in_label(the_person): #TODO: This event is currently for Mom
             $ mc.change_location(hall) #Make sure to change our location so we aren't immediately inside again.
 
     python:
-        mc.location.show_background()
         old_location.lighting_conditions = old_lighting
         old_location = None
         old_lighting = None

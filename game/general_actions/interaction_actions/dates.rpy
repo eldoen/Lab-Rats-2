@@ -273,7 +273,6 @@ label movie_date_label(the_person):
                                 $ the_person.draw_person(position = "walking_away", lighting = [0.5, 0.5, 0.5])
                                 "You zip up your pants and stand up. [the_person.title] takes your hand and you rush out of the theater."
                                 $ mc.change_location(work_bathroom)
-                                $ mc.location.show_background()
                                 $ the_person.change_arousal(20 + (the_person.get_opinion_score("public sex") * 10))
                                 $ mc.change_arousal(40)
                                 $ the_person.draw_person()
@@ -386,7 +385,6 @@ label movie_date_label(the_person):
 
     $ clear_scene()
     $ mc.change_location(bedroom) #Put them back at home after the event, so if they were in the bathroom they aren't any more.
-    $ mc.location.show_background()
     return "Advance Time"
 
 
@@ -416,7 +414,6 @@ label dinner_date_label(the_person):
 
     $ clear_scene()
     $ mc.change_location(downtown)
-    $ downtown.show_background()
     $ the_person.apply_outfit(the_person.wardrobe.decide_on_outfit(the_person.sluttiness + 20))
 
     "You get yourself looking as presentable as possible and head downtown."
@@ -493,7 +490,6 @@ label dinner_date_label(the_person):
                 "Go to [the_person.title]'s room":
                     mc.name "I think I would. Lead the way."
                     $ mc.change_location(the_person.home)
-                    $ mc.location.show_background()
                     "[the_person.possessive_title] leads you into her room and closes the door behind you."
                     #TODO: Mirror the real date stuff: ie she might get dressed up or start stripping down right away.
                     $ the_person.add_situational_slut("Romanced",25,"What a wonderful date!")
@@ -540,7 +536,6 @@ label dinner_date_label(the_person):
 
     $ clear_scene()
     $ mc.change_location(bedroom)
-    $ mc.location.show_background()
     return "Advance Time"
 
 #TODO: Add a "date_take_home_your_place" where you take her to your house.
@@ -551,14 +546,12 @@ label date_take_home_her_place(the_person, date_type = None): #Your date went we
     #date_type can be passed through to identify what type of date it was to trigger different dialogue
     if the_person.has_role(affair_role):
         $ mc.change_location(the_person.home)
-        $ mc.location.show_background()
 
         call fuck_date_event(the_person) from _call_fuck_date_event_1 #You're having an affair, leads to all of the normal affair stuff like being caught. #TODO: Make sure the date seduction dialogue leads into this properly.
 
     elif the_person.effective_sluttiness(["vaginal_sex", "sucking_cock"]) + (0 if the_person.relationship == "Single" else 10 * the_person.get_opinion_score("cheating on men")) >= 70:
         "You're barely in the door before [the_person.title] has her hands all over you."
         $ mc.change_location(her_hallway)
-        $ mc.location.show_background()
         the_person "Fuck, I can't wait any longer [the_person.mc_title]! I've been thinking about this all night long!"
         $ mc.change_locked_clarity(20)
         $ the_person.draw_person(position = "kissing")
@@ -600,7 +593,6 @@ label date_take_home_her_place(the_person, date_type = None): #Your date went we
 
     elif (the_person.effective_sluttiness(["underwear_nudity", "bare_tits", "bare_pussy"]) + (5 * the_person.get_opinion_score("not wearing anything")) + (5 * the_person.get_opinion_score("lingerie")) > 45) or the_person.has_role(girlfriend_role):
         $ mc.change_location(the_person.home)
-        $ mc.location.show_background()
 
         the_person "Let me get you a drink and show you around."
         "She pours you a drink and leads you around her place. The tour ends in the living room."
@@ -653,7 +645,6 @@ label date_take_home_her_place(the_person, date_type = None): #Your date went we
 
     else:
         $ mc.change_location(the_person.home)
-        $ mc.location.show_background()
         #Normal date-turned-fuck session.
         the_person "Let me get you a drink and show you around."
         "She pours you a drink and leads you around her place. The tour ends with the two of you sitting on the couch in the living room."
@@ -723,7 +714,6 @@ label shopping_date_intro(the_person, skip_intro = False, skip_outro = False):
         "You and [the_person.possessive_title] head to the mall together."
 
     $ mc.change_location(mall)
-    $ mc.location.show_background()
     $ should_advance_time = True
 
     call shopping_date_loop(the_person) from _call_shopping_date_loop_first_choice

@@ -408,7 +408,6 @@ label game_loop(): ##THIS IS THE IMPORTANT SECTION WHERE YOU DECIDE WHAT ACTIONS
         else:
             $ mc.change_energy(10) #Extra 10 energy gain if you spend your time waiting around
         call advance_time() from _call_advance_time_15
-        $ mc.location.show_background() #Redraw the background in case it has changed due to the new time.
 
     jump game_loop
 

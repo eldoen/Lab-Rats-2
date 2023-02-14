@@ -340,7 +340,6 @@ label sister_walk_in_label(the_person):
 
 
     $ mc.change_location(hall)
-    $ mc.location.show_background()
     $ the_person.apply_outfit()
     $ clear_scene()
     return

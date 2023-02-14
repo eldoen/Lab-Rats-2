@@ -350,7 +350,6 @@ init 2 python:
 
 label mom_work_promotion_two_intro(the_person): # She asks you to help her prepare for her one-on-one interview.
     $ mc.change_location(bedroom)
-    $ mc.location.show_background()
 
     "There's a soft knock at your door as you are getting ready for bed."
     the_person "It's me, can I come in?"
@@ -1378,7 +1377,6 @@ label mom_promotion_boss_phase_one(the_secretary):
 
     #TODO
     $ mc.change_location(downtown) #Make sure we move you downtown
-    $ mc.location.show_background()
     $ del mom_boss_quick_name
     $ del the_wife
     $ del the_daughter

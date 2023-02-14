@@ -1016,7 +1016,6 @@ label trait_for_side_effect_label():
         "You get a call from your head researcher [the_person.title]."
         the_person "[the_person.mc_title], if you can come down to the research lab I think I've discovered something interesting."
         $ mc.change_location(mc.business.r_div)
-        $ mc.location.show_background()
         "You head to your R&D lab and meet [the_person.title]. She leads you over to her lab bench."
 
     the_person "I've been working on the design you set out for [the_design.name] and one of the test batches developed some very interesting side effects."
@@ -1345,7 +1344,6 @@ label quitting_crisis_label(the_person): #The person tries to quit, you have a c
     if mc.location == mc.business.h_div: #If you're already in your office just kick back and relax.
         if mod_installed:
             $ mc.change_location(ceo_office)
-            $ mc.location.show_background()
         else:
             $ mc.business.h_div.show_background()
         "You type up a response."
@@ -1357,7 +1355,6 @@ label quitting_crisis_label(the_person): #The person tries to quit, you have a c
         the_person "It is. See you at your office."
         if mod_installed:
             $ mc.change_location(ceo_office)
-            $ mc.location.show_background()
         else:
             $ mc.business.h_div.show_background()
         "You travel back to your office. You're just in the door when [the_person.title] comes in and closes the door behind her."
@@ -1435,7 +1432,6 @@ label quitting_crisis_label(the_person): #The person tries to quit, you have a c
     $ clear_scene()
     if mod_installed:
         $ mc.change_location(office)
-        $ mc.location.show_background()
     return
 
 init 1 python:
@@ -1597,7 +1593,6 @@ label invest_rep_visit_label(rep_name):
             $ clear_scene()
             if mod_installed:
                 $ mc.change_location(ceo_office)
-                $ mc.location.show_background()
             else:
                 $ office.show_background()
             "Half an hour later there is a knock on your office door."
@@ -1634,7 +1629,6 @@ label invest_rep_visit_label(rep_name):
 
         if mod_installed:
             $ mc.change_location(lobby)
-            $ mc.location.show_background()
     return
 
 init 1 python:
@@ -2486,6 +2480,7 @@ label research_reminder_crisis_label():
         $ mc.end_text_convo()
 
     else: #TDOO: Have a variant for when you've already had this interaction
+        $ old_location = mc.location
         $ the_person.draw_person()
         "You're busy working when [the_person.title] comes up to you."
         the_person "[the_person.mc_title], do you have some time to talk? It's about the progress of our research."
@@ -2567,6 +2562,8 @@ label research_reminder_crisis_label():
                                         "Let her give you a handjob":
                                             mc.name "That would be very helpful. Thank you [the_person.title]."
                                             the_person "Come, let's take care of this in your office."
+                                            if mod_installed:
+                                                $ mc.change_location(ceo_office)
                                             "She leads you into the private room and closes the door behind her."
                                             "Without any further prompting she steps close to you and unzips your pants."
                                             "You sit on the edge of your desk as she pulls them down around your ankles."
@@ -2614,6 +2611,8 @@ label research_reminder_crisis_label():
                                         "Let her give you a blowjob":
                                             mc.name "That would be very helpful. Thank you [the_person.title]."
                                             the_person "Come, let's take care of this in your office."
+                                            if mod_installed:
+                                                $ mc.change_location(ceo_office)
                                             "She leads you into the private room and closes the door behind her."
                                             "Without any further prompting she steps close to you and drops to her knees."
                                             "Your hard cock springs free excitedly, and she stares at it for a moment."
@@ -2673,6 +2672,9 @@ label research_reminder_crisis_label():
                 the_person "Alright, just... If you have any work for me, you know where to find me."
 
         $ clear_scene()
+        if mod_installed:
+            $ mc.change_location(old_location)
+            $ old_location = None
     return
 
 
@@ -2870,7 +2872,6 @@ label daughter_work_crisis_label():
     mc.name "Of course. What's up?"
     if mod_installed:
         $ mc.change_location(lobby)
-        $ mc.location.show_background()
     "You and [the_person.possessive_title] step into your office. You sit down at your desk while she closes the door."
     $ ran_num = renpy.random.randint(0,2)
     if ran_num == 0: #TODO: Make this based on her stats?
@@ -2995,7 +2996,6 @@ label daughter_work_crisis_label():
     $ clear_scene()
     if mod_installed:
         $ mc.change_location(office)
-        $ mc.location.show_background()
     return
 
 init 1 python:
@@ -3352,7 +3352,6 @@ label horny_at_work_crisis_label():
                 #You were followed.
                 $ old_location = mc.location
                 $ mc.change_location(work_bathroom)
-                $ mc.location.show_background()
                 "You relax when you reach the bathroom, but a moment after you enter [your_follower.title] opens the door and comes inside too."
                 $ your_follower.draw_person()
                 mc.name "[your_follower.title], I..."
@@ -3400,9 +3399,8 @@ label horny_at_work_crisis_label():
                         "When you're finished you clean up and get back to work, your mind now crystal clear."
 
                 $ mc.change_location(old_location)
-                $ mc.location.show_background()
                 $ del your_follower
-                $ del old_location
+                $ old_location=None
 
             else:
                 "Once you have some privacy you pull some porn up on your phone, pull out your dick, and take matters into your own hand."

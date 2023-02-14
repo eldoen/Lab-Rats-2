@@ -1569,7 +1569,6 @@ label student_test(the_person): #TODO: Hook this up
             $ front_desk = make_desk()
             $ old_location = mc.location
             $ mc.change_location(university)
-            $ mc.location.show_background()
             "[the_person.title] bites her lip and nods her understanding."
             the_person "Of course, it's the least I can do..."
             if the_person.effective_sluttiness("vaginal_sex") < 50 or the_person.get_opinion_score("giving blowjobs") > 0:

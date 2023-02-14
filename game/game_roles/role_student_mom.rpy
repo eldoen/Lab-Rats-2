@@ -168,7 +168,6 @@ label study_check_up(the_student, the_mom):
 
     $ the_group = None
     $ mc.change_location(bedroom)
-    $ mc.location.show_background()
     return
 
 label student_dinner(the_student, the_mom, first_time):
