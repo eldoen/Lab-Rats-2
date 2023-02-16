@@ -16,13 +16,13 @@ init -1 python:
         for person in [x for x in mc.business.get_employee_list() if x.should_wear_uniform() and x.planned_uniform and x.is_wearing_uniform()]:
             disobedience_chance = 0
             if not person.judge_outfit(person.planned_uniform):
-                disobedience_chance = person.planned_uniform.slut_requirement - __builtin__.int( person.effective_sluttiness() * (person.obedience / 120.0) ) #Girls who find the outfit too slutty might disobey, scaled by their obedience
+                disobedience_chance = person.planned_uniform.get_full_outfit_slut_score() - __builtin__.int( person.effective_sluttiness() * (person.obedience / 150.0) ) #Girls who find the outfit too slutty might disobey, scaled by their obedience
                 disobedience_chance += -5*(person.get_opinion_score("skimpy uniforms"))
             else:
-                disobedience_chance = (120 - person.obedience)/2 #Disobedient girls sometimes don't wear uniforms, just because they don't like following orders. Less likely than when outfits are too slutty.
+                disobedience_chance = (150 - person.obedience)/2 #Disobedient girls sometimes don't wear uniforms, just because they don't like following orders. Less likely than when outfits are too slutty.
                 disobedience_chance += -5*(person.get_opinion_score("work uniforms"))
 
-            if renpy.random.randint(0,100) < disobedience_chance:
+            if renpy.random.randint(0,100) < __builtin_.min(disobedience_chance, 3): # minimum chance is 3%
                 uniform_disobedience_action = Action("Uniform Disobedience LTE", uniform_disobedience_requirement, "uniform_disobedience_event", event_duration = 3, args = person.planned_uniform.get_copy()) #Needs to be created here so we can reference what we disliked about the uniform.
                 person.on_talk_event_list.append(Limited_Time_Action(uniform_disobedience_action, uniform_disobedience_action.event_duration))
                 person.set_uniform(person.planned_outfit) #Overwrites the uniform they intended to wear for the day, so the next Move doesn't change it but the end of day will.
