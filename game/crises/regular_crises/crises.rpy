@@ -2689,7 +2689,7 @@ label serum_creation_crisis_label(the_serum): # Called every time a new serum is
     else:
         $ the_person = get_random_from_list(mc.business.r_div.people) #Get a random researcher from the R&D department. TODO: Replace this with the head researcher position.
 
-    if the_person is not None and not mc.business.is_weekend():
+    if the_person is not None:
         if mc.location == mc.business.r_div: # The MC is in the lab, just physically get them.
             $ mc.business.r_div.show_background()
             "There's a tap on your shoulder. You turn and see [the_person.title], looking obviously excited."
