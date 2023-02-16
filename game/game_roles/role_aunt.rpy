@@ -1243,18 +1243,16 @@ init -1 python:
 
 label family_games_night_start(the_aunt, the_mom): # Triggered as an on enter event
     # Girls ask if you want to have some drinks, and then play cards some cards.
+    
+    # Ensure neither of them have shown up with outfits too slutty for the other to consider appropriate.
+    $ lowest_slut = __builtin__.min(the_aunt.effective_sluttiness(), the_mom.effective_sluttiness())
+    if the_aunt.outfit.slut_requirement > lowest_slut:
+        $ the_aunt.apply_outfit(the_aunt.wardrobe.get_random_appropriate_outfit(sluttiness_limit = lowest_slut, guarantee_output = True))
+    if the_mom.outfit.slut_requirement > lowest_slut:
+        $ the_mom.apply_outfit(the_mom.wardrobe.get_random_appropriate_outfit(sluttiness_limit = lowest_slut, guarantee_output = True))
 
     $ the_group = GroupDisplayManager([the_mom, the_aunt], the_mom)
-    $ the_mom.apply_outfit()
-    $ the_aunt.apply_outfit()
     $ the_group.draw_group(position = "sitting", emotion = "happy")
-
-    # Ensure neither of them have shown up with outfits too slutty for the other to consider appropriate.
-    $ highest_slut = the_aunt.effective_sluttiness()
-    if the_mom.effective_sluttiness() > highest_slut:
-        $ highest_slut = the_mom.effective_sluttiness()
-    $ the_aunt.apply_outfit(the_aunt.wardrobe.get_random_appropriate_outfit(sluttiness_limit = highest_slut, guarantee_output = True))
-    $ the_mom.apply_outfit(the_mom.wardrobe.get_random_appropriate_outfit(sluttiness_limit = highest_slut, guarantee_output = True))
 
     "[the_mom.title] and [the_aunt.title] are sitting on the couch, chatting happily to each other when you enter the living room."
     if mc.business.event_triggers_dict.get("family_games_cards",0) == 0:
