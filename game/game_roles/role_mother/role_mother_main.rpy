@@ -115,7 +115,6 @@ label mom_weekly_pay_label(the_person):
     the_person "[the_person.mc_title], could we talk for a moment?"
     mc.name "Sure, down in a second."
     $ mc.change_location(kitchen)
-    $ mc.location.show_background()
     $ the_person.draw_person(position = "sitting")
     "[the_person.title] is sitting at the kitchen table, a collection of bills laid out in front of her."
 
@@ -661,7 +660,6 @@ label mom_date_intercept(the_mom, the_date): #TODO: Add some relationship awaren
     #TODO: Write a Mom specific movie date. Maybe mirror the LR1 event and have Lily join in sometimes.
 
     $ mc.change_location(bedroom)
-    $ mc.location.show_background()
 
     "You're getting ready for your date with [the_date.title] when you hear a knock at your door."
     the_mom "Knock knock. Are you in there [the_mom.mc_title]?"

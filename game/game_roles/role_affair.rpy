@@ -126,7 +126,6 @@ label fuck_date_label(the_person):
             return "Advance Time"
 
     $ clear_scene()
-    $ mc.change_location(the_person.home)
     if the_person.has_role(affair_role):
         $ so_title = SO_relationship_to_title(the_person.relationship) #TODO: Make sure she's still in a relationship, or void this date if she isn't (because she's your girlfriend now).
 
@@ -137,8 +136,8 @@ label fuck_date_label(the_person):
             "You make your way to [the_person.possessive_title]'s house. You text her first, in case her [so_title] is unexpectedly home."
     else:
         "You make your way to [the_person.possessive_title]'s house. You text her to let you know you're here."
+    $ mc.change_location(the_person.home)
     $ mc.start_text_convo(the_person)
-    $ mc.location.show_background()
     mc.name "I'm here. Are you ready?"
     the_person "Come on in, the door is unlocked. I'm in the bedroom"
     $ mc.end_text_convo()
@@ -309,7 +308,6 @@ label fuck_date_event(the_person): #A breakout function so we can call the fuck_
                                     "Within minutes you can hear him snoring loudly. [the_person.possessive_title] looks in your direction and nods her head at the door."
                                     "You crack the closet door open and step out as quietly as you can. You sneak out of the bedroom, then hurry to the front door."
                                 $ mc.change_location(downtown)
-                                $ mc.location.show_background()
                                 $ clear_scene()
                                 "As soon as you're outside you sprint to the sidewalk, then slow down and walk casually away."
 

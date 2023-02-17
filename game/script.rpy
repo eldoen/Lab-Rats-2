@@ -408,7 +408,6 @@ label game_loop(): ##THIS IS THE IMPORTANT SECTION WHERE YOU DECIDE WHAT ACTIONS
         else:
             $ mc.change_energy(10) #Extra 10 energy gain if you spend your time waiting around
         call advance_time() from _call_advance_time_15
-        $ mc.location.show_background() #Redraw the background in case it has changed due to the new time.
 
     jump game_loop
 
@@ -1004,8 +1003,8 @@ label initialize_game_state(character_name,business_name,last_name,stat_array,sk
         city_hall.add_object(make_chair())
         city_hall.add_object(make_table())
 
-    call instantiate_duties() #Duties need to be instantiated by jobs, so do that here.
-    call instantiate_jobs() #We need locations to exist before we can set up jobs, so we do that here.
+    call instantiate_duties() from _call_instantiate_duties #Duties need to be instantiated by jobs, so do that here.
+    call instantiate_jobs() from _call_instantiate_jobs #We need locations to exist before we can set up jobs, so we do that here.
     $ c = 0
     while c < len(list_of_instantiation_labels):
         $ renpy.call(list_of_instantiation_labels[c])

@@ -225,7 +225,6 @@ label alexia_intro_phase_two_label(the_person):
     the_person "It's time for me to head home. My ride should be here soon. Oh, do you want to come out and meet him?"
     "You stand up and walk out with [the_person.possessive_title]."
     $ mc.change_location(downtown)
-    $ mc.location.show_background()
     mc.name "Uh, sure. Who is he?"
     "When you get outside [the_person.title] looks around for a moment, then waves to a car as it pulls over."
     the_person "Right on time! [the_person.SO_name], we met while I was traveling and we've been dating ever since."
@@ -285,6 +284,9 @@ label alexia_hire_label(the_person):
 
 
 label alexia_ad_suggest_label(the_person):
+    if mod_installed:
+        $ old_location = mc.location
+        $ mc.change_location(ceo_office)
     $ the_person.draw_person()
     the_person "Knock, knock. Hey [the_person.mc_title], do you have a second?"
     "[the_person.title] is at your office door."
@@ -337,8 +339,9 @@ label alexia_ad_suggest_label(the_person):
 
     the_person "Thanks [the_person.mc_title], I'm just happy to have a chance to contribute!"
 
-
-
+    if mod_installed:
+        $ mc.change_location(old_location)
+        $ old_location = None
     return
 
 label alexia_ad_suggest_reintro_label(the_person):

@@ -138,7 +138,7 @@ init -2 python:
 
 label employee_set_duties_label(the_person):
     mc.name "[the_person.title],  Let's talk about what you do around here..."
-    call set_duties_controller(the_person)
+    call set_duties_controller(the_person) from _call_set_duties_controller_set_duties
     if _return:
         $ the_person.event_triggers_dict["work_duties_last_set"] = day #TODO: Actually have this check for changes to her duties and not reset if you haven't done anything.
     return
@@ -242,7 +242,6 @@ label employee_performance_review(the_person):
 
     if mod_installed:
         $ mc.change_location(ceo_office)
-        $ mc.location.show_background()
     else:
         $ office.show_background()
         $ mc.location.move_person(the_person, office)
@@ -800,7 +799,6 @@ label employee_performance_review(the_person):
     "You stand up and open the door for [the_person.title] at the end of her performance review."
     if mod_installed:
         $ mc.change_location(lobby)
-        $ mc.location.show_background()
     $ clear_scene()
     call advance_time from _call_advance_time_14
     return
@@ -900,7 +898,6 @@ label request_promotion_crisis_label(the_person):
     the_person "[the_person.mc_title], can we talk in your office for a second?"
     if mod_installed:
         $ mc.change_location(ceo_office)
-        $ mc.location.show_background()
     "You nod and take her into your office, closing the door behind you. You take a seat and motion for her to do the same."
     $ the_person.draw_person(position = "sitting")
     $ the_person.event_triggers_dict["last_promotion_request"] = day
@@ -914,7 +911,7 @@ label request_promotion_crisis_label(the_person):
         "Promote her\n{color=#00ff00}{size=18}+1 Work Experience{/size}{/color}":
             "You think about it for a second, then nod approvingly."
             mc.name "You're right, of course."
-            call promotion_after_convince(the_person)
+            call promotion_after_convince(the_person) from _call_promotion_after_convince
             $ the_person.draw_person()
             "She stands up and heads for the door."
             the_person "Thank you for your time."
@@ -922,7 +919,7 @@ label request_promotion_crisis_label(the_person):
 
         "Refuse":
             mc.name "I don't think you're ready for that [the_person.title]. Show me you're really dedicated and we can talk about this in the future, okay?"
-            call apply_sex_slut_modifiers(the_person, in_private = True)
+            call apply_sex_slut_modifiers(the_person, in_private = True) from _call_apply_sex_slut_modifiers
             if the_person.effective_sluttiness() + the_person.get_opinion_score("being in control") * 5 < 40 and not the_person.has_role(affair_role): #Girls you are having an affair with will always try to seduce you and get a promotion.
                 $ the_person.change_happiness(-10 + 5*the_person.get_opinion_score("being submissive"))
                 the_person "I understand... Sorry to have bothered you."
@@ -1049,7 +1046,7 @@ label request_promotion_crisis_label(the_person):
 
                         $ mc.change_locked_clarity(10)
                         "[the_person.title] starts to stroke it, rhythmically running her hand up and down your length."
-                        call fuck_person(the_person, private = True, start_position = handjob, girl_in_charge = True, skip_intro = True, position_locked = True)
+                        call fuck_person(the_person, private = True, start_position = handjob, girl_in_charge = True, skip_intro = True, position_locked = True) from _call_fuck_person_139
                         $ the_report = _return
                         "[the_person.possessive_title] sits back and rubs her arm."
                         if the_report.get("guy orgasms", 0) > 0:
@@ -1119,7 +1116,7 @@ label request_promotion_crisis_label(the_person):
                             $ the_person.add_situational_slut("seduction_approach", 5*the_person.get_opinion_score("taking control"), "I'll make him do juuuust what ! want!")
                         elif the_person.get_opinion_score("taking control") < 0:
                             $ the_person.add_situational_slut("seduction_approach", -5 + (-5*the_person.get_opinion_score("taking control")), "I guess I need to do this to convince him...")
-                        call fuck_person(the_person,private = True, start_position = blowjob, start_object = mc.location.get_object_with_name("floor"), skip_intro = True)
+                        call fuck_person(the_person,private = True, start_position = blowjob, start_object = mc.location.get_object_with_name("floor"), skip_intro = True) from _call_fuck_person_140
                         $ the_person.clear_situational_slut("seduction_approach")
 
 
@@ -1266,7 +1263,6 @@ label request_promotion_crisis_label(the_person):
 
     if mod_installed:
         $ mc.change_location(office)
-        $ mc.location.show_background()
     $ clear_scene()
     return
 
@@ -1301,7 +1297,7 @@ label promotion_after_convince(the_person, for_sex = False):
             the_person "Fine, fine."
 
     mc.name "Good. Let's talk about your new duties then..."
-    call set_duties_controller(the_person)
+    call set_duties_controller(the_person) from _call_set_duties_controller_1
     if _return:
         $ the_person.event_triggers_dict["work_duties_last_set"] = day
         mc.name "I trust you can handle all of that?"
@@ -1325,7 +1321,7 @@ label promotion_post_sex_convince(the_person):
             mc.name "You've really proved your dedication [the_person.title]. You've earned this promotion."
             $ the_person.change_love(2)
             $ the_person.change_slut(2, 50)
-            call promotion_after_convince(the_person, for_sex = True)
+            call promotion_after_convince(the_person, for_sex = True) from _call_promotion_after_convince_1
 
             return True
 

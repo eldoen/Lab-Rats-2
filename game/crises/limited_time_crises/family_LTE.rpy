@@ -39,6 +39,8 @@ init -1 python:
             return False
         elif the_person.has_taboo("vaginal_sex"):
             return False
+        elif time_of_day == 0 and mom.has_limited_time_event("sleeping_walk_in_label"):
+            return False
         elif the_person.effective_sluttiness() + the_person.fertility_percent < (80 - (10*the_person.get_opinion_score("creampies"))):
             return False
         elif the_person.love + the_person.fertility_percent < (75 - (10*the_person.get_opinion_score("creampies"))):
@@ -338,7 +340,6 @@ label sister_walk_in_label(the_person):
 
 
     $ mc.change_location(hall)
-    $ mc.location.show_background()
     $ the_person.apply_outfit()
     $ clear_scene()
     return
@@ -677,7 +678,7 @@ label sister_go_shopping_label(the_person): #TODO: Hook this up as an on_enter e
         the_person "Oh! Hey [the_person.mc_title], I was just heading to the mall."
         "She pushes past you and closes the door to her room behind her."
         menu:
-            "Ask to join":
+            "Ask to join {image=gui/heart/Time_Advance.png}":
                 mc.name "That sounds like fun. Mind if I tag along?"
                 the_person "You really want to come on a shopping trip with your sister? Man, you must be {i}booooooored{/i}!"
                 "[the_person.possessive_title] smirks and shrugs."
@@ -752,7 +753,7 @@ label mom_go_shopping_label(the_person):
         the_person "You have such good taste in clothing, would you like to come along and give me some advice?"
         the_person "If you aren't to embarrassed to be seen shopping with your mom, of course."
         menu:
-            "Go shopping":
+            "Go shopping {image=gui/heart/Time_Advance.png}":
                 mc.name "I've got some shopping to do of my own. Sure, I'll come along."
                 "She smiles happily."
                 the_person "It's always nice when we get to spend time together, just the two of us."

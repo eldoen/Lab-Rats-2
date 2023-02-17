@@ -105,13 +105,11 @@ init -2 python:
             if isinstance(value, Room):
                 self._location = value.identifier
 
-        def change_location(self,new_location): #TODO: Check if we can add the "show_background" command for our new location here. Is there any time where we want to be in a location but _not_ show it's background?
-            self.location = new_location
-
-
-        def change_location(self,new_location): #TODO: Check if we can add the "show_background" command for our new location here. Is there any time where we want to be in a location but _not_ show it's background?
+        def change_location(self,new_location, show_background = True):
             if isinstance(new_location, Room):
                 self.location = new_location
+                if show_background:
+                    self.location.show_background()
 
         def change_arousal(self,amount):
             self.arousal += amount

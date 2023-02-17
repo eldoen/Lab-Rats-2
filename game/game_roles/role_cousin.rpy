@@ -181,7 +181,6 @@ init -2 python:
 label cousin_intro_phase_one_label():
     #Your cousin bursts into your room at the end of the day frustrated with Lily and how little personal space she has.
     $ mc.change_location(bedroom)
-    $ mc.location.show_background()
     $ cousin.draw_person(emotion = "angry")
     "Without warning your bedroom door is opened and [cousin.possessive_title] walks in. She closes the door behind her and looks awkwardly at you."
     mc.name "Hey..."
@@ -765,7 +764,6 @@ label cousin_search_room_label(the_cousin, the_aunt):
             $ the_aunt.change_happiness(-5)
             $ the_aunt.change_love(-1)
             $ mc.change_location(downtown)
-            $ mc.location.show_background()
             "You'll need [the_aunt.possessive_title] to like you more if you want to search [the_cousin.title]'s room undisturbed."
             return
         else:
@@ -778,7 +776,6 @@ label cousin_search_room_label(the_cousin, the_aunt):
                 $ the_aunt.change_love(-1)
                 "You're forced to abandon your search. [the_aunt.possessive_title] escorts you to the living room."
                 $ mc.change_location(aunt_apartment)
-                $ mc.location.show_background()
                 "If she was more obedient she might let you continue the search, or you could wait until she isn't in the apartment."
                 return
 

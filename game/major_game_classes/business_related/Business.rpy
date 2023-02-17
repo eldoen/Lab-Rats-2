@@ -340,7 +340,6 @@ init -2 python:
 
                 remove_list = []
                 for contract in self.active_contracts:
-                    remove_list = []
                     if contract.run_day():
                         remove_list.append(contract)
                         if contract.can_finish_contract():
