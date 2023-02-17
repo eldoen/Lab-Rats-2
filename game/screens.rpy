@@ -589,6 +589,7 @@ init python:
     config.overlay_screens.append("quick_menu")
     gui.main_menu_background = "images/LR2_Title.png"
 
+default quick_menu = True
 
 style quick_button is default
 style quick_button_text is button_text
@@ -944,9 +945,6 @@ screen about():
             text _("Made with {a=https://www.renpy.org/}Ren'Py{/a} [renpy.version_only].\n\n[renpy.license!t]")
 
 
-## This is redefined in options.rpy to add text to the about screen.
-define gui.about = ""
-
 
 style about_label is gui_label
 style about_label_text is gui_label_text
@@ -1042,9 +1040,11 @@ screen file_slots(title):
 
                 textbutton _("<") action FilePagePrevious()
 
-                textbutton _("{#auto_page}A") action FilePage("auto")
+                if config.has_autosave:
+                    textbutton _("{#auto_page}A") action FilePage("auto")
 
-                textbutton _("{#quick_page}Q") action FilePage("quick")
+                if config.has_quicksave:
+                    textbutton _("{#quick_page}Q") action FilePage("quick")
 
                 # range(1, 10) gives the numbers from 1 to 9.
                 for page in range(1, 10):
@@ -1325,6 +1325,7 @@ screen history():
         if not _history_list:
             label _("The dialogue history is empty.")
 
+define gui.history_allow_tags = { "alt", "noalt", "rt", "rb", "art" }
 
 style history_window is empty
 
@@ -1449,6 +1450,10 @@ screen keyboard_help():
     hbox:
         label "V"
         text _("Toggles assistive {a=https://www.renpy.org/l/voicing}self-voicing{/a}.")
+
+    hbox:
+        label "Shift+A"
+        text _("Opens the accessibility menu.")
 
 
 screen mouse_help():
