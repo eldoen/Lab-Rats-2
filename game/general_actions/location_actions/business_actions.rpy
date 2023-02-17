@@ -278,7 +278,7 @@ label hire_someone(new_person, add_to_location = False, research_allowed = True,
             if add_to_location:
                 $ mc.business.h_div.add_person(new_person)
 
-    call set_duties_controller(new_person)
+    call set_duties_controller(new_person) from _call_set_duties_controller_hire_someone
     if _return:
         $ new_person.event_triggers_dict["work_duties_last_set"] = day
     return
