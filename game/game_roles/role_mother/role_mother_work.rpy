@@ -4,6 +4,8 @@ init -2 python:
     def mom_work_promotion_one_requirement(the_person):
         if not the_person.has_job(mom_associate_job):
             return False
+        elif mc.business.is_weekend():
+            return False
         elif the_person.love < 15:
             return False
         elif the_person.sluttiness < 15:
@@ -25,6 +27,8 @@ init -2 python:
 
     def mom_work_secretary_replacement_bigger_tits_reintro_requirement(the_person):
         if not the_person.has_job(mom_secretary_job):
+            return False
+        elif mc.business.is_weekend():
             return False
         elif not the_person.event_triggers_dict.get("mom_work_tit_options_reintro", False):
             return False
@@ -286,6 +290,8 @@ init 2 python:
         if not the_person.has_job(mom_associate_job):
             return False
         elif day < start_day:
+            return False
+        elif mc.business.is_weekend():
             return False
         elif time_of_day != 4:
             return False
