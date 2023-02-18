@@ -854,6 +854,8 @@ label shopping_date_overwear(the_person, skip_intro = False):
         "[the_person.title] takes your hand and leads you through the mall."
         #TODO: List of random store names (and maybe have each place have a specific set of clothing they can sell in the future)
     the_person "Here, doesn't it have the cutest stuff? Let's go look around!"
+    if mod_installed:
+        $ mc.change_location(clothing_store)
     "[the_person.possessive_title] brings you into one of the dozens of clothing stores in the mall."
     the_person "Oh, look at this! I should try this on... and this... Check if they have this one in my size!"
     $ the_person.change_happiness(10)
@@ -937,6 +939,9 @@ label shopping_date_underwear(the_person):
         the_person "That's a good idea, let's go!"
         "She leads the way and hurries in."
 
+    if mod_installed:
+        $ mc.change_location(clothing_store)
+
     menu:
         "Pick out some lingerie for her" if the_person.obedience >= 120:
             "You move between the racks of bras and display boxes of panties, picking out a cute little outfit for [the_person.possessive_title]."
@@ -1009,6 +1014,7 @@ label shopping_date_underwear(the_person):
     return
 
 label shopping_date_changing_room(the_person, new_outfit, changing_type):
+    $ old_location = mc.location
     $ waiting_outside = True
     $ wants_outfit = False
     if the_person.effective_sluttiness("underwear_nudity") > 40:
@@ -1018,6 +1024,7 @@ label shopping_date_changing_room(the_person, new_outfit, changing_type):
             "Join her in the changing room":
                 $ waiting_outside = False
                 "You glance over your shoulder to make sure you're actually alone, then follow [the_person.title] into the changing room."
+                $ mc.change_location(changing_room)
                 "She pulls the curtain closed behind you."
 
             "Wait outside":
@@ -1032,6 +1039,7 @@ label shopping_date_changing_room(the_person, new_outfit, changing_type):
         "You can see her feet move as she maneuvers around the small room."
         menu:
             "Step into the changing room": #Effectively this is the peek, and sometimes you get thrown out.
+                $ mc.change_location(changing_room)
                 if the_person.effective_sluttiness() > 20: #Great for taboo breaking.
                     $ waiting_outside = False
                     $ the_person.outfit.strip_to_underwear()
@@ -1208,9 +1216,13 @@ label shopping_date_changing_room(the_person, new_outfit, changing_type):
                 call shopping_date_inside_changing_room(the_person, new_outfit, changing_type, skip_get_changed = True) from _call_shopping_date_inside_changing_room
                 $ wants_outfit = _return
     else:
+        $ mc.change_location(changing_room)
         call shopping_date_inside_changing_room(the_person, new_outfit, changing_type) from _call_shopping_date_inside_changing_room_1
         $ wants_outfit = _return
 
+    python:
+        mc.change_location(old_location)
+        old_location = None
     return wants_outfit
 
 label shopping_date_inside_changing_room(the_person, new_outfit, changing_type, skip_get_changed = False): #NOTE: skip_get_changed used when an event has already set her outfit properly.
@@ -1284,8 +1296,6 @@ label shopping_date_inside_changing_room(the_person, new_outfit, changing_type, 
             the_person "You're right. It looked a lot cuter on the rack."
             the_person "Oh well..."
 
-    $ old_location = mc.location
-    $ mc.change_location(changing_room)
     $ sluttiness_token = get_red_heart(30)
 
     menu:
@@ -1462,8 +1472,6 @@ label shopping_date_inside_changing_room(the_person, new_outfit, changing_type, 
         sluttiness_token = None
         sex_slut_token = None
         blowjob_slut_token = None
-        mc.change_location(old_location)
-        old_location = None
         the_person.apply_outfit()
         the_person.draw_person()
 
