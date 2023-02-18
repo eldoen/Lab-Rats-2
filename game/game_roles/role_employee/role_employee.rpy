@@ -24,7 +24,7 @@ init -2 python:
                     if warning_message not in mc.business.message_list:
                         mc.business.add_normal_message(warning_message)
 
-            if the_person.work_experience < 5 and day > the_person.event_triggers_dict.get("last_promotion_request", -1) + 10:
+            if the_person.work_experience < __builtin__.max(5, __builtin__.min(8, the_person.int)) and day > the_person.event_triggers_dict.get("last_promotion_request", -1) + 10:
                 days_employed = day - the_person.event_triggers_dict.get("employed_since", 0)
                 if days_employed >= (the_person.work_experience*the_person.work_experience*4 + 10): #14 days, 26, 46, 74 days.
                     if renpy.random.randint(0,100) < 5 - the_person.work_experience: #ie. longer mean time between promotion requests by higher experience people
