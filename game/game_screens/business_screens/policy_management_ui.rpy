@@ -30,7 +30,6 @@ screen policy_selection_screen():
     add "Paper_Background.png"
     modal True
     zorder 100
-    $ tooltip = GetTooltip()
     default categories = get_policy_categories()
     default selected_category = categories[0] #Default to the first in our categories list
     default selected_policy = None #If not None this will have it's info displayed on the right section of the bottom pane
