@@ -723,6 +723,7 @@ label shopping_date_intro(the_person, skip_intro = False, skip_outro = False):
         call shopping_date_loop(the_person, _return) from _call_shopping_date_loop_second_choice
 
     if not skip_outro:
+        $ mc.change_location(mall)
         "You walk with [the_person.possessive_title] to the mall entrance."
         the_person "This was fun [the_person.mc_title], maybe we can do it again some time."
         mc.name "Yeah, I hope so too."
