@@ -76,15 +76,15 @@ label mom_instapic_setup_intro(the_person): # Tells you that the instapic thing 
     "[the_person.possessive_title] frowns, but seems to accept your expertise on the matter."
     the_person "Fine. How do I do that?"
     menu:
-        "Help her set up an account.{image=gui/heart/Time_Advance.png}" if time_of_day < 4:
+        "Help her set up an account {image=gui/heart/Time_Advance.png}" if time_of_day < 4:
             mc.name "Here, I'll show you. Do you have a few minutes?"
             "She nods and stands beside you to watch what you're doing on the small screen."
             call mom_instapic_setup(the_person, intro_finished = True) from _call_mom_instapic_setup
 
-        "Help her set up an account.{image=gui/heart/Time_Advance.png}\nNot enough time (disabled)" if time_of_day >= 4:
+        "Help her set up an account {image=gui/heart/Time_Advance.png}\nNot enough time (disabled)" if time_of_day >= 4:
             pass
 
-        "Help her later.":
+        "Help her later ":
             "Watching [the_person.title] struggle with her phone convinces you this will take more time than you have right now."
             mc.name "I'm busy right now, but I can walk you through it later if you'd like."
             "She smiles happily."
@@ -95,8 +95,6 @@ label mom_instapic_setup_intro(the_person): # Tells you that the instapic thing 
             "[the_person.possessive_title] gives you a kiss on the cheek."
             $ mom_instapic_setup_event = Action("Set up her InstaPic account {image=gui/heart/Time_Advance.png}", mom_instapic_setup_help_requirement, "mom_instapic_setup", is_fast = False)
             $ mom.get_role_reference(mother_role).actions.append(mom_instapic_setup_event)
-
-
 
     return
 

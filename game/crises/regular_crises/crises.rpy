@@ -944,7 +944,7 @@ label extra_mastery_crisis_label():
     $ techno_string = "I've discovered that I can " + get_random_from_list(technobabble_list) + " and the chance for a side effect should drop significantly when working with " + the_trait.name + "."
     the_person "[techno_string]"
     the_person "I would like to do some more experimentation, but the equipment I need is quite expensive."
-    $ cost = __builtin__.int(the_trait.mastery_level * 50) #The cost is 100 * mastery level,
+    $ cost = __builtin__.min(__builtin__.int((the_trait.tier + 1) * the_trait.mastery_level * 100), 10000)
     "You look through the file [the_person.title] gave you. It would cost $[cost] to raise the mastery level of [the_trait.name] by 2."
     menu:
         "Purchase the equipment\n{color=#ff0000}{size=18}Costs: $[cost]{/size}{/color} (tooltip)Raises the mastery level of [the_trait.name] by 2. The higher your mastery of a serum trait the less likely it is to produce a side effect." if mc.business.has_funds(cost):
