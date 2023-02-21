@@ -28,7 +28,7 @@ init 1:
 
 label intro_doggy_anal(the_girl, the_location, the_object):
     mc.name "Get down on all fours, I want to fuck your tight ass."
-    if the_girl.sex_skills["Anal"] > 2 or the_girl.get_opinion_score("anal sex") > 0:
+    if the_girl.sex_skills["Anal"] > 3 or the_girl.get_opinion_score("anal sex") > 1:
         if the_girl.effective_sluttiness() > 90:
             the_girl "Get inside of me and fuck my ass raw!"
         else:
@@ -42,7 +42,7 @@ label intro_doggy_anal(the_girl, the_location, the_object):
 
     "[the_girl.title] gets onto her hands and knees on the [the_object.name]. You spit into your hand and use it to lube up your cock, then line it up with her pretty little asshole."
     mc.name "Ready?"
-    if the_girl.sex_skills["Anal"] > 2 or the_girl.get_opinion_score("anal sex") > 0:
+    if the_girl.sex_skills["Anal"] > 3 or the_girl.get_opinion_score("anal sex") > 1:
         the_girl "Yes!"
     else:
         the_girl "No, but I don't know if I ever will be. Let's try it."
@@ -81,7 +81,7 @@ label taboo_break_doggy_anal(the_girl, the_location, the_object):
     mc.name "Almost. I think it's time we stretched you open."
     $ the_girl.call_dialogue(doggy_anal.associated_taboo+"_taboo_break")
     "You hold onto [the_girl.title]'s hips with one hand and your cock with the other, guiding it as you press it against her tight hole."
-    if the_girl.sex_skills["Anal"] > 2:
+    if the_girl.sex_skills["Anal"] > 3:
         "She gasps as your tip starts to spread her open. She lowers her shoulders and pushes her hips against you, helping the process."
         the_girl "Oh god... Mfphhhh!"
 
@@ -110,7 +110,7 @@ label scene_doggy_anal_1(the_girl, the_location, the_object):
 
 label scene_doggy_anal_2(the_girl, the_location, the_object):
 
-    if the_girl.sex_skills["Anal"] > 2:
+    if the_girl.sex_skills["Anal"] > 3:
         "[the_girl.title] works her hips back against you with each thrust, moaning happily to herself as your cock stretches out her asshole."
     else:
         "[the_girl.title] grunts and pants as your cock stretches out her asshole. Her hands ball into fists as she tries to adjust."

@@ -298,7 +298,7 @@ label transition_doggy_doggy_anal(the_girl, the_location, the_object):
     else:
         "You pull out of [the_girl.title]'s pussy and line your cock up with her asshole, the tip just barely pressing against it."
 
-    if the_girl.sex_skills["Anal"] > 2 or the_girl.get_opinion_score("anal sex") > 0:
+    if the_girl.sex_skills["Anal"] > 3 or the_girl.get_opinion_score("anal sex") > 1:
         the_girl "Oh god, yes. Fuck my ass [the_girl.mc_title]!"
     else:
         the_girl "Uh... Oh fuck, you'd tear me apart [the_girl.mc_title]..."
