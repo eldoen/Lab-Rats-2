@@ -21,7 +21,7 @@ init:
 
 init 1:
     python:
-        doggy_anal.link_positions(doggy,"transition_doggy_anal_doggy")
+        doggy_anal.link_positions(doggy,"transition_doggy_dogy_anal")
         #Here is where you would put connections if they existed.
 
 
@@ -168,7 +168,7 @@ label outro_doggy_anal(the_girl, the_location, the_object):
             the_girl "Mmm, it's so warm."
     return
 
-label transition_doggy_anal_doggy(the_girl, the_location, the_object):
+label transition_doggy_dogy_anal(the_girl, the_location, the_object):
     # Transition from anal to normal doggy style.
     "You pull out of [the_girl.title]'s asshole, leaving it gaping and her sighing in relief."
     "You shift your cock downwards and rub the tip of it along the slit of her vagina."
