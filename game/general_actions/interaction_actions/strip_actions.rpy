@@ -934,13 +934,13 @@ label strip_tease(the_person, in_private = True, for_pay = False, start_girl_dir
 label strip_tease_remove(the_person, the_clothing, girl_state, girl_direction, guy_state, for_pay = False):
     $ rand_choice = renpy.random.randint(0,3) #Randomize dialogue for a little more variation.
     if rand_choice == 0:
-        mc.name "Your [the_choice.display_name], take it off."
+        mc.name "Your [the_clothing.display_name], take it off."
     elif rand_choice == 1:
-        mc.name "Take off that [the_choice.display_name] for me."
+        mc.name "Take off that [the_clothing.display_name] for me."
     elif rand_choice == 2:
-        mc.name "You don't need your [the_choice.display_name], take it off for me."
+        mc.name "You don't need your [the_clothing.display_name], take it off for me."
     else:
-        mc.name "Want to take your [the_choice.display_name] off for me?"
+        mc.name "Want to take your [the_clothing.display_name] off for me?"
 
     $ test_outfit = the_person.outfit.get_copy()
     $ test_outfit.remove_clothing(the_clothing) #Build a copy so we can check the effects the removal will have.
