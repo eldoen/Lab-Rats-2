@@ -75,11 +75,13 @@ init -1:
         def caffeine_trait_on_apply(the_person, the_serum, add_to_log):
             the_person.change_max_energy(20, add_to_log = add_to_log)
             the_person.change_energy(20, add_to_log = add_to_log)
-            the_person.change_obedience(-15, add_to_log = add_to_log)
+            change_amount = the_person.change_obedience(-15, add_to_log = add_to_log)
+            the_serum.effects_dict["caffeine_trait"] = change_amount
 
         def caffeine_trait_on_remove(the_person, the_serum, add_to_log):
             the_person.change_max_energy(-20, add_to_log = add_to_log)
-            the_person.change_obedience(15, add_to_log = add_to_log)
+            change_amount = the_serum.effects_dict.get("caffeine_trait", -15)
+            the_person.change_obedience(-(-15 if change_amount is None else change_amount), add_to_log = add_to_log)
 
         ## refined_caffeine_trait functions ##
         def refined_caffeine_trait_on_apply(the_person, the_serum, add_to_log):
@@ -459,10 +461,12 @@ init -1:
                 the_person.change_love(1, add_to_log = add_to_log)
 
         def nora_reward_low_love_trait_on_apply(the_person, the_serum, add_to_log):
-            the_person.change_love(-50, add_to_log = add_to_log)
+            change_amount = the_person.change_love(-50, add_to_log = add_to_log)
+            the_serum.effects_dict["nora_low_love"] = change_amount
 
         def nora_reward_low_love_trait_on_remove(the_person, the_serum, add_to_log):
-            the_person.change_love(50, add_to_log = add_to_log)
+            change_amount = the_serum.effects_dict.get("nora_low_love", -50)
+            the_person.change_love(-(-50 if change_amount is None else change_amount), add_to_log = add_to_log)
 
         def nora_reward_high_obedience_trait_on_turn(the_person, the_serum, add_to_log):
             amount = __builtin__.round((the_person.obedience-100)/5)

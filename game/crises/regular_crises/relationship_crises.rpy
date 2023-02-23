@@ -800,7 +800,7 @@ init 1 python:
         return friend_chance
 
 label work_relationship_change_label():
-    $ the_relationship = get_random_from_list(town_relationships.get_business_relationships())
+    $ the_relationship = get_random_from_list(town_relationships.get_business_relationships(types = "Acquaintance"))
     if the_relationship is None:
         return
 
