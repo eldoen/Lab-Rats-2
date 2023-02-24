@@ -334,7 +334,7 @@ label mom_outfit_help_crisis_label():
 
 init 1 python:
     def mom_lingerie_surprise_requirement():
-        if mc_at_home() and time_of_day==4 and not mc.location.has_person(mom): #Make sure we aren't already in the same room because we were sleeping together.
+        if mc_in_bedroom() and time_of_day==4:
             if mom.effective_sluttiness("underwear_nudity") > 40 and mom.love > 40:
                 return True
         return False
@@ -668,7 +668,7 @@ label mom_selfie_label():
 
 init 1 python:
     def mom_morning_surprise_requirement():
-        if time_of_day == 0 and mc.business.is_work_day() and mc_at_home() and mom.love >= 45:
+        if time_of_day == 0 and mc.business.is_work_day() and mc_in_bedroom() and mom.love >= 45:
             if mom.has_limited_time_event("sleeping_walk_in_label"):
                 return False #she is sleeping in
             return True
@@ -1022,7 +1022,7 @@ label mom_morning_surprise_label():
 
 init 1 python:
     def lily_new_underwear_requirement():
-        if time_of_day==4 and mc_at_home(): #It is the end of the day.
+        if time_of_day==4 and mc_in_bedroom(): #It is the end of the day.
             if lily.effective_sluttiness("underwear_nudity") >= 10 and lily.love >= 0: #She's slutty enough to show you her new underwear.
                 return True
         return False
