@@ -435,10 +435,10 @@ init -2 python:
 
 
         def vagina_available(self): ## Doubles for asshole for anal.
-            return not any(x for x in self.lower_body if (x.anchor_below or x in [nightgown_dress_bottom]) and not (x.half_off and x.half_off_gives_access))
+            return not any(x for x in self.lower_body if x.anchor_below and not (x.half_off and x.half_off_gives_access))
 
         def vagina_visible(self):
-            return not any(x for x in self.lower_body if (x.hide_below or x in [nightgown_dress_bottom]) and not (x.half_off and x.half_off_gives_access))
+            return not any(x for x in self.lower_body if x.hide_below and not (x.half_off and x.half_off_gives_access))
 
         def tits_available(self):
             return not any(x for x in self.upper_body if x.anchor_below and not x in [vest, suit_jacket] and not (x.half_off and x.half_off_gives_access))
