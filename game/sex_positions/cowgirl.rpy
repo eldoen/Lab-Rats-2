@@ -133,6 +133,8 @@ label outro_cowgirl(the_girl, the_location, the_object):
             $ cowgirl.redraw_scene(the_girl)
             "She rocks herself back and forth on you until you're completely spent, then she pulls up and lets your dick fall out of her."
             "[the_girl.possessive_title] straddles you for a few more seconds as she catches her breath. Your cum drips out of her and onto your stomach."
+
+        $ the_girl.draw_person(position = "missionary")
         "She rolls off and lies next to you on the [the_object.name]."
 
     elif the_girl.effective_sluttiness("creampie") < 60:
@@ -175,6 +177,7 @@ label outro_cowgirl(the_girl, the_location, the_object):
             $ climax_controller.do_clarity_release(the_girl)
             $ cowgirl.redraw_scene(the_girl)
             the_girl "Whew, that was close..."
+            $ the_girl.draw_person(position = "missionary")
             "She rolls off and lies next to you on the [the_object.name]."
     return
 
