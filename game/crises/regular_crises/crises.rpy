@@ -156,6 +156,9 @@ init 1 python:
             return True
         return False
 
+    def mc_in_bedroom():
+        return mc.location == bedroom
+
     def person_at_home(the_person): #Returns true if the person is at (the MC's) home somewhere.
         if hall.has_person(the_person) or bedroom.has_person(the_person) or lily_bedroom.has_person(the_person) or mom_bedroom.has_person(the_person) or kitchen.has_person(the_person):
             return True

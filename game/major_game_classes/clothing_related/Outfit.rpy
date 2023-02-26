@@ -729,7 +729,7 @@ init -2 python:
                     if item.hide_below and not (item.can_be_half_off and item.half_off_reveals): #If a piece of clothing hides what's be below and it's anchored or
                         possible = False
                         break
-                    elif item.hide_below:
+                    elif item.hide_below or item.can_be_half_off:
                         if anchored:
                             if item.can_be_half_off and item.half_off_gives_access:
                                 if anchored not in return_list:
@@ -750,7 +750,7 @@ init -2 python:
                         hidden = True
                         break
 
-                    elif item.anchor_below:
+                    elif item.anchor_below or item.can_be_half_off:
                         if item not in return_list:
                             return_list.append(item)
 
