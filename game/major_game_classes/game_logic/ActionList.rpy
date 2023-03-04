@@ -42,7 +42,7 @@ init -2 python:
         def append(self, action):
             self.add_action(action)
 
-        def remove(self, item):
+        def remove(self, action):
             self.remove_action(action)
 
         def clear(self):
