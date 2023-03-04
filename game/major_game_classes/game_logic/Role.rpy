@@ -2,19 +2,8 @@ init -2 python:
     class Role(renpy.store.object): #Roles are assigned to special people. They have a list of actions that can be taken when you talk to the person and acts as a flag for special dialogue options.
         def __init__(self, role_name, actions = None, hidden = False, on_turn = None, on_move = None, on_day = None, role_dates = None, looks_like = None, role_trainables = None, internet_actions = None):
             self.role_name = role_name
-            if actions is None:
-                self.actions = []
-            elif isinstance(actions, list):
-                self.actions = actions # A list of actions that can be taken. These actions are shown when you talk to a person with this role if their requirement is met.
-            else:
-                self.actions = [actions]
-
-            if internet_actions is None:
-                self.internet_actions = []
-            elif isinstance(internet_actions, list):
-                self.internet_actions = internet_actions
-            else:
-                self.internet_actions = [internet_actions]
+            self.actions = ActionList(actions)
+            self.internet_actions = ActionList(internet_actions)
 
             # At some point we may want a seperate list of role actions that are available when you text someone.
             self.hidden = hidden #A hidden role is not shown on the "Roles" list
@@ -83,16 +72,13 @@ init -2 python:
             return False
 
         def add_action(self, action):
-            found = next((x for x in self.actions if x.effect == action.effect), None)
-            if not found:
-                self.actions.append(action)
+            self.actions.add_action(action)
 
         def remove_action(self, action):
-            found = None
-            if isinstance(action, Action):
-                found = next((x for x in self.actions if x == action), None)
-            elif isinstance(action, basestring):
-                found = next((x for x in self.actions if x.effect == action), None)
+            self.actions.remove_action(action)
 
-            if found:
-                self.actions.remove(found)
+        def add_internet_action(self, action):
+            self.internet_actions.add_action(action)
+
+        def remove_internet_action(self, action):
+            self.internet_actions.remove_action(action)

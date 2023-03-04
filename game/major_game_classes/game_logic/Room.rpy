@@ -23,10 +23,12 @@ init -2 python:
             else:
                 self.background_image = background_image #If a string this is used at all points in the day. If it is a list each entry corrisponds to the background for a different part of the day
 
-            if objects is None:
-                self.objects = []
-            else:
-                self.objects = objects
+            self.objects = []
+            if isinstance(objects, list):
+                for x in objects:
+                    self.add_object(x)
+            elif isinstance(objects, Object):
+                self.add_object(objects)
             self.objects.append(Object("stand",["Stand"], sluttiness_modifier = 0, obedience_modifier = 0)) #Add a standing position that you can always use.
 
             if people is None:
@@ -34,10 +36,7 @@ init -2 python:
             else:
                 self.people = people
 
-            if actions is None:
-                self.actions = []
-            else:
-                self.actions = actions #A list of Action objects
+            self.actions = ActionList(actions)
 
             self.on_room_enter_event_list = [] #A list of Actions that are triggered when you enter a location. People events take priority.
 
@@ -87,10 +86,21 @@ init -2 python:
             return
 
         def add_object(self,the_object):
-            if not the_object in self.objects:
-                self.objects.append(the_object)
+            if isinstance(the_object, Object):
+                if not the_object in self.objects:
+                    self.objects.append(the_object)
+
+        def remove_object(self, the_object):
+            found = next((x for x in self.objects if x == the_object), None)
+            if not found and isinstance(the_object, basestring):
+                found = next((x for x in self.objects if x.name == the_object), None)
+
+            if found:
+                self.objects.remove(found)
 
         def add_person(self,the_person):
+            if not isinstance(the_person, Person):
+                return
             if not self.has_person(the_person):
                 self.people.append(the_person)
             #TODO: add situational modifiers for the location
@@ -106,7 +116,7 @@ init -2 python:
                 self.remove_person(the_person)
                 the_destination.add_person(the_person)
 
-        def has_person(self,the_person):
+        def has_person(self, the_person):
             return the_person in self.people
 
         def get_person_list(self):
@@ -153,16 +163,7 @@ init -2 python:
             return self.lighting_conditions[time_of_day]
 
         def add_action(self, action):
-            found = next((x for x in self.actions if x.effect == action.effect), None)
-            if not found:
-                self.actions.append(action)
+            self.actions.add_action(action)
 
         def remove_action(self, action):
-            found = None
-            if isinstance(action, Action):
-                found = next((x for x in self.actions if x == action), None)
-            elif isinstance(action, basestring):
-                found = next((x for x in self.actions if x.effect == action), None)
-
-            if found:
-                self.actions.remove(found)
+            self.actions.remove_action(action)
