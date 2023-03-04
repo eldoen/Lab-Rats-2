@@ -10,7 +10,7 @@ init -2 python:
                 self.add_action(actions)
 
         def __repr__(self):
-            return repr(self)
+            return repr(self())
 
         def __call__(self):
             return self._actions
