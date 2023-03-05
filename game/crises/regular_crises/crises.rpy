@@ -2686,8 +2686,8 @@ init 1 python:
         return True #Always true, this will always happen right after a serum is created, regardless of the time.
 
 label serum_creation_crisis_label(the_serum): # Called every time a new serum is created, test it on a R&D member.
-    # MOD: prevent selecting head researcher when she's pregnant
-    if mc.business.head_researcher and (not mod_installed or mc.business.head_researcher.is_available):
+    # when we have a head researcher and she is in the office, she will inform the MC
+    if mc.business.head_researcher and mc.business.head_researcher.is_at_work():
         $ the_person = mc.business.head_researcher
     else:
         $ the_person = get_random_from_list(mc.business.r_div.people) #Get a random researcher from the R&D department. TODO: Replace this with the head researcher position.

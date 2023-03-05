@@ -77,11 +77,20 @@ label attention_event():
         city_rep "I've levied a fine and taken care of the paperwork. [city_rep.mc_title] was very cooperative."
 
     elif bribe_result == "order":
-        "[city_rep.title]'s enforcers come back. Before they can report anything she orders them outside."
+        "[city_rep.title]'s enforcers come back. Before they can report anything she snaps at them."
         city_rep "We're done here."
-        "The two bruisers look at each other, a little confused. [city_rep.title] snaps at them."
+        "The two bruisers look at each other, a little confused."
 
     elif bribe_result == "orgasm":
+        if city_rep.has_role(trance_role):
+            "You pause. [city_rep.possessive_title] seems to be in a trance state from her recent orgasm."
+            "This might be your chance to put some new thoughts in her head."
+            menu:
+                "Train her":
+                    call do_training(city_rep) from _call_do_training_attention_event
+                "Leave her alone":
+                    pass
+
         "[city_rep.title]'s enforcers come back. Before they can report anything she orders them outside."
         city_rep "I've had a long talk with [city_rep.mc_title], and we've come to a..."
         "Her eyes dart down to your crotch for a moment, then she gets herself under control."

@@ -14,12 +14,7 @@ init -2 python:
 
             self.duty_name = duty_name  #A short slug that can be shown in a menu, UI, etc.
             self.duty_description = duty_description # A paragraph to describe what this duty is, both flavour and effect
-            if actions is None:
-                self.actions = []
-            elif isinstance(actions, list):
-                self.actions = actions
-            else:
-                self.actions = [actions]
+            self.actions = ActionList(actions)
 
             self.requirement_function = requirement_function
 
@@ -46,12 +41,7 @@ init -2 python:
             else:
                 self.duty_trainables = [duty_trainables]
 
-            if internet_actions is None:
-                self.internet_actions = []
-            elif isinstance(internet_actions, list):
-                self.internet_actions = internet_actions
-            else:
-                self.internet_actions = [internet_actions]
+            self.internet_actions = ActionList(internet_actions)
 
         def __cmp__(self, other):
             matches = True
@@ -123,3 +113,15 @@ init -2 python:
         def on_remove(self, the_person):
             if self.on_remove_function:
                 self.on_remove_function(the_person)
+
+        def add_action(self, action):
+            self.actions.add_action(action)
+
+        def remove_action(self, action):
+            self.actions.remove_action(action)
+
+        def add_internet_action(self, action):
+            self.internet_actions.add_action(action)
+
+        def remove_internet_action(self, action):
+            self.internet_actions.remove_action(action)

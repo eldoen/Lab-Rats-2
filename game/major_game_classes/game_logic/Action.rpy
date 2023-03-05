@@ -15,7 +15,6 @@ init -2 python:
             else:
                 self.args = args
 
-
             if requirement_args is None:
                 self.requirement_args = [] #A list of arguments handed to the requirement but not the actual event.
             elif not isinstance(requirement_args, list):
@@ -32,7 +31,7 @@ init -2 python:
 
         def __cmp__(self,other): ##This and __hash__ are defined so that I can use "if Action in List" and have it find identical actions that are different instances.
             if isinstance(other, Action):
-                if self.name == other.name and self.requirement == other.requirement and self.effect == other.effect and self.args == other.args:
+                if self.name == other.name and self.requirement == other.requirement and self.effect == other.effect:
                     return 0
                 else:
                     if self.__hash__() < other.__hash__(): #Use hash values to break ties.
@@ -51,7 +50,7 @@ init -2 python:
             return hash((self.name,self.requirement,self.effect))
 
         def check_requirement(self, extra_args = None): #Calls the requirement function associated with this action.
-        # Effectively private. Use "is_action_enabled" and "is_disabled_slug_shown" to figure out if there are important actions to display or take.
+            # Effectively private. Use "is_action_enabled" and "is_disabled_slug_shown" to figure out if there are important actions to display or take.
             if extra_args is None: #We need to make sure we package all potential extra args as a list and hand them over.
                 extra_args = []
             elif not isinstance(extra_args, list):
