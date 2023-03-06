@@ -94,3 +94,12 @@ init -2 python:
             self.event_duration = action.event_duration
             self.is_fast = action.is_fast
             return
+
+        def enabled_actions(self, extra_args = None):
+            return [x for x in self._actions if x.is_action_enabled(extra_args)]
+
+        def has_action(self, action):
+            found = self.find(action)
+            if not found and isinstance(action, basestring):
+                found = next((x for x in self._actions if x.effect == action), None)
+            return not found is None
