@@ -439,11 +439,11 @@ init -2 python:
 
         _coffee_list = []
         _coffee_list.append("just black")
-        _coffee_list.append("one milk")
-        _coffee_list.append("two milk")
+        _coffee_list.append("one sugar")
+        _coffee_list.append("two sugar")
         _coffee_list.append("cream and sugar")
         _coffee_list.append("just a splash of cream")
-        _coffee_list.append("lots of sugar")
+        _coffee_list.append("lots of milk")
         _coffee_list.append("just a little sugar")
 
 
