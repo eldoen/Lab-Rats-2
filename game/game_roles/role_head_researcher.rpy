@@ -80,7 +80,7 @@ init -2 python:
             return True
 
     def fire_head_researcher_requirement(the_person): #Remove the person as your head researcher.
-        return not mc.business.event_triggers_dict["Tutorial_Section"] #Block firing Steph during the Tutorial
+        return not mc.business.event_triggers_dict.get("Tutorial_Section", False) #Block firing Steph during the Tutorial
 
     def visit_nora_intro_requirement(the_person):
         if not the_person.has_role(steph_role): #Only Stephanie gets to have this event trigger while she is head researcher.

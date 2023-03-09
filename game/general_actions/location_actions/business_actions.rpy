@@ -14,8 +14,8 @@ init 0 python:
     def hr_work_action_requirement():
         if time_of_day >= 4:
             return "Too late to work"
-        elif mc.business.event_triggers_dict["Tutorial_Section"]:
-            return "Not enough time"
+        elif mc.business.event_triggers_dict.get("Tutorial_Section", False):
+            return "Finish tutorial first"
         else:
             return True
 
@@ -24,24 +24,24 @@ init 0 python:
             return "Too late to work"
         elif mc.business.active_research_design is None:
             return "No research project set"
-        elif mc.business.event_triggers_dict["Tutorial_Section"]:
-            return "Not enough time"
+        elif mc.business.event_triggers_dict.get("Tutorial_Section", False):
+            return "Finish tutorial first"
         else:
             return True
 
     def supplies_work_action_requirement():
         if time_of_day >= 4:
             return "Too late to work"
-        elif mc.business.event_triggers_dict["Tutorial_Section"]:
-            return "Not enough time"
+        elif mc.business.event_triggers_dict.get("Tutorial_Section", False):
+            return "Finish tutorial first"
         else:
             return True
 
     def market_work_action_requirement():
         if time_of_day >= 4:
             return "Too late to work"
-        elif mc.business.event_triggers_dict["Tutorial_Section"]:
-            return "Not enough time"
+        elif mc.business.event_triggers_dict.get("Tutorial_Section", False):
+            return "Finish tutorial first"
         else:
             return True
 
@@ -50,8 +50,8 @@ init 0 python:
             return "Too late to work"
         elif mc.business.get_used_line_weight() == 0:
             return "No serum design set"
-        elif mc.business.event_triggers_dict["Tutorial_Section"]:
-            return "Not enough time"
+        elif mc.business.event_triggers_dict.get("Tutorial_Section", False):
+            return "Finish tutorial first"
         else:
             return True
 
@@ -60,16 +60,16 @@ init 0 python:
             return "Too late to work"
         elif mc.business.get_employee_count() >= mc.business.max_employee_count:
             return "At employee limit"
-        elif mc.business.event_triggers_dict["Tutorial_Section"]:
-            return "Not enough time"
+        elif mc.business.event_triggers_dict.get("Tutorial_Section", False):
+            return "Finish tutorial first"
         else:
             return True
 
     def serum_design_action_requirement():
         if time_of_day >= 4:
             return "Too late to work"
-        elif mc.business.event_triggers_dict["Tutorial_Section"]:
-            return "Not enough time"
+        elif mc.business.event_triggers_dict.get("Tutorial_Section", False):
+            return "Finish tutorial first"
         else:
             return True
 
@@ -126,8 +126,8 @@ init 0 python:
             return False
         elif clarity_cost > mc.free_clarity:
             return "Not enough Clarity."
-        elif mc.business.event_triggers_dict["Tutorial_Section"]:
-            return "Not enough time."
+        elif mc.business.event_triggers_dict.get("Tutorial_Section", False):
+            return "Finish tutorial first"
         elif time_of_day >= 4:
             return "Too late to work."
         else:
