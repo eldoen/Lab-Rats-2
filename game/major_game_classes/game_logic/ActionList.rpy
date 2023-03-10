@@ -9,6 +9,18 @@ init -2 python:
             elif not actions is None:
                 self.add_action(actions)
 
+        def __getitem__(self, key):
+            if isinstance( key, slice ) :
+                #Get the start, stop, and step from the slice
+                return [self[ii] for ii in xrange(*key.indices(len(self)))]
+            elif isinstance(key, int):
+                if key < 0 : #Handle negative indices
+                    key += len( self )
+                if key < 0 or key >= len( self ) :
+                    raise IndexError
+                return self._actions[key]
+            raise TypeError
+
         def __repr__(self):
             return repr(self())
 
