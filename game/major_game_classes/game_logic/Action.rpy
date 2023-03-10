@@ -1,6 +1,6 @@
 init -2 python:
-    class Action(renpy.store.object): #Contains the information about actions that can be taken in a room. Dispayed when you are asked what you want to do somewhere.
-        # Also used for crises, those are not related to any partiular room and are not displayed in a list. They are forced upon the player when their requirement is met.
+    class Action(renpy.store.object): #Contains the information about actions that can be taken in a room. Displayed when you are asked what you want to do somewhere.
+        # Also used for crises, those are not related to any particular room and are not displayed in a list. They are forced upon the player when their requirement is met.
         def __init__(self,name,requirement,effect,args = None, requirement_args = None, menu_tooltip = None, priority = 0, event_duration = 99999, is_fast = True):
             self.name = name
 
@@ -23,9 +23,9 @@ init -2 python:
                 self.requirement_args = requirement_args
 
             self.menu_tooltip = menu_tooltip # A string added to any menu item where this action is displayed
-            self.priority = priority #Used to order actions when displayed in a list. Higher priority actions are displaybed before lower ones, and disabled actions are shown after enabled actions.
+            self.priority = priority #Used to order actions when displayed in a list. Higher priority actions are displayed before lower ones, and disabled actions are shown after enabled actions.
 
-            self.event_duration = event_duration # Used for actions turned into limtied time actions as the starting duration.
+            self.event_duration = event_duration # Used for actions turned into limited time actions as the starting duration.
 
             self.is_fast = is_fast #A "fast" event is one that can never result in a time change. A "slow" event that has the potential to cause a time jump, and might not be allowed in some time sensitive situations.
 
@@ -63,18 +63,16 @@ init -2 python:
             if isinstance(requirement_return, basestring):
                 # Any string returned means the action is not enabled
                 return False
-            else:
-                # If it's not a string it must be a bool
-                return requirement_return
+            # If it's not a string it must be a bool
+            return requirement_return
 
         def is_disabled_slug_shown(self, extra_args = None): # Returns true if this action is not enabled but should show something when it is disabled.
             requirement_return = self.check_requirement(extra_args)
             if isinstance(requirement_return, basestring):
                 return True
-            else:
-                return False
+            return False
 
-        def get_disabled_slug_name(self, extra_args = None): #Returns a formated name for when the
+        def get_disabled_slug_name(self, extra_args = None): #Returns a formatted name for when the
             requirement_return = self.check_requirement(extra_args)
             return self.name + "\n{size=16}{color=#ff0000}" + requirement_return + "{/color}{/size} (disabled)"
 
@@ -84,9 +82,7 @@ init -2 python:
             elif not isinstance(extra_args, list):
                 extra_args = [extra_args]
 
-            _return = renpy.call(self.effect,*(self.args+extra_args))
-
-            #renpy.return_statement(True) #NOTE: _return may _already_ hold the value of the most recent return, so this might be redundent, or even cause bugs. Need to test. TODO
+            renpy.call(self.effect,*(self.args+extra_args))
 
     class Limited_Time_Action(Action): #A wrapper class that holds an action and the amount of time it will be valid. This acts like an action everywhere
         #except it also has a turns_valid value to decide when to get rid of this reference to the underlying action

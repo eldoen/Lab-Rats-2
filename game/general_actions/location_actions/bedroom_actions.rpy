@@ -1,11 +1,11 @@
 init 0 python:
     def bedroom_masturbate_requirement():
         if time_of_day >= 4:
-            return "Not enough time."
+            return "Not enough time"
         elif mc.location.get_person_count() > 0:
-            return "Not with someone around."
-        elif mc.business.event_triggers_dict["Tutorial_Section"]:
-            return "Not enough time."
+            return "Not with someone around"
+        elif mc.business.event_triggers_dict.get("Tutorial_Section", False):
+            return "Finish tutorial first"
         else:
             return True
 

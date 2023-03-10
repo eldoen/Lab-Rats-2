@@ -1115,7 +1115,7 @@ label bimbo_date_seduction(the_person):
             the_person "Come home with me! You can fuck my tight little asshole, that always makes me cum so fucking hard!"
         elif the_person.effective_sluttiness(["sucking_cock"]) > 40 and the_person.get_opinion_score("sucking cock") > 0:
             the_person "Come home with me! You've been so nice, I want to suck your cock!"
-            the_person "You can even grab my hair and fuck my mouth! That would be, like, so hot."
+            the_person "You can even grab my head and fuck my mouth! That would be, like, so hot."
         elif the_person.effective_sluttiness() > 40 and the_person.get_opinion_score("being covered in cum") > 0:
             the_person "Come home with me! You can, like, cover me with your cum, because I'm your little cum slut!"
             the_person "It makes me feel so special, it's great!"

@@ -9,6 +9,18 @@ init -2 python:
             elif not actions is None:
                 self.add_action(actions)
 
+        def __getitem__(self, key):
+            if isinstance( key, slice ) :
+                #Get the start, stop, and step from the slice
+                return [self[ii] for ii in xrange(*key.indices(len(self)))]
+            elif isinstance(key, int):
+                if key < 0 : #Handle negative indices
+                    key += len( self )
+                if key < 0 or key >= len( self ) :
+                    raise IndexError
+                return self._actions[key]
+            raise TypeError
+
         def __repr__(self):
             return repr(self())
 
@@ -94,3 +106,12 @@ init -2 python:
             self.event_duration = action.event_duration
             self.is_fast = action.is_fast
             return
+
+        def enabled_actions(self, extra_args = None):
+            return [x for x in self._actions if x.is_action_enabled(extra_args)]
+
+        def has_action(self, action):
+            found = self.find(action)
+            if not found and isinstance(action, basestring):
+                found = next((x for x in self._actions if x.effect == action), None)
+            return not found is None

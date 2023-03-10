@@ -267,7 +267,7 @@ init -3 python:
                 else:
                     renpy.say(None,"She pulls off her " + item_to_strip.display_name + ", revealing her cute tits.")
             else:
-                renpy.say ("","")
+                renpy.pause(1)
         return
 
     def underwear_strip_description(person):

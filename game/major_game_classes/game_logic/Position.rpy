@@ -46,7 +46,7 @@ init -2 python:
                 self.verbing = verbing
             self.record_class = record_class #A key to Person.sex_record[] that is updated once (and only once!) per sexual encounter if this position is picked.
 
-            self.current_modifier = None #We will update this if the posisiion has a special modifier that shoudl be applied, like blowjob.
+            self.current_modifier = None #We will update this if the position has a special modifier that shoudl be applied, like blowjob.
 
             if default_animation is None:
                 self.default_animation = idle_wiggle_animation
