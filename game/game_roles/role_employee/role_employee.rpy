@@ -54,36 +54,36 @@ init -2 python:
 
     #EMPLOYEE ACTION REQUIREMENTS#
     def employee_set_duties_requirement(the_person):
-        if not the_person.is_at_work():
-            return "Only in the office"
+        if not (mc.business.is_open_for_business() or the_person.is_at_work()):
+            return False
 
         if the_person.event_triggers_dict.get("work_duties_last_set", -1) < day:
             return True
         return "Duties already changed today"
 
     def employee_complement_requirement(the_person):
-        if not mc.business.is_open_for_business():
+        if not (mc.business.is_open_for_business() or the_person.is_at_work()):
             return False
         elif day - the_person.event_triggers_dict.get("day_last_employee_interaction",-2) <= 0:
-            return "Already talked about work today"
+            return "Already complimented her today"
         return True
 
     def employee_insult_requirement(the_person):
-        if not mc.business.is_open_for_business():
+        if not (mc.business.is_open_for_business() or the_person.is_at_work()):
             return False
         elif day - the_person.event_triggers_dict.get("day_last_employee_interaction",-2) <= 0:
-            return "Already talked about work today"
+            return "Already insulted her today"
         return True
 
     def employee_pay_cash_requirement(the_person):
-        if not mc.business.is_open_for_business():
+        if not (mc.business.is_open_for_business() or the_person.is_at_work()):
             return False
         elif day - the_person.event_triggers_dict.get("day_last_employee_interaction",-2) <= 0:
-            return "Already talked about work today"
+            return "Already payed cash bonus"
         return True
 
     def employee_performance_review_requirement(the_person):
-        if not mc.business.is_open_for_business():
+        if not (mc.business.is_open_for_business() or the_person.is_at_work()):
             return False
         elif day - the_person.event_triggers_dict.get("employed_since",-7) < 7:
             return "Too recently hired"
@@ -92,7 +92,7 @@ init -2 python:
         return True
 
     def move_employee_requirement(the_person):
-        if not mc.business.is_open_for_business():
+        if not (mc.business.is_open_for_business() or the_person.is_at_work()):
             return False
         return True
 
@@ -101,7 +101,7 @@ init -2 python:
             return False
         elif not mc.is_at_work():
             return False
-        elif not mc.business.is_open_for_business():
+        elif not (mc.business.is_open_for_business() or the_person.is_at_work()):
             return False
         elif len(the_person.infractions) <= 0:
             return "Requires: Rules Infraction"
