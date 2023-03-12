@@ -25,6 +25,7 @@ init 1:
 label intro_piledriver(the_girl, the_location, the_object):
     mc.name "[the_girl.title], I want you to lie down for me."
     "[the_girl.possessive_title] nods, glancing briefly at the bulge in your pants. She gets onto the [the_object.name] and waits for you."
+    $ piledriver.redraw_scene(the_girl)
     the_girl "How's this?"
     "You get your hard cock out and kneel down in front of her. She yelps in surprise when you grab her ankles and bring them up and over her waist."
     mc.name "There we go, this will be even better."

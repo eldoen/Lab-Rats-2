@@ -26,6 +26,7 @@
 label intro_cowgirl(the_girl, the_location, the_object):
     the_girl "Lie down for me, I want to be on top."
     "You lie down on the [the_object.name] and undo your pants. [the_girl.title] swings a leg over your body and straddles you."
+    $ cowgirl.redraw_scene(the_girl)
     if the_girl.outfit.vagina_visible():
         "She leans back and grinds herself against you. The shaft of your cock rubs against the lips of her pussy."
     else:

@@ -25,6 +25,7 @@
 
 label intro_against_wall(the_girl, the_location, the_object):
     "You put your arms around [the_girl.title] and spin her around, putting her face towards you and her back against the [the_object.name]."
+    $ against_wall.redraw_scene(the_girl)
     if the_girl.effective_sluttiness() > 80:
         "[the_girl.possessive_title] plants her back against [the_object.name] and watches you as you unzip your pants. She bites her lip and sighs under her breath when your cock springs out."
         the_girl "Mmm, what are you going to do to me?"

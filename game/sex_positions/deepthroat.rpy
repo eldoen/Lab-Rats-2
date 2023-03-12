@@ -34,6 +34,7 @@ label intro_deepthroat(the_girl, the_location, the_object):
         "[the_girl.possessive_title] reaches down and runs a finger along the top of your dick. She hesitates for a few moments, then drops to her knees."
         the_girl "I'll... I'll do my best."
 
+    $ the_girl.draw_person(position = "kneeling1")
     if the_girl.sex_skills["Oral"] < 3:
         "She kisses the tip of your cock, then slides it into her mouth. Gets your length half way down, then gags softly on it and pauses."
         $ deepthroat.current_modifier = "blowjob"

@@ -24,6 +24,7 @@ init 1:
 label intro_missionary(the_girl, the_location, the_object):
     "You run your hands along [the_girl.title]'s hips, feeling the shape of her body."
     mc.name "I want you to lie down for me."
+    $ missionary.redraw_scene(the_girl)
     "She nods and lies down on the [the_object.name], waiting while you climb on top of her."
     "[the_girl.possessive_title] wraps her arms around you and holds you close as you line your cock up with her pussy. She sighs happily into your ear as you slide into her."
     return

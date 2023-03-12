@@ -23,6 +23,7 @@ init 1:
         standing_finger.link_positions(standing_grope,"transition_standing_fingering_standing_grope")
 
 label intro_standing_finger(the_girl, the_location, the_object):
+    $ standing_finger.redraw_scene(the_girl)
     "You stand behind [the_girl.title] and put your arms around her, pulling her close against you."
     if the_girl.outfit.vagina_available():
         "You don't waste any time pushing your hand between her legs, teasing her cute, exposed pussy with your fingers."

@@ -23,7 +23,7 @@ init 1:
         standing_grope.link_positions(standing_finger,"transition_standing_grope_standing_fingering")
 
 label intro_standing_grope(the_girl, the_location, the_object):
-
+    $ standing_grope.redraw_scene(the_girl)
     "You stand behind [the_girl.title] and put your arms around her, pulling her close against you."
     "You reach one hand down, running across her stomach and towards her waist and the other up towards her tits."
     if the_girl.has_large_tits():

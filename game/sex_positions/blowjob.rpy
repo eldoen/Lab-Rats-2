@@ -26,6 +26,7 @@ init 1:
 label intro_blowjob(the_girl, the_location, the_object):
     "You unzip your pants and pull your underwear down far enough to let your hard cock out."
     mc.name "How about your take care of this for me?"
+    $ the_girl.draw_person(position = "kneeling1")
     if the_girl.effective_sluttiness() > 35:
         "[the_girl.possessive_title] looks at your shaft for a moment, then drops to her knees in front of you. She runs her hands along your hips, then leans forward and slides her lips over the tip of your dick."
     else:

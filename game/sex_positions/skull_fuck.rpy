@@ -28,6 +28,7 @@ label intro_skull_fuck(the_girl, the_location, the_object):
 
     "You unzip your pants and pull your hard cock out."
     mc.name "[the_girl.title], I want you on your knees. I want to fuck that pretty little mouth."
+    $ the_girl.draw_person(position = "kneeling1")
     "[the_girl.possessive_title] nods and obediently kneels down in front of you."
     "You rub your dick along her cheek a few times, then slide it back and line it up with her lips."
     $ skull_fuck.current_modifier = "blowjob"
