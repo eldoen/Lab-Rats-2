@@ -289,14 +289,12 @@ label dm_option_specific_outfit(the_person):
         mc.name "I think you would look amazing in this outfit, you should wear it for your next InstaPic post." (what_style = "text_message_style")
         mc.name "If you do I'll send you $20, and I'm sure it'll be great for your brand!" (what_style = "text_message_style")
 
-        call outfit_master_manager(show_overwear = False, show_underwear = False) from _call_outfit_master_manager_11
-        $ the_outfit = _return
-        if not isinstance(the_outfit, Outfit):
-            return False
-        else:
-            "You put together a list of links to stores she could buy everything from."
-            $ add_dm_outfit_response(the_person, the_outfit)
-            return True
+    call outfit_master_manager(show_overwear = False, show_underwear = False) from _call_outfit_master_manager_11
+    $ the_outfit = _return
+    if isinstance(the_outfit, Outfit):
+        "You put together a list of links to stores she could buy everything from."
+        $ add_dm_outfit_response(the_person, the_outfit)
+        return True
     return False
 
 label dm_option_specific_outfit_response(the_person, the_outfit):
