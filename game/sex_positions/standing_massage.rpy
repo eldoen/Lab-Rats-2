@@ -124,6 +124,7 @@ label transition_standing_grope_standing_fingering(the_girl, the_location, the_o
     return
 
 label transition_default_standing_grope(the_girl, the_location, the_object):
+    $ standing_grope.redraw_scene(the_girl)
     "You gather [the_girl.title] up in your arms, cradling her from behind. You reach one hand down between her legs, and the other up to cup her breasts."
     "She leans her weight against you in response."
     return

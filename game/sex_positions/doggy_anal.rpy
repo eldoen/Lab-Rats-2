@@ -198,7 +198,7 @@ label transition_doggy_dogy_anal(the_girl, the_location, the_object):
     return
 
 label transition_default_doggy_anal(the_girl, the_location, the_object):
-
+    $ doggy_anal.redraw_scene(the_girl)
     "[the_girl.title] gets on her hands and knees as you kneel behind her. You bounce your hard shaft on her ass a couple of times before lining yourself up with tight asshole."
     mc.name "Ready?"
     the_girl "I... I think so."

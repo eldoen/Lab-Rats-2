@@ -256,6 +256,7 @@ label transition_missionary_piledriver(the_girl, the_location, the_object):
     return
 
 label transition_default_missionary(the_girl, the_location, the_object):
+    $ missionary.redraw_scene(the_girl)
     "You put [the_girl.title] on her back and lie down on top of her, lining your hard cock up with her tight cunt."
     "After running the tip of your penis along her slit a few times you press forward, sliding inside of her. She gasps softly and closes her eyes."
     return

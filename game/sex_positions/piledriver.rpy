@@ -270,6 +270,7 @@ label transition_piledriver_missionary(the_girl, the_location, the_object):
     return
 
 label transition_default_piledriver(the_girl, the_location, the_object):
+    $ piledriver.redraw_scene(the_girl)
     "You put [the_girl.title] on her back, then lift her legs up and bend her over at the waist. You kneel over her, lining your hard cock up with her tight pussy."
     mc.name "Ready?"
     "[the_girl.possessive_title] nods, and you slip yourself deep, deep inside of her."

@@ -280,6 +280,7 @@ label outro_against_wall(the_girl, the_location, the_object):
     return
 
 label transition_default_against_wall(the_girl, the_location, the_object):
+    $ against_wall.redraw_scene(the_girl)
     "You press [the_girl.possessive_title] against the [the_object.name]. She plants her back against it and opens her legs, letting you step between them."
     "You run the tip of your cock along her slit a few times, then slide yourself inside of her tight cunt."
     return

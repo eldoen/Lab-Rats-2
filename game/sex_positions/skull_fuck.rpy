@@ -172,11 +172,14 @@ label transition_skull_fuck_deepthroat_blowjob(the_girl, the_location, the_objec
     return
 
 label transition_default_skull_fuck(the_girl, the_location, the_object):
+    $ skull_fuck.redraw_scene(the_girl)
     "You place your hands on either side of [the_girl.title]'s head and level your hard cock with her mouth."
     "You rest the tip on her lower lip and feel her warm breath on the sensitive skin each time she exhales."
     mc.name "Ready?"
     the_girl "Take me however you want."
     "She kisses the tip. You pull her head hard towards you and push your hips forward, slamming your cock to its base in a single stroke."
+    $ skull_fuck.special_modifier = "blowjob"
+    $ skull_fuck.redraw_scene(the_girl)
     "Her eyes go wide and she gags loudly."
     the_girl "Guaaah!"
     "Her arms come up instinctively, but she struggles against the urge to push you away. She balls her fists and holds them close against her body."

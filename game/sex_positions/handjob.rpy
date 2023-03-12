@@ -146,6 +146,7 @@ label outro_handjob(the_girl, the_location, the_object):
     return
 
 label transition_default_handjob(the_girl, the_location, the_object):
+    $ handjob.redraw_scene(the_girl)
     "[the_girl.title] has you stand and faces you, grabbing your cock while she stares into your eyes."
     "She starts to stroke it, slowly sliding her hand up and down your hard shaft."
     return

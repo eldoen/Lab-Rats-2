@@ -139,6 +139,7 @@ label transition_standing_fingering_standing_grope(the_girl, the_location, the_o
     return
 
 label transition_default_standing_finger(the_girl, the_location, the_object):
+    $ standing_finger.redraw_scene(the_girl)
     "You gather [the_girl.title] up in your arms, cradling her from behind. You reach a hand between her legs, sliding it down to her pussy."
     "You don't waste any time sliding two fingers into her warm, wet pussy."
     return

@@ -314,9 +314,11 @@ label transition_blowjob_deepthroat(the_girl, the_location, the_object):
     return
 
 label transition_default_blowjob(the_girl, the_location, the_object):
-    $ blowjob.current_modifier = "blowjob"
+    $ blowjob.current_modifier = None
     $ blowjob.redraw_scene(the_girl)
     "[the_girl.possessive_title] gets onto her knees in front of you and takes your hard cock in her hands. She strokes it tentatively a few times, then leans in and slides the tip into her mouth."
+    $ blowjob.current_modifier = "blowjob"
+    $ blowjob.redraw_scene(the_girl)
     mc.name "That's it, that's a good girl."
     return
 

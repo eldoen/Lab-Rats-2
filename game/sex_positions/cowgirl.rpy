@@ -182,6 +182,7 @@ label outro_cowgirl(the_girl, the_location, the_object):
     return
 
 label transition_default_cowgirl(the_girl, the_location, the_object):
+    $ cowgirl.redraw_scene(the_girl)
     "You lie down on [the_object.name]. [the_girl.title] swings a leg over your waist and straddles you."
     if the_girl.sex_skills["Vaginal"] >= 3:
         "She grinds her pussy against your shaft, then lifts herself up and lets your tip fall into place. With one smooth movement she slides you deep into her tight cunt."
