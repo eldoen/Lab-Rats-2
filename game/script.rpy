@@ -1021,7 +1021,10 @@ label initialize_game_state(character_name,business_name,last_name,stat_array,sk
                 else:
                     ran_num = 0;
                 for x in range(0,ran_num):
-                    the_person = create_random_person()
+                    if mod_installed:
+                        the_person = make_person(force_random = True)
+                    else:
+                        the_person = create_random_person()
                     the_person.generate_home()
                     the_person.home.add_person(the_person) #We are using create_random_person instead of make_person because we want pre-made character bodies to be hirable instead of being eaten up by towns-folk.
 

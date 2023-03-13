@@ -87,11 +87,12 @@ init -1 python:
 
         if hair_style is None:
             if hair_style_list is None:
-                hair_style = get_random_from_list(hair_styles)
+                if mod_installed:
+                    hair_style = Person.get_random_hair_style()
+                else:
+                    hair_style = get_random_from_list(hair_styles).get_copy()
             else:
-                hair_style = get_random_from_list(hair_style_list)
-        hair_style = hair_style.get_copy() #Get a copy so we don't modify the master.
-
+                hair_style = get_random_from_list(hair_style_list).get_copy()
         hair_style.colour = hair_colour[1]
 
         if pubes_style is None:
