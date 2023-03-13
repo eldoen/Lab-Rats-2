@@ -215,7 +215,7 @@ label mom_weekly_pay_give_nothing():
     the_person "Okay [the_person.mc_title], I understand. I'll talk with Lily and let her know that we have to cut back on non essentials."
     return
 
-label mom_weekly_pay_help_out(the_person):
+label mom_weekly_pay_help_out():
     $ the_person = mom
     "You pull out your wallet and count out some cash, but hesitate before you hand it over."
     $ mc.business.change_funds(-100)
