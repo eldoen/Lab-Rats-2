@@ -39,15 +39,19 @@ label taboo_break_blowjob(the_girl, the_location, the_object):
     $ the_girl.call_dialogue(blowjob.associated_taboo+"_taboo_break") #Personality dialogue includes all associated "convince me" dialogue
     if the_girl.effective_sluttiness(blowjob.associated_taboo) > blowjob.slut_cap:
         #She's eager to try this
+        $ the_girl.draw_person(position = "kneeling1")
         "[the_girl.possessive_title] kneels down in front of you, eyes locked on your hard cock."
-        $ blowjob.current_modifier = "blowjob"
+        $ blowjob.current_modifier = None
         $ blowjob.redraw_scene(the_girl)
         "She leans in, turning her head to the side to run her tongue down the bottom of your shaft."
         "She licks your balls briefly, then works back up to the tip and slides it past her lips."
+        $ blowjob.current_modifier = "blowjob"
+        $ blowjob.redraw_scene(the_girl)
         "You sigh happily as you feel [the_girl.title]'s warm mouth envelop your cock."
         "She wastes no time picking up speed, happily bobbing her head up and down over your sensitive tip."
 
     else:
+        $ the_girl.draw_person(position = "kneeling1")
         "[the_girl.possessive_title] hesitantly gets onto her knees, eyes locked on your hard cock."
         "She gently holds onto your shaft with one hand and brings the tip closer to her lips."
         "She looks up at you just before the moment of truth, locking eyes as she opens her lips and slides the tip of your cock past them."

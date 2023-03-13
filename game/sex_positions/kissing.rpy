@@ -31,8 +31,13 @@ label intro_kissing(the_girl, the_location, the_object):
     return
 
 label taboo_break_kissing(the_girl, the_location, the_object):
+    $ kissing.current_modifier = None
+    $ kissing.redraw_scene(the_girl)
     "You put your arm around [the_girl.title]'s waist and pull her close. She looks directly into your eyes."
     $ the_girl.call_dialogue(kissing.associated_taboo+"_taboo_break")
+
+    $ kissing.current_modifier = "kissing"
+    $ kissing.redraw_scene(the_girl)
     if the_girl.effective_sluttiness(kissing.associated_taboo) > kissing.slut_cap and the_girl.sex_skills["Foreplay"] > 2:
         "You lean in and press your lips against hers. She returns the kiss immediately, opening her mouth and letting your tongue in to find hers."
     else:

@@ -39,6 +39,7 @@ label taboo_break_standing_grope(the_girl, the_location, the_object):
     "Next, you slide your hands down her body, over the curves of her torso onto her hips."
     "You take a small step forward and slide your hands behind [the_girl.possessive_title] and onto her ass."
     $ the_girl.call_dialogue(standing_grope.associated_taboo+"_taboo_break")
+    $ standing_grope.redraw_scene(the_girl)
     if the_girl.has_large_tits():
         "You step behind [the_girl.title], putting one arm across her torso and cupping one of her juicy tits."
     else:

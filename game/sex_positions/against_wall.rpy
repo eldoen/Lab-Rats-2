@@ -36,6 +36,7 @@ label intro_against_wall(the_girl, the_location, the_object):
 
 label taboo_break_against_wall(the_girl, the_location, the_object):
     "You put your arms around [the_girl.title] and spin her around, putting her face towards you and her back against the [the_object.name]."
+    $ against_wall.redraw_scene(the_girl)
     if the_girl.effective_sluttiness(against_wall.associated_taboo) > against_wall.slut_cap:
         "She reaches down and rubs your hard cock against her, teasing the tip against the slit of her pussy."
     else:

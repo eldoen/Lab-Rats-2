@@ -40,7 +40,10 @@ label taboo_break_skull_fuck(the_girl, the_location, the_object): #In theory you
     $ the_girl.call_dialogue(skull_fuck.associated_taboo+"_taboo_break") #Convince dialogue is handled here.
     if the_girl.effective_sluttiness(skull_fuck.associated_taboo) > skull_fuck.slut_cap:
         #She's eager to try this
+        $ skull_fuck.current_modifier = None
+        $ skull_fuck.redraw_scene(the_girl)
         "[the_girl.possessive_title] kneels down in front of you, eyes locked on your hard cock."
+
         $ skull_fuck.current_modifier = "blowjob"
         $ skull_fuck.redraw_scene(the_girl)
         "She leans in, turning her head to the side to run her tongue down the bottom of your shaft."
@@ -49,9 +52,12 @@ label taboo_break_skull_fuck(the_girl, the_location, the_object): #In theory you
         "She wastes no time picking up speed, happily bobbing her head up and down over your sensitive tip."
 
     else:
+        $ skull_fuck.current_modifier = None
+        $ skull_fuck.redraw_scene(the_girl)
         "[the_girl.possessive_title] hesitantly gets onto her knees, eyes locked on your hard cock."
         "She gently holds onto your shaft with one hand and brings the tip closer to her lips."
         "She looks up at you just before the moment of truth, locking eyes as she opens her lips and slides the tip of your cock past them."
+
         $ skull_fuck.current_modifier = "blowjob"
         $ skull_fuck.redraw_scene(the_girl)
         "You sigh happily as you feel [the_girl.title]'s warm mouth envelop your cock."

@@ -40,6 +40,7 @@ label intro_standing_finger(the_girl, the_location, the_object):
     return
 
 label taboo_break_standing_finger(the_girl, the_location, the_object):
+    $ standing_finger.redraw_scene(the_girl)
     "You kiss [the_girl.title]'s neck from behind, distracting her from your hand sliding along her inner thigh and towards her crotch."
     if the_girl.effective_sluttiness(standing_finger.associated_taboo) > standing_finger.slut_cap:
         if the_girl.outfit.vagina_available():

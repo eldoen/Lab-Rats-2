@@ -35,6 +35,7 @@ label intro_piledriver(the_girl, the_location, the_object):
 
 label taboo_break_piledriver(the_girl, the_location, the_object):
     "You take [the_girl.title]'s hands in yours and guide her down onto the [the_object.name]. She follows your lead, lying down for you."
+    $ piledriver.redraw_scene(the_girl)
     "You place your hands on her knees and spread her legs, kneeling down between them."
     "You sit your hard cock on her stomach, teasingly close to her warm pussy. [the_girl.possessive_title] reaches down and gently pets your shaft."
     $ the_girl.call_dialogue(piledriver.associated_taboo+"_taboo_break")
