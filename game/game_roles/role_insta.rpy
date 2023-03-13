@@ -145,7 +145,7 @@ label view_insta(the_person):
             $ the_person.event_triggers_dict["insta_new_boobs_brag"] = None
             $ skimpy_outfit = insta_wardrobe.pick_random_outfit()
             $ the_person.apply_outfit(skimpy_outfit)
-            $ rand_num = renpy.random.randint(0,2)
+            $ rand_num = renpy.random.randint(0,1)
             if rand_num == 0:
                 $ the_person.draw_person(the_animation = None)
             else:
@@ -157,12 +157,12 @@ label view_insta(the_person):
 
         elif the_person.event_triggers_dict.get("insta_special_request_outfit", None):
             $ the_person.apply_outfit(the_person.event_triggers_dict.get("insta_special_request_outfit", insta_wardrobe.pick_random_outfit()))
-            $ ran_num = renpy.random.randint(0,3)
+            $ ran_num = renpy.random.randint(0,2)
             if ran_num == 0:
                 $ the_person.draw_person(the_animation = None)
             elif ran_num == 1:
                 $ the_person.draw_person(position = "kneeling1", the_animation = None)
-            elif ran_num == 2:
+            else:
                 $ the_person.draw_person(position = "back_peek", the_animation = None)
             $ mc.change_locked_clarity(10)
             the_person "Wearing something special today: a design sent in by a fan!" (what_style = "text_message_style")
