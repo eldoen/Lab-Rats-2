@@ -1503,6 +1503,7 @@ init -2 python:
             else:
                 self._work = None
 
+        # TODO: remove (leave for backward compatibility for now)
         def has_limited_time_event(self, the_event):
             self.has_queued_event(the_event)
 

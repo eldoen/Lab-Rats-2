@@ -27,7 +27,7 @@ init -2 python:
         return True
 
 init -1 python:
-    texting_actions = [] #List of actions that are displayed when you select a person to text
+    texting_actions = ActionList() #List of actions that are displayed when you select a person to text
     ask_location_action = Action("Ask where she is", ask_location_requirement, "ask_location_label")
     text_chat_action = Action("Chat with her\n{color=#ff0000}{size=18}Costs: 15 {image=gui/extra_images/energy_token.png}{/size}{/color}", text_chat_requirement, "text_chat_label")
     text_flirt_action = Action("Flirt with her\n{color=#ff0000}{size=18}Costs: 15 {image=gui/extra_images/energy_token.png}{/size}{/color}", text_flirt_requirement, "text_flirt_label")
