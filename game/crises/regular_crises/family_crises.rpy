@@ -335,7 +335,7 @@ label mom_outfit_help_crisis_label():
 init 1 python:
     def mom_lingerie_surprise_requirement():
         if mc_in_bedroom() and time_of_day==4:
-            if mom.effective_sluttiness("underwear_nudity") > 40 and mom.love > 40:
+            if mom.arousal > 50 and mom.energy > 50 and mom.love > 40 and mom.effective_sluttiness("underwear_nudity") > 40:
                 return True
         return False
 
@@ -668,7 +668,7 @@ label mom_selfie_label():
 
 init 1 python:
     def mom_morning_surprise_requirement():
-        if time_of_day == 0 and mc.business.is_work_day() and mc_in_bedroom() and mom.love >= 45:
+        if time_of_day == 0 and mom.love >= 45 and mc.business.is_work_day() and mc_in_bedroom():
             if mom.has_queued_event("sleeping_walk_in_label"):
                 return False #she is sleeping in
             return True
