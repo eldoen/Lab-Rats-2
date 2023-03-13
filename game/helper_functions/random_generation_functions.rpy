@@ -90,9 +90,11 @@ init -1 python:
                 if mod_installed:
                     hair_style = Person.get_random_hair_style()
                 else:
-                    hair_style = get_random_from_list(hair_styles).get_copy()
+                    hair_style = get_random_from_list(hair_styles)
             else:
-                hair_style = get_random_from_list(hair_style_list).get_copy()
+                hair_style = get_random_from_list(hair_style_list)
+
+        hair_style = hair_style.get_copy()
         hair_style.colour = hair_colour[1]
 
         if pubes_style is None:
