@@ -1161,7 +1161,7 @@ label cousin_tits_payback_label(the_person, amount_remaining):
     return
 
 label cousin_serum_boobjob_label(the_person, starting_tits):
-    if the_person.rank_tits(the_person.tits) == the_person.rank_tits(starting_tits):
+    if the_person.rank_tits(the_person.tits) == the_person.rank_tits(starting_tits) and the_person.rank_tits(the_person.tits) < 8:
         #No change.
         "You get a text from [the_person.title]."
         $ the_person.change_love(-1)
@@ -1179,7 +1179,7 @@ label cousin_serum_boobjob_label(the_person, starting_tits):
         the_person "Come talk to me, I need cash for my boob job."
         #You actually made her tits smaller
 
-    elif the_person.rank_tits(the_person.tits) - the_person.rank_tits(starting_tits) == 1:
+    elif the_person.rank_tits(the_person.tits) - the_person.rank_tits(starting_tits) == 1 and the_person.rank_tits(the_person.tits) < 8:
         # One level bigger which she's kind of happy with but wanted more.
         "You get a text from [the_person.title]."
         $ the_person.change_obedience(2)
