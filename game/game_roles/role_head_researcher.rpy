@@ -80,7 +80,7 @@ init -2 python:
             return True
 
     def fire_head_researcher_requirement(the_person): #Remove the person as your head researcher.
-        if not (mc.business.is_open_for_business() or the_person.is_at_work()):
+        if not (mc.business.is_open_for_business() and the_person.is_at_work()):
             return False
         return not mc.business.event_triggers_dict.get("Tutorial_Section", False) #Block firing Steph during the Tutorial
 
