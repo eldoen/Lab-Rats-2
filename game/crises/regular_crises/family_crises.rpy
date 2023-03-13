@@ -3,7 +3,7 @@
 init 1 python:
     def mom_outfit_help_requirement():
         if time_of_day == 4 and (day%7 <= 3 or day%7==7) and mc_at_home(): #It has to be a day before a weekday, so she has work in the morning.
-            if mom.has_limited_time_event("sleeping_walk_in_label"):
+            if mom.has_queued_event("sleeping_walk_in_label"):
                 return False
             return True
         return False
@@ -669,7 +669,7 @@ label mom_selfie_label():
 init 1 python:
     def mom_morning_surprise_requirement():
         if time_of_day == 0 and mc.business.is_work_day() and mc_in_bedroom() and mom.love >= 45:
-            if mom.has_limited_time_event("sleeping_walk_in_label"):
+            if mom.has_queued_event("sleeping_walk_in_label"):
                 return False #she is sleeping in
             return True
         return False
@@ -1149,7 +1149,7 @@ label lily_new_underwear_crisis_label():
 init 1 python:
     def lily_morning_encounter_requirement():
         if time_of_day == 0 and day%7 != 5 and mc_at_home(): # not on saturday morning
-            if lily.has_limited_time_event("sleeping_walk_in_label"):
+            if lily.has_queued_event("sleeping_walk_in_label"):
                 return False #she is sleeping in
             return True
         return False
@@ -1543,7 +1543,7 @@ label morning_shower_label(): #TODO: make a similar event for your Aunt's place.
     # You wake up and go to take a shower, lily or your mom are already in there.
     "You wake up in the morning uncharacteristically early feeling refreshed and energized. You decide to take an early shower to kickstart the day."
     $ the_person = get_random_from_list([mom, lily, None])
-    if the_person is None or the_person.has_limited_time_event("sleeping_walk_in_label"):
+    if the_person is None or the_person.has_queued_event("sleeping_walk_in_label"):
         #You run into nobody, gain some extra energy. TODO: One of the girls comes to join you.
         "You head to the bathroom and start the shower. You step in and let the water just flow over you, carrying away your worries for the day."
         "After a few long, relaxing minutes it's time to get out. You start the day feeling energized."
