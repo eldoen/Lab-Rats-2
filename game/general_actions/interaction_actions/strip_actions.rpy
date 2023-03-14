@@ -660,7 +660,10 @@ label strip_tease(the_person, in_private = True, for_pay = False, start_girl_dir
                 the_person "I guess that wasn't so bad..."
             else:
                 "[the_person.possessive_title] looks a little disappointed."
-                the_person "Aw, I hope I wasn't boring you..."
+                if the_person.energy < 40:
+                    the_person "Aw, I guess it's okay, I was getting a little tired..."
+                else:
+                    the_person "Aw, I hope I wasn't boring you..."
             $ should_continue = False
 
         elif the_choice == "continue": #Girl can decide to do something. Do that here. (Offer to strip, advance to another position, tell you to touch her, ect)
