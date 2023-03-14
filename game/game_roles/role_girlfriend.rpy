@@ -316,7 +316,7 @@ label ask_get_boobjob_label(the_person):
             mc.name "What every man wants to hear: \"Honey, I want to get some bigger tits!\"."
             mc.name "He'll be jumping at the opportunity to pay. Trust me."
 
-        "Have her [so_title] pay for it\n{color=#ff0000}{size=18}Requires: [so_obedience_requirement]{/size}{/color} (disabled)"if the_person.obedience < so_obedience_requirement and the_person.has_role(affair_role):
+        "Have her [so_title] pay for it\n{color=#ff0000}{size=18}Requires: [so_obedience_requirement] Obedience{/size}{/color} (disabled)"if the_person.obedience < so_obedience_requirement and the_person.has_role(affair_role):
             pass
 
         "Never mind":
