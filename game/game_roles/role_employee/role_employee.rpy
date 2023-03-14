@@ -65,21 +65,21 @@ init -2 python:
         if not (mc.business.is_open_for_business() and the_person.is_at_work()):
             return False
         elif day - the_person.event_triggers_dict.get("day_last_employee_interaction",-2) <= 0:
-            return "Already complimented her today"
+            return "Already interacted today"
         return True
 
     def employee_insult_requirement(the_person):
         if not (mc.business.is_open_for_business() and the_person.is_at_work()):
             return False
         elif day - the_person.event_triggers_dict.get("day_last_employee_interaction",-2) <= 0:
-            return "Already insulted her today"
+            return "Already interacted today"
         return True
 
     def employee_pay_cash_requirement(the_person):
         if not (mc.business.is_open_for_business() and the_person.is_at_work()):
             return False
         elif day - the_person.event_triggers_dict.get("day_last_employee_interaction",-2) <= 0:
-            return "Already payed cash bonus"
+            return "Already interacted today"
         return True
 
     def employee_performance_review_requirement(the_person):
