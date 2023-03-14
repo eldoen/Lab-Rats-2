@@ -441,7 +441,10 @@ label mom_weekly_pay_give_blowjob():
 
     "With that she opens her mouth and slides the tip of your hard cock inside. Her tongue swirls around the tip, sending a jolt of pleasure up your spine."
     $the_person.add_situational_obedience("deal", 20, "I'm doing this for the family")
-    call fuck_person(the_person, private = True, start_position = blowjob, skip_intro = True, position_locked = True) from _call_fuck_person_33
+    if mod_installed:
+        call get_fucked(the_person, the_goal = "oral creampie", start_position = (deepthroat if the_person.get_opinion_score("being submissive") > 0 else blowjob), start_object = make_floor(), private = True, skip_intro = True, allow_continue = False) from _call_get_fucked_mom_weekly_pay
+    else:
+        call fuck_person(the_person, private = True, start_position = blowjob, skip_intro = True, position_locked = True) from _call_fuck_person_33
     $ the_person.clear_situational_obedience("deal")
     $ the_report = _return
     $ the_person.apply_outfit()
