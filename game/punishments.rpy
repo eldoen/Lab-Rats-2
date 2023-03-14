@@ -1,7 +1,7 @@
 # Contains all of the code related to the punishment events, used when an employee has broken a rule of some sort.
 
 init -1 python:
-    list_of_punishments = [] #Establish a central holder for punishments. Mods can add additional punishments to this list.
+    list_of_punishments = ActionList() #Establish a central holder for punishments. Mods can add additional punishments to this list.
 
 # Each punishment is an Action.
 # The requirements should return the required severity if they would otherwise be unlocked, otherwise they are hidden.

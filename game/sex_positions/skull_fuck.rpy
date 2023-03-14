@@ -28,6 +28,7 @@ label intro_skull_fuck(the_girl, the_location, the_object):
 
     "You unzip your pants and pull your hard cock out."
     mc.name "[the_girl.title], I want you on your knees. I want to fuck that pretty little mouth."
+    $ the_girl.draw_person(position = "kneeling1")
     "[the_girl.possessive_title] nods and obediently kneels down in front of you."
     "You rub your dick along her cheek a few times, then slide it back and line it up with her lips."
     $ skull_fuck.current_modifier = "blowjob"
@@ -39,7 +40,10 @@ label taboo_break_skull_fuck(the_girl, the_location, the_object): #In theory you
     $ the_girl.call_dialogue(skull_fuck.associated_taboo+"_taboo_break") #Convince dialogue is handled here.
     if the_girl.effective_sluttiness(skull_fuck.associated_taboo) > skull_fuck.slut_cap:
         #She's eager to try this
+        $ skull_fuck.current_modifier = None
+        $ skull_fuck.redraw_scene(the_girl)
         "[the_girl.possessive_title] kneels down in front of you, eyes locked on your hard cock."
+
         $ skull_fuck.current_modifier = "blowjob"
         $ skull_fuck.redraw_scene(the_girl)
         "She leans in, turning her head to the side to run her tongue down the bottom of your shaft."
@@ -48,9 +52,12 @@ label taboo_break_skull_fuck(the_girl, the_location, the_object): #In theory you
         "She wastes no time picking up speed, happily bobbing her head up and down over your sensitive tip."
 
     else:
+        $ skull_fuck.current_modifier = None
+        $ skull_fuck.redraw_scene(the_girl)
         "[the_girl.possessive_title] hesitantly gets onto her knees, eyes locked on your hard cock."
         "She gently holds onto your shaft with one hand and brings the tip closer to her lips."
         "She looks up at you just before the moment of truth, locking eyes as she opens her lips and slides the tip of your cock past them."
+
         $ skull_fuck.current_modifier = "blowjob"
         $ skull_fuck.redraw_scene(the_girl)
         "You sigh happily as you feel [the_girl.title]'s warm mouth envelop your cock."
@@ -172,11 +179,14 @@ label transition_skull_fuck_deepthroat_blowjob(the_girl, the_location, the_objec
     return
 
 label transition_default_skull_fuck(the_girl, the_location, the_object):
+    $ skull_fuck.redraw_scene(the_girl)
     "You place your hands on either side of [the_girl.title]'s head and level your hard cock with her mouth."
     "You rest the tip on her lower lip and feel her warm breath on the sensitive skin each time she exhales."
     mc.name "Ready?"
     the_girl "Take me however you want."
     "She kisses the tip. You pull her head hard towards you and push your hips forward, slamming your cock to its base in a single stroke."
+    $ skull_fuck.special_modifier = "blowjob"
+    $ skull_fuck.redraw_scene(the_girl)
     "Her eyes go wide and she gags loudly."
     the_girl "Guaaah!"
     "Her arms come up instinctively, but she struggles against the urge to push you away. She balls her fists and holds them close against her body."

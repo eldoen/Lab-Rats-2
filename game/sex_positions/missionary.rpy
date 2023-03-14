@@ -24,12 +24,14 @@ init 1:
 label intro_missionary(the_girl, the_location, the_object):
     "You run your hands along [the_girl.title]'s hips, feeling the shape of her body."
     mc.name "I want you to lie down for me."
+    $ missionary.redraw_scene(the_girl)
     "She nods and lies down on the [the_object.name], waiting while you climb on top of her."
     "[the_girl.possessive_title] wraps her arms around you and holds you close as you line your cock up with her pussy. She sighs happily into your ear as you slide into her."
     return
 
 label taboo_break_missionary(the_girl, the_location, the_object):
     "You take [the_girl.title]'s hands in yours and guide her down onto the [the_object.name]. She follows your lead, lying down for you."
+    $ missionary.redraw_scene(the_girl)
     "You place your hands on her knees and spread her legs, kneeling down between them."
     "You sit your hard cock on her stomach, teasingly close to her warm pussy. [the_girl.possessive_title] reaches down and gently pets your shaft."
     $ the_girl.call_dialogue(missionary.associated_taboo+"_taboo_break")
@@ -256,6 +258,7 @@ label transition_missionary_piledriver(the_girl, the_location, the_object):
     return
 
 label transition_default_missionary(the_girl, the_location, the_object):
+    $ missionary.redraw_scene(the_girl)
     "You put [the_girl.title] on her back and lie down on top of her, lining your hard cock up with her tight cunt."
     "After running the tip of your penis along her slit a few times you press forward, sliding inside of her. She gasps softly and closes her eyes."
     return

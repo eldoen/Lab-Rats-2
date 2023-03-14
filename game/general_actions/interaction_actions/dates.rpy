@@ -655,6 +655,7 @@ label date_take_home_her_place(the_person, date_type = None): #Your date went we
         menu:
             "Kiss her":
                 "You put your drink aside, then put one hand on the back of [the_person.possessive_title]'s neck and pull her into a kiss."
+                $ the_person.draw_person(position = "kissing", special_modifier = "kissing")
                 if the_person.relationship == "Single" or the_person.get_opinion_score("cheating on men") > 0:
                     "She returns the kiss eagerly."
                 else:
@@ -664,6 +665,7 @@ label date_take_home_her_place(the_person, date_type = None): #Your date went we
                     "You kiss her again, and this time all resistance falls away."
                 "After a long moment spent making out [the_person.title] pulls away."
                 the_person "I think we'd be more comfortable in the bedroom, don't you think?"
+                $ the_person.draw_person(position = "walking_away")
                 mc.name "I couldn't agree more."
                 if mod_installed:
                     $ the_person.change_to_bedroom()

@@ -23,6 +23,7 @@ init 1:
         standing_finger.link_positions(standing_grope,"transition_standing_fingering_standing_grope")
 
 label intro_standing_finger(the_girl, the_location, the_object):
+    $ standing_finger.redraw_scene(the_girl)
     "You stand behind [the_girl.title] and put your arms around her, pulling her close against you."
     if the_girl.outfit.vagina_available():
         "You don't waste any time pushing your hand between her legs, teasing her cute, exposed pussy with your fingers."
@@ -39,6 +40,7 @@ label intro_standing_finger(the_girl, the_location, the_object):
     return
 
 label taboo_break_standing_finger(the_girl, the_location, the_object):
+    $ standing_finger.redraw_scene(the_girl)
     "You kiss [the_girl.title]'s neck from behind, distracting her from your hand sliding along her inner thigh and towards her crotch."
     if the_girl.effective_sluttiness(standing_finger.associated_taboo) > standing_finger.slut_cap:
         if the_girl.outfit.vagina_available():
@@ -139,6 +141,7 @@ label transition_standing_fingering_standing_grope(the_girl, the_location, the_o
     return
 
 label transition_default_standing_finger(the_girl, the_location, the_object):
+    $ standing_finger.redraw_scene(the_girl)
     "You gather [the_girl.title] up in your arms, cradling her from behind. You reach a hand between her legs, sliding it down to her pussy."
     "You don't waste any time sliding two fingers into her warm, wet pussy."
     return

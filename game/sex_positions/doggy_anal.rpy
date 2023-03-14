@@ -40,6 +40,7 @@ label intro_doggy_anal(the_girl, the_location, the_object):
             "[the_girl.possessive_title] looks worried for a moment."
             the_girl "I'll let you try, but I don't know if you'll be able to fit. I haven't done this much..."
 
+    $ doggy_anal.redraw_scene(the_girl)
     "[the_girl.title] gets onto her hands and knees on the [the_object.name]. You spit into your hand and use it to lube up your cock, then line it up with her pretty little asshole."
     mc.name "Ready?"
     if the_girl.sex_skills["Anal"] > 3 or the_girl.get_opinion_score("anal sex") > 1:
@@ -198,7 +199,7 @@ label transition_doggy_dogy_anal(the_girl, the_location, the_object):
     return
 
 label transition_default_doggy_anal(the_girl, the_location, the_object):
-
+    $ doggy_anal.redraw_scene(the_girl)
     "[the_girl.title] gets on her hands and knees as you kneel behind her. You bounce your hard shaft on her ass a couple of times before lining yourself up with tight asshole."
     mc.name "Ready?"
     the_girl "I... I think so."

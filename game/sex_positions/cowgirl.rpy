@@ -26,6 +26,7 @@
 label intro_cowgirl(the_girl, the_location, the_object):
     the_girl "Lie down for me, I want to be on top."
     "You lie down on the [the_object.name] and undo your pants. [the_girl.title] swings a leg over your body and straddles you."
+    $ cowgirl.redraw_scene(the_girl)
     if the_girl.outfit.vagina_visible():
         "She leans back and grinds herself against you. The shaft of your cock rubs against the lips of her pussy."
     else:
@@ -45,6 +46,7 @@ label intro_cowgirl(the_girl, the_location, the_object):
 label taboo_break_cowgirl(the_girl, the_location, the_object):
     "[the_girl.possessive_title] leads you to the [the_object.name]."
     the_girl "Lie down for me [the_girl.mc_title]..."
+    $ cowgirl.redraw_scene(the_girl)
     "You nod and follow her instructions. She steps over you and kneels down, straddling your hips."
     if the_girl.effective_sluttiness(cowgirl.associated_taboo) > cowgirl.slut_cap:
         "She reaches between her legs and grabs your cock, bringing it towards her and running the tip against her clit."
@@ -182,6 +184,7 @@ label outro_cowgirl(the_girl, the_location, the_object):
     return
 
 label transition_default_cowgirl(the_girl, the_location, the_object):
+    $ cowgirl.redraw_scene(the_girl)
     "You lie down on [the_object.name]. [the_girl.title] swings a leg over your waist and straddles you."
     if the_girl.sex_skills["Vaginal"] >= 3:
         "She grinds her pussy against your shaft, then lifts herself up and lets your tip fall into place. With one smooth movement she slides you deep into her tight cunt."

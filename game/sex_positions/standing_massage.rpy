@@ -23,7 +23,7 @@ init 1:
         standing_grope.link_positions(standing_finger,"transition_standing_grope_standing_fingering")
 
 label intro_standing_grope(the_girl, the_location, the_object):
-
+    $ standing_grope.redraw_scene(the_girl)
     "You stand behind [the_girl.title] and put your arms around her, pulling her close against you."
     "You reach one hand down, running across her stomach and towards her waist and the other up towards her tits."
     if the_girl.has_large_tits():
@@ -39,6 +39,7 @@ label taboo_break_standing_grope(the_girl, the_location, the_object):
     "Next, you slide your hands down her body, over the curves of her torso onto her hips."
     "You take a small step forward and slide your hands behind [the_girl.possessive_title] and onto her ass."
     $ the_girl.call_dialogue(standing_grope.associated_taboo+"_taboo_break")
+    $ standing_grope.redraw_scene(the_girl)
     if the_girl.has_large_tits():
         "You step behind [the_girl.title], putting one arm across her torso and cupping one of her juicy tits."
     else:
@@ -124,6 +125,7 @@ label transition_standing_grope_standing_fingering(the_girl, the_location, the_o
     return
 
 label transition_default_standing_grope(the_girl, the_location, the_object):
+    $ standing_grope.redraw_scene(the_girl)
     "You gather [the_girl.title] up in your arms, cradling her from behind. You reach one hand down between her legs, and the other up to cup her breasts."
     "She leans her weight against you in response."
     return

@@ -182,7 +182,7 @@ label lobby_tutorial_intro():
 
 label research_tutorial_intro():
     $ stephanie.draw_person(emotion = "happy")
-    "The small room has a couple of lab benches with fume hoods, old but serviceable glassware, and a few more delicate instruments you don't recognise by sight."
+    "The small room has a couple of lab benches with fume hoods, old but serviceable glassware, and a few more delicate instruments you don't recognize by sight."
     mc.name "Here we are, what do you think?"
     "[stephanie.title] starts to walk down the benches, checking cabinets and machinery."
     stephanie "I'll need some more time to check it all out, but it all looks like it works. Holy crap [stephanie.mc_title], I can't believe you're giving me my own lab."
@@ -191,7 +191,7 @@ label research_tutorial_intro():
     stephanie "I have a few different ideas I can explore right now. With some time I should be able to figure out some new fundamental property."
     stephanie "When you want to produce an actual product we will need to create a new serum design."
     stephanie "It will take some more research work to figure out how we can actually produce the design."
-    stephanie "Right now I think we'll struggle to get a single property to express itself properly in our serums, but with some experience we can combined a bunch."
+    stephanie "Right now I think we'll struggle to get a single property to express itself properly in our serums, but with some experience we can combine a bunch."
     mc.name "Right, I think I understand."
     "[stephanie.title] pulls out a notebook and flips it open, handing it over to you."
     stephanie "These are my first ideas, you should pick something for me to work on right now. If you change your mind you can always come back here and pick a new topic."
@@ -268,7 +268,7 @@ label office_tutorial_intro():
     $ stephanie.draw_person(emotion = "happy")
     "The offices are divided into a few separate cubicles and a small private office."
     stephanie "This seems like a good place to do any of your supply ordering from, and you can use your office to interview anyone who you're thinking of hiring."
-    mc.name "The more people we take on the more paperwork I'm going to have to do to keep everyone organised."
+    mc.name "The more people we take on the more paperwork I'm going to have to do to keep everyone organized."
     stephanie "With enough people that would end up being a full time job all by itself. I don't envy you [stephanie.mc_title], I much prefer my cozy little lab."
     mc.name "That's all there is to see here. Last stop is the marketing room."
     stephanie "Lead on!"

@@ -54,36 +54,36 @@ init -2 python:
 
     #EMPLOYEE ACTION REQUIREMENTS#
     def employee_set_duties_requirement(the_person):
-        if not the_person.is_at_work():
-            return "Only in the office"
+        if not (mc.business.is_open_for_business() and the_person.is_at_work()):
+            return False
 
         if the_person.event_triggers_dict.get("work_duties_last_set", -1) < day:
             return True
         return "Duties already changed today"
 
     def employee_complement_requirement(the_person):
-        if not mc.business.is_open_for_business():
+        if not (mc.business.is_open_for_business() and the_person.is_at_work()):
             return False
         elif day - the_person.event_triggers_dict.get("day_last_employee_interaction",-2) <= 0:
-            return "Already talked about work today"
+            return "Already complimented her today"
         return True
 
     def employee_insult_requirement(the_person):
-        if not mc.business.is_open_for_business():
+        if not (mc.business.is_open_for_business() and the_person.is_at_work()):
             return False
         elif day - the_person.event_triggers_dict.get("day_last_employee_interaction",-2) <= 0:
-            return "Already talked about work today"
+            return "Already insulted her today"
         return True
 
     def employee_pay_cash_requirement(the_person):
-        if not mc.business.is_open_for_business():
+        if not (mc.business.is_open_for_business() and the_person.is_at_work()):
             return False
         elif day - the_person.event_triggers_dict.get("day_last_employee_interaction",-2) <= 0:
-            return "Already talked about work today"
+            return "Already payed cash bonus"
         return True
 
     def employee_performance_review_requirement(the_person):
-        if not mc.business.is_open_for_business():
+        if not (mc.business.is_open_for_business() and the_person.is_at_work()):
             return False
         elif day - the_person.event_triggers_dict.get("employed_since",-7) < 7:
             return "Too recently hired"
@@ -92,7 +92,7 @@ init -2 python:
         return True
 
     def move_employee_requirement(the_person):
-        if not mc.business.is_open_for_business():
+        if not (mc.business.is_open_for_business() and the_person.is_at_work()):
             return False
         return True
 
@@ -101,7 +101,7 @@ init -2 python:
             return False
         elif not mc.is_at_work():
             return False
-        elif not mc.business.is_open_for_business():
+        elif not (mc.business.is_open_for_business() and the_person.is_at_work()):
             return False
         elif len(the_person.infractions) <= 0:
             return "Requires: Rules Infraction"
@@ -912,8 +912,9 @@ label request_promotion_crisis_label(the_person):
             "You think about it for a second, then nod approvingly."
             mc.name "You're right, of course."
             call promotion_after_convince(the_person) from _call_promotion_after_convince
-            $ the_person.draw_person()
+            $ the_person.draw_person(position = "walking_away")
             "She stands up and heads for the door."
+            $ the_person.draw_person(position = "back_peek")
             the_person "Thank you for your time."
             "You nod, and she leaves your office."
 
@@ -923,8 +924,10 @@ label request_promotion_crisis_label(the_person):
             if the_person.effective_sluttiness() + the_person.get_opinion_score("being in control") * 5 < 40 and not the_person.has_role(affair_role): #Girls you are having an affair with will always try to seduce you and get a promotion.
                 $ the_person.change_happiness(-10 + 5*the_person.get_opinion_score("being submissive"))
                 the_person "I understand... Sorry to have bothered you."
+                $ the_person.draw_person(position = "walking_away")
                 "She leaves your office, clearly unhappy with the results."
             else:
+                $ the_person.draw_person()
                 "[the_person.possessive_title] seems disappointed. She stands up and places her hands on your desk, leaning forward."
                 if the_person.has_large_tits():
                     "The pose accentuates her large breasts, threatening to pull your attention away from the conversation."
@@ -991,7 +994,7 @@ label request_promotion_crisis_label(the_person):
                             mc.name "Not yet. Turn around, I want to get a look at your ass."
                             "[the_person.title] nods meekly."
                             mc.name "And stop trying to cover yourself up. The point is for me to look at you, right?"
-                            $ the_person.draw_person(position = "back_peek")
+                            $ the_person.draw_person(position = "back_peek", the_animation = ass_bob, animation_effect_strength = 0.4)
                             $ mc.change_locked_clarity(10)
                             "[the_person.possessive_title] nods again and follows your instructions, letting her hands drop to her sides and turning around."
                         else:
@@ -1009,9 +1012,9 @@ label request_promotion_crisis_label(the_person):
                             $ the_person.draw_person()
                             the_person "Thank you for this opportunity [the_person.mc_title], I won't let you down."
                         else:
-                            "[the_person.possessive_title] gets dressed and storms out of your office without another word."
                             $ the_person.apply_outfit()
-                            $ the_person.draw_person()
+                            $ the_person.draw_person(position = "walking_away")
+                            "[the_person.possessive_title] gets dressed and storms out of your office without another word."
 
                     "Make her jerk you off" if the_person.effective_sluttiness() >= 30:
                         "You nod thoughtfully, then roll your office chair back away from your desk."
@@ -1032,6 +1035,7 @@ label request_promotion_crisis_label(the_person):
                             the_person "Oh, that looks plenty hard... but I think I can manage."
 
                         #TODO: We really need a sitting and kneeling handjob pose.
+                        $ the_person.draw_person(position = "kneeling1")
                         "[the_person.possessive_title] kneels down in front of you and reaches out, gently wrapping her fingers around your shaft."
                         if the_person.break_taboo("touching_penis"):
                             "She gasps when your cock twitches in response, but quickly regains her composure and laughs."
@@ -1076,6 +1080,7 @@ label request_promotion_crisis_label(the_person):
                         if _return:
                             the_person "Thank you for this opportunity [the_person.mc_title], I won't let you down."
                         else:
+                            $ the_person.draw_person(position = "walking_away")
                             "[the_person.possessive_title] storms out of your office without another word."
 
                     "Make her jerk you off\n{color=#ff0000}{size=18}Requires: [jerk_token]{/size}{/color} (disabled)" if the_person.effective_sluttiness() < 30:
@@ -1095,6 +1100,7 @@ label request_promotion_crisis_label(the_person):
                             "You motion her closer, and she takes a few unsteady steps."
                             mc.name "Get on your knees. Don't worry, it doesn't bite."
                             $ mc.change_locked_clarity(10)
+                            $ the_person.draw_person(position = "kneeling1")
                             "[the_person.possessive_title] nods and drops down in front of you."
                             $ the_person.break_taboo("sucking_cock")
                         else:
@@ -1119,13 +1125,13 @@ label request_promotion_crisis_label(the_person):
                         call fuck_person(the_person,private = True, start_position = blowjob, start_object = mc.location.get_object_with_name("floor"), skip_intro = True) from _call_fuck_person_140
                         $ the_person.clear_situational_slut("seduction_approach")
 
-
                         $ the_person.review_outfit()
 
                         call promotion_post_sex_convince(the_person) from _call_promotion_post_sex_convince_3
                         if _return:
                             the_person "Thank you for this opportunity [the_person.mc_title], I won't let you down."
                         else:
+                            $ the_person.draw_person(position = "walking_away")
                             "[the_person.possessive_title] storms out of your office without another word."
 
 
@@ -1177,7 +1183,7 @@ label request_promotion_crisis_label(the_person):
                                     $ mc.condom = True
                                     "You spread it over your dick, then step into position and line yourself up."
 
-                                "Fuck her raw anyways" if the_person.obedience >= 130:
+                                "Fuck her raw anyways" if the_person.obedience >= 150:
                                     mc.name "That's where you draw the line? You'll fuck your boss for a promotion, but you need a tiny bit of latex?"
                                     mc.name "No, I'm going to feel that hot pussy wrapped around my cock raw."
                                     if not the_person.on_birth_control:
@@ -1199,7 +1205,7 @@ label request_promotion_crisis_label(the_person):
                                     mc.name "Good girl, that's what I like to hear."
                                     "You hold your shaft steady with one hand and line yourself up with her."
 
-                                "Fuck her raw anyways.\nRequires: 130 Obedience (disabled)" if the_person.obedience < 130:
+                                "Fuck her raw anyways.\nRequires: 150 Obedience (disabled)" if the_person.obedience < 150:
                                     pass
 
                         else: #She doesn't want one, but we'll give you the option in case you're trying not to get girls pregnant.
@@ -1248,6 +1254,7 @@ label request_promotion_crisis_label(the_person):
                         if _return:
                             the_person "Thank you for this opportunity [the_person.mc_title], I won't let you down."
                         else:
+                            $ the_person.draw_person(position = "walking_away")
                             "[the_person.possessive_title] storms out of your office without another word."
 
                     "Fuck her\n{color=#ff0000}{size=18}Requires: [fuck_token]{/size}{/color} (disabled)" if the_person.effective_sluttiness() < 60:

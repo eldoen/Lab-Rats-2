@@ -341,28 +341,28 @@ init 0 python:
 
 
     def find_infractions_duty_on_turn(the_person):
-        if renpy.random.randint(0,100) < 10: #NOTE: This is different from 5% so we can have low obedience/rival employss show up more often.
+        if renpy.random.randint(0,100) < 10: #NOTE: This is different from 5% so we can have low obedience/rival employees show up more often.
             # There's a chance we've discovered an infraction
             the_target = get_random_from_list(mc.business.get_employee_list())
             if the_target is None:
                 return #Nobody to generate infractions for.
 
-            if the_person == the_target: #NOTE: Doesn't have any probabilyt correction, buecause you always 100% know when you've commited an infraction
+            if the_person == the_target:
+                # NOTE: Doesn't have any probability correction, because you always 100% know when you've committed an infraction
+                # when she's submissive enough, she will give herself an infraction
                 if the_person.obedience >= 140 or the_person.get_opinion_score("being submissive") > 0:
                     the_target.add_infraction(random_infraction_generation(the_target), add_to_log = False) # TODO: Generate an infraction for yourself. Those are the rules!
-                else:
-                    return #Whoops! We're just... going to ignore that.
 
             else:
                 real_infraction_chance = 150 - the_target.obedience
-                if town_relationships.get_relationship(the_person, the_target) == "Rival":
+                if town_relationships.get_relationship_type(the_person, the_target) == "Rival":
                     real_infraction_chance += 20
-                elif town_relationships.get_relationship(the_person, the_target) == "Nemisis":
+                elif town_relationships.get_relationship_type(the_person, the_target) == "Nemesis":
                     real_infraction_chance += 40
-                elif town_relationships.get_relationship(the_person, the_target) == "Friend":
-                    real_infraction_chance += -20
-                elif town_relationships.get_relationship(the_person, the_target) in ["Best Friend","Daughter", "Mother", "Aunt", "Niece", "Cousin", "Grandmother", "Granddaughter"]:
-                    real_infraction_chance += -40
+                elif town_relationships.get_relationship_type(the_person, the_target) == "Friend":
+                    real_infraction_chance -= 20
+                elif town_relationships.get_relationship_type(the_person, the_target) in ["Best Friend","Daughter", "Mother", "Aunt", "Sister", "Niece", "Cousin", "Grandmother", "Granddaughter"]:
+                    real_infraction_chance -= 40
                 if renpy.random.randint(0,100) < real_infraction_chance:
                     the_target.add_infraction(random_infraction_generation(the_target)) #TODO:
 

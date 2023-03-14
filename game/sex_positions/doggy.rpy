@@ -31,6 +31,7 @@ label intro_doggy(the_girl, the_location, the_object):
         the_girl "Mmm, you know just what I like [the_girl.mc_title]."
     else:
         the_girl "Like this?"
+    $ doggy.redraw_scene(the_girl)
     "[the_girl.title] gets onto all fours in front of you on the [the_object.name]. She wiggles her ass impatiently at you as you get your hard cock lined up."
     if the_girl.arousal > 60:
         "You rub the tip of your penis against [the_girl.title]'s cunt, feeling how nice and wet she is already. She moans softly when you slide the head of your dick over her clit."
@@ -325,6 +326,7 @@ label transition_doggy_doggy_anal(the_girl, the_location, the_object):
     return
 
 label transition_default_doggy(the_girl, the_location, the_object):
+    $ doggy.redraw_scene(the_girl)
     "[the_girl.title] gets on her hands and knees as you kneel behind her. You bounce your hard shaft on her ass a couple of times before lining yourself up with her cunt."
     "Once you're both ready you push yourself forward, slipping your hard shaft deep inside of her. She lets out a gasp under her breath."
     return

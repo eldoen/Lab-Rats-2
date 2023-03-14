@@ -25,6 +25,7 @@
 
 label intro_against_wall(the_girl, the_location, the_object):
     "You put your arms around [the_girl.title] and spin her around, putting her face towards you and her back against the [the_object.name]."
+    $ against_wall.redraw_scene(the_girl)
     if the_girl.effective_sluttiness() > 80:
         "[the_girl.possessive_title] plants her back against [the_object.name] and watches you as you unzip your pants. She bites her lip and sighs under her breath when your cock springs out."
         the_girl "Mmm, what are you going to do to me?"
@@ -35,6 +36,7 @@ label intro_against_wall(the_girl, the_location, the_object):
 
 label taboo_break_against_wall(the_girl, the_location, the_object):
     "You put your arms around [the_girl.title] and spin her around, putting her face towards you and her back against the [the_object.name]."
+    $ against_wall.redraw_scene(the_girl)
     if the_girl.effective_sluttiness(against_wall.associated_taboo) > against_wall.slut_cap:
         "She reaches down and rubs your hard cock against her, teasing the tip against the slit of her pussy."
     else:
@@ -280,6 +282,7 @@ label outro_against_wall(the_girl, the_location, the_object):
     return
 
 label transition_default_against_wall(the_girl, the_location, the_object):
+    $ against_wall.redraw_scene(the_girl)
     "You press [the_girl.possessive_title] against the [the_object.name]. She plants her back against it and opens her legs, letting you step between them."
     "You run the tip of your cock along her slit a few times, then slide yourself inside of her tight cunt."
     return

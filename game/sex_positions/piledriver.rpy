@@ -25,6 +25,7 @@ init 1:
 label intro_piledriver(the_girl, the_location, the_object):
     mc.name "[the_girl.title], I want you to lie down for me."
     "[the_girl.possessive_title] nods, glancing briefly at the bulge in your pants. She gets onto the [the_object.name] and waits for you."
+    $ piledriver.redraw_scene(the_girl)
     the_girl "How's this?"
     "You get your hard cock out and kneel down in front of her. She yelps in surprise when you grab her ankles and bring them up and over her waist."
     mc.name "There we go, this will be even better."
@@ -34,6 +35,7 @@ label intro_piledriver(the_girl, the_location, the_object):
 
 label taboo_break_piledriver(the_girl, the_location, the_object):
     "You take [the_girl.title]'s hands in yours and guide her down onto the [the_object.name]. She follows your lead, lying down for you."
+    $ piledriver.redraw_scene(the_girl)
     "You place your hands on her knees and spread her legs, kneeling down between them."
     "You sit your hard cock on her stomach, teasingly close to her warm pussy. [the_girl.possessive_title] reaches down and gently pets your shaft."
     $ the_girl.call_dialogue(piledriver.associated_taboo+"_taboo_break")
@@ -270,6 +272,7 @@ label transition_piledriver_missionary(the_girl, the_location, the_object):
     return
 
 label transition_default_piledriver(the_girl, the_location, the_object):
+    $ piledriver.redraw_scene(the_girl)
     "You put [the_girl.title] on her back, then lift her legs up and bend her over at the waist. You kneel over her, lining your hard cock up with her tight pussy."
     mc.name "Ready?"
     "[the_girl.possessive_title] nods, and you slip yourself deep, deep inside of her."

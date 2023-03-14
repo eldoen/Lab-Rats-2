@@ -26,6 +26,7 @@ init 1:
 label intro_blowjob(the_girl, the_location, the_object):
     "You unzip your pants and pull your underwear down far enough to let your hard cock out."
     mc.name "How about your take care of this for me?"
+    $ the_girl.draw_person(position = "kneeling1")
     if the_girl.effective_sluttiness() > 35:
         "[the_girl.possessive_title] looks at your shaft for a moment, then drops to her knees in front of you. She runs her hands along your hips, then leans forward and slides her lips over the tip of your dick."
     else:
@@ -38,15 +39,19 @@ label taboo_break_blowjob(the_girl, the_location, the_object):
     $ the_girl.call_dialogue(blowjob.associated_taboo+"_taboo_break") #Personality dialogue includes all associated "convince me" dialogue
     if the_girl.effective_sluttiness(blowjob.associated_taboo) > blowjob.slut_cap:
         #She's eager to try this
+        $ the_girl.draw_person(position = "kneeling1")
         "[the_girl.possessive_title] kneels down in front of you, eyes locked on your hard cock."
-        $ blowjob.current_modifier = "blowjob"
+        $ blowjob.current_modifier = None
         $ blowjob.redraw_scene(the_girl)
         "She leans in, turning her head to the side to run her tongue down the bottom of your shaft."
         "She licks your balls briefly, then works back up to the tip and slides it past her lips."
+        $ blowjob.current_modifier = "blowjob"
+        $ blowjob.redraw_scene(the_girl)
         "You sigh happily as you feel [the_girl.title]'s warm mouth envelop your cock."
         "She wastes no time picking up speed, happily bobbing her head up and down over your sensitive tip."
 
     else:
+        $ the_girl.draw_person(position = "kneeling1")
         "[the_girl.possessive_title] hesitantly gets onto her knees, eyes locked on your hard cock."
         "She gently holds onto your shaft with one hand and brings the tip closer to her lips."
         "She looks up at you just before the moment of truth, locking eyes as she opens her lips and slides the tip of your cock past them."
@@ -314,9 +319,11 @@ label transition_blowjob_deepthroat(the_girl, the_location, the_object):
     return
 
 label transition_default_blowjob(the_girl, the_location, the_object):
-    $ blowjob.current_modifier = "blowjob"
+    $ blowjob.current_modifier = None
     $ blowjob.redraw_scene(the_girl)
     "[the_girl.possessive_title] gets onto her knees in front of you and takes your hard cock in her hands. She strokes it tentatively a few times, then leans in and slides the tip into her mouth."
+    $ blowjob.current_modifier = "blowjob"
+    $ blowjob.redraw_scene(the_girl)
     mc.name "That's it, that's a good girl."
     return
 

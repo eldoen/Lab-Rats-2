@@ -1188,9 +1188,9 @@ init -2 python:
                 self.special_role = []
                 log_message("Person \"" + name + " " + last_name + "\" was handed an incorrect special role parameter.")
 
-            self.on_room_enter_event_list = [] #Checked when you enter a room with this character. If an event is in this list and enabled it is run (and no other event is until the room is reentered)
+            self.on_room_enter_event_list = ActionList() #Checked when you enter a room with this character. If an event is in this list and enabled it is run (and no other event is until the room is reentered)
                 # If handed a list of [action, positive_int], the integer is how many turns this action is kept around before being removed, triggered or not.
-            self.on_talk_event_list = [] #Checked when you start to interact with a character. If an event is in this list and enabled it is run (and no other event is until you talk to the character again.)\
+            self.on_talk_event_list = ActionList() #Checked when you start to interact with a character. If an event is in this list and enabled it is run (and no other event is until you talk to the character again.)\
                 # If handed a list of [action, positive_int], the integer is how many turns this action is kept around before being removed, triggered or not.
 
             ##Mental stats##
@@ -1503,12 +1503,9 @@ init -2 python:
             else:
                 self._work = None
 
+        # TODO: remove (leave for backward compatibility for now)
         def has_limited_time_event(self, the_event):
-            if isinstance(the_event, Action):
-                return any(x for x in self.on_room_enter_event_list + self.on_talk_event_list if x == the_event)
-            if isinstance(the_event, basestring):
-                return any(x for x in self.on_room_enter_event_list + self.on_talk_event_list if x.effect == the_event)
-            return False
+            self.has_queued_event(the_event)
 
         def generate_home(self, set_home_time = True): #Creates a home location for this person and adds it to the master list of locations so their turns are processed.
             # generate new home location if we don't have one
@@ -3457,25 +3454,15 @@ init -2 python:
             return None
 
         def has_queued_event(self, the_event):
-            for an_event in self.on_talk_event_list:
-                if an_event == the_event:
-                    return True
-
-            for an_event in self.on_room_enter_event_list:
-                if an_event == the_event:
-                    return True
-
-            return False
-
-        def has_queued_event_with_name(self, the_name):
-            for an_event in self.on_talk_event_list:
-                if an_event.name == the_name:
-                    return True
-
-            for an_event in self.on_room_enter_event_list:
-                if an_event.name == the_name:
-                    return True
-
+            # TODO: remove else branch for future releases
+            if isinstance(self.on_room_enter_event_list, ActionList):
+                return self.on_room_enter_event_list.has_action(the_event) \
+                    or self.on_talk_event_list.has_action(the_event)
+            else:
+                if isinstance(the_event, Action):
+                    return any(x for x in self.on_room_enter_event_list + self.on_talk_event_list if x == the_event)
+                if isinstance(the_event, basestring):
+                    return any(x for x in self.on_room_enter_event_list + self.on_talk_event_list if x.effect == the_event)
             return False
 
         def add_infraction(self, the_infraction, add_to_log = True, require_policy = True):

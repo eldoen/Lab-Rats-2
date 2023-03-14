@@ -178,253 +178,318 @@ label mom_weekly_pay_label(the_person):
     $ add_mom_weekly_pay_action()
     return
 
+init 5 python:
+    def mom_weekly_pay_cost_requirement(amount):
+        if not mc.business.has_funds(amount):
+            return "Requires: ${}".format(amount)
+        return True
+
+    def get_mom_low_sluttiness_weekly_actions():
+        return [mom_weekly_pay_give_her_nothing_action,
+            mom_weekly_pay_help_out_action]
+
+    def build_mom_low_sluttiness_weekly_menu():
+        actions_list = get_mom_low_sluttiness_weekly_actions()
+        actions_list.insert(0, "Choose Option")
+        return actions_list
+
+    mom_weekly_pay_give_her_nothing_action = Action("Give her nothing", always_true_requirement, "mom_weekly_pay_give_nothing")
+    mom_weekly_pay_help_out_action = Action("Help her out\n{color=#ff0000}{size=18}Costs: $100{/size}{/color}", mom_weekly_pay_cost_requirement, "mom_weekly_pay_help_out", requirement_args = 100)
+
 label mom_low_sluttiness_weekly_pay(the_person):
-    menu:
-        "Give her nothing":
-            mc.name "Sorry Mom, I'm just not turning a profit right now. Hopefully we will be soon though. I'll help out as soon as I can."
-            $ the_person.change_happiness(-5)
-            $ the_person.change_love(-1)
-            $ the_person.draw_person(position = "sitting", emotion = "sad")
-            the_person "Okay [the_person.mc_title], I understand. I'll talk with Lily and let her know that we have to cut back on non essentials."
+    if mod_installed:
+        call screen enhanced_main_choice_display(build_menu_items([build_mom_low_sluttiness_weekly_menu()]))
+    else:
+        call screen main_choice_display([build_mom_low_sluttiness_weekly_menu()])
 
-        "Help out\n{color=#ff0000}{size=18}Costs: $100{/size}{/color}" if mc.business.has_funds(100):
-            "You pull out your wallet and count out some cash, but hesitate before you hand it over."
-            $ mc.business.change_funds(-100)
-            menu:
-                "Ask for a kiss":
-                    mc.name "I'd like a kiss for it though."
-                    if the_person.has_taboo("kissing"):
-                        the_person "A kiss?"
-                        mc.name "For being such a good son."
-                        the_person "Oh, well that's easy then."
-                        "[the_person.possessive_title] stands up and leans in to give you a kiss on the cheek."
-                        mc.name "On the lips, [the_person.title]. Please?"
-                        the_person "You've always been so affectionate. Not like other boys at all, you know. Fine."
-                        $ kissing.call_taboo_break(the_person, None, None) #We can reuse the kissing taboo break scene for improved dialogue and description.
-                        $ mc.change_locked_clarity(10)
-                        "After a moment she pulls back and looks away from you, blushing."
-                        $ the_person.break_taboo("kissing")
-                    else:
-                        the_person "Okay, come here."
-                        if the_person.effective_sluttiness("kissing") > 15:
-                            "You lean down to kiss her as she's sitting. [the_person.possessive_title] puts a hand on the back of your head and pulls you against her as your lips meet."
-                            "Her mouth opens slightly, letting your tongues meet as she makes out with you."
-                            $ the_person.change_arousal(5 + mc.sex_skills["Foreplay"])
-                            "It might be your imagination, but you think you might even hear her moan."
-                            $ mc.change_locked_clarity(10)
-                            "When you finally break the kiss she fixes her hair and smiles proudly at you."
-                        else:
-                            "You lean down to kiss her. She lets you press your lips against hers, and even returns the gentle kiss after a moment of hesitation."
-                            $ mc.change_locked_clarity(10)
-                            "When you finally break the kiss she looks away from you, blushing with embarrassment."
-
-                    $ the_person.change_slut(2, 30)
-                    the_person "There, have I earned my reward?"
-                    "You hold out the cash for her and she takes it."
-                    the_person "Thank you so much, every little bit helps."
-
-                "Make her say please":
-                    mc.name "What are the magic words?"
-                    the_person "Abracadabra?"
-                    mc.name "No, the words we say when we want help?"
-                    the_person "Oooh, I see what you're getting at. I've drilled it into you and now I'm getting a taste of my own medicine."
-                    "She smiles and rolls her eyes playfully."
-                    $ mc.change_locked_clarity(5)
-                    the_person "May I {i}please{/i} have some help with the bills?"
-                    mc.name "I'm not sure if you mean it..."
-                    the_person "Pretty please, [the_person.mc_title]?"
-                    $ the_person.change_obedience(2)
-                    "You hold out the cash and she takes it."
-                    mc.name "And..."
-                    the_person "Thank you [the_person.mc_title], you're very kind."
-            $ the_person.change_happiness(5)
-            $ the_person.change_love(3)
-            $ the_person.draw_person(position = "sitting", emotion = "happy")
-            "She gives you a hug and turns her attention back to organizing the bills."
-
-        "Help out\n{color=#ff0000}{size=18}Requires: $100{/size}{/color} (disabled)" if not mc.business.has_funds(100):
-            pass
+    if isinstance(_return, Action):
+        $ _return.call_action()
     return
 
-label mom_high_sluttiness_weekly_pay(the_person): #TODO: Change all of these over to use Actions instead of just being a menu.
+label mom_weekly_pay_give_nothing():
+    $ the_person = mom
+    mc.name "Sorry Mom, I'm just not turning a profit right now. Hopefully we will be soon though. I'll help out as soon as I can."
+    $ the_person.change_happiness(-5)
+    $ the_person.change_love(-1)
+    $ the_person.draw_person(position = "sitting", emotion = "sad")
+    the_person "Okay [the_person.mc_title], I understand. I'll talk with Lily and let her know that we have to cut back on non essentials."
+    return
+
+label mom_weekly_pay_help_out():
+    $ the_person = mom
+    "You pull out your wallet and count out some cash, but hesitate before you hand it over."
+    $ mc.business.change_funds(-100)
     menu:
-        "Strip for me\n{color=#ff0000}{size=18}Costs: $100{/size}{/color}" if mc.business.has_funds(100):
-            if mc.business.event_triggers_dict.get("Mom_Strip", 0) >= 1:
-                mc.name "I want you to show off yourself off to me, how does that sound?"
-                the_person "Fair is fair, but I'll need a little extra if you want to see anything... inappropriate."
-                $ mc.business.change_funds(-100)
-                $ the_person.change_obedience(1)
-                "You hand over the cash and sit back while [the_person.possessive_title] entertains you."
-            else:
-                $ mc.business.event_triggers_dict["Mom_Strip"] = 1
-                mc.name "I'd like to see a little more of you Mom, how about I pay you to give me a little strip tease."
-                the_person "Oh my god, I've raised such a dirty boy. How about I pose for you a bit, and if you want to see more you can contribute a little extra."
-                mc.name "Sounds like a good deal Mom."
-                $ mc.business.change_funds(-100)
-                $ the_person.change_obedience(1)
-                "You hand over the cash and sit back while [the_person.possessive_title] entertains you."
-
-            call strip_tease(the_person, for_pay = True) from _call_strip_tease_mom_high_sluttiness_weekly_pay
-
-
-        "Strip for me\n{color=#ff0000}{size=18}Requires: $100{/size}{/color} (disabled)" if not mc.business.has_funds(100):
-            pass
-
-        "Test some serum\n{color=#ff0000}{size=18}Costs: $100{/size}{/color}" if mc.business.has_funds(100):
-            if mc.business.event_triggers_dict.get("Mom_Serum_Test",0) >= 1:
-                mc.name "I've got some more serum I'd like you to test Mom."
-                call give_serum(the_person) from _call_give_serum_10
-                if _return:
-                    $ mc.business.change_funds(-100)
-                    "You hand the serum to [the_person.possessive_title], followed by the cash."
-                    the_person "Okay, so that's all for now?"
-                    mc.name "That's all. I'll just be keeping an eye on you in the future, but you don't need to worry about that."
-                    the_person "Well thank you [the_person.mc_title], this money will really make a difference. I'm so proud of you!"
-                else:
-                    mc.name "Actually, I don't have anything right now. Maybe next week though, okay?"
-                    the_person "Okay [the_person.mc_title], thanks for at least thinking about it."
-            else:
-                $ mc.business.event_triggers_dict["Mom_Serum_Test"] = 1
-                mc.name "I have something you could help me with Mom."
-                the_person "What is it [the_person.mc_title]? I'll do whatever I can for you."
-                mc.name "We have a little bit of a research bottleneck at work. I have something I'd like you to test for me."
-                the_person "Oh, okay. If it helps I can be your for hire test subject!"
-                mc.name "Excellent, let me just see if I have anything with me right now..."
-                call give_serum(the_person) from _call_give_serum_11
-                if _return:
-                    $ mc.business.change_funds(-100)
-                    "You hand the serum to [the_person.possessive_title], followed by the cash."
-                    the_person "Okay, so that's all for now?"
-                    mc.name "That's all. I'll just be keeping an eye on you in the future, but you don't need to worry about that."
-                    the_person "Well thank you [the_person.mc_title], this money will really make a difference. I'm so proud of you!"
-                else:
-                    mc.name "Actually, I don't have anything right now. Maybe next week though, okay?"
-                    the_person "Okay [the_person.mc_title], thanks for at least thinking about it."
-
-        "Test some serum\n{color=#ff0000}{size=18}Requires: $100{/size}{/color} (disabled)" if not mc.business.has_funds(100):
-            pass
-
-        # "I want to make some changes around here." if the_person.obedience >= 120:
-        #     #TODO: Requires obedience, but unlocks a bunch of other options, like having your Mom bring you breakfast every morning, not wearing anything at home, etc.
-        #     mc.name "Now that I'm the man of the house, I want to make some changes around the house."
-        #     the_person "What sorts of changes?"
-        #     call mom_make_house_changes(the_person)
-        #
-        # "I want to make some changes around here.\nRequires: 120 Obedience (disabled)" if the_person.obedience < 120:
-        #     pass
-
-
-        #TODO: "I want to breed Lily" option, once you've got Mom at high sluttiness, obedience, and Love. She gives you the go-ahead to knock up your sister.
-
-        "Suck me off\n{color=#ff0000}{size=18}Costs: $300{/size}{/color}" if mc.business.has_funds(300) and the_person.effective_sluttiness("sucking_cock") >= 30 and not the_person.get_opinion_score("giving blowjobs") <= -2:
-            mc.name "Alright, I'll pay you to give me a blowjob."
-            if (not the_person.has_taboo("sucking_cock")) or the_person.effective_sluttiness("sucking_cock") >= 60:
-                the_person "If that's what you need."
+        "Ask for a kiss":
+            mc.name "I'd like a kiss for it though."
+            if the_person.has_taboo("kissing"):
+                the_person "A kiss?"
+                mc.name "For being such a good son."
+                the_person "Oh, well that's easy then."
+                "[the_person.possessive_title] stands up and leans in to give you a kiss on the cheek."
+                mc.name "On the lips, [the_person.title]. Please?"
+                the_person "You've always been so affectionate. Not like other boys at all, you know. Fine."
+                $ kissing.call_taboo_break(the_person, None, None) #We can reuse the kissing taboo break scene for improved dialogue and description.
                 $ mc.change_locked_clarity(10)
-                "You pull out your wallet and count out her cash while [the_person.possessive_title] gets onto her knees in front of you."
-                $ mc.business.change_funds(-300)
-                $ the_person.draw_person(position = "blowjob")
-                the_person "Remember, not a word to anyone else though. Okay?"
-                mc.name "Of course, this is just between you and me."
-                $ the_person.break_taboo("sucking_cock")
-
+                "After a moment she pulls back and looks away from you, blushing."
+                $ the_person.break_taboo("kissing")
             else:
-                the_person "What? I mean... I could never do that! How could you even say that?"
-                "You pull out your wallet and count out the cash while you talk."
-                mc.name "Sure you could. It's just me and you here, nobody would ever need to know."
-                mc.name "Besides, it's for the family, right? This is just another way to help everyone out. Myself included, I've been real stressed at work lately."
-                $ mc.business.change_funds(-300)
-                "You lay the cash down on the table. [the_person.possessive_title] hesitates, then meekly reaches for the money."
-                the_person "Not a word to anyone, or I'll kick you out of the house."
-                mc.name "Of course [the_person.title], don't you trust your own son?"
-                $ the_person.draw_person(position = "blowjob")
-                $ mc.change_locked_clarity(10)
-                "She sighs and kneels down in front of you. You unzip your pants and pull your cock out for your mother."
-                mc.name "Don't worry, it won't bite."
-                the_person "This isn't my exactly my first blowjob [the_person.mc_title], I'm not worried."
-                $ the_person.break_taboo("sucking_cock")
-
-            "With that she opens her mouth and slides the tip of your hard cock inside. Her tongue swirls around the tip, sending a jolt of pleasure up your spine."
-            $the_person.add_situational_obedience("deal", 20, "I'm doing this for the family")
-            call fuck_person(the_person, private = True, start_position = blowjob, skip_intro = True, position_locked = True) from _call_fuck_person_33
-            $ the_person.clear_situational_obedience("deal")
-            $ the_report = _return
-            $ the_person.apply_outfit()
-            if the_report.get("girl orgasms", 0) > 0:
-                "You pull up your pants while [the_person.possessive_title] is on her knees panting, trying to get her breath back."
-                mc.name "I didn't know you were going to enjoy that so much. Maybe you should be paying me next time."
-                the_person "Ah... I hope we can come to some sort of deal... Ah... In the future..."
-            else:
-                $ the_person.draw_person()
-                "You pull your pants up while [the_person.possessive_title] gets off of her knees and cleans herself up."
-            $ the_person.change_obedience(4)
-
-        "Suck me off\n{color=#ff0000}{size=18}Requires: $300{/size}{/color} (disabled)" if not mc.business.has_funds(300) or the_person.effective_sluttiness("sucking_cock") < 30 or the_person.get_opinion_score("giving blowjobs") <= -2:
-            pass
-
-        "Stop your birth control\n{color=#ff0000}{size=18}Costs: $150{/size}{/color}" if mc.business.has_funds(150) and the_person.effective_sluttiness() >= 30 and persistent.pregnancy_pref > 0 and not the_person.event_triggers_dict.get("Mom_forced_off_bc", False) and not the_person.has_role(pregnant_role):
-            mc.name "I have something I'd like you to do. I want you to stop taking your birth control."
-            if the_person.on_birth_control:
-                if the_person.has_taboo("vaginal_sex"):
-                    the_person "[the_person.mc_title], why would you want that? I hope you aren't thinking about something inappropriate between us!"
+                the_person "Okay, come here."
+                if the_person.effective_sluttiness("kissing") > 15:
+                    "You lean down to kiss her as she's sitting. [the_person.possessive_title] puts a hand on the back of your head and pulls you against her as your lips meet."
+                    "Her mouth opens slightly, letting your tongues meet as she makes out with you."
+                    $ the_person.change_arousal(5 + mc.sex_skills["Foreplay"])
+                    "It might be your imagination, but you think you might even hear her moan."
+                    $ mc.change_locked_clarity(10)
+                    "When you finally break the kiss she fixes her hair and smiles proudly at you."
                 else:
-                    the_person "[the_person.mc_title], why would you want that? It's already so wrong every time we're together!"
-                mc.name "I just think it would be a good way to remind you about what's important."
-                "She seems like she's about to say more, but she stops when you pull out your money."
-                the_person "How about... I stop for the week. If you don't want me to take it you'll have to pay me every week."
-                mc.name "Okay, let's test it out for this week and see how you do."
-                "You hand over the money to her and she tucks it away quickly."
-                $ mc.business.change_funds(-150)
-                the_person "One moment."
-                "[the_person.possessive_title] leaves the room, but returns quickly. She hands you a small blister pack labeled with each day of the week."
-                the_person "Here are my pills for the week, so you know I'm not lying. I've already taken one for today, but starting tomorrow I won't have any."
-                mc.name "Thank you [the_person.title]."
-                $ the_person.event_triggers_dict["Mom_forced_off_bc"] = True
-                $ manage_bc(the_person, start = False)
-            else:
-                the_person "I'm sorry, I can't take your money for that [the_person.mc_title]."
-                mc.name "Sure you can [the_person.title], it's..."
-                "[the_person.possessive_title] shakes her head and interrupts you."
-                the_person "No, I mean I can't take your money because I'm not taking any birth control right now."
-                if the_person.has_taboo("vaginal_sex"):
-                    the_person "It's been a while since I needed it, so I don't bother."
-                else:
-                    the_person "I know I should, but... I just haven't bothered talking to my doctor."
-                $ the_person.update_birth_control_knowledge()
-                the_person "Is there something else you would like?"
-                call mom_high_sluttiness_weekly_pay(the_person) from _call_mom_high_sluttiness_weekly_pay_1
+                    "You lean down to kiss her. She lets you press your lips against hers, and even returns the gentle kiss after a moment of hesitation."
+                    $ mc.change_locked_clarity(10)
+                    "When you finally break the kiss she looks away from you, blushing with embarrassment."
+
+            $ the_person.change_slut(2, 30)
+            the_person "There, have I earned my reward?"
+            "You hold out the cash for her and she takes it."
+            the_person "Thank you so much, every little bit helps."
+
+        "Make her say please":
+            mc.name "What are the magic words?"
+            the_person "Abracadabra?"
+            mc.name "No, the words we say when we want help?"
+            the_person "Oooh, I see what you're getting at. I've drilled it into you and now I'm getting a taste of my own medicine."
+            "She smiles and rolls her eyes playfully."
+            $ mc.change_locked_clarity(5)
+            the_person "May I {i}please{/i} have some help with the bills?"
+            mc.name "I'm not sure if you mean it..."
+            the_person "Pretty please, [the_person.mc_title]?"
+            $ the_person.change_obedience(2)
+            "You hold out the cash and she takes it."
+            mc.name "And..."
+            the_person "Thank you [the_person.mc_title], you're very kind."
+    $ the_person.change_happiness(5)
+    $ the_person.change_love(3)
+    $ the_person.draw_person(position = "sitting", emotion = "happy")
+    "She gives you a hug and turns her attention back to organizing the bills."
+    return
+
+init 5 python:
+    def get_mom_high_sluttiness_weekly_actions():
+        return [mom_weekly_pay_strip_for_me_action,
+            mom_weekly_pay_test_serum_action,
+            mom_weekly_pay_give_blowjob_action,
+            mom_weekly_pay_stop_birthcontrol_action,
+            mom_weekly_pay_give_her_nothing_action]
+
+    def build_mom_high_sluttiness_weekly_menu():
+        actions_list = get_mom_high_sluttiness_weekly_actions()
+        actions_list.insert(0, "Choose Option")
+        return actions_list
+
+    def mom_weekly_pay_give_blowjob_requirement(amount):
+        if not mc.business.has_funds(amount):
+            return "Requires: ${}".format(amount)
+        if mom.effective_sluttiness("sucking_cock") < 40:
+            return "Not slutty enough"
+        if mom.get_opinion_score("giving blowjobs") <= -2:
+            return "She hates blowjobs"
+        return True
+
+    def mom_weekly_pay_stop_birthcontrol_requirement(amount):
+        if persistent.pregnancy_pref == 0: # pregnancy is disabled
+            return False
+        if the_person.event_triggers_dict.get("Mom_forced_off_bc", False):
+            return False   # hide option, we are already forcing her off
+        if not (mom.on_birth_control or mom.event_triggers_dict.get("birth_control_status", True)):
+            return "Not taking birth control"
+        if the_person.has_role(pregnant_role):
+            return "Already pregnant"
+        if not mc.business.has_funds(amount):
+            return "Requires: ${}".format(amount)
+        if mom.effective_sluttiness() < 30:
+            return "Not slutty enough"
+        return True
+
+    mom_weekly_pay_strip_for_me_action = Action("Strip for me\n{color=#ff0000}{size=18}Costs: $100{/size}{/color}", mom_weekly_pay_cost_requirement, "mom_weekly_pay_strip_for_me", requirement_args = 100)
+    mom_weekly_pay_test_serum_action = Action("Test some serum\n{color=#ff0000}{size=18}Costs: $100{/size}{/color}", mom_weekly_pay_cost_requirement, "mom_weekly_pay_test_serum", requirement_args = 100)
+    mom_weekly_pay_give_blowjob_action = Action("Suck me off\n{color=#ff0000}{size=18}Costs: $300{/size}{/color}", mom_weekly_pay_give_blowjob_requirement, "mom_weekly_pay_give_blowjob", requirement_args = 300)
+    mom_weekly_pay_stop_birthcontrol_action = Action("Stop your birth control\n{color=#ff0000}{size=18}Costs: $150{/size}{/color}", mom_weekly_pay_stop_birthcontrol_requirement, "mom_weekly_pay_stop_birthcontrol", requirement_args = 150)
+
+    # "I want to make some changes around here." if the_person.obedience >= 120:
+    #     #TODO: Requires obedience, but unlocks a bunch of other options, like having your Mom bring you breakfast every morning, not wearing anything at home, etc.
+    #     mc.name "Now that I'm the man of the house, I want to make some changes around the house."
+    #     the_person "What sorts of changes?"
+    #     call mom_make_house_changes(the_person)
+    #
+    # "I want to make some changes around here.\nRequires: 120 Obedience (disabled)" if the_person.obedience < 120:
+    #     pass
 
 
-        "Stop your birth control\n{color=#ff0000}{size=18}Costs: $150{/size}{/color} (disabled)" if not mc.business.has_funds(150) and the_person.effective_sluttiness() >= 30 and persistent.pregnancy_pref > 0  and not the_person.event_triggers_dict.get("Mom_forced_off_bc", False) and not the_person.has_role(pregnant_role):
-            pass
+    #TODO: "I want to breed Lily" option, once you've got Mom at high sluttiness, obedience, and Love. She gives you the go-ahead to knock up your sister.
 
-        #TODO: Enable this and tie it into Lily's new Instapic story chunk
-        # "Let [lily.title] get a boob job. -$500" if mc.business.has_funds(200) and lily.event_triggers_dict.get("insta_boobjob_wanted", False): #TODO: Implement this!
-        #     mc.name "This will be some easy money for you. I want you to let [lily.title] have some cosmetic surgery done."
-        #     mc.name "I'll pay you $500 if you just tell her you're okay with it. You don't need to do anything else."
-        #     the_person "Cosmetic surgery? What does she want to have changed? She's a beautiful young woman!"
-        #     menu:
-        #         "She wants breast implants.":
-        #             mc.name "She wants to have breast implants put in."
-        #
-        #             pass
-        #
-        #         "She wants bigger tits.":
-        #             mc.name "She's tired of her tiny tits and she wants some bigger ones."
-        #             pass
+    #TODO: Enable this and tie it into Lily's new Instapic story chunk
+    # "Let [lily.title] get a boob job. -$500" if mc.business.has_funds(200) and lily.event_triggers_dict.get("insta_boobjob_wanted", False): #TODO: Implement this!
+    #     mc.name "This will be some easy money for you. I want you to let [lily.title] have some cosmetic surgery done."
+    #     mc.name "I'll pay you $500 if you just tell her you're okay with it. You don't need to do anything else."
+    #     the_person "Cosmetic surgery? What does she want to have changed? She's a beautiful young woman!"
+    #     menu:
+    #         "She wants breast implants.":
+    #             mc.name "She wants to have breast implants put in."
+    #
+    #             pass
+    #
+    #         "She wants bigger tits.":
+    #             mc.name "She's tired of her tiny tits and she wants some bigger ones."
+    #             pass
 
-        "Nothing this week":
-            mc.name "Sorry Mom, but I'm tight on cash right now as well. Maybe next week, okay?"
-            "[the_person.possessive_title] nods and turns back to her bills."
-            the_person "I understand [the_person.mc_title]. Now don't let me keep you, I'm sure you were up to something important."
-
-        #TODO: pay her to fuck you.
-        #TODO: pay her to change her wardrobe
-        #TODO: pay her to do something with Lily.
-        #TODO: have Lily start a cam show to make cash, then bring your Mom into it.
+    #TODO: pay her to fuck you.
+    #TODO: pay her to change her wardrobe
+    #TODO: pay her to do something with Lily.
+    #TODO: have Lily start a cam show to make cash, then bring your Mom into it.
 
 
+label mom_high_sluttiness_weekly_pay(the_person): #TODO: Change all of these over to use Actions instead of just being a menu.
+    if mod_installed:
+        call screen enhanced_main_choice_display(build_menu_items([build_mom_high_sluttiness_weekly_menu()]))
+    else:
+        call screen main_choice_display([build_mom_high_sluttiness_weekly_menu()])
 
+    if isinstance(_return, Action):
+        $ _return.call_action()
+    return
+
+label mom_weekly_pay_strip_for_me():
+    $ the_person = mom
+    if mc.business.event_triggers_dict.get("Mom_Strip", 0) >= 1:
+        mc.name "I want you to show off yourself off to me, how does that sound?"
+        the_person "Fair is fair, but I'll need a little extra if you want to see anything... inappropriate."
+        $ mc.business.change_funds(-100)
+        $ the_person.change_obedience(1)
+        "You hand over the cash and sit back while [the_person.possessive_title] entertains you."
+    else:
+        $ mc.business.event_triggers_dict["Mom_Strip"] = 1
+        mc.name "I'd like to see a little more of you Mom, how about I pay you to give me a little strip tease."
+        the_person "Oh my god, I've raised such a dirty boy. How about I pose for you a bit, and if you want to see more you can contribute a little extra."
+        mc.name "Sounds like a good deal Mom."
+        $ mc.business.change_funds(-100)
+        $ the_person.change_obedience(1)
+        "You hand over the cash and sit back while [the_person.possessive_title] entertains you."
+
+    call strip_tease(the_person, for_pay = True) from _call_strip_tease_mom_high_sluttiness_weekly_pay
+    return
+
+label mom_weekly_pay_test_serum():
+    $ the_person = mom
+    if mc.business.event_triggers_dict.get("Mom_Serum_Test",0) >= 1:
+        mc.name "I've got some more serum I'd like you to test Mom."
+        call give_serum(the_person) from _call_give_serum_10
+        if _return:
+            $ mc.business.change_funds(-100)
+            "You hand the serum to [the_person.possessive_title], followed by the cash."
+            the_person "Okay, so that's all for now?"
+            mc.name "That's all. I'll just be keeping an eye on you in the future, but you don't need to worry about that."
+            the_person "Well thank you [the_person.mc_title], this money will really make a difference. I'm so proud of you!"
+        else:
+            mc.name "Actually, I don't have anything right now. Maybe next week though, okay?"
+            the_person "Okay [the_person.mc_title], thanks for at least thinking about it."
+    else:
+        $ mc.business.event_triggers_dict["Mom_Serum_Test"] = 1
+        mc.name "I have something you could help me with Mom."
+        the_person "What is it [the_person.mc_title]? I'll do whatever I can for you."
+        mc.name "We have a little bit of a research bottleneck at work. I have something I'd like you to test for me."
+        the_person "Oh, okay. If it helps I can be your for hire test subject!"
+        mc.name "Excellent, let me just see if I have anything with me right now..."
+        call give_serum(the_person) from _call_give_serum_11
+        if _return:
+            $ mc.business.change_funds(-100)
+            "You hand the serum to [the_person.possessive_title], followed by the cash."
+            the_person "Okay, so that's all for now?"
+            mc.name "That's all. I'll just be keeping an eye on you in the future, but you don't need to worry about that."
+            the_person "Well thank you [the_person.mc_title], this money will really make a difference. I'm so proud of you!"
+        else:
+            mc.name "Actually, I don't have anything right now. Maybe next week though, okay?"
+            the_person "Okay [the_person.mc_title], thanks for at least thinking about it."
+    return
+
+label mom_weekly_pay_give_blowjob():
+    $ the_person = mom
+    mc.name "Alright, I'll pay you to give me a blowjob."
+    if (not the_person.has_taboo("sucking_cock")) or the_person.effective_sluttiness("sucking_cock") >= 60:
+        the_person "If that's what you need."
+        $ mc.change_locked_clarity(10)
+        "You pull out your wallet and count out her cash while [the_person.possessive_title] gets onto her knees in front of you."
+        $ mc.business.change_funds(-300)
+        $ the_person.draw_person(position = "blowjob")
+        the_person "Remember, not a word to anyone else though. Okay?"
+        mc.name "Of course, this is just between you and me."
+        $ the_person.break_taboo("sucking_cock")
+
+    else:
+        the_person "What? I mean... I could never do that! How could you even say that?"
+        "You pull out your wallet and count out the cash while you talk."
+        mc.name "Sure you could. It's just me and you here, nobody would ever need to know."
+        mc.name "Besides, it's for the family, right? This is just another way to help everyone out. Myself included, I've been real stressed at work lately."
+        $ mc.business.change_funds(-300)
+        "You lay the cash down on the table. [the_person.possessive_title] hesitates, then meekly reaches for the money."
+        the_person "Not a word to anyone, or I'll kick you out of the house."
+        mc.name "Of course [the_person.title], don't you trust your own son?"
+        $ the_person.draw_person(position = "blowjob")
+        $ mc.change_locked_clarity(10)
+        "She sighs and kneels down in front of you. You unzip your pants and pull your cock out for your mother."
+        mc.name "Don't worry, it won't bite."
+        the_person "This isn't my exactly my first blowjob [the_person.mc_title], I'm not worried."
+        $ the_person.break_taboo("sucking_cock")
+
+    "With that she opens her mouth and slides the tip of your hard cock inside. Her tongue swirls around the tip, sending a jolt of pleasure up your spine."
+    $the_person.add_situational_obedience("deal", 20, "I'm doing this for the family")
+    call fuck_person(the_person, private = True, start_position = blowjob, skip_intro = True, position_locked = True) from _call_fuck_person_33
+    $ the_person.clear_situational_obedience("deal")
+    $ the_report = _return
+    $ the_person.apply_outfit()
+    if the_report.get("girl orgasms", 0) > 0:
+        "You pull up your pants while [the_person.possessive_title] is on her knees panting, trying to get her breath back."
+        mc.name "I didn't know you were going to enjoy that so much. Maybe you should be paying me next time."
+        the_person "Ah... I hope we can come to some sort of deal... Ah... In the future..."
+    else:
+        $ the_person.draw_person()
+        "You pull your pants up while [the_person.possessive_title] gets off of her knees and cleans herself up."
+    $ the_person.change_obedience(4)
+    return
+
+label mom_weekly_pay_stop_birthcontrol():
+    $ the_person = mom
+
+    mc.name "I have something I'd like you to do. I want you to stop taking your birth control."
+    if the_person.on_birth_control:
+        if the_person.has_taboo("vaginal_sex"):
+            the_person "[the_person.mc_title], why would you want that? I hope you aren't thinking about something inappropriate between us!"
+        else:
+            the_person "[the_person.mc_title], why would you want that? It's already so wrong every time we're together!"
+        mc.name "I just think it would be a good way to remind you about what's important."
+        "She seems like she's about to say more, but she stops when you pull out your money."
+        the_person "How about... I stop for the week. If you don't want me to take it you'll have to pay me every week."
+        mc.name "Okay, let's test it out for this week and see how you do."
+        "You hand over the money to her and she tucks it away quickly."
+        $ mc.business.change_funds(-150)
+        $ clear_scene()
+        the_person "One moment. [the_person.possessive_title] leaves the room."
+        $ the_person.draw_person(position = "sitting")
+        "After a minute she returns and sits down. She hands you a small blister pack labeled with each day of the week."
+        the_person "Here are my pills for the week, so you know I'm not lying. I've already taken one for today, but starting tomorrow I won't have any."
+        mc.name "Thank you [the_person.title]."
+        $ the_person.event_triggers_dict["Mom_forced_off_bc"] = True
+        $ manage_bc(the_person, start = False)
+    else:
+        the_person "I'm sorry, I can't take your money for that [the_person.mc_title]."
+        mc.name "Sure you can [the_person.title], it's..."
+        "[the_person.possessive_title] shakes her head and interrupts you."
+        the_person "No, I mean I can't take your money because I'm not taking any birth control right now."
+        if the_person.has_taboo("vaginal_sex"):
+            the_person "It's been a while since I needed it, so I don't bother."
+        else:
+            the_person "I know I should, but... I just haven't bothered talking to my doctor."
+        $ the_person.update_birth_control_knowledge()
+        the_person "Is there something else you would like?"
+        call mom_high_sluttiness_weekly_pay(the_person) from _call_mom_high_sluttiness_weekly_pay_1
     return
 
 label mom_post_sex_confront(the_person):

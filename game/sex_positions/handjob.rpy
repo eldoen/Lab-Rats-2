@@ -44,6 +44,8 @@ label taboo_break_handjob(the_girl, the_location, the_object):
 
     $ the_girl.call_dialogue(handjob.associated_taboo+"_taboo_break")
 
+    $ handjob.redraw_scene(the_girl)
+
     if the_girl.sex_skills["Foreplay"] >= 3:
         "She runs a finger along the bottom of your shaft, ending at the sensitive spot under your tip."
         "Then she wraps her full hand around it and slides it back down to the base."
@@ -146,6 +148,7 @@ label outro_handjob(the_girl, the_location, the_object):
     return
 
 label transition_default_handjob(the_girl, the_location, the_object):
+    $ handjob.redraw_scene(the_girl)
     "[the_girl.title] has you stand and faces you, grabbing your cock while she stares into your eyes."
     "She starts to stroke it, slowly sliding her hand up and down your hard shaft."
     return

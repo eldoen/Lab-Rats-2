@@ -34,6 +34,7 @@ label intro_deepthroat(the_girl, the_location, the_object):
         "[the_girl.possessive_title] reaches down and runs a finger along the top of your dick. She hesitates for a few moments, then drops to her knees."
         the_girl "I'll... I'll do my best."
 
+    $ the_girl.draw_person(position = "kneeling1")
     if the_girl.sex_skills["Oral"] < 3:
         "She kisses the tip of your cock, then slides it into her mouth. Gets your length half way down, then gags softly on it and pauses."
         $ deepthroat.current_modifier = "blowjob"
@@ -49,15 +50,19 @@ label intro_deepthroat(the_girl, the_location, the_object):
 label taboo_break_deepthroat(the_girl, the_location, the_object):
     $ the_girl.call_dialogue(deepthroat.associated_taboo+"_taboo_break") #All of the convincing happens in the dialogue here.
     if the_girl.effective_sluttiness(deepthroat.associated_taboo) > deepthroat.slut_cap:
-        "[the_girl.possessive_title] kneels down in front of you, eyes locked on your hard cock."
-        $ deepthroat.current_modifier = "blowjob"
+        $ deepthroat.current_modifier = None
         $ deepthroat.redraw_scene(the_girl)
+        "[the_girl.possessive_title] kneels down in front of you, eyes locked on your hard cock."
         "She leans in, turning her head to the side to run her tongue down the bottom of your shaft."
         "She licks your balls briefly, then works back up to the tip and slides it past her lips."
+        $ deepthroat.current_modifier = "blowjob"
+        $ deepthroat.redraw_scene(the_girl)
         "You sigh happily as you feel [the_girl.title]'s warm mouth envelop your cock."
         "She wastes no time picking up speed, happily bobbing her head up and down over your sensitive tip."
 
     else:
+        $ deepthroat.current_modifier = None
+        $ deepthroat.redraw_scene(the_girl)
         "[the_girl.possessive_title] hesitantly gets onto her knees, eyes locked on your hard cock."
         "She gently holds onto your shaft with one hand and brings the tip closer to her lips."
         "She looks up at you just before the moment of truth, locking eyes as she opens her lips and slides the tip of your cock past them."
@@ -488,7 +493,11 @@ label transition_deepthroat_skull_fuck(the_girl, the_location, the_object):
     return
 
 label transition_default_deepthroat(the_girl, the_location, the_object):
+    $ deepthroat.current_modifier = None
+    $ deepthroat.redraw_scene(the_girl)
     "[the_girl.title] gets ready in front of you, on her knees with her mouth open. You place a hand on the back of her head and pull her towards you, sliding your cock down her throat."
+    $ deepthroat.special_modifier = "blowjob"
+    $ deepthroat.redraw_scene(the_girl)
     "After giving her a second to get used to your size you start to guide her back and forth, keeping yourself buried nice and deep in her mouth."
     return
 
