@@ -515,7 +515,7 @@ label strip_ask_deepthroat(the_girl, the_clothing, the_location, the_object):
         "Let her strip":
             mc.name "Take it off for me."
             $ the_girl.draw_animated_removal(the_clothing, position = deepthroat.position_tag)
-            "[the_girl.possessive_title] stands up and strips out of her [the_clothing.name]. She gets back onto her knees and slides your cock all the way to the back of her mouth."
+            "[the_girl.possessive_title] strips out of her [the_clothing.name]. She gets back to work and slides your cock all the way into her mouth."
             return True
 
 
