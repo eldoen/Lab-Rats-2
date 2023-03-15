@@ -2627,7 +2627,7 @@ label research_reminder_crisis_label():
                                                 "[the_person.possessive_title] wastes no time, sliding the tip of your dick past her lips and into her mouth."
                                             "She starts to bob her head, getting your shaft wet and sending warm tingles up your spine."
                                             if mod_installed:
-                                                call get_fucked(the_person, private = True, start_position = (blowjob if the_person.sex_skills["Oral"] < 4 else deepthroat), start_object = mc.location.get_object_with_trait("Kneel"), skip_intro = True, allow_continue = False) from _call_get_fucked_research_reminder_crisis
+                                                call mc_sex_request(the_person, the_request = "blowjob") from _call_mc_sex_request_reminder_crisis
                                             else:
                                                 call fuck_person(the_person, private = True, start_position = blowjob, start_object = mc.location.get_object_with_trait("Kneel"), girl_in_charge = True, skip_intro = True, position_locked = True) from _call_fuck_person_133
                                             $ the_report = _return

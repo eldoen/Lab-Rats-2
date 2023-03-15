@@ -29,6 +29,10 @@ label intro_tit_fuck(the_girl, the_location, the_object):
     "You place a hand on [the_girl.possessive_title]'s shoulder and rub it gently, then move down to her sizeable [the_girl.tits] cup tits and squeeze them."
     the_girl "Ah... Do you like them?"
     mc.name "Of course I like them. I'd like them even more if they were wrapped around my cock."
+    if not the_girl.tits_visible():
+        the_girl "Well then let's get these puppies out."
+        $ the_girl.strip_to_tits(position = tit_fuck.position_tag)
+
     "She smiles and nods, reaching down to your waist and undoing your pants zipper."
     $ tit_fuck.redraw_scene(the_girl)
     "When your cock springs out, already hard, she drops to her knees in front of you."
@@ -53,9 +57,16 @@ label taboo_break_tit_fuck(the_girl, the_location, the_object):
         the_girl "Of course I can. You're going to have to let go of these first though."
         "She places her hands over yours and presses them against her breasts."
         the_girl "I promise I'll put them to good use."
+        if not the_girl.tits_visible():
+            the_girl "Well then let's set them free."
+            $ the_girl.strip_to_tits(position = tit_fuck.position_tag)
+
         "She lets go of your hands and kneels down, taking her tits into her own hands."
     else:
         the_girl "I can try. You're going to have to let go of me first though."
+        if not the_girl.tits_visible():
+            the_girl "Well, let me get them ready for you."
+            $ the_girl.strip_to_tits(position = tit_fuck.position_tag)
         "She lifts your hands off of her chest and kneels down, taking her tits up into her own hands"
     $ the_girl.draw_person(position = "blowjob")
     "She hefts her breasts up and presses them on either side of your shaft."
@@ -130,9 +141,12 @@ label outro_tit_fuck(the_girl, the_location, the_object):
     return
 
 label transition_default_tit_fuck(the_girl, the_location, the_object):
-    $ tit_fuck.redraw_scene(the_girl)
     "You grab a hold of sizeable tits and give them a gentle squeeze, bringing a little moan from her lips."
     mc.name "I want to feel my cock between these lovely tits."
+    if not the_girl.tits_visible():
+        the_girl "Let's get them ready for you."
+        $ the_girl.strip_to_tits(position = tit_fuck.position_tag)
+    $ tit_fuck.redraw_scene(the_girl)
     "She smiles and nods, dropping to her knees in front of you. She gathers her tits up in her hands and presses them to the side of your shaft."
     return
 
