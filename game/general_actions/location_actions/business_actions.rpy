@@ -532,7 +532,7 @@ label set_serum_description: #TODO: Add a special screen for all of this instead
         "Clear existing serum":
             $ selected_serum = None
 
-    if selected_serum == "None": #IF we didn't select an actual serum, just return and don't chagne anything.
+    if not isinstance(selected_serum, SerumDesign): #IF we didn't select an actual serum, just return and don't chagne anything.
         return
 
     if selected_div == "All":

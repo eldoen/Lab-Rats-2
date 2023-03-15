@@ -646,7 +646,7 @@ label flirt_person(the_person): #Tier 1. Raises a character's sluttiness up to a
 
 label give_serum(the_person, add_to_log = True):
     call screen serum_inventory_select_ui(mc.inventory, the_person)
-    if not _return == "None":
+    if isinstance(_return, SerumDesign):
         $ the_serum = _return
         if add_to_log:
             "You decide to give [the_person.title] a dose of [the_serum.name]."

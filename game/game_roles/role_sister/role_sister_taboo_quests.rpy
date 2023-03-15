@@ -725,12 +725,12 @@ init 1 python:
 label sister_vaginal_taboo_break_revisit_quest_1(the_person):
     mc.name "I've got some serum for you and your friends."
     call screen serum_inventory_select_ui(mc.inventory, the_person, batch_size = 10)
-    $ the_serum = _return
-    if _return is None:
+    if not isinstance(_return, SerumDesign):
         mc.name "Actually, I forgot to grab them from the office. I'll be back another time."
         "[the_person.possessive_title] pouts, but nods her understanding."
         return
 
+    $ the_serum = _return
     "You pull out a cardboard box filled with serum vials."
     the_person "And these are going to get us high, right?"
     mc.name "That's what you asked for."
