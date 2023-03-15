@@ -65,21 +65,21 @@ init -2 python:
         if not (mc.business.is_open_for_business() and the_person.is_at_work()):
             return False
         elif day - the_person.event_triggers_dict.get("day_last_employee_interaction",-2) <= 0:
-            return "Already complimented her today"
+            return "Already interacted today"
         return True
 
     def employee_insult_requirement(the_person):
         if not (mc.business.is_open_for_business() and the_person.is_at_work()):
             return False
         elif day - the_person.event_triggers_dict.get("day_last_employee_interaction",-2) <= 0:
-            return "Already insulted her today"
+            return "Already interacted today"
         return True
 
     def employee_pay_cash_requirement(the_person):
         if not (mc.business.is_open_for_business() and the_person.is_at_work()):
             return False
         elif day - the_person.event_triggers_dict.get("day_last_employee_interaction",-2) <= 0:
-            return "Already payed cash bonus"
+            return "Already interacted today"
         return True
 
     def employee_performance_review_requirement(the_person):
@@ -1052,9 +1052,10 @@ label request_promotion_crisis_label(the_person):
                         "[the_person.title] starts to stroke it, rhythmically running her hand up and down your length."
                         call fuck_person(the_person, private = True, start_position = handjob, girl_in_charge = True, skip_intro = True, position_locked = True) from _call_fuck_person_139
                         $ the_report = _return
+                        $ the_person.draw_person(position = "kneeling1")
                         "[the_person.possessive_title] sits back and rubs her arm."
                         if the_report.get("guy orgasms", 0) > 0:
-                            the_person "Well, do we have an understanding [the_person.title]?"
+                            the_person "Well, do we have an understanding [the_person.mc_title]?"
 
                         else:
                             the_person "I can't do it [the_person.mc_title]... I tried, I swear I tried!"
@@ -1074,11 +1075,14 @@ label request_promotion_crisis_label(the_person):
                             else:
                                 mc.name "I know, I'll keep that in mind."
 
-                        "She brushes her knees off and stands up, ready to continue the negotiations."
                         $ the_person.draw_person()
+                        "She brushes her knees off and stands up, ready to continue the negotiations."
                         call promotion_post_sex_convince(the_person) from _call_promotion_post_sex_convince_2
                         if _return:
                             the_person "Thank you for this opportunity [the_person.mc_title], I won't let you down."
+                            $ the_person.draw_person(position = "walking_away")
+                            "Without another word, she turns around and walks out of your office."
+
                         else:
                             $ the_person.draw_person(position = "walking_away")
                             "[the_person.possessive_title] storms out of your office without another word."

@@ -774,7 +774,7 @@ label sister_instathot_label_mom(the_sister, the_mom):
     else:
         the_mom "Oh, hi sweetheart. I'm just thinking about what to make for dinner. Do you need anything?"
     if the_mom.event_triggers_dict.get("mom_instathot_pic_count",0) == 0:
-        mc.name "[the_sister.title] is getting ready to take some pictures for her InstaPic account."
+        mc.name "[the_sister.fname] is getting ready to take some pictures for her InstaPic account."
         mc.name "She wanted to know if you wanted to join in."
         $ the_mom.draw_person(emotion = "happy")
         the_mom "Really? She's not just saying that to make me happy, is she?"
@@ -784,7 +784,7 @@ label sister_instathot_label_mom(the_sister, the_mom):
         else:
             the_mom "Okay then, I'll give it a try. Dinner can be a little late tonight."
     else:
-        mc.name "[the_sister.title] is getting ready to take some more pictures for her InstaPic."
+        mc.name "[the_sister.fname] is getting ready to take some more pictures for her InstaPic."
         mc.name "Do you want to join in?"
         $ the_mom.draw_person(emotion = "happy")
         if time_of_day < 2:
@@ -816,9 +816,9 @@ label sister_instathot_label_mom(the_sister, the_mom):
             the_sister "I've got some outfits picked out for us. I had to guess at some of your sizes, so it might be a bit small."
             the_sister "You don't have to wear it if you don't want to though. I..."
             $ the_group.draw_person(the_mom)
-            "[the_mom.title] shakes her head and interrupts."
+            "[the_mom.possessive_title] shakes her head and interrupts."
             $ mc.change_locked_clarity(20)
-            the_mom "[the_sister.title], I want the whole experience! These outfits will get you more view on your insta... view... pic thing, right?"
+            the_mom "[the_sister.fname], I want the whole experience! These outfits will get you more view on your insta... view... pic thing, right?"
             the_mom "Come on, show me what you picked out for me. I'm sure I can squeeze into it with a little bit of work."
         else:
             the_sister "First I need to pick an outfit and get changed."
@@ -853,7 +853,7 @@ label sister_instathot_label_mom(the_sister, the_mom):
         the_mom "[the_mom.mc_title], you don't mind, do you? I can go back to my room if this..."
         mc.name "Don't worry [the_mom.fname], I don't mind at all. Go ahead and get changed and we can take some pics."
         the_mom "Right, nothing to worry about then..."
-        "She seems uncomfortable undressing in front of you, but gets over it quickly as [the_sister.title] starts stripping down without comment."
+        "She seems uncomfortable undressing in front of you, but gets over it quickly as [the_sister.possessive_title] starts stripping down without comment."
         $ the_mom.break_taboo("bare_tits")
         $ the_mom.break_taboo("bare_pussy")
     else: #No problems here, strip away!
@@ -919,11 +919,11 @@ label sister_instathot_label_mom(the_sister, the_mom):
     menu:
         "Get a little friendlier" if not the_mom.event_triggers_dict.get("mom_instathot_pic_count",0) == 0:
             mc.name "Squeeze together you two, I need to get you both in the shot."
-            "[the_mom.title] slides closer to [the_sister.title] on the bed."
+            "[the_mom.title] slides closer to [the_sister.possessive_title] on the bed."
             the_mom "Like this?"
             mc.name "A little more. Try putting your arms around her."
             $ mc.change_locked_clarity(20)
-            "[the_mom.possessive_title] slips behind [the_sister.possessive_title] and pulls her into a hug"
+            "[the_mom.possessive_title] slips behind [the_sister.title] and pulls her into a hug"
             the_mom "I haven't played with you like this since you were a kid [the_sister.title]!"
             $ the_group.draw_person(the_sister, position = "kneeling1", emotion = "happy")
             the_sister "Oh my god, you're so embarrassing [the_mom.fname]!"
@@ -1133,7 +1133,7 @@ label sister_instathot_label_mom_shirtless(the_sister, the_mom, the_group): #Cal
         "With her tits out [the_mom.title] cups them with her hands. They're more than a handful, but she does succeed in hiding her nipples away from the camera."
     else:
         "With her tits out [the_mom.title] cups them with her hands. She manages to cover most of herself up, while still looking hot for the camera."
-    the_mom "Come on [the_sister.title], hold them like this so we aren't showing too much for the camera."
+    the_mom "Come on [the_sister.fname], hold them like this so we aren't showing too much for the camera."
     $ the_group.draw_person(the_sister)
     the_sister "Let's see, like this?"
     $ mc.change_locked_clarity(10)
@@ -1315,7 +1315,7 @@ label sister_convince_mom_boobjob(the_mom, the_sister):
 
 
     $ the_group.draw_person(the_mom, position = "kneeling1")
-    the_mom "That's a very big change to make in your life just for your internet work [the_sister.title]."
+    the_mom "That's a very big change to make in your life just for your internet work [the_sister.fname]."
     the_mom "I don't think I'd be a very good mother if I let you do it."
     "[the_mom.possessive_title] seems hesitant. You'll need some way to convince her."
     $ boobjob_allowed = False
@@ -1323,11 +1323,11 @@ label sister_convince_mom_boobjob(the_mom, the_sister):
     $ sluttiness_token = get_red_heart(sluttiness_required)
     menu:
         "[the_sister.title] would look so hot!" if the_mom.effective_sluttiness() >= sluttiness_required:
-            mc.name "Think about how hot [the_sister.title] would be with bigger boobs though."
+            mc.name "Think about how hot [the_sister.fname] would be with bigger boobs though."
             mc.name "On her slender frame they're going to look even bigger!"
             $ the_group.draw_person(the_sister, position = "kneeling1")
             $ mc.change_locked_clarity(20)
-            the_sister "Please [the_mom.title]? I just want to have big boobs like I've always wanted. Boobs like yours."
+            the_sister "Please [the_mom.fname]? I just want to have big boobs like I've always wanted. Boobs like yours."
             "[the_sister.possessive_title] pouts and flutters her eyes at [the_mom.possessive_title]."
             "She thinks for a long moment, then sighs and nods."
             $ the_group.draw_person(the_mom, position = "kneeling1", emotion = "happy")

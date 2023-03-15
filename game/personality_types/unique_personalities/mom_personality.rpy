@@ -1398,7 +1398,7 @@ label mom_anal_sex_taboo_break(the_person):
             the_person "No. I never thought I would either."
             mc.name "I'll be as gentle as possible then."
             the_person "Thank you. I love you [the_person.mc_title]."
-            mc.name "I love you [the_person.title]."
+            mc.name "I love you too [the_person.title]."
         else:
             the_person "Whoa! You mean you want to try anal? Right now?"
             if the_person.has_taboo("vaginal_sex"):

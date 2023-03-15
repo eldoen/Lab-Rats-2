@@ -349,7 +349,7 @@ label strip_ask_blowjob(the_girl, the_clothing, the_location, the_object):
         "Let her strip":
             mc.name "Take it off for me."
             $ the_girl.draw_animated_removal(the_clothing, position = blowjob.position_tag)
-            "[the_girl.possessive_title] stands up and strips out of her [the_clothing.name]. Then she gets back onto her knees and slides your cock all the way to the back of her mouth."
+            "[the_girl.possessive_title] strips out of her [the_clothing.name]. Then she gets back to work and slides your cock all the way to the back of her mouth."
             $ blowjob.current_modifier = "blowjob"
             $ blowjob.redraw_scene(the_girl)
             return True

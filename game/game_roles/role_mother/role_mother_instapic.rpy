@@ -131,7 +131,7 @@ label mom_instapic_setup(the_person, intro_finished = False): # Sets up her Inst
             the_person "Hmm, do you think that's good?"
             mc.name "Yeah, that should suit you just fine. Next!"
 
-        "Pick her username\n{color=#ff0000}{size=18}Requires: 120 Obedience [blowjob_token]{/size}{/color} (disabled)" if the_person.obedience < 120:
+        "Pick her username\n{color=#ff0000}{size=18}Requires: 120 Obedience{/size}{/color} (disabled)" if the_person.obedience < 120:
             pass
 
     "You submit the name and move onto the next screen. It asks you for a collection of personal details."

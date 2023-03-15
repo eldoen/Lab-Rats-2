@@ -133,10 +133,13 @@ label outro_doggy_anal(the_girl, the_location, the_object):
         "You push yourself balls deep into [the_girl.title]'s ass and dump your load."
         $ climax_controller.do_clarity_release(the_girl)
         "You hold yourself inside of her until your climax has passed, then pull out slowly and sit back."
-        "She is left on her hands and knees, trying to catch her breath, as your cum drips out of her gaping asshole."
+        if mc.condom:
+            "She is left on her hands and knees, trying to catch her breath, giving you a perfect view of her gaping ashole."
+        else:
+            "She is left on her hands and knees, trying to catch her breath, as your cum drips out of her gaping asshole."
         $ the_girl.cum_in_ass()
         $ doggy_anal.redraw_scene(the_girl)
-        if the_girl.get_opinion_score("anal creampies") > 0:
+        if not mc.condom and the_girl.get_opinion_score("anal creampies") > 0:
             # If she's into both...
             $ the_girl.discover_opinion("anal creampies")
             the_girl "Oh fuck... I'm so full of cum. Put it back in me."
