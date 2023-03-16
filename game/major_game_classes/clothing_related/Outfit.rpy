@@ -262,6 +262,9 @@ init -2 python:
                     cloth.half_off = True
 
         def remove_clothing_list(self, the_list, half_off_instead = False):
+            if not (the_list and isinstance(the_list, list)):
+                return
+
             for item in the_list:
                 if half_off_instead:
                     self.half_off_clothing(item)
