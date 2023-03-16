@@ -301,10 +301,10 @@ label strip_ask_piledriver(the_girl, the_clothing, the_location, the_object):
 
         "Leave it on":
             mc.name "No, I like how you look with it on."
-            if the_girl.sluttiness < 80:
+            if the_girl.sluttiness < 60:
                 the_girl "Do you think I look sexy in it?"
                 "You speed up, fucking her faster in response to her question."
-            elif the_girl.sluttiness < 100:
+            elif the_girl.sluttiness < 80:
                 the_girl "Does it make me look like a good little slut? All I want to be is your good little slut sir."
                 "She pushes her hips back into you and moans happily."
             else:

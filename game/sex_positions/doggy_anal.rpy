@@ -232,10 +232,10 @@ label strip_ask_doggy_anal(the_girl, the_clothing, the_location, the_object):
 
         "Leave it on":
             mc.name "No, I want you to keep it on."
-            if the_girl.sluttiness < 80:
+            if the_girl.sluttiness < 60:
                 the_girl "Do I look sexy in it? Does it turn you on?"
                 "You speed up, fucking her faster in response to her question."
-            elif the_girl.sluttiness < 100:
+            elif the_girl.sluttiness < 80:
                 the_girl "Does it make me look like a good little slut? All I want to be is your good little slut [the_girl.mc_title]."
                 "She pushes her hips back into you and grinds against you."
             else:
