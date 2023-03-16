@@ -211,8 +211,7 @@ label lily_greetings(the_person):
     return
 
 label lily_sex_responses_foreplay(the_person):
-    $ response_value = (the_person.arousal + renpy.random.randint(0,20))*1.0/the_person.max_arousal
-    if response_value < 20:
+    if the_person.arousal_perc < 20:
         if the_person.sluttiness > 50:
             the_person "Jeez, where did you learn this stuff?"
             the_person "[mom.fname] would be so disappointed in you..."
@@ -222,20 +221,20 @@ label lily_sex_responses_foreplay(the_person):
             "She stifles a moan."
             the_person "Okay, just a little bit... We can't take it too far though."
 
-    elif response_value < 40:
+    elif the_person.arousal_perc < 40:
         if the_person.sluttiness > 50:
             the_person "Are you trying to get me turned on? Because it might be working..."
         else:
             the_person "[the_person.mc_title], maybe we should stop before we get too excited..."
             "She moans happily, obviously not interested in taking her own advice."
 
-    elif response_value < 60:
+    elif the_person.arousal_perc < 60:
         if the_person.sluttiness > 50:
             the_person "Fuck, that feels good... Do it again."
         else:
             the_person "Oh my god... Where did you learn how to do this? You're so good at it..."
 
-    elif response_value < 80:
+    elif the_person.arousal_perc < 80:
         if the_person.sluttiness > 50:
             if the_person.outfit.wearing_panties():
                 the_person "Ah... If you get me any wetter I'm going to soak right through my panties [the_person.mc_title]."
@@ -256,8 +255,7 @@ label lily_sex_responses_foreplay(the_person):
     return
 
 label lily_sex_responses_oral(the_person):
-    $ response_value = (the_person.arousal + renpy.random.randint(0,20))*1.0/the_person.max_arousal
-    if response_value < 20:
+    if the_person.arousal_perc < 20:
         if the_person.sluttiness > 50:
             "[the_person.possessive_title] wiggles her hips happily as you eat her out."
 
@@ -265,7 +263,7 @@ label lily_sex_responses_oral(the_person):
             the_person "I can't believe you really want to do this, you're so weird."
             the_person "... Don't stop though."
 
-    elif response_value < 40:
+    elif the_person.arousal_perc < 40:
         if the_person.sluttiness > 50:
             the_person "Oh god, you're such a good big brother..."
             "[the_person.possessive_title] sighs happily."
@@ -273,13 +271,13 @@ label lily_sex_responses_oral(the_person):
             the_person "Oh god, ah! Ah..."
             "[the_person.title] tries and fails to stifle her moans."
 
-    elif response_value < 60:
+    elif the_person.arousal_perc < 60:
         if the_person.sluttiness > 50:
             the_person "Mmm, that feels so good [the_person.mc_title], you're amazing!"
         else:
             the_person "Where.... Mmmm.... Where did you learn to do this? You're so good at it!"
 
-    elif response_value < 80:
+    elif the_person.arousal_perc < 80:
         if the_person.sluttiness > 50:
             the_person "How does my pussy taste [the_person.mc_title]? Do you like eating me out?"
             "You respond by making her moan even louder."
@@ -297,27 +295,26 @@ label lily_sex_responses_oral(the_person):
     return
 
 label lily_sex_responses_vaginal(the_person):
-    $ response_value = (the_person.arousal + renpy.random.randint(0,20))*1.0/the_person.max_arousal
-    if response_value < 20:
+    if the_person.arousal_perc < 20:
         if the_person.sluttiness > 50:
             the_person "How's my pussy feel [the_person.mc_title]? Is it worth fucking your sister for?"
         else:
             the_person "Take it slowly, okay? I haven't done this very much."
 
-    elif response_value < 40:
+    elif the_person.arousal_perc < 40:
         if the_person.sluttiness > 50:
             the_person "Oh god, your cock feels so good inside me..."
             "She moans happily to herself."
         else:
             the_person "You're so big, is it even all in yet? Ah..."
 
-    elif response_value < 60:
+    elif the_person.arousal_perc < 60:
         if the_person.sluttiness > 50:
             the_person "Fuck... Ah..."
         else:
             the_person "Oh my god, that feeling..."
 
-    elif response_value < 80:
+    elif the_person.arousal_perc < 80:
         if the_person.sluttiness > 50:
             the_person "Mmm, give it to me [the_person.mc_title]! Stretch out my teen pussy so it will only fit your big, hot cock!"
 
@@ -336,8 +333,7 @@ label lily_sex_responses_vaginal(the_person):
     return
 
 label lily_sex_responses_anal(the_person):
-    $ response_value = (the_person.arousal + renpy.random.randint(0,20))*1.0/the_person.max_arousal
-    if response_value < 20:
+    if the_person.arousal_perc < 20:
         if the_person.sluttiness > 50:
             the_person "Oh fuck, I can't believe you really fit!"
             "She grunts in a mixture of pleasure and pain."
@@ -345,20 +341,20 @@ label lily_sex_responses_anal(the_person):
         else:
             "[the_person.possessive_title] whimpers to herself as you stretch out her ass."
 
-    elif response_value < 40:
+    elif the_person.arousal_perc < 40:
         if the_person.sluttiness > 50:
             the_person "Fuck, I can feel you stretching me out..."
         else:
             the_person "Oh fuck, I don't know if I can do this... It feels like you're tearing me in half!"
 
-    elif response_value < 60:
+    elif the_person.arousal_perc < 60:
         if the_person.sluttiness > 50:
             the_person "Ah! Ah! I can take it, don't hold back! Ah!"
         else:
             "[the_person.title] growls defiantly."
             the_person "Fuuuuuuuck!"
 
-    elif response_value < 80:
+    elif the_person.arousal_perc < 80:
         if the_person.sluttiness > 50:
             the_person "Your cock is so big, it feels like you're moulding me to it!"
         else:

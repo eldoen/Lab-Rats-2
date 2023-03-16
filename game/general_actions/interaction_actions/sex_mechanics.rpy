@@ -1101,7 +1101,7 @@ label affair_check(the_person, report_log): #Report log is handed over so we can
 
 label lactation_description(the_person, the_position, the_object, report_log): #NOTE: Is only called if lactation_sources > 0.
     $ tit_rank = Person.rank_tits(the_person.tits)
-    $ strength = (the_person.arousal*1.0/the_person.max_arousal) * (the_person.lactation_sources + (tit_rank * 0.1)) #ie large tits add anywhere from 0 to 0.9 extra lactation sources.
+    $ strength = (the_person.arousal_perc / 100) * (the_person.lactation_sources + (tit_rank * 0.1)) #ie large tits add anywhere from 0 to 0.9 extra lactation sources.
     if strength > tit_rank + 1:
         $ strength = tit_rank + 1
 

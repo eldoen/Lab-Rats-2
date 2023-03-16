@@ -55,27 +55,26 @@ label bimbo_greetings(the_person):
     return
 
 label bimbo_sex_responses_foreplay(the_person):
-    $ response_value = (the_person.arousal + renpy.random.randint(0,20))*1.0/the_person.max_arousal
-    if response_value < 20:
+    if the_person.arousal_perc < 20:
         if the_person.sluttiness > 50:
             "[the_person.possessive_title] giggles happily."
             the_person "Teehee, you're making me feel really funny [the_person.mc_title]!"
         else:
             the_person "You aren't just going to keep teasing me, are you [the_person.mc_title]?"
 
-    elif response_value < 40:
+    elif the_person.arousal_perc < 40:
         if the_person.sluttiness > 50:
             the_person "Mmm, you know just how to touch me [the_person.mc_title]!"
         else:
             "[the_person.title] giggles softly while you touch her."
 
-    elif response_value < 60:
+    elif the_person.arousal_perc < 60:
         if the_person.sluttiness > 50:
             the_person "Do you like touching me [the_person.mc_title]? I know I like it when you do!"
         else:
             the_person "Do you like touching me [the_person.mc_title]? You seem to know exactly what to do."
 
-    elif response_value < 80:
+    elif the_person.arousal_perc < 80:
         if the_person.sluttiness > 50:
             the_person "Yes! That feels really nice!"
             "She giggles happily, clearly having a good time."
@@ -95,27 +94,26 @@ label bimbo_sex_responses_foreplay(the_person):
     return
 
 label bimbo_sex_responses_oral(the_person):
-    $ response_value = (the_person.arousal + renpy.random.randint(0,20))*1.0/the_person.max_arousal
-    if response_value < 20:
+    if the_person.arousal_perc < 20:
         if the_person.sluttiness > 50:
             "[the_person.possessive_title] giggles happily, practically bouncing as you eat her out."
         else:
             the_person "Hehe, I know where this is going!"
             the_person "When you get bored I can suck on your cock, so it's fair!"
 
-    elif response_value < 40:
+    elif the_person.arousal_perc < 40:
         if the_person.sluttiness > 50:
             the_person "Aww, you always know what I like [the_person.mc_title]!"
         else:
             "[the_person.title] giggles softly."
 
-    elif response_value < 60:
+    elif the_person.arousal_perc < 60:
         if the_person.sluttiness > 50:
             the_person "Does my pussy taste good [the_person.mc_title]? I'll repay the favour suck your cock later!"
         else:
             the_person "That, like, feels so good [the_person.mc_title]!"
 
-    elif response_value < 80:
+    elif the_person.arousal_perc < 80:
         if the_person.sluttiness > 50:
             the_person "Ah! Hehe, that's feels so good!"
             "She giggles happily, clearly having a good time."
@@ -135,27 +133,26 @@ label bimbo_sex_responses_oral(the_person):
     return
 
 label bimbo_sex_responses_vaginal(the_person):
-    $ response_value = (the_person.arousal + renpy.random.randint(0,20))*1.0/the_person.max_arousal
-    if response_value < 20:
+    if the_person.arousal_perc < 20:
         if the_person.sluttiness > 50:
             the_person "Oooh yeah, fuck me [the_person.mc_title]!"
             "She giggles happily, practically bouncing around on your cock."
         else:
             "She giggles happily, practically vibrating around your cock."
 
-    elif response_value < 40:
+    elif the_person.arousal_perc < 40:
         if the_person.sluttiness > 50:
             the_person "Mmm, you know what I like [the_person.mc_title]!"
         else:
             "[the_person.title] giggles softly."
 
-    elif response_value < 60:
+    elif the_person.arousal_perc < 60:
         if the_person.sluttiness > 50:
             the_person "Is your cock always this big, or are you just happy to see me? Hehe!"
         else:
             the_person "Am I your dirty girl [the_person.mc_title]? Because I'm having so much fun right now!"
 
-    elif response_value < 80:
+    elif the_person.arousal_perc < 80:
         if the_person.sluttiness > 50:
             the_person "Yes! Keep fucking me!"
             "She giggles happily, clearly having a good time."
@@ -175,26 +172,25 @@ label bimbo_sex_responses_vaginal(the_person):
     return
 
 label bimbo_sex_responses_anal(the_person):
-    $ response_value = (the_person.arousal + renpy.random.randint(0,20))*1.0/the_person.max_arousal
-    if response_value < 20:
+    if the_person.arousal_perc < 20:
         if the_person.sluttiness > 50:
             "[the_person.possessive_title] giggles and wiggles your cock deeper into her butt."
         else:
             "[the_person.possessive_title] giggles nervously."
             the_person "Oh my god, it's so big! I'm, like, half cock right now!"
-    elif response_value < 40:
+    elif the_person.arousal_perc < 40:
         if the_person.sluttiness > 50:
             the_person "I can, like, feel every single inch of you in me! You're so big!"
         else:
             the_person "You're, like, {i}huge{/i} inside of me! I don't know if I can do this for very long!"
 
-    elif response_value < 60:
+    elif the_person.arousal_perc < 60:
         if the_person.sluttiness > 50:
             the_person "Fuck my ass [the_person.mc_title], fuck it raw! Use me!"
         else:
             the_person "Oh, it feels like you're stirring up my insides with your dick! Ah!"
 
-    elif response_value < 80:
+    elif the_person.arousal_perc < 80:
         if the_person.sluttiness > 50:
             the_person "I'm so stretched out, I think I'm starting to get the hang of this!"
             "She giggles happily, clearly proud of her accomplishment."

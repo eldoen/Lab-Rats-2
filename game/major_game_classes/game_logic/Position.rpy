@@ -112,11 +112,11 @@ init -2 python:
                 return True ##If you don't have one of the requirements listed above just let it happen.
 
         def calculate_arousal_modified_speed(self, the_person):
-            male_energy_fraction = (1.0*self.guy_energy) / (self.guy_energy+self.girl_energy)  # Animation strength is divided based on who is spending more energy (ie. girls giving blowjobs speed up as they get horny, not you).
-            male_animation_effect = male_energy_fraction * (mc.arousal/mc.max_arousal)  # Being closer to max arousal increases the speed of the animation.
+            male_energy_fraction = (1.0*self.guy_energy) / ((self.guy_energy+self.girl_energy) or 1)  # Animation strength is divided based on who is spending more energy (ie. girls giving blowjobs speed up as they get horny, not you).
+            male_animation_effect = male_energy_fraction * (mc.arousal/(mc.max_arousal or 1))  # Being closer to max arousal increases the speed of the animation.
 
-            female_energy_fraction = (1.0*self.girl_energy) / (self.guy_energy+self.girl_energy)
-            female_animation_effect = female_energy_fraction * (1.0*the_person.arousal/the_person.max_arousal)
+            female_energy_fraction = (1.0*self.girl_energy) / ((self.guy_energy+self.girl_energy) or 1)
+            female_animation_effect = female_energy_fraction * (the_person.arousal_perc / 100)
 
             the_animation_speed = 0.5 + (0.5 * (male_animation_effect + female_animation_effect)) #Scales the animation strength from 50% to 100%, increasing as each party gets more aroused.
 
