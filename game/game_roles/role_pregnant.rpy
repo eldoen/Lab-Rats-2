@@ -26,10 +26,10 @@ init -1 python:
         return False
 
     def pregnant_tits_annouce_requirement(person):  # VREN
-        return True
+        return pregnant_tits_announcement_requirement(person)
 
     def pregnant_tits_announcement_requirement(person):
-        return True
+        return not person.has_queued_event("sleeping_walk_in_label")
 
     def become_pregnant(person): # Called when a girl is knocked up. Establishes all of the necessary bits of info.
         if not person or person.has_role(pregnant_role):
@@ -58,16 +58,16 @@ init -1 python:
         return
 
     def preg_transform_announce_requirement(person):
-        return True
+        return not person.has_queued_event("sleeping_walk_in_label")
 
     def preg_finish_announcement_requirement(person):
         if day >= person.event_triggers_dict.get("preg_finish_announce_day", 0):
-            return True
+            return not person.has_queued_event("sleeping_walk_in_label")
         return False
 
     def preg_finish_requirement(person, trigger_day):
         if day >= trigger_day:
-            return True
+            return not person.has_queued_event("sleeping_walk_in_label")
         return False
 
     def tit_shrink_requirement(person, trigger_day):
@@ -76,7 +76,7 @@ init -1 python:
         return False
 
     def tit_shrink_announcement_requirement(person):
-        return True
+        return not person.has_queued_event("sleeping_walk_in_label")
 
 label pregnant_announce(the_person):
     $ the_person.draw_person()
