@@ -968,7 +968,7 @@ label mom_vaginal_taboo_break_revisit_complete(the_person):
                 "Her pussy is wet already, she was clearly playing with herself before you arrived."
                 "You slide in, all the way to the base, as [the_person.possessive_title] moans in your ear."
                 the_person "Yes, that's it... Fuck me... Mmmm... Fuck me..."
-                call fuck_person(the_person, private = True, start_position = missionary, start_object = mc.location.get_object_with_name("bed"), skip_intro = True) from _call_fuck_person_mom_vaginal_taboo_break_revisit_complete
+                call fuck_person(the_person, private = True, start_position = missionary, start_object = mc.location.get_object_with_name("bed"), skip_intro = True, skip_condom = True) from _call_fuck_person_mom_vaginal_taboo_break_revisit_complete
                 $ the_report = _return
                 $ the_person.call_dialogue("sex_review", the_report = the_report)
             else:

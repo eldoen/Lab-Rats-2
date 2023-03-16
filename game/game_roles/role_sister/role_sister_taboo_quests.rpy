@@ -793,7 +793,7 @@ label sister_vaginal_taboo_break_revisit_quest_1(the_person):
 
                 call condom_ask(the_person) from _call_condom_ask_sister_vaginal_taboo_break_revisit_quest_1
                 if _return:
-                    call fuck_person(the_person, start_position = doggy, start_object = mc.location.get_object_with_name("bed"), skip_intro = True) from _call_fuck_person_sister_vaginal_taboo_break_revisit_quest_1
+                    call fuck_person(the_person, start_position = doggy, start_object = mc.location.get_object_with_name("bed"), skip_intro = True, skip_condom = True) from _call_fuck_person_sister_vaginal_taboo_break_revisit_quest_1
                     $ the_report = _return
                     $ the_person.call_dialogue("sex_review", the_report = the_report)
 
