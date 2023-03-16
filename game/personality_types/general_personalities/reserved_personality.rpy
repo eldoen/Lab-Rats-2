@@ -1369,6 +1369,7 @@ label reserved_sex_review(the_person, the_report):
 
         else: # She's surprised she even tried that.
             the_person "Finished? That's good, I think I need to sit down. My head is still spinning."
+            $ the_person.draw_person(position = "sitting")
             the_person "I didn't think I was going to... climax like that. I wasn't prepared."
             mc.name "Hopefully you will be next time."
             the_person "Maybe. I don't think I could ever get used to that."

@@ -100,6 +100,7 @@ label lily_sex_review(the_person, the_report):
 
         elif the_person.effective_sluttiness() > comment_position.slut_requirement: #She thought it was fun/exciting
             the_person "Oh my god, that was fun [the_person.mc_title]! Whew, I think I need to sit down."
+            $ the_person.draw_person(position = "sitting")
             "She gives you a dopey smile, still reeling from her climax."
 
         elif used_obedience: #She only did it because she was commanded
