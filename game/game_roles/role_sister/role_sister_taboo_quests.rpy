@@ -660,7 +660,7 @@ label sister_vaginal_taboo_break_revisit(the_person):
             mc.name "Every time you say that you still end up with my cock inside you. Let's face the facts."
             if the_person.sex_record.get("Vaginal Creampies",0) > 0:
                 mc.name "When you get turned on you let me pump you full of cum. How much further could we go?"
-                mc.name "You never have argue when I'm risking knocking you up, but the day after all you do is complain!"
+                mc.name "You never have any arguements when I'm risking knocking you up, but the day after all you do is complain!"
 
             elif the_person.has_broken_taboo("condomless_sex"):
                 mc.name "You're already fucking my cock without protection."
