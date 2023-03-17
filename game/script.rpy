@@ -731,16 +731,7 @@ init 0 python:
     set_serum_action = Action("Set Daily Serum Doses",set_serum_requirement,"set_serum_description")
 
     business_wardrobe = wardrobe_from_xml("Business_Wardrobe") #Used in some of Mom's events when we need a business-ish outfit
-
-
-init 0 python:
     stripclub_wardrobe = wardrobe_from_xml("Stripper_Wardrobe")
-
-    def add_stripclub_strippers():
-        for i in __builtin__.range(0, 4):
-            create_random_stripper()
-        return
-
 
 label initialize_game_state(character_name,business_name,last_name,stat_array,skill_array,_sex_array,max_num_of_random=3): #Gets all of the variables ready. TODO: Move some of this stuff to an init block?
 
@@ -753,6 +744,7 @@ label initialize_game_state(character_name,business_name,last_name,stat_array,sk
         list_of_nora_traits = []
         list_of_places = [] #By having this in an init block it may be set to null each time the game is reloaded, because the initialization stuff below is only called once.
         list_of_side_effects = []
+        stripclub_strippers = MappedList(Person, all_people_in_the_game)
 
     #NOTE: These need to be established in a separate label to ensure they are loaded/saved correctly
     call instantiate_serum_traits() from _call_instantiate_serum_traits #Creates all of the default LR2 serum traits. TODO: Create a mod loading list that has labels that can be externally added and called here.
@@ -1013,22 +1005,7 @@ label initialize_game_state(character_name,business_name,last_name,stat_array,sk
         generate_premade_list() # Creates the list with all the premade characters for the game in it. Without this we both break the policies call in create_random_person, and regenerate the premade list on each restart.
         setup_storyline_characters()
         generate_unique_characters_list()
-
-        for place in list_of_places:
-            if place.public:
-                if not max_num_of_random == 0:
-                    ran_num = renpy.random.randint(1,max_num_of_random)
-                else:
-                    ran_num = 0;
-                for x in range(0,ran_num):
-                    if mod_installed:
-                        the_person = make_person(force_random = True)
-                    else:
-                        the_person = create_random_person()
-                    the_person.generate_home()
-                    the_person.home.add_person(the_person) #We are using create_random_person instead of make_person because we want pre-made character bodies to be hirable instead of being eaten up by towns-folk.
-
-        stripclub_strippers = MappedList(Person, all_people_in_the_game)
+        generate_random_characters(max_num_of_random)
         add_stripclub_strippers()
 
     return
