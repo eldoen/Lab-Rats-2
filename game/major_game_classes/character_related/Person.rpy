@@ -1489,7 +1489,7 @@ init -2 python:
 
         @property
         def arousal_perc(self):
-            return (self.arousal / 1.0 * (self.max_arousal or 1)) * 100
+            return ((self.arousal * 1.0) / (self.max_arousal or 1)) * 100
 
         @property
         def work(self):
