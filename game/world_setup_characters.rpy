@@ -402,7 +402,27 @@ init 1:
                 personality = introvert_personality, stat_array = [1,3,4], skill_array = [1,1,3,3,5], sex_skill_array = [1,3,4,1], type = "unique")
             list_of_unique_characters.append(person_anna)
 
+        def generate_random_characters(max_num_of_random):
+            for place in list_of_places:
+                if place.public:
+                    if not max_num_of_random == 0:
+                        ran_num = renpy.random.randint(1,max_num_of_random)
+                    else:
+                        ran_num = 0;
+                    for x in range(0,ran_num):
+                        if mod_installed:
+                            the_person = make_person(force_random = True)
+                        else:
+                            the_person = create_random_person()
+                        the_person.generate_home()
+                        the_person.home.add_person(the_person) #We are using create_random_person instead of make_person because we want pre-made character bodies to be hirable instead of being eaten up by towns-folk.
+
+        def add_stripclub_strippers():
+            for i in __builtin__.range(0, 4):
+                create_random_stripper()
+            return
+
         def create_random_stripper():
-            a_stripper = create_random_person(sluttiness = renpy.random.randint(15,30), job = stripper_job)
-            a_stripper.generate_home().add_person(a_stripper)
-            return a_stripper
+            stripper = create_random_person(sluttiness = renpy.random.randint(15,30), job = stripper_job)
+            stripper.generate_home().add_person(stripper)
+            return stripper

@@ -584,7 +584,7 @@ label nightime_grope(the_person, masturbating = False):
                         "Let her tit fuck you":
                             mc.name "That sounds fantastic [the_person.title]."
                             the_person "I thought you would be interested... Stand up."
-                            $ the_person.draw_person(position = "blowjob")
+                            $ the_person.draw_person(position = "kneeling1")
                             "You do as you're told, standing up again. [the_person.possessive_title] gets off of her bed and onto her knees in front of you."
                             "She takes her tits up in her hands and lifts them up, pressing them on either size of your shaft."
                             if the_girl.has_huge_tits(): #E sized or larger
@@ -648,8 +648,7 @@ label nightime_grope(the_person, masturbating = False):
                     "[the_person.title] blinks twice, as if surprised to find your cock in her mouth, and then starts to bob her head and suck you off."
                     $ mc.change_locked_clarity(20)
                     mc.name "Oh fuck..."
-                    $ the_person.draw_person(position = "blowjob")
-                    "She gives you few playful bobs of her head, then pulls off with a satisfying pop."
+                    "She gives you a few playful bobs of her head, then pulls off with a satisfying pop."
                     the_person "Hey, did you need something? You could have woken me up and I would have been happy to help with this..."
                     "She kisses the tip of your cock for emphasis."
                     the_person "Do you want me to take care of it for you?"
@@ -657,7 +656,7 @@ label nightime_grope(the_person, masturbating = False):
                         "Let her blow you":
                             mc.name "Sure, come take care of this for me."
                             "She nods and sits up, then slides out of bed and gets onto her knees in front of you."
-                            $ the_person.draw_person(position = "blowjob")
+                            $ the_person.draw_person(position = "kneeling1")
                             the_person "Mmm, I want to suck on that cock..."
                             "[the_person.possessive_title] kisses the tip of your dick, then opens her lips and slides you into her mouth."
                             "She looks up at you from her knees, maintaining eye contact as she begins to bob her head up and down your shaft."

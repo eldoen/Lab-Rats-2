@@ -1,4 +1,5 @@
 init -1 python:
+    @renpy.pure
     def get_red_heart(sluttiness): #A recursive function, feed it a sluttiness and it will return a string of all red heart images for it. Hearts that are entirely empty are left out.
         #TODO: Expand this to let you ask for a minimum number of empty hearts.
         the_final_string = ""
@@ -14,6 +15,7 @@ init -1 python:
 
         return the_final_string
 
+    @renpy.pure
     def get_gold_heart(sluttiness):
         the_final_string = ""
         if sluttiness >= 20:
@@ -28,6 +30,23 @@ init -1 python:
 
         return the_final_string
 
+    @renpy.pure
+    def get_red_heart_list(value, max_hearts = 5):
+        the_final_string = ""
+        count = 0
+        while count < max_hearts:
+            if value > 20:
+                the_final_string += get_red_heart(20)
+                count += 1
+                value -= 20
+            elif value > 5:
+                the_final_string += get_red_heart(value)
+                count += 1
+                value -= value
+            else:
+                the_final_string += "{image=gui/heart/empty_heart.png}"
+                count += 1
+        return the_final_string
 
     def get_heart_image_list(the_person): ##Returns a formatted string that will add coloured hearts in line with text, perfect for menu choices, ect.
         base_sluttiness = the_person.sluttiness
@@ -40,7 +59,7 @@ init -1 python:
         heart_string += "{image=" + get_individual_heart(base_sluttiness-80, actual_sluttiness-80) + "}"
         return heart_string
 
-
+    @renpy.pure
     def get_individual_heart(base_sluttiness, actual_sluttiness): #Give this the core, temp, core+suggest slut, minus 20*(current heart-1) each and it will find out the current heart status for that chunk of the heart array.
         image_string = "gui/heart/"
         #suggest_slut += 10 #Add 10, which is the default limit to temp slut if they have no serum in them. #No longer added, testing more direct way of increasing sluttiness.

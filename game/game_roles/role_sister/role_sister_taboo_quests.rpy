@@ -660,7 +660,7 @@ label sister_vaginal_taboo_break_revisit(the_person):
             mc.name "Every time you say that you still end up with my cock inside you. Let's face the facts."
             if the_person.sex_record.get("Vaginal Creampies",0) > 0:
                 mc.name "When you get turned on you let me pump you full of cum. How much further could we go?"
-                mc.name "You never have argue when I'm risking knocking you up, but the day after all you do is complain!"
+                mc.name "You never have any arguements when I'm risking knocking you up, but the day after all you do is complain!"
 
             elif the_person.has_broken_taboo("condomless_sex"):
                 mc.name "You're already fucking my cock without protection."
@@ -793,7 +793,7 @@ label sister_vaginal_taboo_break_revisit_quest_1(the_person):
 
                 call condom_ask(the_person) from _call_condom_ask_sister_vaginal_taboo_break_revisit_quest_1
                 if _return:
-                    call fuck_person(the_person, start_position = doggy, start_object = mc.location.get_object_with_name("bed"), skip_intro = True) from _call_fuck_person_sister_vaginal_taboo_break_revisit_quest_1
+                    call fuck_person(the_person, start_position = doggy, start_object = mc.location.get_object_with_name("bed"), skip_intro = True, skip_condom = True) from _call_fuck_person_sister_vaginal_taboo_break_revisit_quest_1
                     $ the_report = _return
                     $ the_person.call_dialogue("sex_review", the_report = the_report)
 

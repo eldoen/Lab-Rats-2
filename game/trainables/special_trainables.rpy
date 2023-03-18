@@ -16,7 +16,7 @@ init -2 python:
             return False
         elif the_person.suggestibility < 50:
             return False
-        elif the_person.arousal < 1.0*the_person.arousal/the_person.max_arousal:
+        elif the_person.arousal_perc < 50:
             return ">50% Suggestibility, >50% Arousal"
         return True
 

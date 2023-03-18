@@ -705,11 +705,9 @@ init -2 python:
         def tit_is_huge(cls,tit):
             return cls.tit_is_in_weighted_tits_list(tit,cls.get_huge_tits_weighted_list())
 
-
         @classmethod
         def get_random_skin(cls):
             return get_random_from_weighted_list(cls._list_of_skins)
-
 
         @classmethod
         def get_random_hair_colour(cls):
@@ -777,7 +775,6 @@ init -2 python:
                         eye_colour[component_index] = eye_colour[component_index] + ((1-eye_colour[component_index])*tint_factor)
 
             return return_eyes
-
 
 
         @classmethod
@@ -1382,7 +1379,7 @@ init -2 python:
             for word in new_what.split(): #Per word modifications
                 flattened_word = remove_punctuation(word).lower() #Stripped and lower case for easy comparison, we use the full raw word (including punctaiton) for replacement.
                 modified_word = False
-                effect_strength = str(int(6*(self.arousal/self.max_arousal)) + 2) #If an effect triggers this scales the effect with arousal.
+                effect_strength = str(int(6*(self.arousal_perc/100)) + 2) #If an effect triggers this scales the effect with arousal.
                 if word[0] == "{" and word [-1] == "}":
                     pass #Don't do anything to tags.
 
@@ -1412,7 +1409,7 @@ init -2 python:
                 elif any(flattened_word == target_word for target_word in ["tit","tits","boob","boobs","breast","breasts","mommy milkers"]):
                     if self.arousal > 40 - 10*self.get_opinion_score("showing her tits"):
                         modified_word = True
-                        tit_effect_strength = str(int(6*(self.arousal/self.max_arousal)) + Person.rank_tits(self.tits))
+                        tit_effect_strength = str(int(6*(self.arousal_perc/100)) + Person.rank_tits(self.tits))
                         word_replace = self.wrap_string(word, the_colour = new_colour)
                         word_replace = "{atl=bounce_text~" + tit_effect_strength + "}" + word_replace + "{/atl}"
                         temp_what += word_replace + " "
@@ -1489,6 +1486,10 @@ init -2 python:
         @property
         def fname(self):
             return self.create_formatted_title(self.name)
+
+        @property
+        def arousal_perc(self):
+            return ((self.arousal * 1.0) / (self.max_arousal or 1)) * 100
 
         @property
         def work(self):
