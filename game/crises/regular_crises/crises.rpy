@@ -2636,6 +2636,7 @@ label research_reminder_crisis_label():
                                                 "You're still struggling to catch your breath."
                                                 mc.name "I'm going to need a minute to recover. I'll... I'll come talk to you if I think of something, okay?"
                                                 $ the_person.change_obedience(2)
+                                                $ the_person.draw_person()
                                                 "She nods and stands up, brushing off her knees."
                                                 the_person "You know where to find me."
                                                 "[the_person.possessive_title] steps out of the room, leaving you alone as you get cleaned up."
@@ -2644,6 +2645,7 @@ label research_reminder_crisis_label():
                                                 the_person "Sorry [the_person.mc_title], I just can't seem to get you there..."
                                                 mc.name "It's fine, really. Maybe I just need some time to think."
                                                 $ the_person.change_obedience(1)
+                                                $ the_person.draw_person()
                                                 "She nods and stands up, brushing off her knees. You shove your cock back into your pants."
                                                 the_person "Okay. Come see me if you think of something, alright?"
                                                 "With that she steps out of your office and closes the door behind her."
