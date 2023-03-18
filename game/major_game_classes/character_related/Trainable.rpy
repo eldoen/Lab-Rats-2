@@ -40,7 +40,7 @@ init -2 python:
             if self.unlocked_function is not None:
                 unlock_return = self.unlocked_function(the_person, *self.extra_args)
                 if isinstance(unlock_return, basestring):
-                    return_string += "\n{color=#ff0000}{size=18}Requires: " + unlock_return + "{/size}{/color}"
+                    return_string += "\n{color=#ff0000}{size=14}Requires: " + unlock_return + "{/size}{/color}"
 
             return return_string
 
