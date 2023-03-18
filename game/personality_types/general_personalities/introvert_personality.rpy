@@ -1263,6 +1263,7 @@ label introvert_sex_review(the_person, the_report):
 
         elif the_person.effective_sluttiness() > comment_position.slut_requirement: #She thought it was fun/exciting
             the_person "Ah, that was fun... I'm done, I need to sit down and catch my breath."
+            $ the_person.draw_person(position = "sitting")
             "She gives you a dopey smile, still dazed by her orgasm."
 
         elif used_obedience: #She only did it because she was commanded
