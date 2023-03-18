@@ -1,16 +1,16 @@
 ## Contains all of the events related to Lily and her taboo break quests
 init -1 python:
     def sister_kissing_taboo_revisit_requirement(the_person):
-        return True
+        return not the_person.has_queued_event("sleeping_walk_in_label")
 
     def sister_oral_taboo_revisit_requirement(the_person):
-        return True
+        return not the_person.has_queued_event("sleeping_walk_in_label")
 
     def sister_anal_taboo_revisit_requirement(the_person):
-        return True
+        return not the_person.has_queued_event("sleeping_walk_in_label")
 
     def sister_vaginal_taboo_revisit_requirement(the_person):
-        return True
+        return not the_person.has_queued_event("sleeping_walk_in_label")
 
     def sister_kissing_quest_complete_requirement(the_person):
         if not the_person.event_triggers_dict.get("sister_kissing_quest_active", False):
