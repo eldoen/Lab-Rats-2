@@ -557,7 +557,7 @@ label mom_flirt_response_text(the_person):
     return
 
 label mom_condom_demand(the_person):
-    if the_person.get_opinion_score("bareback sex") > 0 or the_person.get_opinion_score("creampies") > 0:
+    if the_person.wants_creampie():
         the_person "Oh [the_person.mc_title], you need to put on a condom before we can do anything."
         the_person "You might get carried away without one, and we can't have that happen."
     else:
@@ -570,7 +570,7 @@ label mom_condom_ask(the_person):
         the_person "Now [the_person.mc_title], I'm on birth control, but we really should use protection though."
         the_person "Do you have a condom with you? I hope you're always prepared."
         $ the_person.update_birth_control_knowledge()
-    elif the_person.get_opinion_score("creampies") > 0:
+    elif the_person.wants_creampie():
         the_person "Do you have a condom to put on? I don't want you to have to pull out when you finish."
         $ the_person.discover_opinion("creampies")
     else:
@@ -579,7 +579,7 @@ label mom_condom_ask(the_person):
     return
 
 label mom_condom_bareback_ask(the_person):
-    if the_person.get_opinion_score("creampies") > 0:
+    if the_person.wants_creampie():
         if the_person.on_birth_control:
             the_person "You don't need to use any protection [the_person.mc_title]. I'm on birth control."
             the_person "That means you can cum right inside my pussy if you want. I'd like it very much if you did."
@@ -636,7 +636,7 @@ label mom_cum_mouth(the_person):
 label mom_cum_pullout(the_person):
     # Lead in: "I'm going to cum!"
     if mc.condom:
-        if the_person.wants_creampie() and the_person.get_opinion_score("creampies") > 0 and not the_person.has_taboo("condomless_sex"): #TODO: FIgure out we want any more requirements for this to fire.
+        if the_person.wants_creampie() and not the_person.has_taboo("condomless_sex"): #TODO: FIgure out we want any more requirements for this to fire.
             if the_person.event_triggers_dict.get("preg_knows", False):
                 the_person "Do you want to take off that condom? You already got mommy pregnant..."
 

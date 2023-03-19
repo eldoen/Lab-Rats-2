@@ -2947,12 +2947,14 @@ init -2 python:
             if self.on_birth_control:
                 creampie_threshold -= 20 #Much more willing to let you creampie her if she's on BC
 
-
             if girlfriend_role in self.special_role:
                 creampie_threshold -= 10 + (5 * self.get_opinion_score("being submissive")) #Desire to be a "good wife"
 
             if self.is_family(): # If she hates incest, it increases the treshhold
                 creampie_threshold += 10 - (10 * self.get_opinion_score("incest"))
+
+            # if she hates bareback sex, it increases the threshold
+            creampie_threshold += (-10 * self.get_opinion_score("bareback sex"))
 
             effective_slut = self.effective_sluttiness("creampie") + (10 * self.get_opinion_score("creampies")) + (10 * self.get_opinion_score("anal creampies"))
             if effective_slut >= creampie_threshold or self.event_triggers_dict.get("preg_knows", False):

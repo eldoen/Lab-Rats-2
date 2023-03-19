@@ -730,7 +730,7 @@ label introvert_flirt_response_text(the_person):
     return
 
 label introvert_condom_demand(the_person):
-    if the_person.get_opinion_score("bareback sex") > 0 or the_person.get_opinion_score("creampies") > 0:
+    if the_person.wants_creampie():
         the_person "Put on a condom first. I can't trust myself if you aren't wearing one."
     else:
         the_person "You need to put on a condom, alright?"
@@ -741,7 +741,7 @@ label introvert_condom_ask(the_person):
         the_person "You should probably put on a condom, right?"
         the_person "I'm on the pill, but it would be safer if we didn't risk it..."
         $ the_person.update_birth_control_knowledge()
-    elif the_person.get_opinion_score("creampies") > 0:
+    elif the_person.wants_creampie():
         the_person "Can you put on a condom? If you do you won't have to pull out. I'd really like that."
         $ the_person.discover_opinion("creampies")
     else:
@@ -749,7 +749,7 @@ label introvert_condom_ask(the_person):
     return
 
 label introvert_condom_bareback_ask(the_person):
-    if the_person.get_opinion_score("creampies") > 0:
+    if the_person.wants_creampie():
         if the_person.on_birth_control:
             the_person "Come on, I'm on birth control. There's nothing to worry about."
             the_person "You should just cum inside of me, okay?"
@@ -768,7 +768,7 @@ label introvert_condom_bareback_demand(the_person):
         the_person "No, no, you don't need that!"
         the_person "Come on, I want you to get me pregnant already!"
 
-    elif the_person.get_opinion_score("bareback sex") > 0 or the_person.get_opinion_score("creampies") > 0: #Just likes raw sex
+    elif the_person.wants_creampie(): #Just likes raw sex
         if the_person.on_birth_control:
             the_person "Screw that, this is why I'm on birth control."
             the_person "If you're going to fuck me you're going to do it raw and cum inside me!"
@@ -1513,7 +1513,7 @@ label introvert_condomless_sex_taboo_break(the_person):
         if the_person.on_birth_control:
             the_person "I'm on birth control, so it should be fine, right? The chance of it not working is almost zero."
             $ the_person.update_birth_control_knowledge()
-        if the_person.get_opinion_score("creampies") > 0:
+        if the_person.wants_creampie():
             the_person "I should really tell you to pull out when you cum..."
             mc.name "{i}Are{/i} you telling me I should pull out?"
             "She bites her lip and shakes her head."
@@ -1528,7 +1528,7 @@ label introvert_condomless_sex_taboo_break(the_person):
         if the_person.on_birth_control:
             the_person "I'm taking birth control, so it's okay if you cum inside me."
             $ the_person.update_birth_control_knowledge()
-        elif the_person.get_opinion_score("creampies") > 0:
+        elif the_person.wants_creampie():
             the_person "If we're doing this, I don't want you to pull out when you finish either."
             mc.name "Are you on the pill?"
             "She shakes her head."

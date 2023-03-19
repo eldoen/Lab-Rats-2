@@ -151,7 +151,7 @@ label pregnant_announce(the_person):
                 the_person "Okay, that's what I'll do."
                 #TODO: Have an event based on this, more likely to spawn the higher her Love (as a inverse substitute for her Love for him)
 
-            "Let him fuck you" if the_person.effective_sluttiness() >= 50 or the_person.obedience >= 140 or the_person.get_opinion_score("creampies") > 0:
+            "Let him fuck you" if the_person.effective_sluttiness() >= 50 or the_person.obedience >= 140 or the_person.wants_creampie():
                 #She won't fuck her SO unless she's slutty or obedient enough to do it despite her love for you (or if she just loves getting creampied)
                 mc.name "I want you to let him fuck you, just once. Then in a week you can tell him it's his."
                 the_person "Okay, I guess that would stop him from being suspicious. I'll do it, if that's what you want."
@@ -277,7 +277,7 @@ label pregnant_tits_announce(start_day, the_person):
         the_person "Hey [the_person.mc_title]. I was looking in the mirror this morning and I noticed something."
         "She cups her tits and jiggles them."
         $ mc.change_locked_clarity(50)
-        if the_person.get_opinion_score("creampies") > 0 and the_person.get_opinion_score("being submissive") > 0:
+        if the_person.wants_creampie():
             the_person "My tits are starting to swell. It feels like my body is transforming into a sluttier version of me."
             the_person "Soon everyone is going to know that I was a desperate cumslut who got bred. Ah..."
             "She closes her eyes and sighs happily, clearly lost in her own little fantasy."
@@ -473,7 +473,7 @@ label tits_shrink_announcement_one(the_person):
     $ mc.change_locked_clarity(20)
     "[the_person.possessive_title] sighs and looks down at her chest. She cups a boob and rubs it gently."
     the_person "It looks like my milk is starting to dry up. I'm going to miss having my tits that big..."
-    if the_person.get_opinion_score("creampies") > 0 or the_person.get_opinion_score("bareback sex") > 0:
+    if the_person.wants_creampie():
         $ mc.change_locked_clarity(50)
         the_person "If you really wanted to keep them around you could always get me pregnant again."
         "She bites her lip and eyes your crotch, obviously fantasizing."
@@ -491,7 +491,7 @@ label tits_shrink_announcement_two(the_person):
     "[the_person.possessive_title] sighs and looks down down at her chest. She cups one of her boobs and rubs it gently."
     the_person "My chest is back to its old size. I had gotten so used to them when I was pregnant that these feel tiny now."
     mc.name "That's a pretty easy problem to solve. I'll just have to get you pregnant again."
-    if the_person.get_opinion_score("creampies") > 0 or the_person.get_opinion_score("bareback sex") > 0:
+    if the_person.wants_creampie():
         $ the_person.change_arousal(10)
         "[the_person.title] moans and nods happily."
         $ mc.change_locked_clarity(30)

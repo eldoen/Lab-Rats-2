@@ -798,7 +798,7 @@ label relaxed_flirt_response_text(the_person):
     return
 
 label relaxed_condom_demand(the_person):
-    if the_person.get_opinion_score("bareback sex") > 0 or the_person.get_opinion_score("creampies") > 0:
+    if the_person.wants_creampie():
         the_person "You need to put on a condom first."
         the_person "I don't like making you wear one either, but we need to be safe."
     else:
@@ -810,7 +810,7 @@ label relaxed_condom_ask(the_person):
         the_person "Hey, do you think you should put on a condom?"
         the_person "I'm on birth control, so we don't really need one..."
         $ the_person.update_birth_control_knowledge()
-    elif the_person.get_opinion_score("creampies") > 0:
+    elif the_person.wants_creampie():
         $ the_person.discover_opinion("creampies")
         the_person "Hey, maybe you should put on a condom. If you don't you'll have to pull out."
     else:
@@ -818,7 +818,7 @@ label relaxed_condom_ask(the_person):
     return
 
 label relaxed_condom_bareback_ask(the_person):
-    if the_person.get_opinion_score("creampies") > 0:
+    if the_person.wants_creampie():
         if the_person.on_birth_control:
             the_person "Don't put on a condom, I'm on the pill. You can cum inside me and we don't have to worry."
             $ the_person.update_birth_control_knowledge()
@@ -835,7 +835,7 @@ label relaxed_condom_bareback_demand(the_person): # Lead in: mc.name "One sec, l
         the_person "No, no, no, no condoms!"
         the_person "I want you to get pregnant, alright? I want it!"
 
-    elif the_person.get_opinion_score("bareback sex") > 0 or the_person.get_opinion_score("creampies") > 0: #Just likes raw sex
+    elif the_person.get_opinion_score("bareback sex") > 0 or the_person.wants_creampie(): #Just likes raw sex
         if the_person.on_birth_control:
             the_person "What? Forget it, you don't need one of those. Hurry up and fuck me!"
         else:
@@ -885,7 +885,7 @@ label relaxed_cum_mouth(the_person):
 label relaxed_cum_pullout(the_person):
     # Lead in: "I'm going to cum!"
     if mc.condom: #TODO: All of the cum-drunk stuff
-        if the_person.wants_creampie() and the_person.get_opinion_score("creampies") > 0 and not the_person.has_taboo("condomless_sex"): #TODO: FIgure out we want any more requirements for this to fire.
+        if the_person.wants_creampie() and not the_person.has_taboo("condomless_sex"): #TODO: FIgure out we want any more requirements for this to fire.
             if the_person.event_triggers_dict.get("preg_knows", False):
                 the_person "I'm already pregnant, why are we even bothering with a condom?"
                 the_person "Take it off and cum inside my pussy, just like you did when you knocked me up!"
@@ -1603,7 +1603,7 @@ label relaxed_condomless_sex_taboo_break(the_person):
         if the_person.on_birth_control:
             the_person "I'm on the pill, so it should be fine, right? Maybe you should pull out, just in case."
             $ the_person.update_birth_control_knowledge()
-        elif the_person.get_opinion_score("creampies") > 0:
+        elif the_person.wants_creampie():
             the_person "It's probably smart for you to pull out when you cum though. I'm not on birth control."
             $ the_person.update_birth_control_knowledge()
             mc.name "Do you feel smart today?"
@@ -1620,7 +1620,7 @@ label relaxed_condomless_sex_taboo_break(the_person):
         if the_person.on_birth_control:
             the_person "I'm on birth control, so you don't need to worry about getting me pregnant."
             $ the_person.update_birth_control_knowledge()
-        elif the_person.get_opinion_score("creampies") > 0:
+        elif the_person.wants_creampie():
             the_person "If we're doing this, I don't want you to pull out when you finish either."
             mc.name "Are you on the pill?"
             "She shakes her head."
