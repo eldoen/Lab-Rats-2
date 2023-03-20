@@ -1222,7 +1222,7 @@ label sleep_cum_vagina(the_person, climax_controller):
 
     if renpy.random.randint(0,100) < wake_chance - 5*the_person.get_opinion_score("creampies"):
         $ awake = True
-        "She shift in bed, then blinks and opens one eye sleepily."
+        "She shifts in bed, then blinks and opens one eye sleepily."
         the_person "[the_person.mc_title]? What are you doing here? I..."
         "[the_person.possessive_title] lifts her head and looks down, realising you're inside of her."
         if the_person.effective_sluttiness() + 5*(the_person.get_opinion_score(["being submissive", "creampies"])) > 70 and not the_person.has_taboo("vaginal_sex"):
