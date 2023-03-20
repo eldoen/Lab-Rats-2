@@ -26,6 +26,11 @@ init -2 python:
             return False
         elif mc.business.research_tier != 1:
             return False
+        elif mc.business.event_triggers_dict.get("intro_nora", False) \
+            or not mc.business.event_triggers_dict.get("nora_trait_researched", None) is None \
+            or mc.business.event_triggers_dict.get("nora_cash_research_trigger", False) \
+            or not mc.business.event_triggers_dict.get("nora_cash_research_trait", None) is None:
+            return False
         elif the_person.obedience < 120 or the_person.sluttiness < 25 or the_person.int < 4:
             return "Requires: 120 Obedience, 4 Intelligence, " + get_red_heart(25)
         else:
