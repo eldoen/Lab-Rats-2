@@ -414,7 +414,11 @@ label dinner_date_label(the_person):
 
     $ clear_scene()
     $ mc.change_location(downtown)
-    $ the_person.apply_outfit(the_person.wardrobe.decide_on_outfit(the_person.sluttiness + 20))
+    if mod_installed:
+        $ the_person.planned_outfit = the_person.decide_on_outfit(the_person.sluttiness + 20)
+        $ the_person.apply_outfit(the_person.planned_outfit)
+    else:
+        $ the_person.apply_outfit(the_person.wardrobe.decide_on_outfit(the_person.sluttiness + 20))
 
     "You get yourself looking as presentable as possible and head downtown."
     $ the_person.draw_person(emotion = "happy")
