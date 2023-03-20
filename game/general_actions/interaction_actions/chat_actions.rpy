@@ -1152,14 +1152,14 @@ label bc_talk_label(the_person):
             $ needed_stop += -10*the_person.get_opinion_score("cheating on men") #They think it's hot to have another man's baby
 
         if the_person.on_birth_control:
-            if the_person.get_opinion_score("creampies") > 0: #She's not happy about it
+            if the_person.wants_creampie(): #She's not happy about it
                 the_person "Oh, sure. I'm taking it right now, so if you get a little too excited and unload inside me..."
                 "She smiles and shrugs."
                 the_person "Well that wouldn't be the end of the world."
             else:
                 the_person "Oh, sure. I'm taking it right now, so we shouldn't have any \"accidents\" to worry about."
         else:
-            if the_person.get_opinion_score("creampies") > 0: #She's happy about not being on BC
+            if the_person.wants_creampie(): #She's happy about not being on BC
                 the_person "I'm not taking any right now, so..."
                 "She smiles and shrugs."
                 the_person "If you cum in me you might get me knocked up. It's kind of hot to think about that..."
@@ -1183,7 +1183,7 @@ label bc_talk_label(the_person):
 
                 else:
                     "She shakes her head."
-                    if the_person.get_opinion_score("creampies") > 0 and the_person.get_opinion_score("bareback sex") > 0:
+                    if the_person.wants_creampie():
                         the_person "I don't care about that. I love the thrill of a hot load of cum inside my perfectly fertile pussy."
                         the_person "There's nothing hotter than that. You're just going to have to accept that it's a risk."
                         $ the_person.discover_opinion("creampies")
@@ -1195,7 +1195,7 @@ label bc_talk_label(the_person):
             "Stop taking birth control" if the_person.on_birth_control:
                 mc.name "I want you to stop taking it."
                 if the_person.love >= needed_stop or the_person.effective_sluttiness() >= needed_stop:
-                    if the_person.get_opinion_score("creampies") > 0 and the_person.get_opinion_score("bareback sex") > 0:
+                    if the_person.wants_creampie():
                         the_person "Yeah? I've wanted to stop too, I don't care if it's risky."
                         the_person "There's nothing that's more of a turn on than having a hot load inside of my pussy. Ah..."
                         "[the_person.possessive_title] sighs and seems lost in thought for a moment."
@@ -1244,7 +1244,7 @@ label bc_talk_label(the_person):
                     the_person "That's probably a good idea. I'll talk to my doctor as soon as possible about it."
                     $ manage_bc(the_person, start = True)
                 else:
-                    if the_person.get_opinion_score("creampies") > 0 and the_person.get_opinion_score("bareback sex") > 0:
+                    if the_person.wants_creampie():
                         "She shrugs and shakes her head."
                         $ the_person.discover_opinion("creampies")
                         $ the_person.discover_opinion("bareback sex")
@@ -1256,7 +1256,7 @@ label bc_talk_label(the_person):
             "Stop taking birth control" if the_person.on_birth_control:
                 mc.name "You should stop taking it. Wouldn't that be really hot?"
                 if the_person.love >= needed_start or the_person.effective_sluttiness() >= needed_stop:
-                    if the_person.get_opinion_score("creampies") > 0 and the_person.get_opinion_score("bareback sex") > 0:
+                    if the_person.wants_creampie():
                         the_person "Do you think so? I've always wanted to, I don't think I can trust myself to tell a man to pull out."
                         the_person "Even if I know that's the smart thing to do I would probably just beg for a hot load inside me..."
                         "She closes her eyes and moans softly, obviously lost in a fantasy of her own making."

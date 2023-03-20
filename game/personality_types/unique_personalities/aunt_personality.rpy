@@ -313,7 +313,7 @@ label aunt_flirt_response_high(the_person):
 ## Sex dialogue ##
 label aunt_cum_pullout(the_person):
     if mc.condom:
-        if the_person.wants_creampie() and the_person.get_opinion_score("creampies") > 0 and not the_person.has_taboo("condomless_sex"): #TODO: FIgure out we want any more requirements for this to fire.
+        if the_person.wants_creampie() and not the_person.has_taboo("condomless_sex"): #TODO: FIgure out we want any more requirements for this to fire.
             if the_person.event_triggers_dict.get("preg_knows", False):
                 "She moans happily."
                 the_person "You've already gotten me pregnant [the_person.mc_title]. Do you want to take that condom off and cum in me again?"

@@ -1275,7 +1275,7 @@ label sleep_cum_vagina(the_person, climax_controller):
             "You get up from [the_person.title]'s bed, stuffing your cock back into your pants."
             the_person "Good, that's what I like to hear. Talk to you later, okay?"
             "You back up towards the door, taking one last peek into the room before you close the door."
-            if the_person.get_opinion_score("bareback sex") > 0 and the_person.get_opinion_score("creampies") > 0 and not mc.condom:
+            if the_person.wants_creampie() and not mc.condom:
                 "[the_person.possessive_title] lifts her knees up to her chest and holds them close, keeping all of your cum inside of her pussy."
                 $ mc.change_locked_clarity(20)
                 the_person "Mmmm, it's so deep..."
@@ -1291,7 +1291,7 @@ label sleep_cum_vagina(the_person, climax_controller):
             the_person "You... already came? Please tell me you're wearing a condom!"
             if mc.condom:
                 mc.name "Of course. You don't want to get knocked up, do you?"
-                if the_person.get_opinion_score("bareback sex") > 0 and the_person.get_opinion_score("creampies") > 0:
+                if the_person.wants_creampie():
                     the_person "Oh fuck, I do... But not by you!"
                 else:
                     the_person "Of course not!"
@@ -1319,7 +1319,7 @@ label sleep_cum_vagina(the_person, climax_controller):
             "You stuff your cock back in your pants and retreat out of the room."
 
     else:
-        if the_person.get_opinion_score("creampies") > 0 and not mc.condom:
+        if the_person.wants_creampie() and not mc.condom:
             the_person "... So full..."
             $ mc.change_locked_clarity(20)
             "She sighs happily, enjoying a pussy full of cum even when she's asleep."

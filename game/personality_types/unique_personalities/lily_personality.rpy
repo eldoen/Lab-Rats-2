@@ -695,7 +695,7 @@ label lily_flirt_response_text(the_person):
     return
 
 label lily_condom_demand(the_person):
-    if the_person.get_opinion_score("bareback sex") > 0 or the_person.get_opinion_score("creampies") > 0:
+    if the_person.wants_creampie():
         the_person "It sucks, but you need to put on a condom first."
         the_person "You have one on you, right?"
     else:
@@ -707,7 +707,7 @@ label lily_condom_ask(the_person):
     if the_person.on_birth_control:
         the_person "I'm taking the pill, but you should probably still wear a condom. Right?"
         $ the_person.update_birth_control_knowledge()
-    elif the_person.get_opinion_score("creampies") > 0:
+    elif the_person.wants_creampie():
         # the_person "If you want to cum inside me you should put on a condom."
         # the_person "I know it's less fun than fucking raw, but it's still better than pulling out, right?"
         the_person "Put on a condom, then you don't need to worry about cumming inside me."
@@ -718,7 +718,7 @@ label lily_condom_ask(the_person):
     return
 
 label lily_condom_bareback_ask(the_person):
-    if the_person.get_opinion_score("creampies") > 0:
+    if the_person.wants_creampie():
         if the_person.on_birth_control:
             the_person "I'm on the pill, so don't worry about protection."
             the_person "You can even cum in me, if you want. That would be so hot."
@@ -775,7 +775,7 @@ label lily_cum_mouth(the_person):
 label lily_cum_pullout(the_person):
     # Lead in: "I'm going to cum!"
     if mc.condom:
-        if the_person.wants_creampie() and the_person.get_opinion_score("creampies") > 0 and not the_person.has_taboo("condomless_sex"): #TODO: FIgure out we want any more requirements for this to fire.
+        if the_person.wants_creampie() and not the_person.has_taboo("condomless_sex"): #TODO: FIgure out we want any more requirements for this to fire.
             if the_person.event_triggers_dict.get("preg_knows", False):
                 the_person "Wait... Do you want to take the condom off and cum inside of me?"
                 the_person "I'm already pregnant, and it felt so good before..."

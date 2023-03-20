@@ -775,7 +775,7 @@ label wild_flirt_response_text(the_person):
     return
 
 label wild_condom_demand(the_person):
-    if the_person.get_opinion_score("bareback sex") > 0 or the_person.get_opinion_score("creampies") > 0:
+    if the_person.wants_creampie():
         the_person "Oh shit, you need to put on a condom before we do anything."
         the_person "I hate it too, but it's important."
     else:
@@ -787,7 +787,7 @@ label wild_condom_ask(the_person):
     if the_person.on_birth_control:
         the_person "Want a condom? I'm on the pill, but I guess it's still possible something goes wrong."
         $ the_person.update_birth_control_knowledge()
-    elif the_person.get_opinion_score("creampies") > 0:
+    elif the_person.wants_creampie():
         the_person "If you want to cum inside me you should put on a condom."
         the_person "I know it's less fun than fucking raw, but it's still better than pulling out, right?"
         $ the_person.discover_opinion("creampies")
@@ -797,7 +797,7 @@ label wild_condom_ask(the_person):
     return
 
 label wild_condom_bareback_ask(the_person):
-    if the_person.get_opinion_score("creampies") > 0:
+    if the_person.wants_creampie():
         if the_person.on_birth_control:
             # the_person "Don't put on a condom, I'm on the pill. You can cum inside me and we don't have to worry."
             the_person "You aren't thinking of wearing a condom, are you? Fuck that, I'm on the pill."
@@ -819,7 +819,7 @@ label wild_condom_bareback_demand(the_person):
         the_person "Oh fuck that, what's the point of fucking you aren't going to knock me up?"
         the_person "Come on, preg me!"
 
-    elif the_person.get_opinion_score("bareback sex") > 0 or the_person.get_opinion_score("creampies") > 0: #Just likes raw sex
+    elif the_person.wants_creampie(): #Just likes raw sex
         if the_person.on_birth_control:
             the_person "Fuck that, I'm on the pill. Fuck me raw [the_person.mc_title]!"
             the_person "Even better, you can cum right inside me. Come and fill me up!"
@@ -871,7 +871,7 @@ label wild_cum_mouth(the_person):
 label wild_cum_pullout(the_person):
     # Lead in: "I'm going to cum!"
     if mc.condom:
-        if the_person.wants_creampie() and the_person.get_opinion_score("creampies") > 0 and not the_person.has_taboo("condomless_sex"): #TODO: FIgure out we want any more requirements for this to fire.
+        if the_person.wants_creampie() and not the_person.has_taboo("condomless_sex"): #TODO: FIgure out we want any more requirements for this to fire.
             if the_person.event_triggers_dict.get("preg_knows", False):
                 the_person "Oh fuck... Take that stupid condom off and cum in my pussy!"
                 the_person "You already knocked me up, so who fucking cares? I just fill me up!"
@@ -1581,7 +1581,7 @@ label wild_condomless_sex_taboo_break(the_person):
         if the_person.on_birth_control:
             the_person "I'm on the pill, so you don't need to worry about cumming inside me."
             $ the_person.update_birth_control_knowledge()
-        elif the_person.get_opinion_score("creampies") > 0:
+        elif the_person.wants_creampie():
             the_person "It would be so easy for you to cum inside me though."
             the_person "So easy for you to pump my little cunt full of hot cum..."
             "She doesn't sound like she would mind very much at all."
@@ -1594,7 +1594,7 @@ label wild_condomless_sex_taboo_break(the_person):
         if the_person.on_birth_control:
             the_person "You want to fuck me raw? Fuck it, I'm on the pill. What's the worst that can happen?"
             $ the_person.update_birth_control_knowledge()
-        elif the_person.get_opinion_score("creampies") > 0:
+        elif the_person.wants_creampie():
             the_person "I guess if I can't trust you I can't trust anyone. You make me make terrible decisions, you know that?"
             the_person "Well fuck it, if we're doing this I want you to go the whole nine yards and finish inside of me."
             mc.name "Are you on the pill?"

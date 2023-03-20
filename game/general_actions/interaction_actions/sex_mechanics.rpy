@@ -771,7 +771,7 @@ label condom_ask(the_person):
                     if the_person.on_birth_control:
                         "[the_person.title] doesn't argue with you any more."
                     else:
-                        if the_person.get_opinion_score("creampies") > 0:
+                        if the_person.wants_creampie():
                             the_person "Oh fuck, If you cum inside I'm going to get knocked up..."
                             "You aren't sure if she's worried or excited."
                         else:
@@ -806,7 +806,7 @@ label condom_ask(the_person):
                         call condomless_promise(the_person) from _call_condomless_promise_condom_ask_2
 
     else: #Slutty enough that she doesn't even care about a condom.
-        if the_person.get_opinion_score("bareback sex") > 0 or the_person.get_opinion_score("creampies") > 0 or the_person.has_role(breeder_role):
+        if the_person.wants_creampie():
             menu:
                 "Put on a condom":
                     mc.name "One sec, let me just get a condom on..."
@@ -870,7 +870,7 @@ label condomless_promise(the_person):
 
         "Promise to cum inside":
             mc.name "Oh I'm not pulling out. I'm planning on dumping my load inside of your tight little pussy."
-            if the_person.get_opinion_score("creampies") > 0:
+            if the_person.wants_creampie():
                 the_person "Oh god..."
             elif not the_person.on_birth_control:
                 the_person "Fuck [the_person.mc_title], you're going to get me pregnant like that!"

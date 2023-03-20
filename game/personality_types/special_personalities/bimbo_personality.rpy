@@ -742,7 +742,7 @@ label bimbo_flirt_response_text(the_person):
     return
 
 label bimbo_condom_demand(the_person):
-    if the_person.get_opinion_score("bareback sex") > 0 or the_person.get_opinion_score("creampies") > 0:
+    if the_person.wants_creampie():
         the_person "Do you, like, have a condom with you?"
         the_person "I might beg you to cum inside me otherwise, and that would be a really dumb idea."
     else:
@@ -756,7 +756,7 @@ label bimbo_condom_ask(the_person):
         the_person "I remembered to take my little pill today, so we don't need a condom, right?"
         the_person "... At least, I think I remembered to take it. Hmm, maybe you should wear one."
         $ the_person.update_birth_control_knowledge()
-    elif the_person.get_opinion_score("creampies") > 0:
+    elif the_person.wants_creampie():
         the_person "Oh, if you put on a condom you can cum inside me!"
         the_person "They're, like, the best invention ever. You get to fuck me and cum, and I don't get pregnant!"
         $ the_person.discover_opinion("creampies")
@@ -765,7 +765,7 @@ label bimbo_condom_ask(the_person):
     return
 
 label bimbo_condom_bareback_ask(the_person):
-    if the_person.get_opinion_score("creampies") > 0:
+    if the_person.wants_creampie():
         if the_person.on_birth_control:
             the_person "Don't worry about a condom [the_person.mc_title]. I'm super sure I took my birth-y pill this morning."
             the_person "So you can cum inside me, just how I like it!"
@@ -784,7 +784,7 @@ label bimbo_condom_bareback_demand(the_person):
         the_person "Don't be silly, even I know you won't knock me up wearing one of those!"
         the_person "I want you to cum inside me and make me pregnant!"
 
-    elif the_person.get_opinion_score("bareback sex") > 0 or the_person.get_opinion_score("creampies") > 0: #Just likes raw sex
+    elif the_person.wants_creampie(): #Just likes raw sex
         the_person "You don't need that silly! I like doing it without it, it's so much better!"
         the_person "Especially when you cum! It's so warm inside me!"
     else:
@@ -825,7 +825,7 @@ label bimbo_cum_mouth(the_person):
 
 label bimbo_cum_pullout(the_person):
     if mc.condom:
-        if the_person.wants_creampie() and the_person.get_opinion_score("creampies") > 0 and not the_person.has_taboo("condomless_sex"): #TODO: FIgure out we want any more requirements for this to fire.
+        if the_person.wants_creampie() and not the_person.has_taboo("condomless_sex"): #TODO: FIgure out we want any more requirements for this to fire.
             if the_person.event_triggers_dict.get("preg_knows", False):
                 the_person "Why are you even wearing a condom? I'm, like, already pregnant."
                 the_person "Come on, just take it off and cum inside me again. You know I love it, right?"

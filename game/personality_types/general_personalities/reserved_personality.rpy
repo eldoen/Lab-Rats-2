@@ -797,7 +797,7 @@ label reserved_flirt_response_text(the_person):
     return
 
 label reserved_condom_demand(the_person):
-    if the_person.get_opinion_score("bareback sex") > 0 or the_person.get_opinion_score("creampies") > 0:
+    if the_person.wants_creampie():
         the_person "Please put on a condom first. I say silly things when I get excited."
         the_person "I don't want us making a... mistake."
     else:
@@ -809,7 +809,7 @@ label reserved_condom_ask(the_person):
     if the_person.on_birth_control:
         the_person "I'm on the pill, so you don't need to put on a condom unless you want to be very safe."
         $ the_person.update_birth_control_knowledge()
-    elif the_person.get_opinion_score("creampies") > 0:
+    elif the_person.wants_creampie():
         the_person "Maybe you should put on a condom. Then you can keep fucking me as you cum..."
         the_person "It's not as nice as the real thing, but it would still be nice."
         $ the_person.discover_opinion("creampies")
@@ -819,7 +819,7 @@ label reserved_condom_ask(the_person):
     return
 
 label reserved_condom_bareback_ask(the_person):
-    if the_person.get_opinion_score("creampies") > 0:
+    if the_person.wants_creampie():
         if the_person.on_birth_control:
             the_person "Don't bother with a condom [the_person.mc_title]. I'm on the pill, so it's perfectly safe."
             the_person "You can cum right inside of me, as often as you want."
@@ -838,7 +838,7 @@ label reserved_condom_bareback_demand(the_person):
         the_person "No, don't do that! If you're wearing a condom you can't get me pregnant."
         the_person "Don't you want to knock me up?"
 
-    elif the_person.get_opinion_score("bareback sex") > 0 or the_person.get_opinion_score("creampies") > 0: #Just likes raw sex
+    elif the_person.get_opinion_score("bareback sex") > 0 or the_person.wants_creampie(): #Just likes raw sex
         if the_person.on_birth_control:
             the_person "You don't need that, I'm on birth control."
             the_person "Come on [the_person.mc_title], I want you to cum inside me!"
@@ -885,7 +885,7 @@ label reserved_cum_mouth(the_person):
 label reserved_cum_pullout(the_person):
     # Lead in: "I'm going to cum!"
     if mc.condom:
-        if the_person.wants_creampie() and the_person.get_opinion_score("creampies") > 0 and not the_person.has_taboo("condomless_sex"): #TODO: FIgure out we want any more requirements for this to fire.
+        if the_person.wants_creampie() and not the_person.has_taboo("condomless_sex"): #TODO: FIgure out we want any more requirements for this to fire.
             if the_person.event_triggers_dict.get("preg_knows", False):
                 the_person "I'm already pregnant, do you want to cum inside me again?"
             elif the_person.on_birth_control:
@@ -1617,7 +1617,7 @@ label reserved_condomless_sex_taboo_break(the_person):
         if the_person.on_birth_control:
             the_person "I am on birth control, so it should be perfectly safe. I do want to know what you feel like raw..."
             $ the_person.update_birth_control_knowledge()
-        elif the_person.get_opinion_score("creampies") > 0:
+        elif the_person.wants_creampie():
             the_person "It would be very naughty if you came inside me though. I'm not on any birth control..."
             $ the_person.update_birth_control_knowledge()
             mc.name "Don't you think we're being naughty already?"
@@ -1634,7 +1634,7 @@ label reserved_condomless_sex_taboo_break(the_person):
         if the_person.on_birth_control:
             the_person "I'm on birth control, so the chances of getting me pregnant are slim, but you should know they still exist."
             $ the_person.update_birth_control_knowledge()
-        elif the_person.get_opinion_score("creampies") > 0:
+        elif the_person.wants_creampie():
             the_person "When you're going to finish you don't have to pull out unless you want to. Okay?"
             mc.name "Are you on the pill?"
             "She shakes her head."

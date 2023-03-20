@@ -2,16 +2,16 @@
 # TODO: Add an on_day check to her role, if she has a broken sex taboo but you haven't completed the quest for it yet start this.
 init -1 python:
     def mom_kissing_taboo_revisit_requirement(the_person):
-        return True
+        return not the_person.has_queued_event("sleeping_walk_in_label")
 
     def mom_oral_taboo_revisit_requirement(the_person):
-        return True
+        return not the_person.has_queued_event("sleeping_walk_in_label")
 
     def mom_anal_taboo_revisit_requirement(the_person):
-        return True
+        return not the_person.has_queued_event("sleeping_walk_in_label")
 
     def mom_vaginal_taboo_revisit_requirement(the_person):
-        return True
+        return not the_person.has_queued_event("sleeping_walk_in_label")
 
     def mom_kissing_quest_1_requirement(the_person):
         if not the_person.event_triggers_dict.get("mom_kissing_quest_active", False):
