@@ -895,10 +895,18 @@ label employee_generate_infraction_label(the_person):
 
 label request_promotion_crisis_label(the_person):
     $ the_person.draw_person()
-    the_person "[the_person.mc_title], can we talk in your office for a second?"
     if mod_installed:
-        $ mc.change_location(ceo_office)
-    "You nod and take her into your office, closing the door behind you. You take a seat and motion for her to do the same."
+        if mc.location != ceo_office:
+            the_person "[the_person.mc_title], can we talk in your office for a second?"
+            $ mc.change_location(ceo_office)
+            "You nod and take her into your office, closing the door behind you. You take a seat and motion for her to do the same."
+        else:
+            the_person "[the_person.mc_title], can we talk for a second?"
+            "You nod and gesture to a chair for her to sit down."
+    else:
+        the_person "[the_person.mc_title], can we talk in your office for a second?"
+        "You nod and take her into your office, closing the door behind you. You take a seat and motion for her to do the same."
+
     $ the_person.draw_person(position = "sitting")
     $ the_person.event_triggers_dict["last_promotion_request"] = day
     #TODO: Make this personality based
