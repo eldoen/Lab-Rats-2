@@ -144,6 +144,7 @@ init -2 python:
                 self.on_day(the_person, the_serum, add_to_log)
 
         def add_research(self, amount):
+            amount = __builtin__.int(__builtin__.round(amount))
             self.current_research += amount
             if self.current_research >= self.research_needed:
                 if self.researched:
