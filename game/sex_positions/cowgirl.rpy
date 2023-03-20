@@ -34,6 +34,13 @@ label intro_cowgirl(the_girl, the_location, the_object):
         "She leans back and grinds herself against you. Underneath her [the_clothing.name] you can feel the lips of her pussy sliding along the length of your shaft."
         $ del the_clothing
     the_girl "Ready?"
+    if not the_girl.outfit.vagina_visible():
+        "She quickly moves her clothing out of the way..."
+        if mod_installed:
+            $ the_girl.strip_to_vagina(position = cowgirl.position_tag, visible_enough = True, prefer_half_off = True)
+        else:
+            $ the_girl.outfit.strip_to_vagina(position = cowgirl.position_tag, visible_enough = True)
+
     if the_girl.sex_skills["Vaginal"] >= 3:
         "You nod. She grinds forward one last time, then lifts herself up and lets your tip fall into place. With one smooth movement she slides you deep into her tight cunt."
     else:
@@ -186,6 +193,13 @@ label outro_cowgirl(the_girl, the_location, the_object):
 label transition_default_cowgirl(the_girl, the_location, the_object):
     $ cowgirl.redraw_scene(the_girl)
     "You lie down on [the_object.name]. [the_girl.title] swings a leg over your waist and straddles you."
+    if not the_girl.outfit.vagina_visible():
+        "She quickly moves her clothing out of the way..."
+        if mod_installed:
+            $ the_girl.strip_to_vagina(position = cowgirl.position_tag, visible_enough = True, prefer_half_off = True)
+        else:
+            $ the_girl.outfit.strip_to_vagina(position = cowgirl.position_tag, visible_enough = True)
+
     if the_girl.sex_skills["Vaginal"] >= 3:
         "She grinds her pussy against your shaft, then lifts herself up and lets your tip fall into place. With one smooth movement she slides you deep into her tight cunt."
     else:
