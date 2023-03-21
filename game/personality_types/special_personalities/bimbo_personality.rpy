@@ -186,7 +186,10 @@ label bimbo_sex_responses_anal(the_person):
 
     elif the_person.arousal_perc < 60:
         if the_person.sluttiness > 50:
-            the_person "Fuck my ass [the_person.mc_title], fuck it raw! Use me!"
+            if mc.condom:
+                the_person "Fuck my ass [the_person.mc_title], fuck it hard and deep! Use me!"
+            else:
+                the_person "Fuck my ass [the_person.mc_title], fuck it raw! Use me!"
         else:
             the_person "Oh, it feels like you're stirring up my insides with your dick! Ah!"
 

@@ -189,8 +189,10 @@ label wild_sex_responses_anal(the_person):
 
     elif the_person.arousal_perc < 80:
         if the_person.sluttiness > 50:
-
-            the_person "Give it to me, fuck my asshole raw!"
+            if mc.condom:
+                the_person "Give it to me, punish that slutty ass with your big cock!"
+            else:
+                the_person "Give it to me, fuck my horny asshole raw!"
         else:
             the_person "Ah! Why does your cock have to be so fucking big?!"
     else:
