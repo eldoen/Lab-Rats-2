@@ -759,7 +759,7 @@ label introvert_condom_bareback_ask(the_person):
             the_person "Just fuck me and cum in me. It's real simple."
         $ the_person.discover_opinion("creampies")
     else:
-        the_person "Forgot the condom, we don't need that thing."
+        the_person "Forget the condom, we don't need that thing."
     return
 
 label introvert_condom_bareback_demand(the_person):
