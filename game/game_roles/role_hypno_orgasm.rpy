@@ -17,7 +17,7 @@ label hypno_trigger_orgasm(the_person, use_intro = True):
     $ the_word = the_person.event_triggers_dict.get("hypno_trigger_word","Cum")
     $ the_word.capitalize()
     mc.name "[the_word]."
-    if the_person.arousal < 25:
+    if the_person.arousal_perc < 50:
         "[the_person.possessive_title] gasps, eyelids fluttering and thighs clamping together."
         "She doesn't say anything as the completely unexpected orgasm shoots through her body."
         $ the_person.run_orgasm(trance_chance_modifier = the_person.get_opinion_score("being submissive")) #ie. positive opinions of being in submissive make her more likely to trance off of this.

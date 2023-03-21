@@ -260,7 +260,7 @@ label fuck_person(the_person, private = True, start_position = None, start_objec
                                 $ position_choice = None
                     if position_choice is not None and not position_locked:
                         if the_person.effective_sluttiness() > position_choice.slut_cap: #She's sluttier than this position, it's only good to warm her up.
-                            if the_person.arousal > position_choice.slut_cap: #Once her arousal is higher than the cap she's completely bored by it.
+                            if the_person.arousal_perc > position_choice.slut_cap: #Once her arousal is higher than the cap she's completely bored by it.
                                 "[the_person.title] wants to spice things up."
                                 if girl_in_charge:
                                     $ position_choice = None
@@ -292,7 +292,7 @@ label fuck_person(the_person, private = True, start_position = None, start_objec
                 $ finished = False
                 $ position_choice = None #She picks the position now, because she has her own list of possibilities
                 $ position_locked = False
-            elif (the_person.arousal > the_person.max_arousal - 30) and (report_log.get("girl orgasms", 0) == 0) and report_log.get("beg finish", 0) == 0 and the_person.energy >= 30: #Within 30 of orgasming and she hasn't cum yet
+            elif (the_person.arousal_perc > 70) and (report_log.get("girl orgasms", 0) == 0) and report_log.get("beg finish", 0) == 0 and the_person.energy >= 30: #Within 30 of orgasming and she hasn't cum yet
                 # They're close to their orgasm and beg you to help them finish.
                 $ the_person.call_dialogue("sex_beg_finish")
                 menu:

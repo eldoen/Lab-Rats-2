@@ -197,7 +197,7 @@ init -2 python:
                     opinion_score += the_person.get_opinion_score(opinion_tag)
 
             if the_person.effective_sluttiness(position_taboo) > final_slut_cap:
-                if opinion_score < 1 and the_person.arousal > final_slut_cap:
+                if opinion_score < 1 and the_person.arousal_perc > final_slut_cap:
                     willingness_string = "{color=#6b6b6b}Boring{/color}" #No sluttiness gain AND half arousal gain
                     tooltip_string = " (tooltip)This position is too boring to interest her when she is this horny. No sluttiness increase and her arousal gain is halved."
                 else:

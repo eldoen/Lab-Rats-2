@@ -616,7 +616,7 @@ label work_spank_opportunity(the_person):
         "Grope her pussy" if the_person.outfit.vagina_available():
             $ mc.change_locked_clarity(15)
             "You reach between [the_person.possessive_title]'s legs and press two fingers up against her pussy."
-            if the_person.arousal > 50:
+            if the_person.arousal_perc > 50:
                 $ mc.change_locked_clarity(20)
                 "You're surprised to find that she's already wet."
 
