@@ -314,7 +314,7 @@ label wild_grope_body_reject(the_person):
         "She doesn't say anything else, but she still seams uncomfortable with the situation."
     return
 
-label wild_sex_accept(the_person):
+label wild_sex_accept(the_person, the_position):
     if the_person.sluttiness > 70:
         if the_person.obedience < 70:
             the_person "Let's do it. Once you've had your fill I have a few ideas we could try out."

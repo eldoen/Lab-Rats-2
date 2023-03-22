@@ -296,14 +296,36 @@ label mom_grope_body_reject(the_person):
         "You nod, and [the_person.possessive_title] seems to relax a little bit."
     return
 
-label mom_sex_accept(the_person):
+label mom_sex_accept(the_person, the_position):
     if the_person.sluttiness > 70:
         if the_person.obedience < 100:
             the_person "This can't be wrong... not if I get so turned on by it, right?"
         else:
-            the_person "Whatever you want me to do [the_person.mc_title]. I just want to make sure you're happy."
+            if the_position.skill_tag == "Foreplay":
+                the_person "Whatever you want me to do [the_person.mc_title]. I just want to make sure you're happy."
+            elif the_position.skill_tag == "Oral":
+                if "getting head" in the_position.opinion_tags:
+                    the_person "Oh yes, come here and take care of mommy."
+                else:
+                    the_person "Come here, let mommy take care of her big boy."
+            else:
+                if mc.business.event_triggers_dict.get("family_threesome", False): # mod only
+                    the_person "Oh yes baby, come here and fuck mommies brains out."
+                else:
+                    the_person "Mmmm, yes baby, should we ask your sister to join us?"
     else:
-        the_person "Okay, lets try it. I just hope this brings us closer together as mother and son."
+        if the_person.love < 40:
+            the_person "Okay, lets try it. I just hope this brings us closer together as mother and son."
+        else:
+            if the_position.skill_tag == "Foreplay":
+                the_person "Okay, lets play a little with each other."
+            elif the_position.skill_tag == "Oral":
+                the_person "Okay, it's just like masturbating, but with our mouths."
+            else:
+                if the_person.has_taboo(["vaginal_sex", "anal_sex"]):
+                    the_person "Oh my, I don't know why I let you talk me into this."
+                else:
+                    the_person "I don't mind giving it another try."
     return
 
 label mom_sex_obedience_accept(the_person):

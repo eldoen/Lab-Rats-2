@@ -320,7 +320,7 @@ label bimbo_grope_body_reject(the_person):
         the_person "Hehe, we'll see..."
     return
 
-label bimbo_sex_accept(the_person):
+label bimbo_sex_accept(the_person, the_position):
     if the_person.sluttiness > 70:
         if the_person.obedience < 70:
             the_person "Oh yeah, that's one of my favorite things to do! Come on, let's do it!"

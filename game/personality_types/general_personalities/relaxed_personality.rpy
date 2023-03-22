@@ -318,7 +318,7 @@ label relaxed_grope_body_reject(the_person):
         "She doesn't say anything more, but she still seems uncomfortable with the situation."
     return
 
-label relaxed_sex_accept(the_person):
+label relaxed_sex_accept(the_person, the_position):
     if the_person.sluttiness > 70:
         if the_person.obedience < 70:
             the_person "I was just about to suggest the same thing."

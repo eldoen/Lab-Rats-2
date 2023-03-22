@@ -315,7 +315,7 @@ label reserved_grope_body_reject(the_person):
         "She seems unconvinced, but decides not to say anything else."
     return
 
-label reserved_sex_accept(the_person):
+label reserved_sex_accept(the_person, the_position):
     if the_person.sluttiness > 70:
         if the_person.obedience < 70:
             the_person "Good, I didn't want to be the one to suggest it but that sounds like fun."

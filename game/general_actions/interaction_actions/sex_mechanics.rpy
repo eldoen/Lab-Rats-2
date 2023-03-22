@@ -448,7 +448,7 @@ label check_position_willingness(the_person, the_position, ignore_taboo = False,
 
     if the_person.effective_sluttiness(the_taboo) >= the_position.slut_requirement:
         if not the_person.has_taboo(the_taboo):
-            $ the_person.call_dialogue("sex_accept")
+            $ the_person.call_dialogue("sex_accept", the_position)
     elif the_person.effective_sluttiness(the_taboo) + (the_person.obedience-100) >= the_position.slut_requirement:
         # She's willing to be commanded to do it. Reduce her happiness by the difference (increase arousal if she likes being submissive)
         "[the_person.possessive_title] doesn't seem enthusiastic, but a little forceful encouragement would probably convince her."

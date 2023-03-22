@@ -289,7 +289,7 @@ label introvert_grope_body_reject(the_person): #TODO: Might be more of a reserve
         "She seems uncomfortable, but doesn't say anything more about it."
     return
 
-label introvert_sex_accept(the_person):
+label introvert_sex_accept(the_person, the_position):
     if the_person.sluttiness > 70:
         if the_person.obedience < 70:
             "[the_person.title] shrugs and nods."
