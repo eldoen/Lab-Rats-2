@@ -320,10 +320,18 @@ label relaxed_grope_body_reject(the_person):
 
 label relaxed_sex_accept(the_person, the_position):
     if the_person.sluttiness > 70:
-        if the_person.obedience < 70:
+        if the_person.obedience < 100:
             the_person "I was just about to suggest the same thing."
         else:
-            the_person "Mmm, you have a dirty mind [the_person.mc_title], I like it."
+            if the_position.skill_tag == "Foreplay":
+                the_person "Mmm, you have a dirty mind [the_person.mc_title], I like it."
+            elif the_position.skill_tag == "Oral":
+                if "getting head" in the_position.opinion_tags:
+                    the_person "Oh yes darling, give that pussy some good licking."
+                else:
+                    the_person "Oh, I just love sucking your cock."
+            else:
+                the_person "I like your thinking, shove that bad boy right in there."
     else:
         the_person "Okay, we can give that a try."
     return

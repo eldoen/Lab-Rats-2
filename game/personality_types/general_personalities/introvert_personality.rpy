@@ -295,7 +295,15 @@ label introvert_sex_accept(the_person, the_position):
             "[the_person.title] shrugs and nods."
             the_person "Sure. Sounds like it could be fun."
         else:
-            "[the_person.possessive_title] smiles and nods."
+            if the_position.skill_tag == "Foreplay":
+                "[the_person.possessive_title] smiles and nods."
+            elif the_position.skill_tag == "Oral":
+                if "getting head" in the_position.opinion_tags:
+                    "[the_person.possessive_title] gives you a nod and spreads her pussy lips."
+                else:
+                    "[the_person.possessive_title] licks her lips and move closer to your hard member."
+            else:
+                "[the_person.possessive_title] smiles and presents herself for your penetration."
     else:
         "[the_person.title] shrugs and looks away nervously."
         if the_person.love < 0:

@@ -319,7 +319,15 @@ label wild_sex_accept(the_person, the_position):
         if the_person.obedience < 70:
             the_person "Let's do it. Once you've had your fill I have a few ideas we could try out."
         else:
-            the_person "I was hoping you would suggest that, just thinking about it gets me excited."
+            if the_position.skill_tag == "Foreplay":
+                the_person "I was hoping you would suggest that, just thinking about it gets me excited."
+            elif the_position.skill_tag == "Oral":
+                if "getting head" in the_position.opinion_tags:
+                    the_person "Oh [the_person.mc_title], get down there and make me cum my brains out."
+                else:
+                    the_person "Come here, I need to suck on the lovely dick right now."
+            else:
+                the_person "Oh yes, [the_person.mc_title], I need you to fuck me hard and deep."
     else:
         the_person "You want to give it a try? Okay, let's try it."
     return

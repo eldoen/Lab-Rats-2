@@ -64,8 +64,8 @@ init -2 python:
             else:
                 self.common_sexy_dislikes = []
 
-        def get_dialogue(self, the_person, type, **extra_args):
-            renpy.call(self.response_dict[type], the_person, **extra_args)
+        def get_dialogue(self, the_person, type, *args, **kwargs):
+            renpy.call(self.response_dict[type], the_person, *args, **kwargs)
             return
 
         def generate_default_opinion(self):
