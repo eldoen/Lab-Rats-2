@@ -309,7 +309,7 @@ label mom_sex_accept(the_person, the_position):
                 else:
                     the_person "Come here, let mommy take care of her big boy."
             else:
-                if mc.business.event_triggers_dict.get("family_threesome", False): # mod only
+                if not mc.business.event_triggers_dict.get("family_threesome", False): # mod only
                     the_person "Oh yes baby, come here and fuck mommies brains out."
                 else:
                     the_person "Mmmm, yes baby, should we ask your sister to join us?"

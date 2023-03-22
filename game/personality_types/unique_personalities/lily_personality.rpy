@@ -460,13 +460,13 @@ label lily_sex_accept(the_person, the_position):
                 else:
                     the_person "Come here, let your little sister take care of you."
             else:
-                if mc.business.event_triggers_dict.get("family_threesome", False): # mod only
+                if not mc.business.event_triggers_dict.get("family_threesome", False): # mod only
                     the_person "Oh yes, brother, please, fuck my brains out."
                 else:
                     the_person "I like it, should we ask mom mom to join us?"
     else:
         if the_person.love < 40:
-            if mc.business.event_triggers_dict.get("family_threesome", False): # mod only
+            if not mc.business.event_triggers_dict.get("family_threesome", False): # mod only
                 the_person "Okay, let's do it, next time we should include Mom, okay?"
             else:
                 the_person "Okay, let's do it. Just make sure Mom never finds out, okay?"
