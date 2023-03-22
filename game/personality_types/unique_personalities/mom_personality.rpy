@@ -58,7 +58,7 @@ label mom_greetings(the_person):
     return
 
 label mom_sex_responses_foreplay(the_person):
-    if the_person.arousal_perc < 20:
+    if the_person.arousal_perc < 45:
         if the_person.sluttiness > 50:
             the_person "You really shouldn't be doing that with your mother..."
             "She sighs happily."
@@ -67,13 +67,13 @@ label mom_sex_responses_foreplay(the_person):
             the_person "Oh [the_person.mc_title], we should stop..."
             "She moans softly despite herself."
             the_person "... just a little more, then we should stop. Okay?"
-    elif the_person.arousal_perc < 40:
+    elif the_person.arousal_perc < 60:
         if the_person.sluttiness > 50:
             the_person "Oh [the_person.mc_title], you're going to get me turned on if you keep doing that..."
         else:
             the_person "Oh my..."
 
-    elif the_person.arousal_perc < 60:
+    elif the_person.arousal_perc < 75:
         if the_person.sluttiness > 50:
             "[the_person.title] lets out a soft, sensual moan."
             the_person "Oh, [the_person.mc_title]!"
@@ -81,7 +81,7 @@ label mom_sex_responses_foreplay(the_person):
             "She takes a deep breath, trying to suppress a moan."
             the_person "Oh my god... Who taught you how to do that?"
 
-    elif the_person.arousal_perc < 80:
+    elif the_person.arousal_perc < 90:
         if the_person.sluttiness > 50:
             the_person "Oh [the_person.mc_title], you know just how to... Ah! Push my buttons!"
         else:
@@ -97,7 +97,7 @@ label mom_sex_responses_foreplay(the_person):
     return
 
 label mom_sex_responses_oral(the_person):
-    if the_person.arousal_perc < 20:
+    if the_person.arousal_perc < 45:
         if the_person.sluttiness > 50:
             "[the_person.possessive_title] quivers underneath your tongue."
             the_person "Be gentle, that's a very sensitive area!"
@@ -105,14 +105,14 @@ label mom_sex_responses_oral(the_person):
             the_person "You really shouldn't [the_person.mc_title]... Maybe we should do something else?"
             "She quivers underneath your tongue, obviously enjoying your stimulation."
             the_person "Maybe just... just a little bit more..."
-    elif the_person.arousal_perc < 40:
+    elif the_person.arousal_perc < 60:
         if the_person.sluttiness > 50:
             the_person "Oh sweetheart, you're too good to me... Ah..."
         else:
             the_person "Oh! I... Ah..."
             "[the_person.title] bites her lower lip and tries to stifle her moans."
 
-    elif the_person.arousal_perc < 60:
+    elif the_person.arousal_perc < 75:
         if the_person.sluttiness > 50:
             the_person "I'm so lucky to have such a... Mmph!... caring son!"
         else:
@@ -120,7 +120,7 @@ label mom_sex_responses_oral(the_person):
             "She struggles not to moan and mutters to herself."
             the_person "This shouldn't feel so good..."
 
-    elif the_person.arousal_perc < 80:
+    elif the_person.arousal_perc < 90:
         if the_person.sluttiness > 50:
             the_person "Ah, right there! Keep... Mmph! Keep doing that [the_person.mc_title], don't stop!"
         else:
@@ -135,19 +135,19 @@ label mom_sex_responses_oral(the_person):
     return
 
 label mom_sex_responses_vaginal(the_person):
-    if the_person.arousal_perc < 20:
+    if the_person.arousal_perc < 45:
         if the_person.sluttiness > 50:
             the_person "Start slowly, okay? I'll be nice and wet for you real soon."
         else:
             the_person "We really shouldn't... This is going too far..."
             "[the_person.possessive_title]'s happy moans as you slide into her betray her real feelings."
-    elif the_person.arousal_perc < 40:
+    elif the_person.arousal_perc < 60:
         if the_person.sluttiness > 50:
             the_person "Mmm... you fit inside me so perfectly [the_person.mc_title]."
         else:
             the_person "Your cock is so big [the_person.mc_title], I don't know if I can take it all..."
 
-    elif the_person.arousal_perc < 60:
+    elif the_person.arousal_perc < 75:
         if the_person.sluttiness > 50:
             the_person "Oh [the_person.mc_title], it's so good..."
             "[the_person.title] closes her eyes and lets out a long, sensual moan."
@@ -155,7 +155,7 @@ label mom_sex_responses_vaginal(the_person):
             the_person "God that feels good. I know it's wrong, but I've missed this so badly..."
             "She moans happily."
 
-    elif the_person.arousal_perc < 80:
+    elif the_person.arousal_perc < 90:
         if the_person.sluttiness > 50:
             the_person "Yes! Oh god yes, fuck me [the_person.mc_title]! I want you to use me!"
         else:
@@ -171,7 +171,7 @@ label mom_sex_responses_vaginal(the_person):
     return
 
 label mom_sex_responses_anal(the_person):
-    if the_person.arousal_perc < 20:
+    if the_person.arousal_perc < 45:
         if the_person.sluttiness > 50:
             the_person "Take it slow, I know I can take your entire cock if you'll be patient."
         else:
@@ -179,20 +179,20 @@ label mom_sex_responses_anal(the_person):
             "She whimpers, stuck somewhere between pain and pleasure."
             the_person "I'll try, but just for you!"
 
-    elif the_person.arousal_perc < 40:
+    elif the_person.arousal_perc < 60:
         if the_person.sluttiness > 50:
             the_person "Your cock feels so big... Come on [the_person.mc_title], fuck mommy's ass!"
         else:
             the_person "Ah, it's so tight! Be gentle, you might break me if you try and put it all in!"
 
-    elif the_person.arousal_perc < 60:
+    elif the_person.arousal_perc < 75:
         if the_person.sluttiness > 50:
             the_person "Ah! Does my ass feel good to fuck [the_person.mc_title]? Do you like how tight it is?"
         else:
             the_person "Oh god... Ah!"
             "She alternates between grunting and moaning as you fuck her."
 
-    elif the_person.arousal_perc < 80:
+    elif the_person.arousal_perc < 90:
         if the_person.sluttiness > 50:
             if the_person.has_taboo("vaginal_sex"):
                 the_person "Fuck me [the_person.mc_title]! You can't have my pussy, but you can use my ass as much as you want!"
@@ -737,20 +737,20 @@ label mom_cum_anal(the_person):
 
 label mom_sex_strip(the_person):
     if the_person.sluttiness < 20:
-        if the_person.arousal < 50:
+        if the_person.arousal_perc < 50:
             the_person "I hope you don't mind if I slip this off..."
         else:
             the_person "I'm just going to take this off for you [the_person.mc_title]..."
 
     elif the_person.sluttiness < 60:
-        if the_person.arousal < 50:
+        if the_person.arousal_perc < 50:
             the_person "We're all family here, right? There's nothing about me you haven't seen before."
         else:
             the_person "Oh [the_person.mc_title], you make me feel so young again!"
             the_person "I shouldn't... I know I shouldn't, but I'm going to take some more off."
 
     else:
-        if the_person.arousal < 50:
+        if the_person.arousal_perc < 50:
             the_person "You're all worked up, I bet you want to see some more of me."
         else:
             the_person "I just can't keep this on any longer! I want to feel you pressed up against me!"
@@ -905,7 +905,7 @@ label mom_date_seduction(the_person):
     return
 
 label mom_sex_take_control (the_person):
-    if the_person.arousal > 60:
+    if the_person.arousal_perc > 60:
         the_person "[the_person.mc_title], you just sit back and let me take care of you. Mommy's going to get what she needs from you..."
     else:
         the_person "Oh [the_person.mc_title], you can't get a women all worked up then just walk away. Here, let me take care of both of us."

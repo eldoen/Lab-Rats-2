@@ -78,7 +78,7 @@ init -2 python:
 
         def find(self, action):
             if isinstance(action, Action):
-                return next((x for x in self._actions if x.effect == action.effect), None)
+                return next((x for x in self._actions if x == action), None)
             return None
 
         def add_action(self, action):

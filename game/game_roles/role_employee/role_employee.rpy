@@ -582,7 +582,10 @@ label employee_performance_review(the_person):
                                     else:
                                         $ the_person.add_situational_slut("seduction_approach", -5 + (-5*the_person.get_opinion_score("being submissive")), "I'm just a toy to him.")
                                     $ the_person.add_situational_obedience("seduction_approach", 10, "I'll do what I need to keep my job!")
-                                    call fuck_person(the_person, start_position = blowjob, start_object = make_floor(), skip_intro = True, position_locked = True, private = True) from _call_fuck_person_105
+                                    if mod_installed:
+                                        call mc_sex_request(the_person, the_request = "blowjob") from _call_mc_sex_request_employee_performance_review
+                                    else:
+                                        call fuck_person(the_person, start_position = blowjob, start_object = make_floor(), skip_intro = True, position_locked = True, private = True) from _call_fuck_person_105
                                     $ the_person.clear_situational_slut("seduction_approach")
                                     $ the_person.clear_situational_obedience("seduction_approach")
 
@@ -706,7 +709,7 @@ label employee_performance_review(the_person):
                                     if mod_installed:
                                         call fuck_person(the_person, private = True, start_position = SB_doggy_standing, start_object = make_desk(), skip_intro = True, skip_condom = True) from _call_fuck_person_mod_only_1
                                     else:
-                                        call fuck_person(the_person, private = True, start_position = SB_doggy_standing, start_object = make_desk(), skip_intro = True, skip_condom = True) from _call_fuck_person_106
+                                        call fuck_person(the_person, private = True, start_position = doggy, start_object = make_desk(), skip_intro = True, skip_condom = True) from _call_fuck_person_106
                                     $ the_person.clear_situational_slut("seduction_approach")
                                     $ the_person.clear_situational_obedience("seduction_approach")
 
@@ -895,10 +898,18 @@ label employee_generate_infraction_label(the_person):
 
 label request_promotion_crisis_label(the_person):
     $ the_person.draw_person()
-    the_person "[the_person.mc_title], can we talk in your office for a second?"
     if mod_installed:
-        $ mc.change_location(ceo_office)
-    "You nod and take her into your office, closing the door behind you. You take a seat and motion for her to do the same."
+        if mc.location != ceo_office:
+            the_person "[the_person.mc_title], can we talk in your office for a second?"
+            $ mc.change_location(ceo_office)
+            "You nod and take her into your office, closing the door behind you. You take a seat and motion for her to do the same."
+        else:
+            the_person "[the_person.mc_title], can we talk for a second?"
+            "You nod and gesture to a chair for her to sit down."
+    else:
+        the_person "[the_person.mc_title], can we talk in your office for a second?"
+        "You nod and take her into your office, closing the door behind you. You take a seat and motion for her to do the same."
+
     $ the_person.draw_person(position = "sitting")
     $ the_person.event_triggers_dict["last_promotion_request"] = day
     #TODO: Make this personality based
@@ -1126,7 +1137,10 @@ label request_promotion_crisis_label(the_person):
                             $ the_person.add_situational_slut("seduction_approach", 5*the_person.get_opinion_score("taking control"), "I'll make him do juuuust what ! want!")
                         elif the_person.get_opinion_score("taking control") < 0:
                             $ the_person.add_situational_slut("seduction_approach", -5 + (-5*the_person.get_opinion_score("taking control")), "I guess I need to do this to convince him...")
-                        call fuck_person(the_person,private = True, start_position = blowjob, start_object = mc.location.get_object_with_name("floor"), skip_intro = True) from _call_fuck_person_140
+                        if mod_installed:
+                            call mc_sex_request(the_person, the_request = "blowjob") from _call_mc_sex_request_request_promotion_crisis
+                        else:
+                            call fuck_person(the_person,private = True, start_position = blowjob, start_object = mc.location.get_object_with_name("floor"), skip_intro = True) from _call_fuck_person_140
                         $ the_person.clear_situational_slut("seduction_approach")
 
                         $ the_person.review_outfit()
@@ -1248,7 +1262,7 @@ label request_promotion_crisis_label(the_person):
                         if mod_installed:
                             call fuck_person(the_person, private = True, start_position = SB_doggy_standing, start_object = make_desk(), skip_intro = True, skip_condom = True) from _call_fuck_person_mod_only_2
                         else:
-                            call fuck_person(the_person, private = True, start_position = SB_doggy_standing, start_object = make_desk(), skip_intro = True, skip_condom = True) from _call_fuck_person_106A
+                            call fuck_person(the_person, private = True, start_position = doggy, start_object = make_desk(), skip_intro = True, skip_condom = True) from _call_fuck_person_106A
 
                         $ the_person.clear_situational_slut("seduction_approach")
                         $ the_person.clear_situational_obedience("seduction_approach")

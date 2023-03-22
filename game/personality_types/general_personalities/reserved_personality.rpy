@@ -61,26 +61,26 @@ label reserved_greetings(the_person):
     return
 
 label reserved_sex_responses_foreplay(the_person):
-    if the_person.arousal_perc < 20:
+    if the_person.arousal_perc < 45:
         if the_person.sluttiness > 50:
             "[the_person.possessive_title] moans softly, then stops herself and laughs."
             the_person "Oh lord, I sound like a horny schoolgirl!"
         else:
             "[the_person.possessive_title] keeps her composure, giving you little feedback to work with."
 
-    elif the_person.arousal_perc < 40:
+    elif the_person.arousal_perc < 60:
         if the_person.sluttiness > 50:
             the_person "Mmm, you know just what I like, don't you?"
         else:
             the_person "Oh my... that feels very good, [the_person.mc_title]!"
 
-    elif the_person.arousal_perc < 60:
+    elif the_person.arousal_perc < 75:
         if the_person.sluttiness > 50:
             "[the_person.title] closes her eyes and lets out a loud, sensual moan."
         else:
             the_person "Keep doing that [the_person.mc_title]... Wow, you're good!"
 
-    elif the_person.arousal_perc < 80:
+    elif the_person.arousal_perc < 90:
         if the_person.sluttiness > 50:
             the_person "Oh gods above that feels amazing!"
         else:
@@ -99,7 +99,7 @@ label reserved_sex_responses_foreplay(the_person):
     return
 
 label reserved_sex_responses_oral(the_person):
-    if the_person.arousal_perc < 20:
+    if the_person.arousal_perc < 45:
         if the_person.sluttiness > 50:
             the_person "Oh.... Oh! Mmm, I could get use to this!"
             "She laughs happily as you eat her out."
@@ -107,7 +107,7 @@ label reserved_sex_responses_oral(the_person):
             "[the_person.possessive_title] twitches and squirms."
             the_person "Sorry, I'm just so sensitive down there... Keep going, it's a good feeling."
 
-    elif the_person.arousal_perc < 40:
+    elif the_person.arousal_perc < 60:
         if the_person.sluttiness > 50:
             the_person "Oh [the_person.mc_title], you're so good to me."
         else:
@@ -115,13 +115,13 @@ label reserved_sex_responses_oral(the_person):
             "She sighs happily."
             the_person "So good!"
 
-    elif the_person.arousal_perc < 60:
+    elif the_person.arousal_perc < 75:
         if the_person.sluttiness > 50:
             the_person "Yes, just like that! Mmm!"
         else:
             the_person "Keep doing that [the_person.mc_title], it's making me feel... very aroused."
 
-    elif the_person.arousal_perc < 80:
+    elif the_person.arousal_perc < 90:
         if the_person.sluttiness > 50:
             the_person "Mmm, you really know how to put that tongue of yours to good use. That feels amazing!"
         else:
@@ -139,25 +139,25 @@ label reserved_sex_responses_oral(the_person):
     return
 
 label reserved_sex_responses_vaginal(the_person):
-    if the_person.arousal_perc < 20:
+    if the_person.arousal_perc < 45:
         if the_person.sluttiness > 50:
             the_person "Fuck me slowly, I want to feel every inch when it slides inside..."
         else:
             the_person "Take me slowly [the_person.mc_title], make the moment last."
 
-    elif the_person.arousal_perc < 40:
+    elif the_person.arousal_perc < 60:
         if the_person.sluttiness > 50:
             the_person "Mmm, I love feeling you inside of me!"
         else:
             the_person "Oh lord, you're so big... Whew!"
 
-    elif the_person.arousal_perc < 60:
+    elif the_person.arousal_perc < 75:
         if the_person.sluttiness > 50:
             "[the_person.title] closes her eyes and lets out a loud, sensual moan."
         else:
             the_person "Oh that feels very good, keep doing that!"
 
-    elif the_person.arousal_perc < 80:
+    elif the_person.arousal_perc < 90:
         if the_person.sluttiness > 50:
             the_person "Yes! Oh god yes, fuck me!"
         else:
@@ -177,26 +177,26 @@ label reserved_sex_responses_vaginal(the_person):
     return
 
 label reserved_sex_responses_anal(the_person):
-    if the_person.arousal_perc < 20:
+    if the_person.arousal_perc < 45:
         if the_person.sluttiness > 50:
             "[the_person.possessive_title] grunts and squirms, but doesn't put up any complaints."
         else:
             the_person "Oh lord, give me strength..."
             "She grunts and squirms as you stretch her ass out."
 
-    elif the_person.arousal_perc < 40:
+    elif the_person.arousal_perc < 60:
         if the_person.sluttiness > 50:
             the_person "Mmm, you feel so big when you're inside me like this."
         else:
             the_person "Be gentle, it feel like you're going to tear me in half!"
 
-    elif the_person.arousal_perc < 60:
+    elif the_person.arousal_perc < 75:
         if the_person.sluttiness > 50:
             the_person "Give it to me, [the_person.mc_title], give me every last inch!"
         else:
             the_person "Oh god! Oww!"
 
-    elif the_person.arousal_perc < 80:
+    elif the_person.arousal_perc < 90:
         if the_person.sluttiness > 50:
             the_person "I hope my ass isn't too tight for you, I don't want you to cum early."
         else:
@@ -1028,19 +1028,19 @@ label reserved_talk_busy(the_person):
 
 label reserved_sex_strip(the_person):
     if the_person.sluttiness < 20:
-        if the_person.arousal < 50:
+        if the_person.arousal_perc < 50:
             the_person "I think I can do away with this for a few minutes..."
         else:
             the_person "Oh, I bet this has been in your way the whole time..."
 
     elif the_person.sluttiness < 60:
-        if the_person.arousal < 50:
+        if the_person.arousal_perc < 50:
             the_person "I think I'm past the point of needing this..."
         else:
             the_person "I don't need this any more, one second!"
 
     else:
-        if the_person.arousal < 50:
+        if the_person.arousal_perc < 50:
             the_person "One moment, I'm wearing entirely too much right now."
         else:
             the_person "I need this off, I want to feel you against more of me!"
@@ -1232,24 +1232,24 @@ label reserved_date_seduction(the_person):
 label reserved_sex_end_early(the_person):
     if the_person.sluttiness > 50:
         if the_person.love > 40:
-            if the_person.arousal > 60:
+            if the_person.arousal_perc > 60:
                 the_person "You're done? You're going to drive me crazy [the_person.mc_title], I'm so horny..."
             else:
                 the_person "All done? I hope you were having a good time."
         else:
-            if the_person.arousal > 60:
+            if the_person.arousal_perc > 60:
                 the_person "That's all? I don't know how you can stop, I'm so horny after that!"
             else:
                 the_person "Is that all? Well, that's disappointing."
 
     else:
         if the_person.love > 40:
-            if the_person.arousal > 60:
+            if the_person.arousal_perc > 60:
                 the_person "You're done? Well, you could have at least thought about me."
             else:
                 the_person "All done? Maybe we can pick this up another time when we're alone."
         else:
-            if the_person.arousal > 60:
+            if the_person.arousal_perc > 60:
                 the_person "I... I don't know what to say, you've worn me out."
             else:
                 the_person "That's all you wanted? I guess we're finished then."
@@ -1257,7 +1257,7 @@ label reserved_sex_end_early(the_person):
 
 
 label reserved_sex_take_control (the_person):
-    if the_person.arousal > 60:
+    if the_person.arousal_perc > 60:
         the_person "I can't let you go [the_person.mc_title], I'm going to finish what you started!"
     else:
         the_person "Do you think you're going somewhere? We're just getting started [the_person.mc_title]."

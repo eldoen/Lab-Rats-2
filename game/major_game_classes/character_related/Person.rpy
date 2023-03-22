@@ -2433,7 +2433,8 @@ init -2 python:
                 self.change_suggest(__builtin__.max(self.suggest_bag or [0]), add_to_log = False) # Add the new max. If we were max, it is now lower, otherwie it cancels out.
 
         def change_happiness(self,amount, add_to_log = True):
-            self.happiness += amount*self.get_trance_multiplier()
+            amount = __builtin__.int(__builtin__.round(amount*self.get_trance_multiplier()))
+            self.happiness += amount
             if self.happiness < 0:
                 self.happiness = 0
 
@@ -2447,7 +2448,8 @@ init -2 python:
                 mc.log_event(display_name + ": " + log_string, "float_text_yellow")
 
         def change_love(self, amount, max_modified_to = None, add_to_log = True):
-            amount = __builtin__.int(amount)
+            amount = __builtin__.int(__builtin__.round(amount))
+
             if max_modified_to is not None and self.love + amount > max_modified_to:
                 amount = max_modified_to - self.love
                 if amount < 0: #Never subtract love because of a cap, only limit how much they gain.
@@ -2472,6 +2474,8 @@ init -2 python:
             return amount
 
         def change_slut(self, amount, max_modified_to = None, add_to_log = True):
+            amount = __builtin__.int(__builtin__.round(amount))
+
             if max_modified_to and self.sluttiness + amount > max_modified_to:
                 amount = max_modified_to - self.sluttiness
                 if amount < 0:
@@ -2660,7 +2664,8 @@ init -2 python:
                 mc.log_event(log_string, "float_text_yellow")
 
         def change_arousal(self,amount, add_to_log = True):
-            self.arousal += __builtin__.int(__builtin__.round(amount)) #Round it to an integer if it isn't one already.
+            amount = __builtin__.int(__builtin__.round(amount))
+            self.arousal += amount
             if self.arousal < 0:
                 self.arousal = 0
 
@@ -2675,6 +2680,7 @@ init -2 python:
             self.arousal = 0
 
         def change_max_arousal(self, amount, add_to_log = True):
+            amount = __builtin__.int(__builtin__.round(amount))
             if amount + self.max_arousal < 20:
                 amount = -(self.max_arousal - 20)
 
@@ -2706,7 +2712,7 @@ init -2 python:
             return amount
 
         def change_energy(self, amount, add_to_log = True):
-            amount = __builtin__.round(amount)
+            amount = __builtin__.int(__builtin__.round(amount))
             if amount + self.energy > self.max_energy:
                 amount = self.max_energy - self.energy
             elif amount + self.energy < 0:
@@ -2723,7 +2729,7 @@ init -2 python:
             return amount
 
         def change_max_energy(self, amount, add_to_log = True):
-            amount = __builtin__.round(amount)
+            amount = __builtin__.int(__builtin__.round(amount))
             if amount + self.max_energy < 0:
                 amount = -self.max_energy
 
@@ -3236,7 +3242,7 @@ init -2 python:
                 report_log["body_cum"] = report_log.get("body_cum", 0) + 1
 
         def change_salary(self, amount, add_to_log = True):
-            amount = __builtin__.round(amount)
+            amount = __builtin__.int(__builtin__.round(amount))
             self.salary += amount
             if self.salary < 0:
                 self.salary = 0

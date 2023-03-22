@@ -52,26 +52,26 @@ label wild_greetings(the_person):
     return
 
 label wild_sex_responses_foreplay(the_person):
-    if the_person.arousal_perc < 20:
+    if the_person.arousal_perc < 45:
         if the_person.sluttiness > 50:
             "[the_person.possessive_title] moans enthusiastically, clearly enjoying herself already."
         else:
             "[the_person.possessive_title] moans happily to herself."
             the_person "That's, uh... That's pretty good."
 
-    elif the_person.arousal_perc < 40:
+    elif the_person.arousal_perc < 60:
         if the_person.sluttiness > 50:
             the_person "Oh fuck, I love the way you touch me!"
         else:
             the_person "Oh... Oh fuck that feels nice!"
 
-    elif the_person.arousal_perc < 60:
+    elif the_person.arousal_perc < 75:
         if the_person.sluttiness > 50:
             the_person "It feels so fucking good when you touch me like that!"
         else:
             the_person "Mmm, keep going [the_person.mc_title]. Just keep going."
 
-    elif the_person.arousal_perc < 80:
+    elif the_person.arousal_perc < 90:
         if the_person.sluttiness > 50:
             the_person "Mmm, touch me all over. I'm your dirty slut and you can do anything you want with me!"
         else:
@@ -89,7 +89,7 @@ label wild_sex_responses_foreplay(the_person):
     return
 
 label wild_sex_responses_oral(the_person):
-    if the_person.arousal_perc < 20:
+    if the_person.arousal_perc < 45:
         if the_person.sluttiness > 50:
             "[the_person.possessive_title] giggles with excitement."
             the_person "Go down on me [the_person.mc_title], you know how I want it..."
@@ -97,19 +97,19 @@ label wild_sex_responses_oral(the_person):
             "[the_person.possessive_title] giggles with excitement."
             the_person "Oh fuck, you're really going to... Oh fuck yes..."
 
-    elif the_person.arousal_perc < 40:
+    elif the_person.arousal_perc < 60:
         if the_person.sluttiness > 50:
             the_person "Mmm, I love getting some good head."
         else:
             the_person "Fuck me that feels real nice."
 
-    elif the_person.arousal_perc < 60:
+    elif the_person.arousal_perc < 75:
         if the_person.sluttiness > 50:
             the_person "Eat me out [the_person.mc_title], your tongue feels amazing!"
         else:
             the_person "That feels so good, you have no idea!"
 
-    elif the_person.arousal_perc < 80:
+    elif the_person.arousal_perc < 90:
         if the_person.sluttiness > 50:
             the_person "Mmm, lick that pussy! Ah!"
         else:
@@ -128,26 +128,26 @@ label wild_sex_responses_oral(the_person):
     return
 
 label wild_sex_responses_vaginal(the_person):
-    if the_person.arousal_perc < 20:
+    if the_person.arousal_perc < 45:
         if the_person.sluttiness > 50:
             "[the_person.possessive_title] moans and wiggles her hips with your cock inside her."
             the_person "How does my pussy feel? I hope I'm tight enough for you."
         else:
             "[the_person.possessive_title] bites her lip and stifles a moan."
 
-    elif the_person.arousal_perc < 40:
+    elif the_person.arousal_perc < 60:
         if the_person.sluttiness > 50:
             the_person "Oh fuck, I never get tired of feeling you inside me!"
         else:
             the_person "Oh... Oh fuck me your cock feels nice..."
 
-    elif the_person.arousal_perc < 60:
+    elif the_person.arousal_perc < 75:
         if the_person.sluttiness > 50:
             the_person "Mmm, you feel so good fucking my pussy!"
         else:
             the_person "Ah, fuck me just like that!"
 
-    elif the_person.arousal_perc < 80:
+    elif the_person.arousal_perc < 90:
         if the_person.sluttiness > 50:
             the_person "That's right, use me like your dirty little slut and fuck my pussy raw!"
         else:
@@ -167,7 +167,7 @@ label wild_sex_responses_vaginal(the_person):
     return
 
 label wild_sex_responses_anal(the_person):
-    if the_person.arousal_perc < 20:
+    if the_person.arousal_perc < 45:
         if the_person.sluttiness > 50:
             the_person "Just go slowly and I should be okay..."
             "She doesn't seem so sure of that."
@@ -175,22 +175,24 @@ label wild_sex_responses_anal(the_person):
             the_person "Hoooooly shit... Deep breaths [the_person.title], deep breaths..."
             "She pants to herself, doing her best to keep control of the situation."
 
-    elif the_person.arousal_perc < 40:
+    elif the_person.arousal_perc < 60:
         if the_person.sluttiness > 50:
             the_person "Oh fuck, I'm never get used to being stretched out like this."
         else:
             the_person "Oh... Oh fuck my ass!"
 
-    elif the_person.arousal_perc < 60:
+    elif the_person.arousal_perc < 75:
         if the_person.sluttiness > 50:
             the_person "Gah! Ah! Fuck!"
         else:
             the_person "God, I won't be able to sit for a week after this..."
 
-    elif the_person.arousal_perc < 80:
+    elif the_person.arousal_perc < 90:
         if the_person.sluttiness > 50:
-
-            the_person "Give it to me, fuck my asshole raw!"
+            if mc.condom:
+                the_person "Give it to me, punish that slutty ass with your big cock!"
+            else:
+                the_person "Give it to me, fuck my horny asshole raw!"
         else:
             the_person "Ah! Why does your cock have to be so fucking big?!"
     else:
@@ -1012,19 +1014,19 @@ label wild_talk_busy(the_person):
 
 label wild_sex_strip(the_person):
     if the_person.sluttiness < 20:
-        if the_person.arousal < 50:
+        if the_person.arousal_perc < 50:
             the_person "One sec, I want to take something off."
         else:
             the_person "Ah, I'm wearing way too much right now. One sec!"
 
     elif the_person.sluttiness < 60:
-        if the_person.arousal < 50:
+        if the_person.arousal_perc < 50:
             the_person "Why do I bother wearing all this?"
         else:
             the_person "Wait, I want to get a little more naked for you."
 
     else:
-        if the_person.arousal < 50:
+        if the_person.arousal_perc < 50:
             the_person "Give me a second, I'm going to strip something off just. For. You."
         else:
             the_person "Ugh let me get this off. I want to feel you pressed against every inch of me!"
@@ -1231,24 +1233,24 @@ label wild_date_seduction(the_person):
 label wild_sex_end_early(the_person):
     if the_person.sluttiness > 50:
         if the_person.love > 40:
-            if the_person.arousal > 60:
+            if the_person.arousal_perc > 60:
                 the_person "You're really done? Fuck [the_person.mc_title], I'm still so horny..."
             else:
                 the_person "That's all you wanted? I was prepared to do so much more to you..."
         else:
-            if the_person.arousal > 60:
+            if the_person.arousal_perc > 60:
                 the_person "Fuck, I'm so horny... you're sure you're finished?"
             else:
                 the_person "That was a little bit of fun, I suppose."
 
     else:
         if the_person.love > 40:
-            if the_person.arousal > 60:
+            if the_person.arousal_perc > 60:
                 the_person "[the_person.mc_title], you got me so turned on..."
             else:
                 the_person "I hope you had a good time."
         else:
-            if the_person.arousal > 60:
+            if the_person.arousal_perc > 60:
                 the_person "Oh god, that was intense..."
             else:
                 the_person "Done? Good, nice and quick."
@@ -1256,7 +1258,7 @@ label wild_sex_end_early(the_person):
 
 
 label wild_sex_take_control (the_person):
-    if the_person.arousal > 60:
+    if the_person.arousal_perc > 60:
         the_person "Oh hell no, you can't just get me wet and then walk away!"
     else:
         the_person "Are you getting bored already? Get back here, we aren't done yet!"

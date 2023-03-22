@@ -60,25 +60,25 @@ label introvert_greetings(the_person):
     return
 
 label introvert_sex_responses_foreplay(the_person):
-    if the_person.arousal_perc < 20:
+    if the_person.arousal_perc < 45:
         if the_person.sluttiness > 50:
             the_person "Mmm..."
         else:
             "[the_person.title] doesn't say much, but you seem to have her full attention."
 
-    elif the_person.arousal_perc < 40:
+    elif the_person.arousal_perc < 60:
         if the_person.sluttiness > 50:
             the_person "That feels nice."
         else:
             "[the_person.title]'s breathing gets louder and heavier."
 
-    elif the_person.arousal_perc < 60:
+    elif the_person.arousal_perc < 75:
         if the_person.sluttiness > 50:
             the_person "That feels really nice... Ah..."
         else:
             "[the_person.possessive_title]'s face flushes with blood as she becomes more and more aroused."
 
-    elif the_person.arousal_perc < 80:
+    elif the_person.arousal_perc < 90:
         if the_person.sluttiness > 50:
             the_person "I feel so nice when you touch me like this..."
         else:
@@ -92,25 +92,25 @@ label introvert_sex_responses_foreplay(the_person):
     return
 
 label introvert_sex_responses_oral(the_person):
-    if the_person.arousal_perc < 20:
+    if the_person.arousal_perc < 45:
         if the_person.sluttiness > 50:
             the_person "Oh lord..."
         else:
             "[the_person.title] doesn't say anything, but she holds her breath in anticipation."
 
-    elif the_person.arousal_perc < 40:
+    elif the_person.arousal_perc < 60:
         if the_person.sluttiness > 50:
             the_person "Your tongue feels so good..."
         else:
             "[the_person.title]'s breathing gets louder and heavier."
 
-    elif the_person.arousal_perc < 60:
+    elif the_person.arousal_perc < 75:
         if the_person.sluttiness > 50:
             the_person "That's it... that's what I want."
         else:
             "[the_person.possessive_title]'s face flushes with blood as you eat her out."
 
-    elif the_person.arousal_perc < 80:
+    elif the_person.arousal_perc < 90:
         if the_person.sluttiness > 50:
             the_person "Oh, my pussy... It feels so good!"
         else:
@@ -123,25 +123,25 @@ label introvert_sex_responses_oral(the_person):
     return
 
 label introvert_sex_responses_vaginal(the_person):
-    if the_person.arousal_perc < 20:
+    if the_person.arousal_perc < 45:
         if the_person.sluttiness > 50:
             "[the_person.possessive_title] sighs happily with your dick inside of her."
         else:
             the_person "Oh, I didn't know it would feel like this..."
 
-    elif the_person.arousal_perc < 40:
+    elif the_person.arousal_perc < 60:
         if the_person.sluttiness > 50:
             the_person "Your dick feels nice."
         else:
             "[the_person.title]'s breathing gets louder and heavier as you fuck her."
 
-    elif the_person.arousal_perc < 60:
+    elif the_person.arousal_perc < 75:
         if the_person.sluttiness > 50:
             the_person "You feel so big and warm..."
         else:
             "[the_person.possessive_title]'s face flushes with blood as she becomes more and more aroused."
 
-    elif the_person.arousal_perc < 80:
+    elif the_person.arousal_perc < 90:
         if the_person.sluttiness > 50:
             the_person "Mmm, my pussy feels so good with your dick inside!"
         else:
@@ -155,24 +155,24 @@ label introvert_sex_responses_vaginal(the_person):
     return
 
 label introvert_sex_responses_anal(the_person):
-    if the_person.arousal_perc < 20:
+    if the_person.arousal_perc < 45:
         if the_person.sluttiness > 50:
             "[the_person.possessive_title] takes a deep breath and holds it as you stretch her out."
         else:
             the_person "Oh... Oh! Are we sure it's really going to fit?"
-    elif the_person.arousal_perc < 40:
+    elif the_person.arousal_perc < 60:
         if the_person.sluttiness > 50:
             the_person "Gah!"
         else:
             "[the_person.title]'s breathing gets louder and heavier."
 
-    elif the_person.arousal_perc < 60:
+    elif the_person.arousal_perc < 75:
         if the_person.sluttiness > 50:
             the_person "Ah... I'm so stretched out..."
         else:
             "[the_person.possessive_title]'s face flushes with blood as she struggles to take your cock."
 
-    elif the_person.arousal_perc < 80:
+    elif the_person.arousal_perc < 90:
         if the_person.sluttiness > 50:
             the_person "Mmm. Fuck."
         else:
@@ -759,7 +759,7 @@ label introvert_condom_bareback_ask(the_person):
             the_person "Just fuck me and cum in me. It's real simple."
         $ the_person.discover_opinion("creampies")
     else:
-        the_person "Forgot the condom, we don't need that thing."
+        the_person "Forget the condom, we don't need that thing."
     return
 
 label introvert_condom_bareback_demand(the_person):
@@ -966,13 +966,13 @@ label introvert_talk_busy(the_person):
 
 label introvert_sex_strip(the_person):
     if the_person.sluttiness < 20:
-        if the_person.arousal < 50:
+        if the_person.arousal_perc < 50:
             the_person "Don't stare at me, okay?"
         else:
             the_person "Ah... Don't look, okay?"
 
     elif the_person.sluttiness < 50:
-        if the_person.arousal < 50:
+        if the_person.arousal_perc < 50:
             the_person "Look away for a second..."
 
     #If she's slutty she just does it without talking
@@ -1162,24 +1162,24 @@ label introvert_date_seduction(the_person):
 label introvert_sex_end_early(the_person):
     if the_person.sluttiness > 50:
         if the_person.love > 40:
-            if the_person.arousal > 60:
+            if the_person.arousal_perc > 60:
                 the_person "You're done? I was hoping you'd at least help me cum."
             else:
                 the_person "All done? I thought this was going somewhere."
         else:
-            if the_person.arousal > 60:
+            if the_person.arousal_perc > 60:
                 the_person "Fuck, I was hoping you'd make me cum."
             else:
                 "[the_person.title] stays silent but seems disappointed that you're finishing up early."
 
     else:
         if the_person.love > 40:
-            if the_person.arousal > 60:
+            if the_person.arousal_perc > 60:
                 the_person "Done? I hope it wasn't something I did, I was having a really good time..."
             else:
                 the_person "Done? I hope it wasn't something I did wrong."
         else:
-            if the_person.arousal > 60:
+            if the_person.arousal_perc > 60:
                 "[the_person.title] stays silent, but her cheeks are flush and her breathing is heavier than normal."
             else:
                 "[the_person.title] stays silent but seems glad that you're finishing up early."
@@ -1187,7 +1187,7 @@ label introvert_sex_end_early(the_person):
 
 
 label introvert_sex_take_control (the_person):
-    if the_person.arousal > 60:
+    if the_person.arousal_perc > 60:
         "[the_person.title] grabs your arm and moans aggressively."
         the_person "No, I'm not done yet!"
     else:

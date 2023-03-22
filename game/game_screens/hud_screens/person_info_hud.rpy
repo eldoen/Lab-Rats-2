@@ -6,15 +6,15 @@ screen person_info_ui(the_person): #Used to display stats for a person while you
         positive_effects = ""
         negative_effects = ""
 
-        if the_person.arousal >= 20:
+        if the_person.arousal_perc >= 20:
             positive_effects += get_coloured_arrow(1)+get_red_heart(int(the_person.arousal/4)) + " - "
             if the_person.arousal >= the_person.max_arousal:
                 positive_effects += "I'm CUMMING! More! MORE!"
-            elif the_person.arousal >= 80:
+            elif the_person.arousal_perc >= 80:
                 positive_effects += "I'm so CLOSE! I'll do anything if it means I get to CUM!"
-            elif the_person.arousal >= 60:
+            elif the_person.arousal_perc >= 60:
                 positive_effects += "I'm so horny, I need some release!"
-            elif the_person.arousal > 40:
+            elif the_person.arousal_perc > 40:
                 positive_effects += "I'm really turned on! I feel like my head is spinning!"
             else:
                 positive_effects += "I'm getting worked up, and my body knows what it wants..."

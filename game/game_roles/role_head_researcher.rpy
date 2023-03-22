@@ -319,7 +319,7 @@ label advanced_serum_stage_1_label(the_person):
     the_person "Well, I've seen a few papers floating around that make it seem like other groups are working with the same basic techniques as us."
     the_person "I'd like to reach out to them and see about securing a prototype of some sort, to see if we can learn anything from its effects."
     the_person "These academic types can get very defensive about their research, so I don't think we'll get anything for free."
-    if the_person.has_role(steph_role) and not mc.business.event_triggers_dict.get("intro_nora", False):
+    if the_person.has_role(steph_role) and not (mc.business.event_triggers_dict.get("intro_nora", False) or mc.business.event_triggers_dict.get("nora_trait_researched", False)):
         the_person "I suppose there's one person we could ask..."
         mc.name "Do you mean [nora.title]?"
         "[the_person.title] nods."
@@ -336,7 +336,7 @@ label advanced_serum_stage_1_label(the_person):
         "Try and secure a prototype serum\n{color=#ff0000}{size=18}Costs: $2000{/size}{/color} (disabled)" if not mc.business.has_funds(2000):
             pass
 
-        "Contact Nora" if the_person.has_role(steph_role) and not mc.business.event_triggers_dict.get("intro_nora", False) and mc.business.event_triggers_dict.get("nora_trait_researched",None) is None:
+        "Contact Nora" if the_person.has_role(steph_role) and not (mc.business.event_triggers_dict.get("intro_nora", False) or mc.business.event_triggers_dict.get("nora_trait_researched", False)):
             $ mc.business.event_triggers_dict["intro_nora"] = True
             mc.name "I think [nora.title] is the right choice."
             the_person "I'll call and see when she's available. Come back and talk to me when you want to go visit her."

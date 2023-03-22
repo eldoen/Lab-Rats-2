@@ -123,19 +123,19 @@ label stephanie_improved_serum_unlock(the_person):
 
 label stephanie_sex_strip(the_person):
     if the_person.sluttiness < 20:
-        if the_person.arousal < 50:
+        if the_person.arousal_perc < 50:
             the_person "Ugh I've started to dress like [nora.title]. Let me take some of this off."
         else:
             the_person "Is it getting warm in here? I need to take something off."
 
     elif the_person.sluttiness < 60:
-        if the_person.arousal < 50:
+        if the_person.arousal_perc < 50:
             the_person "You saw more of me back at the lab, I think I can lose a little more clothing, don't you?"
         else:
             the_person "One second, let me take some of this off for you. Feel free to watch."
 
     else:
-        if the_person.arousal < 50:
+        if the_person.arousal_perc < 50:
             the_person "Ugh, fuck this stupid outfit. I hope you don't mind if I take it off."
         else:
             the_person "Wait, I need to take this off, I want to feel you against me."
