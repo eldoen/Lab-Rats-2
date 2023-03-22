@@ -490,7 +490,10 @@ label mom_onlyfans_help(the_person):
                             the_person "Do you like that? You just let me take care of this big, hard cock for you."
                             mc.name "Thanks [the_person.title], that feels amazing."
                             "You try to focus on keeping her centered in the video, but her soft hands are making it very hard to concentrate."
-                            call fuck_person(the_person, private = True, start_position = handjob, skip_intro = True, girl_in_charge = True) from _call_fuck_person_134
+                            if mod_installed:
+                                call get_fucked(the_person, the_goal="get mc off", start_position = handjob, allow_continue = False) from _call_get_fucked_mom_only_fans_help
+                            else:
+                                call fuck_person(the_person, private = True, start_position = handjob, skip_intro = True, girl_in_charge = True) from _call_fuck_person_134
 
 
                         "Tell her to suck it" if the_person.effective_sluttiness() >= blowjob_requirement:
@@ -504,7 +507,10 @@ label mom_onlyfans_help(the_person):
                             "She slides off the bed and onto her knees in front of you. With one hand holding your shaft steady she starts to slip your cock into her mouth."
                             mc.name "Fuck that's good. Don't forget to look up at the camera."
                             "[the_person.title] does her best, tilting her head up to try and maintain eye contact with the audience while she sucks on your dick."
-                            call fuck_person(the_person, private = True, start_position = blowjob, skip_intro = True, girl_in_charge = True) from _call_fuck_person_135
+                            if mod_installed:
+                                call mc_sex_request(the_person, the_request = "blowjob") from _call_mc_sex_request_mom_onlyfans_help
+                            else:
+                                call fuck_person(the_person, private = True, start_position = blowjob, skip_intro = True, girl_in_charge = True) from _call_fuck_person_135
 
                         "Tell her to suck it\n{color=#ff0000}{size=18}Requires: [blowjob_token]{/size}{/color} (disabled)" if the_person.effective_sluttiness() < blowjob_requirement:
                             pass
@@ -526,7 +532,7 @@ label mom_onlyfans_help(the_person):
                                 "You grab her ass and pull it to the side, giving the camera a view of her pussy lips spreading open as you push into her."
                                 the_person "Oooooh."
                                 "She lowers her head into a pillow and moans as you slide home."
-                                call fuck_person(the_person, private = True, start_position = doggy, start_object = mc.location.get_object_with_name("bed")) from _call_fuck_person_137
+                                call fuck_person(the_person, private = True, start_position = doggy, start_object = mc.location.get_object_with_name("bed"), skip_intro = True, skip_condom = True) from _call_fuck_person_137
 
                         "Fuck her\n{color=#ff0000}{size=18}Requires: [sex_token]{/size}{/color} (disabled)" if the_person.effective_sluttiness() < sex_requirement:
                             pass
