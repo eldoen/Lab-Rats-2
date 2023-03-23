@@ -324,7 +324,7 @@ init -2 python:
 
             if self.pattern is not None:
                 colour_pattern_matrix = im.matrix.tint(self.colour_pattern[0], self.colour_pattern[1], self.colour_pattern[2]) * im.matrix.tint(*lighting)
-                pattern_alpha_matrix = im.matrix.opacity(self.colour_pattern[3] * self.colour[3]) #The opacity of the pattern is relative to the opacity of the entire piece of clothing.
+                pattern_alpha_matrix = im.matrix.opacity(self.colour_pattern[3]) #The opacity of the pattern is independant from the rest of the clothing.
                 shader_pattern_image = im.MatrixColor(greyscale_image, pattern_alpha_matrix * colour_pattern_matrix)
 
                 mask_red_alpha_invert = im.MatrixColor(mask_image, [0,0,0,1,0, 0,0,0,0,0, 0,0,0,0,0, 0,0,0,0,1]) #Inverts the pattern colour so the shader applies properly.
