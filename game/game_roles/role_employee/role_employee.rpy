@@ -1339,6 +1339,7 @@ label promotion_post_sex_convince(the_person):
     #TODO; Option to A) Accept and promote her (lead to promotion_after_convince), B) Tell her you'll consider it (she's pissed you fucked around with her and didn't follow through), C) Write her up for an inappropriate behaviour infraction (very pissed).
 
     #TODO: All of this. lead in is just finishing have sex with the girl (blowjob, handjob, strip, or full blown sex)
+    $ the_person.draw_person()
     the_person "Now that that's taken care of..."
     "[the_person.title] look at you expectantly."
     menu:

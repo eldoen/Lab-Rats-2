@@ -2019,8 +2019,8 @@ init -2 python:
             else:
                 return "default"
 
-        def call_dialogue(self, type, **extra_args): #Passes the parameter along to the persons personality and gets the correct dialogue for the event if it exists in the dict.
-            self.personality.get_dialogue(self, type, **extra_args)
+        def call_dialogue(self, type, *args, **kwargs): #Passes the parameter along to the persons personality and gets the correct dialogue for the event if it exists in the dict.
+            self.personality.get_dialogue(self, type, *args, **kwargs)
 
         def get_known_opinion_score(self, topic):
             the_topic = self.get_opinion_topic(topic)

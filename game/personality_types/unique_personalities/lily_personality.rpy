@@ -447,14 +447,42 @@ label lily_grope_body_reject(the_person):
         mc.name "Sorry, don't worry about it [the_person.title]."
     return
 
-label lily_sex_accept(the_person):
+label lily_sex_accept(the_person, the_position):
     if the_person.sluttiness > 70:
         if the_person.obedience < 100:
             the_person "You're definitely my brother, I was thinking the same thing."
         else:
-            the_person "You want to do that with your little sister [the_person.mc_title]? Well, you're lucky I'm just as perverted."
+            if the_position.skill_tag == "Foreplay":
+                the_person "You want to do that with your little sister [the_person.mc_title]? Well, you're lucky I'm just as perverted."
+            elif the_position.skill_tag == "Oral":
+                if "getting head" in the_position.opinion_tags:
+                    the_person "Oh, come here and give your little sister some pleasure."
+                else:
+                    the_person "Come here, let your little sister take care of you."
+            else:
+                if not mc.business.event_triggers_dict.get("family_threesome", False): # mod only
+                    the_person "Oh yes, brother, please, fuck my brains out."
+                else:
+                    the_person "I like it, should we ask mom mom to join us?"
     else:
-        the_person "Okay, let's do it. Just make sure Mom never finds out, okay?"
+        if the_person.love < 40:
+            if not mc.business.event_triggers_dict.get("family_threesome", False): # mod only
+                the_person "Okay, let's do it, next time we should include Mom, okay?"
+            else:
+                the_person "Okay, let's do it. Just make sure Mom never finds out, okay?"
+        else:
+            if the_position.skill_tag == "Foreplay":
+                the_person "Okay, lets play a little with each other."
+            elif the_position.skill_tag == "Oral":
+                if "getting head" in the_position.opinion_tags:
+                    the_person "Okay, brother show me what you can do with your tongue."
+                else:
+                    the_person "Okay, let me show you what your little sister can do with her mouth."
+            else:
+                if the_person.has_taboo(["vaginal_sex", "anal_sex"]):
+                    the_person "Oh, right, well...okay, you can fuck your sister, but only this time."
+                else:
+                    the_person "I don't mind fucking with my big brother."
     return
 
 label lily_sex_obedience_accept(the_person):

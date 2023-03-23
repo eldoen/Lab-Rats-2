@@ -315,12 +315,20 @@ label reserved_grope_body_reject(the_person):
         "She seems unconvinced, but decides not to say anything else."
     return
 
-label reserved_sex_accept(the_person):
+label reserved_sex_accept(the_person, the_position):
     if the_person.sluttiness > 70:
         if the_person.obedience < 70:
             the_person "Good, I didn't want to be the one to suggest it but that sounds like fun."
         else:
-            the_person "Mmm, you think we should give that a try? I'm feeling adventurous today, lets go."
+            if the_position.skill_tag == "Foreplay":
+                the_person "Mmm, you think we should give that a try? I'm feeling adventurous today, lets go."
+            elif the_position.skill_tag == "Oral":
+                if "getting head" in the_position.opinion_tags:
+                    the_person "I like that idea, get down there and show me what you can do."
+                else:
+                    the_person "Okay, I don't mind sucking it for a while."
+            else:
+                the_person "I think I want you to shove that throbbing monster into me."
     else:
         the_person "Oh, I know I shouldn't [the_person.mc_title]... but I think you've managed to convince me."
     return

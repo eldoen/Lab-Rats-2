@@ -99,8 +99,12 @@ init -2 python:
                 contract_description = "A C-suite executive of a nearby business has a secretary they want to turn into a, quote, \"Cock drunk bimbo-slut\", and they're willing to pay good money for a large stock of serum to make it happen."
 
             elif secondary_aspect == "physical":
-                contract_name = strip_club.name
-                contract_description = strip_club_owner + " is interested in anything that will give his girls more sex appeal while they're stripping on stage. Bigger tits, toned bodies, whatever you think they need to get more twenties on the stage."
+                if mod_installed and mc.business.event_triggers_dict.get("foreclosed_stage", 0) != 0:
+                    contract_name = "Luxury Escorts"
+                    contract_description = "A local escort service is interested in anything that will give their girls more sex appeal and endurance. Bigger tits, toned bodies, whatever you think they need to boost profits."
+                else:
+                    contract_name = strip_club.name
+                    contract_description = strip_club_owner + " is interested in anything that will give his girls more sex appeal while they're stripping on stage. Bigger tits, toned bodies, whatever you think they need to get more twenties on the stage."
 
             elif secondary_aspect == "medical":
                 contract_name = "A Questionable Contact"

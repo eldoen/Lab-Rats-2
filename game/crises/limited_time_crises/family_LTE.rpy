@@ -79,6 +79,8 @@ init -1 python:
             return False
         elif time_of_day <= 1 or time_of_day >= 4:
             return False
+        elif the_person.location in [kitchen, mom_bedroom, lily_bedroom, hall, home_bathroom, bedroom]:
+            return False
         elif the_person.event_triggers_dict.get("mom_office_slutty_level",0) < 1:
             return False
         return True
