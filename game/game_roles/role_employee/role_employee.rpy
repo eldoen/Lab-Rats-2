@@ -472,7 +472,7 @@ label employee_performance_review(the_person):
                                     $ the_person.apply_outfit()
                                     $ the_person.draw_person()
 
-                                "Make her jerk you off" if the_person.effective_sluttiness() >= 30:
+                                "Make her jerk you off" if (the_person.effective_sluttiness() >= 30 if not mod_installed else the_person.is_willing(handjob)):
                                     "You nod thoughtfully, then roll your office chair back away from your desk."
                                     mc.name "Alright then, I'll make you a deal."
                                     the_person "Thank you [the_person.mc_title]! What do I need to do?"
@@ -539,10 +539,10 @@ label employee_performance_review(the_person):
                                     $ the_person.review_outfit()
                                     $ the_person.draw_person()
 
-                                "Make her jerk you off\n{size=16}{color=#FF0000}Requires: 30 sluttiness{/color}{/size} (disabled)" if the_person.effective_sluttiness() < 30:
+                                "Make her jerk you off\n{size=16}{color=#FF0000}Requires: handjob available{/color}{/size} (disabled)" if not (the_person.effective_sluttiness() >= 30 if not mod_installed else the_person.is_willing(handjob)):
                                     pass
 
-                                "Make her blow you" if the_person.effective_sluttiness() >= 45:
+                                "Make her blow you" if (the_person.effective_sluttiness() >= 45 if not mod_installed else the_person.is_willing(blowjob)):
                                     "You nod thoughtfully, then roll your office chair back away from your desk."
                                     mc.name "Alright then, I'll make you a deal."
                                     the_person "Thank you [the_person.mc_title]! What do I need to do?"
@@ -601,10 +601,10 @@ label employee_performance_review(the_person):
                                         the_person "Would that really be such a bad thing?"
 
 
-                                "Make her blow you\n{size=16}{color=#FF0000}Requires: 45 Sluttiness{/color}{/size} (disabled)" if the_person.effective_sluttiness() < 45:
+                                "Make her blow you\n{size=16}{color=#FF0000}Requires: blowjob available{/color}{/size} (disabled)" if not (the_person.effective_sluttiness() >= 45 if not mod_installed else the_person.is_willing(blowjob)):
                                     pass
 
-                                "Fuck her"  if the_person.effective_sluttiness() >= 60:
+                                "Fuck her" if (the_person.effective_sluttiness() >= 60 if not mod_installed else the_person.is_willing(SB_doggy_standing)):
                                     mc.name "Is that so? Alright, first things first then. Get naked."
                                     "[the_person.possessive_title] doesn't seem to have any problem with the command."
                                     $ remove_shoes = False
@@ -725,7 +725,7 @@ label employee_performance_review(the_person):
                                         the_person "Would that really be such a bad thing?"
 
 
-                                "Fuck her\n{size=16}{color=#FF0000}Requires: 60 Sluttiness{/color}{/size} (disabled)" if the_person.effective_sluttiness() < 60:
+                                "Fuck her\n{size=16}{color=#FF0000}Requires: sex available{/color}{/size} (disabled)" if not (the_person.effective_sluttiness() >= 60 if not mod_installed else the_person.is_willing(SB_doggy_standing)):
                                     pass
 
                                 "Fire her":
@@ -943,9 +943,6 @@ label request_promotion_crisis_label(the_person):
                 if the_person.has_large_tits():
                     "The pose accentuates her large breasts, threatening to pull your attention away from the conversation."
                 the_person "Isn't there... some way I could show you how dedicated I really am? Something just between the two of us?"
-                $ jerk_token = get_red_heart(30)
-                $ blowjob_token = get_red_heart(45)
-                $ fuck_token = get_red_heart(60)
                 menu:
                     "Make her strip":
                         "You sit forward. She has your attention."
@@ -1027,7 +1024,7 @@ label request_promotion_crisis_label(the_person):
                             $ the_person.draw_person(position = "walking_away")
                             "[the_person.possessive_title] gets dressed and storms out of your office without another word."
 
-                    "Make her jerk you off" if the_person.effective_sluttiness() >= 30:
+                    "Make her jerk you off" if (the_person.effective_sluttiness() >= 30 if not mod_installed else the_person.is_willing(handjob)):
                         "You nod thoughtfully, then roll your office chair back away from your desk."
                         mc.name "Alright then, I'll make you a deal."
                         "You unzip your pants and pull out your half-hard cock."
@@ -1098,10 +1095,10 @@ label request_promotion_crisis_label(the_person):
                             $ the_person.draw_person(position = "walking_away")
                             "[the_person.possessive_title] storms out of your office without another word."
 
-                    "Make her jerk you off\n{color=#ff0000}{size=18}Requires: [jerk_token]{/size}{/color} (disabled)" if the_person.effective_sluttiness() < 30:
+                    "Make her jerk you off\n{color=#ff0000}{size=18}Requires: handjob available (disabled)" if not (the_person.effective_sluttiness() >= 30 if not mod_installed else the_person.is_willing(handjob)):
                         pass
 
-                    "Make her blow you" if the_person.effective_sluttiness() >= 45:
+                    "Make her blow you" if (the_person.effective_sluttiness() >= 45 if not mod_installed else the_person.is_willing(blowjob)):
                         "You nod thoughtfully, then roll your office chair back away from your desk."
                         mc.name "Alright then, I'll make you a deal."
                         the_person "I knew you could be convinced..."
@@ -1153,10 +1150,10 @@ label request_promotion_crisis_label(the_person):
                             "[the_person.possessive_title] storms out of your office without another word."
 
 
-                    "Make her blow you\n{color=#ff0000}{size=18}Requires: [blowjob_token]{/size}{/color} (disabled)" if the_person.effective_sluttiness() < 45:
+                    "Make her blow you\n{color=#ff0000}{size=18}Requires: blowjob availabe (disabled)" if not (the_person.effective_sluttiness() >= 45 if not mod_installed else the_person.is_willing(blowjob)):
                         pass
 
-                    "Fuck her"  if the_person.effective_sluttiness() >= 60:
+                    "Fuck her" if (the_person.effective_sluttiness() >= 60 if not mod_installed else the_person.is_willing(SB_doggy_standing)):
                         mc.name "Alright then, let's see how committed to this you really are."
                         "She smiles, happy to have you change your mind."
                         mc.name "First things first then. Get naked."
@@ -1275,7 +1272,7 @@ label request_promotion_crisis_label(the_person):
                             $ the_person.draw_person(position = "walking_away")
                             "[the_person.possessive_title] storms out of your office without another word."
 
-                    "Fuck her\n{color=#ff0000}{size=18}Requires: [fuck_token]{/size}{/color} (disabled)" if the_person.effective_sluttiness() < 60:
+                    "Fuck her\n{color=#ff0000}{size=18}Requires: sex available (disabled)" if not (the_person.effective_sluttiness() >= 60 if not mod_installed else the_person.is_willing(SB_doggy_standing)):
                         pass
 
                     "Turn her down":
