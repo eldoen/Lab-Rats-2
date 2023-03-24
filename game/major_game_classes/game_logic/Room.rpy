@@ -38,7 +38,7 @@ init -2 python:
 
             self.actions = ActionList(actions)
 
-            self.on_room_enter_event_list = [] #A list of Actions that are triggered when you enter a location. People events take priority.
+            self.on_room_enter_event_list = ActionList() #A list of Actions that are triggered when you enter a location. People events take priority.
 
             self.public = public #If True, random people can wander here.
 
