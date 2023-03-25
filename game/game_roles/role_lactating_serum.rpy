@@ -49,7 +49,7 @@ label milk_for_serum_label(the_person):
         "[the_person.possessive_title] cocks an eyebrow, but waits for you to continue."
         mc.name "It's hard to explain, but my research right now has a need for natural breast milk."
         mc.name "You're lactating, right?"
-        if the_person.event_triggers_dict.get("preg_knows", False):
+        if the_person.knows_pregnant():
             if the_person.effective_sluttiness() + 10* the_person.get_opinion_score("showing her tits") > 40 and the_person.has_large_tits():
                 "[the_person.title] jiggles her tits and laughs."
                 the_person "They don't call them \"big mommy milkers\" for nothing!"

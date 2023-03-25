@@ -120,7 +120,7 @@ label sister_girlfriend_intro(the_person):
         "Think of the baby!" if the_person.event_triggers_dict.get("preg_your_kids_known",0) > 0 and persistent.pregnancy_pref > 0:
             $ convinced = True
             mc.name "Most sisters don't end up knocked up with their brothers baby."
-            if the_person.event_triggers_dict.get("preg_knows", False): #She's pregnant right now
+            if the_person.knows_pregnant():
                 "You put a hand on her stomach and look deeply into her eyes."
                 mc.name "Think about the baby [the_person.title]. Don't you want me by your side for this?"
                 "She places her hands over yours and sighs happily."

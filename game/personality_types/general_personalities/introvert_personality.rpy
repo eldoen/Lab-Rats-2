@@ -764,7 +764,7 @@ label introvert_condom_bareback_ask(the_person):
             $ the_person.update_birth_control_knowledge()
         else:
             the_person "Forget the condom [the_person.mc_title], I don't want that thing in the way."
-            the_person "Just fuck me and cum in me. It's real simple."
+            the_person "Just fuck me and cum in me. It's really simple."
         $ the_person.discover_opinion("creampies")
     else:
         the_person "Forget the condom, we don't need that thing."
@@ -774,7 +774,10 @@ label introvert_condom_bareback_demand(the_person):
     if the_person.has_role(breeder_role): #Actively looking to get knocked up.
         "[the_person.possessive_title] shakes her head in distress."
         the_person "No, no, you don't need that!"
-        the_person "Come on, I want you to get me pregnant already!"
+        if the_person.knows_pregnant():
+            the_person "Come on, I want you to fuck me already!"
+        else:
+            the_person "Come on, I want you to get me pregnant already!"
 
     elif the_person.wants_creampie(): #Just likes raw sex
         if the_person.on_birth_control:
@@ -783,14 +786,20 @@ label introvert_condom_bareback_demand(the_person):
             $ the_person.update_birth_control_knowledge()
         else:
             the_person "Screw that, I want to feel you raw [the_person.mc_title]!"
-            the_person "If you're fucking me you're going to do it raw. Pull out if you're really worried about getting me pregnant."
+            if the_person.knows_pregnant():
+                the_person "If you're fucking me you're going to do it raw. And don't think of pulling out, I want to feel it."
+            else:
+                the_person "If you're fucking me you're going to do it raw. Pull out if you're really worried about getting me pregnant."
     else:
         if the_person.on_birth_control:
             the_person "I'm on the pill, so you can take me bareback. Throw that condom away."
             $ the_person.update_birth_control_knowledge()
         else:
             the_person "Don't bother [the_person.mc_title], I want you to take me bareback today."
-            the_person "If you really care just pull out when you cum. Now hurry up!"
+            if the_person.knows_pregnant():
+                the_person "Now hurry up! And give me what I need."
+            else:
+                the_person "If you really care just pull out when you cum. Now hurry up!"
     return
 
 label introvert_cum_face(the_person):
@@ -824,7 +833,7 @@ label introvert_cum_pullout(the_person):
     if mc.condom:
         #TODO: We might want to split the ask section off into a different dialogue option
         if the_person.wants_creampie() and the_person.get_opinion_score("creampies") > 0 and not the_person.has_taboo("condomless_sex"): #TODO: FIgure out we want any more requirements for this to fire.
-            if the_person.event_triggers_dict.get("preg_knows", False):
+            if the_person.knows_pregnant():
                 the_person "I'm already pregnant, do you want to take that condom off and cum inside?"
             elif the_person.on_birth_control:
                 the_person "Fuck, I want you to feel your cum inside me [the_person.mc_title]!"
@@ -853,7 +862,7 @@ label introvert_cum_pullout(the_person):
 
     else:
         if the_person.wants_creampie():
-            if the_person.event_triggers_dict.get("preg_knows", False): #She's already knocked up, so who cares!
+            if the_person.knows_pregnant():
                 the_person "Ah! Let it all out [the_person.mc_title]!"
             elif the_person.get_opinion_score("creampies") > 0:
                 "[the_person.possessive_title] moans happily."
@@ -892,7 +901,7 @@ label introvert_cum_vagina(the_person):
         return
 
     if the_person.wants_creampie():
-        if the_person.event_triggers_dict.get("preg_knows", False):
+        if the_person.knows_pregnant():
             the_person "Oh wow, it's so hot inside me."
             "She sighs happily."
 
@@ -925,7 +934,7 @@ label introvert_cum_vagina(the_person):
                 "She sighs happily."
 
     else:
-        if the_person.event_triggers_dict.get("preg_knows", False):
+        if the_person.knows_pregnant():
             the_person "Oh, you came inside me..."
 
         elif not the_person.on_birth_control:
@@ -1080,7 +1089,7 @@ label introvert_date_seduction(the_person):
         the_person "That was a fun time, so..."
         "She places her hand on your arm and caresses it."
         $ mc.change_locked_clarity(30)
-        if the_person.effective_sluttiness(["vaginal_sex", "condomless_sex"]) > 60 and the_person.wants_creampie() and the_person.effective_sluttiness() > the_person.get_no_condom_threshold() and the_person.get_opinion_score("bareback sex") >= 0 and the_person.get_opinion_score("creampies") >= 0 and not the_person.on_birth_control and not the_person.event_triggers_dict.get("preg_knows", False):
+        if the_person.effective_sluttiness(["vaginal_sex", "condomless_sex"]) > 60 and the_person.wants_creampie() and the_person.effective_sluttiness() > the_person.get_no_condom_threshold() and the_person.get_opinion_score("bareback sex") >= 0 and the_person.get_opinion_score("creampies") >= 0 and not the_person.on_birth_control and not the_person.knows_pregnant():
             if the_person.get_opinion_score("creampies") > 0: #No condoms, loves creampies, she's basically asking you to knock her up. So... have her ask you to knock her up!
                 the_person "Do you want to come over to my place, bend me over, and put load after load inside my unprotected pussy?"
                 the_person "I think I want you to get me pregnant tonight."
@@ -1106,7 +1115,7 @@ label introvert_date_seduction(the_person):
         the_person "My [so_title] isn't home tonight, you know..."
         "She holds onto your arm, stroking it gently."
         $ mc.change_locked_clarity(40)
-        if the_person.wants_creampie() and the_person.effective_sluttiness() > the_person.get_no_condom_threshold() and the_person.get_opinion_score("bareback sex") >= 0 and the_person.get_opinion_score("creampies") >= 0 and not the_person.on_birth_control and not the_person.event_triggers_dict.get("preg_knows", False):
+        if the_person.wants_creampie() and the_person.effective_sluttiness() > the_person.get_no_condom_threshold() and the_person.get_opinion_score("bareback sex") >= 0 and the_person.get_opinion_score("creampies") >= 0 and not the_person.on_birth_control and not the_person.knows_pregnant():
             if the_person.get_opinion_score("creampies") > 0: #No condoms, loves creampies, she's basically asking you to knock her up. So... have her ask you to knock her up!
                 the_person "Do you want to come over to my place, bend me over, and put load after load inside my unprotected pussy?"
                 the_person "I think I want to get pregnant tonight."
@@ -1339,7 +1348,7 @@ label introvert_sex_review(the_person, the_report):
             the_person "Yeah, you're right. This went too far, we should stop while we can."
 
     # Gave creampie while she is not on birth control (extra dialog when she could get pregnant)
-    if the_report.get("creampies", 0) > 0 and not the_person.on_birth_control and not the_person.event_triggers_dict.get("preg_knows", False):
+    if the_report.get("creampies", 0) > 0 and not the_person.on_birth_control and not the_person.knows_pregnant():
         the_person "Dammit... why did you cum inside me? I could get pregnant, you know."
 
     $ del comment_position

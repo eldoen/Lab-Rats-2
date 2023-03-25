@@ -51,7 +51,7 @@ init -1 python:
             return False
         elif the_person.on_birth_control:   # when she's taking BC she won't ask for breeding her
             return False
-        elif the_person.has_role(pregnant_role) and the_person.event_triggers_dict.get("preg_knows", False):
+        elif the_person.knows_pregnant():
             return False
         return True
 

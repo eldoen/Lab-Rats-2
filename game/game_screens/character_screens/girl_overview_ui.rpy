@@ -52,7 +52,7 @@ screen person_info_detailed(the_person):
                     text "Kids: [the_person.kids]" style "menu_text_style"
                     #TODO: Decide how much of this information we want to give to the player directly and how much we want to have delivered in game.
                     if persistent.pregnancy_pref > 0:
-                        if the_person.event_triggers_dict.get("preg_knows", False):
+                        if the_person.knows_pregnant():
                             text "Pregnant, " + str(day - the_person.event_triggers_dict["preg_start_date"]) + " Days" style "menu_text_style"
                         else:
                             if persistent.pregnancy_pref == 1:

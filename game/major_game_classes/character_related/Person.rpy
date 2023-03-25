@@ -1632,6 +1632,11 @@ init -2 python:
             for serum in self.serum_effects: #Compute the effects of all of the serum that the girl is under.
                 serum.run_on_move(self) #Run the serum's on_move function if one exists
 
+            # reset talk actions
+            base_value = 0 if not "GAME_SPEED" in globals() else GAME_SPEED
+            self.event_triggers_dict["chatted"] = 4 - base_value
+            self.event_triggers_dict["flirted"] = 4 - base_value
+            self.event_triggers_dict["complimented"] = 4 - base_value
 
             self.sexed_count = 0 #Reset the counter for how many times you've been seduced, you might be seduced multiple times in one day!
 
@@ -2897,7 +2902,7 @@ init -2 python:
             return happy_points
 
         def get_no_condom_threshold(self, situational_modifier = 0):
-            if self.has_role(pregnant_role) and self.event_triggers_dict.get("preg_knows", False):
+            if self.knows_pregnant():
                 return 0 #You can't get more pregnant, so who cares?
 
             if self.has_role(breeder_role):
@@ -2967,7 +2972,7 @@ init -2 python:
             creampie_threshold += (-10 * self.get_opinion_score("bareback sex"))
 
             effective_slut = self.effective_sluttiness("creampie") + (10 * self.get_opinion_score("creampies")) + (10 * self.get_opinion_score("anal creampies"))
-            if effective_slut >= creampie_threshold or self.event_triggers_dict.get("preg_knows", False):
+            if effective_slut >= creampie_threshold or self.knows_pregnant():
                 return True
 
             return False
@@ -3008,6 +3013,15 @@ init -2 python:
             self.event_triggers_dict["birth_control_status"] = known_state
             self.event_triggers_dict["birth_control_known_day"] = known_day
 
+        def is_pregnant(self):
+            if self.has_role(pregnant_role):
+                return True
+            return False
+
+        def knows_pregnant(self):
+            if self.is_pregnant():
+                return self.event_triggers_dict.get("preg_knows", False)
+            return False
 
         def effective_sluttiness(self, taboos = None): #Used in sex scenes where the girl will be more aroused, making it easier for her to be seduced.
             if taboos is None:

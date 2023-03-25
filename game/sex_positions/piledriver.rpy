@@ -132,6 +132,8 @@ label scene_piledriver_1(the_girl, the_location, the_object):
                     else:
                         the_girl "Ah... I wonder how long until you cum. I can feel your cock tensing up already..."
                     "You fuck her faster and she moans in response."
+                else:
+                    "She just moans softly in response."
 
             "Fuck her in silence":
                 "For a few moments neither of you say anything. The only sounds are you and [the_girl.possessive_title] panting for breath and the soft smack as you slam your cock deep inside of her."
