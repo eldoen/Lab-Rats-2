@@ -17,15 +17,15 @@ init -2 python:
         return True
 
     def text_chat_requirement(the_person):
-        if the_person.event_triggers_dict.get("chatted", False):
-            return "Already chatted"
+        if the_person.event_triggers_dict.get("chatted", 0) == 0:
+            return "Enouch chatting"
         if mc.energy < 15:
             return "Not enough energy"
         return True
 
     def text_flirt_requirement(the_person):
-        if the_person.event_triggers_dict.get("flirted", False):
-            return "Already flirted"
+        if the_person.event_triggers_dict.get("flirted", 0) == 0:
+            return "Enough flirting"
         if mc.energy < 15:
             return "Not enough energy"
         return True

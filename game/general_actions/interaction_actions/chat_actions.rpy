@@ -42,15 +42,15 @@ init -2 python:
         return True
 
     def small_talk_requirement(the_person):
-        if the_person.event_triggers_dict.get("chatted", False):
-            return "Already chatted"
+        if the_person.event_triggers_dict.get("chatted", 0) == 0:
+            return "Enough small talk"
         if mc.energy < 15:
             return "Requires: 15{image=gui/extra_images/energy_token.png}"
         return True
 
     def compliment_requirement(the_person):
-        if the_person.event_triggers_dict.get("complimented", False):
-            return "Already complimented"
+        if the_person.event_triggers_dict.get("complimented", 0) == 0:
+            return "Enough compliments"
         if the_person.love < 10:
             return "Requires: 10 Love"
         elif mc.energy < 15:
@@ -58,8 +58,8 @@ init -2 python:
         return True
 
     def flirt_requirement(the_person):
-        if the_person.event_triggers_dict.get("flirted", False):
-            return "Already flirted"
+        if the_person.event_triggers_dict.get("flirted", 0) == 0:
+            return "Enough flirting"
         if the_person.love < 10:
             return "Requires: 10 Love"
         elif mc.energy < 15:
@@ -475,7 +475,7 @@ label small_talk_person(the_person, apply_energy_cost = True, is_phone = False):
     # if is_phone then most narration or descriptions are ignored or replaced. Assume it's on the phone. TODO: Phone conversations should probably be their own full thing.
     if apply_energy_cost: # Useful if you want to reuse this event inside of other events.
         $ mc.change_energy(-15)
-    $ the_person.event_triggers_dict["chatted"] = True
+    $ the_person.event_triggers_dict["chatted"] = the_person.event_triggers_dict.get("chatted", 1) - 1
 
     mc.name "So [the_person.title], what's been on your mind recently?"
     $ the_person.discover_opinion("small talk")
@@ -603,7 +603,7 @@ label small_talk_person(the_person, apply_energy_cost = True, is_phone = False):
 
 label compliment_person(the_person): #Tier 1. Raises the character's love. #TODO: just have it raise love and not sluttiness.
     $ mc.change_energy(-15)
-    $ the_person.event_triggers_dict["complimented"] = True
+    $ the_person.event_triggers_dict["complimented"] = the_person.event_triggers_dict.get("complimented", 1) - 1
     mc.name "Hey [the_person.title]. How are you doing today? You're looking good, that's for sure."
     the_person "Aww, thank you. You're too kind. I'm doing well."
     "You chat with [the_person.possessive_title] for a while and slip in a compliment when you can. She seems flattered by all the attention."
@@ -615,7 +615,7 @@ label compliment_person(the_person): #Tier 1. Raises the character's love. #TODO
 
 label flirt_person(the_person): #Tier 1. Raises a character's sluttiness up to a low cap while also raising their love by less than a compliment.
     $ mc.change_energy(-15)
-    $ the_person.event_triggers_dict["flirted"] = True
+    $ the_person.event_triggers_dict["flirted"] = the_person.event_triggers_dict.get("flirted", 1) - 1
     if the_person.has_role(girlfriend_role):
         mc.name "You're so beautiful [the_person.title], I'm so lucky to have a woman like you in my life."
         $ the_person.call_dialogue("flirt_response_girlfriend")
