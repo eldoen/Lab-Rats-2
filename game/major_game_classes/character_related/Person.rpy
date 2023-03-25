@@ -2434,9 +2434,12 @@ init -2 python:
 
         def change_happiness(self,amount, add_to_log = True):
             amount = __builtin__.int(__builtin__.round(amount*self.get_trance_multiplier()))
+            if self.happiness + amount < 0:
+                amount = 0 - self.happiness
+            if self.happiness + amount > 300:
+                amount = 300 - self.happiness
+
             self.happiness += amount
-            if self.happiness < 0:
-                self.happiness = 0
 
             if add_to_log and amount != 0:
                 display_name = self.create_formatted_title("???")
@@ -2446,6 +2449,7 @@ init -2 python:
                 if self.get_trance_multiplier() != 1:
                     log_string += "\nChange amplified by " + str(int((self.get_trance_multiplier()*100)-100)) + "% due to trance"
                 mc.log_event(display_name + ": " + log_string, "float_text_yellow")
+            return amount
 
         def change_love(self, amount, max_modified_to = None, add_to_log = True):
             amount = __builtin__.int(__builtin__.round(amount))

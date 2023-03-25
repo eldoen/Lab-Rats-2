@@ -150,7 +150,12 @@ label movie_date_label(the_person):
             $ clear_scene()
             return "Advance Time"
 
-    $ the_person.apply_outfit(the_person.wardrobe.decide_on_outfit(the_person.sluttiness + 10))
+    if mod_installed:
+        $ the_person.planned_outfit = the_person.decide_on_outfit(the_person.sluttiness + 10)
+        $ the_person.apply_outfit(the_person.planned_outfit)
+    else:
+        $ the_person.apply_outfit(the_person.wardrobe.decide_on_outfit(the_person.sluttiness + 10))
+
     "You get ready and text [the_person.title] confirming the time and place. A little while later you meet her outside the theater."
     $ mc.phone.add_non_convo_message(the_person, "On my way to the theater. See you soon?")
     $ mc.phone.add_non_convo_message(the_person, "Almost there, I'll meet you outside.", as_mc = True)
