@@ -2897,7 +2897,7 @@ init -2 python:
             return happy_points
 
         def get_no_condom_threshold(self, situational_modifier = 0):
-            if self.has_role(pregnant_role) and self.event_triggers_dict.get("preg_knows", False):
+            if self.knows_pregnant():
                 return 0 #You can't get more pregnant, so who cares?
 
             if self.has_role(breeder_role):
@@ -2967,7 +2967,7 @@ init -2 python:
             creampie_threshold += (-10 * self.get_opinion_score("bareback sex"))
 
             effective_slut = self.effective_sluttiness("creampie") + (10 * self.get_opinion_score("creampies")) + (10 * self.get_opinion_score("anal creampies"))
-            if effective_slut >= creampie_threshold or self.event_triggers_dict.get("preg_knows", False):
+            if effective_slut >= creampie_threshold or self.knows_pregnant():
                 return True
 
             return False
@@ -3008,6 +3008,15 @@ init -2 python:
             self.event_triggers_dict["birth_control_status"] = known_state
             self.event_triggers_dict["birth_control_known_day"] = known_day
 
+        def is_pregnant(self):
+            if self.has_role(pregnant_role):
+                return True
+            return False
+
+        def knows_pregnant(self):
+            if self.is_pregnant():
+                return self.event_triggers_dict.get("preg_knows", False)
+            return False
 
         def effective_sluttiness(self, taboos = None): #Used in sex scenes where the girl will be more aroused, making it easier for her to be seduced.
             if taboos is None:

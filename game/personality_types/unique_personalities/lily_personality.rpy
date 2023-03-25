@@ -184,7 +184,7 @@ label lily_sex_review(the_person, the_report):
             the_person "Let's not tell [mom.fname] about this, obviously."
 
     # Gave creampie while she is not on birth control (extra dialog when she could get pregnant)
-    if the_report.get("creampies", 0) > 0 and not the_person.on_birth_control and not the_person.event_triggers_dict.get("preg_knows", False):
+    if the_report.get("creampies", 0) > 0 and not the_person.on_birth_control and not the_person.knows_pregnant():
         the_person "Well [the_person.mc_title], you have to tell mom when I get pregnant."
 
     $ del comment_position
@@ -762,9 +762,12 @@ label lily_condom_bareback_ask(the_person):
 
 label lily_condom_bareback_demand(the_person):
     if the_person.has_role(breeder_role): #Actively looking to get knocked up.
-        the_person "Forget that [the_person.mc_title], you know I want to get pregnant."
-        the_person "So just come and do it already! Knock me up!"
-
+        if the_person.knows_pregnant():
+            the_person "We don't need that [the_person.mc_title], I'm already pregnant."
+            the_person "So just come and do it already! Fuck me, stud!"
+        else:
+            the_person "Forget that [the_person.mc_title], you know I want to get pregnant."
+            the_person "So just come and do it already! Knock me up!"
     elif the_person.on_birth_control:
         the_person "Forget it [the_person.mc_title], I'm on the pill."
         the_person "Get inside me already!"
@@ -804,7 +807,7 @@ label lily_cum_pullout(the_person):
     # Lead in: "I'm going to cum!"
     if mc.condom:
         if the_person.wants_creampie() and not the_person.has_taboo("condomless_sex"): #TODO: FIgure out we want any more requirements for this to fire.
-            if the_person.event_triggers_dict.get("preg_knows", False):
+            if the_person.knows_pregnant():
                 the_person "Wait... Do you want to take the condom off and cum inside of me?"
                 the_person "I'm already pregnant, and it felt so good before..."
 
@@ -830,7 +833,7 @@ label lily_cum_pullout(the_person):
 
     else:
         if the_person.wants_creampie():
-            if the_person.event_triggers_dict.get("preg_knows", False): #She's already knocked up, so who cares!
+            if the_person.knows_pregnant(): #She's already knocked up, so who cares!
                 the_person "Cum wherever you want [the_person.mc_title]!"
             elif the_person.get_opinion_score("creampies") > 0:
                 "[the_person.possessive_title] moans happily."
@@ -871,7 +874,7 @@ label lily_cum_vagina(the_person):
         return
 
     if the_person.wants_creampie():
-        if the_person.event_triggers_dict.get("preg_knows", False):
+        if the_person.knows_pregnant():
             the_person "Oh god, your cum feels so nice and warm inside me..."
             "She sighs happily."
             the_person "I guess that's one perk of you knocking me up. No more condoms to worry about."
@@ -1485,7 +1488,7 @@ label lily_creampie_taboo_break(the_person):
         the_person "Oh my god [the_person.mc_title], you just came inside of me!"
         "She seems shocked, but not entirely unhappy."
         mc.name "Yeah, isn't that what you wanted?"
-        if the_person.event_triggers_dict.get("preg_knows", False):
+        if the_person.knows_pregnant():
             the_person "It does feel really good..."
             mc.name "It feels good for me too. Don't worry [the_person.title], there's nothing to worry about."
             the_person "Yeah, you're right. I'm already pregnant, but I never thought you would cum inside me."

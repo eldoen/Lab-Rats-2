@@ -460,7 +460,7 @@ label nora_special_research(the_person):
         "She hands you her research on the matter, unlocking a new serum trait for you to research."
         $ list_of_traits.append(nora_reward_nora_trait)
 
-    elif the_subject.has_role(pregnant_role) and the_subject.event_triggers_dict.get("preg_transform_day",day) < day and the_subject.sluttiness > 75 and nora_reward_hucow_trait not in list_of_traits:
+    elif the_subject.is_pregnant() and the_subject.event_triggers_dict.get("preg_transform_day",day) < day and the_subject.sluttiness > 75 and nora_reward_hucow_trait not in list_of_traits:
         # Change for mod to exclude girls who didn't get pregnant by MC
         if the_person.event_triggers_dict.get("preg_mc_father", True):
             the_person "First off, congratulations [the_person.mc_title]. You're the father."

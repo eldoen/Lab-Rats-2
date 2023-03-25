@@ -183,7 +183,7 @@ init -2 python:
             return False
         elif the_person.effective_sluttiness() < 20 and the_person.love < 20:
             return False
-        elif the_person.has_role(pregnant_role): # don't talk about bc when she is pregnant
+        elif the_person.is_pregnant(): # don't talk about bc when she is pregnant
             return False
         return True
 

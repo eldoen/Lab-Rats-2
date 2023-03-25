@@ -618,7 +618,8 @@ label mom_condom_bareback_ask(the_person):
 label mom_condom_bareback_demand(the_person):
     if the_person.has_role(breeder_role): #Actively looking to get knocked up.
         the_person "Don't bother [the_person.mc_title], I want it raw so you can get me pregnant!"
-        the_person "Make sure to cum inside me so you knock me up!"
+        if not the_person.knows_pregnant():
+            the_person "Make sure to cum inside me so you knock me up!"
 
     elif the_person.on_birth_control:#Just likes raw sex
         the_person "Don't bother with that. I'm on birth control, so we don't need to worry."
@@ -659,7 +660,7 @@ label mom_cum_pullout(the_person):
     # Lead in: "I'm going to cum!"
     if mc.condom:
         if the_person.wants_creampie() and not the_person.has_taboo("condomless_sex"): #TODO: FIgure out we want any more requirements for this to fire.
-            if the_person.event_triggers_dict.get("preg_knows", False):
+            if the_person.knows_pregnant():
                 the_person "Do you want to take off that condom? You already got mommy pregnant..."
 
             elif the_person.on_birth_control:
@@ -684,7 +685,7 @@ label mom_cum_pullout(the_person):
 
     else:
         if the_person.wants_creampie():
-            if the_person.event_triggers_dict.get("preg_knows", False): #She's already knocked up, so who cares!
+            if the_person.knows_pregnant(): #She's already knocked up, so who cares!
                 the_person "Cum for mommy [the_person.mc_title]!"
             elif the_person.get_opinion_score("creampies") > 0:
                 "[the_person.possessive_title] moans happily."
@@ -722,7 +723,7 @@ label mom_cum_vagina(the_person):
         return
 
     if the_person.wants_creampie():
-        if the_person.event_triggers_dict.get("preg_knows", False):
+        if the_person.knows_pregnant():
             the_person "Pump it out sweetheart, give mommy all of your cum!"
 
         elif the_person.on_birth_control:
@@ -1064,7 +1065,7 @@ label mom_sex_review(the_person, the_report):
             # "She laughs nervously, trying to hide her embarrassment."
 
     # Gave creampie while she is not on birth control (extra dialog when she could get pregnant)
-    if the_report.get("creampies", 0) > 0 and not the_person.on_birth_control and not the_person.event_triggers_dict.get("preg_knows", False):
+    if the_report.get("creampies", 0) > 0 and not the_person.on_birth_control and not the_person.knows_pregnant():
         the_person "Oh [the_person.mc_title], how am I going to explain it to your sister if you get me pregnant?"
 
     $ del comment_position
@@ -1536,7 +1537,7 @@ label mom_creampie_taboo_break(the_person):
         mc.name "What do you mean, [the_person.title]?"
         the_person "I don't know what came over me, I wasn't thinking straight. I should have told you to pull out."
         mc.name "I don't think it's that big of a deal."
-        if the_person.event_triggers_dict.get("preg_knows", False):
+        if the_person.knows_pregnant():
             the_person "You shouldn't be cumming inside of your mother, even if she gets a little too excited and starts to ask for it."
             mc.name "We obviously both liked it, so why is it a problem?"
             the_person "Well, it's not really a problem, since I'm already pregnant."

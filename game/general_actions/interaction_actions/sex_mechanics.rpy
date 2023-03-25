@@ -748,7 +748,7 @@ label describe_girl_climax(the_person, the_position, the_object, private, report
 
 label condom_ask(the_person):
     $ condom_threshold = the_person.get_no_condom_threshold()
-    if the_person.has_role(pregnant_role) and the_person.event_triggers_dict.get("preg_knows", False):
+    if the_person.knows_pregnant():
         the_person "We don't need to worry about using a condom any more. You can't get me {i}more{/i} pregnant."
 
     elif the_person.effective_sluttiness("condomless_sex") < condom_threshold: # they demand you put on a condom.

@@ -191,7 +191,7 @@ label cousin_sex_review(the_person, the_report):
             "She doesn't sound to sure of herself."
 
     # Gave creampie while she is not on birth control (extra dialog when she could get pregnant)
-    if the_report.get("creampies", 0) > 0 and not the_person.on_birth_control and not the_person.event_triggers_dict.get("preg_knows", False):
+    if the_report.get("creampies", 0) > 0 and not the_person.on_birth_control and not the_person.knows_pregnant():
         the_person "Fuck, [the_person.mc_title], how do I tell my mom how I got pregnant?"
 
     $ del comment_position
@@ -320,7 +320,7 @@ label cousin_flirt_response_high(the_person):
 label cousin_cum_pullout(the_person):
     if mc.condom:
         if the_person.wants_creampie() and not the_person.has_taboo("condomless_sex"): #TODO: FIgure out we want any more requirements for this to fire.
-            if the_person.event_triggers_dict.get("preg_knows", False):
+            if the_person.knows_pregnant():
                 the_person "Fuck, get that condom off then!"
                 the_person "I'm already pregnant, so just pump your load inside of me!"
 
@@ -342,7 +342,7 @@ label cousin_cum_pullout(the_person):
             the_person "Yeah? My tight, wet, pussy is going to make you cum? Then fucking do it!"
     else:
         if the_person.wants_creampie():
-            if the_person.on_birth_control or the_person.event_triggers_dict.get("preg_knows", False):
+            if the_person.on_birth_control or the_person.knows_pregnant():
                 the_person "Hurry up! Cum for me [the_person.mc_title]!"
             else:
                 the_person "Yeah? Is my pussy going to make you cum?"
@@ -375,7 +375,7 @@ label cousin_cum_condom(the_person):
 
 label cousin_cum_vagina(the_person):
     if the_person.wants_creampie():
-        if the_person.on_birth_control or the_person.event_triggers_dict.get("preg_knows", False):
+        if the_person.on_birth_control or the_person.knows_pregnant():
             the_person "Oh fuck..."
 
         else:

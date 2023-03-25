@@ -2,7 +2,7 @@ init -2 python:
     def breeder_fuck_requirement(the_person):
         if persistent.pregnancy_pref == 0:
             return False
-        elif the_person.event_triggers_dict.get("preg_knows", False):
+        elif the_person.knows_pregnant():
             return False
         return True
 

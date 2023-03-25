@@ -571,7 +571,7 @@ label mom_onlyfans_help(the_person):
                     if the_report.get("creampies", 0) > 0:
                         "You grab [the_person.possessive_title]'s legs and spread them open."
                         "You bring the camera close to her pussy and make sure to capture the moment your cum starts to drip out of it."
-                        if not the_person.event_triggers_dict.get("preg_knows", False): #Don't trigger it if she's pregnant
+                        if not the_person.knows_pregnant():
                             menu:
                                 "Interview her":
                                     mc.name "Well [the_person.title], what do you think just happened?"

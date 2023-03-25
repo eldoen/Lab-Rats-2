@@ -776,7 +776,8 @@ label bimbo_condom_bareback_ask(the_person):
         else:
             the_person "Come on [the_person.mc_title], fuck me raw! Like an animal!"
             the_person "Animals don't have condoms. They just fuck when they want, how they want!"
-            the_person "And I guess sometimes they get pregnant... But I don't care about that!"
+            if not the_person.knows_pregnant():
+                the_person "And I guess sometimes they get pregnant... But I don't care about that!"
         $ the_person.discover_opinion("creampies")
     else:
         the_person "Don't put on a condom [the_person.mc_title]. Just fuck me and cum wherever, that's how I want it!"
@@ -784,8 +785,12 @@ label bimbo_condom_bareback_ask(the_person):
 
 label bimbo_condom_bareback_demand(the_person):
     if the_person.has_role(breeder_role): #Actively looking to get knocked up.
-        the_person "Don't be silly, even I know you won't knock me up wearing one of those!"
-        the_person "I want you to cum inside me and make me pregnant!"
+        if the_person.knows_pregnant():
+            the_person "Don't be silly, even I know you you can't get more pregnant!"
+            the_person "I want you to cum inside me and make me feel good!"
+        else:
+            the_person "Don't be silly, even I know you won't knock me up wearing one of those!"
+            the_person "I want you to cum inside me and make me pregnant!"
 
     elif the_person.wants_creampie(): #Just likes raw sex
         the_person "You don't need that silly! I like doing it without it, it's so much better!"
@@ -829,7 +834,7 @@ label bimbo_cum_mouth(the_person):
 label bimbo_cum_pullout(the_person):
     if mc.condom:
         if the_person.wants_creampie() and not the_person.has_taboo("condomless_sex"): #TODO: FIgure out we want any more requirements for this to fire.
-            if the_person.event_triggers_dict.get("preg_knows", False):
+            if the_person.knows_pregnant():
                 the_person "Why are you even wearing a condom? I'm, like, already pregnant."
                 the_person "Come on, just take it off and cum inside me again. You know I love it, right?"
                 "She giggles happily."
@@ -856,7 +861,7 @@ label bimbo_cum_pullout(the_person):
 
 
     elif the_person.wants_creampie():
-        if the_person.event_triggers_dict.get("preg_knows", False): #She's already knocked up, so who cares!
+        if the_person.knows_pregnant(): #She's already knocked up, so who cares!
             the_person "I'm already pregnant, so just cum inside me as much as you want!"
         elif the_person.get_opinion_score("creampies") > 0:
             "[the_person.possessive_title] giggles happily."
@@ -895,7 +900,7 @@ label bimbo_cum_vagina(the_person):
         return
 
     if the_person.wants_creampie():
-        if the_person.event_triggers_dict.get("preg_knows", False):
+        if the_person.knows_pregnant():
             the_person "Mmm, I love having all of your cum in me!"
             "She sighs and giggles."
             the_person "I guess that's why I'm pregnant, right? I just can't say no to this!"
@@ -908,7 +913,7 @@ label bimbo_cum_vagina(the_person):
             if the_person.relationship != "Single":
                 $ so_title = SO_relationship_to_title(the_person.relationship)
                 the_person "My [so_title] gets angry when I forget, but it's not like he fucks me much anyways."
-        elif the_person.has_role(pregnant_role) and the_person.event_triggers_dict.get("preg_knows", False):
+        elif the_person.knows_pregnant():
             the_person "Mmm, wow you really pumped it into me. But since i've already got one in the oven, that's fine."
             if the_person.relationship != "Single":
                 $ so_title = SO_relationship_to_title(the_person.relationship)
@@ -1097,7 +1102,7 @@ label bimbo_date_seduction(the_person):
         the_person "That was, like, a great time [the_person.mc_title]. Hey..."
         "She bites her lip and twirls her hair around one of her fingers."
         $ mc.change_locked_clarity(50)
-        if the_person.effective_sluttiness(["vaginal_sex", "condomless_sex"]) > 60 and the_person.wants_creampie() and the_person.effective_sluttiness() > the_person.get_no_condom_threshold() and the_person.get_opinion_score("bareback sex") >= 0 and the_person.get_opinion_score("creampies") >= 0 and not the_person.on_birth_control and not the_person.event_triggers_dict.get("preg_knows", False):
+        if the_person.effective_sluttiness(["vaginal_sex", "condomless_sex"]) > 60 and the_person.wants_creampie() and the_person.effective_sluttiness() > the_person.get_no_condom_threshold() and the_person.get_opinion_score("bareback sex") >= 0 and the_person.get_opinion_score("creampies") >= 0 and not the_person.on_birth_control and not the_person.knows_pregnant():
             if the_person.get_opinion_score("creampies") > 0: #No condoms, loves creampies, she's basically asking you to knock her up. So... have her ask you to knock her up!
                 the_person "Come home with me! We can fuck, and if I'm lucky you'll get me pregnant!"
                 the_person "I think I'd look {i}so hot{/i} with big MILF tits. Don't you think so?"
@@ -1129,7 +1134,7 @@ label bimbo_date_seduction(the_person):
         the_person "So my [so_title] said he was going to be working for, like, the entire knight."
         "She grabs your hands and looks eagerly into your eyes, practically vibrating with excitement."
         $ mc.change_locked_clarity(60)
-        if the_person.wants_creampie() and the_person.effective_sluttiness() > the_person.get_no_condom_threshold() and the_person.get_opinion_score("bareback sex") >= 0 and the_person.get_opinion_score("creampies") >= 0 and not the_person.on_birth_control and not the_person.event_triggers_dict.get("preg_knows", False):
+        if the_person.wants_creampie() and the_person.effective_sluttiness() > the_person.get_no_condom_threshold() and the_person.get_opinion_score("bareback sex") >= 0 and the_person.get_opinion_score("creampies") >= 0 and not the_person.on_birth_control and not the_person.knows_pregnant():
             if the_person.get_opinion_score("creampies") > 0: #No condoms, loves creampies, she's basically asking you to knock her up. So... have her ask you to knock her up!
                 the_person "Come home with me! Please? I'll bounce on your dick all night, and you can even get me pregnant if you want!"
                 the_person "Doesn't that sound fun?"
@@ -1356,7 +1361,7 @@ label bimbo_sex_review(the_person, the_report):
             the_person "I just go crazy! I can't help it!"
 
     # Gave creampie while she is not on birth control (extra dialog when she could get pregnant)
-    if the_report.get("creampies", 0) > 0 and not the_person.on_birth_control and not the_person.event_triggers_dict.get("preg_knows", False):
+    if the_report.get("creampies", 0) > 0 and not the_person.on_birth_control and not the_person.knows_pregnant():
         the_person "You know, I could be like, pregnant here."
 
     $ del comment_position

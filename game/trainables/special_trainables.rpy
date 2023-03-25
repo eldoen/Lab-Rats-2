@@ -3,7 +3,7 @@ init -2 python:
     def train_breeder_requirement(the_person):
         if persistent.pregnancy_pref == 0:
             return False
-        elif the_person.has_role(breeder_role) or the_person.event_triggers_dict.get("preg_knows", False):
+        elif the_person.has_role(breeder_role) or the_person.knows_pregnant():
             return False
         elif the_person.get_known_opinion_score("creampies") == 2 and the_person.get_known_opinion_score("bareback sex") == 2:
             return True

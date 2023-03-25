@@ -97,8 +97,8 @@ label mom_girlfriend_intro(the_person):
             pass
 
         "Think of the baby!" if the_person.event_triggers_dict.get("preg_your_kids_known", 0) > 0 and persistent.pregnancy_pref > 0:
-            mc.name "We need to think our baby [the_person.title]. This isn't just about the two of us any more."
-            if the_person.event_triggers_dict.get("preg_knows", False):
+            mc.name "We need to think of our baby [the_person.title]. This isn't just about the two of us any more."
+            if the_person.knows_pregnant():
                 "[the_person.possessive_title] puts a hand on her stomach and sighs happily before returning her attention to you."
 
             else: #Pregnant before and already had the kid.

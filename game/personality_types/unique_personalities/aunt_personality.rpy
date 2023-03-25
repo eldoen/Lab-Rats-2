@@ -175,7 +175,7 @@ label aunt_sex_review(the_person, the_report):
             the_person "Good, I'm glad you had a good time. I don't think my sister would be very impressed with us right now."
 
     # Gave creampie while she is not on birth control (extra dialog when she could get pregnant)
-    if the_report.get("creampies", 0) > 0 and not the_person.on_birth_control and not the_person.event_triggers_dict.get("preg_knows", False):
+    if the_report.get("creampies", 0) > 0 and not the_person.on_birth_control and not the_person.knows_pregnant():
         the_person "And how am I going to explain to my sister when you got me pregnant?"
 
     $ del comment_position
@@ -314,7 +314,7 @@ label aunt_flirt_response_high(the_person):
 label aunt_cum_pullout(the_person):
     if mc.condom:
         if the_person.wants_creampie() and not the_person.has_taboo("condomless_sex"): #TODO: FIgure out we want any more requirements for this to fire.
-            if the_person.event_triggers_dict.get("preg_knows", False):
+            if the_person.knows_pregnant():
                 "She moans happily."
                 the_person "You've already gotten me pregnant [the_person.mc_title]. Do you want to take that condom off and cum in me again?"
             elif the_person.on_birth_control:
@@ -339,7 +339,7 @@ label aunt_cum_pullout(the_person):
 
     else:
         if the_person.wants_creampie():
-            if the_person.on_birth_control or the_person.event_triggers_dict.get("preg_knows", False):
+            if the_person.on_birth_control or the_person.knows_pregnant():
                 the_person "Cum for me [the_person.mc_title]! Cum wherever you want!"
             else:
                 the_person "I want it! Cum inside me!"
@@ -370,7 +370,7 @@ label aunt_cum_condom(the_person):
 
 label aunt_cum_vagina(the_person):
     if the_person.wants_creampie():
-        if the_person.on_birth_control or the_person.event_triggers_dict.get("preg_knows", False):
+        if the_person.on_birth_control or the_person.knows_pregnant():
             the_person "Ah... That felt amazing [the_person.mc_title]."
             the_person "You know just how to make me feel like a young woman again."
 

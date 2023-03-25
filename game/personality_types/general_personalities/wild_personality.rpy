@@ -809,25 +809,31 @@ label wild_condom_ask(the_person):
 label wild_condom_bareback_ask(the_person):
     if the_person.wants_creampie():
         if the_person.on_birth_control:
-            # the_person "Don't put on a condom, I'm on the pill. You can cum inside me and we don't have to worry."
             the_person "You aren't thinking of wearing a condom, are you? Fuck that, I'm on the pill."
             the_person "You can cum right inside me, no worries."
             $ the_person.update_birth_control_knowledge()
         else:
             the_person "Forget the condom [the_person.mc_title], I want you to fuck me raw."
-            the_person "I want to feel you cum inside me, knowing I might be getting knocked up."
+            if not the_person.knows_pregnant():
+                the_person "I want to feel you cum inside me, knowing I might be getting knocked up."
             the_person "That would be so fucking hot!"
         $ the_person.discover_opinion("creampies")
     else:
-        # the_person "Don't put on a condom, I want to feel every single thing you do to me."
         the_person "Don't bother with a condom [the_person.mc_title], I want to feel you raw."
-        the_person "I don't care what the risks are, they're worth it."
+        if not the_person.knows_pregnant():
+            the_person "I don't care what the risks are, they're worth it."
+        else:
+            the_person "I love it, when you fuck me raw."
     return
 
 label wild_condom_bareback_demand(the_person):
     if the_person.has_role(breeder_role): #Actively looking to get knocked up.
-        the_person "Oh fuck that, what's the point of fucking you aren't going to knock me up?"
-        the_person "Come on, preg me!"
+        if the_person.knows_pregnant():
+            the_person "Oh fuck that, what's the point of fucking you aren't going to fuck me raw?"
+            the_person "Come on, give me that cock!"
+        else:
+            the_person "Oh fuck that, what's the point of fucking you aren't going to knock me up?"
+            the_person "Come on, preg me!"
 
     elif the_person.wants_creampie(): #Just likes raw sex
         if the_person.on_birth_control:
@@ -882,7 +888,7 @@ label wild_cum_pullout(the_person):
     # Lead in: "I'm going to cum!"
     if mc.condom:
         if the_person.wants_creampie() and not the_person.has_taboo("condomless_sex"): #TODO: FIgure out we want any more requirements for this to fire.
-            if the_person.event_triggers_dict.get("preg_knows", False):
+            if the_person.knows_pregnant():
                 the_person "Oh fuck... Take that stupid condom off and cum in my pussy!"
                 the_person "You already knocked me up, so who fucking cares? I just fill me up!"
             elif the_person.on_birth_control:
@@ -905,7 +911,7 @@ label wild_cum_pullout(the_person):
 
     else:
         if the_person.wants_creampie():
-            if the_person.event_triggers_dict.get("preg_knows", False): #She's already knocked up, so who cares!
+            if the_person.knows_pregnant(): #She's already knocked up, so who cares!
                 the_person "Creampie me [the_person.mc_title], I want it all!"
             elif the_person.get_opinion_score("creampies") > 0:
                 "[the_person.possessive_title] moans happily."
@@ -945,7 +951,7 @@ label wild_cum_vagina(the_person):
         return
 
     if the_person.wants_creampie():
-        if the_person.event_triggers_dict.get("preg_knows", False):
+        if the_person.knows_pregnant():
             the_person "It's no wonder I got knocked up, I just love feeling your cum inside me so much!"
 
         elif the_person.on_birth_control:
@@ -953,7 +959,7 @@ label wild_cum_vagina(the_person):
                 $ so_title = SO_relationship_to_title(the_person.relationship)
                 the_person "Oh fuck, wow! My [so_title] never cums like that, there's so much of it!"
             else:
-                if the_person.has_role(pregnant_role):
+                if the_person.is_pregnant():
                     the_person "Oh fuck that's a lot of cum. Good thing I'm already pregnant, because I don't think you're firing blanks."
                 else:
                     the_person "Oh fuck that's a lot of cum. Good thing I'm on the pill, because I don't think you're firing blanks."
@@ -1140,7 +1146,7 @@ label wild_date_seduction(the_person):
         "[the_person.possessive_title] grabs your hand and pulls you around to look at her."
         the_person "Hey, that was such a great time. So I was thinking..."
         $ mc.change_locked_clarity(30)
-        if the_person.effective_sluttiness(["vaginal_sex", "condomless_sex"]) > 60 and the_person.wants_creampie() and the_person.effective_sluttiness() > the_person.get_no_condom_threshold() and the_person.get_opinion_score("bareback sex") >= 0 and the_person.get_opinion_score("creampies") >= 0 and not the_person.on_birth_control and not the_person.event_triggers_dict.get("preg_knows", False):
+        if the_person.effective_sluttiness(["vaginal_sex", "condomless_sex"]) > 60 and the_person.wants_creampie() and the_person.effective_sluttiness() > the_person.get_no_condom_threshold() and the_person.get_opinion_score("bareback sex") >= 0 and the_person.get_opinion_score("creampies") >= 0 and not the_person.on_birth_control and not the_person.knows_pregnant():
             if the_person.get_opinion_score("creampies") > 0: #No condoms, loves creampies, she's basically asking you to knock her up. So... have her ask you to knock her up!
                 the_person "Let's go back to my place and fuck until you knock me up."
                 the_person "Don't you think I'd look good with huge mommy-tits? You can make it happen."
@@ -1175,7 +1181,7 @@ label wild_date_seduction(the_person):
         the_person "So my [so_title] won't be home tonight, I was thinking..."
         "She reaches down and cups your crotch, rubbing it gently through your pants."
         $ mc.change_locked_clarity(40)
-        if the_person.wants_creampie() and the_person.effective_sluttiness() > the_person.get_no_condom_threshold() and the_person.get_opinion_score("bareback sex") >= 0 and the_person.get_opinion_score("creampies") >= 0 and not the_person.on_birth_control and not the_person.event_triggers_dict.get("preg_knows", False):
+        if the_person.wants_creampie() and the_person.effective_sluttiness() > the_person.get_no_condom_threshold() and the_person.get_opinion_score("bareback sex") >= 0 and the_person.get_opinion_score("creampies") >= 0 and not the_person.on_birth_control and not the_person.knows_pregnant():
             if the_person.get_opinion_score("creampies") > 0: #No condoms, loves creampies, she's basically asking you to knock her up. So... have her ask you to knock her up!
                 the_person "Let's go back to my place so you can pin me to the bed and creampie me all night long."
                 the_person "All that cum in my unprotected pussy and I'm sure to get knocked up. Just thinking about it is making me wet!"
@@ -1393,7 +1399,7 @@ label wild_sex_review(the_person, the_report):
             the_person "If I get too turned on I might do something I regret. Let's just keep this casual."
 
     # Gave creampie while she is not on birth control (extra dialog when she could get pregnant)
-    if the_report.get("creampies", 0) > 0 and not the_person.on_birth_control and not the_person.event_triggers_dict.get("preg_knows", False):
+    if the_report.get("creampies", 0) > 0 and not the_person.on_birth_control and not the_person.knows_pregnant():
         the_person "Oh baby, you are a mad dog, you must really want to see me pregnant."
 
     $ del comment_position
@@ -1745,7 +1751,7 @@ label wild_body_cum_taboo_break(the_person):
 
 label wild_creampie_taboo_break(the_person):
     if the_person.wants_creampie():
-        if the_person.event_triggers_dict.get("preg_knows", False):
+        if the_person.knows_pregnant():
             the_person "Oh yes, shoot your hot load deep inside me."
             "She sighs happily."
 
@@ -1786,7 +1792,7 @@ label wild_creampie_taboo_break(the_person):
             the_person "I'll just have to hope you haven't knocked me up. We really shouldn't do this again, my luck is going to run out at some point."
 
     else:
-        if the_person.event_triggers_dict.get("preg_knows", False):
+        if the_person.knows_pregnant():
             the_person "Oh shit, you came right inside me."
 
         elif not the_person.on_birth_control:
