@@ -1133,6 +1133,7 @@ label water_spill_crisis_label():
                             the_person.draw_animated_removal(next_piece)
                             renpy.say(None,the_person.title + " takes off her " + next_piece.name + " and drops it on the floor.")
                             next_piece = the_person.outfit.remove_random_any(top_layer_first = True, exclude_feet = True, do_not_remove = True)
+                        next_piece = None
 
                     the_person "There, I hope that's good enough."
                     mc.name "Much better. Now, back to those taxes."

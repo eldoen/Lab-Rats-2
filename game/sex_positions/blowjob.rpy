@@ -426,6 +426,7 @@ label orgasm_blowjob(the_girl, the_location, the_object):
 label blowjob_comment(the_girl, the_location, the_object):
     $ last_position = last_position_used()
     if not last_position or not last_position.skill_tag in ["Anal", "Vaginal"]:
+        $ last_position = None
         return
 
     if the_girl.effective_sluttiness() > 70 or (the_girl.effective_sluttiness(50) and the_girl.get_opinion_score("being submissive") > 0):

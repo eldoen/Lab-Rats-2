@@ -4,9 +4,6 @@ init -2 python:
     def check_insta_requirement():
         return True
 
-    def check_insta_requirement():
-        return True
-
     def check_dikdok_requirement():
         return True
 

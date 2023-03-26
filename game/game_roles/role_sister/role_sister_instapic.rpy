@@ -834,11 +834,11 @@ label sister_instathot_label_mom(the_sister, the_mom):
         "You lean against a wall and pass some time on your phone while [the_sister.possessive_title] and [the_mom.title] pick out outfits."
         the_sister "Right, I think these are going to drive them wild. Come on, let's see how they look!"
 
-        $ mom_start_instapic_event = Action("mom start instapic", mom_instapic_setup_intro_requirement, "mom_instapic_setup_intro", requirement_args = day + renpy.random.randint(3,5))
-        $ the_mom.on_room_enter_event_list.append(mom_start_instapic_event) #She'll want to start her own Instapic account in a few days (assuming she doesn't already have one)
+        #She'll want to start her own Instapic account in a few days (assuming she doesn't already have one)
+        $ the_mom.on_room_enter_event_list.append(Action("mom start instapic", mom_instapic_setup_intro_requirement, "mom_instapic_setup_intro", requirement_args = day + renpy.random.randint(3,5)))
 
-        $ mom_start_instapic_alternative_event = Action("mom alt start instapic", mom_instapic_alt_intro_requirement, "mom_instapic_alt_intro", requirement_args = day + renpy.random.randint(3,5))
-        $ the_mom.on_room_enter_event_list.append(mom_start_instapic_alternative_event) #If she ends up with an Instapic account in some other way (or already has one) this intros the help options.
+        #If she ends up with an Instapic account in some other way (or already has one) this intros the help options.
+        $ the_mom.on_room_enter_event_list.append(Action("mom alt start instapic", mom_instapic_alt_intro_requirement, "mom_instapic_alt_intro", requirement_args = day + renpy.random.randint(3,5)))
 
 
     else:
@@ -1230,8 +1230,7 @@ label sister_instathot_label_mom_shirtless(the_sister, the_mom, the_group): #Cal
                 pass
 
         if not the_mom.event_triggers_dict.get("mom_instapic_banned", False): #TOD: Check if we've already triggerded this for Mom
-            $ mom_insta_ban_event = Action("Mom InstaPic Ban", mom_instapic_ban_requirement, "mom_instapic_ban", requirement_args = day + renpy.random.randint(3,5))
-            $ the_mom.on_room_enter_event_list.append(mom_insta_ban_event)
+            $ the_mom.on_room_enter_event_list.append(Action("Mom InstaPic Ban", mom_instapic_ban_requirement, "mom_instapic_ban", requirement_args = day + renpy.random.randint(3,5)))
 
     else:
         "You take some great shots of them with their shirts off."
