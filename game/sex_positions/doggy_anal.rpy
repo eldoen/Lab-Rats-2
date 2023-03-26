@@ -30,7 +30,10 @@ label intro_doggy_anal(the_girl, the_location, the_object):
     mc.name "Get down on all fours, I want to fuck your tight ass."
     if the_girl.sex_skills["Anal"] > 3 or the_girl.get_opinion_score("anal sex") > 1:
         if the_girl.effective_sluttiness() > 90:
-            the_girl "Get inside of me and fuck my ass raw!"
+            if mc.condom:
+                the_girl "Get inside of me and fuck my ass hard and deep!"
+            else:
+                the_girl "Get inside of me and fuck my ass raw!"
         else:
             the_girl "Okay, but take it slowly. I need some time to adjust..."
     else: #She's inexperienced and doesn't quite know what to do.
