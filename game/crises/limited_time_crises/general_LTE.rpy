@@ -55,8 +55,10 @@ init -1 python:
     def new_dikdok_account_requirement(the_person):
         if the_person.has_role(mother_role) or the_person.has_role(sister_role):
             return False #We want explicit control of when these characters generate their DikDok accounts
-        elif the_person.has_role(dikdok_role):
+        elif the_person.has_role(dikdok_role) or the_person.has_role(girlfriend_role):
             return False #Role exists
+        elif the_person.event_triggers_dict.get("block_dikdok", False): # you asked her to quit DikDok
+            return False
         elif the_person.effective_sluttiness() < (100 - the_person.personality.dikdok_chance) - 5 * the_person.get_opinion_score("showing her tits") - 5 * the_person.get_opinion_score("showing her ass"):
             return False #Personality type and Opinions has a large impact on chance to generate a new profile.
         elif the_person.love < 30: #Girls who don't like you won't tell you they've made a profile (and are assumed to either have one or not depending on their starting generation)
@@ -68,6 +70,8 @@ init -1 python:
             return False #We want explicit control of when these characters generate their OnlyFans accounts
         elif the_person.has_role(onlyfans_role) or the_person.has_role(girlfriend_role):
             return False #Role exists / she's your GF
+        elif the_person.event_triggers_dict.get("block_onlyfans", False): # you asked her to quit Only Fans
+            return False
         elif the_person.effective_sluttiness() < 80 - 10 * the_person.get_opinion_score("showing her tits") - 5 * the_person.get_opinion_score("showing her ass") - 5 * the_person.get_opinion_score("public sex"):
             return False
         elif the_person.love < 40: #Girls who don't like you won't tell you they've made a profile (and are assumed to either have one or not depending on their starting generation)
