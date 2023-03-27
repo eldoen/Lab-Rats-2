@@ -1,13 +1,16 @@
 # internal class to  handle list of actions
 init -2 python:
-    class ActionList(renpy.store.object):
+    class ActionList():
         def __init__(self, actions = None):
             self._actions = []
-            if isinstance(actions, list):
-                for x in actions:
-                    self.add_action(x)
-            elif not actions is None:
-                self.add_action(actions)
+            if not actions is None:
+                if isinstance(actions, ActionList):
+                    self._actions[:] = actions[:]
+                if isinstance(actions, list):
+                    for x in actions:
+                        self.add_action(x)
+                else:
+                    self.add_action(actions)
 
         def __getitem__(self, key):
             if isinstance( key, slice ) :
@@ -22,7 +25,7 @@ init -2 python:
             raise TypeError
 
         def __repr__(self):
-            return repr(self())
+            return repr(self._actions)
 
         def __call__(self):
             return self._actions
@@ -38,7 +41,30 @@ init -2 python:
             return not found is None
 
         def __add__(self, action):
-            self.add_action(action)
+            if isinstance(action, ActionList):
+                return self.__class__(self._actions + action._actions)
+            elif isinstance(action, list):
+                return self.__class__(self._actions + action)
+            elif isinstance(action, Action):
+                return self.__class__(self._actions + [action])
+
+        def __radd__(self, action):
+            if isinstance(action, ActionList):
+                return self.__class__(action._actions + self._actions)
+            elif isinstance(action, list):
+                return self.__class__(action + self._actions)
+            elif isinstance(action, Action):
+                return self.__class__([action] + self._actions)
+
+        def __iadd__(self, action):
+            if isinstance(action, ActionList):
+                self._actions += other._actions
+            elif isinstance(action, list):
+                for x in action:
+                    self.add_action(x)
+            else:
+                self.add_action(action)
+            return self
 
         def __sub__(self, action):
             self.remove_action(action)
@@ -60,12 +86,17 @@ init -2 python:
         def clear(self):
             self._actions.clear()
 
+        def copy(self):
+            return self.__class__(self)
+
         def extend(self, other):
             if isinstance(other, ActionList):
                 self._actions.extend(other._actions)
-            if isinstance(other, list):
+            elif isinstance(other, list):
                 for x in other:
                     self.add_action(x)
+            elif isinstance(other, Action):
+                self.add_action(other)
 
         def pop(self, index = -1):
             return self._actions.pop(index)
@@ -82,30 +113,19 @@ init -2 python:
             return None
 
         def add_action(self, action):
-            found = self.find(action)
-            if not found:
-                self._actions.append(action)
-            else:
-                self.update_action(action)
+            if isinstance(action, Action):
+                found = self.find(action)
+                if not found:
+                    self._actions.append(action)
+                else:
+                    found.update(action)
 
         def remove_action(self, action):
             found = self.find(action)
             if not found and isinstance(action, basestring):
                 found = next((x for x in self._actions if x.effect == action), None)
-
             if found:
                 self._actions.remove(found)
-
-        def update_action(self, action):
-            self.name = action.name
-            self.effect = action.effect
-            self.requirement = action.requirement
-            self.args = action.args
-            self.menu_tooltip = action.menu_tooltip
-            self.priority = action.priority
-            self.event_duration = action.event_duration
-            self.is_fast = action.is_fast
-            return
 
         def enabled_actions(self, extra_args = None):
             return [x for x in self._actions if x.is_action_enabled(extra_args)]
