@@ -881,7 +881,7 @@ label production_accident_crisis_label():
     $ techno = get_random_from_list(technobabble_list)
     the_person "I was trying to [techno] like I normally do and went to move the batch. It slipped out of my hand and when I tried to grab it..."
     "She turns her palm up to you. It's covered in the same coloured liquid, and there's a small cut."
-    the_person "I'm not sure what the uptake is like with this new design. I think everything will be fine, but would you mind hanging around for a few minutes?."
+    the_person "I'm not sure what the uptake is like with this new design. I think everything will be fine, but would you mind hanging around for a few minutes?"
     $the_person.give_serum(the_serum)
     if office_punishment.is_active():
         menu:
