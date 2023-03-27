@@ -1,5 +1,5 @@
 init -2 python:
-    class Action(renpy.store.object): #Contains the information about actions that can be taken in a room. Displayed when you are asked what you want to do somewhere.
+    class Action(): #Contains the information about actions that can be taken in a room. Displayed when you are asked what you want to do somewhere.
         # Also used for crises, those are not related to any particular room and are not displayed in a list. They are forced upon the player when their requirement is met.
         def __init__(self,name,requirement,effect,args = None, requirement_args = None, menu_tooltip = None, priority = 0, event_duration = 99999, is_fast = True):
             self.name = name
@@ -83,6 +83,20 @@ init -2 python:
                 extra_args = [extra_args]
 
             renpy.call(self.effect,*(self.args+extra_args))
+
+        def update(self, action):
+            if isinstance(action, Action):
+                self.name = action.name
+                self.requirement = action.requirement
+                self.effect = action.effect
+                self.args = action.args
+                self.requirement_args = action.requirement_args
+                self.menu_tooltip = action.menu_tooltip
+                self.priority = action.priority
+                self.event_duration = action.event_duration
+                self.is_fast = action.is_fast
+            return
+
 
     class Limited_Time_Action(Action): #A wrapper class that holds an action and the amount of time it will be valid. This acts like an action everywhere
         #except it also has a turns_valid value to decide when to get rid of this reference to the underlying action

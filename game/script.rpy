@@ -248,11 +248,7 @@ init 0 python:
             person.on_talk_event_list.remove(chosen)
             return chosen
 
-        enabled_talk_events = []
-        for possible_talk_event in person.on_talk_event_list:
-            if possible_talk_event.is_action_enabled(person):
-                enabled_talk_events.append(possible_talk_event)
-
+        enabled_talk_events = [x for x in person.on_talk_event_list if x.is_action_enabled(person)]
         if enabled_talk_events:
             chosen = get_random_from_list(enabled_talk_events)
             person.on_talk_event_list.remove(chosen)
@@ -261,10 +257,8 @@ init 0 python:
 
     def main_loop_pick_room_event(location):
         enabled_room_events = []
-        for a_person in location.people:
-            for possible_room_event in a_person.on_room_enter_event_list:
-                if possible_room_event.is_action_enabled(a_person): #See what events the are enabled...
-                    enabled_room_events.append([a_person, possible_room_event]) #Then keep track of the person so we know who to remove it from if it triggers.
+        for person in location.people:
+            enabled_room_events.extend([[person, x] for x in person.on_room_enter_event_list if x.is_action_enabled(person)])
 
         if enabled_room_events:
             chosen = get_random_from_list(enabled_room_events)
@@ -273,10 +267,7 @@ init 0 python:
         return None
 
     def main_loop_pick_location_event(location):
-        enabled_room_events = []
-        for possible_room_event in location.on_room_enter_event_list:
-            if possible_room_event.is_action_enabled():
-                enabled_room_events.append(possible_room_event)
+        enabled_room_events = [x for x in location.on_room_enter_event_list if x.is_action_enabled()]
 
         if enabled_room_events:
             chosen = get_random_from_list(enabled_room_events)
@@ -285,10 +276,7 @@ init 0 python:
         return None
 
     def main_loop_select_greeter(location):
-        possible_greetings = []
-        for a_person in new_location.people:
-            if mc.business.get_employee_title(a_person) != "None":
-                possible_greetings.append(a_person)
+        possible_greetings = [x for x in location.people if mc.business.get_employee_title(x) != "None"]
         return get_random_from_list(possible_greetings)
 
     common_variable_list = ["talk_action", "new_location", "picked_option", "picked_event", "outfit", "insta_outfit", \
@@ -510,7 +498,6 @@ label advance_time:
         mc.business.run_turn()
         mc.run_turn()
 
-
     #We make sure that all mandatory crises are run here. Mandatory crises always trigger as soon as they are able, possibly with multiple crises triggering in a single turn.
     $ count = 0
     $ max = len(mc.business.mandatory_crises_list)
@@ -535,18 +522,14 @@ label advance_time:
     #Once mandatory crises are managed we may or may not run a random crisis to keep things interesting.
     if renpy.random.randint(0,100) < 10: #ie. run a crisis 10% of the time.
         python:
-            possible_crisis_list = []
-            for crisis in crisis_list:
-                if crisis[0].is_action_enabled(): #Get the first element of the weighted tuple, the action.
-                    possible_crisis_list.append(crisis) #Build a list of valid crises from ones that pass their requirement.
-
-        $ the_crisis = get_random_from_weighted_list(possible_crisis_list)
-        if the_crisis:
-            $ the_crisis.call_action()
+            possible_crisis_list = [x for x in crisis_list if x[0].is_action_enabled()]
+            crisis = get_random_from_weighted_list(possible_crisis_list)
+            del possible_crisis_list
+        if crisis:
+            $ crisis.call_action()
             if _return == "Advance Time":
                 $ mandatory_advance_time = True
             $ del crisis
-        $ del possible_crisis_list
 
     $ clear_scene()
     $ renpy.scene()
@@ -555,7 +538,7 @@ label advance_time:
 
     if time_of_day == 4: ##First, determine if we're going into the next chunk of time. If we are, advance the day and run all of the end of day code.
         python:
-            for (people,place) in people_to_process:
+            for (people, place) in people_to_process:
                 people.run_day()
 
         $ mc.run_day()
@@ -602,42 +585,36 @@ label advance_time:
 
         if renpy.random.randint(0,100) < 15: # We run morning crises 5% of all mornings
             python:
-                possible_morning_crises = []
-                for crisis in morning_crisis_list:
-                    if crisis[0].is_action_enabled(): #Get the first element of the weighted tuple, the action.
-                        possible_morning_crises.append(crisis) #Build a list of valid crises from ones that pass their requirement.
-            $ the_morning_crisis = get_random_from_weighted_list(possible_morning_crises)
+                possible_morning_crises = [x for x in morning_crisis_list if x[0].is_action_enabled()]
+                the_morning_crisis = get_random_from_weighted_list(possible_morning_crises)
+                del possible_morning_crises
+
             if the_morning_crisis:
                 $ the_morning_crisis.call_action()
                 if _return == "Advance Time":
                     $ mandatory_advance_time = True
                 $ del the_morning_crisis
-            $ del possible_morning_crises
 
     else:
         $ time_of_day += 1 ##Otherwise, just run the end of day code.
 
     python:
-        for (people,place) in people_to_process: #Now move everyone to where the should be in the next turn. That may be home, work, etc.
-            people.run_move(place)
+        for (person,place) in people_to_process: #Now move everyone to where the should be in the next turn. That may be home, work, etc.
+            person.run_move(place)
 
-            if people.title is not None: #We don't assign events to people we haven't met.
+            if person.title is not None: #We don't assign events to person we haven't met.
                 if renpy.random.randint(0,100) < 15: #Only assign one to 15% of people, to cut down on the number of people we're checking.
-                    possible_crisis_list = []
-                    for crisis in limited_time_event_pool:
-                        if crisis[0].is_action_enabled(people): #Get the first element of the weighted tuple, the action.
-                            possible_crisis_list.append(crisis) #Build a list of valid crises from ones that pass their requirement.
-
-                    the_crisis = get_random_from_weighted_list(possible_crisis_list, return_everything = True)
+                    possible_crisis_list = [x for x in limited_time_event_pool if x[0].is_action_enabled(person)]
+                    crisis = get_random_from_weighted_list(possible_crisis_list, return_everything = True)
                     del possible_crisis_list
-                    if the_crisis is not None:
-                        limited_time_event = Limited_Time_Action(the_crisis[0], the_crisis[0].event_duration) #Wraps the action so that we can have an instanced duration counter and add/remove it easily.\
-                        #renpy.notify("Created event: " + the_crisis[0].name + " for " + people.name)
-                        if the_crisis[2] == "on_talk":
-                            people.on_talk_event_list.append(limited_time_event)
+                    if crisis is not None:
+                        limited_time_event = Limited_Time_Action(crisis[0], crisis[0].event_duration) #Wraps the action so that we can have an instanced duration counter and add/remove it easily.\
+                        #renpy.notify("Created event: " + crisis[0].name + " for " + person.name)
+                        if crisis[2] == "on_talk":
+                            person.on_talk_event_list.append(limited_time_event)
 
-                        elif the_crisis[2] == "on_enter":
-                            people.on_room_enter_event_list.append(limited_time_event)
+                        elif crisis[2] == "on_enter":
+                            person.on_room_enter_event_list.append(limited_time_event)
                         del crisis
 
     $ mc.business.run_move() # In each phase it runs people->MC->Business. Policy effects are run as part of the business, and so can overwrite/alter things an employee has done (like wear their uniform)
