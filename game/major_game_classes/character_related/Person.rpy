@@ -3487,9 +3487,19 @@ init -2 python:
                     or self.on_talk_event_list.has_action(the_event)
             else:
                 if isinstance(the_event, Action):
-                    return any(x for x in self.on_room_enter_event_list + self.on_talk_event_list if x == the_event)
+                    if isinstance(self.on_room_enter_event_list, ActionList):
+                        return any(x for x in self.on_room_enter_event_list + self.on_talk_event_list if x == the_event)
+                    elif isinstance(self.on_talk_event_list, ActionList):
+                        return any(x for x in self.on_talk_event_list + self.on_room_enter_event_list if x == the_event)
+                    else:
+                        return any(x for x in self.on_room_enter_event_list + self.on_talk_event_list if x == the_event)
                 if isinstance(the_event, basestring):
-                    return any(x for x in self.on_room_enter_event_list + self.on_talk_event_list if x.effect == the_event)
+                    if isinstance(self.on_room_enter_event_list, ActionList):
+                        return any(x for x in self.on_room_enter_event_list + self.on_talk_event_list if x.effect == the_event)
+                    elif isinstance(self.on_talk_event_list, ActionList):
+                        return any(x for x in self.on_talk_event_list + self.on_room_enter_event_list if x.effect == the_event)
+                    else:
+                        return any(x for x in self.on_room_enter_event_list + self.on_talk_event_list if x.effect == the_event)
             return False
 
         def add_infraction(self, the_infraction, add_to_log = True, require_policy = True):
