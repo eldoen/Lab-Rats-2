@@ -931,7 +931,7 @@ label extra_mastery_crisis_label():
     if isinstance(the_research, SerumTrait):
         $ the_trait = mc.business.active_research_design
     elif isinstance(the_research, SerumDesign):
-        $ the_trait = get_random_from_list(the_research.traits)
+        $ the_trait = max(the_research.traits, key = lambda x: x.tier) # trait with highest tier
 
     if mc.location.has_person(the_person):
         #She's in the same room as you.
