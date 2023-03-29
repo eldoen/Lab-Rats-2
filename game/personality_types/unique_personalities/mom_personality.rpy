@@ -362,7 +362,7 @@ label mom_seduction_response(the_person):
         if the_person.sluttiness > 50:
             the_person "Do you need some personal attention [the_person.mc_title]? I know how stressed you can get you."
         else:
-            the_person "Oh well... What do you need help with [the_person.mc_title]?."
+            the_person "Oh well... What do you need help with [the_person.mc_title]?"
     else:
         if the_person.sluttiness > 50:
             the_person "Well, how about you let your mother help you get focused again?"

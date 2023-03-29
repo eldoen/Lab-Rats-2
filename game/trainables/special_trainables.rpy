@@ -15,9 +15,9 @@ init -2 python:
         if the_person.has_role(hypno_orgasm_role):
             return False
         elif the_person.suggestibility < 50:
-            return False
-        elif the_person.arousal_perc < 60:
-            return ">50% Suggestibility, >50% Arousal"
+            return ">50% Suggestibility"
+        elif the_person.arousal_perc < 50:
+            return ">50% Arousal"
         return True
 
     def train_online_attention_whore_requirement(the_person):

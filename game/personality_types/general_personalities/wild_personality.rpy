@@ -864,7 +864,7 @@ label wild_cum_face(the_person):
             "[the_person.title] runs a finger along her cheek, wiping away some of your semen."
     else:
         if the_person.sluttiness > 80:
-            the_person "Mmm that's such a good feeling. Do you think I look cute like this?."
+            the_person "Mmm that's such a good feeling. Do you think I look cute like this?"
             "[the_person.title] runs her tongue along her lips, then smiles and laughs."
         else:
             the_person "Whew, glad you got that over with. Take a good look while it lasts."

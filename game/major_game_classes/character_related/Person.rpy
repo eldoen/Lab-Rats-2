@@ -1306,6 +1306,7 @@ init -2 python:
             self.planned_uniform = None #The uniform the person was planning on wearing for today, so they can return to it if they need to while at work.
             self.apply_outfit(self.planned_outfit)
 
+            self.reset_event_parameters()
 
             ## Internet things ##
             if generate_insta: #NOTE: By default all of these are not visible to the player.
@@ -1504,6 +1505,13 @@ init -2 python:
             else:
                 self._work = None
 
+        def reset_event_parameters(self):
+            base_value = 0 if not "GAME_SPEED" in globals() else GAME_SPEED
+            self.event_triggers_dict["chatted"] = 4 - base_value
+            self.event_triggers_dict["flirted"] = 4 - base_value
+            self.event_triggers_dict["complimented"] = 4 - base_value
+            return
+
         # TODO: remove (leave for backward compatibility for now)
         def has_limited_time_event(self, the_event):
             self.has_queued_event(the_event)
@@ -1633,10 +1641,7 @@ init -2 python:
                 serum.run_on_move(self) #Run the serum's on_move function if one exists
 
             # reset talk actions
-            base_value = 0 if not "GAME_SPEED" in globals() else GAME_SPEED
-            self.event_triggers_dict["chatted"] = 4 - base_value
-            self.event_triggers_dict["flirted"] = 4 - base_value
-            self.event_triggers_dict["complimented"] = 4 - base_value
+            self.reset_event_parameters()
 
             self.sexed_count = 0 #Reset the counter for how many times you've been seduced, you might be seduced multiple times in one day!
 
