@@ -20,10 +20,26 @@ define config.name = _("Lab Rats 2 - Down to Business")
 
 define gui.show_name = False
 
+## Save directory ##############################################################
+##
+## Controls the platform-specific place Ren'Py will place the save files for
+## this game. The save files will be placed in:
+##
+## Windows: %APPDATA\RenPy\<config.save_directory>
+##
+## Macintosh: $HOME/Library/RenPy/<config.save_directory>
+##
+## Linux: $HOME/.renpy/<config.save_directory>
+##
+## This generally should not be changed, and if it is, should always be a
+## literal string, not an expression.
+
+define config.save_directory = "LR2_MOD51"
 
 ## The version of the game.
+## Modify together with save_directory to invalidate old save games from persistent storage
 
-define config.version = "0.51.2.1"
+define config.version = "0.51.3.1"
 
 
 ## Text that is placed on the game's about screen. To insert a blank line
@@ -121,23 +137,6 @@ default preferences.text_cps = 0
 ## to 30 being the valid range.
 
 default preferences.afm_time = 15
-
-
-## Save directory ##############################################################
-##
-## Controls the platform-specific place Ren'Py will place the save files for
-## this game. The save files will be placed in:
-##
-## Windows: %APPDATA\RenPy\<config.save_directory>
-##
-## Macintosh: $HOME/Library/RenPy/<config.save_directory>
-##
-## Linux: $HOME/.renpy/<config.save_directory>
-##
-## This generally should not be changed, and if it is, should always be a
-## literal string, not an expression.
-
-define config.save_directory = "LR_2_Proto-1493018508"
 
 
 ## Icon
