@@ -778,8 +778,8 @@ label cousin_search_room_label(the_cousin, the_aunt):
         if the_aunt.love < 30:
             the_aunt "[the_aunt.mc_title], what the hell are you doing?"
             mc.name "Uh... I'm looking for information about your daughter."
-            $ the_cousin.draw_person(emotion = "angry")
-            $ the_cousin.change_love(-3)
+            $ the_aunt.draw_person(emotion = "angry")
+            $ the_aunt.change_love(-3)
             the_aunt "And you think you can just come in here and dig through her stuff? Get out! I'll be telling your mother about this!"
             "She glares at you and ushers you out of the apartment and out of the building."
             $ the_aunt.change_happiness(-5)
