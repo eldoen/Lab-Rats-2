@@ -3446,6 +3446,8 @@ init -2 python:
             return return_list
 
         def add_role(self, the_role):
+            if not isinstance(the_role, Role):  # wrong type
+                return
             if not the_role in self.special_role:
                 self.special_role.append(the_role)
 
