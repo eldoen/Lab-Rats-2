@@ -722,12 +722,15 @@ init -2 python:
             return return_list
 
         @classmethod
-        def generate_hair_colour(cls,base_colour = None, create_variation = True):
+        def generate_hair_colour(cls, base_colour = None, create_variation = True):
+            return_hair = None
+
             if base_colour:
-                for hair in cls.get_list_of_hairs():
-                    if hair[0] == base_colour:
-                        return_hair = copy.deepcopy(hair)
-            else:
+                hair = next((x for x in cls.get_list_of_hairs() if x[0] == base_colour), None)
+                if hair:
+                    return_hair = copy.deepcopy(hair)
+
+            if not return_hair:
                 return_hair = copy.deepcopy(cls.get_random_hair_colour()) #Deep copy the hair colours because lists are passed by reference and it is two lists deep.
 
             if create_variation: #The colour is modified slightly to give different characters slightly different hair colours even if they have the same base.
@@ -743,6 +746,9 @@ init -2 python:
                         # Tint it, it's a little lighter.
                         tint_factor = renpy.random.random() * component_variation_constant
                         hair_colour[component_index] = hair_colour[component_index] + ((1-hair_colour[component_index])*tint_factor)
+
+            # add light opacity to better blend with character
+            return_hair[1][3] = .95
 
             return return_hair
 
